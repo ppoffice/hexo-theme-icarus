@@ -1,0 +1,34 @@
+# Header
+menu:
+  Home: /
+  Archives: /archives
+  About: /about
+
+# Content
+excerpt_link: Read More
+fancybox: true
+
+# Sidebar
+sidebar: right
+widgets:
+- recent_posts
+- category
+- tag
+- tagcloud
+- archive
+
+# contacts
+contacts:
+  github: http://github.com/ppoffice
+  twitter: '#'
+  facebook: '#'
+  dribbble: '#'
+  rss: /atom.xml
+
+# Miscellaneous
+google_analytics:
+favicon: /favicon.png
+twitter:
+google_plus:
+fb_admins:
+fb_app_id:

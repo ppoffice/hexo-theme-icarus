@@ -1,0 +1,98 @@
+.profile-block
+  padding: 15px 20px
+  border-bottom: 1px solid color-border
+  &:last-child
+    border-bottom: none
+
+#profile
+  @media mq-normal
+    column(profile-column)
+  .inner
+    @extend $block
+    margin-top: block-margin
+    background: white
+    .base-info
+      #avatar
+        display: block
+        margin: 10px auto 20px
+        width: profile-avatar-size
+        height: profile-avatar-size
+      #name, #title, #location
+        display: block
+        text-align: center
+      #name
+        font-size: 20px
+        font-weight: 600
+      #location
+        font-size: font-size - 2
+        margin-top: 5px
+        color: color-default + #444
+        .fa
+          margin-right: 5px
+      #follow
+        color: white
+        width: 150px
+        height: 40px
+        display: block
+        font-size: 14px
+        line-height: 40px
+        text-align: center
+        margin: 20px auto 10px
+        background: #38b7ea
+        border-radius: 20px
+        transition: 0.2s ease
+        &:hover
+          background: #38b7ea + #111
+    .article-info
+      clearfix()
+      padding: 0px
+      .article-info-block
+        width: 50%
+        float: left
+        padding: 20px 15px
+        text-align: center
+        box-sizing: border-box
+        font-size: font-size + 6px
+        span
+          display: block
+          font-size: font-size
+          text-transform: uppercase
+        &:first-child
+          border-right: 1px solid color-border
+    .contact-info
+      .contact-list
+        width: 100%
+        td
+          text-align: center
+          font-size: font-size + 10px
+          a
+            position: relative
+            transition: 0.2s ease
+            color: color-default + #333
+            &:hover
+              color: color-default
+              &:after
+                right: -50%
+                top: -41px
+                color: white
+                background: #333
+                font-size: 14px
+                content: attr(title)
+                display: block
+                padding: 5px 15px
+                position: absolute
+                white-space: nowrap
+                border-radius: 2px
+                text-transform: uppercase
+                box-shadow: 0 0 2px rgba(0,0,0,0.2)
+                z-index: 1
+              &:before
+                top: -12px
+                right: 8px
+                border: solid
+                border-color: #333 transparent
+                border-width: 5px 5px 0 5px
+                content: ""
+                display: block
+                position: absolute
+                z-index: 2

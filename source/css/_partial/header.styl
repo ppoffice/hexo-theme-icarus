@@ -1,0 +1,130 @@
+#header
+  @extend $block
+  background: white
+  position: relative
+  a, a:visited
+    transition: 0.2s ease
+    color: color-default
+  a:hover
+    color: color-link
+
+$header-block
+  height: logo-size
+  line-height: logo-size
+  padding: ((header-height - logo-size)/2) 15px
+
+$header-block-left
+  float: left
+  border-right: 1px solid color-border
+
+$header-block-right
+  float: right
+  border-left: 1px solid color-border
+  
+.header-inner
+  height: 100%
+  position: relative
+  #logo
+    @extend $header-block
+    @extend $header-block-left
+    display: inline-block
+    .logo
+      display: inline-block
+      width: logo-size
+      height: logo-size
+      margin-right: 5px
+    .site-title
+      font-size: 16px
+      display: inline-block
+      vertical-align: top
+      font-weight: 600
+
+#header-title
+  text-align: center
+  height: logo-size
+  position: absolute
+  top: 50%
+  left: 0
+  margin-top: logo-size * -0.5
+  
+#header-sub
+  border-top: 1px solid color-border
+  ul
+    margin: 0 15px
+    li
+      float: left
+      margin: 0 10px
+      a
+        display: inline-block
+        line-height: header-sub-height
+
+#main-nav
+  @extend $header-block
+  @extend $header-block-left
+
+$nav-link
+  float: left
+  display: block
+  padding: 0 15px
+
+.nav-icon
+  @extend $nav-link
+  text-align: center
+  font-size: font-size
+  width: font-size
+  height: font-size
+  position: relative
+  cursor: pointer
+  height: logo-size !important
+  line-height: logo-size !important
+
+.main-nav-link
+  @extend $nav-link
+  font-weight: 300
+  @media mq-mobile
+    display: none
+
+#main-nav-toggle
+  display: none
+  &:before
+    content: "\f0c9"
+  @media mq-mobile
+    display: block
+
+#sub-nav
+  @extend $header-block
+  @extend $header-block-right
+
+#search-form-wrap
+  @extend $header-block
+  @extend $header-block-left
+  width: 200px
+  .search-form
+    position: relative
+    border: 1px solid color-border
+    border-radius: ((logo-size + 2)/2)
+    padding: 0 30px 0 10px
+    .search-form-input
+      border: none
+      background: none
+      color: color-default
+      width: 100%
+      font: 13px font-sans
+      outline: none
+      &::-webkit-search-results-decoration
+      &::-webkit-search-cancel-button
+        -webkit-appearance: none
+    .search-form-submit
+      top: 50%
+      right: 15px
+      border: none
+      cursor: pointer
+      margin-top: -7px
+      background: none
+      position: absolute
+      font: 13px font-icon
+      font-family: 'FontAwesome'
+      &:before
+        content: '\f002'
+      &:hover, &:focus
+        color: #777

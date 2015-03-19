@@ -1,0 +1,29 @@
+<a href="<%- url_for((post.link?post.link:post.path)) %>" class="thumbnail">
+  <%
+    var img=/\<img\s.*?\s?src\s*=\s*['|"]?([^\s'"]+).*?\>/ig;
+    var result = post.content.match(img);
+    var s = "";
+    result = img.exec(post.content);
+    if(result != null) {
+      for(var i = result.length -1; i; --i){
+          s += result[i]+"\n";
+      }
+    }
+    if(s.length > 0){
+      if(config.post_asset_folder){
+        var pattern = /^[\\{0,1}\/{0,1}]([^\/^\\]+)/,
+            pattern_ = /([^\/^\\]+)/;
+        if((ret = pattern.exec(s)) != null) {
+          if(ret[0].length == s.length)
+            s = config.root + post.path + ret[1];
+        } else if ((ret = pattern_.exec(s)) != null) {
+          if(ret[0].length == s.length)
+            s = config.root + post.path + ret[1];
+        }
+      }
+     %>
+    <span style="background-image:url(<%- url_for(s) %>)" alt="<%= post.title %>" class="thumbnail-image"></span>
+  <% } else { %>
+    <span class="thumbnail-image thumbnail-none"></span>
+  <% } %>
+</a>

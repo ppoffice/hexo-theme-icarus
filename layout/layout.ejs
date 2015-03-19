@@ -1,0 +1,16 @@
+<%- partial('_partial/head') %>
+<body>
+  <div id="container">
+    <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
+    <div class="outer">
+      <%- partial('_partial/profile', null, {cache: !config.relative_link}) %>
+      <section id="main"><%- body %></section>
+      <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
+        <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
+      <% } %>
+    </div>
+    <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+    <%- partial('_partial/after-footer') %>
+  </div>
+</body>
+</html>
