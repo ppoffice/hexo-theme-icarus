@@ -15,20 +15,20 @@
   <% page.posts.each(function(post, i){ %>
     <% var year = post.date.year(); %>
     <% if (last != year){ %>
-      <% if (last != null){ %>
-        </div></section>
-      <% } %>
       <% last = year; %>
-      <section class="archives-wrap">
         <div class="archive-year-wrap">
           <i class="fa fa-calendar"></i>
           <a href="<%- url_for('archives/' + year) %>" class="archive-year"><%= year %></a>
         </div>
-        <div class="archives">
     <% } %>
     <%- partial('article', {post: post, index: true}) %>
   <% }) %>
-  <% if (page.posts.length){ %>
-    </div></section>
+  <% if (page.total > 1){ %>
+    <nav id="page-nav">
+      <%- paginator({
+        prev_text: '&laquo; ' + __('nav.prev'),
+        next_text:  __('nav.next') + ' &raquo;'
+      }) %>
+    </nav>
   <% } %>
 <% } %>

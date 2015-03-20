@@ -1,7 +1,7 @@
 #Icarus
 
 ### The blog theme you may fall in love with, coming to Hexo. [Preview](http://ppoffice.github.io/hexo-theme-icarus/)
-![](/hexo-theme-icarus/gallery/preview.jpg "")
+![](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.jpg "")
 
 ## Installation
 
@@ -115,13 +115,13 @@ language: zh-CN
 
 A nice place to show yourself. You can add your own information in your site's `_config.yml`
 
-![](/hexo-theme-icarus/gallery/profile.png "")
+![](http://ppoffice.github.io/hexo-theme-icarus/gallery/profile.png "")
 
 ### Responsive Layout
 
 Icarus knows on what screen size you are browsering the website, and reorganize the layout to fit your device.
 
-![](/hexo-theme-icarus/gallery/responsive.jpg "")
+![](http://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.jpg "")
 
 ### Fancybox
 
