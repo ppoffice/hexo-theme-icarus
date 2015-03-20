@@ -6,10 +6,8 @@ index:
   uncategorized: '未分类'
   tag: '标签'
 nav:
-  current_page:
-    other: '第 %d 页，'
-  total_page:
-    other: '共 %d 页'
+  next: '下一页'
+  prev: '上一页'
 widget:
   recents: '最新文章'
   archives: '归档'

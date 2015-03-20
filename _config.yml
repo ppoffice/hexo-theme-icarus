@@ -17,13 +17,17 @@ widgets:
 - tagcloud
 - archive
 
-# contacts
+# Contacts
 contacts:
   github: http://github.com/ppoffice
   twitter: '#'
   facebook: '#'
   dribbble: '#'
   rss: /atom.xml
+
+# Links
+links:
+  Hexo: http://hexo.io
 
 # Miscellaneous
 google_analytics:

@@ -167,7 +167,7 @@
   float: right
   &:before
     content: "\f075"
-    font-family: font-icon
+    font-family: FontAwesome
     padding-right: 8px
 
 .article-share-link
@@ -176,7 +176,7 @@
   margin-left: 20px
   &:before
     content: "\f064"
-    font-family: font-icon
+    font-family: FontAwesome
     padding-right: 6px
 
 #article-nav
@@ -188,12 +188,10 @@
       absolute-center(8px)
       content: ""
       border-radius: 50%
-      background: color-border
-      box-shadow: 0 1px 2px #fff
+      background: color-default + #222
 
 .article-nav-link-wrap
   text-decoration: none
-  text-shadow: 0 1px #fff
   color: color-grey
   box-sizing: border-box
   margin-top: block-margin
@@ -218,11 +216,11 @@
     padding-left: 20px
 
 .article-nav-caption
-  text-transform: uppercase
   letter-spacing: 2px
-  color: color-border
   line-height: 1em
   font-weight: bold
+  color: color-default
+  text-transform: uppercase
   #article-nav-newer &
     margin-right: -2px
 
@@ -319,36 +317,3 @@ $article-share-link
     display: block
     max-width: 100%
     margin: 0 auto
-/*
-$article-gallery-ctrl
-  position: absolute
-  top: 0
-  height: 100%
-  width: 60px
-  color: #fff
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3)
-  opacity: 0.3
-  transition: opacity 0.2s
-  cursor: pointer
-  &:hover
-    opacity: 0.8
-  &:before
-    font-size: 30px
-    font-family: font-icon
-    position: absolute
-    top: 50%
-    margin-top: @font-size * -0.5
-
-.article-gallery-prev
-  @extend $article-gallery-ctrl
-  left: 0
-  &:before
-    content: "\f053"
-    left: 15px
-
-.article-gallery-next
-  @extend $article-gallery-ctrl
-  right: 0
-  &:before
-    content: "\f054"
-    right: 15px*/

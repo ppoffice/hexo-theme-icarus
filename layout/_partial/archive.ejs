@@ -5,8 +5,8 @@
   <% if (page.total > 1){ %>
     <nav id="page-nav">
       <%- paginator({
-        prev_text: '&laquo; Prev',
-        next_text: 'Next &raquo;'
+        prev_text: '&laquo; ' + __('nav.prev'),
+        next_text:  __('nav.next') + ' &raquo;'
       }) %>
     </nav>
   <% } %>
@@ -21,11 +21,12 @@
       <% last = year; %>
       <section class="archives-wrap">
         <div class="archive-year-wrap">
+          <i class="fa fa-calendar"></i>
           <a href="<%- url_for('archives/' + year) %>" class="archive-year"><%= year %></a>
         </div>
         <div class="archives">
     <% } %>
-    <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
+    <%- partial('article', {post: post, index: true}) %>
   <% }) %>
   <% if (page.posts.length){ %>
     </div></section>

@@ -6,10 +6,8 @@ index:
   uncategorized: 'uncategorized'
   tag: 'tag'
 nav:
-  current_page:
-    other: 'Page %d '
-  total_page:
-    other: 'of %d'
+  next: 'Next'
+  prev: 'Prev'
 widget:
   recents: 'recents'
   archives: 'archives'

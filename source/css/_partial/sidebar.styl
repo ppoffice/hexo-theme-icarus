@@ -81,6 +81,31 @@
         &:hover:before
           color: color-sidebar-text-dark
 
+#toTop
+  @extend $block
+  cursor: pointer
+  text-align: center
+  width: 64px
+  height: 64px
+  color: white
+  font-size: 32px
+  line-height: 64px
+  background: color-default
+  border-radius: 4px
+  @media mq-mobile
+    width: 54px
+    height: 54px
+    font-size: 28px
+    line-height: 54px
+  @media mq-mini
+    width: 54px
+    height: 54px
+    font-size: 28px
+    line-height: 54px
+  &.fix
+    bottom: 20px
+    position: fixed
+
 #recent-post
   li
     clearfix()

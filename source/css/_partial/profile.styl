@@ -98,3 +98,26 @@
                 display: block
                 position: absolute
                 z-index: 2
+  &.card
+    top: 50px
+    right: 20px
+    z-index: 999
+    display: block
+    min-width: 280px
+    position: absolute
+    .profile-inner
+      position: relative
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2)
+      &:before, &:after
+        z-index: 1
+        content: ''
+        top: -20px
+        right: 10px
+        position: absolute
+        border-width: 10px
+        border-style: solid
+        border-color: transparent transparent white transparent
+      &:after
+        z-index: 0
+        border-color: transparent transparent color-border - #111 transparent
+    

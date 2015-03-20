@@ -1,4 +1,6 @@
 (function($){
+  var toTop = $('#toTop').offset().top - $(window).height() + 20;
+
   // Share
   $('body').on('click', function(){
     $('.article-share-box.on').removeClass('on');
@@ -74,32 +76,31 @@
     $('.fancybox').fancybox();
   }
 
-  // Mobile nav
-  var $container = $('#container'),
-    isMobileNavAnim = false,
-    mobileNavAnimDuration = 200;
-
-  var startMobileNavAnim = function(){
-    isMobileNavAnim = true;
-  };
-
-  var stopMobileNavAnim = function(){
-    setTimeout(function(){
-      isMobileNavAnim = false;
-    }, mobileNavAnimDuration);
-  }
-
-  $('#main-nav-toggle').on('click', function(){
-    if (isMobileNavAnim) return;
-
-    startMobileNavAnim();
-    $container.toggleClass('mobile-nav-on');
-    stopMobileNavAnim();
+  // Profile card
+  $(document).on('click', function () {
+    $('#profile').removeClass('card');
+  }).on('click', '#profile-anchor', function (e) {
+    e.stopPropagation();
+    $('#profile').toggleClass('card');
+  }).on('click', '.profile-inner', function (e) {
+    e.stopPropagation();
   });
 
-  $('#wrap').on('click', function(){
-    if (isMobileNavAnim || !$container.hasClass('mobile-nav-on')) return;
-
-    $container.removeClass('mobile-nav-on');
+  // To Top
+  $(document).on('scroll', function () {
+    if ($(document).width() >= 800) {
+      if($(this).scrollTop() > toTop) {
+        $('#toTop').addClass('fix');
+        $('#toTop').css('left', $('#sidebar').offset().left);
+      } else {
+        $('#toTop').removeClass('fix');
+      }
+    } else {
+      $('#toTop').addClass('fix');
+      $('#toTop').css('right', 20);
+    }
+  }).on('click', '#toTop', function () {
+    $(document).scrollTop(0);
   });
+
 })(jQuery);
