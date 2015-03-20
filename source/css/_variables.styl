@@ -19,7 +19,7 @@ color-pinterest = #cb2027
 color-google = #dd4b39
 
 // Fonts
-font-sans = "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+font-sans = "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif
 font-serif = Georgia, "Times New Roman", serif
 font-mono = "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace
 font-size = 14px
@@ -43,9 +43,11 @@ profile-avatar-size = 128px
 block-margin = 40px
 article-padding = 20px
 mobile-nav-width = 280px
-main-column = 7
 profile-column = 3
 sidebar-column = 3
+sidebar-column-tablet = 4
+main-column = 7
+main-column-tablet = 9
 
 if sidebar and sidebar isnt bottom
   _sidebar-column = sidebar-column
@@ -58,6 +60,7 @@ gutter-width = 20px
 columns = main-column + _sidebar-column + profile-column
 
 // Media queries
-mq-mobile = "screen and (max-width: 479px)"
-mq-tablet = "screen and (min-width: 480px) and (max-width: 767px)"
-mq-normal = "screen and (min-width: 768px)"
+mq-mini = "screen and (max-width: 559px)"
+mq-mobile = "screen and (min-width: 560px) and (max-width: 799px)"
+mq-tablet = "screen and (min-width: 800px) and (max-width: 1199px)"
+mq-normal = "screen and (min-width: 1200px)"

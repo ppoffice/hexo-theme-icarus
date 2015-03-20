@@ -1,0 +1,28 @@
+index:
+  home: '主页'
+  search: '搜索'
+  archive: '归档'
+  category: '分类'
+  uncategorized: '未分类'
+  tag: '标签'
+nav:
+  current_page:
+    other: '第 %d 页，'
+  total_page:
+    other: '共 %d 页'
+widget:
+  recents: '最新文章'
+  archives: '归档'
+  categories: '分类'
+  links: '链接'
+  tags: '标签'
+  tag_cloud: '标签云'
+article:
+  comments: '评论'
+  share: '分享到'
+profile:
+  follow: '关注我'
+  post: '文章'
+  tag: '标签'
+  posts: '文章'
+  tags: '标签'

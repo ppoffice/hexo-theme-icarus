@@ -7,6 +7,13 @@
 
 .article-meta
   clearfix()
+  .article-date, .article-category
+    margin-right: 10px
+    color: color-default
+  a
+    color: color-default
+    &:hover
+      color: color-link
 
 .article-date
   @extend $block-caption
@@ -15,16 +22,16 @@
 .article-category
   float: left
   line-height: 1em
-  color: #ccc
-  text-shadow: 0 1px #fff
-  &:before
-    content: "\2022"
+  color: color-default
 
 .article-category-link
   @extend $block-caption
 
 .article-header
   padding: article-padding article-padding 0
+  .article-title
+    display: block
+    margin-bottom: 14px
 
 .article-title
   text-decoration: none
@@ -32,6 +39,8 @@
   color: color-default
   line-height: line-height-title
   transition: color 0.2s
+  a&:visited
+    color: color-default
   a&:hover
     color: color-link
 

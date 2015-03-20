@@ -32,6 +32,9 @@ a
   max-width: (column-width + gutter-width) * columns + gutter-width
   margin: 0 auto
   padding: 0 gutter-width
+  @media mq-mini
+    padding: 0
+    
 
 .inner
   column(columns)
@@ -58,6 +61,8 @@ if sidebar and sidebar isnt bottom
   #main
     @media mq-normal
       column(main-column)
+    @media mq-tablet
+      column(main-column-tablet)
 
 @import "_extend"
 @import "_partial/header"

@@ -1,6 +1,8 @@
 #sidebar
   @media mq-normal
     column(sidebar-column)
+  @media mq-tablet
+    column(sidebar-column-tablet)
 
 .widget
   @extend $base-style
@@ -34,6 +36,8 @@
 
 .widget-wrap
   margin: block-margin 10px
+  @media mq-mini
+    margin: block-margin 20px
 
 .widget-title
   @extend $block-caption
@@ -112,7 +116,7 @@
           color: color-link
           &:hover
             color: color-sidebar-text-dark
-        a, .icon
+        a, .fa
           margin-right: 5px
       .item-title
         font-size: 15px

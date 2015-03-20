@@ -5,16 +5,16 @@
       <h2 id="name"><%= config.author %></h2>
       <h3 id="title"><%= config.author_title %></h3>
       <span id="location"><i class="fa fa-map-marker"></i><%= config.location %></span>
-      <a id="follow" href="http://github.com/ppoffice">FOLLOW</a>
+      <a id="follow" href="http://github.com/ppoffice"><%=__('profile.follow')%></a>
   	</div>
     <div class="article-info profile-block">
       <div class="article-info-block">
         <%= site.posts.length %>
-        <span>post<%= (site.posts.length > 1?'s':'') %></span>
+        <span><%= (site.posts.length > 1?__('profile.posts'):__('profile.post')) %></span>
       </div>
       <div class="article-info-block">
         <%= site.tags.length %>
-        <span>tag<%= (site.tags.length > 1?'s':'') %></span>
+        <span><%= (site.tags.length > 1?__('profile.tags'):__('profile.tag')) %></span>
       </div>
     </div>
     <div class="contact-info profile-block">

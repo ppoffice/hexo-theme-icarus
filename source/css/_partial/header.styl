@@ -15,11 +15,9 @@ $header-block
 
 $header-block-left
   float: left
-  border-right: 1px solid color-border
 
 $header-block-right
   float: right
-  border-left: 1px solid color-border
   
 .header-inner
   height: 100%
@@ -47,9 +45,10 @@ $header-block-right
   left: 0
   margin-top: logo-size * -0.5
   
-#header-sub
+.header-sub
   border-top: 1px solid color-border
   ul
+    clearfix()
     margin: 0 15px
     li
       float: left
@@ -57,10 +56,55 @@ $header-block-right
       a
         display: inline-block
         line-height: header-sub-height
+  .main-nav-link
+    display: inline-block
+    line-height: header-sub-height
+    
+#header-sub
+  @media mq-mobile
+    display: none
+  @media mq-mini
+    display: none
+
+#main-nav-mobile
+  overflow-y: hidden
+  overflow-x: auto
+  .menu
+    clearfix()
+    margin: 0
+    height: header-sub-height
+    .search-form-input
+      display: none
+      @media mq-mini
+        display: block
+      border: none
+      outline: none
+      padding: 0 10px
+      background: none
+      margin-right: 15px
+      color: color-default
+      font: font-size font-sans
+      border: 1px solid color-border
+      line-height: header-sub-height - 16
+      border-radius: ((header-sub-height - 16)/2)
+      &::-webkit-search-results-decoration
+      &::-webkit-search-cancel-button
+        -webkit-appearance: none
 
 #main-nav
   @extend $header-block
   @extend $header-block-left
+  @media mq-mobile
+    display: none
+  @media mq-mini
+    display: none
+    
+#main-nav-mobile
+  @media mq-tablet
+    display: none
+  @media mq-normal
+    display: none
+  
 
 $nav-link
   float: left
@@ -81,23 +125,32 @@ $nav-link
 .main-nav-link
   @extend $nav-link
   font-weight: 300
-  @media mq-mobile
-    display: none
-
-#main-nav-toggle
-  display: none
-  &:before
-    content: "\f0c9"
-  @media mq-mobile
-    display: block
 
 #sub-nav
+  @media mq-normal
+    display: none
   @extend $header-block
   @extend $header-block-right
+  #profile-nav
+    #profile-anchor
+      clearfix()
+      display: block
+      height: logo-size
+      line-height: logo-size
+    .avatar, .fa
+      float: left
+    .avatar
+      width: logo-size
+      height: logo-size
+      margin-right: 8px
+    .fa
+      line-height: logo-size
 
 #search-form-wrap
+  @media mq-mini
+    display: none
   @extend $header-block
-  @extend $header-block-left
+  @extend $header-block-right
   width: 200px
   .search-form
     position: relative
@@ -109,7 +162,7 @@ $nav-link
       background: none
       color: color-default
       width: 100%
-      font: 13px font-sans
+      font: font-size font-sans
       outline: none
       &::-webkit-search-results-decoration
       &::-webkit-search-cancel-button
