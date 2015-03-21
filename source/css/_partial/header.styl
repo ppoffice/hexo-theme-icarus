@@ -66,25 +66,6 @@ $header-block-right
   @media mq-mini
     display: none
 
-#main-nav-mobile
-  overflow-y: hidden
-  overflow-x: auto
-  .menu
-    clearfix()
-    margin: 0
-    height: header-sub-height
-    .search-form-input
-      display: none
-      @media mq-mini
-        display: block
-      padding: 0 10px
-      margin-right: 15px
-      line-height: header-sub-height - 16
-      border-radius: ((header-sub-height - 16)/2)
-      &::-webkit-search-results-decoration
-      &::-webkit-search-cancel-button
-        -webkit-appearance: none
-
 #main-nav
   @extend $header-block
   @extend $header-block-left
@@ -145,7 +126,6 @@ $nav-link
     display: none
   @extend $header-block
   @extend $header-block-right
-  width: 200px
   .search-form
     position: relative
     .search-form-input
@@ -173,11 +153,34 @@ $nav-link
         color: #777
 
 .search-form-input
+  width: 200px
   outline: none
   background: none
+  box-shadow: none
   color: color-default
   transition: 0.2s ease
+  box-sizing: border-box
   font: font-size font-sans
   border: 1px solid color-border
   &:focus
     border-color: color-link
+
+#main-nav-mobile
+  overflow-y: hidden
+  overflow-x: auto
+  .menu
+    clearfix()
+    margin: 0
+    height: header-sub-height
+    .search-form-input
+      display: none
+      @media mq-mini
+        display: block
+      padding: 0 10px
+      margin-right: 15px
+      height: header-sub-height - 16
+      line-height: header-sub-height - 16
+      border-radius: ((header-sub-height - 16)/2)
+      &::-webkit-search-results-decoration
+      &::-webkit-search-cancel-button
+        -webkit-appearance: none
