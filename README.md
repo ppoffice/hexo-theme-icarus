@@ -68,7 +68,6 @@ fb_admins:
 fb_app_id:
 ```
 
-- **menu** - Navigation menu. Add '**Categories**' to display categories on the menu, the maximum depth of categories menus is 2 (You don't have to set the value of 'Categories').
 - **fancybox** - Enable [Fancybox].
 - **contacts** - Your social network links, RSS link, etc.
 - **widgets** - Widgets displaying in sidebar.
