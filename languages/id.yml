@@ -1,0 +1,26 @@
+index:
+  home: 'home'
+  search: 'Cari'
+  archive: 'arsip'
+  category: 'kategori'
+  uncategorized: 'tanpa kategori'
+  tag: 'tag'
+nav:
+  next: 'Berikutnya'
+  prev: 'Sebelumnya'
+widget:
+  recents: 'terbaru'
+  archives: 'arsip'
+  categories: 'kategori'
+  links: 'tautan'
+  tags: 'tag'
+  tag_cloud: 'awan tag'
+article:
+  comments: 'Komentar'
+  share: 'Bagikan'
+profile:
+  follow: 'IKUTI'
+  post: 'pos'
+  tag: 'tag'
+  posts: 'pos'
+  tags: 'tag'
