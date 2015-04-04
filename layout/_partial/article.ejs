@@ -26,6 +26,8 @@
       <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('article.share') %></a>
       <% if (post.comments && config.disqus_shortname){ %>
         <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('article.comments') %></a>
+      <% } else if (post.comments && config.duoshuo_shortname){ %>
+        <a href="<%- post.permalink %>#ds-thread" class="article-comment-link"><%= __('article.comments') %></a>
       <% } %>
       <%- partial('post/tag') %>
     </footer>
@@ -41,4 +43,10 @@
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
+<% } else if (!index && post.comments && config.duoshuo_shortname){ %>
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="<%- post.permalink %>" data-title="<%- post.title %>" data-url="<%- post.permalink %>">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by DuoShuo.</a></noscript>
+      </div>
+  </section>
 <% } %>
