@@ -7,6 +7,7 @@ menu:
 # Content
 excerpt_link: Read More
 fancybox: true
+thumbnail: true
 
 # Sidebar
 sidebar: right
