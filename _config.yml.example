@@ -16,6 +16,7 @@ widgets:
 - tag
 - tagcloud
 - archive
+thumbnail: true
 
 # Contacts
 contacts:
