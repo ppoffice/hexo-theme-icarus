@@ -17,6 +17,11 @@
         <span><%= (site.tags.length > 1?__('profile.tags'):__('profile.tag')) %></span>
       </div>
     </div>
+    <% if(theme.wechat) { %>
+    <div class="contact-info">
+      <img class="qrcode" src="<%= theme.wechat %>">
+    </div>
+    <% } %>
     <div class="contact-info profile-block">
       <table class="contact-list">
         <tr>
