@@ -1,8 +1,3 @@
-
-.heimu
-  background-color #252525 !important
-  color #252525 !important
-
 .article
   margin: block-margin 0
 
@@ -80,6 +75,8 @@
     height: auto
     display: block
     margin: auto
+  code
+    font-family monospace
   iframe
     border: none
   table
@@ -94,18 +91,20 @@
     border-bottom: 1px solid color-border
     padding: 10px 0
   blockquote
-    font-family: font-serif
-    font-size: 1.4em
-    margin: line-height 20px
-    text-align: center
-    footer
-      font-size: font-size
-      margin: line-height 0
-      font-family: font-sans
+      border-left .2em solid color-border
+      margin 0.65em 0 0.65em 4%
+      padding-left 1%
+      line-height line-height
+      font-size font-size
+      footer
+        background color-section
+        padding 0
+        margin 0
+        font-size 80%
+        line-height 1em
       cite
-        &:before
-          content: "—"
-          padding: 0 0.5em
+        font-style italic
+        padding-left 0.5em
   .pullquote
     text-align: left
     width: 45%
