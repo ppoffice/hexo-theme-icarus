@@ -19,9 +19,17 @@
           </p>
         <% } %>
       <% } else { %>
+      <% if (is_post()){ %>
+        <div id="toc" class="toc-article">
+          <!-- # <strong class="toc-title"><%= __('contents') %></strong> -->
+          <%- toc(post.content) %>
+        </div>
+      <% } %>
         <%- post.content %>
       <% } %>
     </div>
+    <%- partial('post/highlight') %>
+    <%- partial('post/math') %>
     <footer class="article-footer">
       <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('article.share') %></a>
       <% if (post.comments && config.disqus_shortname){ %>
