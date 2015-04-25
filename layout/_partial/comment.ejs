@@ -1,0 +1,27 @@
+<% if (config.disqus_shortname){ %>
+<script>
+  var disqus_shortname = '<%= config.disqus_shortname %>';
+  var disqus_identifier = '/<%- page.path %>';
+  var disqus_title = '<%- page.title %>';
+  var disqus_url = '<%- config.url %>/<%- page.path %>';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<% } else if (config.duoshuo_shortname){ %>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"<%= config.duoshuo_shortname %>"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<% } %>

@@ -37,16 +37,4 @@
   <% } %>
 </article>
 
-<% if (!index && post.comments && config.disqus_shortname){ %>
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-<% } else if (!index && post.comments && config.duoshuo_shortname){ %>
-  <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="<%- post.permalink %>" data-title="<%- post.title %>" data-url="<%- post.permalink %>">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by DuoShuo.</a></noscript>
-      </div>
-  </section>
-<% } %>
+<%- partial('post/comment') %>
