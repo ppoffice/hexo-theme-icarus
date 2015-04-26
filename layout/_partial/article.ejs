@@ -28,6 +28,7 @@
         <%- post.content %>
       <% } %>
     </div>
+    <%- partial('post/cc') %>
     <%- partial('post/highlight') %>
     <%- partial('post/math') %>
     <footer class="article-footer">
@@ -44,5 +45,7 @@
     <%- partial('post/nav') %>
   <% } %>
 </article>
+<div class="print-invisible">
+  <%- partial('post/comment') %>
+</div>
 
-<%- partial('post/comment') %>
