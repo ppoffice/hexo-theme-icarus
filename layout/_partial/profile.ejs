@@ -17,6 +17,7 @@
         <span><%= (site.tags.length > 1?__('profile.tags'):__('profile.tag')) %></span>
       </div>
     </div>
+    <% if(theme.contacts && theme.contacts.length > 0) { %>
     <div class="contact-info profile-block">
       <table class="contact-list">
         <tr>
@@ -26,5 +27,6 @@
         </tr>
       </table>
     </div>
+    <% } %>
   </div>
 </aside>
