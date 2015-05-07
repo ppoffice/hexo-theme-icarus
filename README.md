@@ -8,7 +8,7 @@
 ### Install
 
 ``` bash
-$ git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
+$ git clone https://github.com/JamesPan/hexo-theme-icarus.git themes/icarus
 ```
 
 **Icarus requires Hexo 3.0 and above.**
