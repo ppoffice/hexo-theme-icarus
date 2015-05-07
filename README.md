@@ -1,6 +1,6 @@
 #Icarus
 
-### The blog theme you may fall in love with, coming to Hexo. [Preview](http://ppoffice.github.io/hexo-theme-icarus/)
+### The blog theme you may fall in love with, coming to Hexo. [Preview](http://blog.jamespan.me)
 ![](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.jpg "")
 
 ## Installation
