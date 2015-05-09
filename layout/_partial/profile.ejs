@@ -26,7 +26,7 @@
       <table class="contact-list">
         <tr>
           <% for(var i in theme.contacts) { %>
-          <td><a href="<%- url_for(theme.contacts[i]) %>" title="<%= i %>"><i class="fa fa-<%= i %>"></i></a></td>
+          <td><a href="<%- url_for(theme.contacts[i]) %>" title="<%= i %>" target="_blank"><i class="fa fa-<%= i %>"></i></a></td>
           <% } %>
         </tr>
       </table>
