@@ -1,9 +1,11 @@
 <% if (config.disqus_shortname){ %>
 <script>
   var disqus_shortname = '<%= config.disqus_shortname %>';
+  <% if (page.comments) {%>
   var disqus_identifier = '/<%- page.path %>';
   var disqus_title = '<%- page.title %>';
   var disqus_url = '<%- config.url %>/<%- page.path %>';
+  <% } %>
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
