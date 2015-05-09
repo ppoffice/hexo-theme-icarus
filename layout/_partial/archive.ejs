@@ -1,4 +1,4 @@
-<% if (pagination == 2){ %>
+<% if (!theme.groupByYear){ %>
   <% page.posts.each(function(post){ %>
     <%- partial('article', {post: post, index: true}) %>
   <% }) %>
