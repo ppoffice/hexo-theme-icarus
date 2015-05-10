@@ -21,3 +21,19 @@
 @media only print
   .print-invisible *
     display: none !important
+
+@media mq-mobile
+  .mobile-hide
+    display: none !important
+
+@media mq-mini
+  .mobile-hide
+    display: none !important
+
+
+#advertise
+  @extend $block
+  padding: article-padding
+  margin: block-margin 0
+  a
+    color: color-link
