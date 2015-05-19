@@ -1,34 +1,36 @@
 <% if (pagination == 2){ %>
   <% page.posts.each(function(post){ %>
-    <%- partial('article', {post: post, index: true}) %>
-  <% }) %>
-  <% if (page.total > 1){ %>
-    <nav id="page-nav">
-      <%- paginator({
-        prev_text: '&laquo; ' + __('nav.prev'),
-        next_text:  __('nav.next') + ' &raquo;'
-      }) %>
-    </nav>
-  <% } %>
+  <%- partial('article', {post: post, index: true}) %>
+<% }) %>
+<% if (page.total > 1){ %>
+<nav id="page-nav">
+  <%- paginator({
+    prev_text: '&laquo; ' + __('nav.prev'),
+    next_text:  __('nav.next') + ' &raquo;'
+  }) %>
+</nav>
+<% } %>
 <% } else { %>
-  <% var last; %>
-  <% page.posts.each(function(post, i){ %>
-    <% var year = post.date.year(); %>
+<% var last; %>
+<% site.posts.sort('date', 'desc').each(function(post, i){ %>
+  <% var year = post.date.year(); %>
+  <% if (page.year === undefined || page.year == year){ %>
+  <% if (page.month === undefined || page.month == post.date.format('M')){ %>
     <% if (last != year){ %>
-      <% last = year; %>
-        <div class="archive-year-wrap">
-          <i class="fa fa-calendar"></i>
-          <a href="<%- url_for('archives/' + year) %>" class="archive-year"><%= year %></a>
-        </div>
+    <% last = year; %>
+    <div class="archive-list-year-wrap">
+      <i class="fa fa-calendar"></i>
+      <a href="<%- url_for('archives/' + year) %>" class="archive-year"><%= year %></a>
+    </div>
     <% } %>
-    <%- partial('article', {post: post, index: true}) %>
-  <% }) %>
-  <% if (page.total > 1){ %>
-    <nav id="page-nav">
-      <%- paginator({
-        prev_text: '&laquo; ' + __('nav.prev'),
-        next_text:  __('nav.next') + ' &raquo;'
-      }) %>
-    </nav>
-  <% } %>
+    <article class="article-simple" itemscope="" itemprop="blogPost">
+      <div class="article-simple-inner">
+        <header class="article-simple-header">
+          <a class="article-simple-title" href="<%- url_for(post.path) %>"><span class="article-simple-span"><%- post.date.  format('MM-DD') %></span><%- post.title %></a>
+        </header>
+      </div>
+    </article>
+    <% } %>
+    <% } %>
+<% }) %>
 <% } %>
