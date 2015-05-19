@@ -4,12 +4,14 @@
     <% if (post.link || post.title){ %>
       <header class="article-header">
         <%- partial('post/title', {class_name: 'article-title'}) %>
+        <% if ((post.meta == null) || (page.meta != null && post.meta)){ %>
         <div class="article-meta">
           <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
           <%- partial('post/category') %>
           <%- partial('post/pv') %>
           <%- partial('post/author') %>
         </div>
+        <% } %>
       </header>
     <% } %>
     <div class="article-entry" itemprop="articleBody">
@@ -23,7 +25,7 @@
       <% } else { %>
       <% if (is_post() && (post.toc == null || page.toc != null && post.toc)){ %>
         <div id="toc" class="toc-article">
-          <!-- # <strong class="toc-title"><%= __('contents') %></strong> -->
+          <!-- <strong class="toc-title"><%= __('contents') %></strong> -->
           <%- toc(post.content) %>
         </div>
       <% } %>
