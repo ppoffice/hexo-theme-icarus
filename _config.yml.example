@@ -16,6 +16,7 @@ widgets:
 - tag
 - tagcloud
 - archive
+- links
 thumbnail: true
 
 # Contacts
@@ -37,3 +38,10 @@ twitter:
 google_plus:
 fb_admins:
 fb_app_id:
+
+# WeChat QrCode URL
+#wechat: http://ww4.sinaimg.cn/large/e724cbefgw1erjd7qc6xcj20b40b4myy.jpg
+
+# CNZZ id
+#cnzz: 
+
