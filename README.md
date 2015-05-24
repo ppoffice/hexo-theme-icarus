@@ -1,7 +1,7 @@
 #Icarus
 
 ### The blog theme you may fall in love with, coming to Hexo. [Preview](http://blog.jamespan.me)
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.jpg "")
+![](http://ww2.sinaimg.cn/large/e724cbefgw1esf3s102ppj20l80lkgrf.jpg "")
 
 ## Installation
 
