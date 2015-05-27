@@ -18,6 +18,9 @@ widgets:
 - archive
 thumbnail: true
 
+# Additional Stylesheet
+customstylesheet: 'custom'
+
 # Contacts
 contacts:
   github: http://github.com/ppoffice
