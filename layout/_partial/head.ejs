@@ -33,4 +33,7 @@
   <%- css('css/style') %>
   <%- css('font-awesome/css/font-awesome.min') %>
   <%- partial('google-analytics') %>
+  <% if( theme.customstylesheet ){ %>
+    <%- css('css/'+theme.customstylesheet) %>
+  <% } %>
 </head>
