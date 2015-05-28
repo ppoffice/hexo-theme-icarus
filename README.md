@@ -175,7 +175,7 @@ All of them are enabled by default. You can edit them in `widget` setting.
 ### Requirements
 
 - [Grunt] 0.4+
-- Hexo 2.4+
+- Hexo 3.0+
 
 ### Grunt tasks
 
