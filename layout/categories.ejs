@@ -1,0 +1,10 @@
+<section class="layout-wrap">
+  <div class="layout-title">
+    <span><%= page.title %></span>
+  </div>
+  <div class="layout-wrap-inner list-categories">
+    <% if(site.categories.length) { %>
+      <%- list_categories(site.categories) %>
+    <% } %>
+  </div>
+</section>

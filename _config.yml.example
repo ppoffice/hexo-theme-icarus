@@ -2,6 +2,8 @@
 menu:
   Home: /
   Archives: /archives
+  Categories: /categories
+  Tags: /tags
   About: /about
 
 # Content
@@ -18,12 +20,9 @@ widgets:
 - archive
 thumbnail: true
 
-# Additional Stylesheet
-customstylesheet: 'custom'
-
 # Contacts
 contacts:
-  github: http://github.com/ppoffice
+  github: http://github.com/ppoffice/hexo-theme-icarus
   twitter: '#'
   facebook: '#'
   dribbble: '#'
