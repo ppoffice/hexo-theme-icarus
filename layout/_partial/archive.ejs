@@ -11,8 +11,10 @@
 </nav>
 <% } %>
 <% } else { %>
-<% var last; %>
-<% site.posts.sort('date', 'desc').each(function(post, i){ %>
+
+<% if (is_archive()){ %>
+  <% var last; %>
+  <% site.posts.sort('date', 'desc').each(function(post){ %>
   <% var year = post.date.year(); %>
   <% if (page.year === undefined || page.year == year){ %>
   <% if (page.month === undefined || page.month == post.date.format('M')){ %>
@@ -26,11 +28,46 @@
     <article class="article-simple" itemscope="" itemprop="blogPost">
       <div class="article-simple-inner article-inner">
         <header class="article-simple-header">
-          <a class="article-simple-title" href="<%- url_for(post.path) %>"><span class="article-simple-span"><%- post.date.  format('MM-DD') %></span><%- post.title %></a>
+          <a class="article-simple-title" href="<%- url_for(post.path) %>">
+            <span class="article-simple-span"><%- post.date.format('MM-DD') %></span>
+            <%- post.title %></a>
         </header>
       </div>
     </article>
     <% } %>
     <% } %>
-<% }) %>
+  <% }) %>
+<% } %>
+
+<% if (is_category()){ %>
+  <div class="archive-list-year-wrap">
+    <i class="fa fa-archive"></i>
+    <a href="<%- url_for('categories/' + page.category) %>" class="archive-year"><%- page.category %></a>
+  </div>
+  <% site.posts.sort('date', 'desc').each(function(post){ %>
+
+  <% var category; %>
+  <% if (post.categories && post.categories['data'] && post.categories['data'][0] && post.categories['data'][0]['name']){ %>
+    <% category = post.categories['data'][0]['name']; %>
+  <% } else { %>
+    <% return; %>
+  <% } %>
+  
+  <% if (category != page.category){ %>
+    <% return; %>
+  <% } %>
+
+  <article class="article-simple" itemscope="" itemprop="blogPost">
+    <div class="article-simple-inner article-inner">
+      <header class="article-simple-header">
+        <a class="article-simple-title" href="<%- url_for(post.path) %>">
+          <span class="article-simple-span"><%- post.date.format('MM-DD') %></span>
+          <%- post.title %>
+        </a>
+      </header>
+    </div>
+  </article>
+  <% }) %>
+<% } %>
+
 <% } %>
