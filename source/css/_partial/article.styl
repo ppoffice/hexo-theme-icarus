@@ -5,15 +5,19 @@
   @extend $block
   overflow: hidden
 
+.article-banner
+  width:100%
+  height:auto
+
 .article-meta
   clearfix()
   & > div
     margin-bottom: 5px
   .article-date, .article-category
     margin-right: 10px
-    color: color-default
+    color: color-default + #444
   a
-    color: color-default
+    color: color-default + #444
     &:hover
       color: color-link
 

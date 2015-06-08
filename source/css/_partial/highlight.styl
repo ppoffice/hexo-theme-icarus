@@ -80,11 +80,17 @@ $line-numbers
       .gist-data
         background: none
         border: none
+        table
+          background: none
+        .pl-vo
+          color:#FFF
         .line-numbers
           @extend $line-numbers
           background: none
           border: none
           padding: 0 20px 0 0
+          height: font-size * line-height
+          vertical-align: top
         .line-data
           padding: 0 !important
       .highlight
@@ -108,6 +114,9 @@ $line-numbers
 pre
   .comment
   .title
+  .template_comment
+  .header
+  .javadoc
     color: highlight-comment
   .variable
   .attribute
@@ -121,26 +130,47 @@ pre
   .css .id
   .css .class
   .css .pseudo
+  .winutils
+  .method
+  .request
+  .status
+  .nginx .title
+  .diff .change
+  .special
+  .attr_selector
+  .important
+  .subst
+  .clojure .title
+  .deletion
     color: highlight-red
   .number
   .preprocessor
+  .preprocessor .keyword
   .built_in
   .literal
   .params
   .constant
+  .command
+  .lisp .body
+  .parent
+  .haskell .type
     color: highlight-orange
   .class
   .ruby .class .title
   .css .rules .attribute
+  .addition
     color: highlight-green
   .string
   .value
   .inheritance
-  .header
   .ruby .symbol
+  .symbol .string
   .xml .cdata
+  .function .title
     color: highlight-green
   .css .hexcolor
+  .phpdoc
+  .tex .formula
     color: highlight-aqua
   .function
   .python .decorator
@@ -150,6 +180,11 @@ pre
   .perl .sub
   .javascript .title
   .coffeescript .title
+  .localvars
+  .chunk
+  .decorator
+  .identifier
+  .vhdl
     color: highlight-blue
   .keyword
   .javascript .function

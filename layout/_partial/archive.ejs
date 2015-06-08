@@ -1,73 +1,85 @@
-<% if (pagination == 2){ %>
-  <% page.posts.each(function(post){ %>
-  <%- partial('article', {post: post, index: true}) %>
-<% }) %>
-<% if (page.total > 1){ %>
-<nav id="page-nav">
-  <%- paginator({
-    prev_text: '&laquo; ' + __('nav.prev'),
-    next_text:  __('nav.next') + ' &raquo;'
-  }) %>
-</nav>
-<% } %>
-<% } else { %>
-
-<% if (is_archive()){ %>
-  <% var last; %>
-  <% site.posts.sort('date', 'desc').each(function(post){ %>
-  <% var year = post.date.year(); %>
-  <% if (page.year === undefined || page.year == year){ %>
-  <% if (page.month === undefined || page.month == post.date.format('M')){ %>
-    <% if (last != year){ %>
-    <% last = year; %>
-    <div class="archive-list-year-wrap">
-      <i class="fa fa-calendar"></i>
-      <a href="<%- url_for('archives/' + year) %>" class="archive-year"><%= year %></a>
-    </div>
-    <% } %>
-    <article class="article-simple" itemscope="" itemprop="blogPost">
-      <div class="article-simple-inner article-inner">
-        <header class="article-simple-header">
-          <a class="article-simple-title" href="<%- url_for(post.path) %>">
-            <span class="article-simple-span"><%- post.date.format('MM-DD') %></span>
-            <%- post.title %></a>
-        </header>
+<% switch (type) {
+    case 'archive':
+    var last;
+    page.posts.each(function(post, i){
+    var year = post.date.year();
+    if (last != year){
+      if (last != null){ %>
+        </div></section>
+      <% }
+      last = year; %>
+      <div class="archive-year-wrap">
+        <i class="fa fa-archive"></i>
+        <a href="<%- url_for('archives/' + year) %>" class="archive-year"><%= year %></a>
       </div>
-    </article>
+      <section class="archives-wrap">
+        <div class="archives">
     <% } %>
-    <% } %>
-  <% }) %>
-<% } %>
-
-<% if (is_category()){ %>
-  <div class="archive-list-year-wrap">
-    <i class="fa fa-archive"></i>
-    <a href="<%- url_for('categories/' + page.category) %>" class="archive-year"><%- page.category %></a>
-  </div>
-  <% site.posts.sort('date', 'desc').each(function(post){ %>
-
-  <% var category; %>
-  <% if (post.categories && post.categories['data'] && post.categories['data'][0] && post.categories['data'][0]['name']){ %>
-    <% category = post.categories['data'][0]['name']; %>
-  <% } else { %>
-    <% return; %>
-  <% } %>
-  
-  <% if (category != page.category){ %>
-    <% return; %>
-  <% } %>
-
-  <article class="article-simple" itemscope="" itemprop="blogPost">
-    <div class="article-simple-inner article-inner">
-      <header class="article-simple-header">
-        <a class="article-simple-title" href="<%- url_for(post.path) %>">
-          <span class="article-simple-span"><%- post.date.format('MM-DD') %></span>
-          <%- post.title %>
-        </a>
-      </header>
+    <%- partial('archive-post', {post: post, archive: true}) %>
+  <% });
+    if (page.posts.length){ %>
+    </div></section>
+  <% }
+    if (page.total > 1){ %>
+      <nav id="page-nav">
+        <%- paginator({
+          prev_text: '&laquo; ' + __('nav.prev'),
+          next_text: __('nav.next') + ' &raquo;'
+        }) %>
+      </nav>
+    <% }
+    break;
+  case 'category': %>
+    <section class="archives-wrap">
+    <div class="archive-category-wrap">
+      <i class="fa fa-folder"></i>
+      <span class="archive-category"><%= page.category %></span>
     </div>
-  </article>
-  <% }) %>
-<% } %>
-
-<% } %>
+    <div class="archives">
+    <% page.posts.each(function (post, i) { %>
+      <%- partial('archive-post', {post: post, archive: false}) %>
+    <% }); %>
+    </div></section>
+    <% if (page.total > 1){ %>
+      <nav id="page-nav">
+        <%- paginator({
+          prev_text: '&laquo; ' + __('nav.prev'),
+          next_text: __('nav.next') + ' &raquo;'
+        }) %>
+      </nav>
+    <% }
+    break;
+  case 'tag': %>
+    <section class="archives-wrap">
+    <div class="archive-tag-wrap">
+      <i class="fa fa-tag"></i>
+      <span class="archive-tag">#<%= page.tag %></span>
+    </div>
+    <div class="archives">
+    <% page.posts.each(function (post, i) { %>
+      <%- partial('archive-post', {post: post, archive: false}) %>
+    <% }); %>
+    </div></section>
+    <% if (page.total > 1){ %>
+      <nav id="page-nav">
+        <%- paginator({
+          prev_text: '&laquo; ' + __('nav.prev'),
+          next_text: __('nav.next') + ' &raquo;'
+        }) %>
+      </nav>
+    <% }
+    break;
+  default:
+    page.posts.each(function(post){ %>
+      <%- partial('article', {post: post, index: true}) %>
+    <% })
+    if (page.total > 1){ %>
+      <nav id="page-nav">
+        <%- paginator({
+          prev_text: '&laquo; ' + __('nav.prev'),
+          next_text: __('nav.next') + ' &raquo;'
+        }) %>
+      </nav>
+    <% }
+    break;
+} %>
