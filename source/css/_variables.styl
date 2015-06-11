@@ -36,28 +36,42 @@ logo-url = "images/logo.png"
 sidebar = hexo-config("sidebar")
 thumbnail-default-small = 'images/thumb-default-small.png'
 
-// Profile
+// Profile bar
+profile = hexo-config("profile")
 profile-avatar-size = 128px
 
 // Layout
 block-margin = 40px
 article-padding = 20px
 mobile-nav-width = 280px
-profile-column = 3
-sidebar-column = 3
-sidebar-column-tablet = 4
 main-column = 7
-main-column-tablet = 9
+sidebar-column = 3
+profile-column = 3
+sidebar-column-tablet = 4
 
-if sidebar and sidebar isnt bottom
+if sidebar
   _sidebar-column = sidebar-column
 else
   _sidebar-column = 0
 
+if profile
+  _profile-column = profile-column
+else
+  _profile-column = 0
+
 // Grids
 column-width = 80px
 gutter-width = 20px
-columns = main-column + _sidebar-column + profile-column
+if _sidebar-column is 0 and _profile-column is 0
+  columns = 10
+  main-column = 10
+else
+  columns = main-column + _sidebar-column + _profile-column
+
+if sidebar
+  main-column-tablet = 6
+  if profile
+    main-column-tablet = 9
 
 // Media queries
 mq-mini = "screen and (max-width: 559px)"

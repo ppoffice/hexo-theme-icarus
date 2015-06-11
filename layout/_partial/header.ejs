@@ -7,11 +7,13 @@
           <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
         <% } %>
       </nav>
+      <% if(theme.profile) { %>
       <nav id="sub-nav">
         <div class="profile" id="profile-nav">
           <a id="profile-anchor" href="javascript:;"><img class="avatar" src="<%- url_for(config.avatar) %>"><i class="fa fa-caret-down"></i></a>
         </div>
       </nav>
+      <% } %>
       <div id="search-form-wrap">
         <%- search_form({button: ' '}) %>
       </div>
