@@ -3,9 +3,11 @@
   <div id="container">
     <%- partial('_partial/header') %>
     <div class="outer">
-      <%- partial('_partial/profile', null, {cache: !config.relative_link}) %>
+      <% if (theme.profile){ %>
+        <%- partial('_partial/profile', null, {cache: !config.relative_link}) %>
+      <% } %>
       <section id="main"><%- body %></section>
-      <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
+      <% if (theme.sidebar){ %>
         <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
       <% } %>
     </div>

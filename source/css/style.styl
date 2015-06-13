@@ -34,10 +34,6 @@ a
   padding: 0 gutter-width
   @media mq-mini
     padding: 0
-    
-
-.inner
-  column(columns)
 
 .left, .alignleft
   float: left
@@ -57,12 +53,14 @@ a
   & > .outer
     margin-bottom: 30px
 
-if sidebar and sidebar isnt bottom
-  #main
-    @media mq-normal
-      column(main-column)
-    @media mq-tablet
+#main
+  @media mq-normal
+    column(main-column)
+  @media mq-tablet
+    if sidebar
       column(main-column-tablet)
+    else
+      width: 100%
 
 @import "_extend"
 @import "_partial/header"
@@ -73,9 +71,7 @@ if sidebar and sidebar isnt bottom
 @import "_partial/footer"
 //@import "_partial/highlight"
 @import "_partial/mobile"
-
-if sidebar
-  @import "_partial/sidebar"
+@import "_partial/sidebar"
 
 if sidebar is left
   #main

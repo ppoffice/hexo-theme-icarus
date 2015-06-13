@@ -1,5 +1,5 @@
 (function($){
-  var toTop = $('#toTop').offset().top - $(window).height() + 20;
+  var toTop = $('#toTop').length ? $('#toTop').offset().top - $(window).height() + 20 : 0;
 
   // Share
   $('body').on('click', function(){
