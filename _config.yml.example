@@ -45,3 +45,5 @@ fb_app_id:
 # CNZZ id
 #cnzz: 
 
+# Default Article Thumbnail
+default_thumbnail: http://ww1.sinaimg.cn/small/e724cbefgw1et25m6xn6ej20rs0rkjy4.jpg

@@ -6,6 +6,8 @@
       s = post.thumbnail;
     }else if (post.banner){
       s = post.banner;
+    }else if (theme.default_thumbnail){
+      s = theme.default_thumbnail;
     }else{
       var img=/\<img\s.*?\s?src\s*=\s*['|"]?([^\s'"]+).*?\>/ig;
       var result = post.content.match(img);  

@@ -9,7 +9,10 @@
 
 ``` bash
 $ git clone https://github.com/JamesPan/hexo-theme-icarus.git themes/icarus
+$ npm install hexo-html-minifier --save
 ```
+
+try to install hexo-html-minifier if the layout is broken.
 
 **Icarus requires Hexo 3.0 and above.**
 
