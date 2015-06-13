@@ -9,6 +9,7 @@
       <% }
       last = year; %>
       <div class="archive-year-wrap">
+        <i class="fa fa-archive"></i>
         <a href="<%- url_for('archives/' + year) %>" class="archive-year"><%= year %></a>
       </div>
       <section class="archives-wrap">
@@ -31,6 +32,7 @@
   case 'category': %>
     <section class="archives-wrap">
     <div class="archive-category-wrap">
+      <i class="fa fa-folder"></i>
       <span class="archive-category"><%= page.category %></span>
     </div>
     <div class="archives">
@@ -50,6 +52,7 @@
   case 'tag': %>
     <section class="archives-wrap">
     <div class="archive-tag-wrap">
+      <i class="fa fa-tag"></i>
       <span class="archive-tag">#<%= page.tag %></span>
     </div>
     <div class="archives">

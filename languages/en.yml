@@ -18,6 +18,7 @@ widget:
 article:
   comments: 'Comments'
   share: 'Share'
+  hits: 'Hits'
 profile:
   follow: 'FOLLOW'
   post: 'post'

@@ -1,0 +1,9 @@
+<% if (is_post()){ %>
+<div class="article-author"><i class="fa fa-user"></i>
+  <% if (post.author != null) { %>
+  <%= post.author %>
+  <% } else { %>
+  <a href="<%= config.url %>" title="<%= config.author %>"><%= config.author %></a>
+</div>
+  <% } %>
+<% } %>

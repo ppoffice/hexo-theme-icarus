@@ -1,15 +1,18 @@
 #Icarus
 
-### The blog theme you may fall in love with, coming to Hexo. [Preview](http://ppoffice.github.io/hexo-theme-icarus/)
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.jpg "")
+### The blog theme you may fall in love with, coming to Hexo. [Preview](http://blog.jamespan.me)
+![](http://ww2.sinaimg.cn/large/e724cbefgw1esf3s102ppj20l80lkgrf.jpg "")
 
 ## Installation
 
 ### Install
 
 ``` bash
-$ git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
+$ git clone https://github.com/JamesPan/hexo-theme-icarus.git themes/icarus
+$ npm install hexo-html-minifier --save
 ```
+
+try to install hexo-html-minifier if the layout is broken.
 
 **Icarus requires Hexo 3.0 and above.**
 

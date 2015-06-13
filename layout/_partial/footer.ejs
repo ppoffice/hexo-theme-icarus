@@ -1,11 +1,11 @@
-<footer id="footer">
+<footer id="footer" class="print-invisible">
   <% if (theme.sidebar === 'bottom'){ %>
     <%- partial('_partial/sidebar') %>
   <% } %>
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/JamesPan/hexo-theme-icarus">icarus</a>. <%- partial('cnzz') %>
     </div>
   </div>
 </footer>

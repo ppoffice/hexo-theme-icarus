@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="last-modified" content="<%- full_date(new Date(), 'dddd, MMMM Do YYYY, h:mm:ss a') %>" />
   <%
   var title = page.title;
 
@@ -26,12 +27,11 @@
     <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
   <% } %>
   <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
+    <link rel="shortcut icon" href="<%- theme.favicon %>">
   <% } %>
-  <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
-  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <%- css('css/style') %>
-  <%- css('font-awesome/css/font-awesome.min') %>
+  <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
   <%- partial('google-analytics') %>
   <% if( theme.customstylesheet ){ %>
     <%- css('css/'+theme.customstylesheet) %>

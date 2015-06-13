@@ -1,12 +1,17 @@
 <aside id="profile">
   <div class="inner profile-inner">
   	<div class="base-info profile-block">
-		  <img id="avatar" src="<%- url_for(config.avatar) %>">
+      <img id="avatar" src="<%- url_for(config.avatar) %>">
       <h2 id="name"><%= config.author %></h2>
       <h3 id="title"><%= config.author_title %></h3>
       <span id="location"><i class="fa fa-map-marker"></i><%= config.location %></span>
-      <a id="follow" href="<%= config.follow %>"><%=__('profile.follow')%></a>
-  	</div>
+      <a id="follow" href="<%= config.follow %>" target="_blank"><%=__('profile.follow')%></a>
+    </div>
+    <% if(theme.recruit) { %>
+    <div class="base-info profile-block">
+      <p><a href="mailto:jiabang.pjb@alibaba-inc.com">阿里集团-菜鸟网络面向社会招聘资深工程师、技术专家，有意者邮件发送简历至本人邮箱，长期有效</a></p>
+    </div>
+    <% } %>
     <div class="article-info profile-block">
       <div class="article-info-block">
         <%= site.posts.length %>
@@ -17,6 +22,11 @@
         <span><%= (site.tags.length > 1?__('profile.tags'):__('profile.tag')) %></span>
       </div>
     </div>
+    <% if(theme.wechat) { %>
+    <div class="contact-info" align="center">
+      <img class="qrcode" src="<%= theme.wechat %>">
+    </div>
+    <% } %>
     <% if(theme.contacts) { %>
     <div class="contact-info profile-block">
       <table class="contact-list">
