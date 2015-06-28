@@ -1,6 +1,6 @@
 # Header
 menu:
-  Home: /
+  Home: .
   Archives: archives
   Categories: categories
   Tags: tags
@@ -29,7 +29,7 @@ contacts:
   twitter: '#'
   facebook: '#'
   dribbble: '#'
-  rss: /atom.xml
+  rss: atom.xml
 
 # Links
 links:
@@ -37,7 +37,7 @@ links:
 
 # Miscellaneous
 google_analytics:
-favicon: /favicon.png
+favicon: favicon.png
 twitter:
 google_plus:
 fb_admins:

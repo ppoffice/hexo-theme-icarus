@@ -32,11 +32,11 @@ git pull
 ```r
 # Header
 menu:
-  Home: /
-  Archives: /archives
-  Categories: /categories # -> you need to add extra page to enable this, please see the config below.
-  Tags: /tags # -> you need to add extra page to enable this, please see the config below.
-  About: /about
+  Home: .
+  Archives: archives
+  Categories: categories # you need to add extra page to enable this, please see the config below.
+  Tags: tags             # you need to add extra page to enable this, please see the config below.
+  About: about
 
 # Content
 excerpt_link: Read More
@@ -58,7 +58,7 @@ contacts:
   twitter: '#'
   facebook: '#'
   dribbble: '#'
-  rss: /atom.xml
+  rss: atom.xml
 
 # Links
 links:
@@ -66,7 +66,7 @@ links:
 
 # Miscellaneous
 google_analytics:
-favicon: /favicon.png
+favicon: favicon.png
 twitter:
 google_plus:
 fb_admins:
