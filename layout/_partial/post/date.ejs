@@ -1,4 +1,4 @@
-<% if (post.date){ %>
+<% if (post.date && !post.hidedate){ %>
   <div class="<%= class_name %>">
     <i class="fa fa-calendar"></i>
     <a href="<%- url_for(post.path) %>">
