@@ -1,37 +1,34 @@
 <header id="header">
-    <div id="header-main" class="header-inner">
-        <div class="outer">
-            <a href="<%- url_for() %>" id="logo"><!--<i class="logo"></i>--><span
-                        class="site-title"><%= config.title %></span></a>
-
-            <nav id="main-nav">
-                <% for (var i in theme.menu){ %>
-                <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
-                <% } %>
-            </nav>
-            <% if(theme.profile) { %>
-            <nav id="sub-nav">
-                <div class="profile" id="profile-nav">
-                    <a id="profile-anchor" href="javascript:;"><img class="avatar" src="<%- gravatar(theme.email) %>"><i
-                                class="fa fa-caret-down"></i></a>
-                </div>
-            </nav>
-            <% } %>
-            <div id="search-form-wrap">
-                <%- search_form({button: ' '}) %>
-            </div>
-        </div>
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="<%- url_for() %>" id="logo"><!--<i class="logo"></i>--><span class="site-title"><%= config.title %></span></a>
+      <nav id="main-nav">
+        <% for (var i in theme.menu){ %>
+          <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
+        <% } %>
+      </nav>
+      <% if(theme.profile) { %>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="<%= ( theme.gravatar ? gravatar(theme.email) : url_for(config.avatar)) %>"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      <% } %>
+      <div id="search-form-wrap">
+        <%- search_form({button: ' '}) %>
+      </div>
     </div>
-    <div id="main-nav-mobile" class="header-sub header-inner">
-        <table class="menu outer">
-            <tr>
-                <% for (var i in theme.menu){ %>
-                <td><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></td>
-                <% } %>
-                <td>
-                    <%- search_form() %>
-                </td>
-            </tr>
-        </table>
-    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        <% for (var i in theme.menu){ %>
+          <td><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></td>
+        <% } %>
+        <td>
+          <%- search_form() %>
+        </td>
+      </tr>
+    </table>
+  </div>
 </header>
