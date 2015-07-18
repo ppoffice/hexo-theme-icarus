@@ -1,14 +1,16 @@
 <a href="<%- url_for((post.link?post.link:post.path)) %>" class="thumbnail">
   <%
     var s = "";
-    
+
     if (post.thumbnail){
       s = post.thumbnail;
     }else if (post.banner){
       s = post.banner;
+    }else if (post.photos && post.photos.length){
+      s = post.photos[0];
     }else{
       var img=/\<img\s.*?\s?src\s*=\s*['|"]?([^\s'"]+).*?\>/ig;
-      var result = post.content.match(img);  
+      var result = post.content.match(img);
       result = img.exec(post.content);
       if(result != null) {
         for(var i = result.length -1; i; --i){

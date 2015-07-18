@@ -1,10 +1,10 @@
 # Header
 menu:
-  Home: /
-  Archives: /archives
-  Categories: /categories
-  Tags: /tags
-  About: /about
+  Home: .
+  Archives: archives
+  Categories: categories
+  Tags: tags
+  About: about
 
 # Content
 excerpt_link: Read More
@@ -29,7 +29,7 @@ contacts:
   twitter: '#'
   facebook: '#'
   dribbble: '#'
-  rss: /atom.xml
+  rss: atom.xml
 
 # Links
 links:
@@ -37,7 +37,7 @@ links:
 
 # Miscellaneous
 google_analytics:
-favicon: /favicon.png
+favicon: favicon.png
 twitter:
 google_plus:
 fb_admins:

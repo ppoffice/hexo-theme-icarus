@@ -13,6 +13,7 @@ location: 'Harbin, China'
 follow: https://github.com/ppoffice/
 language: en
 timezone:
+since: 2000 # The start year showing in your copyright section.
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
