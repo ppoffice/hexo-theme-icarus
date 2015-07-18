@@ -32,11 +32,11 @@ git pull
 ```r
 # Header
 menu:
-  Home: /
-  Archives: /archives
-  Categories: /categories # -> you need to add extra page to enable this, please see the config below.
-  Tags: /tags # -> you need to add extra page to enable this, please see the config below.
-  About: /about
+  Home: .
+  Archives: archives
+  Categories: categories # you need to add extra page to enable this, please see the config below.
+  Tags: tags             # you need to add extra page to enable this, please see the config below.
+  About: about
 
 # Content
 excerpt_link: Read More
@@ -58,7 +58,7 @@ contacts:
   twitter: '#'
   facebook: '#'
   dribbble: '#'
-  rss: /atom.xml
+  rss: atom.xml
 
 # Links
 links:
@@ -66,7 +66,7 @@ links:
 
 # Miscellaneous
 google_analytics:
-favicon: /favicon.png
+favicon: favicon.png
 twitter:
 google_plus:
 fb_admins:
@@ -107,7 +107,19 @@ disqus_shortname:
 - **location** - Where you live in.
 - **disqus_shortname** - Your Disqus shortname.
 
-## Custom Categories & Tags Pages
+### Post Thumbnail & Banner
+
+You can add a thumbnail and a banner to each post by adding the following lines into your post source files' front-matter:
+```r
+title: Demo
+date: 2015-01-01
+...
+# add those
+thumbnail: http://example.com/thumbnail.jpg
+banner: http://example.com/banner.jpg
+```
+
+### Custom Categories & Tags Pages
 
 To enable custom categories page and tags page, just copy the `categories` folder and `tags` folder under your theme's `_source` foler into your site's `source` folder. Then edit theme's _config.yml and add the following lines: 
 ```r
@@ -119,7 +131,7 @@ menu:
   ...
 ```
 
-## Languages
+### Languages
 
 English and Simplified Chinese are the default languages of the theme. You can add translations in the `languages` folder and change the default language in blog's `_config.yml`.
 

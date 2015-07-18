@@ -4,7 +4,7 @@
   <% } %>
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
+      &copy; <% if (config.since && config.since != date(new Date(), 'YYYY')){ %><%= config.since %> - <% } %><%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
     </div>
   </div>
