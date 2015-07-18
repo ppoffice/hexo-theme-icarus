@@ -1,7 +1,7 @@
 <header id="header">
   <div id="header-main" class="header-inner">
     <div class="outer">
-      <a href="<%- url_for() %>" id="logo"><!--<i class="logo"></i>--><span class="site-title"><%= config.title %></span></a>
+      <a href="<%- url_for() %>" id="logo"><%=(theme.showlogo? '<i class="logo"></i>':'')%><span class="site-title"><%= config.title %></span></a>
       <nav id="main-nav">
         <% for (var i in theme.menu){ %>
           <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
