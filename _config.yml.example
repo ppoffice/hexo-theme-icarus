@@ -12,6 +12,8 @@ fancybox: true
 
 # Profile
 profile: true # whether to show profile bar
+gravatar: false # whether to use gravatar with the email
+showlogo: false # whether to show the logo in the header
 
 # Sidebar
 sidebar: right # set to false if you don't want a sidebar

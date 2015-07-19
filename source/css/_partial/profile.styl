@@ -1,3 +1,17 @@
+.bio
+  text-align: center
+
+#profile .inner .bio h2
+  font-size: 1.3em
+  font-weight: bold
+  margin-top: 15px
+
+#profile .inner .bio p
+  margin: 5px 20px 10px 20px
+  text-align: justify
+  max-width: 300px
+  line-height: 1.5em
+
 .profile-block
   padding: 15px 20px
   border-bottom: 1px solid color-border
@@ -8,7 +22,7 @@
   display: none
   @media mq-normal
     display: block
-    column(profile-column)
+  column(profile-column)
   .inner
     @extend $block
     margin-top: block-margin
@@ -86,7 +100,7 @@
                 white-space: nowrap
                 border-radius: 2px
                 text-transform: uppercase
-                box-shadow: 0 0 2px rgba(0,0,0,0.2)
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.2)
                 z-index: 1
               &:before
                 top: -12px
@@ -107,7 +121,7 @@
     position: absolute
     .profile-inner
       position: relative
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2)
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
       &:before, &:after
         z-index: 1
         content: ''
