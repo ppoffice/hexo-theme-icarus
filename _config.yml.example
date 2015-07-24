@@ -1,3 +1,6 @@
+# Logo
+logo: css/images/logo.png # Empty this to unset logo
+
 # Header
 menu:
   Home: .
