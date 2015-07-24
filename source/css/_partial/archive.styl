@@ -18,7 +18,10 @@
     color: color-default
     &:hover
       color: color-link
-  
+.layout-wrap-inner
+  @media mq-mini
+    padding: 0 15px
+
 .archive-year
   @extend $block-caption
 
@@ -28,7 +31,7 @@
   @extend $block
   padding: 0
   margin-bottom: 15px
-  
+
 .archive-article-thumbnail
   float: left
   margin-right: 10px
@@ -57,7 +60,7 @@
   padding: 10px
   a
     @extend $link-dark
-  
+
 .archive-article-title
   font-size: 1.2em
   line-height: 1.2em
@@ -71,7 +74,7 @@
 .archive-article-date
   display: block
   margin-top: 8px
-  
+
 .layout-wrap-inner
   &.list-categories
     ul
