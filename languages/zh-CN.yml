@@ -8,6 +8,8 @@ index:
 nav:
   next: '下一页'
   prev: '上一页'
+  older: '下一篇'
+  newer: '上一篇'
 widget:
   recents: '最新文章'
   archives: '归档'
