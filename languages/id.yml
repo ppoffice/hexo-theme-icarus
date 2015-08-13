@@ -8,6 +8,8 @@ index:
 nav:
   next: 'Berikutnya'
   prev: 'Sebelumnya'
+  older: 'Lebih Tua'
+  newer: 'Lebih baru'
 widget:
   recents: 'terbaru'
   archives: 'arsip'
