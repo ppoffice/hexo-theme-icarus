@@ -1,0 +1,30 @@
+#By SrWoOoW 
+index:
+  home: 'Inicio'
+  search: 'Buscar'
+  archive: 'Archivo'
+  category: 'Categoria'
+  uncategorized: 'Sin categoría'
+  tag: 'Etiqueta'
+nav:
+  next: 'Siguiente '
+  prev: 'Anterior'
+  older: 'Más viejo'
+  newer: 'Más nuevo'
+widget:
+  recents: 'Recientes'
+  archives: 'Archivos'
+  categories: 'Categorias'
+  links: 'Links'
+  tags: 'Etiquetas'
+  tag_cloud: 'Nube de etiquetas'
+article:
+  comments: 'Comentarios'
+  share: 'Compartir'
+  catalogue: 'Catálogo'
+profile:
+  follow: 'SEGUIR'
+  post: 'Entrada'
+  tag: 'Etiqueta'
+  posts: 'Entradas'
+  tags: 'Etiquetas'
