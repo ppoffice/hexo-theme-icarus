@@ -28,11 +28,11 @@
   <% if (theme.favicon){ %>
     <link rel="icon" href="<%- theme.favicon %>">
   <% } %>
-  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+  <%- partial('cdn_head') %>
   <%- css('css/style') %>
   <%- css('font-awesome/css/font-awesome.min') %>
   <%- partial('google-analytics') %>
+  <%- partial('google_site_verification') %>
   <% if( theme.customstylesheet ){ %>
     <%- css('css/'+theme.customstylesheet) %>
   <% } %>

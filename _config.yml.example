@@ -40,6 +40,9 @@ contacts:
 links:
   Hexo: http://hexo.io
 
+# CDN
+cdn: useso #If your site loads slowly change it to "google" , because "useso" is slow out of China
+
 # Miscellaneous
 google_site_verification:
 google_analytics:
