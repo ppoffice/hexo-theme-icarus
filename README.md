@@ -17,7 +17,8 @@ $ git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
 
 1. Rename `themes\icarus\_config.yml.example` to `themes\icarus\_config.yml`;
 2. Copy `themes\icarus\_config.yml.site.example` to your hexo blog's root directory and rename it to `_config.yml`;
-3. Then modify `theme` setting in `_config.yml` to `icarus`.
+3. Copy `themes\icarus\_source\*` into your hexo blog's directory `source`;
+4. Then modify `theme` setting in `_config.yml` to `icarus`.
 
 ### Update
 
