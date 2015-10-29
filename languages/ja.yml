@@ -1,0 +1,29 @@
+index:
+  home: 'ホーム'
+  search: '検索'
+  archive: 'アーカイブ'
+  category: 'カテゴリ'
+  uncategorized: '未分類'
+  tag: 'タグ'
+nav:
+  next: '次'
+  prev: '前'
+  older: '古い記事'
+  newer: '新しい記事'
+widget:
+  recents: '最近の記事'
+  archives: 'アーカイブ'
+  categories: 'カテゴリ'
+  links: 'リンク'
+  tags: 'タグ'
+  tag_cloud: 'タグクラウド'
+article:
+  comments: 'コメント'
+  share: '共有'
+  catalogue: 'カタログ'
+profile:
+  follow: 'フォローする'
+  post: '投稿'
+  tag: 'タグ'
+  posts: '投稿'
+  tags: 'タグ'

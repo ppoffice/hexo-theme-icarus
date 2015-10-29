@@ -8,6 +8,8 @@ index:
 nav:
   next: 'Next'
   prev: 'Prev'
+  older: 'Older'
+  newer: 'Newer'
 widget:
   recents: 'recents'
   archives: 'archives'
@@ -18,6 +20,7 @@ widget:
 article:
   comments: 'Comments'
   share: 'Share'
+  catalogue: 'Catalogue'
 profile:
   follow: 'FOLLOW'
   post: 'post'
