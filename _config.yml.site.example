@@ -11,6 +11,7 @@ author_title: 'Web Developer & Designer'
 avatar: css/images/avatar.png
 location: 'Harbin, China'
 follow: https://github.com/ppoffice/
+email: # Your email (Used to show Gravatar).
 language: en
 timezone:
 since: 2000 # The start year showing in your copyright section.

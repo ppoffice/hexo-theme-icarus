@@ -1,5 +1,5 @@
 # Logo
-logo: css/images/logo.png # Empty this to unset logo
+logo: css/images/logo.png # Empty this to unset logo and show site title in the same place
 
 # Header
 menu:
@@ -14,9 +14,8 @@ excerpt_link: Read More
 fancybox: true
 
 # Profile
-profile: true # whether to show profile bar
-gravatar: false # whether to use gravatar with the email
-showlogo: false # whether to show the logo in the header
+profile: true # Whether to show profile bar
+gravatar: false # Whether to use gravatar with the email. If you do, put your email address in your site's `_config.yml`.
 
 # Sidebar
 sidebar: right # set to false if you don't want a sidebar
@@ -41,7 +40,10 @@ links:
   Hexo: http://hexo.io
 
 # CDN
-cdn: useso #If your site loads slowly change it to "google" , because "useso" is slow out of China
+cdn: # You can choose "useso" instead of "google apis"(default).
+# cdn: useso
+# OR
+# cdn:
 
 # Miscellaneous
 google_site_verification:
