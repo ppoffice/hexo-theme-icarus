@@ -15,7 +15,7 @@
         </nav>
       <% } %>
       <div id="search-form-wrap">
-        <%- search_form({button: ' '}) %>
+        <%- search_form({ button: ' ', text: __('index.search') }) %>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
           <td><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></td>
         <% } %>
         <td>
-          <%- search_form() %>
+          <%- search_form({ text: __('index.search') }) %>
         </td>
       </tr>
     </table>
