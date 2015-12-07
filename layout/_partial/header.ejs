@@ -15,7 +15,14 @@
         </nav>
       <% } %>
       <div id="search-form-wrap">
-        <%- search_form({ button: ' ', text: __('index.search') }) %>
+        <% if (config.swiftype_install_key) { %>
+          <form class="search-form">
+            <input type="text" class="st-default-search-input search-form-input" placeholder="<%= __('index.search') %>">
+            <button type="submit" class="search-form-submit"></button>
+          </form>
+        <% } else { %>
+          <%- search_form({ button: ' ', text: __('index.search') }) %>
+        <% } %>
       </div>
     </div>
   </div>
@@ -26,7 +33,13 @@
           <td><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></td>
         <% } %>
         <td>
-          <%- search_form({ text: __('index.search') }) %>
+          <% if (config.swiftype_install_key) { %>
+            <div class="search-form">
+              <input type="text" class="st-default-search-input search-form-input" placeholder="<%= __('index.search') %>">
+            </div>
+          <% } else { %>
+            <%- search_form({ text: __('index.search') }) %>
+          <% } %>
         </td>
       </tr>
     </table>

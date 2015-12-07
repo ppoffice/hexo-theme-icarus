@@ -122,7 +122,7 @@ banner: http://example.com/banner.jpg
 
 ### Custom Categories & Tags Pages
 
-To enable custom categories page and tags page, just copy the `categories` folder and `tags` folder under your theme's `_source` foler into your site's `source` folder. Then edit theme's _config.yml and add the following lines: 
+To enable custom categories page and tags page, just copy the `categories` folder and `tags` folder under your theme's `_source` foler into your site's `source` folder. Then edit theme's _config.yml and add the following lines:
 ```r
 # Header
 menu:
@@ -139,6 +139,20 @@ English and Simplified Chinese are the default languages of the theme. You can a
 ```r
 language: zh-CN
 ```
+
+## Swiftype
+
+You can now enable **Swiftype** by editing blog's `_config.yml`.
+
+``` yml
+swiftype_install_key: XXX_XXXXXXXXXXXXXXXX
+```
+
+This `install key` can be found at your own engine's install page:
+
+![](http://ppoffice.github.io/hexo-theme-icarus/gallery/swiftype_install.jpg "")
+
+Finally, don't forget to save your swiftype configuration to complete the installation.
 
 ## Features
 

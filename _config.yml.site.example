@@ -76,6 +76,8 @@ theme: icarus
 # DuoShuo
 # duoshuo_shortname: hexo-theme-icarus
 
+# Swiftype
+# swiftype_install_key: XXX_XXXXXXXXXXXXXXXX
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html

@@ -19,7 +19,7 @@ $header-block-left
 
 $header-block-right
   float: right
-  
+
 .header-inner
   height: 100%
   position: relative
@@ -45,7 +45,7 @@ $header-block-right
   top: 50%
   left: 0
   margin-top: logo-size * -0.5
-  
+
 .header-sub
   border-top: 1px solid color-border
   ul
@@ -60,7 +60,7 @@ $header-block-right
   .main-nav-link
     display: inline-block
     line-height: header-sub-height
-    
+
 #header-sub
   @media mq-mobile
     display: none
@@ -74,13 +74,13 @@ $header-block-right
     display: none
   @media mq-mini
     display: none
-    
+
 #main-nav-mobile
   @media mq-tablet
     display: none
   @media mq-normal
     display: none
-  
+
 
 $nav-link
   float: left
@@ -132,7 +132,7 @@ $nav-link
     .search-form-input
       width: 100%
       height: logo-size
-      padding: 0 30px 0 10px
+      padding: 0 30px 0 15px
       line-height: logo-size
       border-radius: ((logo-size + 2)/2)
       &::-webkit-search-results-decoration
@@ -153,19 +153,28 @@ $nav-link
       &:hover, &:focus
         color: #777
 
-.search-form-input
+.search-form-input,
+.search-form-input.st-ui-search-input,
+.search-form-input.st-default-search-input
+  -webkit-appearance: textarea
+  appearance: textarea
+  padding: 0
   width: 200px
-  outline: none
-  appearance: none
-  background: none
   box-shadow: none
   color: color-default
   transition: 0.2s ease
   box-sizing: border-box
+  height: auto !important
+  line-height: line-height
+  outline: none !important
+  background: none !important
   font: font-size font-sans
-  border: 1px solid color-border
+  border: 1px solid color-border !important
   &:focus
-    border-color: color-link
+    border-color: color-link !important
+  &::-webkit-search-results-decoration
+  &::-webkit-search-cancel-button
+    -webkit-appearance: none
 
 #main-nav-mobile
   overflow-y: hidden
