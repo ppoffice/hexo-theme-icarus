@@ -1,0 +1,29 @@
+index:
+  home: '主頁'
+  search: '搜尋'
+  archive: '歸檔'
+  category: '分類'
+  uncategorized: '未分類'
+  tag: '標籤'
+nav:
+  next: '下一頁'
+  prev: '上一頁'
+  older: '下一篇'
+  newer: '上一篇'
+widget:
+  recents: '最新文章'
+  archives: '歸檔'
+  categories: '分類'
+  links: '連結'
+  tags: '標籤'
+  tag_cloud: '標籤雲'
+article:
+  comments: '評論'
+  share: '分享到'
+  catalogue: '文章目錄'
+profile:
+  follow: '關注我'
+  post: '文章'
+  tag: '標籤'
+  posts: '文章'
+  tags: '標籤'
