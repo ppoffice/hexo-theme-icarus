@@ -1,387 +1,388 @@
 .article
-  margin: block-margin 0
+    margin: block-margin 0
 
 .article-inner
-  @extend $block
-  overflow: hidden
+    @extend $block
+    overflow: hidden
 
 .article-banner
-  width:100%
-  height:auto
+    width:100%
+    height:auto
 
 .article-meta
-  clearfix()
-  & > div
-    margin-bottom: 5px
-  .article-date, .article-category
-    margin-right: 10px
-    color: color-default + #444
-  a
-    color: color-default + #444
-    &:hover
-      color: color-link
+    clearfix()
+    & > div
+        margin-bottom: 5px
+    .article-date, .article-category
+        margin-right: 10px
+        color: color-default + #444
+    a
+        color: color-default + #444
+        &:hover
+            color: color-link
 
 .article-date
-  @extend $block-caption
-  float: left
+    @extend $block-caption
+    float: left
 
 .article-category
-  float: left
-  line-height: 1em
-  color: color-default
-  .fa-angle-right
-    margin: 0 5px
+    float: left
+    line-height: 1em
+    color: color-default
+    .fa-angle-right
+        margin: 0 5px
 
 .article-category-link
-  @extend $block-caption
+    @extend $block-caption
 
 .article-header
-  padding: article-padding article-padding 0
-  .article-title
-    display: block
-    margin-bottom: 14px
+    padding: article-padding article-padding 0
+    .article-title
+        display: block
+        margin-bottom: 14px
 
 .article-title
-  text-decoration: none
-  font-size: 2em
-  color: color-default
-  line-height: line-height-title
-  transition: color 0.2s
-  a&:visited
+    text-decoration: none
+    font-size: 2em
     color: color-default
-  a&:hover
-    color: color-link
+    line-height: line-height-title
+    transition: color 0.2s
+    a&:visited
+        color: color-default
+    a&:hover
+        color: color-link
 
 .article-entry
-  @extend $base-style
-  clearfix()
-  color: color-default
-  padding: 0 article-padding
-  line-height: line-height
-  p, table
+    @extend $base-style
+    clearfix()
+    color: color-default
+    padding: 0 article-padding
     line-height: line-height
-    margin: line-height 0
-  h1, h2, h3, h4, h5, h6
-    font-weight: bold
-  h1, h2, h3, h4, h5, h6
-    line-height: line-height-title
-    margin: line-height-title 0
-  a
-    color: color-link
-    text-decoration: none
-    &:hover
-      text-decoration: underline
-  ul, ol, dl
-    margin-top: line-height
-    margin-bottom: line-height
-  img, video
-    max-width: 100%
-    height: auto
-    display: block
-    margin: auto
-  iframe
-    border: none
-  table
-    width: 100%
-    border-collapse: collapse
-    border-spacing: 0
-  th
-    font-weight: bold
-    border-bottom: 3px solid color-border
-    padding-bottom: 0.5em
-  td
-    border-bottom: 1px solid color-border
-    padding: 10px 0
-  blockquote
-    position: relative
-    font-family: font-serif
-    font-size: 1.1em
-    margin: 0 -20px
-    padding: 10px 20px 10px 54px
-    background: #fcfcfc
-    border-left: 4px solid #eee
-    &:before
-      top: 20px
-      left: 10px
-      content: "\f10d"
-      color: #e2e2e2
-      font-size: 32px;
-      font-family: FontAwesome
-      text-align: center
-      position: absolute
-    footer
-      font-size: font-size
-      margin: line-height 0
-      font-family: font-sans
-      cite
+    p, table
+        line-height: line-height
+        margin: line-height 0
+    h1, h2, h3, h4, h5, h6
+        font-weight: bold
+    h1, h2, h3, h4, h5, h6
+        line-height: line-height-title
+        margin: line-height-title 0
+    a
+        color: color-link
+        text-decoration: none
+        &:hover
+            text-decoration: underline
+    ul, ol, dl
+        margin-top: line-height
+        margin-bottom: line-height
+    img, video
+        max-width: 100%
+        height: auto
+        display: block
+        margin: auto
+    iframe
+        border: none
+    table
+        width: 100%
+        border-collapse: collapse
+        border-spacing: 0
+    th
+        font-weight: bold
+        border-bottom: 3px solid color-border
+        padding-bottom: 0.5em
+    td
+        border-bottom: 1px solid color-border
+        padding: 10px 0
+    blockquote
+        position: relative
+        font-family: font-serif
+        font-size: 1.1em
+        margin: 0 -20px
+        padding: 10px 20px 10px 54px
+        background: #fcfcfc
+        border-left: 4px solid #eee
         &:before
-          content: "—"
-          padding: 0 0.5em
-  .pullquote
-    text-align: left
-    width: 45%
-    margin: 0
-    &.left
-      margin-left: 0.5em
-      margin-right: 1em
-    &.right
-      margin-right: 0.5em
-      margin-left: 1em
-  .caption
-    color: color-grey
-    display: block
-    font-size: 0.9em
-    margin-top: 0.5em
-    position: relative
-    text-align: center
-  // http://webdesignerwall.com/tutorials/css-elastic-videos
-  .video-container
-    position: relative
-    padding-top: (9 / 16 * 100)% // 16:9 ratio
-    height: 0
-    overflow: hidden
-    iframe, object, embed
-      position: absolute
-      top: 0
-      left: 0
-      width: 100%
-      height: 100%
-      margin-top: 0
+            top: 20px
+            left: 10px
+            content: "\f10d"
+            color: #e2e2e2
+            font-size: 32px;
+            font-family: FontAwesome
+            text-align: center
+            position: absolute
+        footer
+            font-size: font-size
+            margin: line-height 0
+            font-family: font-sans
+            cite
+                &:before
+                    content: "—"
+                    padding: 0 0.5em
+    .pullquote
+        text-align: left
+        width: 45%
+        margin: 0
+        &.left
+            margin-left: 0.5em
+            margin-right: 1em
+        &.right
+            margin-right: 0.5em
+            margin-left: 1em
+    .caption
+        color: color-grey
+        display: block
+        font-size: 0.9em
+        margin-top: 0.5em
+        position: relative
+        text-align: center
+    // http://webdesignerwall.com/tutorials/css-elastic-videos
+    .video-container
+        position: relative
+        padding-top: (9 / 16 * 100)% // 16:9 ratio
+        height: 0
+        overflow: hidden
+        iframe, object, embed
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            margin-top: 0
 
 .article-more-link a
-  display: inline-block
-  line-height: 1em
-  padding: 6px 15px
-  border-radius: 15px
-  background: color-background
-  color: color-grey
-  text-shadow: 0 1px #fff
-  text-decoration: none
-  &:hover
-    background: color-link
-    color: #fff
+    display: inline-block
+    line-height: 1em
+    padding: 6px 15px
+    border-radius: 15px
+    background: color-background
+    color: color-grey
+    text-shadow: 0 1px #fff
     text-decoration: none
-    text-shadow: 0 1px darken(color-link, 20%)
+    &:hover
+        background: color-link
+        color: #fff
+        text-decoration: none
+        text-shadow: 0 1px darken(color-link, 20%)
 
 .article-footer
-  clearfix()
-  font-size: 0.85em
-  line-height: line-height
-  border-top: 1px solid color-border
-  padding-top: line-height
-  margin: 0 article-padding article-padding
-  a
-    color: color-grey
-    text-decoration: none
-    &:hover
-      color: color-default
+    clearfix()
+    font-size: 0.85em
+    line-height: line-height
+    border-top: 1px solid color-border
+    padding-top: line-height
+    margin: 0 article-padding article-padding
+    a
+        color: color-grey
+        text-decoration: none
+        &:hover
+            color: color-default
 
 .article-tag-list-item
-  float: left
-  margin-right: 10px
+    float: left
+    margin-right: 10px
 
 .article-tag-list-link
-  &:before
-    content: "#"
+    &:before
+        content: "#"
 
 .article-comment-link
-  float: right
-  &:before
-    content: "\f075"
-    font-family: FontAwesome
-    padding-right: 8px
+    float: right
+    &:before
+        content: "\f075"
+        font-family: FontAwesome
+        padding-right: 5px
+
+.share-container
+    float: left
 
 .article-share-link
-  cursor: pointer
-  float: right
-  margin-left: 20px
-  &:before
-    content: "\f064"
-    font-family: FontAwesome
-    padding-right: 6px
+    float: right
+    cursor: pointer
+    margin-left: 20px
+    .fa-share
+        margin-right: 5px
 
 #article-nav
-  clearfix()
-  position: relative
-  @media mq-normal
-    margin: block-margin 0
-    &:before
-      absolute-center(8px)
-      content: ""
-      border-radius: 50%
-      background: color-default + #222
+    clearfix()
+    position: relative
+    @media mq-normal
+        margin: block-margin 0
+        &:before
+            absolute-center(8px)
+            content: ""
+            border-radius: 50%
+            background: color-default + #222
 
 .article-nav-link-wrap
-  text-decoration: none
-  color: color-grey
-  box-sizing: border-box
-  margin-top: block-margin
-  text-align: center
-  display: block
-  &:hover
-    color: color-default
-  @media mq-normal
-    width: 50%
-    margin-top: 0
+    text-decoration: none
+    color: color-grey
+    box-sizing: border-box
+    margin-top: block-margin
+    text-align: center
+    display: block
+    &:hover
+        color: color-default
+    @media mq-normal
+        width: 50%
+        margin-top: 0
 
 #article-nav-newer
-  @media mq-normal
-    float: left
-    text-align: right
-    padding-right: 20px
+    @media mq-normal
+        float: left
+        text-align: right
+        padding-right: 20px
 
 #article-nav-older
-  @media mq-normal
-    float: right
-    text-align: left
-    padding-left: 20px
+    @media mq-normal
+        float: right
+        text-align: left
+        padding-left: 20px
 
 .article-nav-caption
-  letter-spacing: 2px
-  line-height: 1em
-  font-weight: bold
-  color: color-default
-  text-transform: uppercase
-  #article-nav-newer &
-    margin-right: -2px
+    letter-spacing: 2px
+    line-height: 1em
+    font-weight: bold
+    color: color-default
+    text-transform: uppercase
+    #article-nav-newer &
+        margin-right: -2px
 
 .article-nav-title
-  font-size: 0.85em
-  line-height: line-height
-  margin-top: 0.5em
+    font-size: 0.85em
+    line-height: line-height
+    margin-top: 0.5em
 
 .article-share-box
-  position: absolute
-  display: none
-  background: #fff
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1)
-  border-radius: 3px
-  margin-left: -145px
-  overflow: hidden
-  z-index: 1
-  &.on
-    display: block
+    position: absolute
+    display: none
+    background: #fff
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1)
+    border-radius: 3px
+    margin-left: -145px
+    overflow: hidden
+    z-index: 1
+    &.on
+        display: block
 
 .article-share-input
-  width: 100%
-  background: none
-  box-sizing: border-box
-  font: 14px font-sans
-  padding: 0 15px
-  color: color-default
-  outline: none
-  border: 1px solid color-border
-  border-radius: 3px 3px 0 0
-  height: 36px
-  line-height: 36px
+    width: 100%
+    background: none
+    box-sizing: border-box
+    font: 14px font-sans
+    padding: 0 15px
+    color: color-default
+    outline: none
+    border: 1px solid color-border
+    border-radius: 3px 3px 0 0
+    height: 36px
+    line-height: 36px
 
 .article-share-links
-  clearfix()
-  background: color-background
+    clearfix()
+    background: color-background
 
 $article-share-link
-  width: 50px
-  height: 36px
-  display: block
-  float: left
-  position: relative
-  color: #999
-  text-shadow: 0 1px #fff
-  &:before
-    font-size: 20px
-    absolute-center(@font-size)
-    text-align: center
-  &:hover
-    color: #fff
+    width: 50px
+    height: 36px
+    display: block
+    float: left
+    position: relative
+    color: #999
+    text-shadow: 0 1px #fff
+    &:before
+        font-size: 20px
+        absolute-center(@font-size)
+        text-align: center
+    &:hover
+        color: #fff
 
 .article-share-twitter
-  @extend $article-share-link
-  &:hover
-    background: color-twitter
-    text-shadow: 0 1px darken(color-twitter, 20%)
+    @extend $article-share-link
+    &:hover
+        background: color-twitter
+        text-shadow: 0 1px darken(color-twitter, 20%)
 
 .article-share-facebook
-  @extend $article-share-link
-  &:hover
-    background: color-facebook
-    text-shadow: 0 1px darken(color-facebook, 20%)
+    @extend $article-share-link
+    &:hover
+        background: color-facebook
+        text-shadow: 0 1px darken(color-facebook, 20%)
 
 .article-share-pinterest
-  @extend $article-share-link
-  &:hover
-    background: color-pinterest
-    text-shadow: 0 1px darken(color-pinterest, 20%)
+    @extend $article-share-link
+    &:hover
+        background: color-pinterest
+        text-shadow: 0 1px darken(color-pinterest, 20%)
 
 .article-share-google
-  @extend $article-share-link
-  &:hover
-    background: color-google
-    text-shadow: 0 1px darken(color-google, 20%)
+    @extend $article-share-link
+    &:hover
+        background: color-google
+        text-shadow: 0 1px darken(color-google, 20%)
 
 .article-gallery
-  background: #000
-  position: relative
+    background: #000
+    position: relative
 
 .article-gallery-photos
-  position: relative
-  overflow: hidden
+    position: relative
+    overflow: hidden
 
 .article-gallery-img
-  display: none
-  max-width: 100%
-  &:first-child
-    display: block
-  &.loaded
-    position: absolute
-    display: block
-  img
-    display: block
+    display: none
     max-width: 100%
-    margin: 0 auto
+    &:first-child
+        display: block
+    &.loaded
+        position: absolute
+        display: block
+    img
+        display: block
+        max-width: 100%
+        margin: 0 auto
 
-/*  toc */
+/*    toc */
 .toc-article
-  background #F9F9F9
-  margin 2em 0 0 0.2em
-  padding 1em
-  border-radius 0px
-  .toc-title
-    font-size 120%
-  strong
-    padding 0.3em 1
+    background #F9F9F9
+    margin 2em 0 0 0.2em
+    padding 1em
+    border-radius 0px
+    .toc-title
+        font-size 120%
+    strong
+        padding 0.3em 1
 ol.toc
-  width 100%
-  margin 1em 2em 0 0
+    width 100%
+    margin 1em 2em 0 0
 #toc
-  line-height 1em
-  font-size 0.8em
-  float right
-  .toc
-    padding 0 
-    li
-      list-style-type none
-  .toc-child 
-    padding-left 0em
+    line-height 1em
+    font-size 0.8em
+    float right
+    .toc
+        padding 0
+        li
+            list-style-type none
+    .toc-child
+        padding-left 0em
 #toc.toc-aside
-  display none
-  width 13%
-  position fixed
-  right 2%
-  top 320px
-  overflow hidden
-  line-height 1.5em
-  font-size 1em
-  color color-heading
-  opacity .6
-  transition opacity 1s ease-out
-  strong
-    padding 0.3em 0
-    color color-font
-  &:hover
-    transition opacity .3s ease-out
-    opacity 1
-  a
-    transition color 1s ease-out
+    display none
+    width 13%
+    position fixed
+    right 2%
+    top 320px
+    overflow hidden
+    line-height 1.5em
+    font-size 1em
+    color color-heading
+    opacity .6
+    transition opacity 1s ease-out
+    strong
+        padding 0.3em 0
+        color color-font
     &:hover
-      color color-theme
-      transition color .3s ease-out
+        transition opacity .3s ease-out
+        opacity 1
+    a
+        transition color 1s ease-out
+        &:hover
+            color color-theme
+            transition color .3s ease-out

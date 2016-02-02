@@ -6,60 +6,64 @@
 global-reset()
 
 input, button
-  margin: 0
-  padding: 0
-  &::-moz-focus-inner
-    border: 0
+    margin: 0
     padding: 0
+    &::-moz-focus-inner
+        border: 0
+        padding: 0
 
 html, body, #container
-  height: 100%
+    height: 100%
 
 body
-  color: color-default
-  background: color-background
-  font: font-size font-sans
-  -webkit-text-size-adjust: 100%
+    color: color-default
+    background: color-background
+    font: font-size font-sans
+    -webkit-text-size-adjust: 100%
 
 a
-  color: color-link
-  text-decoration: none
-  &:visited
     color: color-link
+    text-decoration: none
+    &:visited
+        color: color-link
 
 .outer
-  clearfix()
-  max-width: (column-width + gutter-width) * columns + gutter-width
-  margin: 0 auto
-  padding: 0 gutter-width
-  @media mq-mini
-    padding: 0
+    clearfix()
+    max-width: (column-width + gutter-width) * columns + gutter-width
+    margin: 0 auto
+    padding: 0 gutter-width
+    @media mq-mini
+        padding: 0
 
 .left, .alignleft
-  float: left
+    float: left
 
 .right, .alignright
-  float: right
+    float: right
 
 .clear
-  clear: both
+    clear: both
 
 .logo
-  background-size: cover
+    width: logo-width
+    height: logo-height
+    background-repeat: no-repeat
+    background-image: url(logo-url)
+    background-size: logo-width logo-height
 
 #container
-  position: relative
-  & > .outer
-    margin-bottom: 30px
+    position: relative
+    & > .outer
+        margin-bottom: 30px
 
 #main
-  @media mq-normal
-    column(main-column)
-  @media mq-tablet
-    if sidebar
-      column(main-column-tablet)
-    else
-      width: 100%
+    @media mq-normal
+        column(main-column)
+    @media mq-tablet
+        if sidebar
+            column(main-column-tablet)
+        else
+            width: 100%
 
 @import "_extend"
 @import "_partial/header"
@@ -68,11 +72,11 @@ a
 @import "_partial/comment"
 @import "_partial/archive"
 @import "_partial/footer"
-@import "_partial/highlight"
 @import "_partial/sidebar"
+@import "_highlight/index"
 
 if sidebar is left
-  #main
-    float: right
-  #profile
-    float: right
+    #main
+        float: right
+    #profile
+        float: right

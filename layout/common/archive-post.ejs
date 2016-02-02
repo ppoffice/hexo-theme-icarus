@@ -1,0 +1,17 @@
+<article class="archive-article archive-type-<%= post.layout %>">
+    <div class="archive-article-inner">
+        <% if(theme.customize.thumbnail == true) { %>
+        <div class="archive-article-thumbnail">
+            <%- partial('thumbnail.ejs', {post: post}) %>
+        </div>
+        <% } %>
+        <header class="archive-article-header">
+            <%- partial('post/title', {class_name: 'archive-article-title'}) %>
+            <% if(archive) { %>
+                <%- partial('post/date', {class_name: 'archive-article-date', date_format: 'MMM D'}) %>
+            <% } else { %>
+                <%- partial('post/date', {class_name: 'archive-article-date', date_format: 'YYYY MMM D'}) %>
+            <% } %>
+        </header>
+    </div>
+</article>

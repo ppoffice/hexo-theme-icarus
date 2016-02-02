@@ -1,7 +1,4 @@
-# Logo
-logo: css/images/logo.png # Empty this to unset logo and show site title in the same place
-
-# Header
+# Menus
 menu:
   Home: .
   Archives: archives
@@ -9,47 +6,67 @@ menu:
   Tags: tags
   About: about
 
-# Content
-excerpt_link: Read More
-fancybox: true
+# Customize
+customize:
+    logo:
+        width: 40
+        height: 40
+        url: images/logo.png
+    profile:
+        enabled: true # Whether to show profile bar
+        avatar: css/images/avatar.png
+        gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+        author: PPOffice
+        author_title: 'Web Developer & Designer'
+        location: 'Harbin, China'
+        follow: https://github.com/ppoffice/
+    highlight: androidstudio
+    sidebar: right # sidebar position, options: left, right
+    thumbnail: true # enable posts thumbnail, options: true, false
+    favicon: # path to favicon
+    social_links:
+        github: http://github.com/ppoffice/hexo-theme-icarus
+        twitter: /
+        facebook: /
+        dribbble: /
+        rss: /
 
-# Profile
-profile: true # Whether to show profile bar
-gravatar: false # Whether to use gravatar with the email. If you do, put your email address in your site's `_config.yml`.
-
-# Sidebar
-sidebar: right # set to false if you don't want a sidebar
+# Widgets
 widgets:
-- recent_posts
-- category
-- tag
-- tagcloud
-- archive
-thumbnail: true
+    - recent_posts
+    - category
+    - archive
+    - tag
+    - tagcloud
+    - links
 
-# Contacts
-contacts:
-  github: http://github.com/ppoffice/hexo-theme-icarus
-  twitter: '#'
-  facebook: '#'
-  dribbble: '#'
-  rss: atom.xml
+# Search
+search:
+    swiftype: # enter swiftype install key here
+    baidu: false # you need to disable other search engines to use Baidu search, options: true, false
 
-# Links
-links:
-  Hexo: http://hexo.io
+# Comment
+comment:
+    disqus: hexo-theme-icarus # enter disqus shortname here
+    duoshuo: # enter duoshuo shortname here
+    youyan: # enter youyan uid here
 
-# CDN
-cdn: # You can choose "useso" instead of "google apis"(default).
-# cdn: useso
-# OR
-# cdn:
+# Share
+share: default # options: jiathis, bdshare, addtoany, default
+
+# Plugins
+plugins:
+    fancybox: true # options: true, false
+    google_analytics: # enter the tracking ID for your Google Analytics
+    google_site_verification: # enter Google site verification code
+    baidu_analytics: # enter Baidu Analytics hash key
 
 # Miscellaneous
-google_site_verification:
-google_analytics:
-favicon: favicon.png
-twitter:
-google_plus:
-fb_admins:
-fb_app_id:
+miscellaneous:
+    open_graph: # see http://ogp.me
+        fb_app_id:
+        fb_admins:
+        twitter_id:
+        google_plus:
+    links:
+        Hexo: http://hexo.io

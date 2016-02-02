@@ -1,0 +1,8 @@
+<% if (post.date && !post.hidedate) { %>
+    <div class="<%= class_name %>">
+        <i class="fa fa-calendar"></i>
+        <a href="<%- url_for(post.path) %>">
+            <time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date, date_format) %></time>
+        </a>
+    </div>
+<% } %>

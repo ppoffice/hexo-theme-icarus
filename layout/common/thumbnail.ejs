@@ -1,0 +1,8 @@
+<a href="<%- url_for((post.link ? post.link : post.path)) %>" class="thumbnail">
+    <% var thumbnailUrl = thumbnail(post) %>
+    <% if (thumbnailUrl) { %>
+        <span style="background-image:url(<%- url_for(thumbnailUrl) %>)" alt="<%= post.title %>" class="thumbnail-image"></span>
+    <% } else { %>
+        <span class="thumbnail-image thumbnail-none"></span>
+    <% } %>
+</a>

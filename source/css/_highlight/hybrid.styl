@@ -1,0 +1,82 @@
+/*
+
+vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
+
+*/
+
+/*background color*/
+.highlight
+    color: #c5c8c6
+    background: #1d1f21
+    /*selection color*/
+    &::selection,
+    span::selection
+        background: #373b41
+
+    &::-moz-selection,
+    span::-moz-selection
+        background: #373b41
+    .code
+
+        /*color: fg_yellow*/
+        .title,
+        .name
+            color: #f0c674
+
+        /*color: fg_comment*/
+        .comment,
+        .meta,
+        .meta .keyword
+            color: #707880
+
+        /*color: fg_red*/
+        .number,
+        .symbol,
+        .literal,
+        .deletion,
+        .link
+         color: #cc6666
+
+        /*color: fg_green*/
+        .string,
+        .doctag,
+        .addition,
+        .regexp,
+        .selector-attr,
+        .selector-pseudo
+            color: #b5bd68
+
+        /*color: fg_purple*/
+        .attribute,
+        .code,
+        .selector-id
+         color: #b294bb
+
+        /*color: fg_blue*/
+        .keyword,
+        .selector-tag,
+        .bullet,
+        .tag
+         color: #81a2be
+
+        /*color: fg_aqua*/
+        .subst,
+        .variable,
+        .template-tag,
+        .template-variable
+            color: #8abeb7
+
+        /*color: fg_orange*/
+        .type,
+        .built_in,
+        .builtin-name,
+        .quote,
+        .section,
+        .selector-class
+            color: #de935f
+
+        .emphasis
+            font-style: italic
+
+        .strong
+            font-weight: bold

@@ -1,141 +1,141 @@
 .archives
-  clearfix()
-  .article:first-child
-    margin: 20px 0
+    clearfix()
+    .article:first-child
+        margin: 20px 0
 
 .archive-year-wrap,
 .archive-category-wrap,
 .archive-tag-wrap,
 .layout-title
-  font-size: 1.4em
-  margin: block-margin 0 20px 0
-  @media mq-mini
-    padding: 0 15px
-    font-size: 1.2em
-  .fa
-    margin-right: 3px
-  .archive-year
-    color: color-default
-    &:hover
-      color: color-link
+    font-size: 1.4em
+    margin: block-margin 0 20px 0
+    @media mq-mini
+        padding: 0 15px
+        font-size: 1.2em
+    .fa
+        margin-right: 3px
+    .archive-year
+        color: color-default
+        &:hover
+            color: color-link
 .layout-wrap-inner
-  @media mq-mini
-    padding: 0 15px
+    @media mq-mini
+        padding: 0 15px
 
 .archive-year
-  @extend $block-caption
+    @extend $block-caption
 
 .archive-article
-  clearfix()
-  avoid-column-break()
-  @extend $block
-  padding: 0
-  margin-bottom: 15px
+    clearfix()
+    avoid-column-break()
+    @extend $block
+    padding: 0
+    margin-bottom: 15px
 
 .archive-article-thumbnail
-  float: left
-  margin-right: 10px
-  .thumbnail
-    width: 160px
-    height: 90px
-    display: block
-    position: relative
-    overflow: hidden
-    span
-      width: 100%
-      height: 100%
-      display: block
-    .thumbnail-image
-      position: absolute
-      background-size: cover
-      background-position: center
-    .thumbnail-none
-      background-image: url(thumbnail-default-small)
-  @media mq-mini
+    float: left
+    margin-right: 10px
     .thumbnail
-      width: 120px
-      height: 67.5px
+        width: 160px
+        height: 90px
+        display: block
+        position: relative
+        overflow: hidden
+        span
+            width: 100%
+            height: 100%
+            display: block
+        .thumbnail-image
+            position: absolute
+            background-size: cover
+            background-position: center
+        .thumbnail-none
+            background-image: url(thumbnail-default-small)
+    @media mq-mini
+        .thumbnail
+            width: 120px
+            height: 67.5px
 
 .archive-article-header
-  padding: 10px
-  a
-    @extend $link-dark
+    padding: 10px
+    a
+        @extend $link-dark
 
 .archive-article-title
-  font-size: 1.2em
-  line-height: 1.2em
-  @media mq-mini
-    font-size: 1em
-    line-height: 1em
-    height: 1em
-    overflow: hidden
-    display: block
+    font-size: 1.2em
+    line-height: 1.2em
+    @media mq-mini
+        font-size: 1em
+        line-height: 1em
+        height: 1em
+        overflow: hidden
+        display: block
 
 .archive-article-date
-  display: block
-  margin-top: 8px
+    display: block
+    margin-top: 8px
 
 .layout-wrap-inner
-  &.list-categories
-    ul
-      margin-left: 15px
-      list-style: none
-      li,
-      .category-list-child
-        padding: 10px 0
-        font-size: font-size
-        border-bottom: 1px solid border-color
-        a
-          color: color-sidebar-text
-      ul, ol
-        list-style: none
+    &.list-categories
+        ul
+            margin-left: 15px
+            list-style: none
+            li,
+            .category-list-child
+                padding: 10px 0
+                font-size: font-size
+                border-bottom: 1px solid border-color
+                a
+                    color: color-sidebar-text
+            ul, ol
+                list-style: none
+                li
+                    border: none
+                    &:last-child
+                        padding-bottom: 0px
         li
-          border: none
-          &:last-child
-            padding-bottom: 0px
-    li
-      a
-        &:before
-          color: #ccc
-          content: "\f0da"
-          font-size: 12px
-          margin-right: 6px
-          font-family: FontAwesome
-          transition: 0.2s ease
-        &:hover:before
-          color: color-sidebar-text-dark
-  &.tag-cloud
-    a
-      @extend $link-dark
-      margin-right: 8px
-      &:before
-        content: '#'
+            a
+                &:before
+                    color: #ccc
+                    content: "\f0da"
+                    font-size: 12px
+                    margin-right: 6px
+                    font-family: FontAwesome
+                    transition: 0.2s ease
+                &:hover:before
+                    color: color-sidebar-text-dark
+    &.tag-cloud
+        a
+            @extend $link-dark
+            margin-right: 8px
+            &:before
+                content: '#'
 
 #page-nav
-  clearfix()
-  margin: block-margin auto
-  text-align: center
-  color: color-grey
-  overflow: hidden
-  a, span
-    height: 32px
-    padding: 0 10px
-    line-height: 32px
+    clearfix()
+    margin: block-margin auto
     text-align: center
-    display: inline-block
-    border-radius: 2px
-  a
     color: color-grey
-    text-decoration: none
-    &:hover
-      color: white
-      background: color-link
-  .page-number
-    display: inline-block
-    @media mq-mini
-      display: none
-  .current
-    color: color-default
-    font-weight: bold
-  .space
-    color: color-border
+    overflow: hidden
+    a, span
+        height: 32px
+        padding: 0 10px
+        line-height: 32px
+        text-align: center
+        display: inline-block
+        border-radius: 2px
+    a
+        color: color-grey
+        text-decoration: none
+        &:hover
+            color: white
+            background: color-link
+    .page-number
+        display: inline-block
+        @media mq-mini
+            display: none
+    .current
+        color: color-default
+        font-weight: bold
+    .space
+        color: color-border

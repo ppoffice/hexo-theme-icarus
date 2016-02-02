@@ -1,137 +1,136 @@
 .bio
-  text-align: center
+    text-align: center
 
 #profile .inner .bio h2
-  font-size: 1.3em
-  font-weight: bold
-  margin-top: 15px
+    font-size: 1.3em
+    font-weight: bold
+    margin-top: 15px
 
 #profile .inner .bio p
-  margin: 5px 20px 10px 20px
-  text-align: justify
-  max-width: 300px
-  line-height: 1.5em
+    margin: 5px 20px 10px 20px
+    text-align: justify
+    max-width: 300px
+    line-height: 1.5em
 
 .profile-block
-  padding: 15px 20px
-  border-bottom: 1px solid color-border
-  &:last-child
-    border-bottom: none
+    padding: 15px 20px
+    border-bottom: 1px solid color-border
+    &:last-child
+        border-bottom: none
 
 #profile
-  column(profile-column)
-  display: none
-  @media mq-normal
-    display: block
-  .inner
-    @extend $block
-    margin-top: block-margin
-    background: white
-    .base-info
-      #avatar
+    column(profile-column)
+    display: none
+    @media mq-normal
         display: block
-        margin: 10px auto 20px
-        width: profile-avatar-size
-        height: profile-avatar-size
-      #name, #title, #location
-        display: block
-        text-align: center
-      #name
-        font-size: 20px
-        font-weight: 600
-      #location
-        font-size: font-size - 2
-        margin-top: 5px
-        color: color-default + #444
-        .fa
-          margin-right: 5px
-      #follow
-        color: white
-        width: 150px
-        height: 40px
-        display: block
-        font-size: 14px
-        line-height: 40px
-        text-align: center
-        margin: 20px auto 10px
-        background: #38b7ea
-        border-radius: 20px
-        transition: 0.2s ease
-        &:hover
-          background: #38b7ea + #111
-    .article-info
-      clearfix()
-      padding: 0px
-      .article-info-block
-        width: 50%
-        float: left
-        padding: 20px 15px
-        text-align: center
-        box-sizing: border-box
-        font-size: font-size + 6px
-        span
-          display: block
-          font-size: font-size
-          text-transform: uppercase
-        &:first-child
-          border-right: 1px solid color-border
-    .contact-info
-      .contact-list
-        width: 100%
-        td
-          text-align: center
-          font-size: font-size + 10px
-          a
-            position: relative
-            transition: 0.2s ease
-            color: color-default + #333
-            &:hover
-              color: color-default
-              &:after
-                right: -50%
-                top: -41px
+    .inner
+        @extend $block
+        margin-top: block-margin
+        background: white
+        .base-info
+            #avatar
+                display: block
+                margin: 10px auto 20px
+                width: profile-avatar-size
+                height: profile-avatar-size
+            #name, #title, #location
+                display: block
+                text-align: center
+            #name
+                font-size: 20px
+                font-weight: 600
+            #location
+                font-size: font-size - 2
+                margin-top: 5px
+                color: color-default + #444
+                .fa
+                    margin-right: 5px
+            #follow
                 color: white
-                background: #333
+                width: 150px
+                height: 40px
+                display: block
                 font-size: 14px
-                content: attr(title)
-                display: block
-                padding: 5px 15px
-                position: absolute
-                white-space: nowrap
-                border-radius: 2px
-                text-transform: uppercase
-                box-shadow: 0 0 2px rgba(0, 0, 0, 0.2)
-                z-index: 1
-              &:before
-                top: -12px
-                right: 8px
-                border: solid
-                border-color: #333 transparent
-                border-width: 5px 5px 0 5px
-                content: ""
-                display: block
-                position: absolute
-                z-index: 2
-  &.card
-    top: 50px
-    right: 20px
-    z-index: 999
-    display: block
-    min-width: 280px
-    position: absolute
-    .profile-inner
-      position: relative
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
-      &:before, &:after
-        z-index: 1
-        content: ''
-        top: -20px
-        right: 10px
+                line-height: 40px
+                text-align: center
+                margin: 20px auto 10px
+                background: #38b7ea
+                border-radius: 20px
+                transition: 0.2s ease
+                &:hover
+                    background: #38b7ea + #111
+        .article-info
+            clearfix()
+            padding: 0px
+            .article-info-block
+                width: 50%
+                float: left
+                padding: 20px 15px
+                text-align: center
+                box-sizing: border-box
+                font-size: font-size + 6px
+                span
+                    display: block
+                    font-size: font-size
+                    text-transform: uppercase
+                &:first-child
+                    border-right: 1px solid color-border
+        .social-links
+            & > table
+                width: 100%
+                td
+                    text-align: center
+                    font-size: font-size + 10px
+                    a
+                        position: relative
+                        transition: 0.2s ease
+                        color: color-default + #333
+                        &:hover
+                            color: color-default
+                            &:after
+                                right: -50%
+                                top: -41px
+                                color: white
+                                background: #333
+                                font-size: 14px
+                                content: attr(title)
+                                display: block
+                                padding: 5px 15px
+                                position: absolute
+                                white-space: nowrap
+                                border-radius: 2px
+                                text-transform: uppercase
+                                box-shadow: 0 0 2px rgba(0, 0, 0, 0.2)
+                                z-index: 1
+                            &:before
+                                top: -12px
+                                right: 8px
+                                border: solid
+                                border-color: #333 transparent
+                                border-width: 5px 5px 0 5px
+                                content: ""
+                                display: block
+                                position: absolute
+                                z-index: 2
+    &.card
+        top: 50px
+        right: 20px
+        z-index: 999
+        display: block
+        min-width: 280px
         position: absolute
-        border-width: 10px
-        border-style: solid
-        border-color: transparent transparent white transparent
-      &:after
-        z-index: 0
-        border-color: transparent transparent color-border - #111 transparent
-    
+        .profile-inner
+            position: relative
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
+            &:before, &:after
+                z-index: 1
+                content: ''
+                top: -20px
+                right: 10px
+                position: absolute
+                border-width: 10px
+                border-style: solid
+                border-color: transparent transparent white transparent
+            &:after
+                z-index: 0
+                border-color: transparent transparent color-border - #111 transparent

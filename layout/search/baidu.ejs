@@ -1,0 +1,13 @@
+<form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="<%= __('index.search') %>" />
+    <button type="submit" class="search-form-submit"></button>
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:<%= config.url.replace(/http(s)*:\/\//, "") %> ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>

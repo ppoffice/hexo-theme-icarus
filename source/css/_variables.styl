@@ -13,10 +13,6 @@ color-sidebar-text-dark = #333
 color-widget-background = #ddd
 color-widget-border = #ccc
 color-mobile-nav-background = #191919
-color-twitter = #00aced
-color-facebook = #3b5998
-color-pinterest = #cb2027
-color-google = #dd4b39
 
 // Fonts
 font-sans = "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif
@@ -27,16 +23,18 @@ line-height = 1.6em
 line-height-title = 1.1em
 
 // Header
-logo-size = 40px
 header-height = 64px
 header-sub-height = 48px
+logo-url = hexo-config("customize.logo.url")
+logo-width = 0px + hexo-config("customize.logo.width")
+logo-height = 0px + hexo-config("customize.logo.height")
 
 // Sidebar
-sidebar = hexo-config("sidebar")
+sidebar = hexo-config("customize.sidebar")
 thumbnail-default-small = 'images/thumb-default-small.png'
 
 // Profile bar
-profile = hexo-config("profile")
+profile = hexo-config("customize.profile")
 profile-avatar-size = 128px
 
 // Layout
@@ -49,31 +47,40 @@ profile-column = 3
 sidebar-column-tablet = 4
 
 if sidebar
-  _sidebar-column = sidebar-column
+    _sidebar-column = sidebar-column
 else
-  _sidebar-column = 0
+    _sidebar-column = 0
 
 if profile
-  _profile-column = profile-column
+    _profile-column = profile-column
 else
-  _profile-column = 0
+    _profile-column = 0
 
 // Grids
 column-width = 80px
 gutter-width = 20px
 if _sidebar-column is 0 and _profile-column is 0
-  columns = 10
-  main-column = 10
+    columns = 10
+    main-column = 10
 else
-  columns = main-column + _sidebar-column + _profile-column
+    columns = main-column + _sidebar-column + _profile-column
 
 if sidebar
-  main-column-tablet = 6
-  if profile
-    main-column-tablet = 9
+    main-column-tablet = 6
+    if profile
+        main-column-tablet = 9
 
 // Media queries
 mq-mini = "screen and (max-width: 559px)"
 mq-mobile = "screen and (min-width: 560px) and (max-width: 799px)"
 mq-tablet = "screen and (min-width: 800px) and (max-width: 1199px)"
 mq-normal = "screen and (min-width: 1200px)"
+
+// Code Highlight
+highlight = hexo-config("customize.highlight") || "tomorrow"
+
+// Miscellaneous
+color-twitter = #00aced
+color-facebook = #3b5998
+color-pinterest = #cb2027
+color-google = #dd4b39
