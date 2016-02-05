@@ -6,9 +6,9 @@
         <%- partial('post/gallery') %>
         <% if (post.link || post.title) { %>
             <header class="article-header">
-                <%- partial('post/title', {class_name: 'article-title'}) %>
+                <%- partial('post/title', { class_name: 'article-title' }) %>
                 <div class="article-meta">
-                    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+                    <%- partial('post/date', { class_name: 'article-date', date_format: null }) %>
                     <%- partial('post/category') %>
                     <%- partial('post/tag') %>
                 </div>

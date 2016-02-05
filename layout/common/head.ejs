@@ -3,18 +3,19 @@
 <head>
     <meta charset="utf-8">
     <%
+        function capitalize (str) { return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase() }
         var title = page.title;
         if (is_archive()) {
-            title = __('index.archive');
+            title = capitalize(__('index.archive'));
             if (is_month()) {
                 title += ': ' + page.year + '/' + page.month;
             } else if (is_year()) {
                 title += ': ' + page.year;
             }
         } else if (is_category()) {
-            title = __('index.category') + ': ' + page.category;
+            title = capitalize(__('index.category')) + ': ' + page.category;
         } else if (is_tag()) {
-            title = __('index.tag') + ': ' + page.tag;
+            title = capitalize(__('index.tag')) + ': ' + page.tag;
         }
     %>
     <title><% if (title) { %><%= title %> | <% } %><%= config.title %></title>
