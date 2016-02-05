@@ -16,7 +16,7 @@
         <% } %>
         <div class="article-entry" itemprop="articleBody">
         <% if (index) { %>
-            <%- excerpt(post) %>
+            <p><%- excerpt(post) %></p>
             <p class="article-more-link">
                 <a href="<%- url_for(post.path) %>#more"><%= __('article.more') %></a>
             </p>

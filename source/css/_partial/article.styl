@@ -9,32 +9,6 @@
     width:100%
     height:auto
 
-.article-meta
-    clearfix()
-    & > div
-        margin-bottom: 5px
-    .article-date, .article-category
-        margin-right: 10px
-        color: color-default + #444
-    a
-        color: color-default + #444
-        &:hover
-            color: color-link
-
-.article-date
-    @extend $block-caption
-    float: left
-
-.article-category
-    float: left
-    line-height: 1em
-    color: color-default
-    .fa-angle-right
-        margin: 0 5px
-
-.article-category-link
-    @extend $block-caption
-
 .article-header
     padding: article-padding article-padding 0
     .article-title
@@ -42,15 +16,43 @@
         margin-bottom: 14px
 
 .article-title
-    text-decoration: none
     font-size: 2em
     color: color-default
-    line-height: line-height-title
+    text-decoration: none
     transition: color 0.2s
+    line-height: line-height-title
     a&:visited
         color: color-default
     a&:hover
         color: color-link
+    @media mq-mini
+        font-size: 1.6em
+    @media mq-mobile
+        font-size: 1.6em
+
+.article-meta
+    @extend $block-caption
+    clearfix()
+    line-height: 1.6em
+    & > div
+        float: left
+        margin-right: 10px
+        color: color-default + #444
+        .fa
+            margin-right: 3px
+    a
+        color: color-default + #444
+        &:hover
+            color: color-link
+
+.article-category
+    .fa-angle-right
+        margin: 0 5px
+
+.article-tag
+    .tag-link
+        &:before
+            content: "#"
 
 .article-entry
     @extend $base-style
@@ -175,14 +177,6 @@
         text-decoration: none
         &:hover
             color: color-default
-
-.article-tag-list-item
-    float: left
-    margin-right: 10px
-
-.article-tag-list-link
-    &:before
-        content: "#"
 
 .article-comment-link
     float: right

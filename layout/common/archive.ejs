@@ -14,7 +14,7 @@
             <section class="archives-wrap">
                 <div class="archives">
         <% } %>
-        <%- partial('archive-post', {post: post, archive: true}) %>
+        <%- partial('summary', {post: post, archive: true}) %>
     <% });
         if (page.posts.length) { %>
         </div></section>
@@ -35,7 +35,7 @@
         </div>
         <div class="archives">
         <% page.posts.each(function (post, i) { %>
-            <%- partial('archive-post', {post: post, archive: false}) %>
+            <%- partial('summary', {post: post, archive: false}) %>
         <% }); %>
         </div></section>
         <% if (page.total > 1) { %>
@@ -54,7 +54,7 @@
         </div>
         <div class="archives">
         <% page.posts.each(function (post, i) { %>
-            <%- partial('archive-post', {post: post, archive: false}) %>
+            <%- partial('summary', {post: post, archive: false}) %>
         <% }); %>
         </div></section>
         <% if (page.total > 1) { %>
