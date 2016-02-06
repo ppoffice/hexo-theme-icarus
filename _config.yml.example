@@ -9,6 +9,7 @@ menu:
 # Customize
 customize:
     logo:
+        enabled: true
         width: 40
         height: 40
         url: images/logo.png
@@ -17,10 +18,10 @@ customize:
         avatar: css/images/avatar.png
         gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
         author: PPOffice
-        author_title: 'Web Developer & Designer'
-        location: 'Harbin, China'
+        author_title: Web Developer & Designer
+        location: Harbin, China
         follow: https://github.com/ppoffice/
-    highlight: androidstudio
+    highlight: monokai
     sidebar: right # sidebar position, options: left, right
     thumbnail: true # enable posts thumbnail, options: true, false
     favicon: # path to favicon
@@ -43,7 +44,7 @@ widgets:
 # Search
 search:
     swiftype: # enter swiftype install key here
-    baidu: false # you need to disable other search engines to use Baidu search, options: true, false
+    baidu: true # you need to disable other search engines to use Baidu search, options: true, false
 
 # Comment
 comment:

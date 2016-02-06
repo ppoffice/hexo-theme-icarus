@@ -1,0 +1,7 @@
+<% if (theme.comment.disqus) { %>
+    <%- partial('comment/disqus', { script: true }) %>
+<% } else if (theme.comment.duoshuo) { %>
+    <%- partial('comment/duoshuo', { script: true }) %>
+<% } else if (theme.comment.youyan) { %>
+    <%- partial('comment/youyan', { script: true }) %>
+<% } %>

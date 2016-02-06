@@ -32,11 +32,7 @@
         </div>
         <footer class="article-footer">
             <%- partial('share/index', { post: post }) %>
-            <% if (post.comments && config.disqus_shortname) { %>
-                <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('article.comments') %></a>
-            <% } else if (post.comments && config.duoshuo_shortname) { %>
-                <a href="<%- post.permalink %>#ds-thread" class="article-comment-link"><%= __('article.comments') %></a>
-            <% } %>
+            <%- partial('comment/counter', { post: post }) %>
         </footer>
     </div>
     <% if (!index) { %>
