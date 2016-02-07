@@ -44,7 +44,7 @@ widgets:
 # Search
 search:
     swiftype: # enter swiftype install key here
-    baidu: true # you need to disable other search engines to use Baidu search, options: true, false
+    baidu: false # you need to disable other search engines to use Baidu search, options: true, false
 
 # Comment
 comment:
