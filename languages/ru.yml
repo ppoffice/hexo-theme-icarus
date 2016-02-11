@@ -18,6 +18,7 @@ widget:
     tags: 'тэги'
     tag_cloud: 'облако тэгов'
 article:
+    more: 'Читать дальше'
     comments: 'Комментарии'
     share: 'Поделиться'
     catalogue: 'Каталог'
