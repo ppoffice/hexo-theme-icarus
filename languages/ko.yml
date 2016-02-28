@@ -1,0 +1,30 @@
+index:
+    home: '홈'
+    search: '검색'
+    archive: '아카이브'
+    category: '카테고리'
+    uncategorized: '미지정'
+    tag: '태그'
+nav:
+    next: '다음'
+    prev: '이전'
+    older: '이전 글'
+    newer: '다음 글'
+widget:
+    recents: '최근 글'
+    archives: '아카이브'
+    categories: '카테고리'
+    links: '링크'
+    tags: '태그'
+    tag_cloud: '태그 클라우드'
+article:
+    more: '자세히 보기'
+    comments: '댓글'
+    share: '공유하기'
+    catalogue: '카탈로그'
+profile:
+    follow: '팔로우'
+    post: '포스트'
+    tag: '태그'
+    posts: '포스트'
+    tags: '태그'
