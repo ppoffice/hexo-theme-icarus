@@ -1,4 +1,5 @@
 <% var profile = theme.customize.profile; %>
+<% var tagCount = site.tags.filter(function(tag) { return tag.length; }).length; %>
 <aside id="profile">
     <div class="inner profile-inner">
         <div class="base-info profile-block">
@@ -14,8 +15,8 @@
                 <span><%= (site.posts.length > 1 ? __('profile.posts') : __('profile.post')) %></span>
             </div>
             <div class="article-info-block">
-                <%= site.tags.length %>
-                <span><%= (site.tags.length > 1 ? __('profile.tags') : __('profile.tag')) %></span>
+                <%= tagCount %>
+                <span><%= (tagCount > 1 ? __('profile.tags') : __('profile.tag')) %></span>
             </div>
         </div>
         <% if(theme.customize.social_links) { %>
