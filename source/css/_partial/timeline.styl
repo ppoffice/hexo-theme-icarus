@@ -1,0 +1,60 @@
+.timeline-wrap
+    border-left: 4px solid #e7e7e7
+    margin: 40px 20px 40px 40px
+
+.timeline-row
+    clearfix()
+    margin: 20px 0
+    .node,
+    .title
+        float: left
+    .node
+        width: 12px
+        color: white
+        height: 12px
+        border-radius: 50%
+        margin: 11px 0 0 -8px
+        display: inline-block
+        background-color: #38b7ea
+    .content
+        margin-left: 25px
+        position: relative
+        background-color: white
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05)
+        &:after,
+        &:before
+            content: ''
+            position: absolute
+            display: inline-block
+        &:after
+            top: 10px
+            left: -14px
+            border: 7px solid transparent
+            border-right-color: white
+        &:before
+            top: 9px
+            left: -16px
+            border: 8px solid transparent
+            border-right-color: rgba(0, 0, 0, 0.05)
+        h1,
+        .article-meta
+            padding: 10px
+        h1
+            font-size: 16px
+            a
+                @extend $link-dark
+        .article-meta
+            border-top: 1px solid #f7f7f7
+            background-color: rgba(244, 246, 247, 0.2)
+
+.timeline-row-major
+    .node
+        width: 14px
+        height: 14px
+        font-size: 14px
+        margin: 0 0 0 -17px
+        padding: 6px 8px 10px
+    .title
+        font-size: 18px
+        margin-left: 15px
+        line-height: 30px
