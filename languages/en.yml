@@ -11,7 +11,7 @@ nav:
     older: 'Older'
     newer: 'Newer'
 widget:
-    recents: 'recents'
+    recents: 'recent'
     archives: 'archives'
     categories: 'categories'
     links: 'links'
