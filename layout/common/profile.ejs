@@ -3,7 +3,7 @@
 <aside id="profile">
     <div class="inner profile-inner">
         <div class="base-info profile-block">
-            <img id="avatar" src="<%= ( profile.gravatar ? gravatar(profile.gravatar) : url_for(profile.avatar)) %>" />
+            <img id="avatar" src="<%= ( profile.gravatar ? gravatar(profile.gravatar, 128) : url_for(profile.avatar)) %>" />
             <h2 id="name"><%= profile.author %></h2>
             <h3 id="title"><%= profile.author_title %></h3>
             <span id="location"><i class="fa fa-map-marker"></i><%= profile.location %></span>
