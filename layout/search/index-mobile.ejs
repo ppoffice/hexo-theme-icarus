@@ -1,4 +1,8 @@
-<% if (theme.search.swiftype) { %>
+<% if (theme.search.insight) { %>
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="<%= __('index.search') %>" />
+    </div>
+<% } else if (theme.search.swiftype) { %>
     <div class="search-form">
         <input type="text" class="st-default-search-input search-form-input" placeholder="<%= __('index.search') %>" />
     </div>
