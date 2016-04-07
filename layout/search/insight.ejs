@@ -13,9 +13,9 @@
 <script>
     (function ($) {
         $main = $('.ins-search');
+        $container = $('.ins-section-container');
         $main.parent().remove('.ins-search');
         $('body').append($main);
-        $container = $('.ins-section-container');
 
         $(document).on('click focus', '.search-form-input', function () {
             $main.addClass('show');
@@ -25,7 +25,6 @@
         }).on('click', '.ins-close', function () {
             $main.removeClass('show');
         });
-
 
         function section (title) {
             return $('<section>').addClass('ins-section')
@@ -190,6 +189,9 @@
         }
 
         $.getJSON('<%- url_for("/content.json")%>', function (json) {
+            if (location.hash.trim() == '#ins-search') {
+                $main.addClass('show');
+            }
             $('.ins-search-input').on('input', function () {
                 var keywords = $(this).val();
                 searchResultToDOM(search(json, keywords));
