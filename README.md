@@ -14,10 +14,10 @@ A nice place to show yourself. You can add your own information in your site's `
 
 ![](http://ppoffice.github.io/hexo-theme-icarus/gallery/profile.png "")
 
-### Custom Search Engines
-Icarus uses Google as default search engine, but also provide custom search engines such as Swiftype and Baidu.
+### Self-hosted Insite Search Engine
+With the help of [Insight Search](https://github.com/ppoffice/hexo-theme-icarus/wiki/Search#insight-search), you can search anything inside your site without add any third-party plugin.
 
-![](https://ooo.0o0.ooo/2016/02/08/56b883cdd2e17.png)
+![](https://ooo.0o0.ooo/2016/04/07/57068467ad5ea.png)
 
 ### Custom Comment Services
 Icarus supports several comment services, give you better choices to communicate with your readers.
