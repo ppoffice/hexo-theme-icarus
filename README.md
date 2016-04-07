@@ -19,10 +19,10 @@ Icarus uses Google as default search engine, but also provide custom search engi
 
 ![](https://ooo.0o0.ooo/2016/02/08/56b883cdd2e17.png)
 
-### Custom Comment Services
-Icarus supports several comment services, give you better choices to communicate with your readers.
+### Self-hosted Insite Search Engine
+With the help of [Insight Search](https://github.com/ppoffice/hexo-theme-icarus/wiki/Search#insight-search), you can search anything inside your site without add any third-party plugin.
 
-![](https://ooo.0o0.ooo/2016/02/08/56b884a1e2bc6.png)
+![](https://ooo.0o0.ooo/2016/04/07/57068467ad5ea.png)
 
 ### Post Banner & Thumbnail
 
