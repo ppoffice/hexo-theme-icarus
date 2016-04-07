@@ -27,3 +27,9 @@ profile:
     tag: '標籤'
     posts: '文章'
     tags: '標籤'
+insight:
+    hint: 'Type something...'
+    posts: '文章'
+    pages: 'Pages'
+    categories: '分類'
+    tags: '標籤'

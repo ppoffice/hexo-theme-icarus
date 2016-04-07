@@ -28,3 +28,10 @@ profile:
     tag: 'tag'
     posts: 'posts'
     tags: 'tags'
+insight:
+    hint: 'Type something...'
+    posts: 'Posts'
+    pages: 'Pages'
+    categories: 'Categories'
+    tags: 'Tags'
+

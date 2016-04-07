@@ -28,3 +28,9 @@ profile:
     tag: 'Etiqueta'
     posts: 'Entradas'
     tags: 'Etiquetas'
+insight:
+    hint: 'Type something...'
+    posts: 'Entradas'
+    pages: 'Pages'
+    categories: 'Categorias'
+    tags: 'Etiquetas'

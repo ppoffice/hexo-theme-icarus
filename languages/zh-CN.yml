@@ -28,3 +28,9 @@ profile:
     tag: '标签'
     posts: '文章'
     tags: '标签'
+insight:
+    hint: '想要查找什么...'
+    posts: '文章'
+    pages: '页面'
+    categories: '分类'
+    tags: '标签'

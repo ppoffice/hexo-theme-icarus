@@ -28,3 +28,9 @@ profile:
     tag: 'тэг'
     posts: 'посты'
     tags: 'тэги'
+insight:
+    hint: 'Type something...'
+    posts: 'посты'
+    pages: 'Pages'
+    categories: 'категории'
+    tags: 'тэги'

@@ -27,3 +27,9 @@ profile:
     tag: 'Tag'
     posts: 'Articles'
     tags: 'Tags'
+insight:
+    hint: 'Type something...'
+    posts: 'Articles'
+    pages: 'Pages'
+    categories: 'Catégories'
+    tags: 'Tags'

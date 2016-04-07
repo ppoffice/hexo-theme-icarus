@@ -26,3 +26,9 @@ profile:
     tag: 'tag'
     posts: 'pos'
     tags: 'tag'
+insight:
+    hint: 'Type something...'
+    posts: 'pos'
+    pages: 'Pages'
+    categories: 'kategori'
+    tags: 'tag'

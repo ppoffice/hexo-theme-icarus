@@ -28,3 +28,9 @@ profile:
     tag: '태그'
     posts: '포스트'
     tags: '태그'
+insight:
+    hint: 'Type something...'
+    posts: '포스트'
+    pages: 'Pages'
+    categories: '카테고리'
+    tags: '태그'

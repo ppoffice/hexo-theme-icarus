@@ -2,7 +2,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="<%= __('insight.hint') %>" />
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -47,7 +47,7 @@
             switch (type) {
                 case 'POSTS':
                 case 'PAGES':
-                    sectionTitle = type == 'POSTS' ? 'Posts' : 'Pages';
+                    sectionTitle = type == 'POSTS' ? '<%= __("insight.posts") %>' : '<%= __("insight.pages") %>';
                     $searchItems = array.map(function (item) {
                         // Use config.root instead of permalink to fix url issue
                         return searchItem('file', item.title, null, item.text.slice(0, 150), <%= config.root %> + item.path);
@@ -55,7 +55,7 @@
                     break;
                 case 'CATEGORIES':
                 case 'TAGS':
-                    sectionTitle = type == 'CATEGORIES' ? 'Categories' : 'Tags';
+                    sectionTitle = type == 'CATEGORIES' ? '<%= __("insight.categories") %>' : '<%= __("insight.tags") %>';
                     $searchItems = array.map(function (item) {
                         return searchItem(type == 'CATEGORIES' ? 'folder' : 'tag', item.name, item.slug, null, item.permalink);
                     });
@@ -190,7 +190,6 @@
         }
 
         $.getJSON('<%- url_for("/content.json")%>', function (json) {
-            console.log(json)
             $('.ins-search-input').on('input', function () {
                 var keywords = $(this).val();
                 searchResultToDOM(search(json, keywords));

@@ -27,3 +27,9 @@ profile:
     tag: 'タグ'
     posts: '投稿'
     tags: 'タグ'
+insight:
+    hint: 'Type something...'
+    posts: '投稿'
+    pages: 'Pages'
+    categories: 'カテゴリ'
+    tags: 'タグ'
