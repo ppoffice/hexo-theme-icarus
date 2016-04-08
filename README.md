@@ -19,11 +19,6 @@ With the help of [Insight Search](https://github.com/ppoffice/hexo-theme-icarus/
 
 ![](https://ooo.0o0.ooo/2016/04/07/57068467ad5ea.png)
 
-### Self-hosted Insite Search Engine
-With the help of [Insight Search](https://github.com/ppoffice/hexo-theme-icarus/wiki/Search#insight-search), you can search anything inside your site without add any third-party plugin.
-
-![](https://ooo.0o0.ooo/2016/04/07/57068467ad5ea.png)
-
 ### Post Banner & Thumbnail
 
 Thanks to [atika](https://github.com/atika), you can now add thumbnails and banners to every post to create better reading experience.
