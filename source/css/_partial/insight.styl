@@ -88,6 +88,7 @@ $ins-full-screen
     position: absolute
 
 .ins-section-container
+    position: relative
     background: ins-background-grey
 
 .ins-section
@@ -120,7 +121,8 @@ $ins-full-screen
             font-size: 12px
             color: ins-text-grey
             margin: 5px 0 0 20px
-        &:hover
+        &:hover,
+        &.active
             color: white
             background: ins-background-blue
             .ins-slug,

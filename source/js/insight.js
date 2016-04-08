@@ -3,19 +3,12 @@
  * @author PPOffice { @link https://github.com/ppoffice }
  */
 (function ($, CONFIG) {
-    $main = $('.ins-search');
-    $container = $('.ins-section-container');
+    var $main = $('.ins-search');
+    var $input = $main.find('.ins-search-input');
+    var $wrapper = $main.find('.ins-section-wrapper');
+    var $container = $main.find('.ins-section-container');
     $main.parent().remove('.ins-search');
     $('body').append($main);
-
-    $(document).on('click focus', '.search-form-input', function () {
-        $main.addClass('show');
-        $main.find('.ins-search-input').focus();
-    }).on('click', '.ins-search-item', function () {
-        location.href=$(this).attr('data-url');
-    }).on('click', '.ins-close', function () {
-        $main.removeClass('show');
-    });
 
     function section (title) {
         return $('<section>').addClass('ins-section')
@@ -33,7 +26,7 @@
     function sectionFactory (type, array) {
         var sectionTitle;
         var $searchItems;
-        if (array.length == 0) return null;
+        if (array.length === 0) return null;
         sectionTitle = CONFIG.TRANSLATION[type];
         switch (type) {
             case 'POSTS':
@@ -46,7 +39,7 @@
             case 'CATEGORIES':
             case 'TAGS':
                 $searchItems = array.map(function (item) {
-                    return searchItem(type == 'CATEGORIES' ? 'folder' : 'tag', item.name, item.slug, null, item.permalink);
+                    return searchItem(type === 'CATEGORIES' ? 'folder' : 'tag', item.name, item.slug, null, item.permalink);
                 });
                 break;
             default:
@@ -99,7 +92,7 @@
                 return true;
             return false;
         });
-        return containKeywords.length == keywordArray.length;
+        return containKeywords.length === keywordArray.length;
     }
 
     function filterFactory (keywords) {
@@ -178,14 +171,70 @@
         }
     }
 
+    function scrollTo ($item) {
+        if ($item.length === 0) return;
+        var wrapperHeight = $wrapper[0].clientHeight;
+        var itemTop = $item.position().top - $wrapper.scrollTop();
+        var itemBottom = $item[0].clientHeight + $item.position().top;
+        if (itemBottom > wrapperHeight + $wrapper.scrollTop()) {
+            $wrapper.scrollTop(itemBottom - $wrapper[0].clientHeight);
+        }
+        if (itemTop < 0) {
+            $wrapper.scrollTop($item.position().top);
+        }
+    }
+
+    function selectItemByDiff (value) {
+        var $items = $.makeArray($container.find('.ins-selectable'));
+        var prevPosition = -1;
+        $items.forEach(function (item, index) {
+            if ($(item).hasClass('active')) {
+                prevPosition = index;
+                return;
+            }
+        });
+        var nextPosition = ($items.length + prevPosition + value) % $items.length;
+        $($items[prevPosition]).removeClass('active');
+        $($items[nextPosition]).addClass('active');
+        scrollTo($($items[nextPosition]));
+    }
+
+    function gotoLink ($item) {
+        if ($item && $item.length) {
+            location.href = $item.attr('data-url');
+        }
+    }
+
     $.getJSON(CONFIG.CONTENT_URL, function (json) {
-        if (location.hash.trim() == '#ins-search') {
+        if (location.hash.trim() === '#ins-search') {
             $main.addClass('show');
         }
-        $('.ins-search-input').on('input', function () {
+        $input.on('input', function () {
             var keywords = $(this).val();
             searchResultToDOM(search(json, keywords));
         });
-        $('.ins-search-input').trigger('input');
+        $input.trigger('input');
+    });
+
+
+    $(document).on('click focus', '.search-form-input', function () {
+        $main.addClass('show');
+        $main.find('.ins-search-input').focus();
+    }).on('click', '.ins-search-item', function () {
+        gotoLink($(this));
+    }).on('click', '.ins-close', function () {
+        $main.removeClass('show');
+    }).on('keydown', function (e) {
+        if (!$main.hasClass('show')) return;
+        switch (e.keyCode) {
+            case 27: // ESC
+                $main.removeClass('show'); break;
+            case 38: // UP
+                selectItemByDiff(-1); break;
+            case 40: // DOWN
+                selectItemByDiff(1); break;
+            case 13: //ENTER
+                gotoLink($container.find('.ins-selectable.active').eq(0)); break;
+        }
     });
 })(jQuery, window.INSIGHT_CONFIG);
