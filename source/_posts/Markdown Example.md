@@ -5,7 +5,7 @@ categories:
 - Github
 tags:
 - markdown
-banner: /gallery/markdown.jpg
+banner: /hexo-theme-icarus/gallery/markdown.jpg
 ---
 A markdown example shows how to write a markdown file. This document integrates core syntax and extensions (GMF).
 <!-- more -->
