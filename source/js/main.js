@@ -36,13 +36,16 @@
     // To Top
     $(document).on('scroll', function () {
         if ($(document).width() >= 800) {
-            if($(this).scrollTop() > toTop) {
+            if($(this).scrollTop() > 100) {
+                $('#toTop').fadeIn();
                 $('#toTop').addClass('fix');
                 $('#toTop').css('left', $('#sidebar').offset().left);
             } else {
+                $('#toTop').fadeOut();
                 $('#toTop').removeClass('fix');
             }
         } else {
+            $('#toTop').fadeIn();
             $('#toTop').addClass('fix');
             $('#toTop').css('right', 20);
         }
