@@ -1,0 +1,38 @@
+index:
+    home: 'home'
+    search: 'Pesquisar'
+    archive: 'arquivo'
+    category: 'categoria'
+    uncategorized: 'Sem categoria'
+    tag: 'tag'
+nav:
+    next: 'Próximo'
+    prev: 'Anterior'
+    older: 'Antigos'
+    newer: 'Novos'
+widget:
+    recents: 'Recentes'
+    archives: 'Arquivos'
+    categories: 'Categorias'
+    links: 'Links'
+    tags: 'Tags'
+    tag_cloud: 'Nuvem de tags'
+article:
+    more: 'Ler Mais'
+    comments: 'Comentarios'
+    share: 'Compartilhar'
+    catalogue: 'Catálogo'
+profile:
+    follow: 'SEGUIR'
+    post: 'Artigo'
+    tag: 'Tag'
+    posts: 'Artigos'
+    tags: 'Tags'
+insight:
+    hint: 'Digite alguma coisa...'
+    posts: 'Artigos'
+    pages: 'Paginas'
+    categories: 'Categorias'
+    tags: 'Tags'
+    untitled: '(Untitled)'
+
