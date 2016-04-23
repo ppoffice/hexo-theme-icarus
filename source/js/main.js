@@ -1,6 +1,5 @@
 (function($){
-    var toTop = $('#toTop').length ? $('#toTop').offset().top - $(window).height() + 20 : 0;
-
+    var toTop = ($('#sidebar').height() - $(window).height()) + 60;
     // Caption
     $('.article-entry').each(function(i){
         $(this).find('img').each(function(){
@@ -36,17 +35,14 @@
     // To Top
     $(document).on('scroll', function () {
         if ($(document).width() >= 800) {
-            if($(this).scrollTop() > 100) {
+            if(($(this).scrollTop() > toTop) && ($(this).scrollTop() > 0)) {    
                 $('#toTop').fadeIn();
-                $('#toTop').addClass('fix');
                 $('#toTop').css('left', $('#sidebar').offset().left);
             } else {
                 $('#toTop').fadeOut();
-                $('#toTop').removeClass('fix');
             }
         } else {
             $('#toTop').fadeIn();
-            $('#toTop').addClass('fix');
             $('#toTop').css('right', 20);
         }
     }).on('click', '#toTop', function () {
