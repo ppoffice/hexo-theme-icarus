@@ -18,6 +18,7 @@ widget:
     tags: '標籤'
     tag_cloud: '標籤雲'
 article:
+    more: '繼續閱讀'
     comments: '評論'
     share: '分享到'
     catalogue: '文章目錄'
