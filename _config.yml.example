@@ -31,6 +31,7 @@ customize:
         facebook: /
         dribbble: /
         rss: /
+    social_link_tooltip: true # enable the social link tooltip, options: true, false
 
 # Widgets
 widgets:
