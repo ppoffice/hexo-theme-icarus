@@ -1,20 +1,18 @@
 <% if (typeof(script) !== 'undefined' && script) { %>
     <script>
-    var disqus_shortname = '<%= theme.comment.disqus %>';
-    <% if (page.disqusId) { %>
-    var disqus_identifier = '<%= page.disqusId || page.slug %>';
-    <% } %>
-    <% if (page.permalink) { %>
-    var disqus_url = '<%= page.permalink %>';
-    <% } %>
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    var disqus_config = function () {
+        <% if (page.permalink) { %>
+            this.page.url = '<%= page.permalink %>';
+        <% } %>
+        this.page.identifier = '<%= page.disqusId || page.slug %>';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + '<%= theme.comment.disqus %>' + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     })();
-    </script>
+</script>
 <% } else { %>
     <div id="disqus_thread">
         <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
