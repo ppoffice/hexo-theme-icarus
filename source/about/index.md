@@ -27,7 +27,7 @@ Icarus supports several comment services, give you better choices to communicate
 
 ### Post Banner & Thumbnail
 
-Thanks to [atika](https://github.com/atika), you can now add thumbnails and banners to every post to create better reading experience.
+Thanks to [atika](https://github.com/atika), you can now [add thumbnails or banners](https://github.com/ppoffice/hexo-theme-icarus/wiki/Theme#thumbnail) to every post to create better reading experience.
 
 ### Responsive Layout
 
