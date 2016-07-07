@@ -18,12 +18,12 @@ A nice place to show yourself. You can add your own information in your site's `
 ### Self-hosted Insite Search Engine
 With the help of [Insight Search](https://github.com/ppoffice/hexo-theme-icarus/wiki/Search#insight-search), you can search anything inside your site without any third-party plugin.
 
-![](https://ooo.0o0.ooo/2016/04/07/57068467ad5ea.png)
+![](http://ppoffice.github.io/hexo-theme-icarus/gallery/insight-search.png "")
 
 ### Custom Comment Services
 Icarus supports several comment services, give you better choices to communicate with your readers.
 
-![](https://ooo.0o0.ooo/2016/02/08/56b884a1e2bc6.png)
+![](http://ppoffice.github.io/hexo-theme-icarus/gallery/custom-comments.png "")
 
 ### Post Banner & Thumbnail
 
