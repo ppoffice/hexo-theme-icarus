@@ -3,7 +3,6 @@
         <div class="outer">
             <a href="<%- url_for() %>" id="logo">
                 <%- (theme.customize.logo && theme.customize.logo.enabled ? '<i class="logo"></i>':'') %>
-                <span class="site-title"><%= config.title %></span>
             </a>
             <nav id="main-nav">
                 <% for (var i in theme.menu) { %>

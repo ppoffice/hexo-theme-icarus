@@ -2,45 +2,44 @@
 menu:
   Home: .
   Archives: archives
-  Categories: categories
-  Tags: tags
   About: about
+  Help: help
+  Mail: https://webmail.redbrick.dcu.ie
+  Wiki: https://wiki.redbrick.dcu.ie
+  Chat: https://webchat.redbrick.dcu.ie
+  Events: https://calendar.google.com/calendar/embed?src=r2l6edh5l8jm5t9dbfi84rn26s@group.calendar.google.com&ctz=Europe/Dublin&pli=1
 
 # Customize
 customize:
     logo:
         enabled: true
-        width: 40
+        width: 160
         height: 40
         url: images/logo.png
     profile:
         enabled: true # Whether to show profile bar
         avatar: css/images/avatar.png
         gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
-        author: PPOffice
-        author_title: Web Developer & Designer
-        location: Harbin, China
-        follow: https://github.com/ppoffice/
+        author: Redbrick
+        author_title: DCU's Networking Society
+        location: Clubs and Societies Office, Dublin City University, Glasnevin, Dublin 9.
+        follow: https://twitter.com/redbrickdcu
     highlight: monokai
     sidebar: right # sidebar position, options: left, right
     thumbnail: true # enable posts thumbnail, options: true, false
     favicon: # path to favicon
     social_links:
-        github: http://github.com/ppoffice/hexo-theme-icarus
-        twitter: /
-        facebook: /
-        dribbble: /
-        rss: /
+        github: https://github.com/redbrick
+        twitter: https://twitter.com/redbrickdcu
+        facebook: https://facebook.com/dcuredbrick
+        youtube: https://www.youtube.com/user/redbrickdcu
+        rss: /atom.xml
     social_link_tooltip: true # enable the social link tooltip, options: true, false
 
 # Widgets
 widgets:
     - recent_posts
-    - category
-    - archive
-    - tag
     - tagcloud
-    - links
 
 # Search
 search:
@@ -50,7 +49,7 @@ search:
 
 # Comment
 comment:
-    disqus: hexo-theme-icarus # enter disqus shortname here
+    disqus: # enter disqus shortname here
     duoshuo: # enter duoshuo shortname here
     youyan: # enter youyan uid here
 
@@ -72,5 +71,3 @@ miscellaneous:
         fb_admins:
         twitter_id:
         google_plus:
-    links:
-        Hexo: http://hexo.io
