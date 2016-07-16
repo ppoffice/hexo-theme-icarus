@@ -1,8 +1,5 @@
 {
   "name": "hexo-theme-icarus",
   "version": "0.2.1",
-  "private": true,
-  "dependencies": {
-    "hexo-generator-json-content": "^2.1.3"
-  }
+  "private": true
 }
