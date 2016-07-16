@@ -74,12 +74,129 @@ $header-block-right
         display: none
     @media mq-mini
         display: none
+    ul
+        position: relative;
+        list-style:none;
+        float:left;
+        margin:0;
+        padding:0
+    ul a
+        display:block;
+        color:#333;
+        text-decoration:none;
+        font-weight:700;
+        font-size:12px;
+        line-height:32px;
+        padding:0 15px;
+    ul li
+        position:relative;
+        float:left;
+        margin:0;
+        padding:0
+    ul li.current-menu-item
+        background:#ddd
+    ul li:hover
+        background:#f6f6f6
+    ul ul
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        background:#fff;
+        padding:0
+    ul ul li
+        float:none;
+        width:200px
+    ul ul a
+        line-height:120%;
+        padding:10px 15px
+    ul li:hover > ul
+        display:block
 
 #main-nav-mobile
+    margin: 0;
+    padding: 20px 20px;
     @media mq-tablet
         display: none
     @media mq-normal
         display: none
+    #menuToggle
+        display: block;
+        top: 50px;
+        left: 50px;
+        z-index: 1;
+        -webkit-user-select: none;
+        user-select: none;
+
+    #menuToggle input
+        display: block;
+        width: 40px;
+        height: 32px;
+        position: absolute;
+        cursor: pointer;
+        opacity: 0; /* hide this */
+        z-index: 2; /* and place it over the hamburger */
+        -webkit-touch-callout: none;
+
+    #menuToggle span
+        display: block;
+        width: 33px;
+        height: 4px;
+        margin-bottom: 5px;
+        position: relative;
+        background: #cdcdcd;
+        border-radius: 3px;
+        z-index: 1;
+        transform-origin: 4px 0px;
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                    background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                    opacity 0.55s ease;
+
+    #menuToggle span:first-child
+        transform-origin: 0% 0%;
+
+    #menuToggle span:nth-last-child(2)
+        transform-origin: 0% 100%;
+
+    #menuToggle input:checked ~ span
+        opacity: 1;
+        transform: rotate(45deg) translate(-2px, -1px);
+        background: #232323;
+
+    #menuToggle input:checked ~ span:nth-last-child(3)
+        opacity: 0;
+        transform: rotate(0deg) scale(0.2, 0.2);
+    #menuToggle input:checked ~ span:nth-last-child(2)
+        opacity: 1;
+        transform: rotate(-45deg) translate(0, -1px);
+    #menu
+        text-decoration: none;
+        position: absolute;
+        list-style-type: none;
+        width: 300px;
+        margin: -100px 0 0 -50px;
+        padding: 50px;
+        padding-top: 125px;
+        background: #ededed;
+        list-style-type: none;
+        -webkit-font-smoothing: antialiased;
+        /* to stop flickering of text in safari */
+        transform-origin: 0% 0%;
+        transform: translate(-100%, 0);
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    #menu li a
+        text-decoration: none;
+        transition: color 0.3s ease;
+        color: #232323;
+    #menu li a:hover
+        color: tomato;
+    #menu li
+        text-decoration: none;
+        padding: 10px 10px;
+        font-size: 22px;
+    #menuToggle input:checked ~ ul
+        transform: scale(1.0, 1.0);
+        opacity: 1;
 
 
 $nav-link

@@ -9,6 +9,21 @@ menu:
   Chat: https://webchat.redbrick.dcu.ie
   Events: https://calendar.google.com/calendar/embed?src=r2l6edh5l8jm5t9dbfi84rn26s@group.calendar.google.com&ctz=Europe/Dublin&pli=1
 
+about:
+    About: about
+    Committee: about/committee
+    Constitution: about/constitution
+    Regulations: about/regulations
+    Contact: about/contact
+    Past Committee: about/past-committees
+
+help:
+    Helpdesk: help
+    Joining: /help/joining
+    Tutorial: /help/tutorials
+    Exams: /help/exams
+    Services: /help/services
+
 # Customize
 customize:
     logo:

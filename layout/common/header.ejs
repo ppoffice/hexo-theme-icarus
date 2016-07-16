@@ -1,38 +1,65 @@
 <header id="header">
-    <div id="header-main" class="header-inner">
-        <div class="outer">
-            <a href="<%- url_for() %>" id="logo">
-                <%- (theme.customize.logo && theme.customize.logo.enabled ? '<i class="logo"></i>':'') %>
-            </a>
-            <nav id="main-nav">
-                <% for (var i in theme.menu) { %>
-                    <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="<%- url_for() %>" id="logo">
+        <%- (theme.customize.logo && theme.customize.logo.enabled ? '<i class="logo"></i>':'') %>
+      </a>
+      <nav id="main-nav">
+        <ul>
+          <% for (var i in theme.menu) { %>
+            <% if (i === 'About') { %>
+              <li><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a><ul>
+                <% for (var j in theme.about) { %>
+                  <li><a class="main-nav-link" href="<%- url_for(theme.about[j]) %>"><%= j %></a></li>
                 <% } %>
-            </nav>
-            <% if(theme.customize.profile && theme.customize.profile.enabled) { %>
-                <% var profile = theme.customize.profile; %>
-                <nav id="sub-nav">
-                    <div class="profile" id="profile-nav">
-                        <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="<%= ( profile.gravatar ? gravatar(profile.gravatar) : url_for(profile.avatar)) %>" />
-                            <i class="fa fa-caret-down"></i>
-                        </a>
-                    </div>
-                </nav>
+              </ul><li>
+            <% } else if (i === 'Help') { %>
+              <li><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a><ul>
+                <% for (var j in theme.help) { %>
+                  <li><a class="main-nav-link" href="<%- url_for(theme.help[j]) %>"><%= j %></a></li>
+                <% } %>
+              </ul></li>
+            <% } else { %>
+              <li><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a><li>
             <% } %>
-            <%- partial('search/index') %>
-        </div>
-    </div>
-    <div id="main-nav-mobile" class="header-sub header-inner">
-        <table class="menu outer">
-            <tr>
-                <% for (var i in theme.menu) { %>
-                    <td><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></td>
+          <% } %>
+        </ul>
+      </nav>
+      <% if(theme.customize.profile && theme.customize.profile.enabled) { %>
+        <% var profile = theme.customize.profile; %>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;">
+              <img class="avatar" src="<%= ( profile.gravatar ? gravatar(profile.gravatar) : url_for(profile.avatar)) %>" />
+              <i class="fa fa-caret-down"></i>
+            </a>
+          </div>
+        </nav>
+      <% } %>
+      <%- partial('search/index') %>
+      <nav id="main-nav-mobile">
+        <div id="menuToggle">
+          <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+              <% for (var i in theme.menu) { %>
+                <% if (theme.menu[i].About !== null) { %>
+                  <% for (var j in theme.menu.About) { %>
+                    <a class="main-nav-link" href="<%- url_for(theme.menu.About[j]) %>"><%= j %></a>
+                  <% } %>
+                <% } else if (theme.menu[i].Help !== null) { %>
+                  <% for (var j in theme.menu.Help) { %>
+                    <a class="main-nav-link" href="<%- url_for(theme.menu.Help[j]) %>"><%= j %></a>
+                  <% } %>
+                <% } else { %>
+                  <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
                 <% } %>
-                <td>
-                    <%- partial('search/index-mobile') %>
-                </td>
-            </tr>
-        </table>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
 </header>
