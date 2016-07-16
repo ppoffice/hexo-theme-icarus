@@ -26,7 +26,7 @@ $header-block-right
     #logo
         @extend $header-block
         @extend $header-block-left
-        display: inline-block
+        display: none
         .logo
             margin-right: 5px
             display: inline-block
@@ -35,6 +35,8 @@ $header-block-right
             display: inline-block
             vertical-align: top
             font-weight: 600
+        @media mq-normal
+            display: inline-block
 
 #header-title
     text-align: center
