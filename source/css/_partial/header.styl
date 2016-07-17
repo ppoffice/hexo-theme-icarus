@@ -67,16 +67,10 @@ $header-block-right
     @media mq-mini
         display: none
 
-#main-nav
-    @extend $header-block
-    @extend $header-block-left
-    @media mq-mobile
-        display: none
-    @media mq-mini
-        display: none
+$dropdown
     ul
         position: relative;
-        list-style:none;
+        display: block;
         float:left;
         margin:0;
         padding:0
@@ -92,30 +86,39 @@ $header-block-right
         position:relative;
         float:left;
         margin:0;
-        padding:0
+        padding:0;
     ul li.current-menu-item
-        background:#ddd
+        background:#ddd;
     ul li:hover
-        background:#f6f6f6
+        background:#f6f6f6;
     ul ul
         display:none;
         position:absolute;
         top:100%;
         left:0;
-        background:#fff;
-        padding:0
+        background:#f6f6f6;
+        padding:0;
     ul ul li
         float:none;
-        width:200px
     ul ul a
         line-height:120%;
         padding:10px 15px
     ul li:hover > ul
         display:block
 
+#main-nav
+    @extend $header-block
+    @extend $header-block-left
+    @extend $dropdown
+    @media mq-mobile
+        display: none
+    @media mq-mini
+        display: none
+
 #main-nav-mobile
     margin: 0;
     padding: 20px 20px;
+    @extend $dropdown
     @media mq-tablet
         display: none
     @media mq-normal
@@ -172,13 +175,11 @@ $header-block-right
     #menu
         text-decoration: none;
         position: absolute;
-        list-style-type: none;
         width: 300px;
         margin: -100px 0 0 -50px;
         padding: 50px;
         padding-top: 125px;
         background: #ededed;
-        list-style-type: none;
         -webkit-font-smoothing: antialiased;
         /* to stop flickering of text in safari */
         transform-origin: 0% 0%;
