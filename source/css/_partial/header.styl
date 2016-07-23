@@ -138,7 +138,7 @@ $dropdown
         position: absolute;
         cursor: pointer;
         opacity: 0; /* hide this */
-        z-index: 2; /* and place it over the hamburger */
+        z-index: 3; /* and place it over the hamburger */
         -webkit-touch-callout: none;
 
     #menuToggle span
@@ -149,7 +149,7 @@ $dropdown
         position: relative;
         background: #cdcdcd;
         border-radius: 3px;
-        z-index: 1;
+        z-index: 2;
         transform-origin: 4px 0px;
         transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
                     background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
@@ -175,7 +175,8 @@ $dropdown
     #menu
         text-decoration: none;
         position: absolute;
-        width: 300px;
+        width: 145px;
+        z-index: 1;
         margin: -100px 0 0 -50px;
         padding: 50px;
         padding-top: 125px;
@@ -198,12 +199,18 @@ $dropdown
     #menuToggle input:checked ~ ul
         transform: scale(1.0, 1.0);
         opacity: 1;
-
+    ul ul
+        z-index: 3;
+        li
+          float: inherit;
+    ul li:focus ul
+        display:block;
+        visibility: visible;
 
 $nav-link
-    float: left
-    display: block
-    padding: 0 15px
+    float: left;
+    display: block;
+    padding: 0 15px;
 
 .nav-icon
     @extend $nav-link
