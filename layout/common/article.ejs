@@ -32,7 +32,13 @@
                     <%- toc(post.content) %>
                 </div>
             <% } %>
-            <%- post.content %>
+            <% if (post.type === 'help') { %>
+              <div class="help">
+                <%- post.content %>
+              </div>
+            <% } else { %>
+              <%- post.content %>
+            <% } %>
         <% } %>
         </div>
         <footer class="article-footer">

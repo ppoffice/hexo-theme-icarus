@@ -206,13 +206,24 @@ $dropdown
     #menuToggle input:checked ~ ul
         transform: scale(1.0, 1.0);
         opacity: 1;
-    ul ul
+    li ul
+        display: none;
+        position: static;
+        top: 100%;
+        li:hover ul
+            display: block;
+    ul ul:hover ~ li
+        -webkit-transition-delay: 0s, 0s, 0s;
         z-index: 3;
+        background: none
+        position: relative;
         li
           float: inherit;
-    ul li:focus ul
-        display:block;
-        visibility: visible;
+    ul li:focus
+        background: none
+        ul
+            display:block;
+            visibility: visible;
 
 $nav-link
     float: left;
