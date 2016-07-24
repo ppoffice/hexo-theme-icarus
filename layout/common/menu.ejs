@@ -1,0 +1,15 @@
+<ul id="menu">
+  <% for (var i in theme.menu) { %>
+    <% if (i === 'About' || i === 'Help') { %>
+      <li><a class="main-nav-link" ><i class="fa fa-<%= theme.menu[i].icon %>"></i><%= i %></a><ul>
+        <% for (var j in theme.menu[i]) { %>
+          <% if (j != 'icon') { %>
+            <li><a class="main-nav-link" href="<%- url_for(theme.menu[i][j].url) %>"><i class="fa fa-<%= theme.menu[i][j].icon %>"></i><%= j %></a></li>
+          <% } %>
+        <% } %>
+      </ul></li>
+    <% } else { %>
+      <li><a class="main-nav-link" href="<%- url_for(theme.menu[i].url) %>"><i class="fa fa-<%= theme.menu[i].icon %>"></i><%= i %></a></li>
+    <% } %>
+  <% } %>
+</ul>

@@ -1,28 +1,60 @@
 # Menus
 menu:
-  Home: .
-  Archives: archives
-  About: about
-  Help: help
-  Mail: https://webmail.redbrick.dcu.ie
-  Wiki: https://wiki.redbrick.dcu.ie
-  Chat: https://webchat.redbrick.dcu.ie
-  Events: https://calendar.google.com/calendar/embed?src=r2l6edh5l8jm5t9dbfi84rn26s@group.calendar.google.com&ctz=Europe/Dublin&pli=1
-
-about:
-    About: about
-    Committee: about/committee
-    Constitution: about/constitution
-    Regulations: about/regulations
-    Contact: about/contact
-    Past Committee: about/past-committees
-
-help:
-    Helpdesk: help
-    Joining: /help/joining
-    Tutorial: /help/tutorials
-    Exams: /help/exams
-    Services: /help/services
+  Home:
+    url: .
+    icon: home
+  Archives:
+    url: archives
+    icon: archive
+  About:
+    icon: info-circle
+    About:
+      url: about
+      icon: info
+    Committee:
+      url: about/committee
+      icon: users
+    Constitution:
+      url: about/constitution
+      icon: book
+    Regulations:
+      url: about/regulations
+      icon: file-text-o
+    Contact:
+      url: about/contact
+      icon: reply
+    Past Committee:
+      url: about/past-committees
+      icon: users
+  Help:
+    icon: question-circle
+    Helpdesk:
+      url: help
+      icon: question
+    Joining:
+      url: /help/joining
+      icon: sign-in
+    Tutorial:
+      url: /help/tutorials
+      icon: bank
+    Exams:
+      url: /help/exams
+      icon: graduation-cap
+    Services:
+      url: /help/services
+      icon: database
+  Mail:
+    url: https://webmail.redbrick.dcu.ie
+    icon: envelope-square
+  Wiki:
+    url: https://wiki.redbrick.dcu.ie
+    icon: university
+  Chat:
+    url: https://webchat.redbrick.dcu.ie
+    icon: wechat
+  Events:
+    url: https://calendar.google.com/calendar/embed?src=r2l6edh5l8jm5t9dbfi84rn26s@group.calendar.google.com&ctz=Europe/Dublin&pli=1
+    icon: calendar
 
 # Customize
 customize:

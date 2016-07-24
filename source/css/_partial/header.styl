@@ -12,7 +12,7 @@
 $header-block
     height: logo-height
     line-height: logo-height
-    padding: ((header-height - logo-height)/2) 15px
+    padding: ((header-height - logo-height)/2) 7px
 
 $header-block-left
     float: left
@@ -79,7 +79,6 @@ $dropdown
         color:#333;
         text-decoration:none;
         font-weight:700;
-        font-size:12px;
         line-height:32px;
         padding:0 15px;
     ul li
@@ -108,9 +107,14 @@ $dropdown
         z-index:2;
 
 #main-nav
-    @extend $header-block
-    @extend $header-block-left
-    @extend $dropdown
+    @extend $header-block;
+    @extend $header-block-left;
+    @extend $dropdown;
+    font-size:13px;
+    ul a
+      padding:0px 10px;
+    .fa
+      margin-right:5px;
     @media mq-mobile
         display: none;
     @media mq-mini
@@ -176,7 +180,7 @@ $dropdown
     #menu
         text-decoration: none;
         position: absolute;
-        width: 145px;
+        width: 205px;
         z-index: 1;
         margin: -100px 0 0 -50px;
         padding: 50px;
@@ -191,6 +195,8 @@ $dropdown
         text-decoration: none;
         transition: color 0.3s ease;
         color: #232323;
+        .fa
+            margin-right: 15px;
     #menu li a:hover
         color: tomato;
     #menu li
@@ -211,7 +217,6 @@ $dropdown
 $nav-link
     float: left;
     display: block;
-    padding: 0 15px;
 
 .nav-icon
     @extend $nav-link
@@ -249,7 +254,7 @@ $nav-link
             line-height: logo-height
 
 #search-form-wrap
-    @media mq-mini
+    @media mq-tiny
         display: none
     @extend $header-block
     @extend $header-block-right

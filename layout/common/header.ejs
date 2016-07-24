@@ -5,25 +5,7 @@
         <%- (theme.customize.logo && theme.customize.logo.enabled ? '<i class="logo"></i>':'') %>
       </a>
       <nav id="main-nav">
-        <ul>
-          <% for (var i in theme.menu) { %>
-            <% if (i === 'About') { %>
-              <li><a class="main-nav-link" ><%= i %></a><ul>
-                <% for (var j in theme.about) { %>
-                  <li><a class="main-nav-link" href="<%- url_for(theme.about[j]) %>"><%= j %></a></li>
-                <% } %>
-              </ul></li>
-            <% } else if (i === 'Help') { %>
-              <li><a class="main-nav-link" ><%= i %></a><ul>
-                <% for (var j in theme.help) { %>
-                  <li><a class="main-nav-link" href="<%- url_for(theme.help[j]) %>"><%= j %></a></li>
-                <% } %>
-              </ul></li>
-            <% } else { %>
-              <li><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></li>
-            <% } %>
-          <% } %>
-        </ul>
+        <%- partial('menu') %>
       </nav>
       <% if(theme.customize.profile && theme.customize.profile.enabled) { %>
         <% var profile = theme.customize.profile; %>
@@ -43,25 +25,7 @@
             <span></span>
             <span></span>
             <span></span>
-            <ul id="menu">
-              <% for (var i in theme.menu) { %>
-                <% if (i === 'About') { %>
-                  <li><a class="main-nav-link" ><%= i %></a><ul>
-                    <% for (var j in theme.about) { %>
-                      <li><a class="main-nav-link" href="<%- url_for(theme.about[j]) %>"><%= j %></a></li>
-                    <% } %>
-                  </ul></li>
-                <% } else if (i === 'Help') { %>
-                  <li><a class="main-nav-link" ><%= i %></a><ul>
-                    <% for (var j in theme.help) { %>
-                      <li><a class="main-nav-link" href="<%- url_for(theme.help[j]) %>"><%= j %></a></li>
-                    <% } %>
-                  </ul></li>
-                <% } else { %>
-                  <li><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></li>
-                <% } %>
-              <% } %>
-            </ul>
+            <%- partial('menu') %>
           </div>
         </div>
       </nav>
