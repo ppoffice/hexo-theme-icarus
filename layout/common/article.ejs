@@ -13,6 +13,8 @@
                         <%- partial('post/tag') %>
                         <%- partial('post/author') %>
                     </div>
+                <% } else if (post.type === 'tutorial') { %>
+                    <%- partial('tutorial') %>
                 <% } %>
             </header>
         <% } %>
