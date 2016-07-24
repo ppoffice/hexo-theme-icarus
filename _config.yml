@@ -64,6 +64,7 @@ search:
 
 # Comment
 comment:
+    on: false
     disqus: # enter disqus shortname here
     duoshuo: # enter duoshuo shortname here
     youyan: # enter youyan uid here
