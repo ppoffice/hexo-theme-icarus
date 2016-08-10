@@ -26,8 +26,8 @@ profile:
     follow: 'TAKİP ET'
     post: 'Gönderi'
     tag: 'Etiket'
-    posts: 'Gönderiler'
-    tags: 'Etiketler'
+    posts: 'Gönderi'
+    tags: 'Etiket'
 insight:
     hint: 'Bir şeyler yaz...'
     posts: 'Gönderiler'
