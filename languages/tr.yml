@@ -1,0 +1,37 @@
+index:
+    home: 'Anasayfa'
+    search: 'Ara'
+    archive: 'Arşiv'
+    category: 'Kategori'
+    uncategorized: 'Kategorisiz'
+    tag: 'Etiket'
+nav:
+    next: 'Sonraki'
+    prev: 'Önceki'
+    older: 'Eski'
+    newer: 'Yeni'
+widget:
+    recents: 'Son'
+    archives: 'Arşivler'
+    categories: 'Kategoriler'
+    links: 'Linkler'
+    tags: 'Etiketler'
+    tag_cloud: 'Etiket bulutu'
+article:
+    more: 'Daha fazla oku'
+    comments: 'Yorumlar'
+    share: 'Paylaş'
+    catalogue: 'Katalog'
+profile:
+    follow: 'TAKİP ET'
+    post: 'Gönderi'
+    tag: 'Etiket'
+    posts: 'Gönderiler'
+    tags: 'Etiketler'
+insight:
+    hint: 'Bir şeyler yaz...'
+    posts: 'Gönderiler'
+    pages: 'Sayfalar'
+    categories: 'Kategoriler'
+    tags: 'Etiketler'
+    untitled: '(Başlıksız)'
