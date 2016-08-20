@@ -59,7 +59,7 @@ share: default # options: jiathis, bdshare, addtoany, default
 
 # Plugins
 plugins:
-    fancybox: true # options: true, false
+    lightgallery: true # options: true, false
     google_analytics: # enter the tracking ID for your Google Analytics
     google_site_verification: # enter Google site verification code
     baidu_analytics: # enter Baidu Analytics hash key

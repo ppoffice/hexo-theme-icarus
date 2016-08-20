@@ -1,25 +1,22 @@
 (function($){
     var toTop = ($('#sidebar').height() - $(window).height()) + 60;
     // Caption
-    $('.article-entry').each(function(i){
-        $(this).find('img').each(function(){
-            if ($(this).parent().hasClass('fancybox')) {
-                return;
-            }
-            var alt = this.alt;
-            if (alt) {
-                $(this).after('<span class="caption">' + alt + '</span>');
+    $('.article-entry').each(function(i) {
+        $(this).find('img').each(function() {
+            if (this.alt) {
+                $(this).after('<span class="caption">' + this.alt + '</span>');
             }
 
-            $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+            $(this).wrap('<a href="' + this.src + '" title="' + this.alt + '" class="gallery-item"></a>');
         });
 
-        $(this).find('.fancybox').each(function(){
-            $(this).attr('rel', 'article' + i);
-        });
     });
-    if ($.fancybox){
-        $('.fancybox').fancybox();
+    if (lightGallery) {
+        var options = {
+            selector: '.gallery-item',
+        };
+        lightGallery($('.article-entry')[0], options);
+        lightGallery($('.article-gallery')[0], options);
     }
 
     // Profile card

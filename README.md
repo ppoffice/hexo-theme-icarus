@@ -38,13 +38,11 @@ Icarus knows on what screen size you are browsering the website, and reorganize 
 
 Get your categories and tags listed in single pages to make your blog more methodic.
 
-### Fancybox
+### lightgallery
 
-Icarus uses [Fancybox] to showcase your photos. You can use Markdown syntax or fancybox tag plugin to add your photos.
+Icarus uses [lightgallery.js](https://sachinchoolur.github.io/lightgallery.js/) to showcase your photos. Just enable it in your configuration, and that's all!
 
-```
-![img caption](img url)
-```
+![](http://ppoffice.github.io/hexo-theme-icarus/gallery/lightgallery.jpg "")
 
 ### Sidebar
 

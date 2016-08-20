@@ -313,27 +313,43 @@ $article-share-link
         text-shadow: 0 1px darken(color-google, 20%)
 
 .article-gallery
-    background: #000
-    position: relative
-
-.article-gallery-photos
-    position: relative
     overflow: hidden
-
-.article-gallery-img
-    display: none
-    max-width: 100%
-    &:first-child
-        display: block
-    &.loaded
-        position: absolute
-        display: block
-    img
-        display: block
+    background: black
+    position: relative
+    text-align: center
+    margin: line-height 0
+    .gallery-item
+        display: none
         max-width: 100%
-        margin: 0 auto
+        &:before,
+        &:after
+            top: 50%
+            width: 40px
+            height: 36px
+            font-size: 36px
+            line-height: 36px
+            margin-top: -18px
+            position: absolute
+            font-family: FontAwesome
+            color: rgba(255, 255, 255, .5)
+        &:hover
+            &:before,
+            &:after
+                color: rgba(255, 255, 255, .8)
+        &:before
+            left: 0
+            content: "\f104"
+        &:after
+            right: 0
+            content: "\f105"
+        &:first-child
+            display: block
+        img
+            display: block
+            max-width: 100%
+            margin: 0 auto
 
-/*    toc */
+/* topic section */
 .toc-article
     background #F9F9F9
     margin 2em 0 0 0.2em
@@ -343,9 +359,11 @@ $article-share-link
         font-size 120%
     strong
         padding 0.3em 1
+
 ol.toc
     width 100%
     margin 1em 2em 0 0
+
 #toc
     line-height 1em
     font-size 0.8em
@@ -356,6 +374,7 @@ ol.toc
             list-style-type none
     .toc-child
         padding-left 0em
+
 #toc.toc-aside
     display none
     width 13%
@@ -379,3 +398,8 @@ ol.toc
         &:hover
             color color-theme
             transition color .3s ease-out
+
+/* lightgallery */
+.lg-outer
+    .lg-thumb-item
+        border-radius: 0 !important

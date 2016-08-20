@@ -3,7 +3,6 @@
         <% if (post.banner) { %>
             <%- partial('post/banner') %>
         <% } %>
-        <%- partial('post/gallery') %>
         <% if (post.link || post.title) { %>
             <header class="article-header">
                 <%- partial('post/title', { class_name: 'article-title' }) %>
@@ -16,6 +15,7 @@
                 <% } %>
             </header>
         <% } %>
+        <%- partial('post/gallery') %>
         <div class="article-entry" itemprop="articleBody">
         <% if (index && post.excerpt) { %>
             <p><%- post.excerpt %></p>
