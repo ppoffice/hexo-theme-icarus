@@ -212,18 +212,28 @@ $dropdown
         top: 100%;
         li:hover ul
             display: block;
-    ul ul:hover ~ li
-        -webkit-transition-delay: 0s, 0s, 0s;
+    ul ul
         z-index: 3;
         background: none
         position: relative;
         li
           float: inherit;
-    ul li:focus
+    ul li:hover
         background: none
         ul
+        -webkit-transition: height 1s ease;
             display:block;
             visibility: visible;
+    li .dropdown-menu
+        display: none;
+        position: absolute;
+        left: 0;
+        padding: 0;
+        margin: 0;
+        margin-top: 3px;
+        text-align: left;
+    li .dropdown-menu.active
+        display: block;
 
 $nav-link
     float: left;
