@@ -2,6 +2,9 @@
     <% if (theme.plugins.lightgallery) { %>
         <%- css('vendor/lightgallery/css/lightgallery.min') %>
     <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('vendor/justified-gallery/justifiedGallery.min.css') %>
+    <% } %>
     <% if (theme.plugins.google_analytics) { %>
         <%- partial('plugin/google-analytics') %>
     <% } %>
@@ -22,5 +25,8 @@
         <%- js('vendor/lightgallery/js/lg-hash.min') %>
         <%- js('vendor/lightgallery/js/lg-share.min') %>
         <%- js('vendor/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('vendor/justified-gallery/jquery.justifiedGallery.min.js') %>
     <% } %>
 <% } %>

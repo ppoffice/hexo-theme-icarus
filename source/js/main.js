@@ -18,6 +18,14 @@
         lightGallery($('.article-entry')[0], options);
         lightGallery($('.article-gallery')[0], options);
     }
+    if (!!$.prototype.justifiedGallery) {  // if justifiedGallery method is defined
+        var options = {
+            rowHeight: 140,
+            margins: 4,
+            lastRow: 'justify'
+        };
+        $('.justified-gallery').justifiedGallery(options);
+    }
 
     // Profile card
     $(document).on('click', function () {
