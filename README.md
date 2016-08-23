@@ -44,6 +44,10 @@ Icarus uses [lightgallery.js](https://sachinchoolur.github.io/lightgallery.js/) 
 
 ![](http://ppoffice.github.io/hexo-theme-icarus/gallery/lightgallery.jpg "")
 
+### Justified Gallery
+
+You can also use [justifiedgallery.js](http://miromannino.github.io/Justified-Gallery/) to display a photo grid within your posts. Just enable it in your configuration, and place your photos in a div with the class .justified-gallery
+
 ### Sidebar
 
 Icarus provides 6 built-in widgets:
