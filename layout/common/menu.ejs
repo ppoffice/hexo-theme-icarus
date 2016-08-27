@@ -1,14 +1,14 @@
-<ul id="menu">
+<ul class="menu">
   <% for (var i in theme.menu) { %>
     <% if (i === 'About' || i === 'Help') { %>
-      <li>
-        <a class="main-nav-link" href="javascript:void(0)" class="dropdown-toggle" aria-haspopup="true">
+      <li class="menu-list dropdown-toggle" onclick="void(0)" tabindex="0">
+        <a class="main-nav-link" aria-haspopup="true">
           <i class="fa fa-<%= theme.menu[i].icon %>"></i><%= i %>
         </a>
         <ul class="dropdown-menu">
           <% for (var j in theme.menu[i]) { %>
             <% if (j != 'icon') { %>
-              <li><a class="main-nav-link" href="<%- url_for(theme.menu[i][j].url) %>"><i class="fa fa-<%= theme.menu[i][j].icon %>"></i><%= j %></a></li>
+              <li tabindex="0"><a class="main-nav-link" href="<%- url_for(theme.menu[i][j].url) %>"><i class="fa fa-<%= theme.menu[i][j].icon %>"></i><%= j %></a></li>
             <% } %>
           <% } %>
         </ul>

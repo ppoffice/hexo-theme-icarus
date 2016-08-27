@@ -68,172 +68,150 @@ $header-block-right
         display: none
 
 $dropdown
-    ul
-        position: relative;
-        display: block;
-        float:left;
-        margin:0;
+    .menu
+        position: relative
+        display: block
+        float:left
+        margin:0
         padding:0
-    ul a
-        display:block;
-        color:#333;
-        text-decoration:none;
-        font-weight:700;
-        line-height:32px;
-        padding:0 15px;
-    ul li
-        position:relative;
-        float:left;
-        margin:0;
-        padding:0;
-    ul li.current-menu-item
-        background:#ddd;
-    ul li:hover
-        background:#e2e2e2;
-    ul ul
-        display:none;
-        position:absolute;
-        top:100%;
-        left:0;
-        background:#e2e2e2;
-        padding:0;
-    ul ul li
-        float:none;
-    ul ul a
-        line-height:120%;
-        padding:10px 15px;
-    ul li:hover > ul
-        display:block;
-        z-index:2;
+    .main-nav-link
+        display:block
+        color:#333
+        text-decoration:none
+        line-height:32px
+        padding:0 15px
+        .fa
+          padding-right: 8px
+    .main-nav-link:hover
+        color: color-link
+    li
+        position:relative
+        float:left
+        margin:0
+        padding:0
+        .current-menu-item
+            background:#ddd
+    .dropdown-toggle:focus ul.dropdown-menu, .dropdown-toggle a:focus + ul.dropdown-menu
+        -webkit-transition: height 1s ease
+        visibility: visible
+    .dropdown-toggle
+        cursor: pointer
+        background: white
+        border: 0px
+        font-weight: inherit
+    .dropdown-menu
+        visibility: hidden;
+        position:absolute
+        top:100%
+        left:0
+        background:#e2e2e2
+        padding:0
+        z-index:2
+        li
+            float:none
+        a
+            line-height:120%
+            padding:10px 15px
+        .fa
+            padding-right: 4px
 
 #main-nav
     @extend $header-block;
     @extend $header-block-left;
     @extend $dropdown;
     font-size:13px;
-    ul a
-      padding:0px 10px;
-    .fa
-      margin-right:5px;
     @media mq-mobile
         display: none;
     @media mq-mini
         display: none;
 
 #main-nav-mobile
-    margin: 0;
-    padding: 20px 20px;
+    margin: 0
+    padding: 20px 20px
     @extend $dropdown
     @media mq-tablet
         display: none
     @media mq-normal
         display: none
     #menuToggle
-        display: block;
-        top: 50px;
-        left: 50px;
-        z-index: 1;
-        -webkit-user-select: none;
-        user-select: none;
+        display: block
+        top: 50px
+        left: 50px
+        z-index: 1
+        -webkit-user-select: none
+        user-select: none
+        input
+            display: block
+            width: 40px
+            height: 32px
+            position: absolute
+            cursor: pointer
+            opacity: 0 /* hide this */
+            z-index: 3 /* and place it over the hamburger */
+            -webkit-touch-callout: none
+        span
+            display: block
+            width: 33px
+            height: 4px
+            margin-bottom: 5px
+            position: relative
+            background: #cdcdcd
+            border-radius: 3px
+            z-index: 2
+            transform-origin: 4px 0px
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        opacity 0.55s ease
 
-    #menuToggle input
-        display: block;
-        width: 40px;
-        height: 32px;
-        position: absolute;
-        cursor: pointer;
-        opacity: 0; /* hide this */
-        z-index: 3; /* and place it over the hamburger */
-        -webkit-touch-callout: none;
-
-    #menuToggle span
-        display: block;
-        width: 33px;
-        height: 4px;
-        margin-bottom: 5px;
-        position: relative;
-        background: #cdcdcd;
-        border-radius: 3px;
-        z-index: 2;
-        transform-origin: 4px 0px;
-        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-                    background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-                    opacity 0.55s ease;
-
-    #menuToggle span:first-child
-        transform-origin: 0% 0%;
-
-    #menuToggle span:nth-last-child(2)
-        transform-origin: 0% 100%;
-
-    #menuToggle input:checked ~ span
-        opacity: 1;
-        transform: rotate(45deg) translate(-2px, -1px);
-        background: #232323;
-
-    #menuToggle input:checked ~ span:nth-last-child(3)
-        opacity: 0;
-        transform: rotate(0deg) scale(0.2, 0.2);
-    #menuToggle input:checked ~ span:nth-last-child(2)
-        opacity: 1;
-        transform: rotate(-45deg) translate(0, -1px);
-    #menu
-        text-decoration: none;
-        position: absolute;
-        width: 205px;
-        z-index: 1;
-        margin: -100px 0 0 -50px;
-        padding: 50px;
-        padding-top: 125px;
-        background: #ededed;
-        -webkit-font-smoothing: antialiased;
-        /* to stop flickering of text in safari */
-        transform-origin: 0% 0%;
-        transform: translate(-100%, 0);
-        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-    #menu li a
-        text-decoration: none;
-        transition: color 0.3s ease;
-        color: #232323;
-        .fa
-            margin-right: 15px;
-    #menu li a:hover
-        color: tomato;
-    #menu li
-        text-decoration: none;
-        padding: 10px 10px;
-        font-size: 22px;
-    #menuToggle input:checked ~ ul
-        transform: scale(1.0, 1.0);
-        opacity: 1;
-    li ul
-        display: none;
-        position: static;
-        top: 100%;
-        li:hover ul
-            display: block;
-    ul ul
-        z-index: 3;
-        background: none
-        position: relative;
-        li
-          float: inherit;
-    ul li:hover
-        background: none
-        ul
-        -webkit-transition: height 1s ease;
-        display:block;
-        visibility: visible;
-    li .dropdown-menu
-        display: none;
-        position: absolute;
-        left: 0;
-        padding: 0;
-        margin: 0;
-        margin-top: 3px;
-        text-align: left;
-    li .dropdown-menu.active
-        display: block;
+        span:first-child
+            transform-origin: 0% 0%
+        span:nth-last-child(2)
+            transform-origin: 0% 100%
+        input:checked ~ span
+            opacity: 1
+            transform: rotate(45deg) translate(-2px, -1px)
+            background: #232323
+        input:checked ~ span:nth-last-child(3)
+            opacity: 0
+            transform: rotate(0deg) scale(0.2, 0.2)
+        input:checked ~ span:nth-last-child(2)
+            opacity: 1
+            transform: rotate(-45deg) translate(0, -1px)
+        input:checked ~ ul
+            transform: scale(1.0, 1.0);
+            opacity: 1;
+        .menu
+            text-decoration: none
+            position: absolute
+            height: auto
+            width: 205px
+            z-index: 1
+            margin: -110px 0 0 -50px
+            padding: 150px 50px 20px 20px
+            font-size: 22px;
+            background: #ededed
+            -webkit-font-smoothing: antialiased
+            /* to stop flickering of text in safari */
+            transform-origin: 0% 0%
+            transform: translate(-100%, 0)
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0)
+            .main-nav-link
+                text-decoration: none
+                transition: color 0.3s ease
+                padding: 20px
+                color: #232323
+                .fa
+                    margin-right: 16px
+            .main-nav-link:hover
+                color: tomato;
+            .dropdown-toggle
+                background: #ededed
+                font-size: 22px
+            .dropdown-menu
+                display:none
+            .dropdown-toggle:focus ul.dropdown-menu, .dropdown-toggle a:focus + ul.dropdown-menu
+                display: inline
+                position: initial
 
 $nav-link
     float: left;
