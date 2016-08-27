@@ -8,7 +8,7 @@ menu:
     icon: archive
   About:
     icon: info-circle
-    About:
+    The Society:
       url: about
       icon: info
     Committee:

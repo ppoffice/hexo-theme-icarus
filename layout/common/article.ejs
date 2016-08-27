@@ -19,7 +19,11 @@
             </header>
         <% } %>
         <%- partial('post/gallery') %>
-        <div class="article-entry" itemprop="articleBody">
+        <% if (post.type === 'helpList') { %>
+          <div class="article-entry__list" itemprop="articleBody">
+        <% } else { %>
+          <div class="article-entry" itemprop="articleBody">
+        <% } %>
         <% if (index && post.excerpt) { %>
             <p><%- post.excerpt %></p>
             <p class="article-more-link">
