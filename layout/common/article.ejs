@@ -36,7 +36,9 @@
                     <%- toc(post.content) %>
                 </div>
             <% } %>
-            <% if (post.type === 'help') { %>
+            <% if (post.type === 'contact') { %>
+              <%- partial('contact') %>
+            <% } else if (post.type === 'help') { %>
               <div class="help">
                 <%- post.content %>
               </div>

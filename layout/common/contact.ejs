@@ -1,0 +1,25 @@
+<div id="contact">
+  <form class="form" id="contact">
+    <fieldset class="field">
+        <input class="input" type="email" id="email" placeholder="example@domain.com" required>
+        <label class="label" for="email"><span class="label-content">Your email</span></label>
+    </fieldset>
+    <fieldset class="field">
+        <input class="input" type="text" id="name" placeholder="Name" required>
+        <label class="label" for="name"><span class="label-content">Your name</span></label>
+    </fieldset>
+    <fieldset class="field">
+        <input class="input" type="text" id="subject" placeholder="subject" required>
+        <label class="label" for="subject"><span class="label-content">subject</span></label>
+    </fieldset>
+    <fieldset class="field message">
+        <textarea class="input" id="content" rows="1" placeholder="Message" required></textarea>
+        <label class="label" for="content"><span class="label-content">Your message</span></label>
+    </fieldset>
+    <div class="g-recaptcha" data-sitekey="6LfClyATAAAAAErMssL8Y2iCwGx2JfdcxQHD8biq" requried></div>
+    <fieldset class="field">
+        <button class="button submit">Send Email</button>
+    </fieldset>
+  </form>
+  <span id="message"></span>
+</div>
