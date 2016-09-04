@@ -15,7 +15,9 @@
         var options = {
             selector: '.gallery-item',
         };
-        lightGallery($('.article-entry')[0], options);
+        $('.article-entry').each(function(i, entry) {
+            lightGallery(entry, options);
+        });
         lightGallery($('.article-gallery')[0], options);
     }
     if (!!$.prototype.justifiedGallery) {  // if justifiedGallery method is defined
