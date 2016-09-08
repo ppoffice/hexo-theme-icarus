@@ -10,7 +10,7 @@
         <ul class="dropdown-menu <%= 'dropdown-menu-' + dropdown %>">
           <% for (var j in theme.menu[i]) { %>
             <% if (j != 'icon') { %>
-              <li tabindex="0"><a class="main-nav-link" href="<%- url_for(theme.menu[i][j].url) %>"><i class="fa fa-<%= theme.menu[i][j].icon %>"></i><%= j %></a></li>
+              <li tabindex="1"><a class="main-nav-link" href="<%- url_for(theme.menu[i][j].url) %>"><i class="fa fa-<%= theme.menu[i][j].icon %>"></i><%= j %></a></li>
             <% } %>
           <% } %>
         </ul>
