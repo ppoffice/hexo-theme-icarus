@@ -12,7 +12,7 @@
 $header-block
     height: logo-height
     line-height: logo-height
-    padding: ((header-height - logo-height)/2) 7px
+    padding: ((header-height - logo-height)/2) 2px
 
 $header-block-left
     float: left
@@ -26,17 +26,22 @@ $header-block-right
     #logo
         @extend $header-block
         @extend $header-block-left
-        display: none
+        display: inline-block
+        float: none
+        padding: 0
+        margin-top: 12px
         .logo
             margin-right: 5px
             display: inline-block
+            @media mq-header-mobile
+                padding-bottom: 12px
+            @media mq-tiny
+                display: none
         .site-title
             font-size: 16px
             display: inline-block
             vertical-align: top
             font-weight: 600
-        @media mq-normal
-            display: inline-block
 
 #header-title
     text-align: center
@@ -120,18 +125,19 @@ $dropdown
     @extend $header-block-left;
     @extend $dropdown;
     font-size:13px;
-    @media mq-mobile
-        display: none;
-    @media mq-mini
-        display: none;
+    float: none
+    padding: 0
+    display: inline-block
+    @media mq-header-mobile
+        display: none
 
 #main-nav-mobile
     margin: 0
     padding: 20px 20px
+    display: inline-block
+    width: 33px
     @extend $dropdown
-    @media mq-tablet
-        display: none
-    @media mq-normal
+    @media mq-header
         display: none
     #menuToggle
         display: block
@@ -237,8 +243,6 @@ $nav-link
     font-weight: 300
 
 #sub-nav
-    @media mq-normal
-        display: none
     @extend $header-block
     @extend $header-block-right
     #profile-nav
@@ -257,8 +261,6 @@ $nav-link
             line-height: logo-height
 
 #search-form-wrap
-    @media mq-tiny
-        display: none
     @extend $header-block
     @extend $header-block-right
     .search-form

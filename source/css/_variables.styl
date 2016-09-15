@@ -40,7 +40,7 @@ profile-avatar-size = 128px
 block-margin = 40px
 article-padding = 20px
 mobile-nav-width = 280px
-main-column = 7
+main-column = 8
 sidebar-column = 3
 profile-column = 3
 sidebar-column-tablet = 4
@@ -62,12 +62,12 @@ if _sidebar-column is 0 and _profile-column is 0
     columns = 10
     main-column = 10
 else
-    columns = main-column + _sidebar-column + _profile-column
+    columns = main-column + _sidebar-column
 
 if sidebar
-    main-column-tablet = 6
+    main-column-tablet = 5
     if profile
-        main-column-tablet = 9
+        main-column-tablet = 7
 
 // Media queries
 mq-tiny = "screen and (max-width: 320px)"
@@ -75,6 +75,9 @@ mq-mini = "screen and (max-width: 559px)"
 mq-mobile = "screen and (min-width: 560px) and (max-width: 799px)"
 mq-tablet = "screen and (min-width: 800px) and (max-width: 1199px)"
 mq-normal = "screen and (min-width: 1200px)"
+
+mq-header-mobile = "screen and (max-width: 925px)"
+mq-header = "screen and (min-width: 925px)"
 
 // Code Highlight
 highlight = hexo-config("customize.highlight") || "tomorrow"
