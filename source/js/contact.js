@@ -1,20 +1,22 @@
 $(document).ready(function(){
-  var email, name, subject, text;
+  var email, name, subject, text, recaptcha;
   var to = window.location.pathname;
   to = to.substring(to.lastIndexOf('/')+1)
   $("#contact").submit(function(e) {
-    if(grecaptcha.getResponse() == "") {
+    recaptcha = grecaptcha.getResponse();
+    if(recaptcha == "") {
       e.preventDefault();
       $("#message").empty().html("complete recaptcha");
     } else {
+      e.preventDefault();
       email = $("#email").val();
       name = $("#fullname").val().trim();
       subject = $("#subject").val().trim();
       text = $("#content").val().trim();
-      $("#message").text("Sending E-mail...Please wait");
-      $.get("http://localhost:3000/api/contact", { email:email, to:to, name:name, subject:subject, text:text }, function(data) {
-        if(data=="sent") {
-          $("#message").empty().html("Email is been sent");
+      $("#message").text("Sending E-mail");
+      $.get("http://localhost:3000/api/contact", { email:email, to:to, name:name, subject:subject, text:text, recaptcha:recaptcha}, function(data) {
+        if(data === "sent") {
+          $("#message").empty().html("Email has been sent");
         }
       });
     }
