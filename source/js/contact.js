@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  var site = window.location.hostname;
   var email, name, subject, text, recaptcha;
   var to = window.location.pathname;
   to = to.substring(to.lastIndexOf('/')+1)
@@ -14,7 +15,7 @@ $(document).ready(function(){
       subject = $("#subject").val().trim();
       text = $("#content").val().trim();
       $("#message").text("Sending E-mail");
-      $.get("http://localhost:3000/api/contact", { email:email, to:to, name:name, subject:subject, text:text, recaptcha:recaptcha}, function(data) {
+      $.get("https://" + site + "/api/contact", { email:email, to:to, name:name, subject:subject, text:text, recaptcha:recaptcha}, function(data) {
         if(data === "sent") {
           $("#message").empty().html("Email has been sent");
         }

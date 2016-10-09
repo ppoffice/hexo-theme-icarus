@@ -108,14 +108,15 @@ share: default # options: jiathis, bdshare, addtoany, default
 plugins:
     lightgallery: true # options: true, false
     justified-gallery: true # options: true, false
-    google_analytics: # enter the tracking ID for your Google Analytics
-    google_site_verification: # enter Google site verification code
+    google_analytics: UA-85359173-1 # enter the tracking ID for your Google Analytics
+    google_site_verification: 2WCaCH2N-gzzIIiMIq9ERmtz7cprYKIIPKHoBjzPQYk # enter Google site verification code
     baidu_analytics: # enter Baidu Analytics hash key
+    google_recaptcha: 6LdCuwgUAAAAAKB3yf7AcOpyHxIFKJNaH3cNhmEC
 
 # Miscellaneous
 miscellaneous:
     open_graph: # see http://ogp.me
         fb_app_id:
         fb_admins:
-        twitter_id:
+        twitter_id: RedbrickDCU
         google_plus:
