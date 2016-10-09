@@ -1,6 +1,6 @@
 <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
-  <% if (post.type === '404') { %>
-    <%- partial('404') %>
+  <% if (post.type === 'error') { %>
+    <%- partial('error') %>
   <% } else { %>
     <div class="article-inner">
       <% if (post.banner) { %>
