@@ -2,8 +2,8 @@
   <header class="not-found__header">
     <%- partial('post/title', { class_name: 'not-found__header__title' }) %>
   </header>
-  <img class"not-found__img" src="<%= url_for('css/images/404.png') %>" />
+  <img class="not-found__img" src="<%= url_for('css/images/404.png') %>" />
   <div class="not-found__message">
-    <p><%- post.content %></p>
+    <%- post.content %>
   </div>
 <div>
