@@ -12,7 +12,7 @@
 $header-block
     height: logo-height
     line-height: logo-height
-    padding: ((header-height - logo-height)/2) 15px
+    padding: ((header-height - logo-height)/2) 2px
 
 $header-block-left
     float: left
@@ -27,9 +27,16 @@ $header-block-right
         @extend $header-block
         @extend $header-block-left
         display: inline-block
+        float: none
+        padding: 0
+        margin-top: 12px
         .logo
             margin-right: 5px
             display: inline-block
+            @media mq-header-mobile
+                padding-bottom: 12px
+            @media mq-tiny
+                display: none
         .site-title
             font-size: 16px
             display: inline-block
@@ -65,25 +72,160 @@ $header-block-right
     @media mq-mini
         display: none
 
+$dropdown
+    .menu
+        position: relative
+        display: block
+        float:left
+        margin:0
+        padding:0
+    .main-nav-link
+        display:block
+        color:#333
+        text-decoration:none
+        line-height:32px
+        padding:0 15px
+        .fa
+          padding-right: 8px
+    .main-nav-link:hover
+        color: color-link
+    li
+        position:relative
+        float:left
+        margin:0
+        padding:0
+        .current-menu-item
+            background:#ddd
+    .dropdown-toggle:focus ul.dropdown-menu, .dropdown-toggle a:focus + ul.dropdown-menu
+        -webkit-transition: height 1s ease
+        visibility: visible
+    .dropdown-toggle
+        cursor: pointer
+        background: white
+        border: 0px
+        font-weight: inherit
+    .dropdown-menu
+        visibility: hidden;
+        position:absolute
+        top:100%
+        left:0
+        background:#e2e2e2
+        padding:0
+        z-index:2
+        li
+            float:none
+        a
+            line-height:120%
+            padding:10px 15px
+        .fa
+            padding-right: 4px
+
 #main-nav
-    @extend $header-block
-    @extend $header-block-left
-    @media mq-mobile
-        display: none
-    @media mq-mini
+    @extend $header-block;
+    @extend $header-block-left;
+    @extend $dropdown;
+    font-size:13px;
+    float: none
+    padding: 0
+    display: inline-block
+    @media mq-header-mobile
         display: none
 
 #main-nav-mobile
-    @media mq-tablet
+    margin: 0
+    padding: 20px 20px
+    display: inline-block
+    width: 33px
+    @extend $dropdown
+    @media mq-header
         display: none
-    @media mq-normal
-        display: none
+    #menuToggle
+        display: block
+        top: 50px
+        left: 50px
+        z-index: 1
+        -webkit-user-select: none
+        user-select: none
+        input
+            display: block
+            width: 40px
+            height: 32px
+            position: absolute
+            cursor: pointer
+            opacity: 0 /* hide this */
+            z-index: 3 /* and place it over the hamburger */
+            -webkit-touch-callout: none
+        span
+            display: block
+            width: 33px
+            height: 4px
+            margin-bottom: 5px
+            position: relative
+            background: #cdcdcd
+            border-radius: 3px
+            z-index: 2
+            transform-origin: 4px 0px
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        opacity 0.55s ease
 
+        span:first-child
+            transform-origin: 0% 0%
+        span:nth-last-child(2)
+            transform-origin: 0% 100%
+        input:checked ~ span
+            opacity: 1
+            transform: rotate(45deg) translate(-2px, -1px)
+            background: #232323
+        input:checked ~ span:nth-last-child(3)
+            opacity: 0
+            transform: rotate(0deg) scale(0.2, 0.2)
+        input:checked ~ span:nth-last-child(2)
+            opacity: 1
+            transform: rotate(-45deg) translate(0, -1px)
+        input:checked ~ ul
+            transform: scale(1.0, 1.0);
+            opacity: 1;
+        .menu
+            text-decoration: none
+            position: absolute
+            height: auto
+            width: 205px
+            z-index: 1
+            margin: -110px 0 0 -50px
+            padding: 150px 50px 20px 20px
+            font-size: 22px;
+            background: #ededed
+            -webkit-font-smoothing: antialiased
+            /* to stop flickering of text in safari */
+            transform-origin: 0% 0%
+            transform: translate(-100%, 0)
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0)
+            .main-nav-link
+                text-decoration: none
+                transition: color 0.3s ease
+                padding: 20px
+                color: #232323
+                .fa
+                    margin-right: 16px
+            .main-nav-link:hover
+                color: tomato;
+            .dropdown-toggle
+                background: #ededed
+                font-size: 22px
+            .dropdown-menu
+                display:none
+            .dropdown-toggle:focus ul.dropdown-menu, .dropdown-toggle a:focus + ul.dropdown-menu
+                display: inline
+                position: initial
+            .dropdown-menu:active
+                display: inline
+                position: initial
+                visibility: visible
 
 $nav-link
-    float: left
-    display: block
-    padding: 0 15px
+    float: left;
+    display: block;
 
 .nav-icon
     @extend $nav-link
@@ -101,8 +243,6 @@ $nav-link
     font-weight: 300
 
 #sub-nav
-    @media mq-normal
-        display: none
     @extend $header-block
     @extend $header-block-right
     #profile-nav
@@ -121,8 +261,6 @@ $nav-link
             line-height: logo-height
 
 #search-form-wrap
-    @media mq-mini
-        display: none
     @extend $header-block
     @extend $header-block-right
     .search-form

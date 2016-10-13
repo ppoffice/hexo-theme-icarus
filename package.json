@@ -1,5 +1,8 @@
 {
   "name": "hexo-theme-icarus",
   "version": "0.2.1",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "desandro-classie": "^1.0.1"
+  }
 }

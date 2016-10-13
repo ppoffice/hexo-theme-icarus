@@ -1,0 +1,6 @@
+<% if (post.author) { %>
+    <div>
+        <i class="fa fa-user"></i>
+        <a href="<%- url_for(post.path) %>"><%= post.author %></a>
+    </div>
+<% } %>

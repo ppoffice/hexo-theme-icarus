@@ -38,7 +38,7 @@ code
 
 .outer
     clearfix()
-    max-width: (column-width + gutter-width) * columns + gutter-width
+    max-width: (column-width + gutter-width + 10) * columns + gutter-width
     margin: 0 auto
     padding: 0 gutter-width
     @media mq-mini
@@ -79,11 +79,13 @@ code
 @import "_partial/profile"
 @import "_partial/article"
 @import "_partial/comment"
+@import "_partial/contact"
 @import "_partial/archive"
 @import "_partial/timeline"
 @import "_partial/footer"
 @import "_partial/sidebar"
 @import "_partial/insight"
+@import "_partial/404"
 @import "_highlight/index"
 
 if sidebar is left

@@ -1,46 +1,65 @@
 <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+  <% if (post.type === 'error') { %>
+    <%- partial('error') %>
+  <% } else { %>
     <div class="article-inner">
-        <% if (post.banner) { %>
-            <%- partial('post/banner') %>
-        <% } %>
-        <% if (post.link || post.title) { %>
-            <header class="article-header">
-                <%- partial('post/title', { class_name: 'article-title' }) %>
-                <% if (post.layout != 'page') { %>
-                    <div class="article-meta">
-                        <%- partial('post/date', { class_name: 'article-date', date_format: null }) %>
-                        <%- partial('post/category') %>
-                        <%- partial('post/tag') %>
-                    </div>
-                <% } %>
-            </header>
-        <% } %>
-        <%- partial('post/gallery') %>
+      <% if (post.banner) { %>
+        <%- partial('post/banner') %>
+      <% } %>
+      <% if (post.link || post.title) { %>
+        <header class="article-header">
+          <%- partial('post/title', { class_name: 'article-title' }) %>
+          <% if (post.layout != 'page') { %>
+            <div class="article-meta">
+              <%- partial('post/date', { class_name: 'article-date', date_format: null }) %>
+              <%- partial('post/category') %>
+              <%- partial('post/tag') %>
+              <%- partial('post/author') %>
+            </div>
+          <% } else if (post.type === 'tutorial') { %>
+            <%- partial('tutorial') %>
+          <% } %>
+        </header>
+      <% } %>
+      <%- partial('post/gallery') %>
+      <% if (post.type === 'helpList') { %>
+        <div class="article-entry__list" itemprop="articleBody">
+      <% } else { %>
         <div class="article-entry" itemprop="articleBody">
-        <% if (index && post.excerpt) { %>
-            <p><%- post.excerpt %></p>
-            <p class="article-more-link">
-                <a href="<%- url_for(post.path) %>#more"><%= __('article.more') %></a>
-            </p>
-        <% } else { %>
-            <% if (!index && post.toc) { %>
-                <div id="toc" class="toc-article">
-                <strong class="toc-title"><%= __('article.catalogue') %></strong>
-                    <%- toc(post.content) %>
-                </div>
-            <% } %>
-            <%- post.content %>
+      <% } %>
+      <% if (index && post.excerpt) { %>
+        <p><%- post.excerpt %></p>
+        <p class="article-more-link">
+          <a href="<%- url_for(post.path) %>#more"><%= __('article.more') %></a>
+        </p>
+      <% } else { %>
+        <% if (!index && post.toc) { %>
+          <div id="toc" class="toc-article">
+          <strong class="toc-title"><%= __('article.catalogue') %></strong>
+            <%- toc(post.content) %>
+          </div>
         <% } %>
-        </div>
-        <footer class="article-footer">
-            <%- partial('share/index', { post: post }) %>
-            <%- partial('comment/counter', { post: post }) %>
-        </footer>
+        <% if (post.type === 'contact') { %>
+          <%- partial('contact') %>
+        <% } else if (post.type === 'help') { %>
+          <div class="help">
+            <%- post.content %>
+          </div>
+        <% } else { %>
+          <%- post.content %>
+        <% } %>
+      <% } %>
+      </div>
+      <footer class="article-footer">
+        <%- partial('share/index', { post: post }) %>
+        <%- partial('comment/counter', { post: post }) %>
+      </footer>
     </div>
     <% if (!index) { %>
-        <%- partial('post/nav') %>
+      <%- partial('post/nav') %>
     <% } %>
-</article>
+  </article>
+<% } %>
 
 <% if (!index) { %>
     <%- partial('comment/index') %>

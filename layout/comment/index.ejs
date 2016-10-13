@@ -1,4 +1,4 @@
-<% if (post.comments) { %>
+<% if (post.comments && theme.comment.on) { %>
     <section id="comments">
     <% if (theme.comment.disqus) { %>
         <%- partial('comment/disqus') %>

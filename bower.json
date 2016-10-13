@@ -1,0 +1,23 @@
+{
+  "name": "hexo-theme-icarus",
+  "description": "",
+  "main": "",
+  "authors": [
+    "butlerx <cianbutlerx@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/redbrick/hexo-theme-icarus",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "classie": "^1.0.1",
+    "font-awesome": "^4.6.3",
+    "jquery": "^3.1.0",
+    "lightgallery": "^1.2.21"
+  }
+}

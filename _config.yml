@@ -1,0 +1,122 @@
+# Menus
+menu:
+  Home:
+    url: .
+    icon: home
+  Archives:
+    url: archives
+    icon: archive
+  About:
+    icon: info-circle
+    The Society:
+      url: about
+      icon: info
+    Committee:
+      url: about/committee
+      icon: users
+    Constitution:
+      url: about/constitution
+      icon: book
+    Regulations:
+      url: about/regulations
+      icon: file-text-o
+    Contact:
+      url: about/contact
+      icon: reply
+    Past Committee:
+      url: about/past-committees
+      icon: users
+  Help:
+    icon: question-circle
+    Helpdesk:
+      url: help
+      icon: question
+    Joining:
+      url: /help/joining
+      icon: sign-in
+    Tutorial:
+      url: /help/tutorials
+      icon: bank
+    Exams:
+      url: /help/exams
+      icon: graduation-cap
+    Services:
+      url: /help/services
+      icon: database
+  Mail:
+    url: https://webmail.redbrick.dcu.ie
+    icon: envelope-square
+  Wiki:
+    url: https://wiki.redbrick.dcu.ie
+    icon: university
+  Chat:
+    url: https://webchat.redbrick.dcu.ie
+    icon: wechat
+  Events:
+    url: https://calendar.google.com/calendar/embed?src=r2l6edh5l8jm5t9dbfi84rn26s@group.calendar.google.com&ctz=Europe/Dublin&pli=1
+    icon: calendar
+
+# Customize
+customize:
+    logo:
+        enabled: true
+        width: 160
+        height: 40
+        url: images/logo.png
+    profile:
+        enabled: true # Whether to show profile bar
+        avatar: css/images/avatar.png
+        gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+        author: Redbrick
+        author_title: DCU's Networking Society
+        location: Clubs and Societies Office, Dublin City University, Glasnevin, Dublin 9.
+        follow: https://twitter.com/redbrickdcu
+    highlight: monokai
+    sidebar: right # sidebar position, options: left, right
+    thumbnail: true # enable posts thumbnail, options: true, false
+    favicon: # path to favicon
+    social_links:
+        github: https://github.com/redbrick
+        twitter: https://twitter.com/redbrickdcu
+        facebook: https://facebook.com/dcuredbrick
+        youtube: https://www.youtube.com/user/redbrickdcu
+        rss: /atom.xml
+    social_link_tooltip: true # enable the social link tooltip, options: true, false
+
+# Widgets
+widgets:
+    - recent_posts
+    - tagcloud
+
+# Search
+search:
+    insight: true # you need to install `hexo-generator-json-content` before using Insight Search
+    swiftype: # enter swiftype install key here
+    baidu: false # you need to disable other search engines to use Baidu search, options: true, false
+
+# Comment
+comment:
+    on: false
+    disqus: # enter disqus shortname here
+    duoshuo: # enter duoshuo shortname here
+    youyan: # enter youyan uid here
+
+# Share
+share: default # options: jiathis, bdshare, addtoany, default
+
+# Plugins
+plugins:
+    lightgallery: true # options: true, false
+    justified-gallery: true # options: true, false
+    google_analytics: UA-85359173-1 # enter the tracking ID for your Google Analytics
+    google_site_verification: 2WCaCH2N-gzzIIiMIq9ERmtz7cprYKIIPKHoBjzPQYk # enter Google site verification code
+    baidu_analytics: # enter Baidu Analytics hash key
+    google_recaptcha: 6LdCuwgUAAAAAKB3yf7AcOpyHxIFKJNaH3cNhmEC
+
+# Miscellaneous
+miscellaneous:
+    open_graph: # see http://ogp.me
+        fb_app_id:
+        fb_admins:
+        twitter_id: RedbrickDCU
+        google_plus:
