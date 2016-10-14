@@ -37,14 +37,11 @@
         <link rel="icon" href="<%- url_for(theme.customize.favicon) %>" />
     <% } %>
 
-    <%- css('vendor/font-awesome/css/font-awesome.min') %>
-    <%- css('vendor/open-sans/styles') %>
-    <%- css('vendor/source-code-pro/styles') %>
+    <%- css('vendor/dest/css/vendor-styles.min') %>
 
     <%- css('css/style') %>
 
     <%- js('vendor/jquery/2.1.3/jquery.min') %>
-    <%- js('vendor/classie/classie.js') %>
     <script src='https://www.google.com/recaptcha/api.js'></script> 
     <%- partial('plugin/scripts', { isHead: true }) %>
 </head>

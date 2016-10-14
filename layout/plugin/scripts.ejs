@@ -1,10 +1,4 @@
 <% if (typeof(isHead) !== 'undefined' && isHead) { %>
-    <% if (theme.plugins.lightgallery) { %>
-        <%- css('vendor/lightgallery/css/lightgallery.min') %>
-    <% } %>
-    <% if (theme.plugins.justifiedgallery) { %>
-        <%- css('vendor/justified-gallery/justifiedGallery.min.css') %>
-    <% } %>
     <% if (theme.plugins.google_analytics) { %>
         <%- partial('plugin/google-analytics') %>
     <% } %>
@@ -13,20 +7,5 @@
     <% } %>
     <% if (theme.plugins.baidu_analytics) { %>
         <%- partial('plugin/baidu-analytics') %>
-    <% } %>
-<% } else { %>
-    <% if (theme.plugins.lightgallery) { %>
-        <%- js('vendor/lightgallery/js/lightgallery.min') %>
-        <%- js('vendor/lightgallery/js/lg-thumbnail.min') %>
-        <%- js('vendor/lightgallery/js/lg-pager.min') %>
-        <%- js('vendor/lightgallery/js/lg-autoplay.min') %>
-        <%- js('vendor/lightgallery/js/lg-fullscreen.min') %>
-        <%- js('vendor/lightgallery/js/lg-zoom.min') %>
-        <%- js('vendor/lightgallery/js/lg-hash.min') %>
-        <%- js('vendor/lightgallery/js/lg-share.min') %>
-        <%- js('vendor/lightgallery/js/lg-video.min') %>
-    <% } %>
-    <% if (theme.plugins.justifiedgallery) { %>
-        <%- js('vendor/justified-gallery/jquery.justifiedGallery.min.js') %>
     <% } %>
 <% } %>
