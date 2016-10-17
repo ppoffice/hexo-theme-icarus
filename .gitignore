@@ -2,3 +2,5 @@
 .idea
 node_modules
 source/vendor
+source/dist
+*.log

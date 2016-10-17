@@ -4,63 +4,67 @@ var uglify = require("gulp-uglify");
 var cleanCSS = require('gulp-clean-css');
 var bower = require('gulp-bower');
 
-gulp.task('default', ['bower','vendor-styles', 'vendor-fonts', 'vendor-images', 'scripts']);
+gulp.task('default', ['minify']);
+gulp.task('minify', ['vendor-styles', 'vendor-fonts', 'vendor-images', 'scripts']);
+gulp.task('dev', ['minify'], function () {
+  gulp.watch(['./source'],['minify']);
+});
 
-gulp.task('vendor-styles', function () {
+gulp.task('vendor-styles', ['bower'], function () {
     gulp.src([
-        './source/vendor/font-awesome/css/font-awesome.min.css',
-        './source/vendor/open-sans/styles.css',
-        './source/vendor/source-code-pro/styles.css',
-        './source/vendor/lightgallery/css/lightgallery.min.css',
-        './source/vendor/justified-gallery/justifiedGallery.min.css'
+        './source/vendor/components-font-awesome/css/font-awesome.min.css',
+        './source/fonts/open-sans/css/styles.css',
+        './source/fonts/source-code-pro/styles.css',
+        './source/vendor/lightgallery/dist/css/lightgallery.min.css',
+        './source/vendor/justifiedGallery/dist/css/justifiedGallery.min.css'
         ])
         .pipe(concat('vendor-styles.min.css'))
         .pipe(cleanCSS({compatibility: 'ie9', processImport: false, keepSpecialComments: 0}))
-        .pipe(gulp.dest('./source/vendor/dest/css/'))
+        .pipe(gulp.dest('./source/dist/css/'))
 });
 
-gulp.task('scripts', function () {
+gulp.task('scripts', ['bower'], function () {
     gulp.src([
         './source/vendor/classie/classie.js',
-        './source/vendor/lightgallery/js/lightgallery.min.js',
-        './source/vendor/lightgallery/js/lg-thumbnail.min.js',
-        './source/vendor/lightgallery/js/lg-pager.min.js',
-        './source/vendor/lightgallery/js/lg-autoplay.min.js',
-        './source/vendor/lightgallery/js/lg-fullscreen.min.js',
-        './source/vendor/lightgallery/js/lg-zoom.min.js',
-        './source/vendor/lightgallery/js/lg-hash.min.js',
-        './source/vendor/lightgallery/js/lg-share.min.js',
-        './source/vendor/lightgallery/js/lg-video.min.js',
-        './source/vendor/justified-gallery/jquery.justifiedGallery.min.js',
+        './source/vendor/lightgallery/dist/js/lightgallery.js',
+        './source/vendor/lg-thumbnail/dist/lg-thumbnail.js',
+        './source/vendor/lg-pager/dist/lg-pager.js',
+        './source/vendor/lg-autoplay/dist/lg-autoplay.js',
+        './source/vendor/lg-fullscreen/dist/lg-fullscreen.js',
+        './source/vendor/lg-zoom/dist/lg-zoom.js',
+        './source/vendor/lg-hash/dist/lg-hash.js',
+        './source/vendor/lg-share/dist/lg-share.js',
+        './source/vendor/lg-video/dist/lg-video.js',
+        './source/vendor/justifiedGallery/dist/js/jquery.justifiedGallery.js',
         './source/js/main.js',
         './source/js/contact.js',
         './source/js/form.js'
     ])
         .pipe(concat('main.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./source/vendor/dest/js/'))
+        .pipe(gulp.dest('./source/dist/js/'))
 });
 
-gulp.task('vendor-fonts', function () {
+gulp.task('vendor-fonts', ['bower'], function () {
     gulp.src([
-        './source/vendor/font-awesome/fonts/*',
-        './source/vendor/lightgallery/fonts/*'
+        './source/vendor/components-font-awesome/fonts/*',
+        './source/vendor/lightgallery/dist/fonts/*'
     ])
-        .pipe(gulp.dest('./source/vendor/dest/fonts'));
+        .pipe(gulp.dest('./source/dist/fonts'));
     gulp.src([
-        './source/vendor/open-sans/fonts/*',
-        './source/vendor/source-code-pro/fonts/*'
+        './source/fonts/open-sans/fonts/*',
+        './source/fonts/source-code-pro/fonts/*'
     ])
-        .pipe(gulp.dest('./source/vendor/dest/css/fonts'));
+        .pipe(gulp.dest('./source/dist/css/fonts'));
 });
 
-gulp.task('vendor-images', function () {
+gulp.task('vendor-images', ['bower'], function () {
     gulp.src([
-        './source/vendor/lightgallery/img/*'
+        './source/vendor/lightgallery/dist/img/*'
     ])
-        .pipe(gulp.dest('./source/vendor/dest/img'));
+        .pipe(gulp.dest('./source/dist/img'));
 });
 
 gulp.task('bower', function() {
-    return bower();
+    return bower('./source/vendor');
 });

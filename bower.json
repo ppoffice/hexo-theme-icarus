@@ -16,8 +16,17 @@
   ],
   "dependencies": {
     "classie": "^1.0.1",
-    "font-awesome": "^4.6.3",
+    "components-font-awesome": "^4.6.3",
     "jquery": "^3.1.0",
-    "lightgallery": "^1.2.21"
+    "lightgallery": "^1.2.21",
+    "lg-fullscreen": "^1.0.1",
+    "lg-thumbnail": "^1.0.1",
+    "lg-pager": "^1.0.1",
+    "lg-autoplay": "^1.0.1",
+    "lg-zoom": "^1.0.1",
+    "lg-hash": "^1.0.1",
+    "lg-share": "^1.0.1",
+    "lg-video": "^1.0.1",
+    "justifiedGallery": "justified-gallery#^3.6.3"
   }
 }
