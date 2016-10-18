@@ -16,7 +16,8 @@ gulp.task('vendor-styles', ['bower'], function () {
         './source/fonts/open-sans/css/styles.css',
         './source/fonts/source-code-pro/styles.css',
         './source/vendor/lightgallery/dist/css/lightgallery.min.css',
-        './source/vendor/justifiedGallery/dist/css/justifiedGallery.min.css'
+        './source/vendor/justifiedGallery/dist/css/justifiedGallery.min.css',
+        './source/vendor/fullcalendar/dist/fullcalendar.css'
         ])
         .pipe(concat('vendor-styles.min.css'))
         .pipe(cleanCSS({compatibility: 'ie9', processImport: false, keepSpecialComments: 0}))
@@ -26,6 +27,7 @@ gulp.task('vendor-styles', ['bower'], function () {
 gulp.task('scripts', ['bower'], function () {
     gulp.src([
         './source/vendor/classie/classie.js',
+        './source/vendor/moment/min/moment.min.js',
         './source/vendor/lightgallery/dist/js/lightgallery.js',
         './source/vendor/lg-thumbnail/dist/lg-thumbnail.js',
         './source/vendor/lg-pager/dist/lg-pager.js',
@@ -36,6 +38,8 @@ gulp.task('scripts', ['bower'], function () {
         './source/vendor/lg-share/dist/lg-share.js',
         './source/vendor/lg-video/dist/lg-video.js',
         './source/vendor/justifiedGallery/dist/js/jquery.justifiedGallery.js',
+        './source/vendor/fullcalendar/dist/fullcalendar.js',
+        './source/vendor/fullcalendar/dist/gcal.js',
         './source/js/main.js',
         './source/js/contact.js',
         './source/js/form.js'

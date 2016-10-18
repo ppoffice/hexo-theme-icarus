@@ -53,7 +53,7 @@ menu:
     url: https://webchat.redbrick.dcu.ie
     icon: wechat
   Events:
-    url: https://calendar.google.com/calendar/embed?src=r2l6edh5l8jm5t9dbfi84rn26s@group.calendar.google.com&ctz=Europe/Dublin&pli=1
+    url: /events
     icon: calendar
 
 # Customize
@@ -110,6 +110,8 @@ plugins:
     google_site_verification: 2WCaCH2N-gzzIIiMIq9ERmtz7cprYKIIPKHoBjzPQYk # enter Google site verification code
     baidu_analytics: # enter Baidu Analytics hash key
     google_recaptcha: 6LdCuwgUAAAAAKB3yf7AcOpyHxIFKJNaH3cNhmEC
+    google_cal_api: AIzaSyAV0PnlM4b3k2NoBPglIuMD8vfQwlD31zY
+    google_cal_id: r2l6edh5l8jm5t9dbfi84rn26s
 
 # Miscellaneous
 miscellaneous:

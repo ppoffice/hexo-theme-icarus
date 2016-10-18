@@ -1,0 +1,18 @@
+<div class="article-inner calendar">
+  <header class="calendar__header">
+    <%- partial('post/title', { class_name: 'calendar__header__title' }) %>
+  </header>
+  <div class="calendar__container">
+    <script type='text/javascript'>
+      $(document).ready(function() {
+        $('#calendar').fullCalendar({
+          googleCalendarApiKey: '<%= theme.plugins.google_cal_api %>',
+          events: {
+            googleCalendarId: '<%= theme.plugins.google_cal_id %>@group.calendar.google.com'
+          }
+        });
+      });
+    </script>
+    <div id='calendar'></div>
+  </div>
+<div>

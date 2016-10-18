@@ -27,6 +27,7 @@
     "lg-hash": "^1.0.1",
     "lg-share": "^1.0.1",
     "lg-video": "^1.0.1",
-    "justifiedGallery": "justified-gallery#^3.6.3"
+    "justifiedGallery": "justified-gallery#^3.6.3",
+    "fullcalendar": "^3.0.1"
   }
 }
