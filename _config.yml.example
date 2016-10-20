@@ -60,7 +60,7 @@ share: default # options: jiathis, bdshare, addtoany, default
 # Plugins
 plugins:
     lightgallery: true # options: true, false
-    justified-gallery: true # options: true, false
+    justifiedgallery: true # options: true, false
     google_analytics: # enter the tracking ID for your Google Analytics
     google_site_verification: # enter Google site verification code
     baidu_analytics: # enter Baidu Analytics hash key
