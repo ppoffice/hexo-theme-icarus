@@ -1,4 +1,5 @@
 title: Being Outside in Fresh Air & How Your Body Loves It
+date: 2016-07-09 00:00:00
 categories:
 - LifeStyle
 banner: /hexo-theme-icarus/gallery/shoes.jpg
