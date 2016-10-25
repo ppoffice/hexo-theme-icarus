@@ -41,6 +41,9 @@ gulp.task('scripts', ['bower'], function () {
         './source/vendor/fullcalendar/dist/fullcalendar.js',
         './source/vendor/fullcalendar/dist/gcal.js',
         './source/js/main.js',
+        './source/js/insight.js',
+        './source/js/share.js',
+        './source/js/menu.js',
         './source/js/contact.js',
         './source/js/form.js'
     ])

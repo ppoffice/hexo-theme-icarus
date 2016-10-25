@@ -23,7 +23,6 @@
     display: none
     .inner
         @extend $block
-        margin-top: block-margin
         background: white
         .base-info
             #avatar
@@ -112,12 +111,15 @@
                                 position: absolute
                                 z-index: 2
     &.card
+        @extend $block
         top: 50px
         right: 20px
         z-index: 999
         display: block
         min-width: 280px
         position: absolute
+        margin-top: 30px
+        max-width: 100px
         .profile-inner
             position: relative
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)

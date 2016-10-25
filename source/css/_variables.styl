@@ -5,9 +5,11 @@ vendor-prefixes = webkit moz ms official
 // Colors
 color-default = #565a5f
 color-grey = #999
+color-grey-dark = #585858
 color-border = #eceff2
 color-link = #38b7ea
-color-background = #f5f8f9
+color-button-background = #e8e8e8
+color-background = #eee
 color-sidebar-text = #777
 color-sidebar-text-dark = #333
 color-widget-background = #ddd
@@ -70,14 +72,15 @@ if sidebar
         main-column-tablet = 7
 
 // Media queries
+mq-sub-par = "screen and (max-width: 290px)"
 mq-tiny = "screen and (max-width: 320px)"
 mq-mini = "screen and (max-width: 559px)"
 mq-mobile = "screen and (min-width: 560px) and (max-width: 799px)"
 mq-tablet = "screen and (min-width: 800px) and (max-width: 1199px)"
 mq-normal = "screen and (min-width: 1200px)"
 
-mq-header-mobile = "screen and (max-width: 925px)"
-mq-header = "screen and (min-width: 925px)"
+mq-header-mobile = "screen and (max-width: 1020px)"
+mq-header = "screen and (min-width: 1020px)"
 
 // Code Highlight
 highlight = hexo-config("customize.highlight") || "tomorrow"

@@ -1,13 +1,11 @@
 <ul class="menu">
-  <% var dropdown = 0%>
   <% for (var i in theme.menu) { %>
     <% if (i === 'About' || i === 'Help') { %>
-      <% dropdown++ %>
-      <li class="menu-list dropdown-toggle <%= 'dropdown-toggle-' + dropdown %>" onclick="void(0)" tabindex="0">
-        <a class="main-nav-link dropdown-toggle <%= 'dropdown-toggle-' + dropdown %>" aria-haspopup="true">
+      <li class="menu-list" onclick="void(0)" tabindex="0">
+        <a class="main-nav-link dropdown-toggle" aria-haspopup="true">
           <i class="fa fa-<%= theme.menu[i].icon %>"></i><%= i %> <i class="fa fa-caret-down" aria-hidden="true"></i>
         </a>
-        <ul class="dropdown-menu <%= 'dropdown-menu-' + dropdown %>">
+        <ul class="dropdown-menu">
           <% for (var j in theme.menu[i]) { %>
             <% if (j != 'icon') { %>
               <li tabindex="1"><a class="main-nav-link" href="<%- url_for(theme.menu[i][j].url) %>"><i class="fa fa-<%= theme.menu[i][j].icon %>"></i><%= j %></a></li>

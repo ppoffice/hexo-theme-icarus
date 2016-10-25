@@ -7,6 +7,7 @@
 .widget
     @extend $base-style
     line-height: line-height
+    padding: 0;
     word-wrap: break-word
     font-size: 0.9em
     ul, ol
@@ -31,11 +32,12 @@
         content: ")"
 
 .tagcloud
+    margin: 10px 0 0 0
     a
         margin-right: 5px
 
 .widget-wrap
-    margin: block-margin 10px
+    margin: 40px 0 40px 10px
     @media mq-mini
         margin: block-margin 20px
 
@@ -44,7 +46,6 @@
     margin-bottom: 0
 
 .widget
-    padding: 15px 5px
     a
         color: color-sidebar-text
         text-decoration: none
@@ -107,60 +108,64 @@
         height: 48px
         font-size: 32px
         line-height: 48px
-   
 
 #recent-post
-    li
+   .card
         clearfix()
-        padding: 10px 0 10px 94px
+        padding: 0 0 0 94px;
+        margin: 10px 0
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)
+        background: #fff
+        &:hover
+            transition: box-shadow .25s;
+            box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+
     &.no-thumbnail
         li
             padding: 10px 0px
     li
-        .item-thumbnail
-            opacity: 1
-            float: left
-            margin-left: -94px
-            transition: all 0.2s ease
-            .thumbnail
-                width: 80px
-                height: 80px
-                display: block
-                position: relative
-                overflow: hidden
-                span
-                    width: 100%
-                    height: 100%
-                    display: block
-                .thumbnail-image
-                    position: absolute
-                    background-size: cover
-                    background-position: center
-                .thumbnail-none
-                    background-image: url(thumbnail-default-small)
-                    background-size: 100% 100%
-        .item-inner
-            a
-            .item-category
-                font-size: 13px
-                text-transform: uppercase
-                a
-                    color: color-link
-                    &:hover
-                        color: color-sidebar-text-dark
-                a, .fa
-                    margin-right: 5px
-            .item-title
-                font-size: 15px
-                a
-                    color: color-sidebar-text-dark
-                    transition: all 0.2s ease
-            .item-date
-                color: #aaa
-                font-size: 13px
-                text-transform: uppercase
-        &:hover
+        a
             .item-thumbnail
-                opacity: 0.8
-            .item-title a
-                color: color-link
+                opacity: 1
+                float: left
+                margin-left: -94px
+                transition: all 0.2s ease
+                .thumbnail
+                    width: 80px
+                    height: 80px
+                    display: block
+                    position: relative
+                    overflow: hidden
+                    span
+                        width: 100%
+                        height: 100%
+                        display: block
+                    .thumbnail-image
+                        position: absolute
+                        background-size: cover
+                        background-position: center
+                    .thumbnail-none
+                        background-image: url(thumbnail-default-small)
+                        background-size: 100% 100%
+            .item-inner
+                margin: 6px 14px 0 0;
+                .item-category
+                    font-size: 10px
+                    a
+                        color: color-link
+                        &:hover
+                            color: color-sidebar-text-dark
+                    a, .fa
+                        margin-right: 5px
+                .item-title
+                    font-size: 12px
+                    .title
+                        color: color-sidebar-text-dark
+                        transition: all 0.2s ease
+                .item-date
+                    color: #aaa
+                    font-size: 12px
+                    text-transform: uppercase
+            &:hover
+                .item-title
+                    color: color-link

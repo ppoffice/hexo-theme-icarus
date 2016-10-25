@@ -1,4 +1,4 @@
-<a href="<%- url_for((post.link ? post.link : post.path)) %>" class="thumbnail">
+<div class="thumbnail">
     <% if (post.thumbnail) { %>
         <span style="background-image:url(<%- url_for(post.path) %><%= 'thumb-' + post.thumbnail %>)" alt="<%= post.title %>" class="thumbnail-image"></span>
     <% } else if (post.banner) { %>
@@ -6,4 +6,4 @@
     <% } else { %>
         <span class="thumbnail-image thumbnail-none"></span>
     <% } %>
-</a>
+</div>

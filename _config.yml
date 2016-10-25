@@ -81,6 +81,7 @@ customize:
         facebook: https://facebook.com/dcuredbrick
         youtube: https://www.youtube.com/user/redbrickdcu
         rss: /atom.xml
+        heartbeat: https://redbrick.status.io/
     social_link_tooltip: true # enable the social link tooltip, options: true, false
 
 # Widgets

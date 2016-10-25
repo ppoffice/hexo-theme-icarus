@@ -47,6 +47,9 @@
           <div class="help">
             <%- post.content %>
           </div>
+        <% } else if (post.type === 'cmt') { %>
+          <%- partial('committee') %>
+          <%- post.content %>
         <% } else { %>
           <%- post.content %>
         <% } %>

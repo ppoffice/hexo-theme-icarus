@@ -1,0 +1,40 @@
+.cmt
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    &__member
+        margin: 0 16px
+        width: 184px
+        a
+          color: color-grey-dark
+        a:hover
+          color: color-link
+          text-decoration: none
+        &__text
+            text-align: center
+            margin: 8px 0
+        &__image
+            width: 126px
+            height: 126px
+            overflow: hidden
+            display: block
+            position: relative
+            border-radius: 50%
+            margin: auto;
+            &__cover
+                background-position: center
+                background-size: cover
+                position: absolute
+                display: block
+                height: 100%
+                width: 100%
+            &__none
+                background-image: url(thumbnail-default-small)
+                background-position: center
+                background-size: cover
+                position: absolute
+                display: block
+                height: 100%
+                width: 100%
+            &__resigned
+                border: 8px solid red

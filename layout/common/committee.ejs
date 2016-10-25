@@ -1,0 +1,24 @@
+<div class="cmt">
+  <% for (var i in post.cmt) { %>
+    <div class="cmt__member">
+      <a href="/about/contact/<%- post.cmt[i].nick %>">
+        <div class="cmt__member__text"><%- post.cmt[i].position %></div>
+          <% if (post.cmt[i].resigned) { %>
+            <div class="cmt__member__image cmt__member__image__resigned">
+          <% } else { %>
+            <div class="cmt__member__image">
+          <% } %>
+          <% if (post.cmt[i].image) { %>
+            <span class="cmt__member__image__cover" style="background-image: url(/assets/images/<%- post.cmt[i].image %>)"></span>
+          <% } else { %>
+            <span class="cmt__member__image__none"></span>
+          <% } %>
+        </div>
+        <div class="cmt__member__text"><%- post.cmt[i].name %> - <%- post.cmt[i].nick %></div>
+        <% if (post.cmt[i].resigned) { %>
+          <div class="cmt__member__text" style="color: red">Resigned</div>
+        <% } %>
+      </a>
+    </div>
+  <% } %>
+</div>

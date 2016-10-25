@@ -5,9 +5,12 @@
     a, a:visited
         white-space: nowrap
         transition: 0.2s ease
-        color: color-default
+        color: color-sidebar-text-dark
     a:hover
         color: color-link
+    #header-main
+        .outer
+            display: flex
 
 $header-block
     height: logo-height
@@ -29,13 +32,15 @@ $header-block-right
         display: inline-block
         float: none
         padding: 0
-        margin-top: 12px
+        margin: 12px 0 0 8px
+        @media mq-header-mobile
+            width: 100%
         .logo
             margin-right: 5px
             display: inline-block
             @media mq-header-mobile
                 padding-bottom: 12px
-            @media mq-tiny
+            @media mq-sub-par
                 display: none
         .site-title
             font-size: 16px
@@ -81,12 +86,18 @@ $dropdown
         padding:0
     .main-nav-link
         display:block
-        color:#333
         text-decoration:none
         line-height:32px
-        padding:0 15px
+        padding:0 14px
         .fa
           padding-right: 8px
+    .active
+        .dropdown-toggle
+            background:#e2e2e2
+        .dropdown-menu
+            display: flex
+            flex-direction: column
+            -webkit-transition: height 1s ease
     .main-nav-link:hover
         color: color-link
     li
@@ -96,16 +107,13 @@ $dropdown
         padding:0
         .current-menu-item
             background:#ddd
-    .dropdown-toggle:focus ul.dropdown-menu, .dropdown-toggle a:focus + ul.dropdown-menu
-        -webkit-transition: height 1s ease
-        visibility: visible
     .dropdown-toggle
         cursor: pointer
         background: white
         border: 0px
         font-weight: inherit
     .dropdown-menu
-        visibility: hidden;
+        display: none
         position:absolute
         top:100%
         left:0
@@ -126,7 +134,9 @@ $dropdown
     @extend $dropdown;
     font-size:13px;
     float: none
-    padding: 0
+    padding: 12px 0
+    height: 40px
+    width: 100%
     display: inline-block
     @media mq-header-mobile
         display: none
@@ -213,15 +223,10 @@ $dropdown
             .dropdown-toggle
                 background: #ededed
                 font-size: 22px
-            .dropdown-menu
-                display:none
-            .dropdown-toggle:focus ul.dropdown-menu, .dropdown-toggle a:focus + ul.dropdown-menu
-                display: inline
-                position: initial
-            .dropdown-menu:active
-                display: inline
-                position: initial
-                visibility: visible
+            .active
+                .dropdown-menu
+                    display: inline
+                    position: initial
 
 $nav-link
     float: left;
@@ -251,6 +256,9 @@ $nav-link
             display: block
             height: logo-height
             line-height: logo-height
+            padding: 0 4px
+            border: 1px solid #eceff2!important
+            border-radius: 50%
         .avatar, .fa
             float: left
         .avatar
@@ -268,13 +276,18 @@ $nav-link
         position: relative
         .search-form-input
             width: 100%
-            padding: 0 30px 0 15px
             line-height: logo-height
             height: logo-height !important
-            border-radius: ((logo-height + 2)/2)
+            border-radius: 50%
+            cursor: pointer
             &::-webkit-search-results-decoration
             &::-webkit-search-cancel-button
                 -webkit-appearance: none
+            .fa-search
+                margin: 0 12px
+                &:hover, &:focus
+                    color:  color-link
+
         .search-form-submit
             top: 50%
             right: 15px
