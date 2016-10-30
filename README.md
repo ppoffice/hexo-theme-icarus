@@ -1,9 +1,10 @@
 #Icarus
 
-### The blog theme you may fall in love with, coming to Hexo. [Preview](http://ppoffice.github.io/hexo-theme-icarus/)
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png "")
+### The blog theme you may fall in love with, coming to Hexo. 
+### Click here to [Preview](https://alpha.redbrick.dcu.ie/) the theme.
+![](http://image.prntscr.com/image/4db6552e12434ae9b405bb301f864a1b.png "")
 
-#### [View Documentation](https://github.com/ppoffice/hexo-theme-icarus/wiki)
+#### [View Documentation](https://wiki.redbrick.dcu.ie/mw/Main_Page)
 :star: It is strongly recommended that you read the docs before using Icarus.
 
 ## Features
@@ -12,12 +13,12 @@
 
 A nice place to show yourself. You can add your own information in your site's `_config.yml`
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/profile.png "")
+![](http://image.prntscr.com/image/cc7a081a8c1a4abcb2d95b28eb6b02af.png "")
 
 ### Self-hosted Insite Search Engine
 With the help of [Insight Search](https://github.com/ppoffice/hexo-theme-icarus/wiki/Search#insight-search), you can search anything inside your site without any third-party plugin.
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/insight-search.png "")
+![](http://image.prntscr.com/image/f18490497b6e4e8cb716477a6ae30179.png "")
 
 ### Custom Comment Services
 Icarus supports several comment services, give you better choices to communicate with your readers.
@@ -32,8 +33,9 @@ Thanks to [atika](https://github.com/atika), you can now [add thumbnails or bann
 
 Icarus knows on what screen size you are browsering the website, and reorganize the layout to fit your device.
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.jpg "")
 
+![](http://image.prntscr.com/image/721e9877f0be436cba63daef85475bda.png "")
+![](http://image.prntscr.com/image/4db6552e12434ae9b405bb301f864a1b.png "")
 ### Custom Categories & Tags Pages
 
 Get your categories and tags listed in single pages to make your blog more methodic.
