@@ -7,7 +7,7 @@ menu:
     url: archives
     icon: archive
   About:
-    icon: info-circle
+    icon: info
     The Society:
       url: about
       icon: info
@@ -27,7 +27,7 @@ menu:
       url: about/past-committees
       icon: users
   Help:
-    icon: question-circle
+    icon: question
     Helpdesk:
       url: help
       icon: question
@@ -45,7 +45,7 @@ menu:
       icon: database
   Mail:
     url: https://webmail.redbrick.dcu.ie
-    icon: envelope-square
+    icon: envelope
   Wiki:
     url: https://wiki.redbrick.dcu.ie
     icon: university

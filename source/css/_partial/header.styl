@@ -93,13 +93,15 @@ $dropdown
           padding-right: 8px
     .active
         .dropdown-toggle
-            background:#e2e2e2
+            border-bottom: solid 5px color-red
         .dropdown-menu
-            display: flex
-            flex-direction: column
-            -webkit-transition: height 1s ease
+            visibility: visible;
+            opacity: 1;
+            filter: unquote('alpha(opacity=100)')
+            .main-nav-link:hover
+                border-bottom: none
     .main-nav-link:hover
-        color: color-link
+        border-bottom: solid 5px color-red
     li
         position:relative
         float:left
@@ -113,8 +115,13 @@ $dropdown
         border: 0px
         font-weight: inherit
     .dropdown-menu
-        display: none
+        display: flex
+        flex-direction: column
         position:absolute
+        visibility: hidden;
+        opacity: 0;
+        filter: unquote('alpha(opacity=0)')
+        transition: 0.4s ease;
         top:100%
         left:0
         background:#e2e2e2
@@ -153,7 +160,6 @@ $dropdown
         display: block
         top: 50px
         left: 50px
-        z-index: 1
         -webkit-user-select: none
         user-select: none
         input
@@ -163,7 +169,7 @@ $dropdown
             position: absolute
             cursor: pointer
             opacity: 0 /* hide this */
-            z-index: 3 /* and place it over the hamburger */
+            z-index: 4 /* and place it over the hamburger */
             -webkit-touch-callout: none
         span
             display: block
@@ -173,7 +179,7 @@ $dropdown
             position: relative
             background: #cdcdcd
             border-radius: 3px
-            z-index: 2
+            z-index: 3
             transform-origin: 4px 0px
             transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
                         background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
@@ -181,29 +187,34 @@ $dropdown
 
         span:first-child
             transform-origin: 0% 0%
-        span:nth-last-child(2)
+        span:nth-last-child(3)
             transform-origin: 0% 100%
-        input:checked ~ span
+        input:checked ~ #bar1
             opacity: 1
             transform: rotate(45deg) translate(-2px, -1px)
             background: #232323
-        input:checked ~ span:nth-last-child(3)
+        input:checked ~ #bar2
             opacity: 0
             transform: rotate(0deg) scale(0.2, 0.2)
-        input:checked ~ span:nth-last-child(2)
+        input:checked ~ #bar3
             opacity: 1
             transform: rotate(-45deg) translate(0, -1px)
+            background: #232323
         input:checked ~ ul
             transform: scale(1.0, 1.0);
             opacity: 1;
+            z-index: 2
+        input:checked ~ .scrim
+            visibility: visible
+            opacity: .4;
         .menu
             text-decoration: none
             position: absolute
-            height: auto
-            width: 205px
+            height:100vh;
+            width: 250px
             z-index: 1
             margin: -110px 0 0 -50px
-            padding: 150px 50px 20px 20px
+            padding: 150px 50px 20px 40px
             font-size: 22px;
             background: #ededed
             -webkit-font-smoothing: antialiased
@@ -216,17 +227,25 @@ $dropdown
                 transition: color 0.3s ease
                 padding: 20px
                 color: #232323
+                border-bottom: none
                 .fa
                     margin-right: 16px
             .main-nav-link:hover
-                color: tomato;
+                color: color-red
+                border-bottom: none
             .dropdown-toggle
                 background: #ededed
                 font-size: 22px
+            .dropdown-menu
+                transition: none
             .active
+                .main-nav-link .dropdown-toggle
+                    bottom-border: 5px solid color-red
                 .dropdown-menu
                     display: inline
                     position: initial
+                    .main-nav-link
+                        margin: 0 0 0 16px
 
 $nav-link
     float: left;
@@ -267,7 +286,7 @@ $nav-link
             margin-right: 8px
         .fa
             line-height: logo-height
-            margin: 0 8px
+            margin: 0 9px
 
 #search-form-wrap
     @extend $header-block
