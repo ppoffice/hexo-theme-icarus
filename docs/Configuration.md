@@ -1,0 +1,88 @@
+Let's take a look at an example configuration file:
+
+```yaml
+# Menus
+menu:
+  Home: .
+  Archives: archives
+  Categories: categories
+  Tags: tags
+  About: about
+
+# Customize
+customize:
+    logo:
+        enabled: true
+        width: 40
+        height: 40
+        url: images/logo.png
+    profile:
+        enabled: true # Whether to show profile bar
+        avatar: css/images/avatar.png
+        gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+        author: PPOffice
+        author_title: Web Developer & Designer
+        location: Harbin, China
+        follow: https://github.com/ppoffice/
+    highlight: monokai
+    sidebar: right # sidebar position, options: left, right
+    thumbnail: true # enable posts thumbnail, options: true, false
+    favicon: # path to favicon
+    social_links:
+        github: http://github.com/ppoffice/hexo-theme-icarus
+        twitter: /
+        facebook: /
+        dribbble: /
+        rss: /
+    social_link_tooltip: true # enable the social link tooltip, options: true, false
+
+# Widgets
+widgets:
+    - recent_posts
+    - category
+    - archive
+    - tag
+    - tagcloud
+    - links
+
+# Search
+search:
+    insight: true # you need to install `hexo-generator-json-content` before using Insight Search
+    swiftype: # enter swiftype install key here
+    baidu: false # you need to disable other search engines to use Baidu search, options: true, false
+
+# Comment
+comment:
+    disqus: hexo-theme-icarus # enter disqus shortname here
+    duoshuo: # enter duoshuo shortname here
+    youyan: # enter youyan uid here
+
+# Share
+share: default # options: jiathis, bdshare, addtoany, default
+
+# Plugins
+plugins:
+    lightgallery: true # options: true, false
+    google_analytics: # enter the tracking ID for your Google Analytics
+    google_site_verification: # enter Google site verification code
+    baidu_analytics: # enter Baidu Analytics hash key
+
+# Miscellaneous
+miscellaneous:
+    open_graph: # see http://ogp.me
+        fb_app_id:
+        fb_admins:
+        twitter_id:
+        google_plus:
+    links:
+        Hexo: http://hexo.io
+```
+
+These configurations will be explained in the following chapters:
+* [Theme](https://github.com/ppoffice/hexo-theme-icarus/wiki/Theme)
+* [Widgets](https://github.com/ppoffice/hexo-theme-icarus/wiki/Widgets)
+* [Search](https://github.com/ppoffice/hexo-theme-icarus/wiki/Search)
+* [Comment](https://github.com/ppoffice/hexo-theme-icarus/wiki/Comment)
+* [Share](https://github.com/ppoffice/hexo-theme-icarus/wiki/Share)
+* [Plugins](https://github.com/ppoffice/hexo-theme-icarus/wiki/Plugins)
+* [Miscellaneous](https://github.com/ppoffice/hexo-theme-icarus/wiki/Miscellaneous)

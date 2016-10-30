@@ -1,10 +1,10 @@
 #Icarus
 
-### The blog theme you may fall in love with, coming to Hexo. 
+### The blog theme you may fall in love with, coming to Hexo.
 ### Click here to [Preview](https://alpha.redbrick.dcu.ie/) the theme.
 ![](http://image.prntscr.com/image/4db6552e12434ae9b405bb301f864a1b.png "")
 
-#### [View Documentation](https://wiki.redbrick.dcu.ie/mw/Main_Page)
+#### [View Documentation](./docs)
 :star: It is strongly recommended that you read the docs before using Icarus.
 
 ## Features
