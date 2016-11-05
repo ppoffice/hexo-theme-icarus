@@ -1,9 +1,9 @@
 <% if (typeof(isHead) !== 'undefined' && isHead) { %>
     <% if (theme.plugins.lightgallery) { %>
-        <%- css('vendor/lightgallery/css/lightgallery.min') %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
     <% } %>
     <% if (theme.plugins.justifiedgallery) { %>
-        <%- css('vendor/justified-gallery/justifiedGallery.min.css') %>
+        <%- css('libs/justified-gallery/justifiedGallery.min.css') %>
     <% } %>
     <% if (theme.plugins.google_analytics) { %>
         <%- partial('plugin/google-analytics') %>
@@ -16,17 +16,17 @@
     <% } %>
 <% } else { %>
     <% if (theme.plugins.lightgallery) { %>
-        <%- js('vendor/lightgallery/js/lightgallery.min') %>
-        <%- js('vendor/lightgallery/js/lg-thumbnail.min') %>
-        <%- js('vendor/lightgallery/js/lg-pager.min') %>
-        <%- js('vendor/lightgallery/js/lg-autoplay.min') %>
-        <%- js('vendor/lightgallery/js/lg-fullscreen.min') %>
-        <%- js('vendor/lightgallery/js/lg-zoom.min') %>
-        <%- js('vendor/lightgallery/js/lg-hash.min') %>
-        <%- js('vendor/lightgallery/js/lg-share.min') %>
-        <%- js('vendor/lightgallery/js/lg-video.min') %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
     <% } %>
     <% if (theme.plugins.justifiedgallery) { %>
-        <%- js('vendor/justified-gallery/jquery.justifiedGallery.min.js') %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min.js') %>
     <% } %>
 <% } %>
