@@ -58,6 +58,8 @@
     color: color-default
     padding: 0 article-padding
     line-height: line-height
+    p
+        text-align: justify
     p, table
         line-height: line-height
         margin: line-height 0
@@ -398,6 +400,16 @@ ol.toc
         &:hover
             color color-theme
             transition color .3s ease-out
+
+/* right-to-left languages */
+.article.rtl
+    .article-title,
+    .article-entry p
+        direction: rtl
+    .article-meta > div
+        float: right
+        margin-left: 10px
+        margin-right: 0
 
 /* lightgallery */
 .lg-outer
