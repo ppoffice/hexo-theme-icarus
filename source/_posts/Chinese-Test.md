@@ -1,7 +1,9 @@
 title: 中文测试
-date: 2015-01-26 21:55:37
-tags:
+date: 2016-01-31 21:55:37
+categories:
+- Language Test
 comments: false
+banner: /hexo-theme-icarus/gallery/china-great-wall.jpg
 meta:
 - name="robots";content="noindex, follow"
 ---

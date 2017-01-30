@@ -63,15 +63,15 @@ index_generator:
   per_page: 6
 
 archive_generator:
-  per_page: 8
+  per_page: 20
   yearly: true
   monthly: true
 
 category_generator:
-  per_page: 8
+  per_page: 20
 
 tag_generator:
-  per_page: 8
+  per_page: 20
 
 # Extensions
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
