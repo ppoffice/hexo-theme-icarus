@@ -1,2 +1,4 @@
-<%- js('dist/js/main') %>
+<!-- jquery must be seperate to rest of js files -->
+<%- js('vendor/jquery/dist/jquery.min') %>
 <%- partial('comment/scripts', { page: page }) %>
+<%- js('dist/js/main') %>

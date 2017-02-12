@@ -27,7 +27,6 @@ gulp.task('vendor-styles', ['bower'], function () {
 
 gulp.task('scripts', ['bower'], function () {
   gulp.src([
-    './source/vendor/jquery/dist/jquery.min.js',
     './source/vendor/classie/classie.js',
     './source/vendor/moment/min/moment.min.js',
     './source/vendor/lightgallery/dist/js/lightgallery.js',
