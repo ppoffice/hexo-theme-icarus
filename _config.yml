@@ -110,7 +110,7 @@ plugins:
     google_analytics: UA-85359173-1 # enter the tracking ID for your Google Analytics
     google_site_verification: 2WCaCH2N-gzzIIiMIq9ERmtz7cprYKIIPKHoBjzPQYk # enter Google site verification code
     baidu_analytics: # enter Baidu Analytics hash key
-    google_recaptcha: 6LdCuwgUAAAAAKB3yf7AcOpyHxIFKJNaH3cNhmEC
+    google_recaptcha: 6LfClyATAAAAAErMssL8Y2iCwGx2JfdcxQHD8biq
     google_cal_api: AIzaSyAV0PnlM4b3k2NoBPglIuMD8vfQwlD31zY
     google_cal_id: r2l6edh5l8jm5t9dbfi84rn26s
 
