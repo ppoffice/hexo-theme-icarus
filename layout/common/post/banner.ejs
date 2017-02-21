@@ -1,14 +1,14 @@
 <% if (post.link) { %>
   <a href="<%- url_for(post.link) %>" target="_blank" itemprop="url">
-    <img src="<%- url_for(post.link) %><%- 'banner-' + post.banner %>" class="article-banner" />
+    <img src="<%- url_for(post.link) %><%- post.banner %>" class="article-banner" />
   </a>
 <% } else if (post.title) { %>
   <% if (index) { %>
     <a href="<%- url_for(post.path) %>" itemprop="url">
-      <img src="<%- url_for(post.path) %><%- 'banner-' + post.banner %>" class="article-banner" />
+      <img src="<%- url_for(post.path) %><%- post.banner %>" class="article-banner" />
     </a>
   <% } else { %>
-    <img src="<%- 'banner-' + post.banner %>" class="article-banner" />
+    <img src="<%- post.banner %>" class="article-banner" />
   <% } %>
 <% } %>
 
