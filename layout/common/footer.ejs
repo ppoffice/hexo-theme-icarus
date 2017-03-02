@@ -2,6 +2,12 @@
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
+            <% if (theme.footer) { %>
+              | 
+              <% for (const i in theme.footer) { %>
+                <a class="footer-info__link" href="<%- url_for(theme.footer[i].url) %>"><%= theme.footer[i].text %></a> | 
+              <% } %>
+            <% } %>
         </div>
     </div>
 </footer>

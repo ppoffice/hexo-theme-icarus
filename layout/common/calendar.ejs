@@ -16,4 +16,9 @@
     </script>
     <div id='calendar'></div>
   </div>
+  <% if (post.calMessage !== undefined) { %>
+    <div class="calendar__message">
+      <a class="footer-info__link" href="<%- url_for(post.calMessage.url) %>"><%= post.calMessage.text %></a>
+    </div>
+  <% } %>
 <div>
