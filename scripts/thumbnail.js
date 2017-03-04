@@ -4,6 +4,4 @@
 * @example
 *     <%- thumbnail(post) %>
 */
-hexo.extend.helper.register('thumbnail', function (post) {
-  return post.thumbnail || post.banner || '';
-});
+hexo.extend.helper.register('thumbnail', ({ thumbnail, banner }) => thumbnail || banner || '');

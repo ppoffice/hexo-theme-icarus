@@ -1,11 +1,15 @@
-$(document).ready(function(){
+$(document).ready(() => {
   const site = window.location.origin;
-  let email, name, subject, text, recaptcha;
+  let email;
+  let name;
+  let subject;
+  let text;
+  let recaptcha;
   let to = window.location.pathname;
-  to = to.substring(to.lastIndexOf('/')+1);
-  $('#contact').submit(function(e) {
+  to = to.substring(to.lastIndexOf('/') + 1);
+  $('#contact').submit(e => {
     recaptcha = grecaptcha.getResponse();
-    if(recaptcha == '') {
+    if (recaptcha === '') {
       e.preventDefault();
       $('#message').empty().html('complete recaptcha');
     } else {
@@ -15,11 +19,11 @@ $(document).ready(function(){
       subject = $('#subject').val().trim();
       text = $('#content').val().trim();
       $('#message').text('Sending E-mail');
-      $.get(site + '/api/contact', { email:email, to:to, name:name, subject:subject, text:text, recaptcha:recaptcha}, function(data) {
-        if(!data.formSubmit) {
+      $.get(`${site}/api/contact`, { email, to, name, subject, text, recaptcha }, ({ formSubmit, errors }) => {
+        if (!formSubmit) {
           $('#message').empty().html('Error in recaptcha');
         } else {
-          const message = data.errors ? data.errors : 'Email Sent';
+          const message = errors || 'Email Sent';
           $('#message').empty().html(message);
         }
       });

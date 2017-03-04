@@ -10,29 +10,27 @@ function trim (str) {
 
 function split (str, sep) {
   const result = [];
-  let matched = null;
-  while (matched = sep.exec(str)) {
-    result.push(matched[0]);
-  }
+  const matched = sep.exec(str);
+  result.push(matched[0]);
   return result;
 }
 
-hexo.extend.helper.register('meta', function (post) {
-  const metas = post.meta || [];
-  const metaDOMArray = metas.map(function (meta) {
+hexo.extend.helper.register('meta', ({ meta }) => {
+  const metas = meta || [];
+  const metaDOMArray = metas.map(meta => {
     const entities = split(meta, /(?:[^\\;]+|\\.)+/g);
-    const entityArray = entities.map(function (entity) {
-      const keyValue = split(entity, /(?:[^\\=]+|\\.)+/g);
-      if (keyValue.length < 2) {
-        return null;
-      }
-      const key = trim(keyValue[0]);
-      const value = trim(keyValue[1]);
-      return key + '="' + value + '"';
-    }).filter(function (entity) {
-      return entity;
-    });
-    return '<meta ' + entityArray.join(' ') + ' />';
+    const entityArray = entities
+      .map(entity => {
+        const keyValue = split(entity, /(?:[^\\=]+|\\.)+/g);
+        if (keyValue.length < 2) {
+          return null;
+        }
+        const key = trim(keyValue[0]);
+        const value = trim(keyValue[1]);
+        return `${key}="${value}"`;
+      })
+      .filter(entity => entity);
+    return `<meta ${entityArray.join(' ')} />`;
   });
   return metaDOMArray.join('\n');
 });

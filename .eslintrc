@@ -1,0 +1,65 @@
+{
+  "extends": "standard",
+  "env": {
+    "es6": true,
+    "jest": true,
+    "browser": true,
+    "jquery": true,
+    "node": true
+  },
+  "globals": {
+    "GENTLY": true,
+    "grecaptcha": true,
+    "__SHARE_BUTTON_BINDED__": true,
+    "hexo": true,
+    "classie": true
+  },
+  "rules": {
+    "no-multi-spaces": 0,
+    "indent": [
+      "error",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "no-var": [
+      "error"
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "key-spacing": [
+      "error",
+      {
+        "multiLine": {
+          "beforeColon": false,
+          "afterColon": true
+        },
+        "align": {
+          "beforeColon": false,
+          "afterColon": true,
+          "on": "colon",
+          "mode": "strict"
+        }
+      }
+    ]
+  }
+}
