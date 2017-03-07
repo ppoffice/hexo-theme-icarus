@@ -1,0 +1,8 @@
+<% if (typeof(script) !== 'undefined' && script) { %>
+    <script data-isso="//<%= theme.comment.isso %>"
+            src="//<%= theme.comment.isso %>/js/embed.min.js">
+    </script>
+<% } else { %>
+    <section id="isso-thread"></section>
+<% } %>
+
