@@ -1,0 +1,12 @@
+<% if (typeof(script) !== 'undefined' && script) { %>
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=<%= theme.comment.changyan.appid %>"></script>
+    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    <script type="text/javascript">
+    window.changyan.api.config({
+    appid: '<%= theme.comment.changyan.appid %>',
+    conf: '<%= theme.comment.changyan.conf %>'
+    });
+    </script>
+<% } else { %>
+    <div id="SOHUCS" sid="<%= post.path %>"></div>
+<% } %>

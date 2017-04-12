@@ -55,6 +55,9 @@ comment:
     youyan: # enter youyan uid here
     facebook: # enter true to enable
     isso: # enter the domain name of your own comment isso server eg. comments.example.com
+    changyan: # please fill in `appid` and `conf` to enable
+        appid:
+        conf:
 
 # Share
 share: default # options: jiathis, bdshare, addtoany, default

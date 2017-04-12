@@ -10,6 +10,8 @@
       <%- partial('comment/facebook') %>
     <% } else if (theme.comment.isso) { %>
         <%- partial('comment/isso') %>
+    <% } else if (theme.comment.changyan && theme.comment.changyan.appid && theme.comment.changyan.conf) { %>
+        <%- partial('comment/changyan') %>
     <% } %>
     </section>
 <% } %>
