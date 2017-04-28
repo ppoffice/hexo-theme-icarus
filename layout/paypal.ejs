@@ -1,0 +1,39 @@
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="paypal">
+  <input type="hidden" name="cmd" value="_xclick">
+  <input type="hidden" name="business" value="accounts@redbrick.dcu.ie">
+  <input type="hidden" name="item_name" value="Membership">
+  <input type="hidden" name="item_number" value="Membership Payment">
+  <div id="paypalform" class="paypal">
+    <div class="paypal__selection">
+      <div class="paypal__selection__detials">
+        <label><input type="radio" name="amount" value="4.50"> Student</label>
+      </div>
+      <div class="paypal__selection__price">
+        €4.00 + 50c Paypal fees
+      </div>
+    </div>
+    <div class="paypal__selection">
+      <div class="paypal__selection__detials">
+        <label><input type="radio" name="amount" value="8.63"> Associate or Staff</label>
+      </div>
+      <div class="paypal__selection__price">
+        €8.00 + 63c Paypal fees
+      </div>
+    </div>
+    <div class="paypal__selection">
+      <div class="paypal__selection__detials">
+        <label><input type="radio" name="amount" value="20.00"> Associate(Including Donation)</label>
+      </div>
+      <div class="paypal__selection__price">
+        €20.00
+      </div>
+    </div>
+    <div class="paypal__button">
+      <input type="image" name="submit" src="http://www.paypal.com/en_US/i/btn/x-click-but06.gif" alt="Make payments with PayPal - it's fast, free and secure!">
+    <div>
+  </div>
+  <input type="hidden" name="no_shipping" value="1">
+  <input type="hidden" name="ah" value="0">
+  <input type="hidden" name="currency_code" value="EUR">
+  <input type="hidden" name="bn" value="PayPal_Mike">
+</form>
