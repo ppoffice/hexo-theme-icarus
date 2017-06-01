@@ -12,6 +12,8 @@
         <%- partial('comment/isso') %>
     <% } else if (theme.comment.changyan && theme.comment.changyan.appid && theme.comment.changyan.conf) { %>
         <%- partial('comment/changyan') %>
+	<% } else if (theme.comment.gitment) { %>
+        <%- partial('comment/gitment') %>
     <% } %>
     </section>
 <% } %>

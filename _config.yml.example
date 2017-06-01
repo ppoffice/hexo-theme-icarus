@@ -58,6 +58,12 @@ comment:
     changyan: # please fill in `appid` and `conf` to enable
         appid:
         conf:
+	gitment:
+        owner: #your github ID
+        repo: #the repo to store comments
+		#Register an OAuth application, and you will get a client ID and a client secret.
+        client_id: #your client ID
+        client_secret: #your client secret
 
 # Share
 share: default # options: jiathis, bdshare, addtoany, default

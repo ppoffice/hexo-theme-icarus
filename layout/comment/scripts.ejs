@@ -10,4 +10,6 @@
     <%- partial('comment/isso', { script: true }) %>
 <% } else if (theme.comment.changyan && theme.comment.changyan.appid && theme.comment.changyan.conf) { %>
     <%- partial('comment/changyan', { script: true }) %>
+<% } else if (theme.comment.gitment.owner && theme.comment.gitment.repo && theme.comment.gitment.client_id && theme.comment.gitment.client_secret) { %>
+    <%- partial('comment/gitment', { script: true }) %>
 <% } %>
