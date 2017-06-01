@@ -1,3 +1,5 @@
+@import "../_variables"
+
 .bio
     text-align: center
 
@@ -33,6 +35,8 @@
                 margin: 10px auto 20px
                 width: profile-avatar-size
                 height: profile-avatar-size
+                if profile-avatar-round
+                    border-radius: 50%
             #name, #title, #location
                 display: block
                 text-align: center
