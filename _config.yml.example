@@ -13,9 +13,11 @@ customize:
         width: 40
         height: 40
         url: images/logo.png
+        round: true
     profile:
         enabled: true # Whether to show profile bar
         avatar: css/images/avatar.png
+        avatar_round: true
         gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
         author: PPOffice
         author_title: Web Developer & Designer
