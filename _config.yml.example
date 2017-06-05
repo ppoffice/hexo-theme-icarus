@@ -58,10 +58,10 @@ comment:
     changyan: # please fill in `appid` and `conf` to enable
         appid:
         conf:
-	gitment:
+    gitment:
         owner: #your github ID
         repo: #the repo to store comments
-		#Register an OAuth application, and you will get a client ID and a client secret.
+        #Register an OAuth application, and you will get a client ID and a client secret.
         client_id: #your client ID
         client_secret: #your client secret
 
