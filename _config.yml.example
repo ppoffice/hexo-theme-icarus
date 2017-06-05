@@ -22,7 +22,7 @@ customize:
         location: Harbin, China
         follow: https://github.com/ppoffice/
     highlight: monokai
-    sidebar: right # sidebar position, options: left, right
+    sidebar: right # sidebar position, options: left, right or leave it empty
     thumbnail: true # enable posts thumbnail, options: true, false
     favicon: # path to favicon
     social_links:

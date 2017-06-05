@@ -1,19 +1,17 @@
 <% if (post.comments) { %>
-    <section id="comments">
     <% if (theme.comment.disqus) { %>
-        <%- partial('comment/disqus') %>
+        <section id="comments"><%- partial('comment/disqus') %></section>
     <% } else if (theme.comment.duoshuo) { %>
-        <%- partial('comment/duoshuo') %>
+        <section id="comments"><%- partial('comment/duoshuo') %></section>
     <% } else if (theme.comment.youyan) { %>
-        <%- partial('comment/youyan') %>
+        <section id="comments"><%- partial('comment/youyan') %></section>
     <% } else if (theme.comment.facebook) { %>
-      <%- partial('comment/facebook') %>
+        <section id="comments"><%- partial('comment/facebook') %></section>
     <% } else if (theme.comment.isso) { %>
-        <%- partial('comment/isso') %>
+        <section id="comments"><%- partial('comment/isso') %></section>
     <% } else if (theme.comment.changyan && theme.comment.changyan.appid && theme.comment.changyan.conf) { %>
-        <%- partial('comment/changyan') %>
+        <section id="comments"><%- partial('comment/changyan') %></section>
 	<% } else if (theme.comment.gitment) { %>
-        <%- partial('comment/gitment') %>
+        <section id="comments"><%- partial('comment/gitment') %></section>
     <% } %>
-    </section>
 <% } %>
