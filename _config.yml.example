@@ -32,6 +32,7 @@ customize:
         dribbble: /
         rss: /
     social_link_tooltip: true # enable the social link tooltip, options: true, false
+    hide_date_on_pages: false # hide the date on all pages (like the About page), options: true, false
 
 # Widgets
 widgets:
