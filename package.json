@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "postinstall": "gulp",
-    "test": "eslint source/js",
+    "test": "eslint .",
     "lint": "eslint .",
     "fix": "eslint . --fix",
-    "build": "babel src --source-maps --out-dir lib",
-    "build:watch": "babel src --watch --source-maps --out-dir lib"
+    "build": "gulp",
+    "build:watch": "gulp dev"
   },
   "devDependencies": {
     "babel-cli": "6.23.0",
@@ -20,18 +20,31 @@
     "babel-plugin-transform-async-to-generator": "6.22.0",
     "babel-plugin-transform-object-assign": "6.22.0",
     "babel-preset-es2015": "6.22.0",
+    "es6-promise": "^4",
     "eslint": "3.16.1",
     "eslint-config-standard": "6.2.1",
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-standard": "2.1.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "gulp-bower": "0.0.13",
     "gulp-clean-css": "^2.0.13",
     "gulp-concat": "^2.6.0",
     "gulp-uglify": "^2.0.0"
   },
   "dependencies": {
-    "bower": "^1.8.0"
+    "classie": "^1.0.0",
+    "font-awesome": "^4.7.0",
+    "fullcalendar": "^3.4.0",
+    "jquery": "^3.2.1",
+    "justifiedgallery": "^1.0.10",
+    "lg-autoplay": "^1.0.4",
+    "lg-fullscreen": "^1.0.1",
+    "lg-hash": "^1.0.2",
+    "lg-pager": "^1.0.2",
+    "lg-share": "^1.0.2",
+    "lg-thumbnail": "^1.0.3",
+    "lg-video": "^1.0.2",
+    "lg-zoom": "^1.0.4",
+    "lightgallery": "^1.4.0"
   }
 }

@@ -2,7 +2,6 @@ const gulp = require('gulp');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const cleanCSS = require('gulp-clean-css');
-const bower = require('gulp-bower');
 const babel = require('gulp-babel');
 
 gulp.task('default', ['minify']);
@@ -11,38 +10,38 @@ gulp.task('dev', ['minify'], () => {
   gulp.watch(['./source'], ['minify']);
 });
 
-gulp.task('vendor-styles', ['bower'], () => {
+gulp.task('vendor-styles', [], () => {
   gulp
     .src([
-      './source/vendor/components-font-awesome/css/font-awesome.min.css',
+      './node_modules/font-awesome/css/font-awesome.min.css',
       './source/fonts/open-sans/css/styles.css',
       './source/fonts/source-code-pro/styles.css',
-      './source/vendor/lightgallery/dist/css/lightgallery.min.css',
-      './source/vendor/justifiedGallery/dist/css/justifiedGallery.min.css',
-      './source/vendor/fullcalendar/dist/fullcalendar.css',
+      './node-modules/lightgallery/dist/css/lightgallery.min.css',
+      './node-modules/justifiedGallery/dist/css/justifiedGallery.min.css',
+      './node-modules/fullcalendar/dist/fullcalendar.css',
     ])
     .pipe(concat('vendor-styles.min.css'))
     .pipe(cleanCSS({ compatibility: 'ie9', processImport: false, keepSpecialComments: 0 }))
     .pipe(gulp.dest('./source/dist/css/'));
 });
 
-gulp.task('scripts', ['bower'], () => {
+gulp.task('scripts', [], () => {
   gulp
     .src([
-      './source/vendor/classie/classie.js',
-      './source/vendor/moment/min/moment.min.js',
-      './source/vendor/lightgallery/dist/js/lightgallery.js',
-      './source/vendor/lg-thumbnail/dist/lg-thumbnail.js',
-      './source/vendor/lg-pager/dist/lg-pager.js',
-      './source/vendor/lg-autoplay/dist/lg-autoplay.js',
-      './source/vendor/lg-fullscreen/dist/lg-fullscreen.js',
-      './source/vendor/lg-zoom/dist/lg-zoom.js',
-      './source/vendor/lg-hash/dist/lg-hash.js',
-      './source/vendor/lg-share/dist/lg-share.js',
-      './source/vendor/lg-video/dist/lg-video.js',
-      './source/vendor/justifiedGallery/dist/js/jquery.justifiedGallery.js',
-      './source/vendor/fullcalendar/dist/fullcalendar.js',
-      './source/vendor/fullcalendar/dist/gcal.js',
+      './node-modules/classie/classie.js',
+      './node-modules/moment/min/moment.min.js',
+      './node-modules/lightgallery/dist/js/lightgallery.js',
+      './node-modules/lg-thumbnail/dist/lg-thumbnail.js',
+      './node-modules/lg-pager/dist/lg-pager.js',
+      './node-modules/lg-autoplay/dist/lg-autoplay.js',
+      './node-modules/lg-fullscreen/dist/lg-fullscreen.js',
+      './node-modules/lg-zoom/dist/lg-zoom.js',
+      './node-modules/lg-hash/dist/lg-hash.js',
+      './node-modules/lg-share/dist/lg-share.js',
+      './node-modules/lg-video/dist/lg-video.js',
+      './node-modules/justifiedGallery/dist/js/jquery.justifiedGallery.js',
+      './node-modules/fullcalendar/dist/fullcalendar.js',
+      './node-modules/fullcalendar/dist/gcal.js',
       './source/js/main.js',
       './source/js/insight.js',
       './source/js/share.js',
@@ -56,13 +55,11 @@ gulp.task('scripts', ['bower'], () => {
     .pipe(gulp.dest('./source/dist/js/'));
 });
 
-gulp.task('vendor-fonts', ['bower'], () => {
-  gulp.src(['./source/vendor/components-font-awesome/fonts/*', './source/vendor/lightgallery/dist/fonts/*']).pipe(gulp.dest('./source/dist/fonts'));
+gulp.task('vendor-fonts', [], () => {
+  gulp.src(['./node-modules/components-font-awesome/fonts/*', './node-modules/lightgallery/dist/fonts/*']).pipe(gulp.dest('./source/dist/fonts'));
   gulp.src(['./source/fonts/open-sans/fonts/*', './source/fonts/source-code-pro/fonts/*']).pipe(gulp.dest('./source/dist/css/fonts'));
 });
 
-gulp.task('vendor-images', ['bower'], () => {
-  gulp.src(['./source/vendor/lightgallery/dist/img/*']).pipe(gulp.dest('./source/dist/img'));
+gulp.task('vendor-images', [], () => {
+  gulp.src(['./node-modules/lightgallery/dist/img/*']).pipe(gulp.dest('./source/dist/img'));
 });
-
-gulp.task('bower', () => bower('./source/vendor'));
