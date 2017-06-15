@@ -1,8 +1,20 @@
 <div class="thumbnail">
     <% if (post.thumbnail) { %>
-        <span style="background-image:url(<%- url_for(post.path) %><%= post.thumbnail %>)" alt="<%= post.title %>" class="thumbnail-image"></span>
+        <span style="background-image:url(
+          <% if (post.thumbnail.charAt(0) !== '/') { %>
+            <%- url_for(post.path) %><%= post.thumbnail %>
+          <% } else { %>
+            <%= post.thumbnail %>
+          <% } %>
+        )" alt="<%= post.title %>" class="thumbnail-image"></span>
     <% } else if (post.banner) { %>
-        <span style="background-image:url(<%- url_for(post.path) %><%= post.banner %>)" alt="<%= post.title %>" class="thumbnail-image"></span>
+        <span style="background-image:url(
+          <% if (post.banner.charAt(0) !== '/') { %>
+            <%- url_for(post.path) %><%= post.banner %>
+          <% } else { %>
+            <%= post.banner %>
+          <% } %>
+        )" alt="<%= post.title %>" class="thumbnail-image"></span>
     <% } else { %>
         <span class="thumbnail-image thumbnail-none"></span>
     <% } %>

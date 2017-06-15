@@ -1,0 +1,20 @@
+---
+backend:
+  name: github
+  repo: redbrick/static-site
+  branch: master
+publish_mode: editorial_workflow
+media_folder: "source/assets/images/posts"
+public_folder: "/assets/images/posts"
+collections:
+  - name: "blog"  # Used in routes, e.g. /admin/collections/blog
+    label: "Blog"  # Used in the UI
+    folder: "source/_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "banner", widget: "image"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}

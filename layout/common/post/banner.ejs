@@ -1,11 +1,23 @@
 <% if (post.link) { %>
   <a href="<%- url_for(post.link) %>" target="_blank" itemprop="url">
-    <img src="<%- url_for(post.link) %><%- post.banner %>" class="article-banner" />
+    <img src="
+      <% if (post.banner.charAt(0) !== '/') { %>
+        <%- url_for(post.link) %><%- post.banner %>
+      <% } else { %>
+        <%= post.banner %>
+      <% } %>
+    " class="article-banner" />
   </a>
 <% } else if (post.title) { %>
   <% if (index) { %>
     <a href="<%- url_for(post.path) %>" itemprop="url">
-      <img src="<%- url_for(post.path) %><%- post.banner %>" class="article-banner" />
+      <img src="
+      <% if (post.banner.charAt(0) !== '/') { %>
+        <%- url_for(post.path) %><%- post.banner %>
+      <% } else { %>
+        <%= post.banner %>
+      <% } %>
+    " class="article-banner" />
     </a>
   <% } else { %>
     <img src="<%- post.banner %>" class="article-banner" />
