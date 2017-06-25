@@ -36,7 +36,7 @@
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.4.0",
     "jquery": "^3.2.1",
-    "justifiedgallery": "^1.0.10",
+    "justifiedGallery": "^3.6.2",
     "lg-autoplay": "^1.0.4",
     "lg-fullscreen": "^1.0.1",
     "lg-hash": "^1.0.2",

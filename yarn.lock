@@ -1876,11 +1876,9 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.3.6"
 
-justifiedgallery@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/justifiedgallery/-/justifiedgallery-1.0.10.tgz#918ba073f503b8c103d335081816f85bbe332fd9"
-  dependencies:
-    lodash "3.x.x"
+justifiedGallery@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/justifiedGallery/-/justifiedGallery-3.6.2.tgz#40aaa0f6d89fc8df464d80cf15b1a4659d09ea57"
 
 kind-of@^3.0.2:
   version "3.1.0"
@@ -2077,10 +2075,6 @@ lodash.templatesettings@^3.0.0:
   dependencies:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
-
-lodash@3.x.x:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
 lodash@^4.0.0, lodash@^4.13.1, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.4"
