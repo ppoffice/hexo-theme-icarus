@@ -11,6 +11,8 @@
         <section id="comments"><%- partial('comment/isso') %></section>
     <% } else if (theme.comment.changyan && theme.comment.changyan.appid && theme.comment.changyan.conf) { %>
         <section id="comments"><%- partial('comment/changyan') %></section>
+    <% } else if (theme.comment.livere) { %>
+        <section id="comments"><%- partial('comment/livere') %></section>
 	<% } else if (theme.comment.gitment) { %>
         <section id="comments"><%- partial('comment/gitment') %></section>
     <% } %>
