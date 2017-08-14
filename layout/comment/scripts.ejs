@@ -16,4 +16,6 @@
     theme.comment.gitment.client_id &&
     theme.comment.gitment.client_secret) { %>
     <%- partial('comment/gitment', { script: true }) %>
+<% } else if (theme.comment.livere) { %>
+    <%- partial('comment/livere', { script: true }) %>
 <% } %>
