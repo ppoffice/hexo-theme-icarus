@@ -13,7 +13,11 @@
         <section id="comments"><%- partial('comment/changyan') %></section>
     <% } else if (theme.comment.livere) { %>
         <section id="comments"><%- partial('comment/livere') %></section>
-	<% } else if (theme.comment.gitment) { %>
+    <% } else if (theme.comment.gitment &&
+        theme.comment.gitment.owner &&
+        theme.comment.gitment.repo &&
+        theme.comment.gitment.client_id &&
+        theme.comment.gitment.client_secret) { %>
         <section id="comments"><%- partial('comment/gitment') %></section>
     <% } %>
 <% } %>
