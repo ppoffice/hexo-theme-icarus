@@ -18,4 +18,8 @@
     <%- partial('comment/gitment', { script: true }) %>
 <% } else if (theme.comment.livere) { %>
     <%- partial('comment/livere', { script: true }) %>
+<% } else if (theme.comment.valine.on && 
+        theme.comment.valine.appId && 
+        theme.comment.valine.appKey) { %>
+    <%- partial('comment/valine', { script: true }) %>
 <% } %>
