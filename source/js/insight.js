@@ -11,7 +11,9 @@
   $('body').append($main);
 
   function section (title) {
-    return $('<section>').addClass('ins-section').append($('<header>').addClass('ins-section-header').text(title));
+    return $('<section>')
+      .addClass('ins-section')
+      .append($('<header>').addClass('ins-section-header').text(title));
   }
 
   function searchItem (icon, title, slug, preview, url) {
@@ -21,10 +23,14 @@
       .append(
         $('<header>')
           .append($('<i>').addClass('fa').addClass(`fa-${icon}`))
-          .append(title !== null && title !== '' ? title : TRANSLATION['UNTITLED'])
+          .append(
+            title !== null && title !== '' ? title : TRANSLATION['UNTITLED']
+          )
           .append(slug ? $('<span>').addClass('ins-slug').text(slug) : null)
       )
-      .append(preview ? $('<p>').addClass('ins-search-preview').text(preview) : null)
+      .append(
+        preview ? $('<p>').addClass('ins-search-preview').text(preview) : null
+      )
       .attr('data-url', url);
   }
 
@@ -37,11 +43,21 @@
     case 'PAGES':
       $searchItems = array.map((
           { title, text, path } // Use config.root instead of permalink to fix url issue
-        ) => searchItem('file', title, null, text.slice(0, 150), ROOT_URL + path));
+        ) =>
+          searchItem('file', title, null, text.slice(0, 150), ROOT_URL + path)
+        );
       break;
     case 'CATEGORIES':
     case 'TAGS':
-      $searchItems = array.map(({ name, slug, permalink }) => searchItem(type === 'CATEGORIES' ? 'folder' : 'tag', name, slug, null, permalink));
+      $searchItems = array.map(({ name, slug, permalink }) =>
+          searchItem(
+            type === 'CATEGORIES' ? 'folder' : 'tag',
+            name,
+            slug,
+            null,
+            permalink
+          )
+        );
       break;
     default:
       return null;
@@ -67,7 +83,10 @@
   }
 
   function parseKeywords (keywords) {
-    return keywords.split(' ').filter(keyword => !!keyword).map(keyword => keyword.toUpperCase());
+    return keywords
+      .split(' ')
+      .filter(keyword => !!keyword)
+      .map(keyword => keyword.toUpperCase());
   }
 
   /**
@@ -150,10 +169,22 @@
     const tags = extractToSet(json, 'tags');
     const categories = extractToSet(json, 'categories');
     return {
-      posts     : posts.filter(FILTERS.POST).sort((a, b) => WEIGHTS.POST(b) - WEIGHTS.POST(a)).slice(0, 5),
-      pages     : pages.filter(FILTERS.PAGE).sort((a, b) => WEIGHTS.PAGE(b) - WEIGHTS.PAGE(a)).slice(0, 5),
-      categories: categories.filter(FILTERS.CATEGORY).sort((a, b) => WEIGHTS.CATEGORY(b) - WEIGHTS.CATEGORY(a)).slice(0, 5),
-      tags      : tags.filter(FILTERS.TAG).sort((a, b) => WEIGHTS.TAG(b) - WEIGHTS.TAG(a)).slice(0, 5),
+      posts: posts
+        .filter(FILTERS.POST)
+        .sort((a, b) => WEIGHTS.POST(b) - WEIGHTS.POST(a))
+        .slice(0, 5),
+      pages: pages
+        .filter(FILTERS.PAGE)
+        .sort((a, b) => WEIGHTS.PAGE(b) - WEIGHTS.PAGE(a))
+        .slice(0, 5),
+      categories: categories
+        .filter(FILTERS.CATEGORY)
+        .sort((a, b) => WEIGHTS.CATEGORY(b) - WEIGHTS.CATEGORY(a))
+        .slice(0, 5),
+      tags: tags
+        .filter(FILTERS.TAG)
+        .sort((a, b) => WEIGHTS.TAG(b) - WEIGHTS.TAG(a))
+        .slice(0, 5),
     };
   }
 

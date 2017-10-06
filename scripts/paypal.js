@@ -6,4 +6,4 @@ hexo.extend.tag.register('paypal', () => {
   const htmlTmlSrc = path.join(__dirname, '..', 'layout', 'paypal.ejs');
   const htmlTml = ejs.compile(fs.readFileSync(htmlTmlSrc, 'utf-8'));
   return htmlTml({});
-})
+});

@@ -1,6 +1,9 @@
 ($ => {
   // Prevent duplicate binding
-  if (typeof __SHARE_BUTTON_BINDED__ === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+  if (
+    typeof __SHARE_BUTTON_BINDED__ === 'undefined' ||
+    !__SHARE_BUTTON_BINDED__
+  ) {
     __SHARE_BUTTON_BINDED__ = true;
   } else {
     return;
@@ -61,6 +64,10 @@
       e.preventDefault();
       e.stopPropagation();
 
-      window.open(this.href, `article-share-box-window-${Date.now()}`, 'width=500,height=450');
+      window.open(
+        this.href,
+        `article-share-box-window-${Date.now()}`,
+        'width=500,height=450'
+      );
     });
 })(jQuery);

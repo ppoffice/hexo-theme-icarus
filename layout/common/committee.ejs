@@ -1,7 +1,7 @@
 <div class="cmt">
   <% for (var i in post.cmt) { %>
     <div class="cmt__member">
-      <a href="/about/contact/<%- post.cmt[i].nick %>">
+      <a href="mailto:<%- post.cmt[i].nick %>@redbrick.dcu.ie">
         <div class="cmt__member__title"><%- post.cmt[i].position %></div>
           <% if (post.cmt[i].resigned) { %>
             <div class="cmt__member__image cmt__member__image__resigned">
