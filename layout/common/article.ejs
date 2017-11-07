@@ -1,3 +1,4 @@
+<% var showMaxLenth=theme.auto_excerpt.length %>
 <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %><%= (post.direction && post.direction.toLowerCase() === 'rtl' ? ' rtl' : '') %>" itemscope itemprop="blogPost">
     <div class="article-inner">
         <% if (post.banner) { %>
@@ -17,7 +18,7 @@
         <% } %>
         <%- partial('post/gallery') %>
         <div class="article-entry" itemprop="articleBody">
-        <% if (index && post.excerpt) { %>
+       <% if (index && post.excerpt) { %>
             <p><%- post.excerpt %></p>
             <p class="article-more-link">
                 <a href="<%- url_for(post.path) %>#more"><%= __('article.more') %></a>
@@ -26,10 +27,10 @@
             <% if (!index && post.toc) { %>
                 <div id="toc" class="toc-article">
                 <strong class="toc-title"><%= __('article.catalogue') %></strong>
-                    <%- toc(post.content) %>
+                    <%- toc(post.content.substring(0,showMaxLenth)) %>
                 </div>
             <% } %>
-            <%- post.content %>
+            <%- post.content.substring(0,showMaxLenth) %>
         <% } %>
         </div>
         <footer class="article-footer">

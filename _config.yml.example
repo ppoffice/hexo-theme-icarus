@@ -95,3 +95,6 @@ miscellaneous:
         google_plus:
     links:
         Hexo: http://hexo.io
+#auto excerpt
+auto_excerpt:
+    length: 300 
