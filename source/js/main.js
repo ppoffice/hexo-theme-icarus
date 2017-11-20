@@ -2,12 +2,14 @@
     var toTop = ($('#sidebar').height() - $(window).height()) + 60;
     // Caption
     $('.article-entry').each(function(i) {
-        $(this).find('img').each(function() {
+        $(this).find('img').filter(function (element) {
+            return $(this).hasClass('');
+        }).each(function() {
+            // add image caption
             if (this.alt && !(!!$.prototype.justifiedGallery && $(this).parent('.justified-gallery').length)) {
                 $(this).after('<span class="caption">' + this.alt + '</span>');
             }
 
-            // 对于已经包含在链接内的图片不适用lightGallery
             if ($(this).parent().prop("tagName") !== 'A') {
                 $(this).wrap('<a href="' + ($(this).attr("data-imgbig") ? $(this).attr("data-imgbig") : this.src) + '" title="' + this.alt + '" class="gallery-item"></a>');
             }
