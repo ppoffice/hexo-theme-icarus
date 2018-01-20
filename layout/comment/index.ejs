@@ -13,7 +13,8 @@
         <section id="comments"><%- partial('comment/changyan') %></section>
     <% } else if (theme.comment.livere) { %>
         <section id="comments"><%- partial('comment/livere') %></section>
-    <% } else if (theme.comment.valine.on && 
+    <% } else if (theme.comment.valine && 
+        theme.comment.valine.on && 
         theme.comment.valine.appId && 
         theme.comment.valine.appKey) { %>
         <section id="comments"><%- partial('comment/valine') %></section>
