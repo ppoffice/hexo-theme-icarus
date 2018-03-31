@@ -1,62 +1,54 @@
 # Icarus
 
-### The blog theme you may fall in love with, coming to Hexo. [Preview](http://ppoffice.github.io/hexo-theme-icarus/)
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png "")
+#### A MathJax Augmented Version for a [Hexo](https://github.com/hexojs/hexo) theme: [hexo-theme-icarus](https://github.com/ppoffice/hexo-theme-icarus)
 
-#### [View Documentation](https://github.com/ppoffice/hexo-theme-icarus/wiki)
-:star: It is strongly recommended that you read the docs before using Icarus.
+![Preview](https://github.com/Shiratsuyu/Images/blob/master/hexo-theme-icarus/Preview.png)
 
-## Features
+##### The theme forks form [PPOffice](https://github.com/ppoffice).
 
-### Profile Sidebar
+## Revises
 
-A nice place to show yourself. You can add your own information in your site's `_config.yml`
+### Preview MathJax
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/profile.png "")
+Compare with [Original Edition](https://github.com/ppoffice/hexo-theme-icarus/commit/7c1b6fa0736a7791e7995f5e9e3e8744729d526e), this version can provide a better MathJax render Control. I modify the MathJax plugin option, change it only work when needed.
 
-### Self-hosted Insite Search Engine
-With the help of [Insight Search](https://github.com/ppoffice/hexo-theme-icarus/wiki/Search#insight-search), you can search anything inside your site without any third-party plugin.
+If you setting the `preview_mathjax`(at original edition, this option is `mathjax`) as true in the `_config.yml`, MathJax render will be presented on the index. 
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/insight-search.png "")
+![](https://github.com/Shiratsuyu/Images/blob/master/hexo-theme-icarus/config.png)
 
-### Custom Comment Services
-Icarus supports several comment services, give you better choices to communicate with your readers.
+In other pages not article, like timeline or tags, MathJax renderer will not be loaded, because there are no article preview in those pages.
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/custom-comments.png "")
 
-### Post Banner & Thumbnail
+### Selectable MathJax mark in markdown
 
-Thanks to [atika](https://github.com/atika), you can now [add thumbnails or banners](https://github.com/ppoffice/hexo-theme-icarus/wiki/Theme#thumbnail) to every post to create better reading experience.
+![](https://github.com/Shiratsuyu/Images/blob/master/hexo-theme-icarus/Article.png)
 
-### Responsive Layout
+Added a MathJax toggle in markdown template. You can freedomly choose using MathJax or not at a single article. If and only if you setting the MathJax attribute as true, formulas will be rendered at the article page.
 
-Icarus knows on what screen size you are browsering the website, and reorganize the layout to fit your device.
+### Renderer Changed
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.jpg "")
+Revised MathJax renderer as [SVG renderer](https://docs.mathjax.org/en/latest/options/output-processors/SVG.html). Default [HTML-CSS renderer] (https://docs.mathjax.org/en/latest/options/output-processors/HTML-CSS.html) will produce inconsistent results at different browser. And if using deployed MathJax not CDN, HTML-CSS denpendened font files will consumption hexo's performance result you must spend lots of time to waiting the MathJax load. 
 
-### Custom Categories & Tags Pages
+[MathJax Issues: Rendering style error #1957](https://github.com/mathjax/MathJax/issues/1957)
 
-Get your categories and tags listed in single pages to make your blog more methodic.
+### Include MathJax source code
 
-### lightgallery
+![](https://github.com/Shiratsuyu/Images/blob/master/hexo-theme-icarus/path.png)
 
-Icarus uses [lightgallery.js](https://sachinchoolur.github.io/lightgallery.js/) to showcase your photos. Just enable it in your configuration, and that's all!
+Sometimes CDN's state is unstable, it effected formulas be loaded correctly. the most safely way is using local source. MathJax's path is `source/js/MathJax`. You can replace or remove it if you need.
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/lightgallery.jpg "")
+## How to Use
 
-### Justified Gallery
+1. Install it as same as [Original Edition](https://github.com/ppoffice/hexo-theme-icarus/wiki/Installation).
 
-You can also use [justifiedgallery.js](http://miromannino.github.io/Justified-Gallery/) to display a photo grid within your posts. Just enable it in your configuration, and place your photos in a div with the class .justified-gallery
+2. Replace markdown symbol analyze in `blog-path/node_modules/marked/lib/marked.js:line 463` :
 
-### Sidebar
+    ![](https://github.com/Shiratsuyu/Images/blob/master/hexo-theme-icarus/marked.png)
+    
+3. Add a MathJax mark in `blog-path/scaffolds/post.md` like this:
 
-Icarus provides 6 built-in widgets:
+    ![](https://github.com/Shiratsuyu/Images/blob/master/hexo-theme-icarus/template.png)
 
-- recent_posts
-- category
-- archives
-- tag
-- tagcloud
-- links
+4. Enjoy it!
 
-All of them are enabled by default. You can edit them in `widget` setting.
+

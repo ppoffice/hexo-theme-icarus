@@ -13,6 +13,9 @@
         </div>
         <%- partial('common/footer', null, {cache: !config.relative_link}) %>
         <%- partial('common/scripts') %>
+        <% if (page.mathjax){ %>
+        <%- partial('mathjax') %>
+        <% } %>
     </div>
 </body>
 </html>
