@@ -21,6 +21,7 @@
 #profile
     column(profile-column)
     display: none
+    margin-bottom: block-margin
     @media mq-normal
         display: block
     .inner
@@ -135,3 +136,14 @@
             &:after
                 z-index: 0
                 border-color: transparent transparent color-border - #111 transparent
+
+    .anim-fade-in
+        animation-name: fadeIn
+        animation-fill-mode: both
+        animation-duration: .3s
+
+    @keyframes fadeIn
+        0%
+            opacity: 0
+        to
+            opacity: 1

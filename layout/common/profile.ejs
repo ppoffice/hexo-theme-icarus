@@ -1,6 +1,6 @@
 <% var profile = theme.customize.profile; %>
 <% var tagCount = site.tags.filter(function(tag) { return tag.length; }).length; %>
-<aside id="profile">
+<aside id="profile" class="<%= (theme.customize.profile.fixed ? 'profile-fixed' : '')  %>">
     <div class="inner profile-inner">
         <div class="base-info profile-block">
             <img id="avatar" src="<%= ( profile.gravatar ? gravatar(profile.gravatar, 128) : url_for(profile.avatar)) %>" />
