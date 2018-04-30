@@ -43,77 +43,84 @@
         e.stopPropagation();
     });
 
-    // To Top & Fixed Profile
+    // To Top
     var sidebarElem = $('#sidebar'),
         toTopElem = $('#toTop');
 
-    if (sidebarElem.length) {
-        checkDisplayToTop();
-        checkFixedProfile();
+    (function () {
+        if (!sidebarElem.length) return;
 
+        checkDisplayToTop();
         $(document).on('scroll', function () {
             checkDisplayToTop();
-            checkFixedProfile();
         });
 
         toTopElem.click(function () {
             $('body, html').animate({ scrollTop: 0 }, 600);
         });
-    }
 
-    var isToTopDisplayed = false;
-    function checkDisplayToTop() {
-        var toTop = (sidebarElem.height() - $(window).height()) + 60;
-        var currentScrollTop = $(document).scrollTop();
-        var needDisplay = (currentScrollTop > toTop) && (currentScrollTop > 0);
+        var isToTopDisplayed = false;
+        function checkDisplayToTop() {
+            var toTop = (sidebarElem.height() - $(window).height()) + 60;
+            var currentScrollTop = $(document).scrollTop();
+            var needDisplay = (currentScrollTop > toTop) && (currentScrollTop > 0);
 
-        if ($(document).width() >= 800) {
-            if (needDisplay) {
-                if (isToTopDisplayed) return;
-                toTopElem.fadeIn();
-                toTopElem.css('left', sidebarElem.offset().left);
-                isToTopDisplayed = true;
+            if ($(document).width() >= 800) {
+                if (needDisplay) {
+                    if (isToTopDisplayed) return;
+                    toTopElem.fadeIn();
+                    toTopElem.css('left', sidebarElem.offset().left);
+                    isToTopDisplayed = true;
+                } else {
+                    if (!isToTopDisplayed) return;
+                    toTopElem.fadeOut();
+                    isToTopDisplayed = false;
+                }
             } else {
-                if (!isToTopDisplayed) return;
-                toTopElem.fadeOut();
-                isToTopDisplayed = false;
+                toTopElem.show();
+                toTopElem.css('right', 20);
             }
-        } else {
-            toTopElem.show();
-            toTopElem.css('right', 20);
         }
-    }
+    })();
 
-    var isFixedProfile = false;
-    function checkFixedProfile() {
-        if (!profileElem.is('.profile-fixed')) return;
-        if ($(document).width() < 800) return;
+    // Fixed Profile
+    (function () {
+        checkFixedProfile();
+        $(document).on('scroll', function () {
+            checkFixedProfile();
+        });
 
-        var currentScrollTop = $(document).scrollTop();
-        var profileInnerElem = $('#profile .profile-inner');
-        var needFixed = currentScrollTop >= profileElem.offset().top + profileElem.outerHeight(true);
+        var isFixedProfile = false;
+        function checkFixedProfile() {
+            if (!profileElem.is('.profile-fixed')) return;
+            if ($(document).width() < 800) return;
 
-        if (needFixed) {
-            if (isFixedProfile) return;
+            var currentScrollTop = $(document).scrollTop();
+            var profileInnerElem = $('#profile .profile-inner');
+            var needFixed = currentScrollTop >= profileElem.offset().top + profileElem.outerHeight(true);
 
-            profileInnerElem.css('position', 'fixed')
-                .css('width', profileElem.innerWidth() + 'px')
-                .css('top', '0');
+            if (needFixed) {
+                if (isFixedProfile) return;
 
-            // css animation fade-in
-            profileInnerElem.css('animation', '');
-            profileInnerElem.addClass('anim-fade-in');
-            isFixedProfile = true;
-        } else {
-            if (!isFixedProfile) return;
+                profileInnerElem.css('position', 'fixed')
+                    .css('width', profileElem.innerWidth() + 'px')
+                    .css('top', '0');
 
-            profileInnerElem.css('position', '')
-                .css('width', '')
-                .css('top', '');
+                // css animation fade-in
+                profileInnerElem.css('animation', '');
+                profileInnerElem.addClass('anim-fade-in');
+                isFixedProfile = true;
+            } else {
+                if (!isFixedProfile) return;
 
-            profileInnerElem.css('animation', 'none');
-            isFixedProfile = false;
+                profileInnerElem.css('position', '')
+                    .css('width', '')
+                    .css('top', '');
+
+                profileInnerElem.css('animation', 'none');
+                isFixedProfile = false;
+            }
         }
-    }
+    })();
 
 })(jQuery);
