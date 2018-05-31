@@ -24,7 +24,7 @@
 
     function searchItem (icon, title, slug, preview, url) {
         return $('<div>').addClass('ins-selectable').addClass('ins-search-item')
-            .append($('<header>').append($('<i>').addClass('fa').addClass('fa-' + icon)).append(title != null && title != '' ? title : CONFIG.TRANSLATION['UNTITLED'])
+            .append($('<header>').append($('<i>').addClass('fas').addClass('fa-' + icon).css("padding-right", "5px")).append(title != null && title != '' ? title : CONFIG.TRANSLATION['UNTITLED'])
                 .append(slug ? $('<span>').addClass('ins-slug').text(slug) : null))
             .append(preview ? $('<p>').addClass('ins-search-preview').text(decodeEntities(preview)) : null)
             .attr('data-url', url);
