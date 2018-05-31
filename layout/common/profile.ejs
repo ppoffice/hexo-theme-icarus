@@ -6,7 +6,7 @@
             <img id="avatar" src="<%= ( profile.gravatar ? gravatar(profile.gravatar, 128) : url_for(profile.avatar)) %>" />
             <h2 id="name"><%= profile.author %></h2>
             <h3 id="title"><%= profile.author_title %></h3>
-            <span id="location"><i class="fa fa-map-marker"></i><%= profile.location %></span>
+            <span id="location"><i class="fas fa-map-marker-alt" style="padding-right: 5px"></i><%= profile.location %></span>
             <a id="follow" target="_blank" href="<%= profile.follow %>"><%= __('profile.follow') %></a>
         </div>
         <div class="article-info profile-block">
@@ -27,7 +27,7 @@
                     <% for(var i in theme.customize.social_links) { %>
                     <td>
                         <a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= i %>" <%= tooltipClass %>>
-                            <i class="fa fa-<%= i %>"></i>
+                            <i class="fab fa-<%= i %>"></i>
                         </a>
                     </td>
                     <% } %>
