@@ -1,33 +1,33 @@
-index:
-    home: '홈'
-    search: '검색'
-    archive: '아카이브'
-    category: '카테고리'
-    uncategorized: '미지정'
-    tag: '태그'
-nav:
-    next: '다음'
+common:
+    archive:
+        one: '아카이브'
+        other: '아카이브'
+    category:
+        one: '카테고리'
+        other: '카테고리'
+    tag:
+        one: '태그'
+        other: '태그'
+    post:
+        one: '포스트'
+        other: '포스트'
     prev: '이전'
-    older: '이전 글'
-    newer: '다음 글'
+    next: '다음'
 widget:
+    follow: '팔로우'
     recents: '최근 글'
-    archives: '아카이브'
-    categories: '카테고리'
     links: '링크'
-    tags: '태그'
     tag_cloud: '태그 클라우드'
+    catalogue: '카탈로그'
 article:
     more: '자세히 보기'
     comments: '댓글'
-    share: '공유하기'
-    catalogue: '카탈로그'
-profile:
-    follow: '팔로우'
-    post: '포스트'
-    tag: '태그'
-    posts: '포스트'
-    tags: '태그'
+    read: 'read'
+    about: 'About'
+    words: 'words'
+search:
+    search: 'Search'
+    hint: 'Type something...'
 insight:
     hint: 'Type something...'
     posts: '포스트'

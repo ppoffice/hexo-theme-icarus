@@ -1,33 +1,33 @@
-index:
-    home: 'home'
-    search: 'Search'
-    archive: 'archive'
-    category: 'category'
-    uncategorized: 'uncategorized'
-    tag: 'tag'
-nav:
+common:
+    archive:
+        one: 'Archive'
+        other: 'Archives'
+    category:
+        one: 'Category'
+        other: 'Categories'
+    tag:
+        one: 'Tag'
+        other: 'Tags'
+    post:
+        one: 'Post'
+        other: 'Posts'
+    prev: 'Previous'
     next: 'Next'
-    prev: 'Prev'
-    older: 'Older'
-    newer: 'Newer'
 widget:
-    recents: 'recent'
-    archives: 'archives'
-    categories: 'categories'
-    links: 'links'
-    tags: 'tags'
-    tag_cloud: 'tag cloud'
+    follow: 'Follow'
+    recents: 'Recent'
+    links: 'Links'
+    tag_cloud: 'Tag Cloud'
+    catalogue: 'Catalogue'
 article:
     more: 'Read More'
     comments: 'Comments'
-    share: 'Share'
-    catalogue: 'Catalogue'
-profile:
-    follow: 'FOLLOW'
-    post: 'post'
-    tag: 'tag'
-    posts: 'posts'
-    tags: 'tags'
+    read: 'read'
+    about: 'About'
+    words: 'words'
+search:
+    search: 'Search'
+    hint: 'Type something...'
 insight:
     hint: 'Type something...'
     posts: 'Posts'
@@ -35,4 +35,3 @@ insight:
     categories: 'Categories'
     tags: 'Tags'
     untitled: '(Untitled)'
-

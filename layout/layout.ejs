@@ -1,18 +1,24 @@
-<%- partial('common/head') %>
-<body>
-    <div id="container">
-        <%- partial('common/header') %>
-        <div class="outer">
-            <% if (theme.customize.profile.enabled) { %>
-                <%- partial('common/profile', null, {cache: !config.relative_link}) %>
-            <% } %>
-            <section id="main"><%- body %></section>
-            <% if (theme.customize.sidebar) { %>
-                <%- partial('common/sidebar', null, {cache: !config.relative_link}) %>
-            <% } %>
+<!DOCTYPE html>
+<html <%- has_config('language') ? ' lang="' + get_config('language').substring(0, 2) + '"' : '' %>>
+<head>
+    <%- partial('common/head') %>
+</head>
+<body class="is-<%= column_count() %>-column">
+    <%- partial('common/navbar', { page }) %>
+    <section class="section">
+        <div class="container">
+            <div class="columns main">
+                <%- partial('common/widget', { position: 'left' }) %>
+                <div class="column <%= column_count() > 1 ? 'is-8-tablet is-8-desktop is-6-widescreen' : '' %>"><%- body %></div>
+                <%- partial('common/widget', { position: 'right' }) %>
+            </div>
         </div>
-        <%- partial('common/footer', null, {cache: !config.relative_link}) %>
-        <%- partial('common/scripts') %>
-    </div>
+    </section>
+    <%- partial('common/footer') %>
+    <%- partial('common/scripts') %>
+
+    <% if (has_config('search.type')) { %>
+    <%- partial('search/' + get_config('search.type')) %>
+    <% } %>
 </body>
 </html>

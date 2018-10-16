@@ -1,8 +1,39 @@
-<footer id="footer">
-    <div class="outer">
-        <div id="footer-info" class="inner">
-            &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
-            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start">
+                <a class="footer-logo is-block has-mb-6" href="<%- url_for('/') %>">
+                <% if (has_config('logo.text') && get_config('logo.text')) { %>
+                    <%= get_config('logo.text') %>
+                <% } else { %>
+                    <img src="<%- url_for(get_config('logo', 'images/logo.svg')) %>" alt="" height="28">
+                <% } %>
+                </a>
+                <p class="is-size-7">
+                &copy; <%= date(new Date(), 'YYYY') %> <%= get_config('author') || get_config('title') %>&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            <% if (has_config('footer.links')) { %>
+                <div class="field has-addons">
+                <% let links = get_config('footer.links'); %>
+                <% for (let name in links) {
+                        let link = links[name]; %>
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
+                        <% if (typeof(link) === 'string') { %>
+                        <%= name %>
+                        <% } else { %>
+                        <i class="<%= link.icon %>"></i>
+                        <% } %>
+                    </a>
+                </p>
+                <% } %>
+                </div>
+            <% } %>
+            </div>
         </div>
     </div>
 </footer>

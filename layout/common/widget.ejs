@@ -1,0 +1,7 @@
+<% if (get_widgets(position).length) { %>
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-mobile  <%= column_count() === 3 && position === 'right' ? 'is-hidden-tablet-only is-hidden-desktop-only' : '' %>">
+    <% get_widgets(position).forEach(widget => {%>
+        <%- partial('widget/' + widget.type, { widget, post: page }) %>
+    <% }) %>
+</div>
+<% } %>

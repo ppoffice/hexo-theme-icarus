@@ -10,13 +10,6 @@
     $main.parent().remove('.ins-search');
     $('body').append($main);
 
-    // https://stackoverflow.com/questions/1147359/how-to-decode-html-entities-using-jquery#answer-1395954
-    function decodeEntities(encodedString) {
-        var textArea = document.createElement('textarea');
-        textArea.innerHTML = encodedString;
-        return textArea.value;
-    }
-
     function section (title) {
         return $('<section>').addClass('ins-section')
             .append($('<header>').addClass('ins-section-header').text(title));
@@ -24,9 +17,10 @@
 
     function searchItem (icon, title, slug, preview, url) {
         return $('<div>').addClass('ins-selectable').addClass('ins-search-item')
-            .append($('<header>').append($('<i>').addClass('fas').addClass('fa-' + icon).css("padding-right", "5px")).append(title != null && title != '' ? title : CONFIG.TRANSLATION['UNTITLED'])
+            .append($('<header>').append($('<i>').addClass('fa').addClass('fa-' + icon))
+                .append($('<span>').addClass('ins-title').text(title != null && title !== '' ? title : CONFIG.TRANSLATION['UNTITLED']))
                 .append(slug ? $('<span>').addClass('ins-slug').text(slug) : null))
-            .append(preview ? $('<p>').addClass('ins-search-preview').text(decodeEntities(preview)) : null)
+            .append(preview ? $('<p>').addClass('ins-search-preview').text(preview) : null)
             .attr('data-url', url);
     }
 
@@ -40,36 +34,19 @@
             case 'PAGES':
                 $searchItems = array.map(function (item) {
                     // Use config.root instead of permalink to fix url issue
-                    return searchItem('file', item.title, null, item.text.slice(0, 150), CONFIG.ROOT_URL + item.path);
+                    return searchItem('file', item.title, null, item.text.slice(0, 150), item.link);
                 });
                 break;
             case 'CATEGORIES':
             case 'TAGS':
                 $searchItems = array.map(function (item) {
-                    return searchItem(type === 'CATEGORIES' ? 'folder' : 'tag', item.name, item.slug, null, item.permalink);
+                    return searchItem(type === 'CATEGORIES' ? 'folder' : 'tag', item.name, item.slug, null, item.link);
                 });
                 break;
             default:
                 return null;
         }
         return section(sectionTitle).append($searchItems);
-    }
-
-    function extractToSet (json, key) {
-        var values = {};
-        var entries = json.pages.concat(json.posts);
-        entries.forEach(function (entry) {
-            if (entry[key]) {
-                entry[key].forEach(function (value) {
-                    values[value.name] = value;
-                });
-            }
-        });
-        var result = [];
-        for (var key in values) {
-            result.push(values[key]);
-        }
-        return result;
     }
 
     function parseKeywords (keywords) {
@@ -86,7 +63,6 @@
      * @param Array<String>     fields  Object's fields to find matches
      */
     function filter (keywords, obj, fields) {
-        var result = false;
         var keywordArray = parseKeywords(keywords);
         var containKeywords = keywordArray.filter(function (keyword) {
             var containFields = fields.filter(function (field) {
@@ -161,8 +137,8 @@
         var FILTERS = filterFactory(keywords);
         var posts = json.posts;
         var pages = json.pages;
-        var tags = extractToSet(json, 'tags');
-        var categories = extractToSet(json, 'categories');
+        var tags = json.tags;
+        var categories = json.categories;
         return {
             posts: posts.filter(FILTERS.POST).sort(function (a, b) { return WEIGHTS.POST(b) - WEIGHTS.POST(a); }).slice(0, 5),
             pages: pages.filter(FILTERS.PAGE).sort(function (a, b) { return WEIGHTS.PAGE(b) - WEIGHTS.PAGE(a); }).slice(0, 5),
@@ -223,14 +199,22 @@
         $input.trigger('input');
     });
 
-
-    $(document).on('click focus', '.search-form-input', function () {
+    var touch = false;
+    $(document).on('click focus', '.navbar-main .search', function () {
         $main.addClass('show');
         $main.find('.ins-search-input').focus();
-    }).on('click', '.ins-search-item', function () {
+    }).on('click touchend', '.ins-search-item', function (e) {
+        if (e.type !== 'click' && !touch) {
+            return;
+        }
         gotoLink($(this));
-    }).on('click', '.ins-close', function () {
+        touch = false;
+    }).on('click touchend', '.ins-close', function (e) {
+        if (e.type !== 'click' && !touch) {
+            return;
+        }
         $main.removeClass('show');
+        touch = false;
     }).on('keydown', function (e) {
         if (!$main.hasClass('show')) return;
         switch (e.keyCode) {
@@ -243,5 +227,9 @@
             case 13: //ENTER
                 gotoLink($container.find('.ins-selectable.active').eq(0)); break;
         }
+    }).on('touchstart', function (e) {
+        touch = true;
+    }).on('touchmove', function (e) {
+        touch = false;
     });
 })(jQuery, window.INSIGHT_CONFIG);
