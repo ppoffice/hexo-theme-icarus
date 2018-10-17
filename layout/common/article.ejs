@@ -32,10 +32,12 @@
             <%- post.content %>
         <% } %>
         </div>
-        <footer class="article-footer">
-            <%- partial('share/index', { post: post }) %>
-            <%- partial('comment/counter', { post: post }) %>
-        </footer>
+        <% if (post.layout != 'page') { %>
+            <footer class="article-footer">
+                <%- partial('share/index', { post: post }) %>
+                <%- partial('comment/counter', { post: post }) %>
+            </footer>
+        <% } %>
     </div>
     <% if (!index) { %>
         <%- partial('post/nav') %>
