@@ -68,10 +68,10 @@ archive_generator:
   monthly: true
 
 category_generator:
-  per_page: 20
+  per_page: 6
 
 tag_generator:
-  per_page: 20
+  per_page: 6
 
 # Extensions
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
