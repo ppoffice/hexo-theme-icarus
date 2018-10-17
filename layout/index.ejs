@@ -9,3 +9,6 @@ if (page.total > 1) { %>
         }) %>
     </nav>
 <% } %>
+<% if (theme.plugins.preview_mathjax) { %>
+<%- partial('mathjax') %>
+<% } %>

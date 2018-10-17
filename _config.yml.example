@@ -85,7 +85,7 @@ plugins:
     google_analytics: # enter the tracking ID for your Google Analytics
     google_site_verification: # enter Google site verification code
     baidu_analytics: # enter Baidu Analytics hash key
-    mathjax: false # options: true, false
+    preview_mathjax: true # options: true, false
 
 # Miscellaneous
 miscellaneous:

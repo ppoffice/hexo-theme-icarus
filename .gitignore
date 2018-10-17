@@ -1,3 +1,5 @@
 _config.yml
 *.iml
 .idea
+./source/css/images/*.*
+.DS_Store

@@ -1,0 +1,22 @@
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+		jax: ["input/TeX", "output/SVG"],
+		extensions: ["tex2jax.js", "fast-preview.js"],
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+			displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+			processEscapes: true
+        },
+		SVG: {
+			scale: 90,
+			minScaleAdjust: 50
+		}
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script type="text/javascript" src="/js/MathJax/MathJax.js"></script>
