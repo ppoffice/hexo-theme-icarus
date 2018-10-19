@@ -1,6 +1,6 @@
 /**
  * Helper functions for controlling layout.
- * 
+ *
 * @example
 *     <%- get_widgets(position) %>
 *     <%- has_column() %>
@@ -8,7 +8,11 @@
  */
 module.exports = function (hexo) {
     hexo.extend.helper.register('get_widgets', function (position) {
-        const widgets = hexo.extend.helper.get('get_config').bind(this)('widgets', []);
+        const hasWidgets = hexo.extend.helper.get('has_config').bind(this)('widgets');
+        if (!hasWidgets) {
+            return [];
+        }
+        const widgets = hexo.extend.helper.get('get_config').bind(this)('widgets');
         return widgets.filter(widget => widget.hasOwnProperty('position') && widget.position === position);
     });
 

@@ -12,13 +12,13 @@ function checkDependency(name) {
 
 logger.info('Checking dependencies');
 const missingDeps = [
-    // 'moment',
-    // 'lodash',
-    // 'cheerio',
-    // 'js-yaml',
-    // 'highlight.js',
-    // 'hexo-util',
+    'js-yaml',
+    'moment',
+    'lodash',
+    'cheerio',
+    'hexo-util',
     'hexo-log',
+    'hexo-pagination',
     'hexo-generator-archive',
     'hexo-generator-category',
     'hexo-generator-index',

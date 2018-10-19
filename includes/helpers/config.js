@@ -1,12 +1,15 @@
 /**
  * Theme configuration helpers.
- * 
+ *
  * @description Test if a configuration is set or fetch its value. If `exclude_page` is set, the helpers will
  *              not look up configurations in the current page's front matter.
  * @example
  *     <%- has_config(config_name, exclude_page) %>
  *     <%- get_config(config_name, default_value, exclude_page) %>
  */
+const specs = require('../specs/_config.yml');
+const descriptors = require('../specs/common').descriptor;
+
 module.exports = function (hexo) {
     function readProperty(object, path) {
         const paths = path.split('.');
@@ -19,10 +22,18 @@ module.exports = function (hexo) {
         return object;
     }
 
-    hexo.extend.helper.register('get_config', function (configName, defaultValue = null, excludePage = false) {
+    hexo.extend.helper.register('get_config', function (configName, defaultValue = undefined, excludePage = false) {
         const value = readProperty(Object.assign({}, this.config, hexo.theme.config,
             !excludePage ? this.page : {}), configName);
-        return value == null ? defaultValue : value;
+        if (value === null) {
+            if (typeof(defaultValue) !== 'undefined') {
+                return defaultValue;
+            } else {
+                const property = readProperty(specs, configName);
+                return property === null ? null : property[descriptors.defaultValue];
+            }
+        }
+        return value;
     });
 
     hexo.extend.helper.register('has_config', function (configName, excludePage = false) {
@@ -32,6 +43,6 @@ module.exports = function (hexo) {
 
     hexo.extend.helper.register('get_config_from_obj', function (object, configName, defaultValue = null) {
         const value = readProperty(object, configName);
-        return value == null ? defaultValue : value;
+        return value === null ? defaultValue : value;
     });
 }

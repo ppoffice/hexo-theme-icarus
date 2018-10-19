@@ -1,6 +1,6 @@
 /**
  * CDN static file resolvers.
- * 
+ *
  * @example
  *     <%- cdn(package, version, filename) %>
  *     <%- fontcdn(fontName) %>
@@ -23,9 +23,9 @@ const icon_providers = {
 };
 
 module.exports = function (hexo) {
-    hexo.extend.helper.register('cdn', function (package, version, filename, provider = 'cdnjs') {
-        provider = hexo.extend.helper.get('get_config').bind(this)('providers.cdn', provider);
-        if (provider != null && cdn_providers.hasOwnProperty(provider)) {
+    hexo.extend.helper.register('cdn', function (package, version, filename) {
+        let provider = hexo.extend.helper.get('get_config').bind(this)('providers.cdn');
+        if (provider !== null && cdn_providers.hasOwnProperty(provider)) {
             provider = cdn_providers[provider];
         }
         return provider.replace(/\${\s*package\s*}/gi, package)
@@ -33,18 +33,22 @@ module.exports = function (hexo) {
             .replace(/\${\s*filename\s*}/gi, filename);
     });
 
-    hexo.extend.helper.register('fontcdn', function (fontName, provider = 'google') {
-        provider = hexo.extend.helper.get('get_config').bind(this)('providers.font', provider);
-        if (provider != null && font_providers.hasOwnProperty(provider)) {
+    hexo.extend.helper.register('fontcdn', function (fontName) {
+        let provider = hexo.extend.helper.get('get_config').bind(this)('providers.fontcdn');
+        if (provider !== null && font_providers.hasOwnProperty(provider)) {
             provider = font_providers[provider];
         }
         return provider.replace(/\${\s*fontname\s*}/gi, fontName);
     });
 
-    hexo.extend.helper.register('iconcdn', function (provider = 'fontawesome') {
-        provider = hexo.extend.helper.get('get_config').bind(this)('providers.icon', provider);
-        if (provider != null && icon_providers.hasOwnProperty(provider)) {
+    hexo.extend.helper.register('iconcdn', function (provider = null) {
+        if (provider !== null && icon_providers.hasOwnProperty(provider)) {
             provider = icon_providers[provider];
+        } else {
+            provider = hexo.extend.helper.get('get_config').bind(this)('providers.iconcdn');
+            if (provider !== null && icon_providers.hasOwnProperty(provider)) {
+                provider = icon_providers[provider];
+            }
         }
         return provider;
     });
