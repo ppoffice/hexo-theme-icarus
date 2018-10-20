@@ -9,8 +9,6 @@ html
 
 body
     font-family: family-serif
-
-body
     background-color: #f7f7f7
 
 @media screen and (min-width: 1280px)
@@ -26,6 +24,10 @@ body
         max-width: 960px
         width: 960px
 
+@media screen and (max-width: 768px)
+    .section
+        padding: 1.5rem 1rem;
+
 .card
     overflow: hidden
     border-radius: 4px
@@ -37,6 +39,11 @@ body
         overflow: visible
         box-shadow: none
         background: transparent
+
+img.thumbnail
+    object-fit: cover
+    width: 100%
+    height: 100%
 
 .navbar-logo,
 .footer-logo
@@ -176,6 +183,18 @@ body
 .is-flex-wrap
     flex-wrap: wrap !important
 
+.is-flex-center
+    justify-content: center !important
+
+.has-order-1
+    order: 1
+
+.has-order-2
+    order: 2
+
+.has-order-3
+    order: 3
+
 .has-mr-6
     margin-right: 0.5em !important
 
@@ -197,10 +216,13 @@ body
 .has-link-black-ter
     color: hsl(0, 0%, 14%) !important
 
-img.thumbnail
-    object-fit: cover
-    width: 100%
-    height: 100%
+@media screen and (max-width: 768px)
+    .has-text-centered-mobile
+        text-align: center !important
+    .is-flex-center-mobile
+        justify-content: center !important
+    .has-mt-5-mobile
+        margin-top: 1em !important
 
 /* ---------------------------------
  *    Material Icons Anti-aliasing

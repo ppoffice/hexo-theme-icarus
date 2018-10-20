@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="container">
         <div class="level">
-            <div class="level-start">
+            <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="<%- url_for('/') %>">
                 <% if (has_config('logo.text') && get_config('logo.text')) { %>
                     <%= get_config('logo.text') %>
@@ -17,7 +17,7 @@
             </div>
             <div class="level-end">
             <% if (has_config('footer.links')) { %>
-                <div class="field has-addons">
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile">
                 <% let links = get_config('footer.links'); %>
                 <% for (let name in links) {
                         let link = links[name]; %>
