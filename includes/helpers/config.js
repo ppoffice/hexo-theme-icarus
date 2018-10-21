@@ -7,8 +7,8 @@
  *     <%- has_config(config_name, exclude_page) %>
  *     <%- get_config(config_name, default_value, exclude_page) %>
  */
-const specs = require('../specs/_config.yml');
-const descriptors = require('../specs/common').descriptor;
+const specs = require('../specs/config.spec');
+const descriptors = require('../common/utils').descriptors;
 
 module.exports = function (hexo) {
     function readProperty(object, path) {
