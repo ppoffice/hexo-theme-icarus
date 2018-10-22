@@ -34,10 +34,10 @@ function pagination(c, m) {
 <div class="card card-transparent">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <div class="pagination-previous<%= page.current > 1 ? '' : ' is-invisible is-hidden-mobile' %>">
-            <a class="has-text-black-ter" href="<%= link_url(page.current - 1) %>"><%= __('common.prev') %></a>
+            <a class="is-flex-grow has-text-black-ter" href="<%= link_url(page.current - 1) %>"><%= __('common.prev') %></a>
         </div>
         <div class="pagination-next<%= page.current < page.total ? '' : ' is-invisible is-hidden-mobile' %>">
-            <a class="has-text-black-ter" href="<%= link_url(page.current + 1) %>"><%= __('common.next') %></a>
+            <a class="is-flex-grow has-text-black-ter" href="<%= link_url(page.current + 1) %>"><%= __('common.next') %></a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
             <% pagination(page.current, page.total).forEach(element => { %>

@@ -11,7 +11,7 @@ const ConfigGenerator = require('../common/ConfigGenerator');
 
 const CONFIG_PATH = path.join(__dirname, '../..', '_config.yml');
 
-logger.info('Checking if the configuration file exists...');
+logger.info('Validating the configuration file');
 
 if (!fs.existsSync(CONFIG_PATH)) {
     const relativePath = path.relative(process.cwd(), CONFIG_PATH);
@@ -21,7 +21,6 @@ if (!fs.existsSync(CONFIG_PATH)) {
     process.exit(0);
 }
 
-logger.info('Validating the configuration file...');
 const validator = new ConfigValidator(rootSpec);
 const config = yaml.safeLoad(fs.readFileSync(CONFIG_PATH));
 try {

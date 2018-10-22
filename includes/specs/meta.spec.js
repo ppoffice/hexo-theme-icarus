@@ -4,7 +4,7 @@ module.exports = {
     favicon: {
         [type]: 'string',
         [doc]: 'Path or URL to the website\'s icon',
-        [defaultValue]: null
+        [defaultValue]: '/images/favicon.svg',
     },
     rss: {
         [type]: 'string',

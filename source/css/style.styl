@@ -52,8 +52,6 @@ img.thumbnail
 
 .navbar-main
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05)
-    .navbar-brand
-        justify-content: center
     .navbar-menu,
     .navbar-start,
     .navbar-end
@@ -162,6 +160,21 @@ img.thumbnail
                 margin-left: 0.75rem
                 margin-right: 0
 
+#back-to-top
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    text-align: center
+    background: white
+    box-shadow: 0 -1px 8px rgba(0,0,0,0.1)
+    padding: 8px 0
+    line-height: 24px
+    transform: translateY(100px)
+    transition: 0.4s ease
+    &.is-active
+        transform: translateY(0)
+
 /* ---------------------------------
  *         Custom modifiers
  * --------------------------------- */
@@ -180,8 +193,14 @@ img.thumbnail
 .is-overflow-x-auto
     overflow-x: auto !important
 
+.is-flex-grow
+    flex-grow: 1 !important
+
 .is-flex-wrap
     flex-wrap: wrap !important
+
+.is-flex-start
+    justify-content: start !important
 
 .is-flex-center
     justify-content: center !important
@@ -260,7 +279,7 @@ img.thumbnail
 figure.highlight
     padding: 0
     width: 100%
-    margin: 0 0 1.5rem
+    margin: 1em 0 1em !important
 
     pre,
     table tr:hover

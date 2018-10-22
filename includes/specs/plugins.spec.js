@@ -5,22 +5,27 @@ module.exports = {
     [doc]: 'Other plugin settings',
     gallery: {
         [type]: 'boolean',
-        [doc]: 'Enable the lightGallery and Justified Gallery plugins',
+        [doc]: 'Enable the lightGallery and Justified Gallery plugins (http://ppoffice.github.io/hexo-theme-icarus/2016/07/08/plugin/Gallery/)',
         [defaultValue]: true
     },
     'outdated-browser': {
         [type]: 'boolean',
-        [doc]: 'Enable the Outdated Browser plugin',
+        [doc]: 'Enable the Outdated Browser plugin (http://outdatedbrowser.com/)',
         [defaultValue]: true
     },
     animejs: {
         [type]: 'boolean',
-        [doc]: 'Enable page animations',
+        [doc]: 'Enable page animations (http://animejs.com/)',
         [defaultValue]: true
     },
     mathjax: {
         [type]: 'boolean',
-        [doc]: 'Enable the MathJax plugin',
+        [doc]: 'Enable the MathJax plugin (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/MathJax/)',
+        [defaultValue]: true
+    },
+    'back-to-top': {
+        [type]: 'boolean',
+        [doc]: 'Show the back to top button on mobile devices',
         [defaultValue]: true
     },
     'google-analytics': {

@@ -25,6 +25,8 @@ article:
     read: '读完'
     about: '大约'
     words: '个字'
+plugin:
+    backtotop: '回到顶端'
 search:
     search: '搜索'
     hint: '想要查找什么...'

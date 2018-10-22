@@ -42,7 +42,7 @@ const DEFAULT_WIDGETS = [
         position: 'left',
         links: {
             Hexo: 'https://hexo.io',
-            Github: 'https://github.com/ppoffice'
+            PPOffice: 'https://github.com/ppoffice'
         }
     },
     {
@@ -121,7 +121,7 @@ const LinksSpec = {
 
 module.exports = {
     [type]: 'array',
-    [doc]: 'Sidebar widget settings',
+    [doc]: 'Sidebar widget settings (http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/)',
     [defaultValue]: DEFAULT_WIDGETS,
     '*': {
         [type]: 'object',

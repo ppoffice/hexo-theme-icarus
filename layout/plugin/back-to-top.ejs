@@ -1,0 +1,26 @@
+<% if (plugin !== false) { %>
+<% if (!head) { %>
+<div id="back-to-top" class="is-flex is-flex-center is-hidden-tablet">
+    <i class="material-icons">keyboard_arrow_up</i>
+    <span class="is-size-7">
+        <%= __('plugin.backtotop') %></span>
+</div>
+<script>
+    $(document).ready(function () {
+        var lastScrollTop = 0;
+        $(window).scroll(function (event) {
+            var scrollTop = $(this).scrollTop();
+            if (scrollTop > lastScrollTop || scrollTop === 0) {
+                $('#back-to-top').removeClass('is-active');
+            } else {
+                $('#back-to-top').addClass('is-active');
+            }
+            lastScrollTop = scrollTop;
+        });
+        $('#back-to-top').on('click', function () {
+            $('body, html').animate({ scrollTop: 0 }, 400);
+        });
+    });
+</script>
+<% } %>
+<% } %>

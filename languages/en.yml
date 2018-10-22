@@ -25,6 +25,8 @@ article:
     read: 'read'
     about: 'About'
     words: 'words'
+plugin:
+    backtotop: 'Back to Top'
 search:
     search: 'Search'
     hint: 'Type something...'
