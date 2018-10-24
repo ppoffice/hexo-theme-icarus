@@ -6,13 +6,11 @@ categories:
 toc: true
 ---
 Add the highlighted line to the front-matter of your post Markdown file:
-```diff
+{% codeblock lang:diff _config.yml %}
 title: Table of Contents Example
 date: 2015-03-10 22:46:00
-banner: /hexo-theme-hueman/gallery/little-girl.jpg
 + toc: true
-```
-And that's it!
+{% endcodeblock %} And that's it!
 <!-- more -->
 
 # First level title

@@ -1,8 +1,8 @@
 title: Share.js Share Plugin
 date: 2018-01-01
 categories:
-- Configuration
-- Share Plugins
+- Plugins
+- Share
 share:
     type: sharejs
 ---

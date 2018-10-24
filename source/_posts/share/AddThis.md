@@ -1,8 +1,8 @@
 title: AddThis Share Plugin
 date: 2018-01-01
 categories:
-- Configuration
-- Share Plugins
+- Plugins
+- Share
 share:
     type: addthis
     install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab6fa5759854232

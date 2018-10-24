@@ -1,8 +1,8 @@
 title: Insight Search Plugin
 date: 2018-01-01
 categories:
-- Configuration
-- Search Plugins
+- Plugins
+- Search
 tags:
 - Getting Started
 search:

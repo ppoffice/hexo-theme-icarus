@@ -1,8 +1,8 @@
 title: Gallery Plugin
 date: 2016-07-08 00:00:00
 categories:
-- Configuration
-- Other Plugins
+- Plugins
+- General
 ---
 
 {% quote %}

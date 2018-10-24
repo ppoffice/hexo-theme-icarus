@@ -203,7 +203,7 @@ Inserts an image with specified size.
 {% img [class names] /path/to/image [width] [height] [title text [alt text]] %}
 ```
 
-{% img /gallery/forest.jpg 100% 100% '"Forest path" "Forest path"' %}
+{% img /gallery/desert.jpg 100% 100% '"Desert" "Desert"' %}
 
 ## Link
 

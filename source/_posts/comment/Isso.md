@@ -1,8 +1,8 @@
 title: Isso Comment Plugin
 date: 2017-01-01
 categories:
-- Configuration
-- Comment Plugins
+- Plugins
+- Comment
 ---
 
 [Installation instructions](https://posativ.org/isso/docs/quickstart/#integration)

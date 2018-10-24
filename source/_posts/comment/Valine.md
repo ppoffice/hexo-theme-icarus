@@ -1,8 +1,8 @@
 title: Valine Comment Plugin
 date: 2017-01-01
 categories:
-- Configuration
-- Comment Plugins
+- Plugins
+- Comment
 comment:
     type: valine
     app_id: QuQK82UpN8gNkXIaKIszbPUY-gzGzoHsz

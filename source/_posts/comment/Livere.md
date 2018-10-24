@@ -1,8 +1,8 @@
 title: LiveRe Comment Plugin
 date: 2017-01-01
 categories:
-- Configuration
-- Comment Plugins
+- Plugins
+- Comment
 comment:
     type: livere
     uid: MTAyMC8zNTExMS8xMTY0Ng==

@@ -1,8 +1,8 @@
 title: Disqus Comment Plugin
 date: 2017-01-01
 categories:
-- Configuration
-- Comment Plugins
+- Plugins
+- Comment
 tags:
 - Getting Started
 comment:

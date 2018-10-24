@@ -1,8 +1,8 @@
 title: Site Analytics Plugin
 date: 2018-01-01
 categories:
-- Configuration
-- Other Plugins
+- Plugins
+- General
 ---
 
 ### Google Analytics

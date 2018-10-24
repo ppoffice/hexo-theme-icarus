@@ -14,7 +14,7 @@ timezone:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://ppoffice.github.io
 root: /hexo-theme-icarus/
-permalink: :year/:month/:day/:title/
+permalink: :category/:post_title/
 permalink_defaults:
 
 # Directory
@@ -84,3 +84,9 @@ deploy:
   type: git
   repository: git@github.com:ppoffice/hexo-theme-icarus.git
   branch: gh-pages
+
+marked:
+  gfm: false
+
+githubEmojis:
+  className: not-gallery-item
