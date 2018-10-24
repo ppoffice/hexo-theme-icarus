@@ -1,62 +1,130 @@
-# Icarus
+<p align="center" class="has-mb-6">
+<img class="not-gallery-item" style="height:48px" src="/hexo-theme-icarus/images/logo.svg">
+<br> A modern, simple, and delicate theme for the static site generator Hexo.
+<br>
+<a href="http://ppoffice.github.io/hexo-theme-icarus/">Preview</a> | 
+<a href="http://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
+<a href="https://github.com/ppoffice/hexo-theme-icarus/archive/master.zip">Download</a>
+</p>
 
-### The blog theme you may fall in love with, coming to Hexo. [Preview](http://ppoffice.github.io/hexo-theme-icarus/)
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png "")
+![Icarus](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png "Icarus Preview")
 
-#### [View Documentation](https://github.com/ppoffice/hexo-theme-icarus/wiki)
-:star: It is strongly recommended that you read the docs before using Icarus.
+### :cd: Installation
 
-## Features
+Download & extract or `git clone` Icarus from GitHub to your blog's theme folder, and that's it!
 
-### Profile Sidebar
+```shell
+git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
+```
 
-A nice place to show yourself. You can add your own information in your site's `_config.yml`
+Once started, Icarus will remind you of any missing dependencies and configuration files.
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/profile.png "")
+### :gift: Features
 
-### Self-hosted Insite Search Engine
-With the help of [Insight Search](https://github.com/ppoffice/hexo-theme-icarus/wiki/Search#insight-search), you can search anything inside your site without any third-party plugin.
+**Extensive Plugin Support**
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/insight-search.png "")
+Icarus includes plentiful search, comment, sharing and other plugins out of the box. You can choose any of them to enrich your
+blog experience, or build your own plugin easily referring to the existing Icarus plugins.
 
-### Custom Comment Services
-Icarus supports several comment services, give you better choices to communicate with your readers.
+Comment plugins
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/custom-comments.png "")
+- [Changyan](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/changyan-comment-plugin/)
+- [Disqus](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/disqus-comment-plugin/)
+- [Facebook](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/facebook-comment-plugin/)
+- [Gitment](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/gitment-comment-plugin/)
+- [Isso](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/isso-comment-plugin/)
+- [LiveRe](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/livere-comment-plugin/)
+- [Valine](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/valine-comment-plugin/)
 
-### Post Banner & Thumbnail
+Search plugins
 
-Thanks to [atika](https://github.com/atika), you can now [add thumbnails or banners](https://github.com/ppoffice/hexo-theme-icarus/wiki/Theme#thumbnail) to every post to create better reading experience.
+- [Insight Search](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Search/insight-search-plugin/)
+- [Google Custom Search Engine](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Search/google-cse-plugin/)
+- [Baidu Site Search](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Search/baidu-search-plugin/)
 
-### Responsive Layout
+Share plugins
 
-Icarus knows on what screen size you are browsering the website, and reorganize the layout to fit your device.
+- [AddThis](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/addthis-share-plugin/)
+- [AddToAny](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/addtoany-share-plugin/)
+- [Baidu Share](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/baidu-share-plugin/)
+- [Share.js](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/sharejs-share-plugin/)
+- [ShareThis](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/sharethis-share-plugin/)
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.jpg "")
+Other plugins
 
-### Custom Categories & Tags Pages
+- [Hexo Tag Plugin](http://ppoffice.github.io/hexo-theme-icarus/Configuration/Posts/hexo-built-in-tag-helpers/)
+- [lightGallery & Justified Gallery](http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/)
+- [MathJax](http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/mathjax-plugin/)
+- [Site Analytics](http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/)
 
-Get your categories and tags listed in single pages to make your blog more methodic.
+**Rich Code Highlight Theme Choices**
 
-### lightgallery
+Icarus directly import code highlight themes from the [highlight.js](https://highlightjs.org/) package, and makes more than 
+70 highlight themes available to you.
 
-Icarus uses [lightgallery.js](https://sachinchoolur.github.io/lightgallery.js/) to showcase your photos. Just enable it in your configuration, and that's all!
+<div class="columns is-multiline is-mobile">
+<div class="column is-half-mobile"><img src="http://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/atom-one-light.png"></div>
+<div class="column is-half-mobile"><img src="http://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/monokai.png"></div>
+<div class="column is-half-mobile"><img src="http://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/androidstudio.png"></div>
+</div>
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/lightgallery.jpg "")
+**Elastic Theme Configuration**
 
-### Justified Gallery
+In addition to the minimalistic and easy-to-understand configuration design, Icarus allows you to set configurations on a 
+per-page basis with the ability to merge and override partial configurations.
 
-You can also use [justifiedgallery.js](http://miromannino.github.io/Justified-Gallery/) to display a photo grid within your posts. Just enable it in your configuration, and place your photos in a div with the class .justified-gallery
+<div>
+<table>
+    <tr>
+        <th>_config.yml</th>
+        <th>post.md</th>
+    </tr>
+    <tr>
+        <td>
+            <pre>menu:
+    Archives: /archives
+    Categories: /categories
+    Tags: /tags
+    About: /about</pre>
+        </td>
+        <td>
+            <pre>title: A Simple Post
+menu:
+    Go Home: /index.html
+---
+# Here is some simple markdown.</pre>
+        </td>
+    </tr>
+    <tr>
+        <td><img height="40" src="http://ppoffice.github.io/hexo-theme-icarus/gallery/navbar/main-config.png"></td>
+        <td><img height="40" src="http://ppoffice.github.io/hexo-theme-icarus/gallery/navbar/post-config.png"></td>
+    </tr>
+</table>
+</div>
 
-### Sidebar
+**Responsive Layout**
 
-Icarus provides 6 built-in widgets:
+No matter what modern browsering device your audiences are using, they can always get the best experience because Icarus's responsive
+layout across multiple viewpoints.
 
-- recent_posts
-- category
-- archives
-- tag
-- tagcloud
-- links
+![Responsive Layout](http://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.png)
 
-All of them are enabled by default. You can edit them in `widget` setting.
+### :hammer: Development
+
+This project is built with
+
+- Hexo 3.6.0
+- Ejs
+- Stylus
+
+Please refer to the documentation for Icarus implementation details.
+
+### :tada: Contribute
+
+:electric_plug: Write a plugin |
+:triangular_flag_on_post: <a href="https://github.com/ppoffice/hexo-theme-icarus/issues/new">Report a bug</a> |
+:earth_asia: <a href="https://github.com/ppoffice/hexo-theme-icarus/tree/master/languages">Add a translation</a>
+
+### :memo: License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/ppoffice/hexo-theme-icarus/blob/master/LICENSE) file for details.
