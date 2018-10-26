@@ -1,16 +1,14 @@
 <p align="center" class="has-mb-6">
-<img class="not-gallery-item" style="height:48px" src="http://ppoffice.github.io/hexo-theme-icarus/images/logo.svg">
+<img class="not-gallery-item" height="48" src="http://ppoffice.github.io/hexo-theme-icarus/images/logo.svg">
 <br> A simple, delicate, and modern theme for the static site generator Hexo.
 <br>
 <a href="http://ppoffice.github.io/hexo-theme-icarus/">Preview</a> | 
 <a href="http://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
 <a href="https://github.com/ppoffice/hexo-theme-icarus/archive/master.zip">Download</a>
 <br>
-
-[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/ppoffice/hexo-theme-icarus)
 </p>
 
-![Icarus](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png "Icarus Preview")
+![Icarus](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png?1 "Icarus Preview")
 
 ### :cd: Installation
 
@@ -65,11 +63,13 @@ Other plugins
 Icarus directly import code highlight themes from the [highlight.js](https://highlightjs.org/) package, and makes more than 
 70 highlight themes available to you.
 
-<div class="columns is-multiline is-mobile">
-<div class="column is-half-mobile"><img src="http://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/atom-one-light.png"></div>
-<div class="column is-half-mobile"><img src="http://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/monokai.png"></div>
-<div class="column is-half-mobile"><img src="http://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/androidstudio.png"></div>
-</div>
+<table>
+    <tr>
+        <td><img src="http://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/atom-one-light.png"></td>
+        <td><img src="http://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/monokai.png"></td>
+        <td><img src="http://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/androidstudio.png"></td>
+    </tr>
+</table>
 
 **Elastic Theme Configuration**
 
