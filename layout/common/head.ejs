@@ -1,50 +1,35 @@
-<!DOCTYPE html>
-<html<%= config.language ? " lang=" + config.language.substring(0, 2) : ""%>>
-<head>
-    <meta charset="utf-8">
-    <%
-        function capitalize (str) { return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase() }
-        var title = page.title;
-        if (is_archive()) {
-            title = capitalize(__('index.archive'));
-            if (is_month()) {
-                title += ': ' + page.year + '/' + page.month;
-            } else if (is_year()) {
-                title += ': ' + page.year;
-            }
-        } else if (is_category()) {
-            title = capitalize(__('index.category')) + ': ' + page.category;
-        } else if (is_tag()) {
-            title = capitalize(__('index.tag')) + ': ' + page.tag;
-        }
-    %>
-    <title><% if (title) { %><%= title %> | <% } %><%= config.title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta charset="utf-8">
+<title><%= page_title() %></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<%- meta(page) %>
+
+<% if (has_config('open_graph')) { %>
     <%- open_graph({
-        image:          thumbnail(page),
-        fb_app_id:      theme.miscellaneous.open_graph.fb_app_id,
-        fb_admins:      theme.miscellaneous.open_graph.fb_admins,
-        twitter_id:     theme.miscellaneous.open_graph.twitter_id,
-        google_plus:    theme.miscellaneous.open_graph.google_plus,
+        twitter_id: get_config('open_graph.twitter_id'),
+        twitter_site: get_config('open_graph.twitter_site'),
+        google_plus: get_config('open_graph.google_plus'),
+        fb_admins: get_config('open_graph.fb_admins'),
+        fb_app_id: get_config('open_graph.fb_app_id')
     }) %>
-    <%- meta(page) %>
+<% } %>
 
-    <% if (theme.customize && theme.customize.social_links && theme.customize.social_links.rss) { %>
-        <link rel="alternate" href="<%- theme.customize.social_links.rss %>" title="<%= config.title %>" type="application/atom+xml" />
+<% if (has_config('rss')) { %>
+<link rel="alternative" href="<%- get_config('rss') %>" title="<%= get_config('title') %>" type="application/atom+xml">
+<% } %>
+
+<% if (has_config('favicon')) { %>
+<link rel="icon" href="<%- url_for(get_config('favicon')) %>">
+<% } %>
+
+<%- css(cdn('bulma', '0.7.2', 'css/bulma.css')) %>
+<%- css(iconcdn()) %>
+<%- css(iconcdn('material')) %>
+<%- css(fontcdn('Ubuntu:400,600|Source+Code+Pro')) %>
+<%- css(cdn('highlight.js', '9.12.0', 'styles/' + get_config('article.highlight') + '.min.css')) %>
+<%- css('css/style') %>
+
+<% if (has_config('plugins')) { %>
+    <% for (let plugin in get_config('plugins')) { %>
+    <%- partial('plugin/' + plugin, { head: true, plugin: get_config('plugins')[plugin] }) %>
     <% } %>
-
-    <% if (theme.customize.favicon) { %>
-        <link rel="icon" href="<%- url_for(theme.customize.favicon) %>" />
-    <% } %>
-
-    <%- css('libs/font-awesome5/css/fontawesome.min') %>
-    <%- css('libs/font-awesome5/css/fa-brands.min') %>
-    <%- css('libs/font-awesome5/css/fa-solid.min') %>
-    <%- css('libs/open-sans/styles') %>
-    <%- css('libs/source-code-pro/styles') %>
-
-    <%- css('css/style') %>
-
-    <%- js('libs/jquery/2.1.3/jquery.min') %>
-    <%- partial('plugin/scripts', { isHead: true }) %>
-</head>
+<% } %>

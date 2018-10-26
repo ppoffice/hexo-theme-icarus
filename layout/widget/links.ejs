@@ -1,14 +1,26 @@
-<% if (site.posts.length) { %>
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title"><%= __('widget.links') %></h3>
-        <div class="widget">
-            <ul>
-                <% for (var i in theme.miscellaneous.links) { %>
-                    <li>
-                        <a href="<%- theme.miscellaneous.links[i] %>"><%= i %></a>
-                    </li>
-                <% } %>
-            </ul>
+<% const links = get_config_from_obj(widget, 'links'); %>
+<% if (links !== null) { %>
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            <%= __('widget.links') %>
+        </h3>
+        <ul class="menu-list">
+        <% for (let i in links) { %>
+            <li>
+                <a class="level" href="<%- links[i] %>" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item"><%= i %></span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag"><%- links[i] %></span>
+                    </span>
+                </a>
+            </li>
+        <% } %>
+        </ul>
         </div>
     </div>
+</div>
 <% } %>

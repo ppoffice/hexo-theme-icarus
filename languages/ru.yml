@@ -1,33 +1,33 @@
-index:
-    home: 'Главная'
-    search: 'Поиск'
-    archive: 'архив'
-    category: 'категории'
-    uncategorized: 'без категории'
-    tag: 'тег'
-nav:
-    next: 'Далее'
+common:
+    archive:
+        one: 'архив'
+        other: 'архивы'
+    category:
+        one: 'категории'
+        other: 'категории'
+    tag:
+        one: 'тег'
+        other: 'теги'
+    post:
+        one: 'пост'
+        other: 'посты'
     prev: 'Назад'
-    older: 'Старые'
-    newer: 'Новые'
+    next: 'Далее'
 widget:
+    follow: 'Подписаться'
     recents: 'недавние'
-    archives: 'архивы'
-    categories: 'категории'
     links: 'ссылки'
-    tags: 'теги'
     tag_cloud: 'облако тегов'
+    catalogue: 'Каталог'
 article:
     more: 'Читать дальше'
     comments: 'Комментарии'
-    share: 'Поделиться'
-    catalogue: 'Каталог'
-profile:
-    follow: 'Подписаться'
-    post: 'пост'
-    tag: 'тег'
-    posts: 'посты'
-    tags: 'теги'
+    read: 'read'
+    about: 'About'
+    words: 'words'
+search:
+    search: 'Search'
+    hint: 'Введите что-нибудь...'
 insight:
     hint: 'Введите что-нибудь...'
     posts: 'посты'

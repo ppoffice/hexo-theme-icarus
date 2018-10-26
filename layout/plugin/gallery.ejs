@@ -1,0 +1,21 @@
+<% if (plugin !== false) { %>
+    <% if (head) { %>
+    <%- css(cdn('lightgallery', '1.6.8', 'css/lightgallery.min.css')) %>
+    <%- css(cdn('justifiedGallery', '3.7.0', 'css/justifiedGallery.min.css')) %>
+    <% } else { %>
+    <%- js(cdn('lightgallery', '1.6.8', 'js/lightgallery-all.min.js')) %>
+    <%- js(cdn('justifiedGallery', '3.7.0', 'js/jquery.justifiedGallery.min.js')) %>
+    <script>
+        (function ($) {
+            $(document).ready(function () {
+                if (typeof($.fn.lightGallery) === 'function') {
+                    $('.article').lightGallery({ selector: '.gallery-item' });
+                }
+                if (typeof($.fn.justifiedGallery) === 'function') {
+                    $('.justified-gallery').justifiedGallery();
+                }
+            });
+        })(jQuery);
+    </script>
+    <% } %>
+<% } %>
