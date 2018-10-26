@@ -4,7 +4,7 @@ thumbnail: /gallery/desert.jpg
 tags:
 - Getting Started
 ---
-Icarus is a modern, simple, and delicate theme for the static site generator Hexo. Its versatile layout configuration allows you to set up a single or multiple-column (up to three column) blog easily. Additionally, it offers plentiful [plugins](/hexo-theme-icarus/categories/Plugins/) and pluggable [widgets](/hexo-theme-icarus/categories/Widgets/) so that you can enable the features you want in no time. And with the all-new API designing, Icarus makes the development of this theme painless for developers and users.
+A simple, delicate, and modern theme for the static site generator Hexo. Its versatile layout configuration allows you to set up a single or multiple-column (up to three column) blog easily. Additionally, it offers plentiful [plugins](/hexo-theme-icarus/categories/Plugins/) and pluggable [widgets](/hexo-theme-icarus/categories/Widgets/) so that you can enable the features you want in no time. And with the all-new API designing, Icarus makes the development of this theme painless for developers and users.
 
 <!-- more -->
 

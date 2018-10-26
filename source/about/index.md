@@ -1,8 +1,9 @@
 title:
+toc: true
 ---
 <p align="center" class="has-mb-6">
 <img class="not-gallery-item" style="height:48px" src="/hexo-theme-icarus/images/logo.svg">
-<br> A modern, simple, and delicate theme for the static site generator Hexo.
+<br> A simple, delicate, and modern theme for the static site generator Hexo.
 </p>
 <p class="is-size-6 has-text-centered">
 <a href="http://ppoffice.github.io/hexo-theme-icarus/">Preview</a> | 

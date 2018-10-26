@@ -36,10 +36,12 @@ Icarus offers a way to showcase yourself using the profile sidebar widget. To us
         gravatar: # your gravatar email
         follow_link: # path or url to any page you want
         social_links: # add links to your social network here
-{% endcodeblock%}
+{% endcodeblock %}
 <!-- more -->
 There are two things that you should note:
+
 - If you want to [Gravatar](https://en.gravatar.com/), fill in your email in the `gravatar` field. Otherwise, leave it blank or it will override the avatar setting.
+
 - The `social_links` field accepts an array of links which are either shown as text link or icon link:
     - Text link
         ```yml

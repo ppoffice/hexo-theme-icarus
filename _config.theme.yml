@@ -1,0 +1,147 @@
+# Version of the Icarus theme that is currently used
+version: 2.0.0
+# Path or URL to the website's icon
+favicon: /images/favicon.svg
+# Path or URL to RSS atom.xml
+rss: 
+# Path or URL to the website's logo to be shown on the left of the navigation bar or footer
+logo: /images/logo.svg
+# Open Graph metadata (https://hexo.io/docs/helpers.html#open-graph)
+open_graph:
+    # Facebook App ID
+    fb_app_id: 
+    # Facebook Admin ID
+    fb_admins: 
+    # Twitter ID
+    twitter_id: 
+    # Twitter site
+    twitter_site: 
+    # Google+ profile link
+    google_plus: 
+# Navigation bar link settings
+navbar:
+    # Navigation bar menu links
+    menu:
+        Home: /
+        Archives: /archives
+        Categories: /categories
+        Tags: /tags
+        About: /about
+    # Navigation bar links to be shown on the right
+    links:
+        Download on GitHub:
+            icon: fab fa-github
+            url: 'http://github.com/ppoffice/hexo-theme-icarus'
+# Footer section link settings
+footer:
+    # Links to be shown on the right of the footer section
+    links:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: 'https://creativecommons.org/'
+        Attribution 4.0 International:
+            icon: fab fa-creative-commons-by
+            url: 'https://creativecommons.org/licenses/by/4.0/'
+        Download on GitHub:
+            icon: fab fa-github
+            url: 'http://github.com/ppoffice/hexo-theme-icarus'
+# Article display settings
+article:
+    # Code highlight theme (https://github.com/highlightjs/highlight.js/tree/master/src/styles)
+    highlight: atom-one-light
+    # Whether to show article thumbnail images
+    thumbnail: true
+    # Whether to show estimate article reading time
+    readtime: true
+# Search plugin settings (http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Search-Plugins)
+search:
+    # Name of the search plugin
+    type: insight
+# Comment plugin settings (http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Comment-Plugins)
+comment:
+    # Name of the comment plugin
+    type: disqus
+    shortname: hexo-theme-icarus
+# Share plugin settings (http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Share-Plugins)
+share:
+    # Share plugin name
+    type: sharethis
+    install_url: //platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&product=inline-share-buttons
+# Sidebar widget settings
+widgets:
+    -
+        type: profile
+        position: left
+        author: PPOffice
+        author_title: Web Developer
+        location: Earth, Solar System
+        avatar: 
+        gravatar: 
+        follow_link: 'http://github.com/ppoffice'
+        social_links:
+            Github:
+                icon: fab fa-github
+                url: 'http://github.com/ppoffice'
+            Facebook:
+                icon: fab fa-facebook
+                url: 'http://facebook.com'
+            Twitter:
+                icon: fab fa-twitter
+                url: 'http://twitter.com'
+            Dribbble:
+                icon: fab fa-dribbble
+                url: 'http://dribbble.com'
+            RSS:
+                icon: fas fa-rss
+                url: /
+    -
+        type: toc
+        position: left
+    -
+        type: links
+        position: left
+        links:
+            Hexo: 'https://hexo.io'
+            Bulma: 'https://bulma.io'
+    -
+        type: category
+        position: left
+    -
+        type: tagcloud
+        position: left
+    -
+        type: recent_posts
+        position: right
+    -
+        type: archive
+        position: right
+    -
+        type: tag
+        position: right
+# Other plugin settings
+plugins:
+    # Enable the lightGallery and Justified Gallery plugins
+    gallery: true
+    # Enable the Outdated Browser plugin
+    outdated-browser: true
+    # Enable page animations
+    animejs: true
+    # Enable the MathJax plugin
+    mathjax: true
+    back-to-top: true
+    # Google Analytics plugin settings (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/Analytics/#Google-Analytics)
+    google-analytics:
+        # Google Analytics tracking id
+        tracking_id: UA-72437521-5
+    # Baidu Analytics plugin settings (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/Analytics/#Baidu-Analytics)
+    baidu-analytics:
+        # Baidu Analytics tracking id
+        tracking_id: 
+# CDN provider settings
+providers:
+    # Name or URL of the JavaScript and/or stylesheet CDN provider
+    cdn: cdnjs
+    # Name or URL of the webfont CDN provider
+    fontcdn: google
+    # Name or URL of the webfont Icon CDN provider
+    iconcdn: fontawesome
