@@ -17,12 +17,12 @@
             </div>
             <div class="level-end">
             <% if (has_config('footer.links')) { %>
-                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile">
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
                 <% let links = get_config('footer.links'); %>
                 <% for (let name in links) {
                         let link = links[name]; %>
                 <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
+                    <a class="button is-white <%= typeof(link) !== 'string' ? 'is-large' : '' %>" target="_blank" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
                         <% if (typeof(link) === 'string') { %>
                         <%= name %>
                         <% } else { %>

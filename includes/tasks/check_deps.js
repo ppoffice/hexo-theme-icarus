@@ -14,7 +14,6 @@ logger.info('Checking dependencies');
 const missingDeps = [
     'js-yaml',
     'moment',
-    'lodash',
     'cheerio',
     'hexo-util',
     'hexo-log',

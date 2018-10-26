@@ -1,4 +1,4 @@
-<% if (get_config('toc') === true) {
+<% if (get_config('toc') === true && (post.layout === 'page' || post.layout === 'post')) {
 function buildToc(toc) {
     let result = '';
     if (toc.hasOwnProperty('id') && toc.hasOwnProperty('index') && toc.hasOwnProperty('text')) {

@@ -1,10 +1,13 @@
 <p align="center" class="has-mb-6">
 <img class="not-gallery-item" style="height:48px" src="/hexo-theme-icarus/images/logo.svg">
-<br> A modern, simple, and delicate theme for the static site generator Hexo.
+<br> A simple, delicate, and modern theme for the static site generator Hexo.
 <br>
 <a href="http://ppoffice.github.io/hexo-theme-icarus/">Preview</a> | 
 <a href="http://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
 <a href="https://github.com/ppoffice/hexo-theme-icarus/archive/master.zip">Download</a>
+<br>
+
+[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/ppoffice/hexo-theme-icarus)
 </p>
 
 ![Icarus](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png "Icarus Preview")
@@ -113,9 +116,10 @@ layout across multiple viewpoints.
 
 This project is built with
 
-- Hexo 3.6.0
+- Hexo 3.7.1
 - Ejs
 - Stylus
+- Bulma 0.7.2
 
 Please refer to the documentation for Icarus implementation details.
 

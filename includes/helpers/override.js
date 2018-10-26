@@ -7,7 +7,6 @@
 *     <%- _list_tags() %>
 *     <%- _toc() %>
  */
-const _ = require('lodash');
 const cheerio = require('cheerio');
 
 module.exports = function (hexo) {
@@ -94,7 +93,7 @@ module.exports = function (hexo) {
         $(tags.join(',')).each(function () {
             const level = tags.indexOf(this.name);
             const id = $(this).attr('id');
-            const text = _.escape($(this).text());
+            const text = $(this).text();
 
             for (let i = 0; i < levels.length; i++) {
                 if (i > level) {
