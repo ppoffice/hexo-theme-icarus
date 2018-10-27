@@ -48,7 +48,7 @@ Share plugins
 - [AddThis](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/addthis-share-plugin/)
 - [AddToAny](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/addtoany-share-plugin/)
 - [Baidu Share](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/baidu-share-plugin/)
-- [Share.js](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/sharejs-share-plugin/)
+- [Share.js](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/share-js-share-plugin/)
 - [ShareThis](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/sharethis-share-plugin/)
 
 Other plugins

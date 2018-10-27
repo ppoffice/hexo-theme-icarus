@@ -6,7 +6,7 @@ module.exports = {
     cdn: {
         [type]: 'string',
         [doc]: 'Name or URL of the JavaScript and/or stylesheet CDN provider',
-        [defaultValue]: 'cdnjs'
+        [defaultValue]: 'jsdelivr'
     },
     fontcdn: {
         [type]: 'string',
