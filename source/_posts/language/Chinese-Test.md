@@ -4,6 +4,17 @@ categories:
 - Languages
 comments: false
 thumbnail: /gallery/world/china-great-wall.jpg
+providers:
+    cdn: '[cdnjs]https://cdn.staticfile.org/${package}/${version}/${filename}'
+    fontcdn: https://fonts.loli.net/${type}?family=${fontname}
+    iconcdn: fontawesome
+comment:
+    type: valine
+    app_id: QuQK82UpN8gNkXIaKIszbPUY-gzGzoHsz
+    app_key: B0D5cYRcXrwNGnBoQdRoDTqw
+    notify: false
+    verify: false
+    placeholder: Valine Comment
 meta:
 - name="robots";content="noindex, follow"
 ---

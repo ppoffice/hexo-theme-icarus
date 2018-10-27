@@ -41,7 +41,7 @@ Share plugins
 - [AddThis](/hexo-theme-icarus/Plugins/Share/addthis-share-plugin/)
 - [AddToAny](/hexo-theme-icarus/Plugins/Share/addtoany-share-plugin/)
 - [Baidu Share](/hexo-theme-icarus/Plugins/Share/baidu-share-plugin/)
-- [Share.js](/hexo-theme-icarus/Plugins/Share/sharejs-share-plugin/)
+- [Share.js](/hexo-theme-icarus/Plugins/Share/share-js-share-plugin/)
 - [ShareThis](/hexo-theme-icarus/Plugins/Share/sharethis-share-plugin/)
 
 Other plugins
@@ -76,7 +76,7 @@ per-page basis with the ability to merge and override partial configurations.
           Tags: /tags
           About: /about
         {% endcodeblock %}
-        <img class="not-gallery-item" style="height:44px" src="/hexo-theme-Icarus/gallery/navbar/main-config.png">
+        <img class="not-gallery-item" style="height:44px" src="/hexo-theme-icarus/gallery/navbar/main-config.png">
     </div>
     <div class="column is-half is-12-mobile">
         {% codeblock lang:yaml post.md %}
@@ -86,7 +86,7 @@ per-page basis with the ability to merge and override partial configurations.
         ---
         # Here is some simple markdown.
         {% endcodeblock %}
-        <img class="not-gallery-item" style="height:44px" src="/hexo-theme-Icarus/gallery/navbar/post-config.png">
+        <img class="not-gallery-item" style="height:44px" src="/hexo-theme-icarus/gallery/navbar/post-config.png">
     </div>
 </div>
 
