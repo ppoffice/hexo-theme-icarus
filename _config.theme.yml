@@ -137,6 +137,8 @@ plugins:
     baidu-analytics:
         # Baidu Analytics tracking id
         tracking_id: 
+    hotjar:
+        site_id: 1067642
 # CDN provider settings
 providers:
     # Name or URL of the JavaScript and/or stylesheet CDN provider

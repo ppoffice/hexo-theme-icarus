@@ -10,7 +10,7 @@ search:
 ---
 
 {% quote %}
-From Icarus 2, you no longer need to install <code>hexo-generator-json-content</code> to be able to use the insight search.
+From Icarus 2.0.0, you no longer need to install <code>hexo-generator-json-content</code> to use the insight search plugin.
 {% endquote %}
 
 {% codeblock lang:yaml _config.yml %}

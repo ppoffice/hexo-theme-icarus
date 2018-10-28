@@ -24,3 +24,13 @@ plugins:
     baidu-analytics:
         tracking_id: XXXXXX (required)
 {% endcodeblock %}
+
+### Hotjar
+
+[Installation instructions](https://help.hotjar.com/hc/en-us/sections/115002608787-Installation-Guides)
+
+{% codeblock lang:yaml _config.yml %}
+plugins:
+    hotjar:
+        site_id: XXXXXX (required)
+{% endcodeblock %}

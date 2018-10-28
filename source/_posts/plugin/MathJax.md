@@ -32,7 +32,7 @@ For further MathJax configurations, please edit `<theme folder>/layout/plugin/sc
 ```
 
 ### TeX and LaTeX input
-> Please be noted that when you write Tex/LaTeX in Markdown files, you need to use escape characters to prevent certain signs from being processed by Markdown interpreter.
+> **Attention**: Please be noted that when you write Tex/LaTeX in Markdown files, you need to use escape characters to prevent certain signs from being processed by Markdown interpreter.
 
 ##### Input
 ```
@@ -45,7 +45,7 @@ When $a \ne 0$, there are two solutions to \\(ax^2 + bx + c = 0\\) and they are
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
 ### MathML input
-> Attention: please be noted that newline characters will be transformed to `<br>` tag by Markdown interpreter and this will interfere with MathML notation. Please write all MathML inline.
+> **Attention**: please be noted that newline characters may be transformed to `<br>` tag by Markdown interpreter and this will interfere with MathML notation. Please write all MathML inline.
 
 ##### Input
 ```
@@ -58,7 +58,7 @@ When<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>a</mi><mo>&#x2260;</mo>
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>x</mi> <mo>=</mo><mrow><mfrac><mrow><mo>&#x2212;</mo><mi>b</mi><mo>&#x00B1;</mo><msqrt><msup><mi>b</mi><mn>2</mn></msup><mo>&#x2212;</mo><mn>4</mn><mi>a</mi><mi>c</mi></msqrt></mrow><mrow> <mn>2</mn><mi>a</mi> </mrow></mfrac></mrow><mtext>.</mtext></math>
 
 ### AsciiMath input
-> Attention: please be noted that when you write AsciiMath in Markdown files, you need to use escape characters to prevent certain signs from being processed by Markdown interpreter.
+> **Attention**: please be noted that when you write AsciiMath in Markdown files, you need to use escape characters to prevent certain signs from being processed by Markdown interpreter.
 
 ##### Input
 ```

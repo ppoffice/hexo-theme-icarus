@@ -4,7 +4,7 @@ categories:
 - Widgets
 ---
 
-You can show a list of links to other websites in the sidebar by enabling the links widget. Add the following configuration to the `widgets` section in your `_config.yml` file and you are good to go:
+You can show a list of links to other websites in the sidebar by enabling the links widget. Add the following configuration to the `widgets` section in your `_config.yml` file, and you are good to go:
 
 ```yaml
 -

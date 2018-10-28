@@ -1,4 +1,5 @@
 title: Polymorphic Link Settings
+slug: Polymorphic-Link-Settings
 date: 2018-10-22 19:23:57
 thumbnail: /gallery/flower.jpg
 categories:
@@ -13,7 +14,7 @@ footer:
             url: 'http://github.com/ppoffice/hexo-theme-icarus'
 ---
 
-You may already noticed that Icarus allows you to put icon links on the right of navigation bar, the bottom of the profile widget, and the right side of the footer with the following format:
+You may already notice that Icarus allows you to put icon links on the right of the navigation bar, the bottom of the profile widget, and the right side of the footer with the following format:
 
 <!-- more -->
 
@@ -28,12 +29,12 @@ footer:
             url: 'https://creativecommons.org/licenses/by/4.0/'
 ```
 
-In the above link format, you need to specify the name of the link (e.g., Creative Commons), as well as the icon class name (e.g., Font Awesome class name) and link URL. However, Icarus also accept pure text links with link name and URL in the format below:
+In the above link format, you need to specify the name of the link (e.g., Creative Commons), as well as the icon class name (e.g., Font Awesome class name) and link URL. However, Icarus also accept pure text links with a link name and URL in the format below:
 
 ```yml
 footer:
     links:
-        'Creative Commons: 'https://creativecommons.org/''
+        'Creative Commons: 'https://creativecommons.org/'
         'Attribution 4.0 International': 'https://creativecommons.org/licenses/by/4.0/'
 ```
 

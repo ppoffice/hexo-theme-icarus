@@ -120,7 +120,10 @@ Please refer to the documentation for Icarus implementation details.
 
 ### :tada: Contribute
 
+If you feel like to help us build a better Icarus, you can
+
 - :electric_plug: Write a plugin
+- :black_nib: <a href="https://github.com/ppoffice/hexo-theme-icarus/new/site/source/_posts">Submit a tutorial</a>
 - :triangular_flag_on_post: <a href="https://github.com/ppoffice/hexo-theme-icarus/issues/new">Report a bug</a>
 - :earth_asia: <a href="https://github.com/ppoffice/hexo-theme-icarus/tree/master/languages">Add a translation</a>
 
