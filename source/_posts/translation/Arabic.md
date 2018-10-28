@@ -1,9 +1,9 @@
 title: اختبار اللغة العربية
-date: 2016-01-30 10:15:01
+date: 2017-01-30 10:15:01
 categories:
-- Languages
+- Translations
 comments: false
-thumbnail: /gallery/world/arabic-pyramid.jpg
+thumbnail: /gallery/thumbnails/arabic-pyramid.jpg
 meta:
 - name="robots";content="noindex, follow"
 direction: rtl

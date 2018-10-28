@@ -1,7 +1,7 @@
 title: Polymorphic Link Settings
 slug: Polymorphic-Link-Settings
 date: 2018-10-22 19:23:57
-thumbnail: /gallery/flower.jpg
+thumbnail: /gallery/thumbnails/flower.jpg
 categories:
 - Configuration
 - Theme
@@ -34,7 +34,7 @@ In the above link format, you need to specify the name of the link (e.g., Creati
 ```yml
 footer:
     links:
-        'Creative Commons: 'https://creativecommons.org/'
+        'Creative Commons': 'https://creativecommons.org/'
         'Attribution 4.0 International': 'https://creativecommons.org/licenses/by/4.0/'
 ```
 

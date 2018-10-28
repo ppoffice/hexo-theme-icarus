@@ -1,16 +1,27 @@
-title: Table of Contents Example
-date: 2015-03-10 22:46:00
+title: Table of Contents / Catalogue
+date: 2018-10-17 22:46:00
 categories:
 - Configuration
 - Posts
 toc: true
 ---
-Add the highlighted line to the front-matter of your post Markdown file:
-{% codeblock lang:diff _config.yml %}
+To display a Table of Contents / Catalogue (toc) widget on a post page, please first add `toc: true` to the front-matter of your post Markdown file:
+{% codeblock lang:yaml post.md %}
 title: Table of Contents Example
-date: 2015-03-10 22:46:00
-+ toc: true
-{% endcodeblock %} And that's it!
+toc: true
+---
+Post content...
+{% endcodeblock %}
+
+Then, add the `toc` widget to the theme's configuration file:
+
+{% codeblock lang:yaml _config.yml %}
+widgets:
+    -
+        type: toc
+        position: left
+{% endcodeblock %}
+
 <!-- more -->
 
 # First level title

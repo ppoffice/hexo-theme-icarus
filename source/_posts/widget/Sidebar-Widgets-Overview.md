@@ -1,5 +1,5 @@
 title: Sidebar Widgets Overview
-date: 2018-01-31
+date: 2016-02-02
 categories:
 - Widgets
 ---

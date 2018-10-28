@@ -1,5 +1,5 @@
 title: Gallery Plugin
-date: 2016-07-08 00:00:00
+date: 2016-01-31
 categories:
 - Plugins
 - General

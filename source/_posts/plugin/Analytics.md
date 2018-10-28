@@ -1,5 +1,5 @@
 title: Site Analytics Plugin
-date: 2018-01-01
+date: 2016-01-31
 categories:
 - Plugins
 - General

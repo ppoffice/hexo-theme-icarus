@@ -1,10 +1,10 @@
 title: Profile Sidebar Widget
-date: 2018-02-02
+date: 2018-10-20
 categories:
 - Widgets
 tags:
 - Getting Started
-thumbnail: /gallery/deer.jpg
+thumbnail: /gallery/thumbnails/deer.jpg
 widgets:
     -
         type: profile

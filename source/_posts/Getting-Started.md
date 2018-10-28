@@ -1,6 +1,6 @@
 title: Getting Started with Icarus
 date: 2018-10-22 19:23:59
-thumbnail: /gallery/desert.jpg
+thumbnail: /gallery/thumbnails/desert.jpg
 tags:
 - Getting Started
 ---

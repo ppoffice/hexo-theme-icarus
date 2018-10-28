@@ -1,5 +1,5 @@
 title: Adding a Thumbnail to Your Article
-date: 2016-07-08 20:07:55
+date: 2018-10-18
 categories:
 - Configuration
 - Posts
@@ -17,7 +17,7 @@ Then, provide an URL or path to the image file in the front-matter of your post:
 
 {% codeblock post.md lang:yaml %}
 title: Getting Started with Icarus
-thumbnail: /gallery/desert.jpg
+thumbnail: /gallery/thumbnails/desert.jpg
 ---
 Post content...
 {% endcodeblock %}

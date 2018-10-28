@@ -1,5 +1,5 @@
 title: Baidu Search Plugin
-date: 2018-01-01
+date: 2013-01-01
 categories:
 - Plugins
 - Search

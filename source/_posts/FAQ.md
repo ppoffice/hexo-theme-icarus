@@ -1,6 +1,6 @@
 title: FAQ
-date: 2018-02-01 23:59:59
-thumbnail: /gallery/sculpture.jpg
+date: 2018-10-19
+thumbnail: /gallery/thumbnails/sculpture.jpg
 ---
 
 ### How do I put text instead of an image as my site's logo?
@@ -20,7 +20,7 @@ Edit your blog's `_config.yml`(not your theme's), change the following field:
 + language: zh-CN
 ```
 
-You can find available translation under `icarus/languages` folder.
+You can find available translations under `icarus/languages` folder.
 
 ### How to add an excerpt for a post? How to display the "Read more" button?
 Add `<!-- more -->` tag in your post. Post content before this tag will be marked as an excerpt and content after this tag will not show on the index page.
