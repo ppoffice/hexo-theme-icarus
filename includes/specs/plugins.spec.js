@@ -1,4 +1,4 @@
-const { doc, type, defaultValue, required, requires } = require('../common/utils').descriptors;
+const { doc, type, defaultValue } = require('../common/utils').descriptors;
 
 module.exports = {
     [type]: 'object',
@@ -43,6 +43,15 @@ module.exports = {
         tracking_id: {
             [type]: 'string',
             [doc]: 'Baidu Analytics tracking id',
+            [defaultValue]: null
+        }
+    },
+    hotjar: {
+        [type]: ['boolean', 'object'],
+        [doc]: 'Hotjar user feedback plugin (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/Analytics/#Hotjar)',
+        site_id: {
+            [type]: ['string', 'number'],
+            [doc]: 'Hotjar site id',
             [defaultValue]: null
         }
     }

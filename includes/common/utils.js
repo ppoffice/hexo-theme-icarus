@@ -15,6 +15,9 @@ const descriptors = {
 };
 
 const is = (() => ({
+    number(value) {
+        return typeof (value) === 'number';
+    },
     string(value) {
         return typeof (value) === 'string';
     },
