@@ -9,7 +9,7 @@
     bottom: 20px;
     width: 64px;
     padding: 8px 0;
-    transition: 0.4s ease opacity, 0.4s ease transform;
+    transition: 0.4s ease opacity, 0.4s ease width, 0.4s ease transform, 0.4s ease border-radius;
     opacity: 0;
     font-size: 0;
     transform: translateY(120px);
@@ -34,6 +34,7 @@
 <script>
     $(document).ready(function () {
         var $button = $('#back-to-top');
+        var $footer = $('footer.footer');
         var $mainColumn = $('.main .has-order-2');
         var $leftColumn = $('.main .has-order-1');
         var $rightColumn = $('.main .has-order-3');
@@ -57,9 +58,21 @@
                 } else {
                     $button.removeClass('fade-in');
                 }
+                if ($footer.offset().top - $(window).scrollTop() + $button.outerHeight(true) / 2 + 20 < document.documentElement.clientHeight) {
+                    $button.css('bottom', $(window).scrollTop() + document.documentElement.clientHeight - $footer.offset().top - $button.outerHeight(true) / 2);
+                    $button.css('width', '40px');
+                    $button.css('border-radius', '50%');
+                } else {
+                    $button.css('width', '64px');
+                    $button.css('bottom', '20px');
+                    $button.css('border-radius', '4px');
+                }
                 $button.addClass('rise-up');
             } else {
                 // mobile and tablet mode
+                $button.css('width', '64px');
+                $button.css('bottom', '20px');
+                $button.css('border-radius', '4px');
                 $button.addClass('fade-in');
                 $button.css('left', '');
                 var scrollTop = $(window).scrollTop();
