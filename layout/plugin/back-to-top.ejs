@@ -1,17 +1,16 @@
 <% if (plugin !== false) { %>
 <% if (!head) { %>
-<a id="back-to-top" class="card has-text-centered" title="<%= __('plugin.backtotop') %>" href="javascript:;">
+<a id="back-to-top" title="<%= __('plugin.backtotop') %>" href="javascript:;">
     <i class="material-icons">keyboard_arrow_up</i>
 </a>
 <style>
 #back-to-top {
     position: fixed;
-    bottom: 20px;
-    width: 64px;
     padding: 8px 0;
     transition: 0.4s ease opacity, 0.4s ease width, 0.4s ease transform, 0.4s ease border-radius;
     opacity: 0;
     font-size: 0;
+    outline: none;
     transform: translateY(120px);
 }
 #back-to-top.fade-in {
@@ -20,79 +19,7 @@
 #back-to-top.rise-up {
     transform: translateY(0);
 }
-@media screen and (max-width: 1087px) {
-    #back-to-top {
-        right: 1rem;
-    }
-}
-@media screen and (max-width: 768px) {
-    #back-to-top {
-        right: .75rem;
-    }
-}
 </style>
-<script>
-    $(document).ready(function () {
-        var $button = $('#back-to-top');
-        var $footer = $('footer.footer');
-        var $mainColumn = $('.main .has-order-2');
-        var $leftColumn = $('.main .has-order-1');
-        var $rightColumn = $('.main .has-order-3');
-        var lastScrollTop = 0;
-
-        function update() {
-            // desktop mode or tablet mode with only right sidebar enabled
-            if (window.innerWidth > 1077 || (window.innerWidth > 768 && $leftColumn.length === 0 && $rightColumn.length === 1)) {
-                var padding = ($mainColumn.outerWidth() - $mainColumn.width()) / 2;
-                var left = $mainColumn.offset().left + $mainColumn.outerWidth() + padding;
-                left = Math.min(left, document.documentElement.clientWidth - $button.outerWidth(true) - padding);
-                $button.css('left', left);
-                var minScrollTop = 0;
-                if ($rightColumn.length > 0) {
-                    minScrollTop = Math.max.apply(null, $rightColumn.find('.widget').map(function () {
-                        return $(this).offset().top + $(this).outerHeight(true);
-                    }));
-                }
-                if ($(window).scrollTop() + $(window).height() >= minScrollTop + padding + $button.outerHeight(true)) {
-                    $button.addClass('fade-in');
-                } else {
-                    $button.removeClass('fade-in');
-                }
-                if ($footer.offset().top - $(window).scrollTop() + $button.outerHeight(true) / 2 + 20 < document.documentElement.clientHeight) {
-                    $button.css('bottom', $(window).scrollTop() + document.documentElement.clientHeight - $footer.offset().top - $button.outerHeight(true) / 2);
-                    $button.css('width', '40px');
-                    $button.css('border-radius', '50%');
-                } else {
-                    $button.css('width', '64px');
-                    $button.css('bottom', '20px');
-                    $button.css('border-radius', '4px');
-                }
-                $button.addClass('rise-up');
-            } else {
-                // mobile and tablet mode
-                $button.css('width', '64px');
-                $button.css('bottom', '20px');
-                $button.css('border-radius', '4px');
-                $button.addClass('fade-in');
-                $button.css('left', '');
-                var scrollTop = $(window).scrollTop();
-                if (scrollTop > lastScrollTop || scrollTop === 0) {
-                    $('#back-to-top').removeClass('rise-up');
-                } else {
-                    $('#back-to-top').addClass('rise-up');
-                }
-                lastScrollTop = scrollTop;
-            }
-        }
-
-        update();
-        $(window).resize(update);
-        $(window).scroll(update);
-
-        $('#back-to-top').on('click', function () {
-            $('body, html').animate({ scrollTop: 0 }, 400);
-        });
-    });
-</script>
+<%- js('js/back-to-top') %>
 <% } %>
 <% } %>

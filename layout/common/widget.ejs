@@ -14,7 +14,10 @@
     }
     return '';
 } %>
-<div class="column <%= position === 'left' ? 'has-order-1' : 'has-order-3' %> <%= side_column_class() %> <%= visibility_class() %>">
+<% function order_class() {
+    return position === 'left' ? 'has-order-1' : 'has-order-3';
+} %>
+<div class="column <%= side_column_class() %> <%= visibility_class() %> <%= order_class() %> column-<%= position %>">
     <% get_widgets(position).forEach(widget => {%>
         <%- partial('widget/' + widget.type, { widget, post: page }) %>
     <% }) %>

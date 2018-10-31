@@ -14,9 +14,9 @@
     $(document).ready(function () {
         $('body').css('opacity', 1);
         if (!isIE()) {
-            ['.main > .column:first-child .card',
-            '.main > .column:nth-child(2) .card',
-            '.main > .column:last-child .card'].map(function(target) {
+            ['.column-main > .card',
+             '.column-left > .card',
+             '.column-right > .card'].map(function(target) {
                 anime({
                     targets: target,
                     scale: [0.8, 1],
@@ -28,7 +28,7 @@
                     }
                 })
             });
-    
+
             anime({
                 targets: '.navbar-main',
                 translateY: [-100, 0],
