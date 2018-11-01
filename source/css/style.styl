@@ -26,7 +26,15 @@ body
 
 @media screen and (max-width: 768px)
     .section
-        padding: 1.5rem 1rem;
+        padding: 1.5rem 1rem
+
+.column-main,
+.column-left,
+.column-right
+    align-self: flex-start
+    &.is-sticky
+        position: sticky
+        top: .75rem
 
 .card
     overflow: hidden

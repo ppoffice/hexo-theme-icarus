@@ -54,5 +54,10 @@ module.exports = {
             [doc]: 'Hotjar site id',
             [defaultValue]: null
         }
+    },
+    progressbar: {
+        [type]: 'boolean',
+        [doc]: 'Show a loading progress bar at top of the page',
+        [defaultValue]: true
     }
 };

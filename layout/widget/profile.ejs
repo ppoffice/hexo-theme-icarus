@@ -35,7 +35,7 @@
             </div>
         </nav>
         <nav class="level is-mobile">
-            <div class="level-item has-text-centered">
+            <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
                         <%= _p('common.post', post_count()) %>
@@ -45,7 +45,7 @@
                     </p>
                 </div>
             </div>
-            <div class="level-item has-text-centered">
+            <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
                         <%= _p('common.category', category_count()) %>
@@ -55,7 +55,7 @@
                     </p>
                 </div>
             </div>
-            <div class="level-item has-text-centered">
+            <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
                         <%= _p('common.tag', tag_count()) %>
@@ -75,7 +75,7 @@
         <div class="level is-mobile">
             <% for (let name in socialLinks) {
                     let link = socialLinks[name]; %>
-            <a class="level-item button is-white" target="_blank"
+            <a class="level-item button is-white is-marginless" target="_blank"
                 title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
                 <% if (typeof(link) === 'string') { %>
                 <%= name %>
