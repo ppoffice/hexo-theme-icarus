@@ -76,7 +76,7 @@
         <% if (post.prev){ %>
         <div class="level-start">
             <a class="level level-item has-link-grey <%= !post.prev ? 'is-hidden-mobile' : '' %> article-nav-prev" href="<%- url_for(post.prev.path) %>">
-                <i class="level-item material-icons">keyboard_arrow_left</i>
+                <i class="level-item fas fa-chevron-left"></i>
                 <span class="level-item"><%= post.prev.title %></span>
             </a>
         </div>
@@ -85,7 +85,7 @@
         <div class="level-end">
             <a class="level level-item has-link-grey <%= !post.next ? 'is-hidden-mobile' : '' %> article-nav-next" href="<%- url_for(post.next.path) %>">
                 <span class="level-item"><%= post.next.title %></span>
-                <i class="level-item material-icons">keyboard_arrow_right</i>
+                <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
         <% } %>
