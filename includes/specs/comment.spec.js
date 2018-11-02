@@ -71,13 +71,13 @@ const LiveReSpec = {
 
 const ValineSpec = {
     app_id: {
-        [type]: 'boolean',
+        [type]: 'string',
         [doc]: 'LeanCloud APP ID',
         [required]: true,
         [requires]: comment => comment.type === 'valine'
     },
     app_key: {
-        [type]: 'boolean',
+        [type]: 'string',
         [doc]: 'LeanCloud APP key',
         [required]: true,
         [requires]: comment => comment.type === 'valine'
@@ -95,7 +95,7 @@ const ValineSpec = {
         [requires]: comment => comment.type === 'valine'
     },
     placeholder: {
-        [type]: 'boolean',
+        [type]: 'string',
         [doc]: 'Placeholder text in the comment box',
         [defaultValue]: 'Say something...',
         [requires]: comment => comment.type === 'valine'
