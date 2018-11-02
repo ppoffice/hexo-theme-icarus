@@ -1,6 +1,6 @@
 <% if (plugin !== false) { %>
     <% if (head) { %>
-    <style>body{opacity: 0}</style>
+    <style>body>.navbar,body>.section,body>.footer{opacity: 0}</style>
     <% } else { %>
     <%- js(cdn('animejs', '2.2.0', 'anime.js')) %>
     <script>
@@ -12,7 +12,7 @@
     }
 
     $(document).ready(function () {
-        $('body').css('opacity', 1);
+        $('body>.navbar,body>.section,body>.footer').css('opacity', 1);
         if (!isIE()) {
             ['.column-main > .card',
              '.column-left > .card',
