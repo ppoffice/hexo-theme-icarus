@@ -3,21 +3,21 @@ version: 2.0.0
 # Path or URL to the website's icon
 favicon: /images/favicon.svg
 # Path or URL to RSS atom.xml
-rss: 
+rss:
 # Path or URL to the website's logo to be shown on the left of the navigation bar or footer
 logo: /images/logo.svg
 # Open Graph metadata (https://hexo.io/docs/helpers.html#open-graph)
 open_graph:
     # Facebook App ID
-    fb_app_id: 
+    fb_app_id:
     # Facebook Admin ID
-    fb_admins: 
+    fb_admins:
     # Twitter ID
-    twitter_id: 
+    twitter_id:
     # Twitter site
-    twitter_site: 
+    twitter_site:
     # Google+ profile link
-    google_plus: 
+    google_plus:
 # Navigation bar link settings
 navbar:
     # Navigation bar menu links
@@ -75,8 +75,8 @@ widgets:
         author: PPOffice
         author_title: Web Developer
         location: Earth, Solar System
-        avatar: 
-        gravatar: 
+        avatar:
+        gravatar:
         follow_link: 'http://github.com/ppoffice'
         social_links:
             Github:
@@ -136,9 +136,10 @@ plugins:
     # Baidu Analytics plugin settings (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/Analytics/#Baidu-Analytics)
     baidu-analytics:
         # Baidu Analytics tracking id
-        tracking_id: 
+        tracking_id:
     hotjar:
         site_id: 1067642
+    progressbar: true
 # CDN provider settings
 providers:
     # Name or URL of the JavaScript and/or stylesheet CDN provider
@@ -147,4 +148,3 @@ providers:
     fontcdn: google
     # Name or URL of the webfont Icon CDN provider
     iconcdn: fontawesome
-    
