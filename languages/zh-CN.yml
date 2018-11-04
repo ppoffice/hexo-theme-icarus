@@ -1,7 +1,7 @@
 common:
     archive:
-        one: '文档'
-        other: '文档'
+        one: '归档'
+        other: '归档'
     category:
         one: '分类'
         other: '分类'
