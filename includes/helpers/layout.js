@@ -7,6 +7,15 @@
 *     <%- column_count() %>
  */
 module.exports = function (hexo) {
+    hexo.extend.helper.register('has_widget', function (type) {
+        const hasWidgets = hexo.extend.helper.get('has_config').bind(this)('widgets');
+        if (!hasWidgets) {
+            return false;
+        }
+        const widgets = hexo.extend.helper.get('get_config').bind(this)('widgets');
+        return widgets.some(widget => widget.hasOwnProperty('type') && widget.type === type);
+    });
+
     hexo.extend.helper.register('get_widgets', function (position) {
         const hasWidgets = hexo.extend.helper.get('has_config').bind(this)('widgets');
         if (!hasWidgets) {

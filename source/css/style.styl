@@ -1,5 +1,10 @@
 family-sans = "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif
 family-mono = "Source Code Pro", monospace, "Microsoft YaHei"
+gap = 64px
+screen-tablet = 769px
+screen-desktop = 1088px
+screen-widescreen = 1280px
+screen-fullhd = 1472px
 
 /* ---------------------------------
  *       Override CSS Framework
@@ -13,20 +18,20 @@ body
 body, button, input, select, textarea
     font-family: family-sans
 
-@media screen and (min-width: 1280px)
+@media screen and (min-width: screen-widescreen)
     .is-1-column .container
     .is-2-column .container
-        max-width: 960px
-        width: 960px
-@media screen and (min-width: 1472px)
+        max-width: screen-desktop - 2 * gap
+        width: screen-desktop - 2 * gap
+@media screen and (min-width: screen-fullhd)
     .is-2-column .container
-        max-width: 1152px
-        width: 1152px
+        max-width: screen-widescreen - 2 * gap
+        width: screen-widescreen - 2 * gap
     .is-1-column .container
-        max-width: 960px
-        width: 960px
+        max-width: screen-desktop - 2 * gap
+        width: screen-desktop - 2 * gap
 
-@media screen and (max-width: 768px)
+@media screen and (max-width: screen-tablet - 1)
     .section
         padding: 1.5rem 1rem
 
@@ -85,7 +90,7 @@ img.thumbnail
         &.is-active
             color: hsl(217, 71%, 53%)
             background-color: transparent
-    @media screen and (max-width: 1087px)
+    @media screen and (max-width: screen-desktop - 1)
         .navbar-menu
             justify-content: center
             box-shadow: none
@@ -170,6 +175,32 @@ img.thumbnail
                 margin-left: 0.75rem
                 margin-right: 0
 
+@media screen and (max-width: screen-tablet - 1)
+    #toc
+        display: none
+        position: fixed
+        margin: 1rem
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: 100
+        max-height: calc(100vh - 2rem)
+        overflow-y: auto
+    #toc-mask
+        display: none
+        position: fixed
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: 99
+        background: rgba(0, 0, 0, 0.7)
+    #toc,
+    #toc-mask
+        &.is-active
+            display: block
+
+
 /* ---------------------------------
  *         Custom modifiers
  * --------------------------------- */
@@ -233,7 +264,7 @@ img.thumbnail
 .has-link-black-ter
     color: hsl(0, 0%, 14%) !important
 
-@media screen and (max-width: 768px)
+@media screen and (max-width: screen-tablet - 1)
     .has-text-centered-mobile
         text-align: center !important
     .is-flex-center-mobile

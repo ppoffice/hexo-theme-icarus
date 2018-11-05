@@ -25,4 +25,21 @@
     }
     adjustNavbar();
     $(window).resize(adjustNavbar);
+
+    var $toc = $('#toc');
+    if ($toc.length > 0) {
+    var $mask = $('<div>');
+        $mask.attr('id', 'toc-mask');
+
+        $('body').append($mask);
+
+        function toggleToc() {
+            $toc.toggleClass('is-active');
+            $mask.toggleClass('is-active');
+        }
+
+        $toc.on('click', toggleToc);
+        $mask.on('click', toggleToc);
+        $('.navbar-main .catalogue').on('click', toggleToc);
+    }
 })(jQuery);
