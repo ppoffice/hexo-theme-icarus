@@ -1,5 +1,5 @@
-<%- js(cdn('jquery', '3.3.1', 'dist/jquery.min.js')) %>
-<%- js(cdn('moment', '2.22.2', 'min/moment-with-locales.min.js')) %>
+<%- _js(cdn('jquery', '3.3.1', 'dist/jquery.min.js')) %>
+<%- _js(cdn('moment', '2.22.2', 'min/moment-with-locales.min.js')) %>
 <script>moment.locale("<%= get_config('language', 'en') %>");</script>
 
 <% if (has_config('plugins')) { %>
@@ -8,4 +8,4 @@
     <% } %>
 <% } %>
 
-<%- js('js/main') %>
+<%- _js('js/main', true) %>

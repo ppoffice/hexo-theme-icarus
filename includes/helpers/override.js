@@ -6,6 +6,8 @@
 *     <%- _list_categories() %>
 *     <%- _list_tags() %>
 *     <%- _toc() %>
+*     <%- _js() %>
+*     <%- _css() %>
  */
 const cheerio = require('cheerio');
 
@@ -120,5 +122,21 @@ module.exports = function (hexo) {
             node.index = levels.slice(0, level + 1).join('.');
         });
         return toc;
+    });
+
+    hexo.extend.helper.register('_js', function (url, defer = false, async = false) {
+        const urlFor = hexo.extend.helper.get('url_for').bind(this);
+        if (!url.endsWith('.js') && !url.includes('?')) {
+            url += '.js';
+        }
+        return `<script src="${urlFor(url)}"${async ? ' async' : ''}${defer ? ' defer' : ''}></script>`;
+    });
+
+    hexo.extend.helper.register('_css', function (url) {
+        const urlFor = hexo.extend.helper.get('url_for').bind(this);
+        if (!url.endsWith('.css') && !url.includes('?')) {
+            url += '.css';
+        }
+        return `<link rel="stylesheet" href="${urlFor(url)}">`;
     });
 }
