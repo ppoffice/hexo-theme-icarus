@@ -6,6 +6,7 @@
     "version": "3.7.1"
   },
   "dependencies": {
+    "clean-css": "^4.2.1",
     "hexo": "^3.7.1",
     "hexo-all-minifier": "^0.5.2",
     "hexo-deployer-git": "^0.3.1",
@@ -18,6 +19,7 @@
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^0.2.10",
     "hexo-renderer-stylus": "^0.3.1",
-    "hexo-server": "^0.2.0"
+    "hexo-server": "^0.2.0",
+    "uglify-es": "^3.3.9"
   }
 }
