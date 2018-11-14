@@ -1,8 +1,7 @@
 <% if (plugin !== false) { %>
     <% if (head) { %>
-    <style>body>.navbar,body>.section,body>.footer{opacity: 0}</style>
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
     <% } else { %>
-    <%- _js(cdn('animejs', '2.2.0', 'anime.js'), true) %>
-    <%- _js('js/animation', true) %>
+    <%- _js('js/animation') %>
     <% } %>
 <% } %>

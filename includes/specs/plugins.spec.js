@@ -3,6 +3,11 @@ const { doc, type, defaultValue } = require('../common/utils').descriptors;
 module.exports = {
     [type]: 'object',
     [doc]: 'Other plugin settings',
+    animejs: {
+        [type]: 'boolean',
+        [doc]: 'Enable page animations',
+        [defaultValue]: true
+    },
     gallery: {
         [type]: 'boolean',
         [doc]: 'Enable the lightGallery and Justified Gallery plugins (http://ppoffice.github.io/hexo-theme-icarus/2016/07/08/plugin/Gallery/)',
@@ -11,11 +16,6 @@ module.exports = {
     'outdated-browser': {
         [type]: 'boolean',
         [doc]: 'Enable the Outdated Browser plugin (http://outdatedbrowser.com/)',
-        [defaultValue]: true
-    },
-    animejs: {
-        [type]: 'boolean',
-        [doc]: 'Enable page animations (http://animejs.com/)',
         [defaultValue]: true
     },
     mathjax: {

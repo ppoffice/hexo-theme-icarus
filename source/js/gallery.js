@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     if (typeof ($.fn.lightGallery) === 'function') {
         $('.article').lightGallery({ selector: '.gallery-item' });
     }
