@@ -11,7 +11,7 @@ function replaceWithBundled(html) {
     const $ = cheerio.load(html, { decodeEntities: false });
     $('script').each(function () {
         const url = $(this).attr('src');
-        if (url && url.startsWith(urlFor('/js')) && url.endsWith('.js')) {
+        if (url && url.startsWith(urlFor('/js')) && url.endsWith('.js') && !url.includes('animation')) {
             $(this).remove();
         }
     });
@@ -29,7 +29,7 @@ function replaceWithBundled(html) {
 hexo.extend.generator.register('bundle.js', function (locals) {
     const folder = path.join(root, 'js');
     const concated = fs.readdirSync(path.join(root, 'js'))
-        .filter(filename => filename.endsWith('.js'))
+        .filter(filename => filename.endsWith('.js') && !filename.includes('animation'))
         .map(filename => fs.readFileSync(path.join(folder, filename)))
         .join('\n');
     const result = UglifyJS.minify(concated);

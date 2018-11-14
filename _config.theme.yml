@@ -120,12 +120,12 @@ widgets:
         position: right
 # Other plugin settings
 plugins:
+    # Enable page animations
+    animejs: true
     # Enable the lightGallery and Justified Gallery plugins
     gallery: true
     # Enable the Outdated Browser plugin
     outdated-browser: true
-    # Enable page animations
-    animejs: true
     # Enable the MathJax plugin
     mathjax: true
     back-to-top: true
