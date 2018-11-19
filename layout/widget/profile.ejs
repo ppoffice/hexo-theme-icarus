@@ -1,8 +1,8 @@
 <% function avatar() {
     const avatar = get_config_from_obj(widget, 'avatar');
-    const gravatar = get_config_from_obj(widget, 'gravatar');
-    if (gravatar !== null) {
-        return gravatar(gravatar, 128);
+    const gravatar_email = get_config_from_obj(widget, 'gravatar');
+    if (gravatar_email !== null) {
+        return gravatar(gravatar_email, 128);
     }
     if (avatar !== null) {
         return url_for(avatar)
