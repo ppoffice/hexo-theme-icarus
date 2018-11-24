@@ -17,12 +17,15 @@
 <% function order_class() {
     return position === 'left' ? 'has-order-1' : 'has-order-3';
 } %>
-<div class="column <%= side_column_class() %> <%= visibility_class() %> <%= order_class() %> column-<%= position %>">
+<% function sticky_class(position) {
+    return get_config('sidebar.' + position + '.sticky', false) ? 'is-sticky' : '';
+} %>
+<div class="column <%= side_column_class() %> <%= visibility_class() %> <%= order_class() %> column-<%= position %> <%= sticky_class(position) %>">
     <% get_widgets(position).forEach(widget => {%>
         <%- partial('widget/' + widget.type, { widget, post: page }) %>
     <% }) %>
     <% if (position === 'left') { %>
-        <div class="card card-transparent is-hidden-widescreen">
+        <div class="column-right-shadow is-hidden-widescreen <%= sticky_class('right') %>">
         <% get_widgets('right').forEach(widget => {%>
             <%- partial('widget/' + widget.type, { widget, post: page }) %>
         <% }) %>

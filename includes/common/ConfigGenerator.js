@@ -55,7 +55,10 @@ function generate(spec, parentConfig = null) {
                     defaults = {};
                 }
                 if (spec[key].hasOwnProperty(doc)) {
-                    defaults['#' + key] = spec[key][doc];
+                    let i = 0;
+                    for (let line of spec[key][doc].split('\n')) {
+                        defaults['#' + key + i++] = line;
+                    }
                 }
                 defaults[key] = value;
             }

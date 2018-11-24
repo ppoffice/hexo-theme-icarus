@@ -10,17 +10,17 @@ module.exports = {
     },
     gallery: {
         [type]: 'boolean',
-        [doc]: 'Enable the lightGallery and Justified Gallery plugins (http://ppoffice.github.io/hexo-theme-icarus/2016/07/08/plugin/Gallery/)',
+        [doc]: 'Enable the lightGallery and Justified Gallery plugins\nhttp://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/',
         [defaultValue]: true
     },
     'outdated-browser': {
         [type]: 'boolean',
-        [doc]: 'Enable the Outdated Browser plugin (http://outdatedbrowser.com/)',
+        [doc]: 'Enable the Outdated Browser plugin\nhttp://outdatedbrowser.com/',
         [defaultValue]: true
     },
     mathjax: {
         [type]: 'boolean',
-        [doc]: 'Enable the MathJax plugin (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/MathJax/)',
+        [doc]: 'Enable the MathJax plugin\nhttp://ppoffice.github.io/hexo-theme-icarus/Plugins/General/mathjax-plugin/',
         [defaultValue]: true
     },
     'back-to-top': {
@@ -30,7 +30,7 @@ module.exports = {
     },
     'google-analytics': {
         [type]: ['boolean', 'object'],
-        [doc]: 'Google Analytics plugin settings (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/Analytics/#Google-Analytics)',
+        [doc]: 'Google Analytics plugin settings\nhttp://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Google-Analytics',
         tracking_id: {
             [type]: 'string',
             [doc]: 'Google Analytics tracking id',
@@ -39,7 +39,7 @@ module.exports = {
     },
     'baidu-analytics': {
         [type]: ['boolean', 'object'],
-        [doc]: 'Baidu Analytics plugin settings (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/Analytics/#Baidu-Analytics)',
+        [doc]: 'Baidu Analytics plugin settings\nhttp://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Baidu-Analytics',
         tracking_id: {
             [type]: 'string',
             [doc]: 'Baidu Analytics tracking id',
@@ -48,7 +48,7 @@ module.exports = {
     },
     hotjar: {
         [type]: ['boolean', 'object'],
-        [doc]: 'Hotjar user feedback plugin (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/Analytics/#Hotjar)',
+        [doc]: 'Hotjar user feedback plugin\nhttp://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Hotjar',
         site_id: {
             [type]: ['string', 'number'],
             [doc]: 'Hotjar site id',

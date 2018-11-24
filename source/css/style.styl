@@ -35,19 +35,25 @@ body, button, input, select, textarea
     .section
         padding: 1.5rem 1rem
 
-.column-main,
-.column-left,
-.column-right
-    align-self: flex-start
-    &.is-sticky
-        position: sticky
-        top: .75rem
+@media screen and (min-width: screen-tablet)
+    .column-main,
+    .column-left,
+    .column-right,
+    .column-right-shadow
+        &.is-sticky
+            align-self: flex-start
+            position: sticky
+            top: .75rem
+    .column-right-shadow
+        &.is-sticky
+            top: 1.5rem
 
 .card
     overflow: hidden
     border-radius: 4px
     box-shadow: 0 4px 10px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.1)
-    & + .card
+    & + .card,
+    & + .column-right-shadow
         margin-top: 1.5rem
     &.card-transparent
         overflow: visible

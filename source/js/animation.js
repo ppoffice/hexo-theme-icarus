@@ -8,7 +8,9 @@
         element.style.opacity = '0';
     });
     document.querySelector('body > .navbar').style.transform = 'translateY(-100px)';
-    ['.column-main > .card', '.column-left > .card', '.column-right > .card'].map(function (selector) {
+    ['.column-main > .card',
+     '.column-left > .card, .column-right-shadow > .card',
+     '.column-right > .card'].map(function (selector) {
         $(selector).forEach(function (element) {
             element.style.transition = '0s';
             element.style.opacity = '0';
@@ -22,7 +24,9 @@
             element.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
         });
         document.querySelector('body > .navbar').style.transform = 'translateY(0)';
-        ['.column-main > .card', '.column-left > .card', '.column-right > .card'].map(function (selector) {
+        ['.column-main > .card',
+         '.column-left > .card, .column-right-shadow > .card',
+         '.column-right > .card'].map(function (selector) {
             var i = 1;
             $(selector).forEach(function (element) {
                 setTimeout(function () {

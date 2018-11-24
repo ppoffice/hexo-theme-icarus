@@ -22,7 +22,7 @@ module.exports = {
     },
     open_graph: {
         [type]: 'object',
-        [doc]: 'Open Graph metadata (https://hexo.io/docs/helpers.html#open-graph)',
+        [doc]: 'Open Graph metadata\nhttps://hexo.io/docs/helpers.html#open-graph',
         fb_app_id: {
             [type]: 'string',
             [doc]: 'Facebook App ID',

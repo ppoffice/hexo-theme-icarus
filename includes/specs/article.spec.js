@@ -5,7 +5,7 @@ module.exports = {
     [doc]: 'Article display settings',
     highlight: {
         [type]: 'string',
-        [doc]: 'Code highlight theme (https://github.com/highlightjs/highlight.js/tree/master/src/styles)',
+        [doc]: 'Code highlight theme\nhttps://github.com/highlightjs/highlight.js/tree/master/src/styles',
         [defaultValue]: 'atom-one-light'
     },
     thumbnail: {

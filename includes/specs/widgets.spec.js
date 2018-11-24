@@ -121,7 +121,7 @@ const LinksSpec = {
 
 module.exports = {
     [type]: 'array',
-    [doc]: 'Sidebar widget settings (http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/)',
+    [doc]: 'Sidebar widget settings\nhttp://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/',
     [defaultValue]: DEFAULT_WIDGETS,
     '*': {
         [type]: 'object',
