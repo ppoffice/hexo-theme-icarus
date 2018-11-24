@@ -6,7 +6,8 @@ favicon: /images/favicon.svg
 rss:
 # Path or URL to the website's logo to be shown on the left of the navigation bar or footer
 logo: /images/logo.svg
-# Open Graph metadata (https://hexo.io/docs/helpers.html#open-graph)
+# Open Graph metadata
+# https://hexo.io/docs/helpers.html#open-graph
 open_graph:
     # Facebook App ID
     fb_app_id:
@@ -47,27 +48,45 @@ footer:
             url: 'http://github.com/ppoffice/hexo-theme-icarus'
 # Article display settings
 article:
-    # Code highlight theme (https://github.com/highlightjs/highlight.js/tree/master/src/styles)
+    # Code highlight theme
+    # https://github.com/highlightjs/highlight.js/tree/master/src/styles
     highlight: atom-one-light
     # Whether to show article thumbnail images
     thumbnail: true
     # Whether to show estimate article reading time
     readtime: true
-# Search plugin settings (http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Search-Plugins)
+# Search plugin settings
+# http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Search-Plugins
 search:
     # Name of the search plugin
     type: insight
-# Comment plugin settings (http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Comment-Plugins)
+# Comment plugin settings
+# http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Comment-Plugins
 comment:
     # Name of the comment plugin
     type: disqus
     shortname: hexo-theme-icarus
-# Share plugin settings (http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Share-Plugins)
+# Share plugin settings
+# http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Share-Plugins
 share:
     # Share plugin name
     type: sharethis
     install_url: //platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&product=inline-share-buttons
+# Sidebar settings.
+# Please be noted that a sidebar is only visible when it has at least one widget
+sidebar:
+    # left sidebar settings
+    left:
+        # Whether the left sidebar is sticky when page scrolls
+        # http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
+        sticky: false
+    # right sidebar settings
+    right:
+        # Whether the right sidebar is sticky when page scrolls
+        # http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
+        sticky: false
 # Sidebar widget settings
+# http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
     -
         type: profile
@@ -123,24 +142,35 @@ plugins:
     # Enable page animations
     animejs: true
     # Enable the lightGallery and Justified Gallery plugins
+    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
     gallery: true
     # Enable the Outdated Browser plugin
+    # http://outdatedbrowser.com/
     outdated-browser: true
     # Enable the MathJax plugin
+    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/mathjax-plugin/
     mathjax: true
+    # Show the back to top button on mobile devices
     back-to-top: true
-    # Google Analytics plugin settings (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/Analytics/#Google-Analytics)
+    # Google Analytics plugin settings
+    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Google-Analytics
     google-analytics:
         # Google Analytics tracking id
         tracking_id: UA-72437521-5
-    # Baidu Analytics plugin settings (http://ppoffice.github.io/hexo-theme-icarus/2018/01/01/plugin/Analytics/#Baidu-Analytics)
+    # Baidu Analytics plugin settings
+    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Baidu-Analytics
     baidu-analytics:
         # Baidu Analytics tracking id
         tracking_id:
+    # Hotjar user feedback plugin
+    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Hotjar
     hotjar:
+        # Hotjar site id
         site_id: 1067642
+    # Show a loading progress bar at top of the page
     progressbar: true
 # CDN provider settings
+# http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
     # Name or URL of the JavaScript and/or stylesheet CDN provider
     cdn: jsdelivr
