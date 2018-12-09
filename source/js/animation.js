@@ -31,7 +31,7 @@
             $(selector).forEach(function (element) {
                 setTimeout(function () {
                     element.style.opacity = '1';
-                    element.style.transform = 'scale(1)';
+                    element.style.transform = '';
                     element.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
                 }, i * 100);
                 i++;
