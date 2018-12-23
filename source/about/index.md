@@ -6,7 +6,7 @@ toc: true
 <br> A simple, delicate, and modern theme for the static site generator Hexo.
 </p>
 <p class="is-size-6 has-text-centered">
-<a href="http://ppoffice.github.io/hexo-theme-icarus/">Preview</a> | 
+<a href="http://ppoffice.github.io/hexo-theme-icarus/">Preview</a> |
 <a href="http://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
 <a href="https://github.com/ppoffice/hexo-theme-icarus/archive/master.zip">Download</a>
 </p>
@@ -44,6 +44,13 @@ Share plugins
 - [Share.js](/hexo-theme-icarus/Plugins/Share/share-js-share-plugin/)
 - [ShareThis](/hexo-theme-icarus/Plugins/Share/sharethis-share-plugin/)
 
+Donation Buttons
+
+- [Alipay](/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Alipay)
+- [Wechat](/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Wechat)
+- [Paypal](/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Paypal)
+- [Patreon](/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Patreon)
+
 Other plugins
 
 - [Hexo Tag Plugin](/hexo-theme-icarus/Configuration/Posts/hexo-built-in-tag-helpers/)
@@ -53,7 +60,7 @@ Other plugins
 
 **Rich Code Highlight Theme Choices**
 
-Icarus directly import code highlight themes from the [highlight.js](https://highlightjs.org/) package, and makes more than 
+Icarus directly import code highlight themes from the [highlight.js](https://highlightjs.org/) package, and makes more than
 70 highlight themes available to you.
 
 <div class="columns is-multiline is-mobile">
@@ -64,7 +71,7 @@ Icarus directly import code highlight themes from the [highlight.js](https://hig
 
 **Elastic Theme Configuration**
 
-In addition to the minimalistic and easy-to-understand configuration design, Icarus allows you to set configurations on a 
+In addition to the minimalistic and easy-to-understand configuration design, Icarus allows you to set configurations on a
 per-page basis with the ability to merge and override partial configurations.
 
 <div class="columns is-multiline">

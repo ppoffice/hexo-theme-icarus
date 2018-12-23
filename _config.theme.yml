@@ -1,5 +1,5 @@
 # Version of the Icarus theme that is currently used
-version: 2.0.0
+version: 2.3.0
 # Path or URL to the website's icon
 favicon: /images/favicon.svg
 # Path or URL to RSS atom.xml
@@ -66,6 +66,31 @@ comment:
     # Name of the comment plugin
     type: disqus
     shortname: hexo-theme-icarus
+# Donation entries
+# http://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
+donate:
+    -
+        # Donation entry name
+        type: alipay
+        # Qrcode image URL
+        qrcode: /gallery/donate/alipay.png
+    -
+        # Donation entry name
+        type: wechat
+        # Qrcode image URL
+        qrcode: /gallery/donate/wechat.jpg
+    -
+        # Donation entry name
+        type: paypal
+        # Paypal business ID or email address
+        business: paypal@paypal.com
+        # Currency code
+        currency_code: USD
+    -
+        # Donation entry name
+        type: patreon
+        # URL to the Patreon page
+        url: https://www.patreon.com/
 # Share plugin settings
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Share-Plugins
 share:
@@ -89,14 +114,23 @@ sidebar:
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
     -
+        # Widget name
         type: profile
+        # Where should the widget be placed, left or right
         position: left
+        # Author name to be shown in the profile widget
         author: PPOffice
+        # Title of the author to be shown in the profile widget
         author_title: Web Developer
+        # Author's current location to be shown in the profile widget
         location: Earth, Solar System
+        # Path or URL to the avatar to be shown in the profile widget
         avatar:
+        # Email address for the Gravatar to be shown in the profile widget
         gravatar:
+        # Path or URL for the follow button
         follow_link: 'http://github.com/ppoffice'
+        # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
                 icon: fab fa-github
@@ -114,28 +148,43 @@ widgets:
                 icon: fas fa-rss
                 url: /
     -
+        # Widget name
         type: toc
+        # Where should the widget be placed, left or right
         position: left
     -
+        # Widget name
         type: links
+        # Where should the widget be placed, left or right
         position: left
+        # Links to be shown in the links widget
         links:
             Hexo: 'https://hexo.io'
             Bulma: 'https://bulma.io'
     -
+        # Widget name
         type: category
+        # Where should the widget be placed, left or right
         position: left
     -
+        # Widget name
         type: tagcloud
+        # Where should the widget be placed, left or right
         position: left
     -
+        # Widget name
         type: recent_posts
+        # Where should the widget be placed, left or right
         position: right
     -
+        # Widget name
         type: archive
+        # Where should the widget be placed, left or right
         position: right
     -
+        # Widget name
         type: tag
+        # Where should the widget be placed, left or right
         position: right
 # Other plugin settings
 plugins:
