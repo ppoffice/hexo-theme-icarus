@@ -32,6 +32,28 @@ const YAML_SCHEMA = new Schema({
     ]
 });
 
+function appendDoc(spec, defaults) {
+    if (defaults === null) {
+        return null;
+    }
+    if (is.array(defaults) && spec.hasOwnProperty('*')) {
+        return defaults.map(value => appendDoc(spec['*'], value));
+    } else if (is.object(defaults)) {
+        const _defaults = {};
+        for (let key in defaults) {
+            if (spec.hasOwnProperty(key) && spec[key].hasOwnProperty(doc)) {
+                let i = 0;
+                for (let line of spec[key][doc].split('\n')) {
+                    _defaults['#' + key + i++] = line;
+                }
+            }
+            _defaults[key] = appendDoc(spec.hasOwnProperty(key) ? spec[key] : {}, defaults[key]);
+        }
+        return _defaults;
+    }
+    return defaults;
+}
+
 function generate(spec, parentConfig = null) {
     if (!is.spec(spec)) {
         return UNDEFINED;
@@ -40,7 +62,7 @@ function generate(spec, parentConfig = null) {
         return UNDEFINED;
     }
     if (spec.hasOwnProperty(defaultValue)) {
-        return spec[defaultValue];
+        return appendDoc(spec, spec[defaultValue]);
     }
     const types = is.array(spec[type]) ? spec[type] : [spec[type]];
     if (types.includes('object')) {
@@ -54,16 +76,10 @@ function generate(spec, parentConfig = null) {
                 if (defaults === UNDEFINED) {
                     defaults = {};
                 }
-                if (spec[key].hasOwnProperty(doc)) {
-                    let i = 0;
-                    for (let line of spec[key][doc].split('\n')) {
-                        defaults['#' + key + i++] = line;
-                    }
-                }
                 defaults[key] = value;
             }
         }
-        return defaults;
+        return appendDoc(spec, defaults);
     } else if (types.includes('array') && spec.hasOwnProperty('*')) {
         return [generate(spec['*'], {})];
     }

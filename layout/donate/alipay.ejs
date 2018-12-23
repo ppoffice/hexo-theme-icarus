@@ -1,0 +1,14 @@
+<% const qrcode = get_config_from_obj(service, 'qrcode');
+    if (qrcode) { %>
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span><%= __('donate.' + type) %></span>
+    <div class="qrcode"><img src="<%= url_for(qrcode) %>" alt="<%= __('donate.' + type) %>"></div>
+</a>
+<% } else { %>
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+<% } %>

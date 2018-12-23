@@ -1,0 +1,13 @@
+<% const url = get_config_from_obj(service, 'url');
+    if (url) { %>
+<a class="button is-danger donate" href="<%= url_for(url) %>" target="_blank">
+    <span class="icon is-small">
+        <i class="fab fa-patreon"></i>
+    </span>
+    <span><%= __('donate.' + type) %></span>
+</a>
+<% } else { %>
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+<% } %>

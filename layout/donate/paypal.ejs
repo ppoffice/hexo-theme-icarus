@@ -1,0 +1,20 @@
+<!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+<% const business = get_config_from_obj(service, 'business');
+    const currency_code = get_config_from_obj(service, 'currency_code');
+    if (business && currency_code) { %>
+<a class="button is-warning donate" onclick="<%= 'document.getElementById(\'paypal-donate-form\').submit()' %>">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span><%= __('donate.' + type) %></span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations" />
+    <input type="hidden" name="business" value="<%= business %>" />
+    <input type="hidden" name="currency_code" value="<%= currency_code %>" />
+</form>
+<% } else { %>
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+<% } %>
