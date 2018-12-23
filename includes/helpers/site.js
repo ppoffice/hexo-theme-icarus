@@ -3,12 +3,14 @@
  *
  * @example
 *     <%- is_same_link(url_a, url_b) %>
+*     <%- get_domain(url) %>
 *     <%- post_count() %>
 *     <%- category_count() %>
 *     <%- tag_count() %>
 *     <%- duration() %>
 *     <%- word_count(content) %>
  */
+const URL = require('url').URL;
 const moment = require('moment');
 
 module.exports = function (hexo) {
@@ -21,6 +23,11 @@ module.exports = function (hexo) {
             return paths.join('/');
         }
         return santize(this.url_for(a)) == santize(this.url_for(b));
+    });
+
+    hexo.extend.helper.register('get_domain', function (link) {
+        const url = new URL(link);
+        return url.hostname;
     });
 
     hexo.extend.helper.register('post_count', function () {
