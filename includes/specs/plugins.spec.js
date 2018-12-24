@@ -59,5 +59,10 @@ module.exports = {
         [type]: 'boolean',
         [doc]: 'Show a loading progress bar at top of the page',
         [defaultValue]: true
+    },
+    clipboard: {
+        [type]: 'boolean',
+        [doc]: 'Show the copy button in the highlighted code area',
+        [defaultValue]: true
     }
 };

@@ -232,6 +232,9 @@ img.thumbnail
 /* ---------------------------------
  *         Custom modifiers
  * --------------------------------- */
+.is-borderless
+    border: none
+
 .is-size-7
     font-size: 0.85rem !important
 
@@ -340,6 +343,7 @@ img.thumbnail
 figure.highlight
     padding: 0
     width: 100%
+    position: relative
     margin: 1em 0 1em !important
 
     pre,
@@ -392,6 +396,16 @@ figure.highlight
         vertical-align: inherit
         min-width: inherit
         border-radius: inherit
+
+    .copy
+        display: none
+        position: absolute
+        bottom: 0
+        right: 0
+        color: white
+        background: rgba(0, 0, 0, 0.5)
+    &:hover .copy
+        display: block
 
 /* ---------------------------------
  *        Fix Gist Snippet

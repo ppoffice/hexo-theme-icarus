@@ -49,6 +49,9 @@ module.exports = function (hexo) {
             if (_package === 'pace-js') {
                 _package = 'pace';
             }
+            if (_package === 'clipboard') {
+                _package = 'clipboard.js';
+            }
         }
         if (provider !== null && cdn_providers.hasOwnProperty(provider)) {
             provider = cdn_providers[provider];
