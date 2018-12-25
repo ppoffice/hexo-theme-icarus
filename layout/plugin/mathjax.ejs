@@ -1,6 +1,7 @@
 <% if (!head && plugin !== false) { %>
 <%- _js(cdn('mathjax', '2.7.5', 'unpacked/MathJax.js?config=TeX-MML-AM_CHTML'), true) %>
 <script>
+document.addEventListener('DOMContentLoaded', function () {
     MathJax.Hub.Config({
         tex2jax: {inlineMath: [['$', '$']], displayMath: [['$$', '$$']]},
         TeX: {equationNumbers: {autoNumber: "AMS"},
@@ -10,5 +11,6 @@
         SVG: {matchFontHeight: false},
         CommonHTML: {matchFontHeight: false}
     });
+ });
 </script>
 <% } %>
