@@ -200,10 +200,10 @@ img.thumbnail
     &:hover
         .qrcode
             display: block
-    &:first-child
+    &:first-child:not(:last-child)
         .qrcode
             left: -0.75rem
-    &:last-child
+    &:last-child:not(:first-child)
         .qrcode
             right: -0.75rem
 
