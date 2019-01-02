@@ -1,0 +1,23 @@
+<% if (!has_config('comment.owner') || !has_config('comment.admin') || !has_config('comment.repo') || !has_config('comment.client_id') ||
+		!has_config('comment.client_secret')) { %>
+<div class="notification is-danger">
+	You forgot to set the <code>owner</code>, <code>admin</code>, <code>repo</code>, <code>client_id</code>, or <code>client_secret</code> for Gittalk.
+	Please set it in <code>_config.yml</code>.
+</div>
+<% } else { %>
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script>
+	var gitalk = new Gitalk({
+        clientID:  '<%= get_config('comment.client_id') %>', 
+        clientSecret: '<%= get_config('comment.client_secret') %>',
+        id: md5(decodeURI(location.pathname)),
+        repo: '<%= get_config('comment.repo') %>', 
+        owner: '<%= get_config('comment.owner') %>', 
+        admin: '<%= get_config('comment.admin') %>'
+      })
+    gitalk.render('comment-container')
+</script>
+<% } %>
