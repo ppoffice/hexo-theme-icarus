@@ -2,7 +2,7 @@
 <img class="not-gallery-item" height="48" src="http://ppoffice.github.io/hexo-theme-icarus/images/logo.svg">
 <br> A simple, delicate, and modern theme for the static site generator Hexo.
 <br>
-<a href="http://ppoffice.github.io/hexo-theme-icarus/">Preview</a> | 
+<a href="http://ppoffice.github.io/hexo-theme-icarus/">Preview</a> |
 <a href="http://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
 <a href="https://github.com/ppoffice/hexo-theme-icarus/archive/master.zip">Download</a>
 <br>
@@ -51,6 +51,13 @@ Share plugins
 - [Share.js](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/share-js-share-plugin/)
 - [ShareThis](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Share/sharethis-share-plugin/)
 
+Donation Buttons
+
+- [Alipay](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Alipay)
+- [Wechat](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Wechat)
+- [Paypal](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Paypal)
+- [Patreon](http://ppoffice.github.io/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Patreon)
+
 Other plugins
 
 - [Hexo Tag Plugin](http://ppoffice.github.io/hexo-theme-icarus/Configuration/Posts/hexo-built-in-tag-helpers/)
@@ -60,7 +67,7 @@ Other plugins
 
 **Rich Code Highlight Theme Choices**
 
-Icarus directly import code highlight themes from the [highlight.js](https://highlightjs.org/) package, and makes more than 
+Icarus directly import code highlight themes from the [highlight.js](https://highlightjs.org/) package, and makes more than
 70 highlight themes available to you.
 
 <table>
@@ -73,7 +80,7 @@ Icarus directly import code highlight themes from the [highlight.js](https://hig
 
 **Elastic Theme Configuration**
 
-In addition to the minimalistic and easy-to-understand configuration design, Icarus allows you to set configurations on a 
+In addition to the minimalistic and easy-to-understand configuration design, Icarus allows you to set configurations on a
 per-page basis with the ability to merge and override partial configurations.
 
 <div>

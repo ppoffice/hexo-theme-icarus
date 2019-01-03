@@ -70,6 +70,23 @@
     </div>
 </div>
 
+<% const services = has_config('donate') ? get_config('donate') : []; %>
+<% if (!index && services.length > 0) { %>
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered"><%= __('donate.title') %></h3>
+        <div class="buttons is-centered">
+            <% for (let service of services) {
+                const type = get_config_from_obj(service, 'type');
+                if (type !== null) { %>
+                <%- partial('donate/' + type, { type, service }) %>
+                <% }
+            } %>
+        </div>
+    </div>
+</div>
+<% } %>
+
 <% if (!index && (post.prev || post.next)) { %>
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">

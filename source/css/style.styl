@@ -50,16 +50,18 @@ body, button, input, select, textarea
             top: 1.5rem
 
 .card
-    overflow: hidden
     border-radius: 4px
     box-shadow: 0 4px 10px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.1)
     & + .card,
     & + .column-right-shadow
         margin-top: 1.5rem
     &.card-transparent
-        overflow: visible
         box-shadow: none
         background: transparent
+    .card-image
+        overflow: hidden
+        border-top-left-radius: 4px
+        border-top-right-radius: 4px
 
 img.thumbnail
     object-fit: cover
@@ -181,6 +183,30 @@ img.thumbnail
                 margin-left: 0.75rem
                 margin-right: 0
 
+.donate
+    position: relative
+    .qrcode
+        display: none
+        position: absolute
+        z-index: 99
+        bottom: 2.5em
+        line-height: 0
+        overflow: hidden
+        border-radius: 4px
+        box-shadow: 0 4px 10px rgba(0,0,0,.1), 0 0 1px rgba(0,0,0,.2)
+        overflow: hidden
+        img
+            max-width: 280px
+    &:hover
+        .qrcode
+            display: block
+    &:first-child:not(:last-child)
+        .qrcode
+            left: -0.75rem
+    &:last-child:not(:first-child)
+        .qrcode
+            right: -0.75rem
+
 @media screen and (max-width: screen-tablet - 1)
     #toc
         display: none
@@ -210,6 +236,9 @@ img.thumbnail
 /* ---------------------------------
  *         Custom modifiers
  * --------------------------------- */
+.is-borderless
+    border: none
+
 .is-size-7
     font-size: 0.85rem !important
 
@@ -318,6 +347,7 @@ img.thumbnail
 figure.highlight
     padding: 0
     width: 100%
+    position: relative
     margin: 1em 0 1em !important
 
     pre,
@@ -370,6 +400,16 @@ figure.highlight
         vertical-align: inherit
         min-width: inherit
         border-radius: inherit
+
+    .copy
+        display: none
+        position: absolute
+        bottom: 0
+        right: 0
+        color: white
+        background: rgba(0, 0, 0, 0.5)
+    &:hover .copy
+        display: block
 
 /* ---------------------------------
  *        Fix Gist Snippet

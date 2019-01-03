@@ -1,0 +1,6 @@
+<% if (plugin !== false) { %>
+    <% if (!head) { %>
+    <%- _js(cdn('clipboard', '2.0.4', 'dist/clipboard.min.js'), true) %>
+    <%- _js('js/clipboard', true) %>
+    <% } %>
+<% } %>

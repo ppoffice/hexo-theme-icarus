@@ -3,13 +3,17 @@
  *
  * @example
 *     <%- is_same_link(url_a, url_b) %>
+*     <%- get_domain(url) %>
 *     <%- post_count() %>
 *     <%- category_count() %>
 *     <%- tag_count() %>
 *     <%- duration() %>
 *     <%- word_count(content) %>
+*     <%- md5(data) %>
  */
+const URL = require('url').URL;
 const moment = require('moment');
+const crypto = require('crypto');
 
 module.exports = function (hexo) {
     hexo.extend.helper.register('is_same_link', function (a, b) {
@@ -21,6 +25,11 @@ module.exports = function (hexo) {
             return paths.join('/');
         }
         return santize(this.url_for(a)) == santize(this.url_for(b));
+    });
+
+    hexo.extend.helper.register('get_domain', function (link) {
+        const url = new URL(link);
+        return url.hostname;
     });
 
     hexo.extend.helper.register('post_count', function () {
@@ -49,5 +58,9 @@ module.exports = function (hexo) {
         content = content.replace(/<\/?[a-z][^>]*>/gi, '');
         content = content.trim();
         return content ? (content.match(/[\u00ff-\uffff]|[a-zA-Z]+/g) || []).length : 0;
+    });
+
+    hexo.extend.helper.register('md5', function (data) {
+        return crypto.createHash('md5').update(data).digest("hex")
     });
 }
