@@ -93,6 +93,10 @@ $(document).ready(function () {
         }));
     }
 
+    function getScrollTop() {
+        return $(window).scrollTop();
+    }
+
     function getScrollBottom() {
         return $(window).scrollTop() + $(window).height();
     }
@@ -116,7 +120,7 @@ $(document).ready(function () {
             var padding = ($mainColumn.outerWidth() - $mainColumn.width()) / 2;
             var maxLeft = $(window).width() - getButtonWidth() - rightMargin;
             var maxBottom = $footer.offset().top + getButtonHeight() / 2 + bottomMargin;
-            if (getScrollBottom() < getRightSidebarBottom() + padding + getButtonHeight()) {
+            if (getScrollTop() == 0 || getScrollBottom() < getRightSidebarBottom() + padding + getButtonHeight()) {
                 nextState = state['desktop-hidden'];
             } else if (getScrollBottom() < maxBottom) {
                 nextState = state['desktop-visible'];

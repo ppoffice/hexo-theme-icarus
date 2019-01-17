@@ -4,20 +4,16 @@
             <h3 class="menu-label">
                 <%= _p('common.tag', Infinity) %>
             </h3>
-            <ul class="menu-list">
+            <div class="field is-grouped is-grouped-multiline">
                 <% _list_tags().forEach(tag => { %>
-                <li>
-                    <a class="level is-marginless" href="<%= tag.url %>">
-                        <span class="level-start">
-                            <span class="level-item"><%= tag.name %></span>
-                        </span>
-                        <span class="level-end">
-                            <span class="level-item tag"><%= tag.count %></span>
-                        </span>
+                <div class="control">
+                    <a class="tags has-addons" href="<%= tag.url %>">
+                        <span class="tag"><%= tag.name %></span>
+                        <span class="tag is-grey"><%= tag.count %></span>
                     </a>
-                </li>
+                </div>
                 <% }) %>
-            </ul>
+            </div>
         </div>
     </div>
 </div>
