@@ -88,6 +88,11 @@ const ProfileSpec = {
         [doc]: 'Path or URL to the avatar to be shown in the profile widget',
         [defaultValue]: '/images/avatar.png'
     },
+    avatar_rounded: {
+        [type]: 'boolean',
+        [doc]: 'Whether to show avatar image rounded or square',
+        [defaultValue]: true
+    },
     gravatar: {
         [type]: 'string',
         [doc]: 'Email address for the Gravatar to be shown in the profile widget',
