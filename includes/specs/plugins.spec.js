@@ -64,5 +64,10 @@ module.exports = {
         [type]: 'boolean',
         [doc]: 'Show the copy button in the highlighted code area',
         [defaultValue]: true
+    },
+    visit: {
+        [type]: 'boolean',
+        [doc]: 'Show PV/UV of blog and PV of each article',
+        [defaultValue]: false
     }
 };
