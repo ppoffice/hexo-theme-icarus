@@ -13,17 +13,13 @@
                 &copy; <%= date(new Date(), 'YYYY') %> <%= get_config('author') || get_config('title') %>&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                </p>
-                <% if (has_config('plugins.visit') ? get_config('plugins.visit') : false) { %>
-                    <p class="is-size-7">   
-                        <span id="busuanzi_container_site_uv">
-                            UV:<span id="busuanzi_value_site_uv">0</span>,
-                        </span>
-                        <span id="busuanzi_container_site_pv">
-                            PV:<span id="busuanzi_value_site_pv">0</span>
-                        </span>
-                    </p>
+                <% if (has_config('plugins.busuanzi') ? get_config('plugins.busuanzi') : false) { %>
+                <br>
+                <span id="busuanzi_container_site_uv">
+                <%- _p('plugin.visitor', '<span id="busuanzi_value_site_uv">0</span>') %>
+                </span>
                 <% } %>
+                </p>
             </div>
             <div class="level-end">
             <% if (has_config('footer.links')) { %>

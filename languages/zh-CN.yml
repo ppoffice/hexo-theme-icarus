@@ -31,6 +31,8 @@ donate:
     wechat: '微信'
 plugin:
     backtotop: '回到顶端'
+    visit: '%s次访问'
+    visitor: '共%s个访客'
 search:
     search: '搜索'
     hint: '想要查找什么...'
