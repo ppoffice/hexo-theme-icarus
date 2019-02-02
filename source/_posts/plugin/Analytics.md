@@ -34,3 +34,10 @@ plugins:
     hotjar:
         site_id: XXXXXX (required)
 {% endcodeblock %}
+
+### Busuanzi
+
+{% codeblock lang:yaml _config.yml %}
+plugins:
+    busuanzi: true
+{% endcodeblock %}

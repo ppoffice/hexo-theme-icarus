@@ -68,29 +68,29 @@ comment:
     shortname: hexo-theme-icarus
 # Donation entries
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
-donate:
-    -
-        # Donation entry name
-        type: alipay
-        # Qrcode image URL
-        qrcode: /gallery/donate/alipay.png
-    -
-        # Donation entry name
-        type: wechat
-        # Qrcode image URL
-        qrcode: /gallery/donate/wechat.jpg
-    -
-        # Donation entry name
-        type: paypal
-        # Paypal business ID or email address
-        business: paypal@paypal.com
-        # Currency code
-        currency_code: USD
-    -
-        # Donation entry name
-        type: patreon
-        # URL to the Patreon page
-        url: https://www.patreon.com/
+# donate:
+#     -
+#         # Donation entry name
+#         type: alipay
+#         # Qrcode image URL
+#         qrcode: /gallery/donate/alipay.png
+#     -
+#         # Donation entry name
+#         type: wechat
+#         # Qrcode image URL
+#         qrcode: /gallery/donate/wechat.jpg
+#     -
+#         # Donation entry name
+#         type: paypal
+#         # Paypal business ID or email address
+#         business: paypal@paypal.com
+#         # Currency code
+#         currency_code: USD
+#     -
+#         # Donation entry name
+#         type: patreon
+#         # URL to the Patreon page
+#         url: https://www.patreon.com/
 # Share plugin settings
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Share-Plugins
 share:
@@ -220,6 +220,9 @@ plugins:
     progressbar: true
     # Show the copy button in the highlighted code area
     clipboard: true
+    # BuSuanZi site/page view counter
+    # https://busuanzi.ibruce.info
+    busuanzi: false
 # CDN provider settings
 # http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
