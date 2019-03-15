@@ -1,0 +1,47 @@
+common:
+    archive:
+        one: 'Archive'
+        other: 'Archives'
+    category:
+        one: 'Category'
+        other: 'Categories'
+    tag:
+        one: 'Tag'
+        other: 'Tags'
+    post:
+        one: 'Bài viết'
+        other: 'Bài viết'
+    prev: 'Trước'
+    next: 'Sau'
+widget:
+    follow: 'Theo dõi'
+    recents: 'Gần đây'
+    links: 'Link'
+    tag_cloud: 'Tag Cloud'
+    catalogue: 'Mục lục'
+article:
+    more: 'Đọc thêm'
+    comments: 'Bình luận'
+    read: 'đọc'
+    about: 'Giới thiệu'
+    words: 'từ'
+donate:
+    title: 'Bạn đọc có thể ủng hộ blog qua'
+    alipay: 'Alipay'
+    wechat: 'Wechat'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
+plugin:
+    backtotop: 'Trở lai đầu trang'
+    visit: '%s Bạn đọc'
+    visitor: 'Thăm bởi %s bạn đọc'
+search:
+    search: 'Tìm kiếm'
+    hint: 'Gõ gì đó...'
+insight:
+    hint: 'Gõ gì đó...'
+    posts: 'Bài viết'
+    pages: 'Trang'
+    categories: 'Thể loại'
+    tags: 'Thẻ'
+    untitled: '(Untitled)'
