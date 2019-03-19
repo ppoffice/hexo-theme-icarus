@@ -17,6 +17,10 @@
     <%- open_graph(og_options) %>
 <% } %>
 
+<% if (has_config('canonical_url')) { %>
+<link rel="canonical" href="<%- get_config('canonical_url') %>" />
+<% } %>
+
 <% if (has_config('rss')) { %>
 <link rel="alternative" href="<%- get_config('rss') %>" title="<%= get_config('title') %>" type="application/atom+xml">
 <% } %>
