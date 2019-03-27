@@ -8,6 +8,7 @@
 *     <%- meta(post) %>
 *     <%- has_thumbnail(post) %>
 *     <%- get_thumbnail(post) %>
+*     <%- get_og_image(post) %>
 */
 module.exports = function (hexo) {
     function trim(str) {
@@ -92,5 +93,30 @@ module.exports = function (hexo) {
     hexo.extend.helper.register('get_thumbnail', function (post) {
         const hasThumbnail = hexo.extend.helper.get('has_thumbnail').bind(this)(post);
         return this.url_for(hasThumbnail ? post.thumbnail : 'images/thumbnail.svg');
+    });
+
+    hexo.extend.helper.register('has_og_image', function (post) {
+        return post.hasOwnProperty('og_image');
+    });
+
+    hexo.extend.helper.register('get_og_image', function (post) {
+        const getConfig = hexo.extend.helper.get('get_config').bind(this);
+        const hasConfig = hexo.extend.helper.get('has_config').bind(this);
+
+        const hasOGImage = hexo.extend.helper.get('has_og_image').bind(this)(post);
+        const hasThumbnail = hexo.extend.helper.get('has_thumbnail').bind(this)(post);
+
+        const getThumbnail = hexo.extend.helper.get('get_thumbnail').bind(this);
+
+        let og_image
+
+        if(hasOGImage)
+            og_image = post.og_image
+        else if (hasThumbnail)
+            og_image = getThumbnail(post);
+        else
+            og_image = getConfig('article.og_image', '/images/og_image.png');
+
+        return this.url_for(og_image);
     });
 }
