@@ -15,7 +15,7 @@
             <div class="level-item has-text-centered">
                 <div>
                     <% if (get_config_from_obj(widget, 'avatar_rounded')) { %>
-                        <figure class="image container is-128x128 has-mb-6">
+                        <figure class="image is-128x128 has-mb-6">
                             <img class="is-rounded" src="<%= avatar() %>" alt="<%= get_config_from_obj(widget, 'author') %>">
                         </figure>
                     <% } else { %>
