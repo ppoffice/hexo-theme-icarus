@@ -31,6 +31,10 @@ const DEFAULT_WIDGETS = [
             RSS: {
                 icon: 'fas fa-rss',
                 url: '/'
+            },
+            Telegram: {
+                icon: 'fab fa-telegram',
+                url: '/'
             }
         }
     },
