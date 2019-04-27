@@ -17,7 +17,7 @@ module.exports = {
             },
             'Download on GitHub': {
                 icon: 'fab fa-github',
-                url: 'http://github.com/ppoffice/hexo-theme-icarus'
+                url: 'https://github.com/ppoffice/hexo-theme-icarus'
             }
         }
     }
