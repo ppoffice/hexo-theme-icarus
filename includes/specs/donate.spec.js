@@ -55,7 +55,7 @@ const PatreonSpec = {
 
 module.exports = {
     [type]: 'array',
-    [doc]: 'Donation entries\nhttp://ppoffice.github.io/hexo-theme-icarus/categories/Donation/',
+    [doc]: 'Donation entries\nhttps://ppoffice.github.io/hexo-theme-icarus/categories/Donation/',
     [defaultValue]: DEFAULT_DONATE,
     '*': {
         [type]: 'object',

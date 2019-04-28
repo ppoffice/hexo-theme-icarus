@@ -10,23 +10,23 @@ const DEFAULT_WIDGETS = [
         avatar: null,
         gravatar: null,
         avatar_rounded: false,
-        follow_link: 'http://github.com/ppoffice',
+        follow_link: 'https://github.com/ppoffice',
         social_links: {
             Github: {
                 icon: 'fab fa-github',
-                url: 'http://github.com/ppoffice'
+                url: 'https://github.com/ppoffice'
             },
             Facebook: {
                 icon: 'fab fa-facebook',
-                url: 'http://facebook.com'
+                url: 'https://facebook.com'
             },
             Twitter: {
                 icon: 'fab fa-twitter',
-                url: 'http://twitter.com'
+                url: 'https://twitter.com'
             },
             Dribbble: {
                 icon: 'fab fa-dribbble',
-                url: 'http://dribbble.com'
+                url: 'https://dribbble.com'
             },
             RSS: {
                 icon: 'fas fa-rss',
@@ -127,7 +127,7 @@ const LinksSpec = {
 
 module.exports = {
     [type]: 'array',
-    [doc]: 'Sidebar widget settings\nhttp://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/',
+    [doc]: 'Sidebar widget settings\nhttps://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/',
     [defaultValue]: DEFAULT_WIDGETS,
     '*': {
         [type]: 'object',

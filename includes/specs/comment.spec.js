@@ -114,7 +114,7 @@ const ValineSpec = {
 
 module.exports = {
     [type]: 'object',
-    [doc]: 'Comment plugin settings\nhttp://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Comment-Plugins',
+    [doc]: 'Comment plugin settings\nhttps://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment',
     type: {
         [type]: 'string',
         [doc]: 'Name of the comment plugin',

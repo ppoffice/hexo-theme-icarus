@@ -2,7 +2,7 @@ const { doc, type, defaultValue, required, requires } = require('../common/utils
 
 module.exports = {
     [type]: 'object',
-    [doc]: 'Search plugin settings\nhttp://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Search-Plugins',
+    [doc]: 'Search plugin settings\nhttps://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search',
     type: {
         [type]: 'string',
         [doc]: 'Name of the search plugin',

@@ -6,7 +6,7 @@ function commonSettings(position) {
         [doc]: position + ' sidebar settings',
         sticky: {
             [type]: 'boolean',
-            [doc]: 'Whether the ' + position + ' sidebar is sticky when page scrolls\nhttp://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/',
+            [doc]: 'Whether the ' + position + ' sidebar is sticky when page scrolls\nhttps://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/',
             [defaultValue]: false
         }
     }
