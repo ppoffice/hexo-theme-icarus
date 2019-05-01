@@ -44,6 +44,7 @@
                 <%= post.title %>
             <% } %>
         </h1>
+        <%- partial('author.ejs') %>
         <div class="content">
             <%- index && post.excerpt ? post.excerpt : post.content %>
         </div>
