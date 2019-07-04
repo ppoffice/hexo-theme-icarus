@@ -58,6 +58,12 @@ const GitmentGitalkSpec = {
             [type]: 'string',
             [required]: true
         }
+    },
+    distraction_free_mode: {
+        [type]: 'boolean',
+        [doc]: 'Facebook-like distraction free mode',
+        [defaultValue]: false,
+        [requires]: comment => comment.type === 'gitalk'
     }
 };
 
