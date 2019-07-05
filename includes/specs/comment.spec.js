@@ -59,6 +59,12 @@ const GitmentGitalkSpec = {
             [required]: true
         }
     },
+    create_issue_manually: {
+        [type]: 'boolean',
+        [doc]: 'Create GitHub issue manually for each page',
+        [defaultValue]: false,
+        [requires]: comment => comment.type === 'gitalk'
+    },
     distraction_free_mode: {
         [type]: 'boolean',
         [doc]: 'Facebook-like distraction free mode',
