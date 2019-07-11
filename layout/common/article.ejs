@@ -10,6 +10,10 @@
         <% if (post.layout != 'page') { %>
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <% if (post.top>0) { %>
+                    <i class="fas fa-arrow-alt-circle-up" style="color:#3273dc"></i>
+                    <span class="level-item" style="color:#3273dc">&nbsp;置顶</span>
+                <% } %>
                 <time class="level-item has-text-grey" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time>
                 <% if (post.categories && post.categories.length) { %>
                 <div class="level-item">
