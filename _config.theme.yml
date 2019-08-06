@@ -128,6 +128,8 @@ widgets:
         avatar:
         # Email address for the Gravatar to be shown in the profile widget
         gravatar:
+        # Whether to show avatar image rounded or square
+        avatar_rounded: false
         # Path or URL for the follow button
         follow_link: 'http://github.com/ppoffice'
         # Links to be shown on the bottom of the profile widget

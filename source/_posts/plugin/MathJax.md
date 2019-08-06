@@ -20,15 +20,14 @@ plugins:
     mathjax: true # options: true, false
 ```
 <!-- more -->
-For further MathJax configurations, please edit `<theme folder>/layout/plugin/scripts.ejs`:
-```html
-    <% if (theme.plugins.mathjax) { %>
-        <!-- Edit here -->
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
-        </script>
-        <%- js('https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML') %>
-    <% } %>
+For further MathJax configurations, please edit `&lt;theme folder&gt;/layout/plugin/mathjax.ejs`:
+
+```js
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        // Edit here
+    });
+});
 ```
 
 ### TeX and LaTeX input
