@@ -2,13 +2,13 @@
 <img class="not-gallery-item" height="48" src="https://ppoffice.github.io/hexo-theme-icarus/images/logo.svg">
 <br> A simple, delicate, and modern theme for the static site generator Hexo.
 <br>
-<a href="https://ppoffice.github.io/hexo-theme-icarus/">Preview</a> |
+<a href="https://dp2px.com">Preview</a> |
 <a href="https://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
 <a href="https://github.com/ppoffice/hexo-theme-icarus/archive/master.zip">Download</a>
 <br>
 </p>
 
-![Icarus](https://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png?1 "Icarus Preview")
+![Icarus Plus](http://qiniucdn.dp2px.com/my_theme_cup.png)
 
 ### :cd: Installation
 
@@ -16,6 +16,12 @@ Download & extract or `git clone` Icarus from GitHub to your blog's theme folder
 
 ```shell
 git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
+```
+
+Plus Version:
+
+```shell
+git clone https://github.com/lxqxsyu/hexo-theme-icarus.git themes/icarus
 ```
 
 Once started, Icarus will remind you of any missing dependencies and configuration files.
