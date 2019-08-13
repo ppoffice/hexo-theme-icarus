@@ -1,5 +1,5 @@
 # Version of the Icarus theme that is currently used
-version: 2.3.0
+version: 2.6.0
 # Path or URL to the website's icon
 favicon: /images/favicon.svg
 # Path or URL to RSS atom.xml
@@ -48,9 +48,15 @@ footer:
             url: 'http://github.com/ppoffice/hexo-theme-icarus'
 # Article display settings
 article:
-    # Code highlight theme
-    # https://github.com/highlightjs/highlight.js/tree/master/src/styles
-    highlight: atom-one-light
+    # Code highlight settings
+    highlight:
+        # Code highlight themes
+        # https://github.com/highlightjs/highlight.js/tree/master/src/styles
+        theme: atom-one-light
+        # Show code copying button
+        clipboard: true
+        # Default folding status of the code blocks. Can be "", "folded", "unfolded"
+        fold: unfolded
     # Whether to show article thumbnail images
     thumbnail: true
     # Whether to show estimate article reading time
@@ -220,8 +226,6 @@ plugins:
         site_id: 1067642
     # Show a loading progress bar at top of the page
     progressbar: true
-    # Show the copy button in the highlighted code area
-    clipboard: true
     # BuSuanZi site/page view counter
     # https://busuanzi.ibruce.info
     busuanzi: false
