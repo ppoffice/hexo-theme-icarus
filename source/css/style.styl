@@ -358,6 +358,9 @@ figure.highlight
     width: 100%
     position: relative
     margin: 1em 0 1em !important
+    &.folded
+        .highlight-body
+            height: 0
 
     pre,
     table tr:hover
@@ -383,14 +386,29 @@ figure.highlight
         text-align: left
         font-style: normal
         font-size: .8em
+        &:after
+            clear: both
+            content: " "
+            display: table
 
         span
             font-weight: 500
             font-family: family-mono
 
+        .fold
+        a
+            color: #9a9a9a
+
         a
             float: right
-            color: #9a9a9a
+            margin-left: 0.5em
+
+        .fold
+            margin-right: 0.5em
+            cursor: pointer
+
+    .highlight-body
+        overflow: auto
 
     .gutter
         text-align: right
@@ -410,17 +428,9 @@ figure.highlight
         min-width: inherit
         border-radius: inherit
 
-    .copy
-        display: none
-        position: absolute
-        bottom: 0
-        right: 0
-        color: white
-        background: rgba(0, 0, 0, 0.5)
-    &:hover .copy
-        display: block
-/* ---------------------------------      
- *        Overflow Table
+
+/* ---------------------------------
+ *          Overflow Table
  * --------------------------------- */
 .table-overflow
     overflow-x: auto
