@@ -2,13 +2,75 @@
 <img class="not-gallery-item" height="48" src="https://ppoffice.github.io/hexo-theme-icarus/images/logo.svg">
 <br> A simple, delicate, and modern theme for the static site generator Hexo.
 <br>
-<a href="https://dp2px.com">Preview</a> |
+<a href="https://ppoffice.github.io/hexo-theme-icarus/">Preview</a> |
 <a href="https://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
 <a href="https://github.com/ppoffice/hexo-theme-icarus/archive/master.zip">Download</a>
 <br>
 </p>
 
-![Icarus Plus](http://qiniucdn.dp2px.com/my_theme_cup.png)
+![Icarus](https://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png?1 "Icarus Preview")
+
+<p align="center" class="has-mb-6">
+<br> My Plus Version Preview And ShortCup
+<a href="https://ppoffice.github.io/hexo-theme-icarus/">Plus Version Preview</a>
+
+![Icarus Plus](gallery/my_theme_cup.png)
+
+</p>
+
+### Icarus Plus Features
+
+1. Config Main Page Hot Tags.
+
+2. Config Main Page Carousel.
+
+3. Other More Features See : https://dp2px.com/2019/06/04/icarus-theme/
+
+### How to use it
+
+1. Clone My Plus Version:
+
+```shell
+git clone https://github.com/lxqxsyu/hexo-theme-icarus.git themes/icarus
+```
+
+2. Config pakage `root/source/json-data` json files:
+
+![](gallery/json-config.png)
+
+- main-banner.json
+
+```json
+[
+    {
+        "img" : "./json-data/banner/python-compress.webp", 
+        "url" : "https://dp2px.com/2019/03/26/python-compress/",
+        "alt" : "Python实现的图片压缩处理工具"
+    },
+    {
+        "img" : "./json-data/banner/android-video.webp", 
+        "url" : "https://space.bilibili.com/386767453/channel/detail?cid=83639",
+        "alt" : "Android免费视频教程"
+    }
+]
+```
+
+- hot-tags.json
+
+```json
+[
+    {
+        "tag": "Android入门视频教程",
+        "url": "https://space.bilibili.com/386767453/channel/detail?cid=83639",
+        "class": "is-warning"
+    },
+    {
+        "tag": "Python",
+        "url": "https://dp2px.com/categories/Python/",
+        "class": "is-danger"
+    }
+]
+```
 
 ### :cd: Installation
 
@@ -18,7 +80,7 @@ Download & extract or `git clone` Icarus from GitHub to your blog's theme folder
 git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
 ```
 
-Plus Version:
+if You Like My Plus Version:
 
 ```shell
 git clone https://github.com/lxqxsyu/hexo-theme-icarus.git themes/icarus
