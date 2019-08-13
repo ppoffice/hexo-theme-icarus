@@ -1,0 +1,50 @@
+.flex-books{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.flex-book-item{
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 10px;
+    width: 100px;
+    height: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: linear-gradient(#6950a1, #ba5c61);
+    color: white;
+}
+
+.flex-book-item.item2{
+    background: linear-gradient(#dc433e, #145b7d);
+}
+
+.flex-book-item.item3{
+    background: linear-gradient(#f58220, #00a6ac);
+}
+
+.flex-book-item.item4{
+    background: linear-gradient(#2a5caa, #d28058);
+}
+
+.flex-book-item h1{
+    text-align: center;
+    text-shadow: 0.1em 0.1em 0.05em #333;
+}
+
+.flex-book-item .years{
+    font-size: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.flex-book-item .chubanshe{
+    font-size: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    text-shadow: 0.1em 0.1em 0.2em black;
+}

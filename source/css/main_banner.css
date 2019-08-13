@@ -1,0 +1,103 @@
+/* 公共样式 */
+#banner {
+    margin-bottom: 1rem;
+}
+#banner .pull-left{
+    float: left!important;
+}
+#banner .pull-right{
+    float: right!important;
+}
+#banner .clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+#banner .clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+#banner .clearfix { display: block; }
+/* close commented backslash hack */
+#banner ul,li{
+    margin:0;
+    padding:0;
+    list-style-type: none;
+}
+
+/* 轮播图插件样式 */
+#banner .carousel-box{
+    position: relative;
+    width:100%;
+}
+#banner .transverse-box{
+    position: relative;
+    width:66.7%;
+}
+#banner .img-item{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 0;
+}
+#banner .vertical-box{
+    position: relative;
+    width:33.3%;
+}
+#banner .vertical-box ul{
+    overflow: hidden;
+}
+#banner .img-item{
+    transition: width 1s;
+}
+#banner .img-item img{
+    width:100%;
+    height:100%;
+}
+#banner .vertical-box ul li{
+    font-size: 0;
+}
+#banner .vertical-box ul li img{
+    width:100%;
+    height:100%;
+}
+#banner .left-arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:50%;
+    left:0px;
+    color:#fff;
+    margin-top:-35px;
+    font-size: 50px;
+    font-weight: 200;
+    text-align: center;
+    line-height: 100px;
+    width:50px;
+    height:70px;
+    background:rgba(0,0,0,0.6);
+    cursor: pointer;
+    z-index: 99;
+}
+#banner .right-arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:50%;
+    right:0px;
+    color:#fff;
+    margin-top:-35px;
+    font-size: 50px;
+    font-weight: 200;
+    text-align: center;
+    line-height: 100px;
+    width:50px;
+    height:70px;
+    background:rgba(0,0,0,0.6);
+    cursor: pointer;
+    z-index: 99;
+}
