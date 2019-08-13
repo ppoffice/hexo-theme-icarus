@@ -9,7 +9,7 @@
 const cdn_providers = {
     cdnjs: 'https://cdnjs.cloudflare.com/ajax/libs/${ package }/${ version }/${ filename }',
     jsdelivr: 'https://cdn.jsdelivr.net/npm/${ package }@${ version }/${ filename }',
-    unpkg: 'https://unpkg.com/${ package }@${ version }/${ filename }'
+    unpkg: 'https://unpkg.com/${ package }@${ version }/${ filename }',
 };
 
 const font_providers = {
@@ -24,6 +24,9 @@ module.exports = function (hexo) {
     hexo.extend.helper.register('cdn', function (_package, version, filename) {
         let provider = hexo.extend.helper.get('get_config').bind(this)('providers.cdn');
         // cdn.js does not follow a GitHub npm style like jsdeliver and unpkg do. Patch it!
+        if(_package === 'jquery'){
+            return 'https://libs.baidu.com/jquery/1.11.1/jquery.min.js'
+        }
         if (provider === 'cdnjs' || provider.startsWith('[cdnjs]')) {
             if (provider.startsWith('[cdnjs]')) {
                 provider = provider.substr(7);

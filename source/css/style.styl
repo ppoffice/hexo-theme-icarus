@@ -21,12 +21,12 @@ body, button, input, select, textarea
 @media screen and (min-width: screen-widescreen)
     .is-1-column .container
     .is-2-column .container
-        max-width: screen-desktop - 2 * gap
-        width: screen-desktop - 2 * gap
-@media screen and (min-width: screen-fullhd)
-    .is-2-column .container
         max-width: screen-widescreen - 2 * gap
         width: screen-widescreen - 2 * gap
+@media screen and (min-width: screen-fullhd)
+    .is-2-column .container
+        max-width: screen-fullhd - 2 * gap
+        width: screen-fullhd - 2 * gap
     .is-1-column .container
         max-width: screen-desktop - 2 * gap
         width: screen-desktop - 2 * gap
@@ -180,7 +180,9 @@ img.thumbnail
             font-size: 1.15rem
             position: relative
         a
-            word-wrap: break-word
+            img
+                margin: auto
+                display: block
 
 .rtl
      direction: rtl
@@ -203,7 +205,7 @@ img.thumbnail
         box-shadow: 0 4px 10px rgba(0,0,0,.1), 0 0 1px rgba(0,0,0,.2)
         overflow: hidden
         img
-            max-width: 280px
+            max-width: 160px
     &:hover
         .qrcode
             display: block
@@ -417,9 +419,8 @@ figure.highlight
         background: rgba(0, 0, 0, 0.5)
     &:hover .copy
         display: block
-
-/* ---------------------------------
- *          Overflow Table
+/* ---------------------------------      
+ *        Overflow Table
  * --------------------------------- */
 .table-overflow
     overflow-x: auto
@@ -427,21 +428,22 @@ figure.highlight
         width: auto!important
         th
             word-break: keep-all
-
 /* ---------------------------------
- *            Fix Video
+ *        Fix Video
  * --------------------------------- */
-.video-container
-    position: relative
-    padding-bottom: 56.25%
-    padding-top: 25px
-    height: 0
-    iframe
-        position: absolute
-        top: 0
-        left: 0
-        width: 100%
-        height: 100%
+.video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 25px;
+	height: 0;
+}
+.video-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 
 /* ---------------------------------
  *        Fix Gist Snippet

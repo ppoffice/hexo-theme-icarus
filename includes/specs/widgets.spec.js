@@ -63,6 +63,10 @@ const DEFAULT_WIDGETS = [
         position: 'right'
     },
     {
+        type: 'abowman',
+        position: 'left'
+    },
+    {
         type: 'tag',
         position: 'right'
     }

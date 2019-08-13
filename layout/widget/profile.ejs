@@ -12,7 +12,7 @@
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
-            <div class="level-item has-text-centered" style="flex-shrink: 1">
+            <div class="level-item has-text-centered">
                 <div>
                     <% if (get_config_from_obj(widget, 'avatar_rounded')) { %>
                         <figure class="image is-128x128 has-mb-6">
@@ -22,19 +22,19 @@
                         <img class="image is-128x128 has-mb-6" src="<%= avatar() %>" alt="<%= get_config_from_obj(widget, 'author') %>">
                     <% } %>
                     <% if (get_config_from_obj(widget, 'author')) { %>
-                    <p class="is-size-4 is-block">
+                    <p class="is-size-5 is-block" style="margin-top: 10px;">
                         <%= get_config_from_obj(widget, 'author') %>
                     </p>
                     <% } %>
                     <% if (get_config_from_obj(widget, 'author_title')) { %>
-                    <p class="is-size-6 is-block">
+                    <p class="is-size-6 is-block" style="margin-top: 5px;">
                         <%= get_config_from_obj(widget, 'author_title') %>
                     </p>
                     <% } %>
                     <% if (get_config_from_obj(widget, 'location')) { %>
-                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey" style="margin-top: 5px;">
                         <i class="fas fa-map-marker-alt has-mr-7"></i>
-                        <span><%= get_config_from_obj(widget, 'location') %></span>
+                        <span>&nbsp;&nbsp;<%= get_config_from_obj(widget, 'location') %></span>
                     </p>
                     <% } %>
                 </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <%- has_config('language') ? ' lang="' + get_config('language').substring(0, 2) + '"' : '' %>>
+<html <%- has_config('language') ? ' lang="' + get_config('language').toString().substring(0, 2) + '"' : '' %>>
 <head>
     <%- partial('common/head') %>
 </head>
@@ -10,7 +10,7 @@
             case 1:
                 return 'is-12';
             case 2:
-                return 'is-8-tablet is-8-desktop is-8-widescreen';
+                return 'is-8-tablet is-9-desktop is-9-widescreen';
             case 3:
                 return 'is-8-tablet is-8-desktop is-6-widescreen'
         }
@@ -21,7 +21,9 @@
             <div class="columns">
                 <div class="column <%= main_column_class() %> has-order-2 column-main"><%- body %></div>
                 <%- partial('common/widget', { position: 'left' }) %>
+                <% if (page.__page !== true && page.__post !== true) { %>
                 <%- partial('common/widget', { position: 'right' }) %>
+                <% } %>
             </div>
         </div>
     </section>

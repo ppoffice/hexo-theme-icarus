@@ -80,7 +80,11 @@
 <% if (!index && services.length > 0) { %>
 <div class="card">
     <div class="card-content">
+        <% if('music/index.html' === page.path){ %>
+        <h3 class="menu-label has-text-centered">点击扫码打赏后留言可点播歌曲</h3>
+        <%}else{%>
         <h3 class="menu-label has-text-centered"><%= __('donate.title') %></h3>
+        <%}%>
         <div class="buttons is-centered">
             <% for (let service of services) {
                 const type = get_config_from_obj(service, 'type');

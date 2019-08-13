@@ -11,13 +11,25 @@
                 </a>
                 <p class="is-size-7">
                 &copy; <%= date(new Date(), 'YYYY') %> <%= get_config('author') || get_config('title') %>&nbsp;
+                <a href="http://www.beian.miit.gov.cn" target="_blank">浙ICP备18045315号-1</a>
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                        <br>
+                        <span><i class="fa fa-bug" aria-hidden="true"></i> Websit Spider <a href="<%=config.url %>/baidusitemap.xml">Baidu Sitmap</a>  and  <a href="<%=config.url %>/sitemap.xml">Google Sitmap</a></span>
                 <% if (has_config('plugins.busuanzi') ? get_config('plugins.busuanzi') : false) { %>
                 <br>
                 <span id="busuanzi_container_site_uv">
                 <%- _p('plugin.visitor', '<span id="busuanzi_value_site_uv">0</span>') %>
                 </span>
+                <% } %>
+                <% if (has_config('plugins.tj51la') ? get_config('plugins.tj51la') : false) { %>
+                
+                <% } %>
+                <% if (has_config('plugins.baidu-auto-push') ? get_config('plugins.baidu-auto-push') : false) { %>
+                
+                <% } %>
+                <% if (has_config('plugins.360-auto-push') ? get_config('plugins.baidu-auto-push') : false) { %>
+                
                 <% } %>
                 </p>
             </div>

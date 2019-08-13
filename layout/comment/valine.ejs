@@ -4,8 +4,8 @@
 </div>
 <% } else { %>
 <div id="valine-thread" class="content"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.9/dist/Valine.min.js'></script>
 <script>
     new Valine({
         el: '#valine-thread' ,
@@ -14,6 +14,6 @@
         app_id: '<%= get_config('comment.app_id') %>',
         app_key: '<%= get_config('comment.app_key') %>',
         placeholder: '<%= get_config('comment.placeholder') %>'
-    });
+    });   
 </script>
 <% } %>

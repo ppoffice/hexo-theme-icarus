@@ -2,7 +2,7 @@
 <% function side_column_class() {
     switch (column_count()) {
         case 2:
-            return 'is-4-tablet is-4-desktop is-4-widescreen';
+            return 'is-4-tablet is-3-desktop is-3-widescreen';
         case 3:
             return 'is-4-tablet is-4-desktop is-3-widescreen';
     }
@@ -21,14 +21,14 @@
     return get_config('sidebar.' + position + '.sticky', false) ? 'is-sticky' : '';
 } %>
 <div class="column <%= side_column_class() %> <%= visibility_class() %> <%= order_class() %> column-<%= position %> <%= sticky_class(position) %>">
-    <% get_widgets(position).forEach(widget => {%>
+    <% get_widgets_by_columns(position, column_count()).forEach(widget => {%>
         <%- partial('widget/' + widget.type, { widget, post: page }) %>
     <% }) %>
     <% if (position === 'left') { %>
-        <div class="column-right-shadow is-hidden-widescreen <%= sticky_class('right') %>">
-        <% get_widgets('right').forEach(widget => {%>
-            <%- partial('widget/' + widget.type, { widget, post: page }) %>
-        <% }) %>
+        <div class="column-right-shadow <%= (page.__page !== true && page.__post !== true) ? 'is-hidden-widescreen' : '' %> <%= sticky_class('right') %>">
+        <% get_widgets_by_columns('right', column_count()).forEach(widget => { if(widget.type !== 'tag'){%>
+                <%- partial('widget/' + widget.type, { widget, post: page }) %>
+        <% }}) %>
         </div>
     <% } %>
 </div>
