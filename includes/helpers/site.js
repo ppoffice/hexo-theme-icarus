@@ -10,7 +10,6 @@
 *     <%- duration() %>
 *     <%- word_count(content) %>
 *     <%- md5(data) %>
-*     <%- meta() %>
  */
 const URL = require('url').URL;
 const moment = require('moment');
@@ -63,39 +62,5 @@ module.exports = function (hexo) {
 
     hexo.extend.helper.register('md5', function (data) {
         return crypto.createHash('md5').update(data).digest("hex")
-    });
-
-    hexo.extend.helper.register('meta', function () {
-        function trim(str) {
-            return str.trim().replace(/^"(.*)"$/, '$1').replace(/^'(.*)'$/, '$1');
-        }
-    
-        function split(str, sep) {
-            const result = [];
-            let matched = null;
-            while (matched = sep.exec(str)) {
-                result.push(matched[0]);
-            }
-            return result;
-        }
-
-        const getConfig = hexo.extend.helper.get('get_config').bind(this);
-        const metas = getConfig('meta', []);
-        const metaDOMArray = metas.map(function (meta) {
-            const entities = split(meta, /(?:[^\\;]+|\\.)+/g);
-            const entityArray = entities.map(function (entity) {
-                const keyValue = split(entity, /(?:[^\\=]+|\\.)+/g);
-                if (keyValue.length < 2) {
-                    return null;
-                }
-                const key = trim(keyValue[0]);
-                const value = trim(keyValue[1]);
-                return key + '="' + value + '"';
-            }).filter(function (entity) {
-                return entity;
-            });
-            return '<meta ' + entityArray.join(' ') + ' />';
-        });
-        return metaDOMArray.join('\n');
     });
 }

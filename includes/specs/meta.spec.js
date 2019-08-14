@@ -6,15 +6,6 @@ module.exports = {
         [doc]: 'Path or URL to the website\'s icon',
         [defaultValue]: '/images/favicon.svg',
     },
-    meta: {
-        [type]: 'array',
-        [doc]: 'Additional HTML meta tags in an array.',
-        [defaultValue]: null,
-        '*': {
-            [type]: 'string',
-            [doc]: 'Meta tag specified in <attribute>=<value> style.\nE.g., name=theme-color;content=#123456 => <meta name="theme-color" content="#123456">'
-        }
-    },
     rss: {
         [type]: 'string',
         [doc]: 'Path or URL to RSS atom.xml',

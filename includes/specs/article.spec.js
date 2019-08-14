@@ -4,23 +4,9 @@ module.exports = {
     [type]: 'object',
     [doc]: 'Article display settings',
     highlight: {
-        [type]: 'object',
-        [doc]: 'Code highlight settings',
-        theme: {
-            [type]: 'string',
-            [doc]: 'Code highlight themes\nhttps://github.com/highlightjs/highlight.js/tree/master/src/styles',
-            [defaultValue]: 'atom-one-light'
-        },
-        clipboard: {
-            [type]: 'boolean',
-            [doc]: 'Show code copying button',
-            [defaultValue]: true
-        },
-        fold: {
-            [type]: 'string',
-            [doc]: 'Default folding status of the code blocks. Can be "", "folded", "unfolded"',
-            [defaultValue]: 'unfolded'
-        }
+        [type]: 'string',
+        [doc]: 'Code highlight theme\nhttps://github.com/highlightjs/highlight.js/tree/master/src/styles',
+        [defaultValue]: 'atom-one-light'
     },
     thumbnail: {
         [type]: 'boolean',

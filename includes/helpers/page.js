@@ -5,11 +5,25 @@
 *     <%- is_categories(page) %>
 *     <%- is_tags(page) %>
 *     <%- page_title(page) %>
+*     <%- meta(post) %>
 *     <%- has_thumbnail(post) %>
 *     <%- get_thumbnail(post) %>
 *     <%- get_og_image(post) %>
 */
 module.exports = function (hexo) {
+    function trim(str) {
+        return str.trim().replace(/^"(.*)"$/, '$1').replace(/^'(.*)'$/, '$1');
+    }
+
+    function split(str, sep) {
+        var result = [];
+        var matched = null;
+        while (matched = sep.exec(str)) {
+            result.push(matched[0]);
+        }
+        return result;
+    }
+
     hexo.extend.helper.register('is_categories', function (page = null) {
         return (page === null ? this.page : page).__categories;
     });
@@ -46,6 +60,27 @@ module.exports = function (hexo) {
         return [title, siteTitle].filter(str => typeof (str) !== 'undefined' && str.trim() !== '').join(' - ');
     });
 
+    hexo.extend.helper.register('meta', function (post) {
+        var metas = post.meta || [];
+        var output = '';
+        var metaDOMArray = metas.map(function (meta) {
+            var entities = split(meta, /(?:[^\\;]+|\\.)+/g);
+            var entityArray = entities.map(function (entity) {
+                var keyValue = split(entity, /(?:[^\\=]+|\\.)+/g);
+                if (keyValue.length < 2) {
+                    return null;
+                }
+                var key = trim(keyValue[0]);
+                var value = trim(keyValue[1]);
+                return key + '="' + value + '"';
+            }).filter(function (entity) {
+                return entity;
+            });
+            return '<meta ' + entityArray.join(' ') + ' />';
+        });
+        return metaDOMArray.join('\n');
+    });
+
     hexo.extend.helper.register('has_thumbnail', function (post) {
         const getConfig = hexo.extend.helper.get('get_config').bind(this);
         const allowThumbnail = getConfig('article.thumbnail', true);
@@ -75,7 +110,7 @@ module.exports = function (hexo) {
 
         let og_image
 
-        if (hasOGImage)
+        if(hasOGImage)
             og_image = post.og_image
         else if (hasThumbnail)
             og_image = getThumbnail(post);
