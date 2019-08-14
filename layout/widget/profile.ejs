@@ -1,3 +1,4 @@
+<% if (page.__page !== true && page.__post !== true) { %>
 <% function avatar() {
     const avatar = get_config_from_obj(widget, 'avatar');
     const gravatar_email = get_config_from_obj(widget, 'gravatar');
@@ -12,7 +13,7 @@
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
-            <div class="level-item has-text-centered" style="flex-shrink: 1">
+            <div class="level-item has-text-centered">
                 <div>
                     <% if (get_config_from_obj(widget, 'avatar_rounded')) { %>
                         <figure class="image is-128x128 has-mb-6">
@@ -94,3 +95,4 @@
         <% } %>
     </div>
 </div>
+<% } %>

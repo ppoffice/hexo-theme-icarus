@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <title><%= page_title() %></title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<%- meta() %>
+<%- meta(page) %>
 
 <% if (has_config('open_graph')) { %>
     <%- open_graph({
@@ -29,7 +29,7 @@
 <%- _css(cdn('bulma', '0.7.2', 'css/bulma.css')) %>
 <%- _css(iconcdn()) %>
 <%- _css(fontcdn('Ubuntu:400,600|Source+Code+Pro')) %>
-<%- _css(cdn('highlight.js', '9.12.0', 'styles/' + get_config('article.highlight.theme') + '.css')) %>
+<%- _css(cdn('highlight.js', '9.12.0', 'styles/' + get_config('article.highlight') + '.css')) %>
 
 <% if (has_config('plugins')) { %>
     <% for (let plugin in get_config('plugins')) { %>

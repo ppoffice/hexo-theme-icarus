@@ -25,7 +25,7 @@
         <%- partial('widget/' + widget.type, { widget, post: page }) %>
     <% }) %>
     <% if (position === 'left') { %>
-        <div class="column-right-shadow is-hidden-widescreen <%= sticky_class('right') %>">
+		<div class="column-right-shadow is-hidden-widescreen <%= sticky_class('right') %>">
         <% get_widgets('right').forEach(widget => {%>
             <%- partial('widget/' + widget.type, { widget, post: page }) %>
         <% }) %>

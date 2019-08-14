@@ -15,9 +15,7 @@
         id: '<%= md5(page.path) %>',
         repo: '<%= get_config('comment.repo') %>',
         owner: '<%= get_config('comment.owner') %>',
-        admin: <%- JSON.stringify(get_config('comment.admin'))%>,
-        createIssueManually: <%= get_config('comment.create_issue_manually', false) %>,
-        distractionFreeMode: <%= get_config('comment.distraction_free_mode', false) %>
+        admin: <%- JSON.stringify(get_config('comment.admin'))%>
     })
     gitalk.render('comment-container')
 </script>

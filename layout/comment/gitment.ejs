@@ -10,7 +10,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 	var gitment = new Gitment({
-		id: '<%= md5(page.path) %>',
+		id: '<%= page.path %>',
 		owner: '<%= get_config('comment.owner') %>',
 		repo: '<%= get_config('comment.repo') %>',
 		oauth: {

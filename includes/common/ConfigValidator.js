@@ -103,7 +103,7 @@ function compareVersion(ver1, ver2) {
 }
 
 function isBreakingChange(base, ver) {
-    return base.major !== ver.major || base.minor !== ver.minor;
+    return base.major !== ver.major;
 }
 
 
