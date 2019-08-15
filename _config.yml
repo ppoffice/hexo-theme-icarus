@@ -28,7 +28,7 @@ navbar:
 #        Categories: /categories
         Tags: /tags
         About: /about
-        PZ: /PZ
+#        PZ: /PZ
     # Navigation bar links to be shown on the right
     # links:
         # Download on GitHub:
