@@ -11,21 +11,30 @@
  */
 const cheerio = require('cheerio');
 
+const __archives = [];
+const __categories = [];
+const __tags = [];
+
 module.exports = function (hexo) {
     hexo.extend.helper.register('_list_archives', function () {
+        if (__archives.length) {
+            return __archives;
+        }
         const $ = cheerio.load(this.list_archives(), { decodeEntities: false });
-        const archives = [];
         $('.archive-list-item').each(function () {
-            archives.push({
+            __archives.push({
                 url: $(this).find('.archive-list-link').attr('href'),
                 name: $(this).find('.archive-list-link').text(),
                 count: $(this).find('.archive-list-count').text()
             });
         });
-        return archives;
+        return __archives;
     });
 
     hexo.extend.helper.register('_list_categories', function () {
+        if (__categories.length) {
+            return __categories;
+        }
         const $ = cheerio.load(this.list_categories({ depth: 2 }), { decodeEntities: false });
         function traverse(root) {
             const categories = [];
@@ -42,20 +51,23 @@ module.exports = function (hexo) {
             });
             return categories;
         }
-        return traverse($('.category-list'));
+        __categories.push(...traverse($('.category-list')));
+        return __categories;
     });
 
     hexo.extend.helper.register('_list_tags', function () {
+        if (__tags.length) {
+            return __tags;
+        }
         const $ = cheerio.load(this.list_tags(), { decodeEntities: false });
-        const tags = [];
         $('.tag-list-item').each(function () {
-            tags.push({
+            __tags.push({
                 url: $(this).find('.tag-list-link').attr('href'),
                 name: $(this).find('.tag-list-link').text(),
                 count: $(this).find('.tag-list-count').text()
             });
         });
-        return tags;
+        return __tags;
     });
 
     /**

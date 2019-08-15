@@ -1,7 +1,10 @@
-<meta charset="utf-8">
-<title><%= page_title() %></title>
+<meta charset="utf-8" />
+<% if (get_config('meta_generator', true)) { %>
+<meta name="generator" content="Hexo <%= hexo_version() %>" />
+<% } %>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <%- meta() %>
+<title><%= page_title() %></title>
 
 <% if (has_config('open_graph')) { %>
     <%- open_graph({
