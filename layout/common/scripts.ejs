@@ -19,7 +19,7 @@ var IcarusThemeSettings = {
 
 <% if (has_config('plugins')) { %>
     <% for (let plugin in get_config('plugins')) { %>
-    <%- partial('plugin/' + plugin, { head: false, plugin: get_config('plugins')[plugin] }) %>
+    <%- _partial('plugin/' + plugin, { head: false, plugin: get_config('plugins')[plugin] }) %>
     <% } %>
 <% } %>
 

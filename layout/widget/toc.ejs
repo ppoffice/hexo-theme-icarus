@@ -1,5 +1,4 @@
-<% if (get_config('toc') === true && (post.layout === 'page' || post.layout === 'post')) {
-function buildToc(toc) {
+<% function buildToc(toc) {
     let result = '';
     if (toc.hasOwnProperty('id') && toc.hasOwnProperty('index') && toc.hasOwnProperty('text')) {
         result += `<li>
@@ -24,16 +23,14 @@ function buildToc(toc) {
         result += '</li>';
     }
     return result;
-}
-%>
+} %>
 <div class="card widget" id="toc">
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
                 <%= _p('widget.catalogue', Infinity) %>
             </h3>
-            <%- buildToc(_toc(post.content)) %>
+            <%- buildToc(_toc(content)) %>
         </div>
     </div>
 </div>
-<% } %>

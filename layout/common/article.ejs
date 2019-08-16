@@ -1,3 +1,4 @@
+<% post = post(); %>
 <div class="card">
     <% if (has_thumbnail(post)) { %>
     <div class="card-image">
@@ -71,7 +72,7 @@
         </div>
         <% } %>
         <% if (!index && has_config('share.type')) { %>
-        <%- partial('share/' + get_config('share.type')) %>
+        <%- _partial('share/' + get_config('share.type')) %>
         <% } %>
     </div>
 </div>
@@ -85,7 +86,7 @@
             <% for (let service of services) {
                 const type = get_config_from_obj(service, 'type');
                 if (type !== null) { %>
-                <%- partial('donate/' + type, { type, service }) %>
+                <%- _partial('donate/' + type, { type, service }) %>
                 <% }
             } %>
         </div>
@@ -120,7 +121,7 @@
 <div class="card">
     <div class="card-content">
         <h3 class="title is-5 has-text-weight-normal"><%= __('article.comments') %></h3>
-        <%- partial('comment/' + get_config('comment.type')) %>
+        <%- _partial('comment/' + get_config('comment.type')) %>
     </div>
 </div>
 <% } %>

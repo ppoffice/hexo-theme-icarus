@@ -5,11 +5,14 @@
 *     <%- _list_archives() %>
 *     <%- _list_categories() %>
 *     <%- _list_tags() %>
-*     <%- _toc() %>
-*     <%- _js() %>
-*     <%- _css() %>
+*     <%- _toc(content) %>
+*     <%- _js(url, defer, async) %>
+*     <%- _css(url) %>
+*     <%- _partial(url) %>
  */
 const cheerio = require('cheerio');
+const { existsSync } = require('fs');
+const { relative, dirname, join, extname } = require('path');
 
 const __archives = [];
 const __categories = [];
@@ -150,5 +153,36 @@ module.exports = function (hexo) {
             url += '.css';
         }
         return `<link rel="stylesheet" href="${urlFor(url)}">`;
+    });
+
+    hexo.extend.helper.register('_partial', function (name, locals, options = {}) {
+        const { md5, partial, view_dir, page } = this;
+        const currentView = this.filename.substring(view_dir.length);
+        let _locals = Object.assign({}, locals, { layout: false });
+
+        let { path } = hexo.theme.getView(join(dirname(currentView), name)) || hexo.theme.getView(name);
+        path = join(view_dir, path.substring(0, path.length - extname(path).length) + '.locals.js');
+
+        if (!existsSync(path)) {
+            // fallback to default partial
+            return partial(name, locals, options);
+        }
+
+        _locals = require(path)(this, _locals);
+        if (_locals === null) {
+            // partial should be empty
+            return '';
+        }
+
+        if (_locals === false) {
+            // do not cache this fragment
+            return partial(name, locals, options);
+        }
+
+        const language = page.lang || page.language;
+        const fragment = relative(view_dir, path.substring(0, path.length - '.locals.js'.length));
+        const cacheId = [fragment, language, md5(JSON.stringify(_locals))].join('-');
+
+        return partial(name, _locals, { cache: cacheId, only: options.only || false });
     });
 }

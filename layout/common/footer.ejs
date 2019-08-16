@@ -3,17 +3,17 @@
         <div class="level">
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="<%- url_for('/') %>">
-                <% if (has_config('logo.text') && get_config('logo.text')) { %>
-                    <%= get_config('logo.text') %>
+                <% if (logo && logo.text) { %>
+                    <%= logo.text %>
                 <% } else { %>
-                    <img src="<%- url_for(get_config('logo')) %>" alt="<%= get_config('title') %>" height="28">
+                    <img src="<%- url_for(logo) %>" alt="<%= title %>" height="28">
                 <% } %>
                 </a>
                 <p class="is-size-7">
-                &copy; <%= date(new Date(), 'YYYY') %> <%= get_config('author') || get_config('title') %>&nbsp;
+                &copy; <%= date(new Date(), 'YYYY') %> <%= author || title %>&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                <% if (has_config('plugins.busuanzi') ? get_config('plugins.busuanzi') : false) { %>
+                <% if (busuanzi) { %>
                 <br>
                 <span id="busuanzi_container_site_uv">
                 <%- _p('plugin.visitor', '<span id="busuanzi_value_site_uv">0</span>') %>
@@ -22,9 +22,8 @@
                 </p>
             </div>
             <div class="level-end">
-            <% if (has_config('footer.links')) { %>
+            <% if (Object.keys(links).length) { %>
                 <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
-                <% let links = get_config('footer.links'); %>
                 <% for (let name in links) {
                         let link = links[name]; %>
                 <p class="control">
