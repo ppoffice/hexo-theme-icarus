@@ -1,5 +1,5 @@
 title: Make a Sidebar Sticky When Page Scrolls
-date: 2018-10-16
+date: 2018-10-16 00:00:00
 categories:
 - Configuration
 - Theme

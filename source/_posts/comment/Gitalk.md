@@ -1,5 +1,5 @@
 title: Gitalk Comment Plugin
-date: 2015-01-01
+date: 2015-01-01 00:00:02
 categories:
 - Plugins
 - Comment

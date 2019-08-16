@@ -1,5 +1,5 @@
 title: Speed up Your Site with Custom CDN
-date: 2018-10-16
+date: 2018-10-16 00:00:01
 toc: true
 categories:
 - Configuration

@@ -1,5 +1,5 @@
 title: MathJax Plugin
-date: 2016-01-31
+date: 2016-01-31 00:00:02
 categories:
 - Plugins
 - General

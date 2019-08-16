@@ -1,5 +1,5 @@
 title: Share.js Share Plugin
-date: 2014-01-01
+date: 2014-01-01 00:00:04
 categories:
 - Plugins
 - Share
