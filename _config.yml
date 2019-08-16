@@ -122,11 +122,6 @@ widgets:
             RSS:
                 icon: fas fa-rss
                 url: 'https://da0mao.github.io/atom.xml'
-    -
-        # Widget name
-        type: adsense
-        # Where should the widget be placed, left or right
-        position: right
     # -
         # # Widget name
         # type: music
@@ -142,12 +137,12 @@ widgets:
             # Hexo: 'https://hexo.io'
     -
         # Widget name
-        type: category
+        type: toc
         # Where should the widget be placed, left or right
         position: left
     -
         # Widget name
-        type: tagcloud
+        type: category
         # Where should the widget be placed, left or right
         position: right
     -
@@ -157,20 +152,25 @@ widgets:
         position: right
     -
         # Widget name
+        type: tag
+        # Where should the widget be placed, left or right
+        position: right
+    -
+        # Widget name
+        type: tagcloud
+        # Where should the widget be placed, left or right
+        position: left
+    -
+        # Widget name
         type: archive
         # Where should the widget be placed, left or right
         position: right
-    # -
-        # # Widget name
-        # type: tag
-        # # Where should the widget be placed, left or right
-        # position: right
     -
         # Widget name
-        type: toc
+        type: adsense
         # Where should the widget be placed, left or right
-        position: left
-
+        position: right
+        
 # Other plugin settings
 plugins:
     # Enable page animations

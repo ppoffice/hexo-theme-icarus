@@ -17,20 +17,26 @@ body
 
 body, button, input, select, textarea
     font-family: family-sans
-
+/* change post to 2 columns */
 @media screen and (min-width: screen-widescreen)
     .is-1-column .container
     .is-2-column .container
         max-width: screen-desktop - 2 * gap
         width: screen-desktop - 2 * gap
+    .is-3-column .container
+        max-width: screen-widescreen - gap
+        width: screen-widescreen - gap
 @media screen and (min-width: screen-fullhd)
+    .is-3-column .container
+        max-width: screen-fullhd - 2 * gap
+        width: screen-fullhd - 2 * gap
     .is-2-column .container
         max-width: screen-widescreen - 2 * gap
         width: screen-widescreen - 2 * gap
     .is-1-column .container
         max-width: screen-desktop - 2 * gap
         width: screen-desktop - 2 * gap
-
+/* change post to 2 columns */
 @media screen and (max-width: screen-tablet - 1)
     .section
         padding: 1.5rem 1rem

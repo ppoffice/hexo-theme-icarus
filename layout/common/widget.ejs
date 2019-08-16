@@ -2,8 +2,9 @@
 <% function side_column_class() {
     switch (column_count()) {
         case 2:
-            return 'is-4-tablet is-4-desktop is-4-widescreen';
-        case 3:
+            //return 'is-4-tablet is-4-desktop is-4-widescreen';
+			return 'is-4-tablet is-4-desktop is-3-widescreen';
+		case 3:
             return 'is-4-tablet is-4-desktop is-3-widescreen';
     }
     return '';

@@ -22,7 +22,17 @@ module.exports = function (hexo) {
             return [];
         }
         const widgets = hexo.extend.helper.get('get_config').bind(this)('widgets');
-        return widgets.filter(widget => widget.hasOwnProperty('position') && widget.position === position);
+        //return widgets.filter(widget => widget.hasOwnProperty('position') && widget.position === position);
+		// change post to 2 columns	
+		if (this.page.layout !== 'post') {
+            return widgets.filter(widget => widget.hasOwnProperty('position') && widget.position === position);
+        }
+        if (position === 'left') {
+            return widgets.filter(widget => widget.hasOwnProperty('position') && (widget.type === 'toc' || widget.type === 'category'));
+        } else {
+            return []
+        }
+		//chang ends
     });
 
     hexo.extend.helper.register('has_column', function (position) {
