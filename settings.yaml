@@ -1,9 +1,37 @@
-sns:
-  label: 社交资料
+post:
+  label: 文章设置
   items:
-    rss:
-      name: rss
-      label: RSS
+    share_type:
+      name: share_type
+      label: 文章分享组件
+      type: select
+      default: ''
+      options:
+        - value: ''
+          label: '无'
+        - value: addthis
+          label: addthis
+        - value: addtoany
+          label: addtoany
+        - value: bdshare
+          label: bdshare
+        - value: sharejs
+          label: sharejs
+        - value: sharethis
+          label: sharethis
+    donate_alipay:
+      name: donate_alipay
+      label: 支付宝捐赠二维码
+      type: text
+      placeholder: '二维码地址'
+    donate_wechat:
+      name: donate_wechat
+      label: 微信捐赠二维码
+      type: text
+      placeholder: '二维码地址'
+    highlight_clipboard:
+      name: highlight_clipboard
+      label: 代码复制
       type: radio
       data-type: bool
       default: true
@@ -12,3 +40,37 @@ sns:
           label: 开启
         - value: false
           label: 关闭
+    highlight_fold:
+      name: highlight_fold
+      label: 代码那啥
+      type: radio
+      data-type: bool
+      default: true
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+sidebar:
+  label: 侧边栏
+  items:
+    profile_avatar_type:
+      name: profile_avatar_type
+      label: 头像形状
+      type: select
+      default: 'avatar_rounded'
+      options:
+        - value: avatar_rounded
+          label: '圆形'
+        - value: avatar_square
+          label: '方形'
+    profile_location:
+      name: profile_location
+      label: 地理位置
+      type: text
+      placeholder: '个人所在地'
+    profile_follow_url:
+      name: profile_follow_url
+      label: 【关注我】按钮地址
+      type: text
+      placeholder: '默认为博客地址'

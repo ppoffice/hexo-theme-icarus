@@ -1,1 +1,1 @@
-<%- partial('tags') %>
+<#include "../tags.ftl">

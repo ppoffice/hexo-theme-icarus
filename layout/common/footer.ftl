@@ -13,32 +13,26 @@
                 &copy; ${.now?string('yyyy')} ${user.nickname!}&nbsp;
                 Powered by <a href="https://halo.run/" target="_blank">Halo</a> & <a
                         href="https://github.com/halo-dev/halo-theme-icarus" target="_blank">Icarus</a>
-                <% if (has_config('plugins.busuanzi') ? get_config('plugins.busuanzi') : false) { %>
-                <br>
-                <span id="busuanzi_container_site_uv">
-                <%- _p('plugin.visitor', '<span id="busuanzi_value_site_uv">0</span>') %>
-                </span>
-                <% } %>
                 </p>
             </div>
             <div class="level-end">
-            <% if (has_config('footer.links')) { %>
-                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
-                <% let links = get_config('footer.links'); %>
-                <% for (let name in links) {
-                        let link = links[name]; %>
-                <p class="control">
-                    <a class="button is-white <%= typeof(link) !== 'string' ? 'is-large' : '' %>" target="_blank" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
-                        <% if (typeof(link) === 'string') { %>
-                        <%= name %>
-                        <% } else { %>
-                        <i class="<%= link.icon %>"></i>
-                        <% } %>
-                    </a>
-                </p>
-                <% } %>
-                </div>
-            <% } %>
+<#--            <% if (has_config('footer.links')) { %>-->
+<#--                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">-->
+<#--                <% let links = get_config('footer.links'); %>-->
+<#--                <% for (let name in links) {-->
+<#--                        let link = links[name]; %>-->
+<#--                <p class="control">-->
+<#--                    <a class="button is-white <%= typeof(link) !== 'string' ? 'is-large' : '' %>" target="_blank" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">-->
+<#--                        <% if (typeof(link) === 'string') { %>-->
+<#--                        <%= name %>-->
+<#--                        <% } else { %>-->
+<#--                        <i class="<%= link.icon %>"></i>-->
+<#--                        <% } %>-->
+<#--                    </a>-->
+<#--                </p>-->
+<#--                <% } %>-->
+<#--                </div>-->
+<#--            <% } %>-->
             </div>
         </div>
     </div>

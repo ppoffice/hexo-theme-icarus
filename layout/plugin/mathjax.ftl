@@ -1,5 +1,4 @@
-<% if (!head && plugin !== false) { %>
-<%- _js(cdn('mathjax', '2.7.5', 'unpacked/MathJax.js?config=TeX-MML-AM_CHTML'), true) %>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     MathJax.Hub.Config({
@@ -21,4 +20,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<% } %>

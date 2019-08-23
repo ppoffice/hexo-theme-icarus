@@ -29,40 +29,34 @@
     <@global.head />
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
     <#--<%- _css(cdn('highlight.js', '9.12.0', 'styles/' + get_config('article.highlight.theme') + '.css')) %>-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
 
-    <% if (has_config('plugins')) { %>
-    <% for (let plugin in get_config('plugins')) { %>
-    <%- partial('plugin/' + plugin, { head: true, plugin: get_config('plugins')[plugin] }) %>
-    <% } %>
-    <% } %>
+    <style>
+        body>.footer,
+        body>.navbar,
+        body>.section {
+            opacity: 0
+        }
+    </style>
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    <script src="//cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
 
     <link rel="stylesheet" href="${static!}/source/css/style.css">
-    <link rel="stylesheet" href="${static!}/source/css/back-to-top.css">
-    <link rel="stylesheet" href="${static!}/source/css/insight.css">
-    <link rel="stylesheet" href="${static!}/source/css/progressbar.css">
-    <link rel="stylesheet" href="${static!}/source/css/search.css">
+    <link rel="stylesheet" href="${static!}/source/css/bundle.css">
 </head>
-<body class="is-<%= column_count() %>-column">
+<body class="is-3-column">
     <@navbar 'page' />
-    <% function main_column_class() {
-        switch (column_count()) {
-            case 1:
-                return 'is-12';
-            case 2:
-                return 'is-8-tablet is-8-desktop is-8-widescreen';
-            case 3:
-                return 'is-8-tablet is-8-desktop is-6-widescreen'
-        }
-        return '';
-    } %>
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column <%= main_column_class() %> has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
                     <#nested />
                 </div>
                 <@widget 'left' />
@@ -73,9 +67,9 @@
     <#include "common/footer.ftl">
     <#include "common/scripts.ftl">
 
-    <% if (has_config('search.type')) { %>
-    <%- partial('search/' + get_config('search.type')) %>
-    <% } %>
+<#--    <% if (has_config('search.type')) { %>-->
+<#--    <%- partial('search/' + get_config('search.type')) %>-->
+<#--    <% } %>-->
 </body>
 </html>
 </#macro>

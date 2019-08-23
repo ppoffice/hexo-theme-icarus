@@ -1,26 +1,27 @@
-<% const links = get_config_from_obj(widget, 'links'); %>
-<% if (links !== null) { %>
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            <%= __('widget.links') %>
-        </h3>
-        <ul class="menu-list">
-        <% for (let i in links) { %>
-            <li>
-                <a class="level is-mobile" href="<%- links[i] %>" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item"><%= i %></span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag"><%- get_domain(links[i]) %></span>
-                    </span>
-                </a>
-            </li>
-        <% } %>
-        </ul>
+<@linkTag method="list">
+    <#if links?? && links?size gt 0>
+        <div class="card widget">
+            <div class="card-content">
+                <div class="menu">
+                <h3 class="menu-label">
+                    链接
+                </h3>
+                <ul class="menu-list">
+                    <#list links as link>
+                        <li>
+                            <a class="level is-mobile" href="${link.url!}" target="_blank">
+                                <span class="level-left">
+                                    <span class="level-item">${link.name}</span>
+                                </span>
+                                <span class="level-right">
+                                    <span class="level-item tag">${link.url!}</span>
+                                </span>
+                            </a>
+                        </li>
+                    </#list>
+                </ul>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<% } %>
+    </#if>
+</@linkTag>

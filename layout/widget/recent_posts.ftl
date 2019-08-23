@@ -1,34 +1,26 @@
-<% if (site.posts.length) { %>
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            <%= __('widget.recents') %>
+            最新文章
         </h3>
-        <% site.posts.sort('date', -1).limit(5).each(post => { %>
-        <article class="media">
-            <% if (!has_config('article.thumbnail') || get_config('article.thumbnail') !== false) { %>
-            <a href="<%- url_for((post.link?post.link:post.path)) %>" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="<%= get_thumbnail(post) %>" alt="<%= post.title %>">
-                </p>
-            </a>
-            <% } %>
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time></div>
-                    <a href="<%- url_for((post.link?post.link:post.path)) %>" class="title has-link-black-ter is-size-6 has-text-weight-normal"><%= post.title %></a>
-                    <p class="is-size-7 is-uppercase">
-                        <%- list_categories(post.categories, {
-                            show_count: false,
-                            class: 'has-link-grey ',
-                            depth:2,
-                            style: 'none',
-                            separator: ' / '}) %>
-                    </p>
-                </div>
-            </div>
-        </article>
-        <% }) %>
+        <@postTag method="latest" top="5">
+            <#list posts as post>
+                <article class="media">
+                    <#if post.thumbnail?? && post.thumbnail!=''>
+                        <a href="${context!}/archives/${post.url!}" class="media-left">
+                            <p class="image is-64x64">
+                                <img class="thumbnail" src="${post.thumbnail!}" alt="${post.title!}">
+                            </p>
+                        </a>
+                    </#if>
+                    <div class="media-content">
+                        <div class="content">
+                            <div><time class="has-text-grey is-size-7 is-uppercase" datetime="${post.createTime!}">${post.createTime?string('yyyy-MM-dd')}</time></div>
+                            <a href="${context!}/archives/${post.url!}" class="title has-link-black-ter is-size-6 has-text-weight-normal">${post.title!}</a>
+                        </div>
+                    </div>
+                </article>
+            </#list>
+        </@postTag>
     </div>
 </div>
-<% } %>

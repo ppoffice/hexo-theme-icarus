@@ -7,5 +7,5 @@
 <a class="a2a_button_whatsapp"></a>
 <a class="a2a_button_reddit"></a>
 </div>
-<script async src="https://static.addtoany.com/menu/page.js"></script>
+<script async src="//static.addtoany.com/menu/page.js"></script>
 <!-- AddToAny END -->

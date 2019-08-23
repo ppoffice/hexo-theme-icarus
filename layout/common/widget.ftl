@@ -1,37 +1,22 @@
 <#macro widget position>
-<% if (get_widgets(position).length) { %>
-<% function side_column_class() {
-    switch (column_count()) {
-        case 2:
-            return 'is-4-tablet is-4-desktop is-4-widescreen';
-        case 3:
-            return 'is-4-tablet is-4-desktop is-3-widescreen';
-    }
-    return '';
-} %>
-<% function visibility_class() {
-    if (column_count() === 3 && position === 'right') {
-        return 'is-hidden-touch is-hidden-desktop-only';
-    }
-    return '';
-} %>
-<% function order_class() {
-    return position === 'left' ? 'has-order-1' : 'has-order-3';
-} %>
-<% function sticky_class(position) {
-    return get_config('sidebar.' + position + '.sticky', false) ? 'is-sticky' : '';
-} %>
-<div class="column <%= side_column_class() %> <%= visibility_class() %> <%= order_class() %> column-<%= position %> <%= sticky_class(position) %>">
-    <% get_widgets(position).forEach(widget => {%>
-        <%- partial('widget/' + widget.type, { widget, post: page }) %>
-    <% }) %>
-    <% if (position === 'left') { %>
-        <div class="column-right-shadow is-hidden-widescreen <%= sticky_class('right') %>">
-        <% get_widgets('right').forEach(widget => {%>
-            <%- partial('widget/' + widget.type, { widget, post: page }) %>
-        <% }) %>
+<div class="column is-4-tablet is-4-desktop is-3-widescreen <#if position=='right'>is-hidden-touch is-hidden-desktop-only</#if> <#if position == 'left'>has-order-1<#else>has-order-3</#if> column-${position} <%= sticky_class(position) %>">
+    <#if position == 'left'>
+        <#include "../widget/profile.ftl">
+        <#include "../widget/links.ftl">
+        <#include "../widget/category.ftl">
+        <#include "../widget/tagcloud.ftl">
+    </#if>
+    <#if position == 'right'>
+        <#include "../widget/recent_posts.ftl">
+        <#include "../widget/archive.ftl">
+        <#include "../widget/tag.ftl">
+    </#if>
+    <#if position == 'left'>
+        <div class="column-right-shadow is-hidden-widescreen">
+            <#include "../widget/recent_posts.ftl">
+            <#include "../widget/archive.ftl">
+            <#include "../widget/tag.ftl">
         </div>
-    <% } %>
+    </#if>
 </div>
-<% } %>
 </#macro>

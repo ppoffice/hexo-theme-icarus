@@ -46,3 +46,19 @@ function pagination(c, m) {
         </ul>
     </nav>
 </div>
+
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous"><a class="is-flex-grow has-text-black-ter"
+                                            href="/hexo-theme-icarus/">Previous</a></div>
+        <div class="pagination-next"><a class="is-flex-grow has-text-black-ter"
+                                        href="/hexo-theme-icarus/page/3/">Next</a></div>
+        <ul class="pagination-list is-hidden-mobile">
+            <li><a class="pagination-link has-text-black-ter" href="/hexo-theme-icarus/">1</a></li>
+            <li><a class="pagination-link is-current" href="/hexo-theme-icarus/page/2/">2</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/hexo-theme-icarus/page/3/">3</a></li>
+            <li><span class="pagination-ellipsis has-text-black-ter">…</span></li>
+            <li><a class="pagination-link has-text-black-ter" href="/hexo-theme-icarus/page/6/">6</a></li>
+        </ul>
+    </nav>
+</div>

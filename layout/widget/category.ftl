@@ -1,1 +1,1 @@
-<%- partial('categories') %>
+<#include "../categories.ftl">

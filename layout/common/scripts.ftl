@@ -1,26 +1,24 @@
-<%- _js(cdn('jquery', '3.3.1', 'dist/jquery.min.js')) %>
-<%- _js(cdn('moment', '2.22.2', 'min/moment-with-locales.min.js')) %>
-<script>moment.locale("<%= get_config('language', 'en') %>");</script>
+<script src="//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 
 <script>
 var IcarusThemeSettings = {
     article: {
         highlight: {
-            clipboard: <%= get_config('article.highlight.clipboard', true) %>,
-            fold: '<%= get_config('article.highlight.fold', true) %>'
+            clipboard: !0,
+            fold: "unfolded"
         }
     }
 };
 </script>
 
-<% if (get_config('article.highlight.clipboard')) { %>
-    <%- _js(cdn('clipboard', '2.0.4', 'dist/clipboard.min.js'), true) %>
-<% } %>
+<#if settings.highlight_clipboard!true>
+    <script src="//cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+</#if>
 
-<% if (has_config('plugins')) { %>
-    <% for (let plugin in get_config('plugins')) { %>
-    <%- partial('plugin/' + plugin, { head: false, plugin: get_config('plugins')[plugin] }) %>
-    <% } %>
-<% } %>
+<#include "../plugin/gallery.ftl">
+<#include "../plugin/outdated-browser.ftl">
+<#include "../plugin/mathjax.ftl">
+<#include "../plugin/back-to-top.ftl">
 
-<%- _js('js/main', true) %>
+
+<script src="${static!}/source/js/bundle.js"></script>
