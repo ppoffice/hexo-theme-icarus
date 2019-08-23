@@ -1,0 +1,14 @@
+sns:
+  label: 社交资料
+  items:
+    rss:
+      name: rss
+      label: RSS
+      type: radio
+      data-type: bool
+      default: true
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭

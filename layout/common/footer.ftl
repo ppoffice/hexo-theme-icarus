@@ -2,17 +2,17 @@
     <div class="container">
         <div class="level">
             <div class="level-start has-text-centered-mobile">
-                <a class="footer-logo is-block has-mb-6" href="<%- url_for('/') %>">
-                <% if (has_config('logo.text') && get_config('logo.text')) { %>
-                    <%= get_config('logo.text') %>
-                <% } else { %>
-                    <img src="<%- url_for(get_config('logo')) %>" alt="<%= get_config('title') %>" height="28">
-                <% } %>
+                <a class="footer-logo is-block has-mb-6" href="${context!}">
+                    <#if options.blog_logo?? && options.blog_logo!=''>
+                        <img src="${options.blog_logo!}" alt="${options.blog_title!}" height="28">
+                    <#else>
+                        ${options.blog_title!}
+                    </#if>
                 </a>
                 <p class="is-size-7">
-                &copy; <%= date(new Date(), 'YYYY') %> <%= get_config('author') || get_config('title') %>&nbsp;
-                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                &copy; ${.now?string('yyyy')} ${user.nickname!}&nbsp;
+                Powered by <a href="https://halo.run/" target="_blank">Halo</a> & <a
+                        href="https://github.com/halo-dev/halo-theme-icarus" target="_blank">Icarus</a>
                 <% if (has_config('plugins.busuanzi') ? get_config('plugins.busuanzi') : false) { %>
                 <br>
                 <span id="busuanzi_container_site_uv">

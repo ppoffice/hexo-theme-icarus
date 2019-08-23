@@ -1,3 +1,4 @@
+<#macro widget position>
 <% if (get_widgets(position).length) { %>
 <% function side_column_class() {
     switch (column_count()) {
@@ -33,3 +34,4 @@
     <% } %>
 </div>
 <% } %>
+</#macro>

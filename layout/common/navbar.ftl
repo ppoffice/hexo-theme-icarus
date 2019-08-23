@@ -1,23 +1,25 @@
+<#macro navbar layout>
 <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
-            <a class="navbar-item navbar-logo" href="<%- url_for('/') %>">
-            <% if (has_config('logo.text') && get_config('logo.text')) { %>
-                <%= get_config('logo.text') %>
-            <% } else { %>
-                <img src="<%- url_for(get_config('logo')) %>" alt="<%= get_config('title') %>" height="28">
-            <% } %>
+            <a class="navbar-item navbar-logo" href="${context!}">
+                <#if options.blog_logo?? && options.blog_logo!=''>
+                    <img src="${options.blog_logo!}" alt="${options.blog_title!}" height="28">
+                <#else>
+                    ${options.blog_title!}
+                </#if>
             </a>
         </div>
         <div class="navbar-menu">
-            <% if (has_config('navbar.menu')) { %>
-            <div class="navbar-start">
-                <% for (let i in get_config('navbar.menu')) { let menu = get_config('navbar.menu')[i]; %>
-                <a class="navbar-item<% if (typeof(page.path) !== 'undefined' && is_same_link(menu, page.path)) { %> is-active<% } %>"
-                href="<%- url_for(menu) %>"><%= i %></a>
-                <% } %>
-            </div>
-            <% } %>
+            <@menuTag method="list">
+                <#if menus?? && menus?size gt 0>
+                    <div class="navbar-start">
+                        <#list menus?sort_by('priority') as menu>
+                            <a class="navbar-item" href="${menu.url}" target="${menu.target!}">${menu.name}</a>
+                        </#list>
+                    </div>
+                </#if>
+            </@menuTag>
             <div class="navbar-end">
                 <% if (has_config('navbar.links')) { %>
                     <% let links = get_config('navbar.links'); %>
@@ -46,3 +48,4 @@
         </div>
     </div>
 </nav>
+</#macro>
