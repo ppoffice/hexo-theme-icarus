@@ -10,7 +10,7 @@
     </div>
 </div>
 <#list posts.content as post>
-    <@article post,'index',true />
+    <@article post,'index','null',true />
 </#list>
 <#if posts.getTotalPages() gt 0>
     <div class="card card-transparent">

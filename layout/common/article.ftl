@@ -1,36 +1,42 @@
-<#macro article post,layout,index>
+<#macro article post,layout,commentType,index>
+<#include "../comment/comment.ftl">
 <div class="card">
     <#if post.thumbnail?? && post.thumbnail!=''>
-    <div class="card-image">
-        <#if index>
-            <a href="${context!}/archives/${post.url!}"
-                <img class="thumbnail" src="${post.thumbnail!}" alt="${post.title!}">
-            </a>
-        <#else>
-            <span class="image is-7by1">
-                <img class="thumbnail" src="${post.thumbnail!}" alt="${post.title!}">
-            </span>
-        </#if>
-    </div>
+        <div class="card-image">
+            <#if index>
+                <a href="${context!}/archives/${post.url!}">
+                    <img class="thumbnail" src="${post.thumbnail!}" alt="${post.title!}">
+                </a>
+            <#else>
+                <span class="image is-7by1">
+                    <img class="thumbnail" src="${post.thumbnail!}" alt="${post.title!}">
+                </span>
+            </#if>
+        </div>
     </#if>
     <div class="card-content article">
-        <#if layout !='page'>
-            <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                <div class="level-left">
-                    <time class="level-item has-text-grey" datetime="${post.createTime!}">${post.createTime?string('yyyy-MM-dd')}</time>
-<#--                    <#if post.categories?? && post.categories?size gt 0>-->
-<#--                        <div class="level-item">-->
-<#--                        <%- list_categories(post.categories, {-->
-<#--                            class: 'has-link-grey ',-->
-<#--                            show_count: false,-->
-<#--                            style: 'none',-->
-<#--                            separator: '&nbsp;/&nbsp;'-->
-<#--                        }) %>-->
-<#--                        </div>-->
-<#--                    </#if>-->
-                </div>
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="${post.createTime!}">${post.createTime?string('yyyy-MM-dd')}</time>
+                <#if index>
+                     <#if post.categories?? && post.categories?size gt 0>
+                        <div class="level-item">
+                            <#list post.categories as category>
+                                <a class="has-link-grey -link" href="${context!}/categories/${category.slugName!}">${category.name!}</a>&nbsp;
+                            </#list>
+                        </div>
+                    </#if>
+                <#else>
+                    <#if categories?? && categories?size gt 0>
+                        <div class="level-item">
+                            <#list categories as category>
+                                <a class="has-link-grey -link" href="${context!}/categories/${category.slugName!}">${category.name!}</a>&nbsp;
+                            </#list>
+                        </div>
+                    </#if>
+                </#if>
             </div>
-        </#if>
+        </div>
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             <#if index>
                 <a class="has-link-black-ter" href="${context!}/archives/${post.url!}">${post.title!}</a>
@@ -72,20 +78,22 @@
     </div>
 </div>
 
-<#if settings.donate_alipay?? && settings.donate_alipay!='' && settings.donate_wechat?? && settings.donate_wechat!=''>
-    <div class="card">
-        <div class="card-content">
-            <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-            <div class="buttons is-centered">
-                <#if settings.donate_alipay?? && settings.donate_alipay!=''>
-                    <#include "../donate/alipay.ftl">
-                </#if>
-                <#if settings.donate_wechat?? && settings.donate_wechat!=''>
-                    <#include "../donate/wechat.ftl">
-                </#if>
+<#if !index??>
+    <#if (settings.donate_alipay?? && settings.donate_alipay!='') || (settings.donate_wechat?? && settings.donate_wechat!='')>
+        <div class="card">
+            <div class="card-content">
+                <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+                <div class="buttons is-centered">
+                    <#if settings.donate_alipay?? && settings.donate_alipay!=''>
+                        <#include "../donate/alipay.ftl">
+                    </#if>
+                    <#if settings.donate_wechat?? && settings.donate_wechat!=''>
+                        <#include "../donate/wechat.ftl">
+                    </#if>
+                </div>
             </div>
         </div>
-    </div>
+    </#if>
 </#if>
 
 <#if !index && nextPost?? && prePost??>
@@ -112,10 +120,14 @@
 </#if>
 
 <#if !index>
-    <div class="card">
+    <div class="card" id="comment-wrapper">
         <div class="card-content">
             <h3 class="title is-5 has-text-weight-normal">评论</h3>
-            <@global.comment post,"post" />
+            <#if commentType == 'post'>
+                <@comment post,"post" />
+            <#else>
+                <@comment post,"sheet" />
+            </#if>
         </div>
     </div>
 </#if>

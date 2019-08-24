@@ -16,11 +16,11 @@
     <meta property="og:site_name" content="${title!}">
     <meta property="og:description" content="${description!}">
     <meta property="og:locale" content="zh">
-    <meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/images/og_image.png">
+    <meta property="og:image" content="${user.avatar!}">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="${title!}">
     <meta name="twitter:description" content="${description!}">
-    <meta name="twitter:image" content="http://ppoffice.github.io/hexo-theme-icarus/images/og_image.png">
+    <meta name="twitter:image" content="${user.avatar!}">
 
     <link rel="canonical" href="${canonical!}" />
 
@@ -30,8 +30,7 @@
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.4.1/css/all.css">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-    <#--<%- _css(cdn('highlight.js', '9.12.0', 'styles/' + get_config('article.highlight.theme') + '.css')) %>-->
+    <link rel="stylesheet" href="//fonts.proxy.ustclug.org/css?family=Ubuntu:400,600|Source+Code+Pro">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
 
     <style>
@@ -42,14 +41,21 @@
         }
     </style>
 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    <#if is_post?? || is_sheet??>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    </#if>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
 
     <script src="//cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
 
     <link rel="stylesheet" href="${static!}/source/css/style.css">
     <link rel="stylesheet" href="${static!}/source/css/bundle.css">
+
+    <#if post??>
+        <link rel="stylesheet" type="text/css" href="${static!}/source/lib/prism/css/prism-${settings.code_pretty!'Default'}.css" />
+        <script type="text/javascript" src="${static!}/source/lib/prism/js/prism.js"></script>
+    </#if>
 </head>
 <body class="is-3-column">
     <@navbar 'page' />
@@ -67,9 +73,7 @@
     <#include "common/footer.ftl">
     <#include "common/scripts.ftl">
 
-<#--    <% if (has_config('search.type')) { %>-->
-<#--    <%- partial('search/' + get_config('search.type')) %>-->
-<#--    <% } %>-->
+    <#include "search/local.ftl">
 </body>
 </html>
 </#macro>
