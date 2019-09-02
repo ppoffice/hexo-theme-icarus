@@ -14,13 +14,10 @@
         <nav class="level">
             <div class="level-item has-text-centered" style="flex-shrink: 1">
                 <div>
-                    <% if (get_config_from_obj(widget, 'avatar_rounded')) { %>
-                        <figure class="image is-128x128 has-mb-6">
-                            <img class="is-rounded" src="<%= avatar() %>" alt="<%= get_config_from_obj(widget, 'author') %>">
-                        </figure>
-                    <% } else { %>
-                        <img class="image is-128x128 has-mb-6" src="<%= avatar() %>" alt="<%= get_config_from_obj(widget, 'author') %>">
-                    <% } %>
+                    <% const is_rounded = get_config_from_obj(widget, 'avatar_rounded', false); %>
+                    <figure class="image is-128x128 has-mb-6">
+                        <img <%= is_rounded ? 'class="is-rounded"' : '' %> src="<%= avatar() %>" alt="<%= get_config_from_obj(widget, 'author') %>">
+                    </figure>
                     <% if (get_config_from_obj(widget, 'author')) { %>
                     <p class="is-size-4 is-block">
                         <%= get_config_from_obj(widget, 'author') %>
