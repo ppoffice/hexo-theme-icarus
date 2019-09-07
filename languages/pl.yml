@@ -1,0 +1,37 @@
+common:
+    archive:
+        one: 'Archiwum'
+        other: 'Archiwum'
+    category:
+        one: 'Kategoria'
+        other: 'Kategorie'
+    tag:
+        one: 'Tag'
+        other: 'Tagi'
+    post:
+        one: 'Artykuł'
+        other: 'Artykuły'
+    prev: 'Poprzedni'
+    next: 'Następny'
+widget:
+    follow: 'SUBSKRYBUJ'
+    recents: 'Najnowsze wpisy'
+    links: 'Linki'
+    tag_cloud: 'Chmura tagòw'
+    catalogue: 'Spis treści'
+article:
+    more: 'Czytaj dalej'
+    comments: 'Komentarze'
+    read: 'Czytaj'
+    about: 'O mnie'
+    words: 'słowa'
+search:
+    search: 'szukaj'
+    hint: 'Wpisz coś...'
+insight:
+    hint: 'Wpisz coś...'
+    posts: 'Artykuły'
+    pages: 'Strony'
+    categories: 'Kategorie'
+    tags: 'Tagi'
+    untitled: '(Bez tytułu)'
