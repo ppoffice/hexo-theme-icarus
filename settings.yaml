@@ -18,12 +18,12 @@ post:
     donate_alipay:
       name: donate_alipay
       label: 支付宝捐赠二维码
-      type: text
+      type: attachment
       placeholder: '二维码地址'
     donate_wechat:
       name: donate_wechat
       label: 微信捐赠二维码
-      type: text
+      type: attachment
       placeholder: '二维码地址'
     mathjax_enable:
       name: mathjax_enable
