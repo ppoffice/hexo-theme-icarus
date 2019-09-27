@@ -69,10 +69,12 @@
                 </div>
             </div>
         </nav>
+        <% if (widget.follow_link) { %>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="<%= url_for(widget.follow_link) %>" target="_blank">
                 <%= __('widget.follow') %></a>
         </div>
+        <% } %>
         <% const socialLinks = get_config_from_obj(widget, 'social_links'); %>
         <% if (socialLinks !== null) { %>
         <div class="level is-mobile">
