@@ -22,12 +22,12 @@
 } %>
 <div class="column <%= side_column_class() %> <%= visibility_class() %> <%= order_class() %> column-<%= position %> <%= sticky_class(position) %>">
     <% get_widgets(position).forEach(widget => {%>
-        <%- partial('widget/' + widget.type, { widget, post: page }) %>
+        <%- _partial('widget/' + widget.type, { widget }) %>
     <% }) %>
     <% if (position === 'left') { %>
         <div class="column-right-shadow is-hidden-widescreen <%= sticky_class('right') %>">
         <% get_widgets('right').forEach(widget => {%>
-            <%- partial('widget/' + widget.type, { widget, post: page }) %>
+            <%- _partial('widget/' + widget.type, { widget }) %>
         <% }) %>
         </div>
     <% } %>

@@ -12,7 +12,7 @@
     var gitalk = new Gitalk({
         clientID: '<%= get_config('comment.client_id') %>',
         clientSecret: '<%= get_config('comment.client_secret') %>',
-        id: '<%= md5(page.path) %>',
+        id: '<%= md5(path) %>',
         repo: '<%= get_config('comment.repo') %>',
         owner: '<%= get_config('comment.owner') %>',
         admin: <%- JSON.stringify(get_config('comment.admin'))%>,
