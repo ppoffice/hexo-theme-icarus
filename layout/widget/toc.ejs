@@ -24,13 +24,15 @@
     }
     return result;
 } %>
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                <%= _p('widget.catalogue', Infinity) %>
-            </h3>
-            <%- buildToc(_toc(content)) %>
+<% let tocContent = buildToc(_toc(post.content)); if (tocContent !== undefined && tocContent !== ''){ %>
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    <%= _p('widget.catalogue', Infinity) %>
+                </h3>
+                <%- buildToc(_toc(content)) %>
+            </div>
         </div>
     </div>
-</div>
+<% } %>
