@@ -118,10 +118,14 @@
 <% } %>
 
 <% if (!index && has_config('comment.type')) { %>
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal"><%= __('article.comments') %></h3>
-        <%- _partial('comment/' + get_config('comment.type')) %>
+    <div class="card">
+        <div class="card-content">
+            <% if (post.comments != false){ %>
+                <h3 class="title is-5 has-text-weight-normal"><%= __('article.comments') %></h3>
+                <%- _partial('comment/' + get_config('comment.type')) %>
+            <% } else { %>
+                <h3 class="title is-5 has-text-weight-normal"><%= __('article.comments_closed') %></h3>
+            <% } %>
+        </div>
     </div>
-</div>
 <% } %>

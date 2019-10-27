@@ -22,6 +22,7 @@ widget:
 article:
     more: '阅读更多'
     comments: '评论'
+    comments_closed: '评论已关闭！'
     read: '读完'
     about: '大约'
     words: '个字'

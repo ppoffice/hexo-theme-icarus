@@ -22,6 +22,7 @@ widget:
 article:
     more: 'Read More'
     comments: 'Comments'
+    comments_closed: 'Comments has closed!'
     read: 'read'
     about: 'About'
     words: 'words'
