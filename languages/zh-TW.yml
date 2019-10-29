@@ -19,6 +19,9 @@ widget:
     links: '連結'
     tag_cloud: '標籤雲'
     catalogue: '文章目錄'
+    email:
+        title: '訂閱 Email'
+        button: '訂閱'
 article:
     more: '繼續閱讀'
     comments: '評論'
