@@ -1,10 +1,10 @@
 <% function avatar() {
     const avatar = get_config_from_obj(widget, 'avatar');
     const gravatar_email = get_config_from_obj(widget, 'gravatar');
-    if (gravatar_email !== null) {
+    if (gravatar_email) {
         return gravatar(gravatar_email, 128);
     }
-    if (avatar !== null) {
+    if (avatar) {
         return url_for(avatar)
     }
     return url_for('images/avatar.png');
