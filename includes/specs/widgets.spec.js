@@ -125,6 +125,20 @@ const LinksSpec = {
     }
 };
 
+const SubscrbieEmailSpec = {
+    feedburner_id: {
+        [type]: 'string',
+        [doc]: 'Feedburner ID',
+        [required]: true,
+        [requires]: parent => parent.type === 'subscribe_email'
+    },
+    description: {
+        [type]: 'string',
+        [doc]: 'Hint text under the subscription input',
+        [requires]: parent => parent.type === 'subscribe_email'
+    }
+};
+
 module.exports = {
     [type]: 'array',
     [doc]: 'Sidebar widget settings\nhttps://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/',
@@ -146,6 +160,7 @@ module.exports = {
             [defaultValue]: 'left'
         },
         ...ProfileSpec,
-        ...LinksSpec
+        ...LinksSpec,
+        ...SubscrbieEmailSpec
     }
 }
