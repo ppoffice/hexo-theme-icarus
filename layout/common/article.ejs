@@ -11,9 +11,9 @@
         <% if (post.layout != 'page') { %>
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time>
+                <time class="level-item has-text-grey" title="<%= post.date %>" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time>
                 <% if (get_config('article.updated') === true && post.updated - post.date !== 0) { %>
-                <span class="level-item has-text-grey">
+                <span class="level-item has-text-grey" title="<%= post.updated %>">
                     <%= __('article.edited') %>&nbsp;
                     <time datetime="<%= date_xml(post.updated) %>"><%= date(post.updated) %></time>
                 </span>
