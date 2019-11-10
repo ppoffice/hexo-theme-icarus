@@ -28,6 +28,7 @@ article:
     read: 'read'
     about: 'About'
     words: 'words'
+    edited: 'edited'
 donate:
     title: 'Like this article? Support the author with'
     alipay: 'Alipay'

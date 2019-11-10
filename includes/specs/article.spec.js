@@ -31,5 +31,10 @@ module.exports = {
         [type]: 'boolean',
         [doc]: 'Whether to show estimate article reading time',
         [defaultValue]: true
+    },
+    updated: {
+        [type]: 'boolean',
+        [doc]: 'Whether to show article edit time',
+        [defaultValue]: false
     }
 };
