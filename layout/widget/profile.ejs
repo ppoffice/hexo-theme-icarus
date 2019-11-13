@@ -43,7 +43,7 @@
                     <p class="heading">
                         <%= _p('common.post', post_count()) %>
                     </p>
-                    <a href="/archives">
+                    <a href="<%= url_for('/archives') %>">
                         <p class="title has-text-weight-normal">
                             <%= post_count() %>
                         </p>
@@ -55,7 +55,7 @@
                     <p class="heading">
                         <%= _p('common.category', category_count()) %>
                     </p>
-                    <a href="/categories">
+                    <a href="<%= url_for('/categories') %>">
                         <p class="title has-text-weight-normal">
                             <%= category_count() %>
                         </p>
@@ -67,7 +67,7 @@
                     <p class="heading">
                         <%= _p('common.tag', tag_count()) %>
                     </p>
-                    <a href="/tags">
+                    <a href="<%= url_for('/tags') %>">
                         <p class="title has-text-weight-normal">
                             <%= tag_count() %>
                         </p>
