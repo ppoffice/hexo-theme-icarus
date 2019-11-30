@@ -4,6 +4,12 @@
     <%- _partial('common/head') %>
 </head>
 <body class="is-<%= column_count() %>-column">
+    <!-- night mode -->
+    <script type="text/javascript" src="/js/night.js"></script>
+    <canvas id="universe"></canvas>
+    <script type="text/javascript" src="/js/universe.js"></script>
+    <!-- night mode -->
+
     <%- _partial('common/navbar') %>
     <% function main_column_class() {
         switch (column_count()) {
