@@ -13,10 +13,13 @@
 const cheerio = require('cheerio');
 const { existsSync } = require('fs');
 const { relative, dirname, join, extname } = require('path');
+const { LRUMap } = require('../utils/lru');
 
 const __archives = [];
 const __categories = [];
 const __tags = [];
+
+const __fragmentCache = new LRUMap(20);
 
 module.exports = function (hexo) {
     hexo.extend.helper.register('_list_archives', function () {
@@ -183,6 +186,9 @@ module.exports = function (hexo) {
         const fragment = relative(view_dir, path.substring(0, path.length - '.locals.js'.length));
         const cacheId = [fragment, language, md5(JSON.stringify(_locals))].join('-');
 
-        return partial(name, _locals, { cache: cacheId, only: options.only || false });
+        if (!__fragmentCache.has(cacheId)) {
+            __fragmentCache.set(cacheId, partial(name, _locals, { cache: false, only: options.only || false }));
+        }
+        return __fragmentCache.get(cacheId);
     });
 }
