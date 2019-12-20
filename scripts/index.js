@@ -5,7 +5,6 @@ require('../includes/generators/categories')(hexo);
 require('../includes/generators/category')(hexo);
 require('../includes/generators/tags')(hexo);
 require('../includes/generators/insight')(hexo);
-require('../includes/filters/highlight')(hexo);
 require('../includes/helpers/cdn')(hexo);
 require('../includes/helpers/config')(hexo);
 require('../includes/helpers/layout')(hexo);
@@ -14,12 +13,19 @@ require('../includes/helpers/page')(hexo);
 require('../includes/helpers/site')(hexo);
 
 // Fix large blog rendering OOM
-const postHtmlFilter = hexo.extend.filter.list()['after_render:html'];
-for (let filter of postHtmlFilter) {
-    if (filter.name === 'hexoMetaGeneratorInject') {
-        hexo.extend.filter.unregister('after_render:html', filter);
-    }
-}
+const hooks = [
+    'after_render:html',
+    'after_post_render'
+]
+const filters = [
+    'hexoMetaGeneratorInject',
+    'externalLinkFilter'
+];
+hooks.forEach(hook => {
+    hexo.extend.filter.list()[hook]
+        .filter(filter => filters.includes(filter.name))
+        .forEach(filter => hexo.extend.filter.unregister(hook, filter));
+});
 
 // Debug helper
 hexo.extend.helper.register('console', function () {

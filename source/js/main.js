@@ -36,6 +36,16 @@
     if (typeof (IcarusThemeSettings) !== 'undefined' &&
         typeof (IcarusThemeSettings.article) !== 'undefined' &&
         typeof (IcarusThemeSettings.article.highlight) !== 'undefined') {
+
+        $('figure.highlight').addClass('hljs');
+        $('figure.highlight .code .line span').each(function () {
+            const classes = $(this).attr('class').split(/\s+/);
+            if (classes.length === 1) {
+                $(this).addClass('hljs-' + classes[0]);
+                $(this).removeClass(classes[0]);
+            }
+        });
+
         if (typeof (ClipboardJS) !== 'undefined' && IcarusThemeSettings.article.highlight.clipboard) {
             $('figure.highlight').each(function () {
                 var id = 'code-' + Date.now() + (Math.random() * 1000 | 0);

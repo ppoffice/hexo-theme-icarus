@@ -339,12 +339,16 @@ img.thumbnail
     h5
         font-size: 1em
     code, pre
-        font-size: 0.85em
         font-family: family-mono
+    pre
+        font-size: 0.85em
     code
-        color: hsl(348, 100%, 61%)
-        background: transparent
         padding: 0
+        background: transparent
+    & > code,
+    :not(pre) > code
+        font-size: 0.85em
+        color: hsl(348, 100%, 61%)
     blockquote
         footer
             strong + cite
@@ -381,7 +385,8 @@ figure.highlight
         padding: 0
         overflow: visible
 
-        .line
+        .line,
+        code .hljs
             line-height: 1.5rem
 
     figcaption,
