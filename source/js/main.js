@@ -140,9 +140,12 @@
         typeof (IcarusThemeSettings.site.external_link) !== 'undefined' &&
         IcarusThemeSettings.site.external_link.enable) {
         $('.article .content a').filter(function (i, link) {
-            return link.href && link.classList.length === 0 && isExternalLink(link.href,
-                IcarusThemeSettings.site.url,
-                IcarusThemeSettings.site.external_link.exclude);
+            return link.href &&
+                !$(link).attr('href').startsWith('#') &&
+                link.classList.length === 0 &&
+                isExternalLink(link.href,
+                    IcarusThemeSettings.site.url,
+                    IcarusThemeSettings.site.external_link.exclude);
         }).each(function (i, link) {
             link.relList.add('noopener');
             link.target = '_blank';

@@ -11,8 +11,8 @@
                 </a>
                 <p class="is-size-7">
                 &copy; <%= date(new Date(), 'YYYY') %> <%= author || title %>&nbsp;
-                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                 <% if (busuanzi) { %>
                 <br>
                 <span id="busuanzi_container_site_uv">
@@ -27,7 +27,7 @@
                 <% for (let name in links) {
                         let link = links[name]; %>
                 <p class="control">
-                    <a class="button is-white <%= typeof(link) !== 'string' ? 'is-large' : '' %>" target="_blank" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
+                    <a class="button is-white <%= typeof(link) !== 'string' ? 'is-large' : '' %>" target="_blank" rel="noopener" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
                         <% if (typeof(link) === 'string') { %>
                         <%= name %>
                         <% } else { %>
