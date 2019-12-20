@@ -2,8 +2,23 @@
 <%- _js(cdn('moment', '2.22.2', 'min/moment-with-locales.min.js')) %>
 <script>moment.locale("<%= get_config('language', 'en') %>");</script>
 
+<%
+let externalLink = get_config('external_link');
+if (typeof externalLink === 'boolean') {
+    externalLink = { enable: externalLink, exclude: [] };
+} else {
+    externalLink = {
+        enable: typeof externalLink.enable === 'boolean' ? externalLink.enable : true,
+        exclude: externalLink.exclude || []
+    };
+}
+%>
 <script>
 var IcarusThemeSettings = {
+    site: {
+        url: '<%= config.url %>',
+        external_link: <%- JSON.stringify(externalLink) %>
+    },
     article: {
         highlight: {
             clipboard: <%= get_config('article.highlight.clipboard', true) %>,
@@ -14,13 +29,13 @@ var IcarusThemeSettings = {
 </script>
 
 <% if (get_config('article.highlight.clipboard')) { %>
-    <%- _js(cdn('clipboard', '2.0.4', 'dist/clipboard.min.js'), true) %>
+<%- _js(cdn('clipboard', '2.0.4', 'dist/clipboard.min.js'), true) %>
 <% } %>
 
 <% if (has_config('plugins')) { %>
-    <% for (let plugin in get_config('plugins')) { %>
-    <%- _partial('plugin/' + plugin, { head: false, plugin: get_config('plugins')[plugin] }) %>
-    <% } %>
+<% for (let plugin in get_config('plugins')) { %>
+<%- _partial('plugin/' + plugin, { head: false, plugin: get_config('plugins')[plugin] }) %>
+<% } %>
 <% } %>
 
 <%- _js('js/main', true) %>

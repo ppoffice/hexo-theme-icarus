@@ -103,4 +103,49 @@
         $mask.on('click', toggleToc);
         $('.navbar-main .catalogue').on('click', toggleToc);
     }
+
+    // hexo-util/lib/is_external_link.js
+    function isExternalLink(input, sitehost, exclude) {
+        try {
+            sitehost = new URL(sitehost).hostname;
+        } catch (e) { }
+
+        if (!sitehost) return false;
+
+        // handle relative url
+        const data = new URL(input, 'http://' + sitehost);
+
+        // handle mailto: javascript: vbscript: and so on
+        if (data.origin === 'null') return false;
+
+        const host = data.hostname;
+
+        if (exclude) {
+            exclude = Array.isArray(exclude) ? exclude : [exclude];
+
+            if (exclude && exclude.length) {
+                for (const i of exclude) {
+                    if (host === i) return false;
+                }
+            }
+        }
+
+        if (host !== sitehost) return true;
+
+        return false;
+    }
+
+    if (typeof (IcarusThemeSettings) !== 'undefined' &&
+        typeof (IcarusThemeSettings.site.url) !== 'undefined' &&
+        typeof (IcarusThemeSettings.site.external_link) !== 'undefined' &&
+        IcarusThemeSettings.site.external_link.enable) {
+        $('.article .content a').filter(function (i, link) {
+            return link.href && link.classList.length === 0 && isExternalLink(link.href,
+                IcarusThemeSettings.site.url,
+                IcarusThemeSettings.site.external_link.exclude);
+        }).each(function (i, link) {
+            link.relList.add('noopener');
+            link.target = '_blank';
+        });
+    }
 })(jQuery);

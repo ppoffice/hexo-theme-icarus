@@ -1,5 +1,8 @@
 {
   "name": "hexo-theme-icarus",
   "version": "2.6.0",
-  "private": true
+  "private": true,
+  "engines": {
+    "node": ">=8.3.0"
+  }
 }
