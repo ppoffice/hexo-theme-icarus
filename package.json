@@ -1,8 +1,24 @@
 {
   "name": "hexo-theme-icarus",
-  "version": "2.6.0",
+  "version": "3.0.0",
   "private": true,
   "engines": {
     "node": ">=8.3.0"
+  },
+  "description": "A simple, delicate, and modern theme for Hexo",
+  "repository": "https://github.com/ppoffice/hexo-theme-icarus.git",
+  "author": "ppoffice <zrp1994@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha test/index.js",
+    "postpublish" : "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag $PACKAGE_VERSION && git push --tags"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-hexo": "^4.1.0",
+    "eslint-plugin-react": "^7.17.0",
+    "mocha": "^6.2.2"
   }
 }
