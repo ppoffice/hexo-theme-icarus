@@ -5,19 +5,18 @@ const { cacheComponent } = require('../util/cache');
 
 class ShareJs extends Component {
     render() {
-        const { cdn } = this.props;
+        const { cssUrl, jsUrl } = this.props;
         return <Fragment>
-            <link rel="stylesheet" href={cdn('social-share.js', '1.0.16', 'dist/css/share.min.css')} />
+            <link rel="stylesheet" href={cssUrl} />
             <div className="social-share"></div>
-            <script src={cdn('social-share.js', '1.0.16', 'dist/js/social-share.min.js')}></script>
+            <script src={jsUrl}></script>
         </Fragment>;
     }
 }
 
 module.exports = cacheComponent(ShareJs, 'share.sharejs', props => {
     return {
-        cdn: props.cdn,
-        // for cache purpose only
-        _providers: props.providers.cdn
+        cssUrl: props.cdn('social-share.js', '1.0.16', 'dist/css/share.min.css'),
+        jsUrl: props.cdn('social-share.js', '1.0.16', 'dist/js/social-share.min.js')
     };
 });

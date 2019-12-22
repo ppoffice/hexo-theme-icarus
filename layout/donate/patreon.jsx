@@ -5,7 +5,7 @@ const { cacheComponent } = require('../util/cache');
 
 class Patreon extends Component {
     render() {
-        const { type, url, __, url_for } = this.props;
+        const { title, url, url_for } = this.props;
         if (!url) {
             return <div className="notification is-danger">
                 You forgot to set the <code>url</code> Patreon.
@@ -16,18 +16,15 @@ class Patreon extends Component {
             <span className="icon is-small">
                 <i className="fab fa-patreon"></i>
             </span>
-            <span>{__('donate.' + type)}</span>
+            <span>{title}</span>
         </a>;
     }
 }
 
 module.exports = cacheComponent(Patreon, 'donate.petreon', props => {
     return {
-        type: props.type,
         url: props.url,
-        __: props.__,
-        url_for: props.url_for,
-        // for cache purpose only
-        _language: props.page.lang || props.page.language || props.language
+        title: props.__('donate.' + props.type),
+        url_for: props.url_for
     };
 });

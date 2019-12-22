@@ -15,8 +15,8 @@ class Gitalk extends Component {
             clientSecret,
             createIssueManually,
             distractionFreeMode,
-            cdn,
-            url_for
+            jsUrl,
+            cssUrl
         } = this.props;
 
         if (!id || !repo || !owner || !admin || !clientId || !clientSecret) {
@@ -39,8 +39,8 @@ class Gitalk extends Component {
         gitalk.render('comment-container')`;
         return <Fragment>
             <div id="comment-container"></div>
-            <link rel="stylesheet" href={url_for(cdn('gitalk', '1.4.1', 'dist/gitalk.css'))} />
-            <script src={url_for(cdn('gitalk', '1.4.1', 'dist/gitalk.min.js'))}></script>
+            <link rel="stylesheet" href={cssUrl} />
+            <script src={jsUrl}></script>
             <script dangerouslySetInnerHTML={{ __html: js }}></script>
         </Fragment>;
     }
@@ -58,9 +58,7 @@ module.exports = cacheComponent(Gitalk, 'comment.gitalk', props => {
         clientSecret: props.clientSecret,
         createIssueManually: props.createIssueManually,
         distractionFreeMode: props.distractionFreeMode,
-        cdn: props.cdn,
-        url_for: props.url_for,
-        // for cache purpose only
-        _providers: props.providers.cdn
+        cssUrl: props.cdn('gitalk', '1.4.1', 'dist/gitalk.css'),
+        jsUrl: props.cdn('gitalk', '1.4.1', 'dist/gitalk.min.js')
     };
 });

@@ -5,7 +5,7 @@ const { cacheComponent } = require('../util/cache');
 
 class Paypal extends Component {
     render() {
-        const { type, business, currencyCode, __ } = this.props;
+        const { title, business, currencyCode } = this.props;
         if (!business || !currencyCode) {
             return <div className="notification is-danger">
                 You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal.
@@ -17,7 +17,7 @@ class Paypal extends Component {
                 <span className="icon is-small">
                     <i className="fab fa-paypal"></i>
                 </span>
-                <span>{__('donate.' + type)}</span>
+                <span>{title}</span>
             </a>
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener" id="paypal-donate-form">
                 <input type="hidden" name="cmd" value="_donations" />
@@ -30,12 +30,9 @@ class Paypal extends Component {
 
 module.exports = cacheComponent(Paypal, 'donate.paypal', props => {
     return {
-        type: props.type,
         business: props.business,
         currencyCode: props.currency_code,
-        __: props.__,
-        url_for: props.url_for,
-        // for cache purpose only
-        _language: props.page.lang || props.page.language || props.language
+        title: props.__('donate.' + props.type),
+        url_for: props.url_for
     };
 });

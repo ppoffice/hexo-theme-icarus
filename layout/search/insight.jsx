@@ -5,16 +5,16 @@ const { cacheComponent } = require('../util/cache');
 
 class Insight extends Component {
     render() {
-        const { __, url_for } = this.props;
+        const { hint, translation, url_for } = this.props;
 
         const js = `(function (window) {
             var INSIGHT_CONFIG = {
                 TRANSLATION: {
-                    POSTS: '${__('insight.posts')}',
-                    PAGES: '${__('insight.pages')}',
-                    CATEGORIES: '${__('insight.categories')}',
-                    TAGS: '${__('insight.tags')}',
-                    UNTITLED: '${__('insight.untitled')}',
+                    POSTS: '${translation.posts}',
+                    PAGES: '${translation.pages}',
+                    CATEGORIES: '${translation.categories}',
+                    TAGS: '${translation.tags}',
+                    UNTITLED: '${translation.untitled}',
                 },
                 CONTENT_URL: '${url_for('/content.json')}',
             };
@@ -27,7 +27,7 @@ class Insight extends Component {
             <div className="searchbox ins-search">
                 <div className="searchbox-container ins-search-container">
                     <div className="searchbox-input-wrapper">
-                        <input type="text" className="searchbox-input ins-search-input" placeholder={__('insight.hint')} />
+                        <input type="text" className="searchbox-input ins-search-input" placeholder={hint} />
                         <span className="searchbox-close ins-close ins-selectable"><i className="fa fa-times-circle"></i></span>
                     </div>
                     <div className="searchbox-result-wrapper ins-section-wrapper">
@@ -43,9 +43,14 @@ class Insight extends Component {
 
 module.exports = cacheComponent(Insight, 'search.insight', props => {
     return {
-        __: props.__,
-        url_for: props.url_for,
-        // for cache purpose only
-        _language: props.page.lang || props.page.language || props.language
+        hint: props.__('search.hint'),
+        translation: {
+            posts: props.__('insight.posts'),
+            pages: props.__('insight.pages'),
+            categories: props.__('insight.categories'),
+            tags: props.__('insight.tags'),
+            untitled: props.__('insight.untitled')
+        },
+        url_for: props.url_for
     };
 });

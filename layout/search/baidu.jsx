@@ -5,7 +5,7 @@ const { cacheComponent } = require('../util/cache');
 
 class Baidu extends Component {
     render() {
-        const { url, __, url_for } = this.props;
+        const { url, hint, url_for } = this.props;
 
         const js = `(function ($) {
             $('.search-form').on('submit', function (e) {
@@ -30,7 +30,7 @@ class Baidu extends Component {
                 <div className="searchbox-container">
                     <div className="searchbox-input-wrapper">
                         <form className="search-form">
-                            <input name="wd" type="text" className="searchbox-input" placeholder={__('search.hint')} />
+                            <input name="wd" type="text" className="searchbox-input" placeholder={hint} />
                             <span className="searchbox-close searchbox-selectable"><i className="fa fa-times-circle"></i></span>
                         </form>
                     </div>
@@ -44,9 +44,7 @@ class Baidu extends Component {
 module.exports = cacheComponent(Baidu, 'search.baidu', props => {
     return {
         url: props.config.url,
-        __: props.__,
-        url_for: props.url_for,
-        // for cache purpose only
-        _language: props.page.lang || props.page.language || props.language
+        hint: props.__('search.hint'),
+        url_for: props.url_for
     };
 });

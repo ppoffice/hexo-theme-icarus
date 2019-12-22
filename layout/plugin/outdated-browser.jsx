@@ -5,7 +5,7 @@ const { cacheComponent } = require('../util/cache');
 
 class OutdatedBrowser extends Component {
     render() {
-        const { head, cdn } = this.props;
+        const { head, jsUrl, cssUrl } = this.props;
 
         const js = `document.addEventListener("DOMContentLoaded", function () {
             outdatedBrowser({
@@ -16,18 +16,18 @@ class OutdatedBrowser extends Component {
         });`;
 
         if (head) {
-            return <link rel="stylesheet" href={cdn('outdatedbrowser', '1.1.5', 'outdatedbrowser/outdatedbrowser.min.css')} />;
+            return <link rel="stylesheet" href={cssUrl} />;
         }
         return <Fragment>
             <div id="outdated">
                 <h6>Your browser is out-of-date!</h6>
                 <p>
-                        Update your browser to view this website correctly.&npsb;
+                    Update your browser to view this website correctly.&npsb;
                     <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a>
                 </p>
                 <p className="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
             </div>
-            <script src={cdn('outdatedbrowser', '1.1.5', 'outdatedbrowser/outdatedbrowser.min.js')} async={true}></script>
+            <script src={jsUrl} async={true}></script>
             <script dangerouslySetInnerHTML={{ __html: js }}></script>
         </Fragment>;
 
@@ -37,8 +37,7 @@ class OutdatedBrowser extends Component {
 module.exports = cacheComponent(OutdatedBrowser, 'plugin.outdatedbrowser', props => {
     return {
         head: props.head,
-        cdn: props.cdn,
-        // for cache purpose only
-        _providers: props.providers.cdn
+        cssUrl: props.cdn('outdatedbrowser', '1.1.5', 'outdatedbrowser/outdatedbrowser.min.css'),
+        jsUrl: props.cdn('outdatedbrowser', '1.1.5', 'outdatedbrowser/outdatedbrowser.min.js')
     };
 });

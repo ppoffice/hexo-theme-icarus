@@ -5,7 +5,7 @@ const { cacheComponent } = require('../util/cache');
 
 class Google extends Component {
     render() {
-        const { cx, __, url_for } = this.props;
+        const { cx, hint, url_for } = this.props;
 
         const js1 = `(function() {
             var cx = '${cx}';
@@ -57,7 +57,7 @@ class Google extends Component {
             <div className="searchbox google-cse-search">
                 <div className="searchbox-container">
                     <div className="searchbox-input-wrapper">
-                        <input type="text" className="searchbox-input" placeholder={__('search.hint')} />
+                        <input type="text" className="searchbox-input" placeholder={hint} />
                         <span className="searchbox-close searchbox-selectable"><i className="fa fa-times-circle"></i></span>
                     </div>
                     {(() => {
@@ -82,9 +82,7 @@ class Google extends Component {
 module.exports = cacheComponent(Google, 'search.google', props => {
     return {
         cx: props.cx,
-        __: props.__,
-        url_for: props.url_for,
-        // for cache purpose only
-        _language: props.page.lang || props.page.language || props.language
+        hint: props.__('search.hint'),
+        url_for: props.url_for
     };
 });

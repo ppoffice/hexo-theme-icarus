@@ -5,7 +5,7 @@ const { cacheComponent } = require('../util/cache');
 
 class Mathjax extends Component {
     render() {
-        const { cdn } = this.props;
+        const { jsUrl } = this.props;
 
         const js = `document.addEventListener('DOMContentLoaded', function () {
             MathJax.Hub.Config({
@@ -28,7 +28,7 @@ class Mathjax extends Component {
         });`;
 
         return <Fragment>
-            <script src={cdn('mathjax', '2.7.5', 'unpacked/MathJax.js?config=TeX-MML-AM_CHTML')} async={true}></script>
+            <script src={jsUrl} async={true}></script>
             <script dangerouslySetInnerHTML={{ __html: js }}></script>
         </Fragment>;
     }
@@ -39,8 +39,6 @@ module.exports = cacheComponent(Mathjax, 'plugin.mathjax', props => {
         return null;
     }
     return {
-        cdn: props.cdn,
-        // for cache purpose only
-        _providers: props.providers.cdn
+        jsUrl: props.cdn('mathjax', '2.7.5', 'unpacked/MathJax.js?config=TeX-MML-AM_CHTML')
     };
 });
