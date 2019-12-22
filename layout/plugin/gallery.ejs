@@ -1,8 +1,0 @@
-<% if (head) { %>
-<%- _css(cdn('lightgallery', '1.6.8', 'dist/css/lightgallery.min.css')) %>
-<%- _css(cdn('justifiedGallery', '3.7.0', 'dist/css/justifiedGallery.min.css')) %>
-<% } else { %>
-<%- _js(cdn('lightgallery', '1.6.8', 'dist/js/lightgallery.min.js'), true) %>
-<%- _js(cdn('justifiedGallery', '3.7.0', 'dist/js/jquery.justifiedGallery.min.js'), true) %>
-<%- _js('js/gallery', true) %>
-<% } %>

@@ -45,6 +45,8 @@ module.exports = cacheComponent(Baidu, 'search.baidu', props => {
     return {
         url: props.config.url,
         __: props.__,
-        url_for: props.url_for
+        url_for: props.url_for,
+        // for cache purpose only
+        _language: props.page.lang || props.page.language || props.language
     };
 });

@@ -1,0 +1,21 @@
+'use strict';
+
+const { Component } = require('inferno');
+const { cacheComponent } = require('../util/cache');
+
+class AnimeJs extends Component {
+    render() {
+        if (this.props.head) {
+            return <style dangerouslySetInnerHTML={{ __html: 'body>.footer,body>.navbar,body>.section{opacity:0}' }}></style>;
+        }
+        return <script src={this.props.url_for('/js/animation.js')}></script>;
+
+    }
+}
+
+module.exports = cacheComponent(AnimeJs, 'plugin.animejs', props => {
+    return {
+        head: props.head,
+        url_for: props.url_for
+    };
+});

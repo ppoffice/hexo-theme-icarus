@@ -13,7 +13,7 @@ class ShareThis extends Component {
             </div>;
         }
         return <Fragment>
-            <div class="sharethis-inline-share-buttons"></div>
+            <div className="sharethis-inline-share-buttons"></div>
             <script src={installUrl} async={true}></script>
         </Fragment>;
     }

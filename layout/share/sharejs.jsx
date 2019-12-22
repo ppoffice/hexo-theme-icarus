@@ -8,7 +8,7 @@ class ShareJs extends Component {
         const { cdn } = this.props;
         return <Fragment>
             <link rel="stylesheet" href={cdn('social-share.js', '1.0.16', 'dist/css/share.min.css')} />
-            <div class="social-share"></div>
+            <div className="social-share"></div>
             <script src={cdn('social-share.js', '1.0.16', 'dist/js/social-share.min.js')}></script>
         </Fragment>;
     }
