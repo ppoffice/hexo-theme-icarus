@@ -7,7 +7,7 @@ class Isso extends Component {
     render() {
         const { url } = this.props;
         if (!url) {
-            return <div class="notification is-danger">
+            return <div className="notification is-danger">
                 You forgot to set the <code>url</code> for Isso.
                 Please set it in <code>_config.yml</code>.
             </div>;

@@ -7,7 +7,7 @@ class Disqus extends Component {
     render() {
         const { shortname, disqusId, path, permalink } = this.props;
         if (!shortname) {
-            return <div class="notification is-danger">
+            return <div className="notification is-danger">
                 You forgot to set the <code>shortname</code> for Disqus.
                 Please set it in <code>_config.yml</code>.
             </div>;

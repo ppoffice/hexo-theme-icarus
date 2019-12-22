@@ -7,7 +7,7 @@ class LiveRe extends Component {
     render() {
         const { uid } = this.props;
         if (!uid) {
-            return <div class="notification is-danger">
+            return <div className="notification is-danger">
                 You forgot to set the <code>uid</code> for LiveRe.
                 Please set it in <code>_config.yml</code>.
             </div>;

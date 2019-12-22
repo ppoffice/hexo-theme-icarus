@@ -14,7 +14,7 @@ class Facebook extends Component {
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));`;
         return <Fragment>
-            <div class="fb-comments" data-width="100%" data-href={permalink} data-num-posts="5"></div>
+            <div className="fb-comments" data-width="100%" data-href={permalink} data-num-posts="5"></div>
             <script dangerouslySetInnerHTML={{ __html: js }}></script>
         </Fragment>;
     }

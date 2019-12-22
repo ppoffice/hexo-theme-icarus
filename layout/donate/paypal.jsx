@@ -7,15 +7,15 @@ class Paypal extends Component {
     render() {
         const { type, business, currencyCode, __ } = this.props;
         if (!business || !currencyCode) {
-            return <div class="notification is-danger">
+            return <div className="notification is-danger">
                 You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal.
                 Please set it in <code>_config.yml</code>.
             </div>;
         }
         return <Fragment>
-            <a class="button is-warning donate" onclick="document.getElementById('paypal-donate-form').submit()">
-                <span class="icon is-small">
-                    <i class="fab fa-paypal"></i>
+            <a className="button is-warning donate" onclick="document.getElementById('paypal-donate-form').submit()">
+                <span className="icon is-small">
+                    <i className="fab fa-paypal"></i>
                 </span>
                 <span>{__('donate.' + type)}</span>
             </a>
