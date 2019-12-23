@@ -22,9 +22,11 @@ class Patreon extends Component {
 }
 
 module.exports = cacheComponent(Patreon, 'donate.petreon', props => {
+    const { donate, helper } = props;
+
     return {
-        url: props.url,
-        title: props.__('donate.' + props.type),
-        url_for: props.url_for
+        url: donate.url,
+        title: helper.__('donate.' + donate.type),
+        url_for: helper.url_for
     };
 });

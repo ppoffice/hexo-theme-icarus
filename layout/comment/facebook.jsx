@@ -10,7 +10,7 @@ class Facebook extends Component {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/${(language || 'en').split('-').join('_')}/sdk.js#xfbml=1&version=v2.8";
+            js.src = "//connect.facebook.net/${language.split('-').join('_')}/sdk.js#xfbml=1&version=v2.8";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));`;
         return <Fragment>
@@ -21,8 +21,10 @@ class Facebook extends Component {
 }
 
 module.exports = cacheComponent(Facebook, 'comment.facebook', props => {
+    const { config, page } = props;
+
     return {
-        language: props.language,
-        permalink: props.page.permalink
+        language: page.lang || page.language || config.language || 'en',
+        permalink: page.permalink
     };
 });

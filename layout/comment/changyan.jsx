@@ -22,9 +22,11 @@ class ChangeYan extends Component {
 }
 
 module.exports = cacheComponent(ChangeYan, 'comment.changyan', props => {
+    const { comment, page } = props;
+
     return {
-        appId: props.appid,
-        conf: props.conf,
-        path: props.page.path
+        appId: comment.appid,
+        conf: comment.conf,
+        path: page.path
     };
 });

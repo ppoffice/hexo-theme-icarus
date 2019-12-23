@@ -15,8 +15,10 @@ class ShareJs extends Component {
 }
 
 module.exports = cacheComponent(ShareJs, 'share.sharejs', props => {
+    const { helper } = props;
+
     return {
-        cssUrl: props.cdn('social-share.js', '1.0.16', 'dist/css/share.min.css'),
-        jsUrl: props.cdn('social-share.js', '1.0.16', 'dist/js/social-share.min.js')
+        cssUrl: helper.cdn('social-share.js', '1.0.16', 'dist/css/share.min.css'),
+        jsUrl: helper.cdn('social-share.js', '1.0.16', 'dist/js/social-share.min.js')
     };
 });

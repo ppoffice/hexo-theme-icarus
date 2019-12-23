@@ -41,12 +41,14 @@ class Gitment extends Component {
 }
 
 module.exports = cacheComponent(Gitment, 'comment.gitment', props => {
+    const { comment } = props;
+
     const id = crypto.createHash('md5').update(props.page.path).digest('hex');
     return {
         id,
-        repo: props.repo,
-        owner: props.owner,
-        clientId: props.client_id,
-        clientSecret: props.client_secret
+        repo: comment.repo,
+        owner: comment.owner,
+        clientId: comment.client_id,
+        clientSecret: comment.client_secret
     };
 });

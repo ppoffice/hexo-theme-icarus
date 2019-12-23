@@ -19,8 +19,8 @@ module.exports = class extends Component {
                     return <Plugin site={site} config={config} page={page} helper={helper} plugin={plugins[name]} head={head} />;
                 } catch (e) {
                     logger.warn(`Icarus cannot load plugin "${name}"`);
+                    return null;
                 }
-                return null;
             })}
         </Fragment>;
     }

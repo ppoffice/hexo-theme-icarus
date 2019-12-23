@@ -47,18 +47,20 @@ class Gitalk extends Component {
 }
 
 module.exports = cacheComponent(Gitalk, 'comment.gitalk', props => {
+    const { helper, comment } = props;
+
     // FIXME: config name change
     const id = crypto.createHash('md5').update(props.page.path).digest('hex');
     return {
         id,
-        repo: props.repo,
-        owner: props.owner,
-        admin: props.admin,
-        clientId: props.clientId,
-        clientSecret: props.clientSecret,
-        createIssueManually: props.createIssueManually,
-        distractionFreeMode: props.distractionFreeMode,
-        cssUrl: props.cdn('gitalk', '1.4.1', 'dist/gitalk.css'),
-        jsUrl: props.cdn('gitalk', '1.4.1', 'dist/gitalk.min.js')
+        repo: comment.repo,
+        owner: comment.owner,
+        admin: comment.admin,
+        clientId: comment.clientId,
+        clientSecret: comment.clientSecret,
+        createIssueManually: comment.createIssueManually,
+        distractionFreeMode: comment.distractionFreeMode,
+        cssUrl: helper.cdn('gitalk', '1.4.1', 'dist/gitalk.css'),
+        jsUrl: helper.cdn('gitalk', '1.4.1', 'dist/gitalk.min.js')
     };
 });

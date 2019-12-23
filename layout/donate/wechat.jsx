@@ -23,9 +23,11 @@ class Wechat extends Component {
 }
 
 module.exports = cacheComponent(Wechat, 'donate.wechat', props => {
+    const { donate, helper } = props;
+
     return {
-        qrcode: props.qrcode,
-        title: props.__('donate.' + props.type),
-        url_for: props.url_for
+        qrcode: donate.qrcode,
+        title: helper.__('donate.' + donate.type),
+        url_for: helper.url_for
     };
 });

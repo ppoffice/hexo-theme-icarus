@@ -31,7 +31,9 @@ class LiveRe extends Component {
 }
 
 module.exports = cacheComponent(LiveRe, 'comment.livere', props => {
+    const { comment } = props;
+
     return {
-        uid: props.uid
+        uid: comment.uid
     };
 });

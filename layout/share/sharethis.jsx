@@ -20,7 +20,9 @@ class ShareThis extends Component {
 }
 
 module.exports = cacheComponent(ShareThis, 'share.sharethis', props => {
+    const { share } = props;
+
     return {
-        installUrl: props.install_url
+        installUrl: share.install_url
     };
 });

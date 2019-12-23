@@ -32,10 +32,12 @@ class Disqus extends Component {
 }
 
 module.exports = cacheComponent(Disqus, 'comment.disqus', props => {
+    const { comment, page } = props;
+
     return {
-        path: props.page.path,
-        shortname: props.shortname,
-        disqusId: props.page.disqusId,
-        permalink: props.page.permalink
+        path: page.path,
+        shortname: comment.shortname,
+        disqusId: page.disqusId,
+        permalink: page.permalink
     };
 });

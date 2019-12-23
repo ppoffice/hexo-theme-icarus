@@ -30,11 +30,13 @@ class Valine extends Component {
 }
 
 module.exports = cacheComponent(Valine, 'comment.valine', props => {
+    const { comment } = props;
+
     return {
-        appId: props.app_id,
-        appKey: props.app_key,
-        notify: props.notify,
-        verify: props.verify,
-        placeholder: props.placeholder
+        appId: comment.app_id,
+        appKey: comment.app_key,
+        notify: comment.notify,
+        verify: comment.verify,
+        placeholder: comment.placeholder
     };
 });

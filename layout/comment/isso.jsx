@@ -20,7 +20,9 @@ class Isso extends Component {
 }
 
 module.exports = cacheComponent(Isso, 'comment.isso', props => {
+    const { comment } = props;
+
     return {
-        url: props.url
+        url: comment.url
     };
 });

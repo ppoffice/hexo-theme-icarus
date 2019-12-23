@@ -21,7 +21,7 @@ module.exports = class extends Component {
             highlight
         } = config;
 
-        let hlTheme;
+        let hlTheme, images;
         if (highlight && highlight.enable === false) {
             hlTheme = null;
         } else if (article && article.highlight && article.hightlight.theme) {
@@ -30,13 +30,21 @@ module.exports = class extends Component {
             hlTheme = 'atom-one-light';
         }
 
-        const images = [];
-        if (page.content && page.content.includes('<img')) {
+        if (typeof page.og_image === 'string') {
+            images = [page.og_image];
+        } else if (helper.has_thumbnail(page)) {
+            images = [helper.get_thumbnail(page)];
+        } else if (article && typeof article.og_image === 'string') {
+            images = [article.og_image];
+        } else if (page.content && page.content.includes('<img')) {
             let img;
+            images = [];
             const imgPattern = /<img [^>]*src=['"]([^'"]+)([^>]*>)/gi;
             while ((img = imgPattern.exec(page.content)) !== null) {
                 images.push(img[1]);
             }
+        } else {
+            images = [url_for('/images/og_image.png')];
         }
 
         return <head>

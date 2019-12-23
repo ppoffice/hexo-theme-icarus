@@ -29,10 +29,12 @@ class Paypal extends Component {
 }
 
 module.exports = cacheComponent(Paypal, 'donate.paypal', props => {
+    const { donate, helper } = props;
+
     return {
-        business: props.business,
-        currencyCode: props.currency_code,
-        title: props.__('donate.' + props.type),
-        url_for: props.url_for
+        business: donate.business,
+        currencyCode: donate.currency_code,
+        title: helper.__('donate.' + donate.type),
+        url_for: helper.url_for
     };
 });
