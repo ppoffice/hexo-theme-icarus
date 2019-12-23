@@ -9,11 +9,11 @@ class Profile extends Component {
         if (!links.length) {
             return null;
         }
-        return <div class="level is-mobile">
+        return <div className="level is-mobile">
             {links.map(link => {
-                return <a class="level-item button is-white is-marginless"
+                return <a className="level-item button is-white is-marginless"
                     target="_blank" rel="noopener" title={link.name} href={link.url}>
-                    {Object.prototype.hasOwnProperty.call(link, 'icon') ? <i class={link.icon}></i> : link.name}
+                    {Object.prototype.hasOwnProperty.call(link, 'icon') ? <i className={link.icon}></i> : link.name}
                 </a>;
             })}
         </div>;
@@ -31,51 +31,51 @@ class Profile extends Component {
             followTitle,
             socialLinks
         } = this.props;
-        return <div class="card widget">
-            <div class="card-content">
-                <nav class="level">
-                    <div class="level-item has-text-centered" style="flex-shrink: 1">
+        return <div className="card widget">
+            <div className="card-content">
+                <nav className="level">
+                    <div className="level-item has-text-centered" style="flex-shrink: 1">
                         <div>
-                            <figure class="image is-128x128 has-mb-6">
-                                <img class={avatarRounded ? 'is-rounded' : ''} src={avatar} alt={author} />
+                            <figure className="image is-128x128 has-mb-6">
+                                <img className={avatarRounded ? 'is-rounded' : ''} src={avatar} alt={author} />
                             </figure>
-                            {author ? <p class="is-size-4 is-block">{author}</p> : null}
-                            {authorTitle ? <p class="is-size-6 is-block">{authorTitle}</p> : null}
-                            {location ? <p class="is-size-6 is-flex is-flex-center has-text-grey">
-                                <i class="fas fa-map-marker-alt has-mr-7"></i>
+                            {author ? <p className="is-size-4 is-block">{author}</p> : null}
+                            {authorTitle ? <p className="is-size-6 is-block">{authorTitle}</p> : null}
+                            {location ? <p className="is-size-6 is-flex is-flex-center has-text-grey">
+                                <i className="fas fa-map-marker-alt has-mr-7"></i>
                                 <span>{location}</span>
                             </p> : null}
                         </div>
                     </div>
                 </nav>
-                <nav class="level is-mobile">
-                    <div class="level-item has-text-centered is-marginless">
+                <nav className="level is-mobile">
+                    <div className="level-item has-text-centered is-marginless">
                         <div>
-                            <p class="heading">{counter.post.title}</p>
+                            <p className="heading">{counter.post.title}</p>
                             <a href={counter.post.url}>
-                                <p class="title has-text-weight-normal">{counter.post.count}</p>
+                                <p className="title has-text-weight-normal">{counter.post.count}</p>
                             </a>
                         </div>
                     </div>
-                    <div class="level-item has-text-centered is-marginless">
+                    <div className="level-item has-text-centered is-marginless">
                         <div>
-                            <p class="heading">{counter.category.title}</p>
+                            <p className="heading">{counter.category.title}</p>
                             <a href={counter.category.url}>
-                                <p class="title has-text-weight-normal">{counter.category.count}</p>
+                                <p className="title has-text-weight-normal">{counter.category.count}</p>
                             </a>
                         </div>
                     </div>
-                    <div class="level-item has-text-centered is-marginless">
+                    <div className="level-item has-text-centered is-marginless">
                         <div>
-                            <p class="heading">{counter.tag.title}</p>
+                            <p className="heading">{counter.tag.title}</p>
                             <a href={counter.tag.url}>
-                                <p class="title has-text-weight-normal">{counter.tag.count}</p>
+                                <p className="title has-text-weight-normal">{counter.tag.count}</p>
                             </a>
                         </div>
                     </div>
                 </nav>
-                {followLink ? <div class="level">
-                    <a class="level-item button is-link is-rounded" href={followLink} target="_blank" rel="noopener">{followTitle}</a>
+                {followLink ? <div className="level">
+                    <a className="level-item button is-link is-rounded" href={followLink} target="_blank" rel="noopener">{followTitle}</a>
                 </div> : null}
                 {this.renderSocialLinks(socialLinks)}
             </div>
@@ -84,6 +84,7 @@ class Profile extends Component {
 }
 
 module.exports = cacheComponent(Profile, 'widget.profile', props => {
+    const { site, helper, widget } = props;
     const {
         avatar,
         gravatar,
@@ -92,12 +93,9 @@ module.exports = cacheComponent(Profile, 'widget.profile', props => {
         author_title,
         location,
         follow_link,
-        social_links,
-        site,
-        url_for,
-        _p,
-        __
-    } = props;
+        social_links
+    } = widget;
+    const { url_for, _p, __ } = helper;
 
     function getAvatar() {
         if (gravatar) {
@@ -126,7 +124,6 @@ module.exports = cacheComponent(Profile, 'widget.profile', props => {
             url: url_for(link.name),
             icon: link.icon
         };
-
     });
 
     return {

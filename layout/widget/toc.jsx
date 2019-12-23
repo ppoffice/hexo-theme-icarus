@@ -85,7 +85,7 @@ class Toc extends Component {
             .sort((a, b) => a - b);
 
         if (keys.length > 0) {
-            result = <ul class="menu-list">
+            result = <ul className="menu-list">
                 {keys.map(i => this.renderToc(toc[i]))}
             </ul>;
         }
@@ -93,8 +93,8 @@ class Toc extends Component {
             && Object.prototype.hasOwnProperty.call(toc, 'index')
             && Object.prototype.hasOwnProperty.call(toc, 'text')) {
             result = <li>
-                <a class="is-flex" href={'#' + toc.id}>
-                    <span class="has-mr-6">{toc.index}</span>
+                <a className="is-flex" href={'#' + toc.id}>
+                    <span className="has-mr-6">{toc.index}</span>
                     <span>{toc.text}</span>
                 </a>
                 {result}
@@ -109,10 +109,10 @@ class Toc extends Component {
             return null;
         }
 
-        return <div class="card widget" id="toc">
-            <div class="card-content">
-                <div class="menu">
-                    <h3 class="menu-label">{this.props.title}</h3>
+        return <div className="card widget" id="toc">
+            <div className="card-content">
+                <div className="menu">
+                    <h3 className="menu-label">{this.props.title}</h3>
                     {this.renderToc(toc)}
                 </div>
             </div>
@@ -121,15 +121,15 @@ class Toc extends Component {
 }
 
 module.exports = cacheComponent(Toc, 'widget.toc', props => {
-    const { toc, page, _p } = props;
+    const { config, page, helper } = props;
     const { layout, content } = page;
 
-    if (toc !== true || (layout !== 'page' && layout !== 'post')) {
+    if (config.toc !== true || (layout !== 'page' && layout !== 'post')) {
         return null;
     }
 
     return {
-        title: _p('widget.catalogue', Infinity),
+        title: helper._p('widget.catalogue', Infinity),
         content
     };
 });

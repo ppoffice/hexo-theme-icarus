@@ -7,23 +7,23 @@ const { cacheComponent } = require('../util/cache');
 class Links extends Component {
     render() {
         const { title, links } = this.props;
-        return <div class="card widget">
-            <div class="card-content">
-                <div class="menu">
-                    <h3 class="menu-label">{title}</h3>
-                    <ul class="menu-list">
+        return <div className="card widget">
+            <div className="card-content">
+                <div className="menu">
+                    <h3 className="menu-label">{title}</h3>
+                    <ul className="menu-list">
                         {Object.keys(links).map(i => {
                             let hostname = links[i];
                             try {
                                 hostname = new URL(hostname).hostname;
                             } catch (e) { }
                             return <li>
-                                <a class="level is-mobile" href="<%- links[i] %>" target="_blank" rel="noopener">
-                                    <span class="level-left">
-                                        <span class="level-item">{i}</span>
+                                <a className="level is-mobile" href="<%- links[i] %>" target="_blank" rel="noopener">
+                                    <span className="level-left">
+                                        <span className="level-item">{i}</span>
                                     </span>
-                                    <span class="level-right">
-                                        <span class="level-item tag">{hostname}</span>
+                                    <span className="level-right">
+                                        <span className="level-item tag">{hostname}</span>
                                     </span>
                                 </a>
                             </li>;
@@ -36,11 +36,12 @@ class Links extends Component {
 }
 
 module.exports = cacheComponent(Links, 'widget.links', props => {
-    if (!Object.keys(props.links).length) {
+    const { helper, widget } = props;
+    if (!Object.keys(widget.links).length) {
         return null;
     }
     return {
-        title: props.__('widget.links'),
-        links: props.links
+        title: helper.__('widget.links'),
+        links: widget.links
     };
 });

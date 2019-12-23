@@ -20,10 +20,11 @@ class BaiduAnalytics extends Component {
 }
 
 module.exports = cacheComponent(BaiduAnalytics, 'plugin.baiduanalytics', props => {
-    if (!props.head || !props.tracking_id) {
+    const { head, plugin } = props;
+    if (!head || !plugin.tracking_id) {
         return null;
     }
     return {
-        trackingId: props.tracking_id
+        trackingId: plugin.tracking_id
     };
 });

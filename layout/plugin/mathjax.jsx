@@ -35,10 +35,11 @@ class Mathjax extends Component {
 }
 
 module.exports = cacheComponent(Mathjax, 'plugin.mathjax', props => {
-    if (props.head) {
+    const { head, helper } = props;
+    if (head) {
         return null;
     }
     return {
-        jsUrl: props.cdn('mathjax', '2.7.5', 'unpacked/MathJax.js?config=TeX-MML-AM_CHTML')
+        jsUrl: helper.cdn('mathjax', '2.7.5', 'unpacked/MathJax.js?config=TeX-MML-AM_CHTML')
     };
 });

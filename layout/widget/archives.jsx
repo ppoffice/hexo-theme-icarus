@@ -12,17 +12,17 @@ class Archives extends Component {
         } = this.props;
 
         return <div className="card widget">
-            <div class="card-content">
-                <div class="menu">
-                    <h3 class="menu-label">{title}</h3>
-                    <ul class="menu-list">
+            <div className="card-content">
+                <div className="menu">
+                    <h3 className="menu-label">{title}</h3>
+                    <ul className="menu-list">
                         {items.map(archive => <li>
-                            <a class="level is-marginless" href={archive.url}>
-                                <span class="level-start">
-                                    <span class="level-item">{archive.name}</span>
+                            <a className="level is-marginless" href={archive.url}>
+                                <span className="level-start">
+                                    <span className="level-item">{archive.name}</span>
                                 </span>
-                                {showCount ? <span class="level-end">
-                                    <span class="level-item tag">{archive.count}</span>
+                                {showCount ? <span className="level-end">
+                                    <span className="level-item tag">{archive.count}</span>
                                 </span> : null}
                             </a>
                         </li>)}
@@ -35,15 +35,23 @@ class Archives extends Component {
 
 module.exports = cacheComponent(Archives, 'widget.archives', props => {
     // adapted from hexo/lib/plugins/helper/list_archives.js
-    const { config, page, type = 'monthly', order = -1, url_for, _p } = props;
-    const posts = props.site.posts.sort('date', order);
+    const {
+        site,
+        config,
+        page,
+        helper,
+        type = 'monthly',
+        order = -1,
+        show_count = true,
+        format = null
+    } = props;
+    const { url_for, _p } = helper;
+    const posts = site.posts.sort('date', order);
     if (!posts.length) {
         return null;
     }
 
     const language = page.lang || page.language || config.language;
-    const format = props.format || type === 'monthly' ? 'MMMM YYYY' : 'YYYY';
-    const showCount = Object.prototype.hasOwnProperty.call(props, 'show_count') ? props.show_count : true;
 
     const data = [];
     let length = 0;
@@ -61,7 +69,7 @@ module.exports = cacheComponent(Archives, 'widget.archives', props => {
 
         const year = date.year();
         const month = date.month() + 1;
-        const name = date.format(format);
+        const name = date.format(format || type === 'monthly' ? 'MMMM YYYY' : 'YYYY');
         const lastData = data[length - 1];
 
         if (!lastData || lastData.name !== name) {
@@ -94,6 +102,6 @@ module.exports = cacheComponent(Archives, 'widget.archives', props => {
             url: link(item)
         })),
         title: _p('common.archive', Infinity),
-        showCount
+        showCount: show_count
     };
 });

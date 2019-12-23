@@ -14,8 +14,9 @@ class AnimeJs extends Component {
 }
 
 module.exports = cacheComponent(AnimeJs, 'plugin.animejs', props => {
+    const { helper, head } = props;
     return {
-        head: props.head,
-        url_for: props.url_for
+        head,
+        url_for: helper.url_for
     };
 });

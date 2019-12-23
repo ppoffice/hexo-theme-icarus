@@ -23,10 +23,11 @@ class Hotjar extends Component {
 }
 
 module.exports = cacheComponent(Hotjar, 'plugin.hotjar', props => {
-    if (!props.head || !props.site_id) {
+    const { head, plugin } = props;
+    if (!head || !plugin.site_id) {
         return null;
     }
     return {
-        siteId: props.site_id
+        siteId: plugin.site_id
     };
 });

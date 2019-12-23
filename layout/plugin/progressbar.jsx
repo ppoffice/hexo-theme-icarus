@@ -15,11 +15,12 @@ class ProgressBar extends Component {
 }
 
 module.exports = cacheComponent(ProgressBar, 'plugin.progressbar', props => {
-    if (!props.head) {
+    const { head, helper } = props;
+    if (!head) {
         return null;
     }
     return {
-        url_for: props.url_for,
-        jsUrl: props.cdn('pace-js', '1.0.2', 'pace.min.js')
+        url_for: helper.url_for,
+        jsUrl: helper.cdn('pace-js', '1.0.2', 'pace.min.js')
     };
 });

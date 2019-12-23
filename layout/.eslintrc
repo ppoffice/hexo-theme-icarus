@@ -28,7 +28,9 @@
           "inferno",
           "inferno-create-element",
           "hexo-util",
-          "cheerio"
+          "hexo-log",
+          "cheerio",
+          "moment"
         ]
       }
     ]

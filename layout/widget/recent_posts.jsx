@@ -7,28 +7,28 @@ class RecentPosts extends Component {
     render() {
         const { title, thumbnail, posts } = this.props;
 
-        return <div class="card widget">
-            <div class="card-content">
-                <h3 class="menu-label">{title}</h3>
+        return <div className="card widget">
+            <div className="card-content">
+                <h3 className="menu-label">{title}</h3>
                 {posts.map(post => {
                     const categories = [];
                     post.categories.forEach((category, i) => {
-                        categories.push(<a class="has-link-grey" href={category.url}>{category.name}</a>);
+                        categories.push(<a className="has-link-grey" href={category.url}>{category.name}</a>);
                         if (i < post.categories.length - 1) {
                             categories.push('/');
                         }
                     });
-                    return <article class="media">
-                        {thumbnail ? <a href={post.url} class="media-left">
-                            <p class="image is-64x64">
-                                <img class="thumbnail" src={post.thumbnail} alt={post.title} />
+                    return <article className="media">
+                        {thumbnail ? <a href={post.url} className="media-left">
+                            <p className="image is-64x64">
+                                <img className="thumbnail" src={post.thumbnail} alt={post.title} />
                             </p>
                         </a> : null}
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime={post.dateXml}>{post.date}</time></div>
-                                <a href={post.url} class="title has-link-black-ter is-size-6 has-text-weight-normal">{post.title}</a>
-                                <p class="is-size-7 is-uppercase">{categories}</p>
+                        <div className="media-content">
+                            <div className="content">
+                                <div><time className="has-text-grey is-size-7 is-uppercase" datetime={post.dateXml}>{post.date}</time></div>
+                                <a href={post.url} className="title has-link-black-ter is-size-6 has-text-weight-normal">{post.title}</a>
+                                <p className="is-size-7 is-uppercase">{categories}</p>
                             </div>
                         </div>
                     </article>;
@@ -39,7 +39,8 @@ class RecentPosts extends Component {
 }
 
 module.exports = cacheComponent(RecentPosts, 'widget.recentposts', props => {
-    const { site, config, get_thumbnail, url_for, __, date_xml, date } = props;
+    const { site, config, helper } = props;
+    const { get_thumbnail, url_for, __, date_xml, date } = helper;
     if (!site.posts.length) {
         return null;
     }

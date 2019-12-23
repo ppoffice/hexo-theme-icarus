@@ -35,9 +35,10 @@ class OutdatedBrowser extends Component {
 }
 
 module.exports = cacheComponent(OutdatedBrowser, 'plugin.outdatedbrowser', props => {
+    const { head, helper } = props;
     return {
-        head: props.head,
-        cssUrl: props.cdn('outdatedbrowser', '1.1.5', 'outdatedbrowser/outdatedbrowser.min.css'),
-        jsUrl: props.cdn('outdatedbrowser', '1.1.5', 'outdatedbrowser/outdatedbrowser.min.js')
+        head,
+        cssUrl: helper.cdn('outdatedbrowser', '1.1.5', 'outdatedbrowser/outdatedbrowser.min.css'),
+        jsUrl: helper.cdn('outdatedbrowser', '1.1.5', 'outdatedbrowser/outdatedbrowser.min.js')
     };
 });

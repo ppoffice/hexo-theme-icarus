@@ -21,9 +21,10 @@ class BackToTop extends Component {
 }
 
 module.exports = cacheComponent(BackToTop, 'plugin.backtotop', props => {
+    const { helper, head } = props;
     return {
-        head: props.head,
-        title: props.__('plugin.backtotop'),
-        url_for: props.url_for
+        head,
+        title: helper.__('plugin.backtotop'),
+        url_for: helper.url_for
     };
 });
