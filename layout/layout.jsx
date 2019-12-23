@@ -22,12 +22,12 @@ module.exports = class extends Component {
             <head>
                 <Head env={env} site={site} config={config} helper={helper} page={page} />
             </head>
-            <body class={`is-${columnCount}-column`}>
+            <body className={`is-${columnCount}-column`}>
                 <Navbar config={config} helper={helper} page={page} />
-                <section class="section">
-                    <div class="container">
-                        <div class="columns">
-                            <div class={{
+                <section className="section">
+                    <div className="container">
+                        <div className="columns">
+                            <div className={{
                                 column: true,
                                 'has-order-2': true,
                                 'column-main': true,

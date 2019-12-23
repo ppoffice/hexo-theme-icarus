@@ -17,10 +17,10 @@ module.exports = class extends Component {
         function renderArticleList(posts, year, month = null) {
             const time = moment([page.year, page.month ? page.month - 1 : null].filter(i => i !== null));
 
-            return <div class="card widget">
-                <div class="card-content">
-                    <h3 class="tag is-link">{month === null ? year : time.locale(language).format('MMMM YYYY')}</h3>
-                    <div class="timeline">
+            return <div className="card widget">
+                <div className="card-content">
+                    <h3 className="tag is-link">{month === null ? year : time.locale(language).format('MMMM YYYY')}</h3>
+                    <div className="timeline">
                         {posts.map(post => {
                             const categories = [];
                             post.categories.forEach((category, i) => {
@@ -29,21 +29,21 @@ module.exports = class extends Component {
                                     categories.push('/');
                                 }
                             });
-                            return <article class="media">
-                                {has_thumbnail(post) ? <a href={url_for((post.link || post.path))} class="media-left">
-                                    <p class="image is-64x64">
-                                        <img class="thumbnail" src={get_thumbnail(post)} alt={post.title || get_thumbnail(post)} />
+                            return <article className="media">
+                                {has_thumbnail(post) ? <a href={url_for((post.link || post.path))} className="media-left">
+                                    <p className="image is-64x64">
+                                        <img className="thumbnail" src={get_thumbnail(post)} alt={post.title || get_thumbnail(post)} />
                                     </p>
                                 </a> : null}
-                                <div class="media-content">
-                                    <div class="content">
-                                        <time class="has-text-grey is-size-7 is-block is-uppercase"
+                                <div className="media-content">
+                                    <div className="content">
+                                        <time className="has-text-grey is-size-7 is-block is-uppercase"
                                             datetime={date_xml(post.date)}>{date(post.date)}</time>
-                                        <a class="title has-link-black-ter is-size-6 has-text-weight-normal"
+                                        <a className="title has-link-black-ter is-size-6 has-text-weight-normal"
                                             href={url_for((post.link || post.path))} >{post.title}</a>
-                                        <div class="level article-meta is-mobile">
-                                            <div class="level-left">
-                                                {categories.length ? <div class="level-item is-size-7 is-uppercase">
+                                        <div className="level article-meta is-mobile">
+                                            <div className="level-left">
+                                                {categories.length ? <div className="level-item is-size-7 is-uppercase">
                                                     {categories}
                                                 </div> : null}
                                             </div>

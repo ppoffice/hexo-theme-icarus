@@ -7,10 +7,7 @@ require('../includes/generators/tags')(hexo);
 require('../includes/generators/insight')(hexo);
 require('../includes/helpers/cdn')(hexo);
 require('../includes/helpers/config')(hexo);
-require('../includes/helpers/layout')(hexo);
-require('../includes/helpers/override')(hexo);
 require('../includes/helpers/page')(hexo);
-require('../includes/helpers/site')(hexo);
 
 // Fix large blog rendering OOM
 const hooks = [

@@ -5,6 +5,78 @@ const MetaTags = require('../misc/meta');
 const OpenGraph = require('../misc/open_graph');
 const Plugins = require('./plugins');
 
+function isArchivePage(page) {
+    return !!page.archive;
+}
+
+function isCategoriesPage(page) {
+    return !!page.__categories;
+}
+
+function isTagsPage(page) {
+    return !!page.__tags;
+}
+
+function isMonthPage(page, year, month) {
+    if (!isArchivePage(page)) {
+        return false;
+    }
+    if (year) {
+        if (month) {
+            return page.year === year && page.month === month;
+        }
+        return page.month === year;
+    }
+    return page.year && page.month;
+}
+
+function isYearPage(page, year) {
+    if (!isArchivePage(page)) {
+        return false;
+    }
+    if (year) {
+        return page.year === year;
+    }
+    return !!page.year;
+}
+
+function isCategoryPage(page, category) {
+    if (category) {
+        return page.category === category;
+    }
+    return !!page.category;
+}
+
+function isTagPage(page, tag) {
+    if (tag) {
+        return page.tag === tag;
+    }
+    return !!page.tag;
+}
+
+function getPageTitle(page, siteTitle, _p) {
+    let title = page.title;
+
+    if (isArchivePage(page)) {
+        title = _p('common.archive', Infinity);
+        if (isMonthPage()) {
+            title += ': ' + page.year + '/' + page.month;
+        } else if (isYearPage(page)) {
+            title += ': ' + page.year;
+        }
+    } else if (isCategoryPage()) {
+        title = _p('common.category', 1) + ': ' + page.category;
+    } else if (isTagPage()) {
+        title = _p('common.tag', 1) + ': ' + page.tag;
+    } else if (isCategoriesPage(page)) {
+        title = _p('common.category', Infinity);
+    } else if (isTagsPage(page)) {
+        title = _p('common.tag', Infinity);
+    }
+
+    return [title, siteTitle].filter(str => typeof (str) !== 'undefined' && str.trim() !== '').join(' - ');
+}
+
 module.exports = class extends Component {
     render() {
         const { env, site, config, helper, page } = this.props;
@@ -54,6 +126,8 @@ module.exports = class extends Component {
             {meta_generator ? <meta name="generator" content={`Hexo ${env.version}`} /> : null}
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
             <MetaTags meta={meta} />
+
+            <title>{getPageTitle(page, config.title, _p)}</title>
 
             {open_graph ? <OpenGraph
                 type={is_post() ? 'article' : 'website'}
