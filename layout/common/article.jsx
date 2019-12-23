@@ -7,7 +7,7 @@ const Donates = require('./donates');
 const Comment = require('./comment');
 
 /**
- * Get the word count of a paragraph.
+ * Get the word count of text.
  */
 function getWordCount(content) {
     content = content.replace(/<\/?[a-z][^>]*>/gi, '');

@@ -21,6 +21,8 @@ module.exports = class extends Component {
             highlight
         } = config;
 
+        const language = page.lang || page.language || config.language;
+
         let hlTheme, images;
         if (highlight && highlight.enable === false) {
             hlTheme = null;
@@ -64,7 +66,7 @@ module.exports = class extends Component {
                 url={url}
                 images={page.photos || images}
                 siteName={config.title}
-                language={page.lang || page.language || config.language}
+                language={language}
                 twitterId={open_graph.twitter}
                 googlePlus={open_graph.google_plus}
                 facebookAdmins={open_graph.fb_admins}

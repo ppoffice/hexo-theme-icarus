@@ -80,9 +80,11 @@ class Google extends Component {
 }
 
 module.exports = cacheComponent(Google, 'search.google', props => {
+    const { helper, search } = props;
+
     return {
-        cx: props.cx,
-        hint: props.__('search.hint'),
-        url_for: props.url_for
+        cx: search.cx,
+        hint: helper.__('search.hint'),
+        url_for: helper.url_for
     };
 });

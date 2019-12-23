@@ -66,7 +66,7 @@ class Navbar extends Component {
 }
 
 module.exports = cacheComponent(Navbar, 'common.navbar', props => {
-    const { config, helper, page } = this.props;
+    const { config, helper, page } = props;
     const { url_for, _p, __ } = helper;
     const { logo, title, navbar, widgets, search } = config;
 

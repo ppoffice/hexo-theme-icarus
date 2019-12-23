@@ -42,9 +42,11 @@ class Baidu extends Component {
 }
 
 module.exports = cacheComponent(Baidu, 'search.baidu', props => {
+    const { config, helper } = props;
+
     return {
-        url: props.config.url,
-        hint: props.__('search.hint'),
-        url_for: props.url_for
+        url: config.url,
+        hint: helper.__('search.hint'),
+        url_for: helper.url_for
     };
 });

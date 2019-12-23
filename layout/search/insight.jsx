@@ -42,15 +42,17 @@ class Insight extends Component {
 }
 
 module.exports = cacheComponent(Insight, 'search.insight', props => {
+    const { helper } = props;
+
     return {
-        hint: props.__('search.hint'),
+        hint: helper.__('search.hint'),
         translation: {
-            posts: props.__('insight.posts'),
-            pages: props.__('insight.pages'),
-            categories: props.__('insight.categories'),
-            tags: props.__('insight.tags'),
-            untitled: props.__('insight.untitled')
+            posts: helper.__('insight.posts'),
+            pages: helper.__('insight.pages'),
+            categories: helper.__('insight.categories'),
+            tags: helper.__('insight.tags'),
+            untitled: helper.__('insight.untitled')
         },
-        url_for: props.url_for
+        url_for: helper.url_for
     };
 });
