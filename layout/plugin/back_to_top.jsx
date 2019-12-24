@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -12,7 +10,7 @@ class BackToTop extends Component {
         }
         return <Fragment>
             <a id="back-to-top" title={title} href="javascript:;">
-                <i className="fas fa-chevron-up"></i>
+                <i class="fas fa-chevron-up"></i>
             </a>
             <script src={url_for('/js/back-to-top.js')} defer={true}></script>
         </Fragment>;

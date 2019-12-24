@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -24,14 +22,14 @@ class Insight extends Component {
         return <Fragment>
             <link rel="stylesheet" href={url_for('/css/search.css')} />
             <link rel="stylesheet" href={url_for('/css/insight.css')} />
-            <div className="searchbox ins-search">
-                <div className="searchbox-container ins-search-container">
-                    <div className="searchbox-input-wrapper">
-                        <input type="text" className="searchbox-input ins-search-input" placeholder={hint} />
-                        <span className="searchbox-close ins-close ins-selectable"><i className="fa fa-times-circle"></i></span>
+            <div class="searchbox ins-search">
+                <div class="searchbox-container ins-search-container">
+                    <div class="searchbox-input-wrapper">
+                        <input type="text" class="searchbox-input ins-search-input" placeholder={hint} />
+                        <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
                     </div>
-                    <div className="searchbox-result-wrapper ins-section-wrapper">
-                        <div className="ins-section-container"></div>
+                    <div class="searchbox-result-wrapper ins-section-wrapper">
+                        <div class="ins-section-container"></div>
                     </div>
                 </div>
             </div>

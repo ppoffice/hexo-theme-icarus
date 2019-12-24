@@ -1,5 +1,3 @@
-'use strict';
-
 const moment = require('moment');
 const { Component, Fragment } = require('inferno');
 const Share = require('./share');
@@ -25,27 +23,27 @@ module.exports = class extends Component {
 
         return <Fragment>
             {/* Main content */}
-            <div className="card">
+            <div class="card">
                 {/* Thumbnail */}
-                {has_thumbnail(page) ? <div className="card-image">
-                    {index ? <a href={url_for(page.link || page.path || page.permalink)} className="image is-7by1">
-                        <img className="thumbnail" src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
-                    </a> : <span className="image is-7by1">
-                        <img className="thumbnail" src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
+                {has_thumbnail(page) ? <div class="card-image">
+                    {index ? <a href={url_for(page.link || page.path)} class="image is-7by1">
+                        <img class="thumbnail" src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
+                    </a> : <span class="image is-7by1">
+                        <img class="thumbnail" src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
                     </span>}
                 </div> : null}
                 {/* Metadata */}
-                <div className={`card-content article${Object.prototype.hasOwnProperty.call(page, 'direction') ? ' ' + page.direction : ''}`}>
-                    {page.layout !== 'page' ? <div className="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div className="level-left">
+                <div class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`}>
+                    {page.layout !== 'page' ? <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
                             {/* Date */}
-                            <time className="level-item has-text-grey" datetime={date_xml(page.date)}>{date(page.date)}</time>
+                            <time class="level-item has-text-grey" dateTime={date_xml(page.date)}>{date(page.date)}</time>
                             {/* Categories */}
-                            {page.categories && page.categories.length ? <div className="level-item">
+                            {page.categories && page.categories.length ? <div class="level-item">
                                 {(() => {
                                     const categories = [];
                                     page.categories.forEach((category, i) => {
-                                        categories.push(<a className="has-link-grey" href={category.url}>{category.name}</a>);
+                                        categories.push(<a class="has-link-grey" href={category.url}>{category.name}</a>);
                                         if (i < page.categories.length - 1) {
                                             categories.push('/');
                                         }
@@ -54,7 +52,7 @@ module.exports = class extends Component {
                                 })()}
                             </div> : null}
                             {/* Read time */}
-                            {article && article.readtime && article.readtime === true ? <span className="level-item has-text-grey">
+                            {article && article.readtime && article.readtime === true ? <span class="level-item has-text-grey">
                                 {(() => {
                                     const words = getWordCount(page._content);
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
@@ -62,36 +60,34 @@ module.exports = class extends Component {
                                 })()}
                             </span> : null}
                             {/* Visitor counter */}
-                            {plugins && plugins.busuanzi === true ? <span className="level-item has-text-grey" id="busuanzi_container_page_pv"
+                            {plugins && plugins.busuanzi === true ? <span class="level-item has-text-grey" id="busuanzi_container_page_pv"
                                 dangerouslySetInnerHTML={{
-                                    __html: _p('plugin.visit', '<i className="far fa-eye"></i><span id="busuanzi_value_page_pv">0</span>')
+                                    __html: _p('plugin.visit', '<i class="far fa-eye"></i>&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>')
                                 }}></span> : null}
                         </div>
                     </div> : null}
                     {/* Title */}
-                    <h1 className="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                        {index ? <a className="has-link-black-ter" href={url_for(page.link || page.path)}>{page.title}</a> : page.title}
+                    <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                        {index ? <a class="has-link-black-ter" href={url_for(page.link || page.path)}>{page.title}</a> : page.title}
                     </h1>
                     {/* Content/Excerpt */}
-                    <div className="content">
-                        {index && page.excerpt ? page.excerpt : page.content}
-                    </div>
+                    <div class="content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
                     {/* Tags */}
-                    {!index && Array.isArray(page.tags) && page.tags.length ? <div className="level is-size-7 is-uppercase">
-                        <div className="level-start">
-                            <div className="level-item">
-                                <span className="is-size-6 has-text-grey has-mr-7">#</span>
+                    {!index && Array.isArray(page.tags) && page.tags.length ? <div class="level is-size-7 is-uppercase">
+                        <div class="level-start">
+                            <div class="level-item">
+                                <span class="is-size-6 has-text-grey has-mr-7">#</span>
                                 {page.tags.map(tag => {
-                                    return <a href="has-link-grey" rel="tag" href={url_for(tag.path)}>{tag.name}</a>;
+                                    return <a class="has-link-grey" rel="tag" href={url_for(tag.path)}>{tag.name}</a>;
                                 })}
                             </div>
                         </div>
                     </div> : null}
                     {/* "Read more" button */}
-                    {index && page.excerpt ? <div className="level is-mobile">
-                        <div className="level-start">
-                            <div className="level-item">
-                                <a className="button is-size-7 is-light" href={`${url_for(page.path)}#more`}>{__('article.more')}</a>
+                    {index && page.excerpt ? <div class="level is-mobile">
+                        <div class="level-start">
+                            <div class="level-item">
+                                <a class="button is-size-7 is-light" href={`${url_for(page.path)}#more`}>{__('article.more')}</a>
                             </div>
                         </div>
                     </div> : null}
@@ -102,18 +98,18 @@ module.exports = class extends Component {
             {/* Donate button */}
             {!index ? <Donates config={config} helper={helper} /> : null}
             {/* Post navigation */}
-            {!index && (page.prev || page.next) ? <div className="card card-transparent">
-                <div className="level post-navigation is-flex-wrap is-mobile">
-                    {page.prev ? <div className="level-start">
-                        <a className={`level level-item has-link-grey${!page.prev ? ' is-hidden-mobile' : ''} article-nav-prev`} href={url_for(page.prev.path)}>
-                            <i className="level-item fas fa-chevron-left"></i>
-                            <span className="level-item">{page.prev.title}</span>
+            {!index && (page.prev || page.next) ? <div class="card card-transparent">
+                <div class="level post-navigation is-flex-wrap is-mobile">
+                    {page.prev ? <div class="level-start">
+                        <a class={`level level-item has-link-grey${!page.prev ? ' is-hidden-mobile' : ''} article-nav-prev`} href={url_for(page.prev.path)}>
+                            <i class="level-item fas fa-chevron-left"></i>
+                            <span class="level-item">{page.prev.title}</span>
                         </a>
                     </div> : null}
-                    {page.next ? <div className="level-end">
-                        <a className={`level level-item has-link-grey${!page.next ? ' is-hidden-mobile' : ''} article-nav-next`} href={url_for(page.next.path)}>
-                            <span className="level-item">{page.next.title}</span>
-                            <i className="level-item fas fa-chevron-right"></i>
+                    {page.next ? <div class="level-end">
+                        <a class={`level level-item has-link-grey${!page.next ? ' is-hidden-mobile' : ''} article-nav-next`} href={url_for(page.next.path)}>
+                            <span class="level-item">{page.next.title}</span>
+                            <i class="level-item fas fa-chevron-right"></i>
                         </a>
                     </div> : null}
                 </div>

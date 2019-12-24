@@ -1,5 +1,3 @@
-'use strict';
-
 const cheerio = require('cheerio');
 const { Component } = require('inferno');
 const { cacheComponent } = require('../util/cache');
@@ -63,7 +61,7 @@ function getToc(content) {
         }
         let node = toc;
         for (const i of levels.slice(0, level + 1)) {
-            if (!Object.prototype.hasOwnProperty.call(node, i)) {
+            if (!(i in node)) {
                 node[i] = {};
             }
             node = node[i];
@@ -85,16 +83,14 @@ class Toc extends Component {
             .sort((a, b) => a - b);
 
         if (keys.length > 0) {
-            result = <ul className="menu-list">
+            result = <ul class="menu-list">
                 {keys.map(i => this.renderToc(toc[i]))}
             </ul>;
         }
-        if (Object.prototype.hasOwnProperty.call(toc, 'id')
-            && Object.prototype.hasOwnProperty.call(toc, 'index')
-            && Object.prototype.hasOwnProperty.call(toc, 'text')) {
+        if ('id' in toc && 'index' in toc && 'text' in toc) {
             result = <li>
-                <a className="is-flex" href={'#' + toc.id}>
-                    <span className="has-mr-6">{toc.index}</span>
+                <a class="is-flex" href={'#' + toc.id}>
+                    <span class="has-mr-6">{toc.index}</span>
                     <span>{toc.text}</span>
                 </a>
                 {result}
@@ -109,10 +105,10 @@ class Toc extends Component {
             return null;
         }
 
-        return <div className="card widget" id="toc">
-            <div className="card-content">
-                <div className="menu">
-                    <h3 className="menu-label">{this.props.title}</h3>
+        return <div class="card widget" id="toc">
+            <div class="card-content">
+                <div class="menu">
+                    <h3 class="menu-label">{this.props.title}</h3>
                     {this.renderToc(toc)}
                 </div>
             </div>

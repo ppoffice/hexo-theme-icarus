@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -17,29 +15,29 @@ class Footer extends Component {
             visitorCounterTitle
         } = this.props;
 
-        return <footer className="footer">
-            <div className="container">
-                <div className="level">
-                    <div className="level-start has-text-centered-mobile">
-                        <a className="footer-logo is-block has-mb-6" href={siteUrl}>
+        return <footer class="footer">
+            <div class="container">
+                <div class="level">
+                    <div class="level-start has-text-centered-mobile">
+                        <a class="footer-logo is-block has-mb-6" href={siteUrl}>
                             {logo && logo.text ? logo.text : <img src={logoUrl} alt={siteTitle} height="28" />}
                         </a>
-                        <p className="is-size-7">
+                        <p class="is-size-7">
                             <span dangerouslySetInnerHTML={{ __html: `&copy; ${siteYear} ${author || siteTitle}` }}></span>
-                            Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &
+                            &nbsp;&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &
                             <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                             {showVisitorCounter ? <br /> : null}
                             {showVisitorCounter ? <span id="busuanzi_container_site_uv"
                                 dangerouslySetInnerHTML={{ __html: visitorCounterTitle }}></span> : null}
                         </p>
                     </div>
-                    <div className="level-end">
-                        {Object.keys(links).length ? <div className="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                    <div class="level-end">
+                        {Object.keys(links).length ? <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
                             {Object.keys(links).map(name => {
                                 const link = links[name];
-                                return <p className="control">
-                                    <a className={`button is-white ${link.icon ? 'is-large' : ''}`} target="_blank" rel="noopener" title={name} href={link.url}>
-                                        {link.icon ? name : <i className={link.icon}></i>}
+                                return <p class="control">
+                                    <a class={`button is-white ${link.icon ? 'is-large' : ''}`} target="_blank" rel="noopener" title={name} href={link.url}>
+                                        {link.icon ? <i class={link.icon}></i> : name}
                                     </a>
                                 </p>;
                             })}
@@ -52,7 +50,7 @@ class Footer extends Component {
 }
 
 module.exports = cacheComponent(Footer, 'common.footer', props => {
-    const { config, helper } = this.props;
+    const { config, helper } = props;
     const { url_for, _p, date } = helper;
     const { logo, title, author, footer, plugins } = config;
 

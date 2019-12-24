@@ -1,5 +1,3 @@
-'use strict';
-
 const { URL } = require('url');
 const { Component } = require('inferno');
 const { cacheComponent } = require('../util/cache');
@@ -7,23 +5,23 @@ const { cacheComponent } = require('../util/cache');
 class Links extends Component {
     render() {
         const { title, links } = this.props;
-        return <div className="card widget">
-            <div className="card-content">
-                <div className="menu">
-                    <h3 className="menu-label">{title}</h3>
-                    <ul className="menu-list">
+        return <div class="card widget">
+            <div class="card-content">
+                <div class="menu">
+                    <h3 class="menu-label">{title}</h3>
+                    <ul class="menu-list">
                         {Object.keys(links).map(i => {
                             let hostname = links[i];
                             try {
                                 hostname = new URL(hostname).hostname;
                             } catch (e) { }
                             return <li>
-                                <a className="level is-mobile" href="<%- links[i] %>" target="_blank" rel="noopener">
-                                    <span className="level-left">
-                                        <span className="level-item">{i}</span>
+                                <a class="level is-mobile" href="<%- links[i] %>" target="_blank" rel="noopener">
+                                    <span class="level-left">
+                                        <span class="level-item">{i}</span>
                                     </span>
-                                    <span className="level-right">
-                                        <span className="level-item tag">{hostname}</span>
+                                    <span class="level-right">
+                                        <span class="level-item tag">{hostname}</span>
                                     </span>
                                 </a>
                             </li>;

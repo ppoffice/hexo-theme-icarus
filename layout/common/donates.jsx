@@ -1,6 +1,4 @@
-'use strict';
-
-const logger = require('hexo-log');
+const logger = require('hexo-log')();
 const { Component } = require('inferno');
 
 module.exports = class extends Component {
@@ -11,10 +9,10 @@ module.exports = class extends Component {
         if (!Array.isArray(donate) || !donate.length) {
             return null;
         }
-        return <div className="card">
-            <div className="card-content">
-                <h3 className="menu-label has-text-centered">{__('donate.title')}</h3>
-                <div className="buttons is-centered">
+        return <div class="card">
+            <div class="card-content">
+                <h3 class="menu-label has-text-centered">{__('donate.title')}</h3>
+                <div class="buttons is-centered">
                     {donate.map(service => {
                         const type = service.type;
                         if (typeof type === 'string') {
@@ -22,7 +20,7 @@ module.exports = class extends Component {
                                 const Donate = require('../donate/' + type);
                                 return <Donate helper={helper} donate={service} />;
                             } catch (e) {
-                                logger.warn(`Icarus cannot load donate button "${type}"`);
+                                logger.w(`Icarus cannot load donate button "${type}"`);
                             }
                         }
                         return null;

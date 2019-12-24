@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 
 function trim(str) {

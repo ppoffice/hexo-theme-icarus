@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -21,7 +19,7 @@ class Mathjax extends Component {
                 tex2jax: {
                     inlineMath: [
                         ['$','$'],
-                        ['\\(','\\)']
+                        ['\\\\(','\\\\)']
                     ]
                 }
             });

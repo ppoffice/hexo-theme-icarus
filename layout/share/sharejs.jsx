@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -8,7 +6,7 @@ class ShareJs extends Component {
         const { cssUrl, jsUrl } = this.props;
         return <Fragment>
             <link rel="stylesheet" href={cssUrl} />
-            <div className="social-share"></div>
+            <div class="social-share"></div>
             <script src={jsUrl}></script>
         </Fragment>;
     }

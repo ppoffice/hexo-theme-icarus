@@ -1,8 +1,8 @@
 /**
  * Category list page generator
  */
-module.exports = function (hexo) {
-    hexo.extend.generator.register('categories', function (locals) {
+module.exports = function(hexo) {
+    hexo.extend.generator.register('categories', locals => {
         return {
             path: 'categories/',
             layout: ['categories'],
@@ -11,4 +11,4 @@ module.exports = function (hexo) {
             })
         };
     });
-}
+};

@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -11,15 +9,15 @@ class Tags extends Component {
             showCount
         } = this.props;
 
-        return <div className="card widget">
-            <div className="card-content">
-                <div className="menu">
-                    <h3 className="menu-label">{title}</h3>
-                    <div className="field is-grouped is-grouped-multiline">
-                        {tags.map(tag => <div className="control">
-                            <a className="tags has-addons" href={tag.url}>
-                                <span className="tag">{tag.name}</span>
-                                {showCount ? <span className="tag is-grey">{tag.count}</span> : null}
+        return <div class="card widget">
+            <div class="card-content">
+                <div class="menu">
+                    <h3 class="menu-label">{title}</h3>
+                    <div class="field is-grouped is-grouped-multiline">
+                        {tags.map(tag => <div class="control">
+                            <a class="tags has-addons" href={tag.url}>
+                                <span class="tag">{tag.name}</span>
+                                {showCount ? <span class="tag is-grey">{tag.count}</span> : null}
                             </a>
                         </div>)}
                     </div>

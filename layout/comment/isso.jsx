@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -7,7 +5,7 @@ class Isso extends Component {
     render() {
         const { url } = this.props;
         if (!url) {
-            return <div className="notification is-danger">
+            return <div class="notification is-danger">
                 You forgot to set the <code>url</code> for Isso.
                 Please set it in <code>_config.yml</code>.
             </div>;

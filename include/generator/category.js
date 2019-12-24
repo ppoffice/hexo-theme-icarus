@@ -1,6 +1,6 @@
 const pagination = require('hexo-pagination');
 
-module.exports = function (hexo) {
+module.exports = function(hexo) {
     // ATTENTION: This will override the default category generator!
     hexo.extend.generator.register('category', function(locals) {
         const config = this.config;
@@ -9,14 +9,14 @@ module.exports = function (hexo) {
 
         function findParent(category) {
             let parents = [];
-            if (category && category.hasOwnProperty('parent')) {
+            if (category && 'parent' in category) {
                 const parent = locals.categories.filter(cat => cat._id === category.parent).first();
                 parents = [parent].concat(findParent(parent));
             }
             return parents;
         }
-        
-        return locals.categories.reduce(function(result, category){
+
+        return locals.categories.reduce((result, category) => {
             const posts = category.posts.sort('-date');
             const data = pagination(category.path, posts, {
                 perPage: perPage,
@@ -27,8 +27,8 @@ module.exports = function (hexo) {
                     parents: findParent(category)
                 }
             });
-        
+
             return result.concat(data);
         }, []);
     });
-}
+};

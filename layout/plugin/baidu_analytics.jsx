@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 

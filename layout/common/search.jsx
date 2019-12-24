@@ -1,6 +1,4 @@
-'use strict';
-
-const logger = require('hexo-log');
+const logger = require('hexo-log')();
 const { Component } = require('inferno');
 
 module.exports = class extends Component {
@@ -15,7 +13,7 @@ module.exports = class extends Component {
             const Search = require('../search/' + search.type);
             return <Search config={config} helper={helper} search={search} />;
         } catch (e) {
-            logger.warn(`Icarus cannot load search "${search.type}"`);
+            logger.w(`Icarus cannot load search "${search.type}"`);
             return null;
         }
     }

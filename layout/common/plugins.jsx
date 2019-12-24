@@ -1,6 +1,4 @@
-'use strict';
-
-const logger = require('hexo-log');
+const logger = require('hexo-log')();
 const { Component, Fragment } = require('inferno');
 
 module.exports = class extends Component {
@@ -18,7 +16,7 @@ module.exports = class extends Component {
                     const Plugin = require('../plugin/' + name);
                     return <Plugin site={site} config={config} page={page} helper={helper} plugin={plugins[name]} head={head} />;
                 } catch (e) {
-                    logger.warn(`Icarus cannot load plugin "${name}"`);
+                    logger.w(`Icarus cannot load plugin "${name}"`);
                     return null;
                 }
             })}

@@ -1,5 +1,3 @@
-'use strict';
-
 const crypto = require('crypto');
 const { Component } = require('inferno'); // eslint-disable-line no-unused-vars
 const { createElement } = require('inferno-create-element');

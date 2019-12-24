@@ -1,20 +1,18 @@
-'use strict';
-
 const { Component } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
 class Categories extends Component {
     renderList(categories, showCount) {
         return categories.map(category => <li>
-            <a className="level is-marginless" href={category.url}>
-                <span className="level-start">
-                    <span className="level-item">{category.name}</span>
+            <a class="level is-marginless" href={category.url}>
+                <span class="level-start">
+                    <span class="level-item">{category.name}</span>
                 </span>
-                {showCount ? <span className="level-end">
-                    <span className="level-item tag">{category.count}</span>
+                {showCount ? <span class="level-end">
+                    <span class="level-item tag">{category.count}</span>
                 </span> : null}
             </a>
-            {category.children.length ? <ul>{this.renderList(category.children)}</ul> : null}
+            {category.children.length ? <ul>{this.renderList(category.children, showCount)}</ul> : null}
         </li>);
     }
 
@@ -25,11 +23,11 @@ class Categories extends Component {
             categories
         } = this.props;
 
-        return <div className="card widget">
-            <div className="card-content">
-                <div className="menu">
-                    <h3 className="menu-label">{title}</h3>
-                    <ul className="menu-list">
+        return <div class="card widget">
+            <div class="card-content">
+                <div class="menu">
+                    <h3 class="menu-label">{title}</h3>
+                    <ul class="menu-list">
                         {this.renderList(categories, showCount)}
                     </ul>
                 </div>

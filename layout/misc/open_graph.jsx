@@ -1,5 +1,3 @@
-'use strict';
-
 // adapted from hexo/lib/plugins/helper/open_graph.js
 const urlFn = require('url');
 const moment = require('moment');

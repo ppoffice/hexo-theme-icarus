@@ -38,7 +38,7 @@ try {
         }
     } else if (e instanceof errors.VersionError) {
         logger.error(e.message);
-        logger.warn(`To let us create a fresh configuration file for you, please rename or delete the following file:`);
+        logger.warn('To let us create a fresh configuration file for you, please rename or delete the following file:');
         logger.warn(CONFIG_PATH);
     } else {
         throw e;

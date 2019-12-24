@@ -4,8 +4,8 @@ function checkDependency(name) {
     try {
         require.resolve(name);
         return true;
-    } catch(e) {
-        logger.error(`Package ${name} is not installed.`)
+    } catch (e) {
+        logger.error(`Package ${name} is not installed.`);
     }
     return false;
 }
@@ -17,9 +17,9 @@ const missingDeps = [
     'cheerio',
     'hexo-util',
     'hexo-log',
-    'hexo-pagination',
+    'hexo-pagination'
 ].map(checkDependency).some(installed => !installed);
 if (missingDeps) {
     logger.error('Please install the missing dependencies from the root directory of your Hexo site.');
-    process.exit(-1);
+    throw new Error();
 }

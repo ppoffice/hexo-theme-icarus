@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -7,13 +5,13 @@ class ShareThis extends Component {
     render() {
         const { installUrl } = this.props;
         if (!installUrl) {
-            return <div className="notification is-danger">
+            return <div class="notification is-danger">
                 You need to set <code>install_url</code> to use ShareThis.
                 Please set it in <code>_config.yml</code>.
             </div>;
         }
         return <Fragment>
-            <div className="sharethis-inline-share-buttons"></div>
+            <div class="sharethis-inline-share-buttons"></div>
             <script src={installUrl} async={true}></script>
         </Fragment>;
     }

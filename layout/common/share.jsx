@@ -1,6 +1,4 @@
-'use strict';
-
-const logger = require('hexo-log');
+const logger = require('hexo-log')();
 const { Component } = require('inferno');
 
 module.exports = class extends Component {
@@ -15,7 +13,7 @@ module.exports = class extends Component {
             const Share = require('../share/' + share.type);
             return <Share config={config} page={page} helper={helper} share={share} />;
         } catch (e) {
-            logger.warn(`Icarus cannot load share button "${share.type}"`);
+            logger.w(`Icarus cannot load share button "${share.type}"`);
             return null;
         }
     }

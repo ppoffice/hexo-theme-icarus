@@ -1,5 +1,3 @@
-'use strict';
-
 const crypto = require('crypto');
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
@@ -15,7 +13,7 @@ class Gitment extends Component {
         } = this.props;
 
         if (!id || !repo || !owner || !clientId || !clientSecret) {
-            return <div className="notification is-danger">
+            return <div class="notification is-danger">
                 You forgot to set the <code>owner</code>, <code>repo</code>, <code>client_id</code>,
                 or <code>client_secret</code> for Gitment.
                 Please set it in <code>_config.yml</code>.

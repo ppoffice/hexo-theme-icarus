@@ -1,6 +1,4 @@
-'use strict';
-
-const logger = require('hexo-log');
+const logger = require('hexo-log')();
 const { Component } = require('inferno');
 
 module.exports = class extends Component {
@@ -12,15 +10,15 @@ module.exports = class extends Component {
             return null;
         }
 
-        return <div className="card">
-            <div className="card-content">
-                <h3 className="title is-5 has-text-weight-normal">{__('article.comments')}</h3>
+        return <div class="card">
+            <div class="card-content">
+                <h3 class="title is-5 has-text-weight-normal">{__('article.comments')}</h3>
                 {(() => {
                     try {
                         const Comment = require('../comment/' + comment.type);
                         return <Comment config={config} page={page} helper={helper} comment={comment} />;
                     } catch (e) {
-                        logger.warn(`Icarus cannot load comment "${comment.type}"`);
+                        logger.w(`Icarus cannot load comment "${comment.type}"`);
                         return null;
                     }
                 })()}

@@ -1,15 +1,13 @@
-'use strict';
-
-const logger = require('hexo-log');
+const logger = require('hexo-log')();
 const { Component } = require('inferno');
+const classname = require('../util/classname');
 
 function formatWidgets(widgets) {
     const result = {};
     if (Array.isArray(widgets)) {
         widgets.forEach(widget => {
-            if (Object.prototype.hasOwnProperty.call(widget, 'position')
-                && (widget.position === 'left' || widget.position === 'right')) {
-                if (!Object.prototype.hasOwnProperty.call(result, widget.position)) {
+            if ('position' in widget && (widget.position === 'left' || widget.position === 'right')) {
+                if (!(widget.position in result)) {
                     result[widget.position] = [widget];
                 } else {
                     result[widget.position].push(widget);
@@ -23,10 +21,10 @@ function formatWidgets(widgets) {
 function getColumnCount(widgets) {
     let count = 1;
     const w = formatWidgets(widgets);
-    if (Object.prototype.hasOwnProperty.call(w, 'left') && w.left.length) {
+    if ('left' in w && w.left.length) {
         count++;
     }
-    if (Object.prototype.hasOwnProperty.call(w, 'right') && w.left.length) {
+    if ('right' in w && w.right.length) {
         count++;
     }
     return count;
@@ -54,7 +52,7 @@ function getColumnOrderClass(position) {
 }
 
 function isColumnSticky(config, position) {
-    return config.sidebar && config.sidebar[position] && config.sidebar[position].sticky === true;
+    return config.sidebar && position in config.sidebar && config.sidebar[position].sticky === true;
 }
 
 class Widgets extends Component {
@@ -67,15 +65,15 @@ class Widgets extends Component {
             return null;
         }
 
-        return <div className={{
+        return <div class={classname({
             'column': true,
             ['column-' + position]: true,
             [getColumnSizeClass(columnCount)]: true,
             [getColumnVisibilityClass(columnCount, position)]: true,
             [getColumnOrderClass(position)]: true,
             'is-sticky': isColumnSticky(config, position)
-        }}>
-            {widgets[position].map(widget => {
+        })}>
+            {widgets.map(widget => {
                 // widget type is not defined
                 if (!widget.type) {
                     return null;
@@ -84,15 +82,15 @@ class Widgets extends Component {
                     const Widget = require('../widget/' + widget.type);
                     return <Widget site={site} helper={helper} config={config} page={page} widget={widget} />;
                 } catch (e) {
-                    logger.warn(`Icarus cannot load widget "${widget.type}"`);
+                    logger.w(`Icarus cannot load widget "${widget.type}"`);
                 }
                 return null;
             })}
-            {position === 'left' ? <div className={{
+            {position === 'left' ? <div class={classname({
                 'column-right-shadow': true,
                 'is-hidden-widescreen': true,
-                'is-sticky': isColumnSticky(config, position)
-            }}></div> : null}
+                'is-sticky': isColumnSticky(config, 'right')
+            })}></div> : null}
         </div>;
     }
 }

@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -25,7 +23,7 @@ class OutdatedBrowser extends Component {
                     Update your browser to view this website correctly.&npsb;
                     <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a>
                 </p>
-                <p className="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+                <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
             </div>
             <script src={jsUrl} async={true}></script>
             <script dangerouslySetInnerHTML={{ __html: js }}></script>

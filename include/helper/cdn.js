@@ -20,9 +20,10 @@ const icon_providers = {
     fontawesome: 'https://use.fontawesome.com/releases/v5.4.1/css/all.css'
 };
 
-module.exports = function (hexo) {
-    hexo.extend.helper.register('cdn', function (_package, version, filename) {
-        let provider = hexo.extend.helper.get('get_config').bind(this)('providers.cdn');
+module.exports = function(hexo) {
+    hexo.extend.helper.register('cdn', function(_package, version, filename) {
+        let provider = this.config.provider && 'cdn' in this.config.provider ? this.config.provider.cdn : 'jsdelivr';
+
         // cdn.js does not follow a GitHub npm style like jsdeliver and unpkg do. Patch it!
         if (provider === 'cdnjs' || provider.startsWith('[cdnjs]')) {
             if (provider.startsWith('[cdnjs]')) {
@@ -40,8 +41,8 @@ module.exports = function (hexo) {
                 filename = filename.startsWith('outdatedbrowser/') ? filename.substr(16) : filename;
             }
             if (_package === 'highlight.js') {
-                filename = filename.endsWith('.css') && filename.indexOf('.min.') === -1 ?
-                    filename.substr(0, filename.length - 4) + '.min.css' : filename;
+                filename = filename.endsWith('.css') && filename.indexOf('.min.') === -1
+                    ? filename.substr(0, filename.length - 4) + '.min.css' : filename;
             }
             if (_package === 'mathjax') {
                 filename = filename.startsWith('unpacked/') ? filename.substr(9) : filename;
@@ -53,7 +54,7 @@ module.exports = function (hexo) {
                 _package = 'clipboard.js';
             }
         }
-        if (provider !== null && cdn_providers.hasOwnProperty(provider)) {
+        if (provider !== null && provider in cdn_providers) {
             provider = cdn_providers[provider];
         }
         return provider.replace(/\${\s*package\s*}/gi, _package)
@@ -61,24 +62,24 @@ module.exports = function (hexo) {
             .replace(/\${\s*filename\s*}/gi, filename);
     });
 
-    hexo.extend.helper.register('fontcdn', function (fontName, type = 'css') {
-        let provider = hexo.extend.helper.get('get_config').bind(this)('providers.fontcdn');
-        if (provider !== null && font_providers.hasOwnProperty(provider)) {
+    hexo.extend.helper.register('fontcdn', function(fontName, type = 'css') {
+        let provider = this.config.provider && 'fontcdn' in this.config.provider ? this.config.provider.fontcdn : 'google';
+        if (provider !== null && provider in font_providers) {
             provider = font_providers[provider];
         }
         return provider.replace(/\${\s*fontname\s*}/gi, fontName)
             .replace(/\${\s*type\s*}/gi, type);
     });
 
-    hexo.extend.helper.register('iconcdn', function (provider = null) {
-        if (provider !== null && icon_providers.hasOwnProperty(provider)) {
+    hexo.extend.helper.register('iconcdn', function(provider = null) {
+        if (provider !== null && provider in icon_providers) {
             provider = icon_providers[provider];
         } else {
-            provider = hexo.extend.helper.get('get_config').bind(this)('providers.iconcdn');
-            if (provider !== null && icon_providers.hasOwnProperty(provider)) {
+            provider = this.config.provider && 'iconcdn' in this.config.provider ? this.config.provider.iconcdn : 'fontawesome';
+            if (provider !== null && provider in icon_providers) {
                 provider = icon_providers[provider];
             }
         }
         return provider;
     });
-}
+};

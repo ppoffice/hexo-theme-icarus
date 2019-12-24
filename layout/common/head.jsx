@@ -1,86 +1,35 @@
-'use strict';
-
 const { Component } = require('inferno');
 const MetaTags = require('../misc/meta');
 const OpenGraph = require('../misc/open_graph');
 const Plugins = require('./plugins');
 
-function isArchivePage(page) {
-    return !!page.archive;
-}
-
-function isCategoriesPage(page) {
-    return !!page.__categories;
-}
-
-function isTagsPage(page) {
-    return !!page.__tags;
-}
-
-function isMonthPage(page, year, month) {
-    if (!isArchivePage(page)) {
-        return false;
-    }
-    if (year) {
-        if (month) {
-            return page.year === year && page.month === month;
-        }
-        return page.month === year;
-    }
-    return page.year && page.month;
-}
-
-function isYearPage(page, year) {
-    if (!isArchivePage(page)) {
-        return false;
-    }
-    if (year) {
-        return page.year === year;
-    }
-    return !!page.year;
-}
-
-function isCategoryPage(page, category) {
-    if (category) {
-        return page.category === category;
-    }
-    return !!page.category;
-}
-
-function isTagPage(page, tag) {
-    if (tag) {
-        return page.tag === tag;
-    }
-    return !!page.tag;
-}
-
-function getPageTitle(page, siteTitle, _p) {
+function getPageTitle(page, siteTitle, helper) {
     let title = page.title;
 
-    if (isArchivePage(page)) {
-        title = _p('common.archive', Infinity);
-        if (isMonthPage()) {
+    if (helper.is_archive()) {
+        title = helper._p('common.archive', Infinity);
+        if (helper.is_month()) {
             title += ': ' + page.year + '/' + page.month;
-        } else if (isYearPage(page)) {
+        } else if (helper.is_year()) {
             title += ': ' + page.year;
         }
-    } else if (isCategoryPage()) {
-        title = _p('common.category', 1) + ': ' + page.category;
-    } else if (isTagPage()) {
-        title = _p('common.tag', 1) + ': ' + page.tag;
-    } else if (isCategoriesPage(page)) {
-        title = _p('common.category', Infinity);
-    } else if (isTagsPage(page)) {
-        title = _p('common.tag', Infinity);
+    } else if (helper.is_category()) {
+        title = helper._p('common.category', 1) + ': ' + page.category;
+    } else if (helper.is_tag()) {
+        title = helper._p('common.tag', 1) + ': ' + page.tag;
+    } else if (helper.is_categories()) {
+        title = helper._p('common.category', Infinity);
+    } else if (helper.is_tags()) {
+        title = helper._p('common.tag', Infinity);
     }
 
-    return [title, siteTitle].filter(str => typeof (str) !== 'undefined' && str.trim() !== '').join(' - ');
+    return [title, siteTitle].filter(str => typeof str !== 'undefined' && str.trim() !== '').join(' - ');
 }
 
 module.exports = class extends Component {
     render() {
         const { env, site, config, helper, page } = this.props;
-        const { is_post, url_for, cdn, iconcdn, fontcdn } = helper;
+        const { url_for, cdn, iconcdn, fontcdn, is_post } = helper;
         const {
             url,
             meta_generator = true,
@@ -98,8 +47,8 @@ module.exports = class extends Component {
         let hlTheme, images;
         if (highlight && highlight.enable === false) {
             hlTheme = null;
-        } else if (article && article.highlight && article.hightlight.theme) {
-            hlTheme = article.hightlight.theme;
+        } else if (article && article.highlight && article.highlight.theme) {
+            hlTheme = article.highlight.theme;
         } else {
             hlTheme = 'atom-one-light';
         }
@@ -127,10 +76,10 @@ module.exports = class extends Component {
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
             <MetaTags meta={meta} />
 
-            <title>{getPageTitle(page, config.title, _p)}</title>
+            <title>{getPageTitle(page, config.title, helper)}</title>
 
             {open_graph ? <OpenGraph
-                type={is_post() ? 'article' : 'website'}
+                type={is_post(page) ? 'article' : 'website'}
                 title={page.title || config.title}
                 date={page.date}
                 updated={page.updated}
@@ -154,7 +103,7 @@ module.exports = class extends Component {
             <link rel="stylesheet" href={fontcdn('Ubuntu:400,600|Source+Code+Pro')} />
             {hlTheme ? <link rel="stylesheet" href={cdn('highlight.js', '9.12.0', 'styles/' + hlTheme + '.css')} /> : null}
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />
-            <link rel="stylesheet" href={url_for('/css/style')} />
+            <link rel="stylesheet" href={url_for('/css/style.css')} />
         </head>;
     }
 };

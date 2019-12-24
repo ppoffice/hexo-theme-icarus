@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -26,12 +24,12 @@ class Baidu extends Component {
 
         return <Fragment>
             <link rel="stylesheet" href={url_for('/css/search.css')} />
-            <div className="searchbox">
-                <div className="searchbox-container">
-                    <div className="searchbox-input-wrapper">
-                        <form className="search-form">
-                            <input name="wd" type="text" className="searchbox-input" placeholder={hint} />
-                            <span className="searchbox-close searchbox-selectable"><i className="fa fa-times-circle"></i></span>
+            <div class="searchbox">
+                <div class="searchbox-container">
+                    <div class="searchbox-input-wrapper">
+                        <form class="search-form">
+                            <input name="wd" type="text" class="searchbox-input" placeholder={hint} />
+                            <span class="searchbox-close searchbox-selectable"><i class="fa fa-times-circle"></i></span>
                         </form>
                     </div>
                 </div>

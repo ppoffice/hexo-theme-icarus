@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -7,27 +5,27 @@ class SubscribeEmail extends Component {
     render() {
         const { title, description, feedburnerId, buttonTitle } = this.props;
 
-        return <div className="card widget">
-            <div className="card-content">
-                <div className="menu">
-                    <h3 className="menu-label">{title}</h3>
+        return <div class="card widget">
+            <div class="card-content">
+                <div class="menu">
+                    <h3 class="menu-label">{title}</h3>
                     <div>
                         <form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"
                             onsubmit={`window.open('https://feedburner.google.com/fb/a/mailverify?uri=${feedburnerId}','popupwindow','scrollbars=yes,width=550,height=520');return true`}>
                             <input type="hidden" value={feedburnerId} name="uri" />
                             <input type="hidden" name="loc" value="en_US" />
-                            <div className="field">
-                                <div className="control has-icons-left">
-                                    <input className="input" name="email" type="email" />
-                                    <span className="icon is-small is-left">
-                                        <i className="fas fa-envelope"></i>
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <input class="input" name="email" type="email" />
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
                                     </span>
                                 </div>
-                                <p className="help">{description}</p>
+                                <p class="help">{description}</p>
                             </div>
-                            <div className="field is-grouped is-grouped-right">
-                                <div className="control">
-                                    <input className="button is-link" type="submit" value={buttonTitle} />
+                            <div class="field is-grouped is-grouped-right">
+                                <div class="control">
+                                    <input class="button is-link" type="submit" value={buttonTitle} />
                                 </div>
                             </div>
                         </form>

@@ -1,8 +1,8 @@
 /**
  * Tag list page generator
  */
-module.exports = function (hexo) {
-    hexo.extend.generator.register('tags', function (locals) {
+module.exports = function(hexo) {
+    hexo.extend.generator.register('tags', locals => {
         return {
             path: 'tags/',
             layout: ['tags'],
@@ -11,4 +11,4 @@ module.exports = function (hexo) {
             })
         };
     });
-}
+};

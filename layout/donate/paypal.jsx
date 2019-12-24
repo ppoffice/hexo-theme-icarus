@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -7,15 +5,15 @@ class Paypal extends Component {
     render() {
         const { title, business, currencyCode } = this.props;
         if (!business || !currencyCode) {
-            return <div className="notification is-danger">
+            return <div class="notification is-danger">
                 You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal.
                 Please set it in <code>_config.yml</code>.
             </div>;
         }
         return <Fragment>
-            <a className="button is-warning donate" onclick="document.getElementById('paypal-donate-form').submit()">
-                <span className="icon is-small">
-                    <i className="fab fa-paypal"></i>
+            <a class="button is-warning donate" onclick="document.getElementById('paypal-donate-form').submit()">
+                <span class="icon is-small">
+                    <i class="fab fa-paypal"></i>
                 </span>
                 <span>{title}</span>
             </a>

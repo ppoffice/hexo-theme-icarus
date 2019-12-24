@@ -1,7 +1,6 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
+const classname = require('../util/classname');
 
 function isSameLink(a, b) {
     function santize(url) {
@@ -21,7 +20,7 @@ class Navbar extends Component {
             logoUrl,
             siteUrl,
             siteTitle,
-            menus,
+            menu,
             links,
             showToc,
             tocTitle,
@@ -29,34 +28,34 @@ class Navbar extends Component {
             searchTitle
         } = this.props;
 
-        return <nav className="navbar navbar-main">
-            <div className="container">
-                <div className="navbar-brand is-flex-center">
-                    <a className="navbar-item navbar-logo" href={siteUrl}>
+        return <nav class="navbar navbar-main">
+            <div class="container">
+                <div class="navbar-brand is-flex-center">
+                    <a class="navbar-item navbar-logo" href={siteUrl}>
                         {logo && logo.text ? logo.text : <img src={logoUrl} alt={siteTitle} height="28" />}
                     </a>
                 </div>
-                <div className="navbar-menu">
-                    {Object.keys(menus).length ? <div className="navbar-start">
-                        {Object.keys(menus).map(name => {
-                            const menu = menus[name];
-                            return <a className={{ 'navbar-item': true, 'is-active': menu.active }} href={menu.url}>{name}</a>;
+                <div class="navbar-menu">
+                    {Object.keys(menu).length ? <div class="navbar-start">
+                        {Object.keys(menu).map(name => {
+                            const item = menu[name];
+                            return <a class={classname({ 'navbar-item': true, 'is-active': item.active })} href={item.url}>{name}</a>;
                         })}
                     </div> : null}
-                    <div className="navbar-end">
+                    <div class="navbar-end">
                         {Object.keys(links).length ? <Fragment>
-                            {Object.keys(links).forEach(name => {
+                            {Object.keys(links).map(name => {
                                 const link = links[name];
-                                return <a className="navbar-item" target="_blank" rel="noopener" title={name} href={link.url}>
-                                    {link.icon ? <i className={link.icon}></i> : name}
+                                return <a class="navbar-item" target="_blank" rel="noopener" title={name} href={link.url}>
+                                    {link.icon ? <i class={link.icon}></i> : name}
                                 </a>;
                             })}
                         </Fragment> : null}
-                        {showToc ? <a className="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
-                            <i className="fas fa-list-ul"></i>
+                        {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
+                            <i class="fas fa-list-ul"></i>
                         </a> : null}
-                        {showSearch ? <a className="navbar-item search" title={searchTitle} href="javascript:;">
-                            <i className="fas fa-search"></i>
+                        {showSearch ? <a class="navbar-item search" title={searchTitle} href="javascript:;">
+                            <i class="fas fa-search"></i>
                         </a> : null}
                     </div>
                 </div>
@@ -73,13 +72,13 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
     const hasTocWidget = Array.isArray(widgets) && widgets.find(widget => widget.type === 'toc');
     const showToc = (config.toc === true || page.toc) && hasTocWidget && ['page', 'post'].includes(page.layout);
 
-    const menus = {};
-    if (navbar && navbar.menus) {
+    const menu = {};
+    if (navbar && navbar.menu) {
         const pageUrl = typeof page.path !== 'undefined' ? url_for(page.path) : '';
-        Object.keys(navbar.menus).forEach(name => {
-            const url = url_for(navbar.menus[name]);
+        Object.keys(navbar.menu).forEach(name => {
+            const url = url_for(navbar.menu[name]);
             const active = isSameLink(url, pageUrl);
-            menus[name] = { url, active };
+            menu[name] = { url, active };
         });
     }
 
@@ -99,7 +98,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         logoUrl: url_for(logo),
         siteUrl: url_for('/'),
         siteTitle: title,
-        menus,
+        menu,
         links,
         showToc,
         tocTitle: _p('widget.catalogue', Infinity),

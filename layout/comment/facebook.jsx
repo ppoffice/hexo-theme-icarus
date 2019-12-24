@@ -1,5 +1,3 @@
-'use strict';
-
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -14,7 +12,7 @@ class Facebook extends Component {
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));`;
         return <Fragment>
-            <div className="fb-comments" data-width="100%" data-href={permalink} data-num-posts="5"></div>
+            <div class="fb-comments" data-width="100%" data-href={permalink} data-num-posts="5"></div>
             <script dangerouslySetInnerHTML={{ __html: js }}></script>
         </Fragment>;
     }
