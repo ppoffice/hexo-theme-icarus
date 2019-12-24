@@ -1,7 +1,7 @@
-/* global hexo*/
+/* global hexo */
 require('../include/task/welcome');
-require('../include/task/check_deps');
-require('../include/task/check_config');
+require('../include/task/dependencies');
+// require('../include/task/check_config');
 require('../include/generator/categories')(hexo);
 require('../include/generator/category')(hexo);
 require('../include/generator/tags')(hexo);

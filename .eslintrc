@@ -33,21 +33,6 @@
         "SwitchCase": 1
       }
     ],
-    "node/no-extraneous-require": [
-      "error",
-      {
-        "allowModules": [
-          "inferno",
-          "inferno-create-element",
-          "hexo",
-          "hexo-util",
-          "hexo-log",
-          "hexo-pagination",
-          "cheerio",
-          "moment"
-        ]
-      }
-    ],
     "react/no-unknown-property": [
       "error",
       {

@@ -1,5 +1,7 @@
 const logger = require('hexo-log')();
+const packageInfo = require('../../package.json');
 
+// FIXME: will not check against package version
 function checkDependency(name) {
     try {
         require.resolve(name);
@@ -10,16 +12,12 @@ function checkDependency(name) {
     return false;
 }
 
-logger.info('Checking dependencies');
-const missingDeps = [
-    'js-yaml',
-    'moment',
-    'cheerio',
-    'hexo-util',
-    'hexo-log',
-    'hexo-pagination'
-].map(checkDependency).some(installed => !installed);
+logger.info('Checking if required dependencies are installed...');
+const missingDeps = Object.keys(packageInfo.peerDependencies)
+    .map(checkDependency)
+    .some(installed => !installed);
 if (missingDeps) {
     logger.error('Please install the missing dependencies from the root directory of your Hexo site.');
-    throw new Error();
+    /* eslint no-process-exit: "off" */
+    process.exit(-1);
 }

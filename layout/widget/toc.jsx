@@ -1,4 +1,4 @@
-const cheerio = require('cheerio');
+const { tocObj: getTocObj } = require('hexo-util');
 const { Component } = require('inferno');
 const { cacheComponent } = require('../util/cache');
 
@@ -33,18 +33,13 @@ const { cacheComponent } = require('../util/cache');
  * }
  */
 function getToc(content) {
-    const $ = cheerio.load(content, { decodeEntities: false });
     const toc = {};
     const levels = [0, 0, 0];
-    // Get top 3 headings that are present in the content
-    const tags = [1, 2, 3, 4, 5, 6].map(i => 'h' + i).filter(h => $(h).length > 0).slice(0, 3);
-    if (tags.length === 0) {
-        return toc;
-    }
-    $(tags.join(',')).each(function() {
-        const level = tags.indexOf(this.name);
-        const id = $(this).attr('id');
-        const text = $(this).text();
+    const tocObj = getTocObj(content, { min_depth: 1, max_depth: 6 });
+    const minLevel = Math.min(...tocObj.map(item => item.level));
+    tocObj.forEach(item => {
+        const { text, id } = item;
+        const level = item.level - minLevel;
 
         for (let i = 0; i < levels.length; i++) {
             if (i > level) {

@@ -21,7 +21,7 @@ module.exports = class extends Component {
                             post.categories.forEach((category, i) => {
                                 categories.push(<a class="has-link-grey" href={category.url}>{category.name}</a>);
                                 if (i < post.categories.length - 1) {
-                                    categories.push('/');
+                                    categories.push(' / ');
                                 }
                             });
                             return <article class="media">
@@ -36,13 +36,7 @@ module.exports = class extends Component {
                                             dateTime={date_xml(post.date)}>{date(post.date)}</time>
                                         <a class="title has-link-black-ter is-size-6 has-text-weight-normal"
                                             href={url_for(post.link || post.path)} >{post.title}</a>
-                                        <div class="level article-meta is-mobile">
-                                            <div class="level-left">
-                                                {categories.length ? <div class="level-item is-size-7 is-uppercase">
-                                                    {categories}
-                                                </div> : null}
-                                            </div>
-                                        </div>
+                                        {categories.length ? <p class="is-size-7 is-uppercase">{categories}</p> : null}
                                     </div>
                                 </div>
                             </article>;

@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "eslint --ext .js --ext .jsx .",
     "test": "mocha test/index.js",
-    "postpublish" : "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag $PACKAGE_VERSION && git push --tags"
+    "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag $PACKAGE_VERSION && git push --tags"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -20,5 +20,15 @@
     "eslint-config-hexo": "^4.1.0",
     "eslint-plugin-react": "^7.17.0",
     "mocha": "^6.2.2"
+  },
+  "peerDependencies": {
+    "hexo": "^4.0.0",
+    "hexo-util": "^1.8.0",
+    "hexo-log": "^1.0.0",
+    "hexo-pagination": "^1.0.0",
+    "hexo-renderer-inferno": "^0.1.1",
+    "inferno": "^7.3.3",
+    "inferno-create-element": "^7.3.3",
+    "moment": "^2.22.2"
   }
 }

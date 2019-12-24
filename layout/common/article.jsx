@@ -45,7 +45,7 @@ module.exports = class extends Component {
                                     page.categories.forEach((category, i) => {
                                         categories.push(<a class="has-link-grey" href={category.url}>{category.name}</a>);
                                         if (i < page.categories.length - 1) {
-                                            categories.push('/');
+                                            categories.push(' / ');
                                         }
                                     });
                                     return categories;
@@ -62,7 +62,7 @@ module.exports = class extends Component {
                             {/* Visitor counter */}
                             {plugins && plugins.busuanzi === true ? <span class="level-item has-text-grey" id="busuanzi_container_page_pv"
                                 dangerouslySetInnerHTML={{
-                                    __html: _p('plugin.visit', '<i class="far fa-eye"></i>&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>')
+                                    __html: '<i class="far fa-eye"></i>' + _p('plugin.visit', '&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>')
                                 }}></span> : null}
                         </div>
                     </div> : null}
@@ -73,12 +73,12 @@ module.exports = class extends Component {
                     {/* Content/Excerpt */}
                     <div class="content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
                     {/* Tags */}
-                    {!index && Array.isArray(page.tags) && page.tags.length ? <div class="level is-size-7 is-uppercase">
+                    {!index && page.tags && page.tags.length ? <div class="level is-size-7 is-uppercase">
                         <div class="level-start">
                             <div class="level-item">
                                 <span class="is-size-6 has-text-grey has-mr-7">#</span>
                                 {page.tags.map(tag => {
-                                    return <a class="has-link-grey" rel="tag" href={url_for(tag.path)}>{tag.name}</a>;
+                                    return <a class="has-link-grey has-mr-6" rel="tag" href={url_for(tag.path)}>{tag.name}</a>;
                                 })}
                             </div>
                         </div>

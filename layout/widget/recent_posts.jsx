@@ -13,7 +13,7 @@ class RecentPosts extends Component {
                     post.categories.forEach((category, i) => {
                         categories.push(<a class="has-link-grey" href={category.url}>{category.name}</a>);
                         if (i < post.categories.length - 1) {
-                            categories.push('/');
+                            categories.push(' / ');
                         }
                     });
                     return <article class="media">
@@ -26,7 +26,7 @@ class RecentPosts extends Component {
                             <div class="content">
                                 <div><time class="has-text-grey is-size-7 is-uppercase" dateTime={post.dateXml}>{post.date}</time></div>
                                 <a href={post.url} class="title has-link-black-ter is-size-6 has-text-weight-normal">{post.title}</a>
-                                <p class="is-size-7 is-uppercase">{categories}</p>
+                                {categories.length ? <p class="is-size-7 is-uppercase">{categories}</p> : null}
                             </div>
                         </div>
                     </article>;
