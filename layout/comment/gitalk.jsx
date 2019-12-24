@@ -11,8 +11,13 @@ class Gitalk extends Component {
             admin,
             clientId,
             clientSecret,
-            createIssueManually,
-            distractionFreeMode,
+            createIssueManually = false,
+            distractionFreeMode = false,
+            pagerDirection = 'last',
+            perPage = 10,
+            proxy,
+            flipMoveOptions,
+            enableHotKey,
             jsUrl,
             cssUrl
         } = this.props;
@@ -31,8 +36,13 @@ class Gitalk extends Component {
             clientID: '${clientId}',
             clientSecret: '${clientSecret}',
             admin: ${JSON.stringify(admin)},
-            createIssueManually: ${createIssueManually || false},
-            distractionFreeMode: ${distractionFreeMode || false}
+            createIssueManually: ${createIssueManually},
+            distractionFreeMode: ${distractionFreeMode},
+            perPage: ${perPage},
+            pagerDirection: '${pagerDirection}',
+            ${proxy ? `proxy: '${proxy}',` : ''}
+            ${flipMoveOptions ? `flipMoveOptions: ${JSON.stringify(flipMoveOptions)},` : ''}
+            enableHotKey: ${enableHotKey ? !!enableHotKey : true}
         })
         gitalk.render('comment-container')`;
         return <Fragment>
@@ -58,6 +68,11 @@ module.exports = cacheComponent(Gitalk, 'comment.gitalk', props => {
         clientSecret: comment.clientSecret,
         createIssueManually: comment.createIssueManually,
         distractionFreeMode: comment.distractionFreeMode,
+        pagerDirection: comment.pagerDirection,
+        perPage: comment.perPage,
+        proxy: comment.proxy,
+        flipMoveOptions: comment.flipMoveOptions,
+        enableHotKey: comment.enableHotKey,
         cssUrl: helper.cdn('gitalk', '1.4.1', 'dist/gitalk.css'),
         jsUrl: helper.cdn('gitalk', '1.4.1', 'dist/gitalk.min.js')
     };

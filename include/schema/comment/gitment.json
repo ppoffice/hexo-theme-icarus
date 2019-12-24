@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/comment/gitment.json",
+    "description": "Gitment comment plugin configurations",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "gitment"
+        },
+        "owner": {
+            "type": "string",
+            "description": "Your GitHub ID"
+        },
+        "repo": {
+            "type": "string",
+            "description": "The repository to store your comments. Make sure you're repo's owner"
+        },
+        "clientId": {
+            "type": "string",
+            "description": "GitHub client ID"
+        },
+        "clientSecret": {
+            "type": "string",
+            "description": "GitHub client secret"
+        },
+        "theme": {
+            "type": "string",
+            "description": "An optional Gitment theme object",
+            "default": "gitment.defaultTheme"
+        },
+        "perPage": {
+            "type": "number",
+            "description": "An optional number to which comments will be paginated",
+            "default": 20
+        },
+        "maxCommentHeight": {
+            "type": "number",
+            "description": "An optional number to limit comments' max height, over which comments will be folded",
+            "default": 250
+        }
+    },
+    "required": [
+        "type",
+        "owner",
+        "repo",
+        "clientId",
+        "clientSecret"
+    ]
+}

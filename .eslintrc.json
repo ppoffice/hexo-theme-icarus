@@ -1,7 +1,8 @@
 {
   "extends": [
     "hexo",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:json/recommended"
   ],
   "settings": {
     "node": {

@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/comment/gitalk.json",
+    "description": "Gitalk comment plugin configurations",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "gitalk"
+        },
+        "clientId": {
+            "type": "string",
+            "description": "GitHub application client ID"
+        },
+        "clientSecret": {
+            "type": "string",
+            "description": "GitHub application client secret"
+        },
+        "repo": {
+            "type": "string",
+            "description": "GitHub repository"
+        },
+        "owner": {
+            "type": "string",
+            "description": "GitHub repository owner. Can be personal user or organization"
+        },
+        "admin": {
+            "type": "array",
+            "description": "GitHub repository owner and collaborators. (Users who having write access to this repository)",
+            "items": {
+                "type": "string"
+            }
+        },
+        "perPage": {
+            "type": "number",
+            "description": "Pagination size, with maximum 100",
+            "default": 10
+        },
+        "distractionFreeMode": {
+            "type": "boolean",
+            "description": "Facebook-like distraction free mode",
+            "default": false
+        },
+        "pagerDirection": {
+            "type": "string",
+            "description": "Comment sorting direction, available values are `last` and `first`",
+            "default": "last"
+        },
+        "createIssueManually": {
+            "type": "boolean",
+            "description": "Create GitHub issues manually for each page",
+            "default": false
+        },
+        "proxy": {
+            "type": "string",
+            "description": "GitHub oauth request reverse proxy for CORS"
+        },
+        "flipMoveOptions": {
+            "type": "object",
+            "description": "Comment list animation"
+        },
+        "enableHotKey": {
+            "type": "boolean",
+            "description": "Enable hot key (cmd|ctrl + enter) submit comment",
+            "default": true
+        }
+    },
+    "required": [
+        "type",
+        "clientId",
+        "clientSecret",
+        "repo",
+        "owner",
+        "admin"
+    ]
+}

@@ -9,13 +9,15 @@ class Gitment extends Component {
             repo,
             owner,
             clientId,
-            clientSecret
+            clientSecret,
+            perPage = 20,
+            maxCommentHeight = 250
         } = this.props;
 
         if (!id || !repo || !owner || !clientId || !clientSecret) {
             return <div class="notification is-danger">
-                You forgot to set the <code>owner</code>, <code>repo</code>, <code>client_id</code>,
-                or <code>client_secret</code> for Gitment.
+                You forgot to set the <code>owner</code>, <code>repo</code>, <code>clientId</code>,
+                or <code>clientSecret</code> for Gitment.
                 Please set it in <code>_config.yml</code>.
             </div>;
         }
@@ -27,6 +29,8 @@ class Gitment extends Component {
                 client_id: '${clientId}',
                 client_secret: '${clientSecret}',
             },
+            perPage: ${perPage},
+            maxCommentHeight: ${maxCommentHeight}
         })
         gitment.render('comment-container')`;
         return <Fragment>
@@ -46,7 +50,9 @@ module.exports = cacheComponent(Gitment, 'comment.gitment', props => {
         id,
         repo: comment.repo,
         owner: comment.owner,
-        clientId: comment.client_id,
-        clientSecret: comment.client_secret
+        clientId: comment.clientId,
+        clientSecret: comment.clientSecret,
+        perPage: comment.perPage,
+        maxCommentHeight: comment.maxCommentHeight
     };
 });

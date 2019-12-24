@@ -3,7 +3,20 @@ const { cacheComponent } = require('../util/cache');
 
 class Valine extends Component {
     render() {
-        const { appId, appKey, notify, verify, placeholder } = this.props;
+        const {
+            appId,
+            appKey,
+            notify,
+            verify,
+            placeholder,
+            avatar = 'mm',
+            avatarForce = false,
+            meta = ['nick', 'mail', 'link'],
+            pageSize = 10,
+            visitor = false,
+            highlight = true,
+            recordIP = false
+        } = this.props;
         if (!appId || !appKey) {
             return <div class="notification is-danger">
                 You forgot to set the <code>app_id</code> or <code>app_key</code> for Valine.
@@ -14,9 +27,16 @@ class Valine extends Component {
             el: '#valine-thread' ,
             notify: ${notify},
             verify: ${verify},
-            app_id: '${appId}',
-            app_key: '${appKey}',
-            placeholder: '${placeholder}'
+            appId: '${appId}',
+            appKey: '${appKey}',
+            placeholder: '${placeholder}',
+            avatar: '${avatar}',
+            avatarForce: ${avatarForce},
+            meta: ${JSON.stringify(meta)},
+            pageSize: ${pageSize},
+            visitor: ${visitor},
+            highlight: ${highlight},
+            recordIP: ${recordIP}
         });`;
         return <Fragment>
             <div id="valine-thread" class="content"></div>
@@ -35,6 +55,13 @@ module.exports = cacheComponent(Valine, 'comment.valine', props => {
         appKey: comment.app_key,
         notify: comment.notify,
         verify: comment.verify,
-        placeholder: comment.placeholder
+        placeholder: comment.placeholder,
+        avatar: comment.avatar,
+        avatarForce: comment.avatarForce,
+        meta: comment.meta,
+        pageSize: comment.pageSize,
+        visitor: comment.visitor,
+        highlight: comment.highlight,
+        recordIP: comment.recordIP
     };
 });

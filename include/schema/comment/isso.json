@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/comment/isso.json",
+    "description": "Isso comment plugin configurations",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "isso"
+        },
+        "url": {
+            "type": "string",
+            "description": "URL to your Isso comment service"
+        }
+    },
+    "required": [
+        "type",
+        "url"
+    ]
+}
