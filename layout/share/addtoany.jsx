@@ -12,7 +12,7 @@ class AddToAny extends Component {
                 <a class="a2a_button_whatsapp"></a>
                 <a class="a2a_button_reddit"></a>
             </div>
-            <script src="https://static.addtoany.com/menu/page.js" async={true}></script>
+            <script src="https://static.addtoany.com/menu/page.js" defer={true}></script>
         </Fragment>;
     }
 }

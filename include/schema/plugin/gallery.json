@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/plugin/gallery.json",
+    "description": "Enable the lightGallery and Justified Gallery plugins\nhttps://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/",
+    "type": "boolean",
+    "default": true
+}

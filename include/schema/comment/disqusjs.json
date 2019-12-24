@@ -12,7 +12,7 @@
             "type": "string",
             "description": "Disqus shortname"
         },
-        "apiKey": {
+        "api_key": {
             "description": "Disqus application API key",
             "anyOf": [
                 {
@@ -36,7 +36,7 @@
             "type": "string",
             "description": "Disqus moderator username"
         },
-        "adminLabel": {
+        "admin_label": {
             "type": "string",
             "description": "Disqus moderator badge text",
             "default": false
@@ -50,6 +50,6 @@
     "required": [
         "type",
         "shortname",
-        "apiKey"
+        "api_key"
     ]
 }

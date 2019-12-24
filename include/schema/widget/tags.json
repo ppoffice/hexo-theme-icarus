@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/widget/tags.json",
+    "description": "Tags widget configurations",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "tags"
+        }
+    },
+    "required": [
+        "type"
+    ]
+}

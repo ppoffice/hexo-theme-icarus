@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/plugin/busuanzi.json",
+    "description": "BuSuanZi site/page view counter\nhttps://busuanzi.ibruce.info",
+    "type": "boolean",
+    "default": false
+}

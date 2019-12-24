@@ -6,7 +6,7 @@ class ChangeYan extends Component {
         const { appId, conf, path } = this.props;
         if (!appId || !conf) {
             return <div class="notification is-danger">
-                You forgot to set the <code>appid</code> or <code>conf</code> for Changyan.
+                You forgot to set the <code>app_id</code> or <code>conf</code> for Changyan.
                 Please set it in <code>_config.yml</code>.
             </div>;
         }
@@ -23,7 +23,7 @@ module.exports = cacheComponent(ChangeYan, 'comment.changyan', props => {
     const { comment, page } = props;
 
     return {
-        appId: comment.appid,
+        appId: comment.app_id,
         conf: comment.conf,
         path: page.path
     };

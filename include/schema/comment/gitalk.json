@@ -8,11 +8,11 @@
             "type": "string",
             "const": "gitalk"
         },
-        "clientId": {
+        "client_id": {
             "type": "string",
             "description": "GitHub application client ID"
         },
-        "clientSecret": {
+        "client_secret": {
             "type": "string",
             "description": "GitHub application client secret"
         },
@@ -31,22 +31,22 @@
                 "type": "string"
             }
         },
-        "perPage": {
+        "per_page": {
             "type": "number",
             "description": "Pagination size, with maximum 100",
             "default": 10
         },
-        "distractionFreeMode": {
+        "distraction_free_mode": {
             "type": "boolean",
             "description": "Facebook-like distraction free mode",
             "default": false
         },
-        "pagerDirection": {
+        "pager_direction": {
             "type": "string",
             "description": "Comment sorting direction, available values are `last` and `first`",
             "default": "last"
         },
-        "createIssueManually": {
+        "create_issue_manually": {
             "type": "boolean",
             "description": "Create GitHub issues manually for each page",
             "default": false
@@ -55,11 +55,11 @@
             "type": "string",
             "description": "GitHub oauth request reverse proxy for CORS"
         },
-        "flipMoveOptions": {
+        "flip_move_options": {
             "type": "object",
             "description": "Comment list animation"
         },
-        "enableHotKey": {
+        "enable_hotkey": {
             "type": "boolean",
             "description": "Enable hot key (cmd|ctrl + enter) submit comment",
             "default": true
@@ -67,8 +67,8 @@
     },
     "required": [
         "type",
-        "clientId",
-        "clientSecret",
+        "client_id",
+        "client_secret",
         "repo",
         "owner",
         "admin"

@@ -12,7 +12,7 @@ class AddThis extends Component {
         }
         return <Fragment>
             <div class="addthis_inline_share_toolbox"></div>
-            <script src={installUrl} async={true}></script>
+            <script src={installUrl} defer={true}></script>
         </Fragment>;
     }
 }

@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/plugin/back_to_top.json",
+    "description": "Show the \"back to top\" button",
+    "type": "boolean",
+    "default": true
+}

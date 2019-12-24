@@ -26,7 +26,7 @@ class Mathjax extends Component {
         });`;
 
         return <Fragment>
-            <script src={jsUrl} async={true}></script>
+            <script src={jsUrl} defer={true}></script>
             <script dangerouslySetInnerHTML={{ __html: js }}></script>
         </Fragment>;
     }

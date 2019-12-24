@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/misc/open_graph.json",
+    "description": "Open Graph metadata\nhttps://hexo.io/docs/helpers.html#open-graph",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "Page title (og:title)"
+        },
+        "type": {
+            "type": "string",
+            "description": "Page type (og:type)",
+            "default": "blog"
+        },
+        "url": {
+            "type": "string",
+            "description": "Page URL (og:url)"
+        },
+        "image": {
+            "type": [
+                "string",
+                "array"
+            ],
+            "description": "Page cover (og:image)",
+            "items": {
+                "type": "string"
+            }
+        },
+        "site_name": {
+            "type": "string",
+            "description": "Site name (og:site_name)"
+        },
+        "description": {
+            "type": "string",
+            "description": "Page description (og:description)"
+        },
+        "twitter_card": {
+            "type": "string",
+            "description": "Twitter card type (twitter:card)"
+        },
+        "twitter_id": {
+            "type": "string",
+            "description": "Twitter ID (twitter:creator)"
+        },
+        "twitter_site": {
+            "type": "string",
+            "description": "Twitter ID (twitter:creator)"
+        },
+        "google_plus": {
+            "type": "string",
+            "description": "Google+ profile link (deprecated)"
+        },
+        "fb_admins": {
+            "type": "string",
+            "description": "Facebook admin ID"
+        },
+        "fb_app_id": {
+            "type": "string",
+            "description": "Facebook App ID"
+        }
+    }
+}

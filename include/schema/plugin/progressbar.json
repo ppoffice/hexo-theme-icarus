@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/plugin/progressbar.json",
+    "description": "Show a progress bar at top of the page on page loading",
+    "type": "boolean",
+    "default": true
+}

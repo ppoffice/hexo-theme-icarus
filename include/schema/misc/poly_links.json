@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/misc/poly_links.json",
+    "description": "A polymorphic link",
+    "type": "object",
+    "patternProperties": {
+        ".+": {
+            "type": [
+                "string",
+                "object"
+            ],
+            "description": "URL or path of the link, with/without the icon element class name",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "description": "URL or path of the link"
+                },
+                "icon": {
+                    "type": "string",
+                    "description": "Icon element class name"
+                }
+            },
+            "required": [
+                "url",
+                "icon"
+            ]
+        }
+    },
+    "examples": [
+        {
+            "My GitHub Page": "https://github.com/ppoffice"
+        },
+        {
+            "My GitHub Page": {
+                "url": "https://github.com/ppoffice",
+                "icon": "fab fa-github"
+            }
+        }
+    ]
+}

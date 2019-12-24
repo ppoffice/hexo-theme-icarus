@@ -33,7 +33,7 @@ module.exports = class extends Component {
                     </span>}
                 </div> : null}
                 {/* Metadata */}
-                <div class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`}>
+                <div class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
                     {page.layout !== 'page' ? <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
                             {/* Date */}

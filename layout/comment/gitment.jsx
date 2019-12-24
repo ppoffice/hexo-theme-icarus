@@ -50,9 +50,9 @@ module.exports = cacheComponent(Gitment, 'comment.gitment', props => {
         id,
         repo: comment.repo,
         owner: comment.owner,
-        clientId: comment.clientId,
-        clientSecret: comment.clientSecret,
-        perPage: comment.perPage,
-        maxCommentHeight: comment.maxCommentHeight
+        clientId: comment.client_id,
+        clientSecret: comment.client_secret,
+        perPage: comment.per_page,
+        maxCommentHeight: comment.max_comment_height
     };
 });

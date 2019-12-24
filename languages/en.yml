@@ -34,6 +34,7 @@ donate:
     wechat: 'Wechat'
     paypal: 'Paypal'
     patreon: 'Patreon'
+    buymeacoffee: 'Buy me a coffee'
 plugin:
     backtotop: 'Back to Top'
     visit: '%s visits'

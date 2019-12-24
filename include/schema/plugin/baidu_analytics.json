@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/plugin/baidu_analytics.json",
+    "description": "Baidu Analytics plugin settings\nhttps://tongji.baidu.com",
+    "type": "object",
+    "properties": {
+        "tracking_id": {
+            "type": "object",
+            "description": "Baidu Analytics tracking ID"
+        }
+    },
+    "required": [
+        "tracking_id"
+    ]
+}

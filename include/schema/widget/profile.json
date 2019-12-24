@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/widget/profile.json",
+    "description": "Profile widget configurations",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "profile"
+        },
+        "author": {
+            "type": "string",
+            "description": "Author name"
+        },
+        "author_title": {
+            "type": "string",
+            "description": "Author title"
+        },
+        "location": {
+            "type": "string",
+            "description": "Author's current location"
+        },
+        "avatar": {
+            "type": "string",
+            "description": "URL or path to the avatar image"
+        },
+        "gravatar": {
+            "type": "string",
+            "description": "Email address for the Gravatar"
+        },
+        "follow_link": {
+            "type": "string",
+            "description": "URL or path for the follow button"
+        },
+        "social_links": {
+            "$ref": "/misc/poly_links.json",
+            "description": "Links to be shown on the bottom of the profile widget"
+        }
+    },
+    "required": [
+        "type"
+    ]
+}

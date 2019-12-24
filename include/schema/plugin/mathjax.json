@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/plugin/mathjax.json",
+    "description": "Enable the MathJax math typesetting support\nhttps://www.mathjax.org/",
+    "type": "boolean",
+    "default": false
+}

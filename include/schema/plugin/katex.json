@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/plugin/katex.json",
+    "description": "Enable the KaTeX math typesetting supprot\nhttps://katex.org/",
+    "type": "boolean",
+    "default": false
+}

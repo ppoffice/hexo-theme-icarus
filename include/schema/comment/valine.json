@@ -8,11 +8,11 @@
             "type": "string",
             "const": "valine"
         },
-        "appId": {
+        "app_id": {
             "type": "string",
             "description": "Application <APP_ID> from Leancloud"
         },
-        "appKey": {
+        "app_key": {
             "type": "string",
             "description": "Application <APP_KEY> from Leancloud"
         },
@@ -46,7 +46,7 @@
             ],
             "default": "mm"
         },
-        "avatarForce": {
+        "avatar_force": {
             "type": "boolean",
             "description": "Pull the latest avatar upon page visit",
             "default": false
@@ -63,7 +63,7 @@
                 "link"
             ]
         },
-        "pageSize": {
+        "page_size": {
             "type": "integer",
             "description": "Number of comments per page",
             "default": 10
@@ -78,7 +78,7 @@
             "description": "Enable code highlighting",
             "default": true
         },
-        "recordIP": {
+        "record_ip": {
             "type": "boolean",
             "description": "Record reviewer IP address",
             "default": false
@@ -86,7 +86,7 @@
     },
     "required": [
         "type",
-        "appId",
-        "appKey"
+        "app_id",
+        "app_key"
     ]
 }

@@ -53,6 +53,12 @@ module.exports = function(hexo) {
             if (_package === 'clipboard') {
                 _package = 'clipboard.js';
             }
+            if (_package === 'disqusjs') {
+                provider = 'jsdelivr';
+            }
+            if (_package === 'katex') {
+                _package = 'KaTeX.js';
+            }
         }
         if (provider !== null && provider in cdn_providers) {
             provider = cdn_providers[provider];

@@ -8,7 +8,7 @@
             "type": "string",
             "const": "changyan"
         },
-        "appid": {
+        "app_id": {
             "type": "string",
             "description": "Changyan app ID"
         },
@@ -19,7 +19,7 @@
     },
     "required": [
         "type",
-        "appid",
+        "app_id",
         "conf"
     ]
 }

@@ -20,7 +20,7 @@ class DisqusJs extends Component {
         } = this.props;
         if (!shortname) {
             return <div class="notification is-danger">
-                You forgot to set the <code>shortname</code> or <code>apiKey</code> for Disqus.
+                You forgot to set the <code>shortname</code> or <code>api_key</code> for Disqus.
                 Please set it in <code>_config.yml</code>.
             </div>;
         }
@@ -53,10 +53,10 @@ module.exports = cacheComponent(DisqusJs, 'comment.disqusjs', props => {
     return {
         path: page.path,
         shortname: comment.shortname,
-        apiKey: comment.apiKey,
+        apiKey: comment.api_key,
         api: comment.api,
         admin: comment.admin,
-        adminLabel: comment.adminLabel,
+        adminLabel: comment.admin_label,
         nesting: comment.nesting,
         disqusId: page.disqusId,
         permalink: page.permalink,

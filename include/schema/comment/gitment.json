@@ -16,11 +16,11 @@
             "type": "string",
             "description": "The repository to store your comments. Make sure you're repo's owner"
         },
-        "clientId": {
+        "client_id": {
             "type": "string",
             "description": "GitHub client ID"
         },
-        "clientSecret": {
+        "client_secret": {
             "type": "string",
             "description": "GitHub client secret"
         },
@@ -29,12 +29,12 @@
             "description": "An optional Gitment theme object",
             "default": "gitment.defaultTheme"
         },
-        "perPage": {
+        "per_page": {
             "type": "number",
             "description": "An optional number to which comments will be paginated",
             "default": 20
         },
-        "maxCommentHeight": {
+        "max_comment_height": {
             "type": "number",
             "description": "An optional number to limit comments' max height, over which comments will be folded",
             "default": 250
@@ -44,7 +44,7 @@
         "type",
         "owner",
         "repo",
-        "clientId",
-        "clientSecret"
+        "client_id",
+        "client_secret"
     ]
 }

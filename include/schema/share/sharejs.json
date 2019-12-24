@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/share/sharejs.json",
+    "description": "Enable Share.js share buttons\nhttps://github.com/overtrue/share.js/",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "sharejs"
+        }
+    },
+    "required": [
+        "type"
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/widget/subscribe_email.json",
+    "description": "Google FeedBurner email subscription widget configurations",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "subscribe_email"
+        },
+        "description": {
+            "type": "string",
+            "description": "Hint text under the email input"
+        },
+        "feedburner_id": {
+            "type": "string",
+            "description": "Feedburner ID"
+        }
+    },
+    "required": [
+        "type",
+        "feedburner_id"
+    ]
+}

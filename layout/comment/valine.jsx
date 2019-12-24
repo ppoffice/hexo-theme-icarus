@@ -15,7 +15,8 @@ class Valine extends Component {
             pageSize = 10,
             visitor = false,
             highlight = true,
-            recordIP = false
+            recordIp = false,
+            jsUrl
         } = this.props;
         if (!appId || !appKey) {
             return <div class="notification is-danger">
@@ -36,19 +37,19 @@ class Valine extends Component {
             pageSize: ${pageSize},
             visitor: ${visitor},
             highlight: ${highlight},
-            recordIP: ${recordIP}
+            recordIP: ${recordIp}
         });`;
         return <Fragment>
             <div id="valine-thread" class="content"></div>
             <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-            <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+            <script src={jsUrl}></script>
             <script dangerouslySetInnerHTML={{ __html: js }}></script>
         </Fragment>;
     }
 }
 
 module.exports = cacheComponent(Valine, 'comment.valine', props => {
-    const { comment } = props;
+    const { comment, helper } = props;
 
     return {
         appId: comment.app_id,
@@ -57,11 +58,12 @@ module.exports = cacheComponent(Valine, 'comment.valine', props => {
         verify: comment.verify,
         placeholder: comment.placeholder,
         avatar: comment.avatar,
-        avatarForce: comment.avatarForce,
+        avatarForce: comment.avatar_force,
         meta: comment.meta,
-        pageSize: comment.pageSize,
+        pageSize: comment.page_size,
         visitor: comment.visitor,
         highlight: comment.highlight,
-        recordIP: comment.recordIP
+        recordIp: comment.record_ip,
+        jsUrl: helper.cdn('valine', '1.3.10', 'dist/Valine.min.js')
     };
 });

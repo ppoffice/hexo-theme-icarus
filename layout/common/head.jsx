@@ -79,18 +79,20 @@ module.exports = class extends Component {
             <title>{getPageTitle(page, config.title, helper)}</title>
 
             {open_graph ? <OpenGraph
-                type={is_post(page) ? 'article' : 'website'}
-                title={page.title || config.title}
+                type={open_graph.type || (is_post(page) ? 'article' : 'website')}
+                title={open_graph.title || page.title || config.title}
                 date={page.date}
                 updated={page.updated}
                 author={config.author}
-                description={page.description || page.excerpt || page.content || config.description}
+                description={open_graph.description || page.description || page.excerpt || page.content || config.description}
                 keywords={page.keywords || (page.tags && page.tags.length ? page.tags : undefined) || config.keywords}
-                url={url}
-                images={page.photos || images}
-                siteName={config.title}
+                url={open_graph.url || url}
+                images={open_graph.image || page.photos || images}
+                siteName={open_graph.site_name || config.title}
                 language={language}
-                twitterId={open_graph.twitter}
+                twitterId={open_graph.twitter_id}
+                twitterCard={open_graph.twitter_card}
+                twitterSite={open_graph.twitter_site}
                 googlePlus={open_graph.google_plus}
                 facebookAdmins={open_graph.fb_admins}
                 facebookAppId={open_graph.fb_app_id} /> : null}
