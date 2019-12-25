@@ -14,7 +14,7 @@
                 "object"
             ],
             "description": "Path or URL to the website's logo",
-            "default": "/images/logo.svg",
+            "default": "/img/logo.svg",
             "properties": {
                 "text": {
                     "type": "string",

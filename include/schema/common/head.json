@@ -7,7 +7,7 @@
         "favicon": {
             "type": "string",
             "description": "URL or path to the website's icon",
-            "default": "/images/favicon.svg"
+            "default": "/img/favicon.svg"
         },
         "canonical_url": {
             "type": "string",

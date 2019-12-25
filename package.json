@@ -30,6 +30,9 @@
     "hexo-util": "^1.8.0",
     "inferno": "^7.3.3",
     "inferno-create-element": "^7.3.3",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "ajv": "^6.10.2",
+    "glob": "^7.1.4",
+    "js-yaml": "^3.13.1"
   }
 }

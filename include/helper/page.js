@@ -26,6 +26,6 @@ module.exports = function(hexo) {
 
     hexo.extend.helper.register('get_thumbnail', function(post) {
         const { url_for, has_thumbnail } = this.helper;
-        return url_for(has_thumbnail.call(this, post) ? post.thumbnail : 'images/thumbnail.svg');
+        return url_for(has_thumbnail.call(this, post) ? post.thumbnail : '/img/thumbnail.svg');
     });
 };
