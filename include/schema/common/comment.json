@@ -5,10 +5,10 @@
     "type": "object",
     "oneOf": [
         {
-            "$ref": "/comment/changyan.json"
+            "$ref": "/comment/disqus.json"
         },
         {
-            "$ref": "/comment/disqus.json"
+            "$ref": "/comment/changyan.json"
         },
         {
             "$ref": "/comment/disqusjs.json"

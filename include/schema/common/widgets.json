@@ -14,19 +14,28 @@
         },
         "oneOf": [
             {
-                "$ref": "/widget/alipay.json"
+                "$ref": "/widget/profile.json"
             },
             {
-                "$ref": "/widget/buymeacoffee.json"
+                "$ref": "/widget/toc.json"
             },
             {
-                "$ref": "/widget/patreon.json"
+                "$ref": "/widget/links.json"
             },
             {
-                "$ref": "/widget/paypal.json"
+                "$ref": "/widget/categories.json"
             },
             {
-                "$ref": "/widget/wechat.json"
+                "$ref": "/widget/recent_posts.json"
+            },
+            {
+                "$ref": "/widget/archives.json"
+            },
+            {
+                "$ref": "/widget/tags.json"
+            },
+            {
+                "$ref": "/widget/subscribe_email.json"
             }
         ],
         "required": [

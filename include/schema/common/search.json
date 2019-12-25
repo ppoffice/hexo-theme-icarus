@@ -5,13 +5,13 @@
     "type": "object",
     "oneOf": [
         {
+            "$ref": "/search/insight.json"
+        },
+        {
             "$ref": "/search/baidu.json"
         },
         {
             "$ref": "/search/google_cse.json"
-        },
-        {
-            "$ref": "/search/insight.json"
         }
     ]
 }

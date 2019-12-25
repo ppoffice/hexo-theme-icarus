@@ -5,6 +5,9 @@
     "type": "object",
     "oneOf": [
         {
+            "$ref": "/share/sharethis.json"
+        },
+        {
             "$ref": "/share/addthis.json"
         },
         {
@@ -15,9 +18,6 @@
         },
         {
             "$ref": "/share/sharejs.json"
-        },
-        {
-            "$ref": "/share/sharethis.json"
         }
     ]
 }

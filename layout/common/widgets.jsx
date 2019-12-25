@@ -5,7 +5,7 @@ const classname = require('../util/classname');
 function formatWidgets(widgets) {
     const result = {};
     if (Array.isArray(widgets)) {
-        widgets.forEach(widget => {
+        widgets.filter(widget => typeof widget === 'object').forEach(widget => {
             if ('position' in widget && (widget.position === 'left' || widget.position === 'right')) {
                 if (!(widget.position in result)) {
                     result[widget.position] = [widget];
@@ -52,7 +52,9 @@ function getColumnOrderClass(position) {
 }
 
 function isColumnSticky(config, position) {
-    return config.sidebar && position in config.sidebar && config.sidebar[position].sticky === true;
+    return typeof config.sidebar === 'object'
+        && position in config.sidebar
+        && config.sidebar[position].sticky === true;
 }
 
 class Widgets extends Component {

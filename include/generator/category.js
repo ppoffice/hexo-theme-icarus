@@ -9,7 +9,7 @@ module.exports = function(hexo) {
 
         function findParent(category) {
             let parents = [];
-            if (category && 'parent' in category) {
+            if (typeof category === 'object' && 'parent' in category) {
                 const parent = locals.categories.filter(cat => cat._id === category.parent).first();
                 parents = [parent].concat(findParent(parent));
             }

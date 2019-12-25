@@ -18,6 +18,9 @@ module.exports = function(hexo) {
 
     hexo.extend.helper.register('has_thumbnail', function(post) {
         const { article } = this.config;
+        if (typeof post !== 'object') {
+            return false;
+        }
         if (article && article.thumbnail === false) {
             return false;
         }
