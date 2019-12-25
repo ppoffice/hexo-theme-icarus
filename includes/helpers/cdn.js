@@ -31,26 +31,30 @@ module.exports = function (hexo) {
             if (filename.startsWith('dist/')) {
                 filename = filename.substr(5);
             }
-            if (_package === 'moment') {
-                _package = 'moment.js';
-                filename = filename.startsWith('min/') ? filename.substr(4) : filename;
-            }
-            if (_package === 'outdatedbrowser') {
-                _package = 'outdated-browser';
-                filename = filename.startsWith('outdatedbrowser/') ? filename.substr(16) : filename;
-            }
-            if (_package === 'highlight.js') {
-                filename = filename.endsWith('.css') && filename.indexOf('.min.') === -1 ?
-                    filename.substr(0, filename.length - 4) + '.min.css' : filename;
-            }
-            if (_package === 'mathjax') {
-                filename = filename.startsWith('unpacked/') ? filename.substr(9) : filename;
-            }
-            if (_package === 'pace-js') {
-                _package = 'pace';
-            }
-            if (_package === 'clipboard') {
-                _package = 'clipboard.js';
+            switch (_package) {
+                case "moment":
+                    _package = 'moment.js';
+                    filename = filename.startsWith('min/') ? filename.substr(4) : filename;
+                    break;
+                case "outdatedbrowser":
+                    _package = 'outdated-browser';
+                    filename = filename.startsWith('outdatedbrowser/') ? filename.substr(16) : filename;
+                    break;
+                case "highlight.js":
+                    filename = filename.endsWith('.css') && filename.indexOf('.min.') === -1 ?
+                        filename.substr(0, filename.length - 4) + '.min.css' : filename;
+                    break;
+                case "mathjax":
+                    filename = filename.startsWith('unpacked/') ? filename.substr(9) : filename;
+                    break;
+                case "pace-js":
+                    _package = 'pace';
+                    break;
+                case "clipboard":
+                    _package = 'clipboard.js';
+                    break;
+                default:
+                    break;
             }
         }
         if (provider !== null && cdn_providers.hasOwnProperty(provider)) {
