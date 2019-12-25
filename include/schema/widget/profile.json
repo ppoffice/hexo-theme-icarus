@@ -10,19 +10,33 @@
         },
         "author": {
             "type": "string",
-            "description": "Author name"
+            "description": "Author name",
+            "examples": [
+                "Your name"
+            ]
         },
         "author_title": {
             "type": "string",
-            "description": "Author title"
+            "description": "Author title",
+            "examples": [
+                "Your title"
+            ]
         },
         "location": {
             "type": "string",
-            "description": "Author's current location"
+            "description": "Author's current location",
+            "examples": [
+                "Your location"
+            ]
         },
         "avatar": {
             "type": "string",
             "description": "URL or path to the avatar image"
+        },
+        "avatar_rounded": {
+            "type": "boolean",
+            "description": "Whether show the rounded avatar image",
+            "default": false
         },
         "gravatar": {
             "type": "string",
@@ -30,11 +44,38 @@
         },
         "follow_link": {
             "type": "string",
-            "description": "URL or path for the follow button"
+            "description": "URL or path for the follow button",
+            "examples": [
+                "https://github.com/ppoffice"
+            ]
         },
         "social_links": {
             "$ref": "/misc/poly_links.json",
-            "description": "Links to be shown on the bottom of the profile widget"
+            "description": "Links to be shown on the bottom of the profile widget",
+            "examples": [
+                {
+                    "Github": {
+                        "icon": "fab fa-github",
+                        "url": "https://github.com/ppoffice"
+                    },
+                    "Facebook": {
+                        "icon": "fab fa-facebook",
+                        "url": "https://facebook.com"
+                    },
+                    "Twitter": {
+                        "icon": "fab fa-twitter",
+                        "url": "https://twitter.com"
+                    },
+                    "Dribbble": {
+                        "icon": "fab fa-dribbble",
+                        "url": "https://dribbble.com"
+                    },
+                    "RSS": {
+                        "icon": "fas fa-rss",
+                        "url": "/"
+                    }
+                }
+            ]
         }
     },
     "required": [

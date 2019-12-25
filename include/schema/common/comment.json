@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/comment.json",
+    "description": "Comment plugin configurations",
+    "type": "object",
+    "oneOf": [
+        {
+            "$ref": "/comment/changyan.json"
+        },
+        {
+            "$ref": "/comment/disqus.json"
+        },
+        {
+            "$ref": "/comment/disqusjs.json"
+        },
+        {
+            "$ref": "/comment/facebook.json"
+        },
+        {
+            "$ref": "/comment/gitalk.json"
+        },
+        {
+            "$ref": "/comment/gitment.json"
+        },
+        {
+            "$ref": "/comment/isso.json"
+        },
+        {
+            "$ref": "/comment/livere.json"
+        },
+        {
+            "$ref": "/comment/valine.json"
+        }
+    ]
+}

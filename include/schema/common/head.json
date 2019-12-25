@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/footer.json",
+    "description": "Page metadata configurations",
+    "type": "object",
+    "properties": {
+        "favicon": {
+            "type": "string",
+            "description": "URL or path to the website's icon",
+            "default": "/images/favicon.svg"
+        },
+        "canonical_url": {
+            "type": "string",
+            "description": "Canonical URL of the current page"
+        },
+        "open_graph": {
+            "$ref": "/misc/open_graph.json"
+        },
+        "meta": {
+            "$ref": "/misc/meta.json"
+        },
+        "rss": {
+            "type": "string",
+            "description": "URL or path to the website's RSS atom.xml"
+        }
+    }
+}

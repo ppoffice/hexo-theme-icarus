@@ -14,7 +14,10 @@
         },
         "currency_code": {
             "type": "string",
-            "description": "Currency code"
+            "description": "Currency code",
+            "examples": [
+                "USD"
+            ]
         }
     },
     "required": [

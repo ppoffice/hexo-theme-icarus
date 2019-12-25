@@ -33,14 +33,17 @@ module.exports = class extends Component {
         const {
             url,
             meta_generator = true,
+            head = {},
+            article,
+            highlight
+        } = config;
+        const {
             meta = [],
             open_graph,
             canonical_url,
             rss,
-            favicon,
-            article,
-            highlight
-        } = config;
+            favicon
+        } = head;
 
         const language = page.lang || page.language || config.language;
 

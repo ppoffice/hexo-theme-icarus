@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/donates.json",
+    "description": "Donate plugin configurations",
+    "type": "array",
+    "items": {
+        "oneOf": [
+            {
+                "$ref": "/donate/alipay.json"
+            },
+            {
+                "$ref": "/donate/buymeacoffee.json"
+            },
+            {
+                "$ref": "/donate/patreon.json"
+            },
+            {
+                "$ref": "/donate/paypal.json"
+            },
+            {
+                "$ref": "/donate/wechat.json"
+            }
+        ]
+    }
+}

@@ -3,5 +3,5 @@
     "$id": "/plugin/outdated_browser.json",
     "description": "Enable the Outdated Browser plugin\nhttp://outdatedbrowser.com/",
     "type": "boolean",
-    "default": true
+    "default": false
 }

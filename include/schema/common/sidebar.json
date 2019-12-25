@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/sidebar.json",
+    "description": "Sidebar configurations.\nPlease be noted that a sidebar is only visible when it has at least one widget",
+    "type": "object",
+    "properties": {
+        "left": {
+            "type": "object",
+            "description": "Left sidebar configurations",
+            "properties": {
+                "sticky": {
+                    "type": "boolean",
+                    "description": "Whether the sidebar sticks to the top when page scrolls",
+                    "default": false
+                }
+            }
+        },
+        "right": {
+            "type": "object",
+            "description": "Right sidebar configurations",
+            "properties": {
+                "sticky": {
+                    "type": "boolean",
+                    "description": "Whether the sidebar sticks to the top when page scrolls",
+                    "default": false
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/plugins.json",
+    "description": "Plugin configurations",
+    "type": "object",
+    "properties": {
+        "animejs": {
+            "$ref": "/plugin/animejs.json"
+        },
+        "back_to_top": {
+            "$ref": "/plugin/back_to_top.json"
+        },
+        "baidu_analytics": {
+            "$ref": "/plugin/baidu_analytics.json"
+        },
+        "busuanzi": {
+            "$ref": "/plugin/busuanzi.json"
+        },
+        "gallery": {
+            "$ref": "/plugin/gallery.json"
+        },
+        "google_analytics": {
+            "$ref": "/plugin/google_analytics.json"
+        },
+        "hotjar": {
+            "$ref": "/plugin/hotjar.json"
+        },
+        "katex": {
+            "$ref": "/plugin/katex.json"
+        },
+        "mathjax": {
+            "$ref": "/plugin/mathjax.json"
+        },
+        "outdated_browser": {
+            "$ref": "/plugin/outdated_browser.json"
+        },
+        "progressbar": {
+            "$ref": "/plugin/progressbar.json"
+        }
+    }
+}

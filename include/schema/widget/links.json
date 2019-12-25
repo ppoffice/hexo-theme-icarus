@@ -16,7 +16,13 @@
                     "type": "string",
                     "description": "URL of the site"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "Hexo": "https://hexo.io",
+                    "Bulma": "https://bulma.io"
+                }
+            ]
         }
     },
     "required": [

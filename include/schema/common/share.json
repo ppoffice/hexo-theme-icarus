@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/share.json",
+    "description": "Share plugin configurations",
+    "type": "object",
+    "oneOf": [
+        {
+            "$ref": "/share/addthis.json"
+        },
+        {
+            "$ref": "/share/addtoany.json"
+        },
+        {
+            "$ref": "/share/bdshare.json"
+        },
+        {
+            "$ref": "/share/sharejs.json"
+        },
+        {
+            "$ref": "/share/sharethis.json"
+        }
+    ]
+}
