@@ -64,10 +64,35 @@
             var button = '<span class="fold">' + (fold === 'unfolded' ? '<i class="fas fa-angle-down"></i>' : '<i class="fas fa-angle-right"></i>') + '</span>';
             $('figure.highlight').each(function () {
                 if ($(this).find('figcaption').length) {
+
+                    // 此处find ">folded" span,如果有自定义code头,并且">folded"进行处理
+                    // 使用示例，.md 文件中头行标记">folded"
+                    // ```java main.java >folded
+                    // import main.java
+                    // private static void main(){
+                    //     // test
+                    //     int i = 0;
+                    //     return i;
+                    // }
+                    // ```
+                    if ($(this).find('figcaption').find('span').length > 0) {
+                        let spanArr = $(this).find('figcaption').find('span');
+                        if (spanArr[0].innerText.indexOf(">folded") > -1) {
+                            // 去掉folded
+                            spanArr[0].innerText = spanArr[0].innerText.replace(">folded", "")
+                            button = '<span class="fold"><i class="fas fa-angle-right"></i></span>';
+                            $(this).find('figcaption').prepend(button);
+
+                            // 收叠代码块
+                            toggleFold(this, true);
+                            return;
+                        }
+                    }
                     $(this).find('figcaption').prepend(button);
                 } else {
                     $(this).prepend('<figcaption>' + button + '</figcaption>');
                 }
+                toggleFold(this, fold === 'folded');
             });
 
             function toggleFold(codeBlock, isFolded) {
@@ -77,9 +102,9 @@
                 !isFolded ? $toggle.addClass('fa-angle-down') : $toggle.addClass('fa-angle-right');
             }
 
-            $('figure.highlight').each(function () {
-                toggleFold(this, fold === 'folded');
-            });
+            // $('figure.highlight').each(function () {
+            //     toggleFold(this, fold === 'folded');
+            // });
             $('figure.highlight figcaption .fold').click(function () {
                 var $code = $(this).closest('figure.highlight');
                 toggleFold($code.eq(0), !$code.hasClass('folded'));
