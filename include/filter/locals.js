@@ -1,11 +1,24 @@
-const createPostSchema = require('hexo/lib/models/post');
-const createPageSchema = require('hexo/lib/models/page');
+const fs = require('fs');
+const path = require('path');
+const yaml = require('js-yaml');
 
 module.exports = hexo => {
     const RESERVED_KEYS = {
-        post: Object.keys(createPostSchema(hexo).paths),
-        page: Object.keys(createPageSchema(hexo).paths)
+        post: Object.keys(require('hexo/lib/models/post')(hexo).paths),
+        page: Object.keys(require('hexo/lib/models/page')(hexo).paths)
     };
+
+    function getThemeConfig(extension) {
+        if (fs.existsSync(path.join(hexo.theme_dir, '_config' + extension + '.yml'))) {
+            return yaml.safeLoad(fs.readFileSync(path.join(hexo.theme_dir, '_config' + extension + '.yml')));
+        }
+        return null;
+    }
+
+    const ALTERNATIVE_CONFIG = {
+        post: getThemeConfig('.post'),
+        page: getThemeConfig('.page')
+    }
 
     function getExtraConfig(source, reservedKeys) {
         const result = {};
@@ -31,13 +44,21 @@ module.exports = hexo => {
             locals.helper._p = locals._p;
         }
 
-        // site config already merged into theme config in hexo/lib/hexo/index.js#Hexo.prototype._generateLocals()
-        locals.config = Object.assign({}, Object.getPrototypeOf(locals).theme);
-        // merge page configs
-        if (locals.page.__post === true) {
-            Object.assign(locals.config, getExtraConfig(locals.page, RESERVED_KEYS.page));
-        } else if (locals.page.__page === true) {
-            Object.assign(locals.config, getExtraConfig(locals.page, RESERVED_KEYS.page));
+        const page = locals.page;
+        if (page) {
+            if ((page.layout !== 'page' || page.layout !== 'post') && ALTERNATIVE_CONFIG[page.layout]) {
+                // load alternative config if exists
+                locals.config = Object.assign({}, Object.getPrototypeOf(locals).config, ALTERNATIVE_CONFIG[page.layout])
+            } else {
+                // site config already merged into theme config in hexo/lib/hexo/index.js#Hexo.prototype._generateLocals()
+                locals.config = Object.assign({}, Object.getPrototypeOf(locals).theme);
+            }
+            // merge page configs
+            if (page.__post === true) {
+                Object.assign(locals.config, getExtraConfig(page, RESERVED_KEYS.page));
+            } else if (page.__page === true) {
+                Object.assign(locals.config, getExtraConfig(page, RESERVED_KEYS.page));
+            }
         }
 
         return locals;

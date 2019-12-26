@@ -39,18 +39,18 @@ module.exports = class extends Component {
                             {/* Date */}
                             <time class="level-item has-text-grey" dateTime={date_xml(page.date)}>{date(page.date)}</time>
                             {/* Categories */}
-                            {page.categories && page.categories.length ? <div class="level-item">
+                            {page.categories && page.categories.length ? <span class="level-item">
                                 {(() => {
                                     const categories = [];
                                     page.categories.forEach((category, i) => {
                                         categories.push(<a class="has-link-grey" href={category.url}>{category.name}</a>);
                                         if (i < page.categories.length - 1) {
-                                            categories.push(' / ');
+                                            categories.push(<span>&nbsp;/&nbsp;</span>);
                                         }
                                     });
                                     return categories;
                                 })()}
-                            </div> : null}
+                            </span> : null}
                             {/* Read time */}
                             {article && article.readtime && article.readtime === true ? <span class="level-item has-text-grey">
                                 {(() => {
