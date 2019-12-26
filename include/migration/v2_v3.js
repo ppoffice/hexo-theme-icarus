@@ -22,6 +22,14 @@ module.exports = class extends Migration {
         delete result.meta;
         delete result.rss;
 
+        if (result.logo === '/images/logo.svg') {
+            result.logo = result.logo.replace(/^\/images/, '/img');
+        }
+
+        if (result.head.favicon === '/img/favicon.svg') {
+            result.head.favicon = result.head.favicon.replace(/^\/images/, '/img');
+        }
+
         if (result.search && Object.prototype.hasOwnProperty.call(result.search, 'type')) {
             switch (result.search.type) {
                 case 'google-cse':

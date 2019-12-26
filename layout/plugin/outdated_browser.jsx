@@ -9,7 +9,7 @@ class OutdatedBrowser extends Component {
             outdatedBrowser({
                 bgColor: '#f25648',
                 color: '#ffffff',
-                lowerThan: 'flex'
+                lowerThan: 'object-fit' // display on IE11 or below
             });
         });`;
 

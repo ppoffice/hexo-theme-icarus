@@ -49,7 +49,6 @@ module.exports = cacheComponent(RecentPosts, 'widget.recentposts', props => {
         date: date(post.date),
         dateXml: date_xml(post.date),
         thumbnail: thumbnail ? get_thumbnail(post) : null,
-        // TODO: check if categories work
         categories: post.categories.map(category => ({
             name: category.name,
             url: url_for(category.path)
