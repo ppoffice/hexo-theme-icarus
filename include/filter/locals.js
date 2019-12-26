@@ -18,7 +18,7 @@ module.exports = hexo => {
     const ALTERNATIVE_CONFIG = {
         post: getThemeConfig('.post'),
         page: getThemeConfig('.page')
-    }
+    };
 
     function getExtraConfig(source, reservedKeys) {
         const result = {};
@@ -48,7 +48,7 @@ module.exports = hexo => {
         if (page) {
             if ((page.layout !== 'page' || page.layout !== 'post') && ALTERNATIVE_CONFIG[page.layout]) {
                 // load alternative config if exists
-                locals.config = Object.assign({}, Object.getPrototypeOf(locals).config, ALTERNATIVE_CONFIG[page.layout])
+                locals.config = Object.assign({}, Object.getPrototypeOf(locals).config, ALTERNATIVE_CONFIG[page.layout]);
             } else {
                 // site config already merged into theme config in hexo/lib/hexo/index.js#Hexo.prototype._generateLocals()
                 locals.config = Object.assign({}, Object.getPrototypeOf(locals).theme);

@@ -18,6 +18,9 @@
         "open_graph": {
             "$ref": "/misc/open_graph.json"
         },
+        "structured_data": {
+            "$ref": "/misc/structured_data.json"
+        },
         "meta": {
             "$ref": "/misc/meta.json"
         },

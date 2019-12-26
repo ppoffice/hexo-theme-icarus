@@ -6,18 +6,18 @@
     "properties": {
         "title": {
             "type": "string",
-            "description": "Page title (og:title)",
+            "description": "Page title (og:title) (optional)\nYou should leave this blank for most of the time",
             "nullable": true
         },
         "type": {
             "type": "string",
-            "description": "Page type (og:type)",
+            "description": "Page type (og:type) (optional)\nYou should leave this blank for most of the time",
             "default": "blog",
             "nullable": true
         },
         "url": {
             "type": "string",
-            "description": "Page URL (og:url)",
+            "description": "Page URL (og:url) (optional)\nYou should leave this blank for most of the time",
             "nullable": true
         },
         "image": {
@@ -25,7 +25,7 @@
                 "string",
                 "array"
             ],
-            "description": "Page cover (og:image)",
+            "description": "Page cover (og:image) (optional) Default to the Open Graph image or thumbnail of the page\nYou should leave this blank for most of the time",
             "items": {
                 "type": "string"
             },
@@ -33,12 +33,17 @@
         },
         "site_name": {
             "type": "string",
-            "description": "Site name (og:site_name)",
+            "description": "Site name (og:site_name) (optional)\nYou should leave this blank for most of the time",
+            "nullable": true
+        },
+        "author": {
+            "type": "string",
+            "description": "Page author (article:author) (optional)\nYou should leave this blank for most of the time",
             "nullable": true
         },
         "description": {
             "type": "string",
-            "description": "Page description (og:description)",
+            "description": "Page description (og:description) (optional)\nYou should leave this blank for most of the time",
             "nullable": true
         },
         "twitter_card": {

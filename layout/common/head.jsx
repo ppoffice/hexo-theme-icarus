@@ -1,6 +1,7 @@
 const { Component } = require('inferno');
 const MetaTags = require('../misc/meta');
 const OpenGraph = require('../misc/open_graph');
+const StructuredData = require('../misc/structured_data');
 const Plugins = require('./plugins');
 
 function getPageTitle(page, siteTitle, helper) {
@@ -39,7 +40,8 @@ module.exports = class extends Component {
         } = config;
         const {
             meta = [],
-            open_graph,
+            open_graph = {},
+            structured_data = {},
             canonical_url,
             rss,
             favicon
@@ -75,7 +77,24 @@ module.exports = class extends Component {
 
         let adsenseClientId = null;
         if (Array.isArray(config.widgets)) {
-            adsenseClientId = config.widgets.find(widget => widget.type === 'adsense').client_id;
+            const widget = config.widgets.find(widget => widget.type === 'adsense');
+            if (widget) {
+                adsenseClientId = widget.client_id;
+            }
+        }
+
+        let openGraphImages = images;
+        if ((Array.isArray(open_graph.image) && open_graph.image.length > 0) || typeof open_graph.image === 'string') {
+            openGraphImages = open_graph.image;
+        } else if ((Array.isArray(page.photos) && page.photos.length > 0) || typeof page.photos === 'string') {
+            openGraphImages = page.photos;
+        }
+
+        let structuredImages = images;
+        if ((Array.isArray(structured_data.image) && structured_data.image.length > 0) || typeof structured_data.image === 'string') {
+            structuredImages = structured_data.image;
+        } else if ((Array.isArray(page.photos) && page.photos.length > 0) || typeof page.photos === 'string') {
+            structuredImages = page.photos;
         }
 
         return <head>
@@ -86,16 +105,16 @@ module.exports = class extends Component {
 
             <title>{getPageTitle(page, config.title, helper)}</title>
 
-            {open_graph ? <OpenGraph
+            {typeof open_graph === 'object' ? <OpenGraph
                 type={open_graph.type || (is_post(page) ? 'article' : 'website')}
                 title={open_graph.title || page.title || config.title}
                 date={page.date}
                 updated={page.updated}
-                author={config.author}
+                author={open_graph.author || config.author}
                 description={open_graph.description || page.description || page.excerpt || page.content || config.description}
                 keywords={page.keywords || (page.tags && page.tags.length ? page.tags : undefined) || config.keywords}
                 url={open_graph.url || url}
-                images={open_graph.image || page.photos || images}
+                images={openGraphImages}
                 siteName={open_graph.site_name || config.title}
                 language={language}
                 twitterId={open_graph.twitter_id}
@@ -104,6 +123,15 @@ module.exports = class extends Component {
                 googlePlus={open_graph.google_plus}
                 facebookAdmins={open_graph.fb_admins}
                 facebookAppId={open_graph.fb_app_id} /> : null}
+
+            {typeof structured_data === 'object' ? <StructuredData
+                title={structured_data.title || config.title}
+                description={structured_data.description || page.description || page.excerpt || page.content || config.description}
+                url={structured_data.url || page.permalink || url}
+                author={structured_data.author || config.author}
+                date={page.date}
+                updated={page.updated}
+                images={structuredImages} /> : null}
 
             {canonical_url ? <link rel="canonical" href={canonical_url} /> : null}
             {rss ? <link rel="alternative" href={url_for(rss)} title={config.title} type="application/atom+xml" /> : null}

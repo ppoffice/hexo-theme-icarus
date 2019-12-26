@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/misc/structured_data.json",
+    "description": "Structured data of the page\nhttps://developers.google.com/search/docs/guides/intro-structured-data",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "Page title (optional)\nYou should leave this blank for most of the time",
+            "nullable": true
+        },
+        "description": {
+            "type": "string",
+            "description": "Page description (optional)\nYou should leave this blank for most of the time",
+            "nullable": true
+        },
+        "url": {
+            "type": "string",
+            "description": "Page URL (optional)\nYou should leave this blank for most of the time",
+            "nullable": true
+        },
+        "author": {
+            "type": "string",
+            "description": "Page author (article:author) (optional)\nYou should leave this blank for most of the time",
+            "nullable": true
+        },
+        "image": {
+            "type": [
+                "string",
+                "array"
+            ],
+            "description": "Page images (optional) Default to the Open Graph image or thumbnail of the page\nYou should leave this blank for most of the time",
+            "items": {
+                "type": "string"
+            },
+            "nullable": true
+        }
+    },
+    "nullable": true
+}

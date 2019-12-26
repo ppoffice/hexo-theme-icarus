@@ -37,5 +37,5 @@ module.exports = cacheComponent(AdSense, 'widget.adsense', props => {
         title: helper.__('widget.adsense'),
         clientId: client_id,
         slotId: slot_id
-    }
+    };
 });
