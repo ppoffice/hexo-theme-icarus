@@ -5,8 +5,9 @@
     "type": "object",
     "properties": {
         "tracking_id": {
-            "type": "object",
-            "description": "Baidu Analytics tracking ID"
+            "type": "string",
+            "description": "Baidu Analytics tracking ID",
+            "nullable": true
         }
     },
     "required": [

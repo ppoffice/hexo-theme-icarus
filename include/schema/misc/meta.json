@@ -6,5 +6,6 @@
     "items": {
         "type": "string",
         "description": "Meta tag specified in <attribute>=<value> style\nE.g., name=theme-color;content=#123456 => <meta name=\"theme-color\" content=\"#123456\">"
-    }
+    },
+    "nullable": true
 }

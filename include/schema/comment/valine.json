@@ -18,17 +18,20 @@
         },
         "placeholder": {
             "type": "string",
-            "description": "Comment box placeholders"
+            "description": "Comment box placeholders",
+            "nullable": true
         },
         "notify": {
             "type": "boolean",
             "description": "Enable email notification when someone comments",
-            "default": false
+            "default": false,
+            "nullable": true
         },
         "verify": {
             "type": "boolean",
             "description": "Enable verification code service",
-            "default": false
+            "default": false,
+            "nullable": true
         },
         "avatar": {
             "type": "string",
@@ -44,12 +47,14 @@
                 "hide",
                 "mm"
             ],
-            "default": "mm"
+            "default": "mm",
+            "nullable": true
         },
         "avatar_force": {
             "type": "boolean",
             "description": "Pull the latest avatar upon page visit",
-            "default": false
+            "default": false,
+            "nullable": true
         },
         "meta": {
             "type": "array",
@@ -61,27 +66,32 @@
                 "nick",
                 "mail",
                 "link"
-            ]
+            ],
+            "nullable": true
         },
         "page_size": {
             "type": "integer",
             "description": "Number of comments per page",
-            "default": 10
+            "default": 10,
+            "nullable": true
         },
         "visitor": {
             "type": "boolean",
             "description": "Show visitor count",
-            "default": false
+            "default": false,
+            "nullable": true
         },
         "highlight": {
             "type": "boolean",
             "description": "Enable code highlighting",
-            "default": true
+            "default": true,
+            "nullable": true
         },
         "record_ip": {
             "type": "boolean",
             "description": "Record reviewer IP address",
-            "default": false
+            "default": false,
+            "nullable": true
         }
     },
     "required": [

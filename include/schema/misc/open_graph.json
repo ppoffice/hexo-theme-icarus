@@ -6,16 +6,19 @@
     "properties": {
         "title": {
             "type": "string",
-            "description": "Page title (og:title)"
+            "description": "Page title (og:title)",
+            "nullable": true
         },
         "type": {
             "type": "string",
             "description": "Page type (og:type)",
-            "default": "blog"
+            "default": "blog",
+            "nullable": true
         },
         "url": {
             "type": "string",
-            "description": "Page URL (og:url)"
+            "description": "Page URL (og:url)",
+            "nullable": true
         },
         "image": {
             "type": [
@@ -25,39 +28,49 @@
             "description": "Page cover (og:image)",
             "items": {
                 "type": "string"
-            }
+            },
+            "nullable": true
         },
         "site_name": {
             "type": "string",
-            "description": "Site name (og:site_name)"
+            "description": "Site name (og:site_name)",
+            "nullable": true
         },
         "description": {
             "type": "string",
-            "description": "Page description (og:description)"
+            "description": "Page description (og:description)",
+            "nullable": true
         },
         "twitter_card": {
             "type": "string",
-            "description": "Twitter card type (twitter:card)"
+            "description": "Twitter card type (twitter:card)",
+            "nullable": true
         },
         "twitter_id": {
             "type": "string",
-            "description": "Twitter ID (twitter:creator)"
+            "description": "Twitter ID (twitter:creator)",
+            "nullable": true
         },
         "twitter_site": {
             "type": "string",
-            "description": "Twitter ID (twitter:creator)"
+            "description": "Twitter ID (twitter:creator)",
+            "nullable": true
         },
         "google_plus": {
             "type": "string",
-            "description": "Google+ profile link (deprecated)"
+            "description": "Google+ profile link (deprecated)",
+            "nullable": true
         },
         "fb_admins": {
             "type": "string",
-            "description": "Facebook admin ID"
+            "description": "Facebook admin ID",
+            "nullable": true
         },
         "fb_app_id": {
             "type": "string",
-            "description": "Facebook App ID"
+            "description": "Facebook App ID",
+            "nullable": true
         }
-    }
+    },
+    "nullable": true
 }

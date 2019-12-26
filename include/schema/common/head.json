@@ -7,11 +7,13 @@
         "favicon": {
             "type": "string",
             "description": "URL or path to the website's icon",
-            "default": "/img/favicon.svg"
+            "default": "/img/favicon.svg",
+            "nullable": true
         },
         "canonical_url": {
             "type": "string",
-            "description": "Canonical URL of the current page"
+            "description": "Canonical URL of the current page",
+            "nullable": true
         },
         "open_graph": {
             "$ref": "/misc/open_graph.json"
@@ -21,7 +23,8 @@
         },
         "rss": {
             "type": "string",
-            "description": "URL or path to the website's RSS atom.xml"
+            "description": "URL or path to the website's RSS atom.xml",
+            "nullable": true
         }
     }
 }

@@ -22,7 +22,8 @@
                     "Hexo": "https://hexo.io",
                     "Bulma": "https://bulma.io"
                 }
-            ]
+            ],
+            "nullable": true
         }
     },
     "required": [

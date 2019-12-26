@@ -9,7 +9,11 @@
                 "string",
                 "number"
             ],
-            "description": "Hotjar site id"
+            "description": "Hotjar site id",
+            "nullable": true
         }
-    }
+    },
+    "required": [
+        "site_id"
+    ]
 }

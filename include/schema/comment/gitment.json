@@ -27,17 +27,20 @@
         "theme": {
             "type": "string",
             "description": "An optional Gitment theme object",
-            "default": "gitment.defaultTheme"
+            "default": "gitment.defaultTheme",
+            "nullable": true
         },
         "per_page": {
             "type": "number",
             "description": "An optional number to which comments will be paginated",
-            "default": 20
+            "default": 20,
+            "nullable": true
         },
         "max_comment_height": {
             "type": "number",
             "description": "An optional number to limit comments' max height, over which comments will be folded",
-            "default": 250
+            "default": 250,
+            "nullable": true
         }
     },
     "required": [

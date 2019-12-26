@@ -34,17 +34,20 @@
         },
         "admin": {
             "type": "string",
-            "description": "Disqus moderator username"
+            "description": "Disqus moderator username",
+            "nullable": true
         },
         "admin_label": {
             "type": "string",
             "description": "Disqus moderator badge text",
-            "default": false
+            "default": false,
+            "nullable": true
         },
         "nesting": {
             "type": "integer",
             "description": "Maximum number of comment nesting level",
-            "default": 4
+            "default": 4,
+            "nullable": true
         }
     },
     "required": [

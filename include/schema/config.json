@@ -6,7 +6,8 @@
     "properties": {
         "version": {
             "type": "string",
-            "description": "Version of the configuration file"
+            "description": "Version of the configuration file",
+            "default": "3.0.0"
         },
         "logo": {
             "type": [

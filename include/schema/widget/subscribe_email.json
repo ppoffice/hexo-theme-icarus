@@ -10,7 +10,8 @@
         },
         "description": {
             "type": "string",
-            "description": "Hint text under the email input"
+            "description": "Hint text under the email input",
+            "nullable": true
         },
         "feedburner_id": {
             "type": "string",

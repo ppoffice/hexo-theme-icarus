@@ -6,48 +6,56 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "profile"
+            "const": "profile",
+            "nullable": true
         },
         "author": {
             "type": "string",
             "description": "Author name",
             "examples": [
                 "Your name"
-            ]
+            ],
+            "nullable": true
         },
         "author_title": {
             "type": "string",
             "description": "Author title",
             "examples": [
                 "Your title"
-            ]
+            ],
+            "nullable": true
         },
         "location": {
             "type": "string",
             "description": "Author's current location",
             "examples": [
                 "Your location"
-            ]
+            ],
+            "nullable": true
         },
         "avatar": {
             "type": "string",
-            "description": "URL or path to the avatar image"
+            "description": "URL or path to the avatar image",
+            "nullable": true
         },
         "avatar_rounded": {
             "type": "boolean",
             "description": "Whether show the rounded avatar image",
-            "default": false
+            "default": false,
+            "nullable": true
         },
         "gravatar": {
             "type": "string",
-            "description": "Email address for the Gravatar"
+            "description": "Email address for the Gravatar",
+            "nullable": true
         },
         "follow_link": {
             "type": "string",
             "description": "URL or path for the follow button",
             "examples": [
                 "https://github.com/ppoffice"
-            ]
+            ],
+            "nullable": true
         },
         "social_links": {
             "$ref": "/misc/poly_links.json",

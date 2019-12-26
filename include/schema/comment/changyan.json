@@ -12,7 +12,7 @@
             "type": "string",
             "description": "Changyan app ID"
         },
-        "shortname": {
+        "conf": {
             "type": "string",
             "description": "Changyan configuration ID"
         }

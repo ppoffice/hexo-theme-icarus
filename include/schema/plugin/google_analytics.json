@@ -5,8 +5,9 @@
     "type": "object",
     "properties": {
         "tracking_id": {
-            "type": "object",
-            "description": "Google Analytics tracking ID"
+            "type": "string",
+            "description": "Google Analytics tracking ID",
+            "nullable": true
         }
     },
     "required": [

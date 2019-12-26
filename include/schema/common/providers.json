@@ -7,17 +7,20 @@
         "cdn": {
             "type": "string",
             "description": "Name or URL template of the JavaScript and/or stylesheet CDN provider",
-            "default": "jsdelivr"
+            "default": "jsdelivr",
+            "nullable": true
         },
         "fontcdn": {
             "type": "string",
             "description": "Name or URL template of the webfont CDN provider",
-            "default": "google"
+            "default": "google",
+            "nullable": true
         },
         "iconcdn": {
             "type": "string",
             "description": "Name or URL of the webfont Icon CDN provider",
-            "default": "fontawesome"
+            "default": "fontawesome",
+            "nullable": true
         }
     }
 }

@@ -36,5 +36,6 @@
                 "icon": "fab fa-github"
             }
         }
-    ]
+    ],
+    "nullable": true
 }

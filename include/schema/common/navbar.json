@@ -21,7 +21,8 @@
                     "Tags": "/tags",
                     "About": "/about"
                 }
-            ]
+            ],
+            "nullable": true
         },
         "links": {
             "$ref": "/misc/poly_links.json",

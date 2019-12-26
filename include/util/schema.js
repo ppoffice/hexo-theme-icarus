@@ -1,6 +1,9 @@
 const Ajv = require('ajv');
 const path = require('path');
 const deepmerge = require('deepmerge');
+const yaml = require('./yaml');
+
+const MAGIC = 'c823d4d4';
 
 const PRIMITIVE_DEFAULTS = {
     'null': null,
@@ -23,16 +26,84 @@ class DefaultValue {
             this.description = source.description;
         }
         if ('value' in source && source.value) {
-            this.value = deepmerge(this.value, source.value);
+            if (this.value instanceof DefaultValue) {
+                this.value.merge(source.value);
+            } else if (Array.isArray(this.value) && Array.isArray(source.value)) {
+                this.value.concat(...source.value);
+            } else if (typeof this.value === 'object' && typeof source.value === 'object') {
+                for (const key in source.value) {
+                    this.value[key] = source.value[key];
+                }
+            } else {
+                this.value = deepmerge(this.value, source.value);
+            }
         }
         return this;
     }
 
-    toString() {
-        return '[DefaultValue]' + JSON.stringify(value);
+    clone() {
+        const result = new DefaultValue(this.value, this.description);
+        if (result.value instanceof DefaultValue) {
+            result.value = result.value.clone();
+        } else if (Array.isArray(result.value)) {
+            result.value = [].concat(...result.value);
+        } else if (typeof result.value === 'object') {
+            result.value = Object.assign({}, result.value);
+        }
+        return result;
+    }
+
+    toCommentedArray() {
+        return [].concat(...this.value.map(item => {
+            if (item instanceof DefaultValue) {
+                if (typeof item.description !== 'string' || !item.description.trim()) {
+                    return [item.toCommented()];
+                }
+                return item.description.split('\n').map((line, i) => {
+                    return MAGIC + i + ': ' + line;
+                }).concat(item.toCommented());
+            }
+            return [item];
+        }));
+    }
+
+    toCommentedObject() {
+        if (this.value instanceof DefaultValue) {
+            return this.value.toCommented();
+        }
+        const result = {};
+        for (const key in this.value) {
+            const item = this.value[key];
+            if (item instanceof DefaultValue) {
+                if (typeof item.description === 'string' && item.description.trim()) {
+                    item.description.split('\n').forEach((line, i) => {
+                        result[MAGIC + key + i] = line;
+                    });
+                }
+                result[key] = item.toCommented();
+            } else {
+                result[key] = item;
+            }
+        }
+        return result;
+    }
+
+    toCommented() {
+        if (Array.isArray(this.value)) {
+            return this.toCommentedArray();
+        } else if (typeof this.value === 'object' && this.value !== null) {
+            return this.toCommentedObject();
+        }
+        return this.value;
+    }
+
+    toYaml() {
+        const regex = new RegExp('^(\\s*)(?:-\\s*\\\')?' + MAGIC + '.*?:\\s*\\\'?(.*?)\\\'*$', 'mg');
+        return yaml.stringify(this.toCommented()).replace(regex, '$1# $2');// restore comments
     }
 }
 
+/* eslint-disable no-use-before-define */
 class Schema {
     constructor(loader, def) {
         if (!(loader instanceof SchemaLoader)) {
@@ -55,37 +126,40 @@ class Schema {
 
     getArrayDefaultValue(def) {
         let value;
+        const defaultValue = new DefaultValue(null, def.description);
         if ('items' in def && typeof def.items === 'object') {
             const items = Object.assign({}, def.items);
             delete items.oneOf;
             value = this.getDefaultValue(items);
         }
         if ('oneOf' in def.items && Array.isArray(def.items.oneOf)) {
-            value = def.items.oneOf.map(one => {
-                if (!value) {
+            defaultValue.value = def.items.oneOf.map(one => {
+                if (!(value instanceof DefaultValue)) {
                     return this.getDefaultValue(one);
                 }
-                return new DefaultValue(value.value, value.description)
-                    .merge(this.getDefaultValue(one));
+                return value.clone().merge(this.getDefaultValue(one));
             });
+        } else {
+            if (!Array.isArray(value)) {
+                value = [value];
+            }
+            defaultValue.value = value;
         }
-        if (!Array.isArray(value)) {
-            value = [value];
-        }
-        return new DefaultValue(value, def.description);
+        return defaultValue;
     }
 
     getObjectDefaultValue(def) {
-        let value = {};
+        const value = {};
         if ('properties' in def && typeof def.properties === 'object') {
-            for (let property in def.properties) {
+            for (const property in def.properties) {
                 value[property] = this.getDefaultValue(def.properties[property]);
             }
         }
+        const defaultValue = new DefaultValue(value, def.description);
         if ('oneOf' in def && Array.isArray(def.oneOf) && def.oneOf.length) {
-            value = deepmerge(value, this.getDefaultValue(def.oneOf[0]));
+            return defaultValue.merge(this.getDefaultValue(def.oneOf[0]));
         }
-        return new DefaultValue(value, def.description);
+        return defaultValue;
     }
 
     getTypedDefaultValue(def) {
@@ -96,9 +170,13 @@ class Schema {
         } else if (type === 'object') {
             defaultValue = this.getObjectDefaultValue(def);
         } else if (type in PRIMITIVE_DEFAULTS) {
-            defaultValue = new DefaultValue(PRIMITIVE_DEFAULTS[type], def.description);
+            if ('nullable' in def && def.nullable) {
+                defaultValue = new DefaultValue(null, def.description);
+            } else {
+                defaultValue = new DefaultValue(PRIMITIVE_DEFAULTS[type], def.description);
+            }
         } else {
-            throw new Error(`Cannot get default value for type ${type}`)
+            throw new Error(`Cannot get default value for type ${type}`);
         }
         // referred default value always get overwritten by its parent default value
         if ('$ref' in def && def.$ref) {
@@ -120,10 +198,10 @@ class Schema {
             def = this.def;
         }
         if ('const' in def) {
-            return new DefaultValue(def['const'], def.description);
+            return new DefaultValue(def.const, def.description);
         }
         if ('default' in def) {
-            return new DefaultValue(def['default'], def.description);
+            return new DefaultValue(def.default, def.description);
         }
         if ('examples' in def && Array.isArray(def.examples) && def.examples.length) {
             return new DefaultValue(def.examples[0], def.description);
@@ -141,7 +219,7 @@ class Schema {
 class SchemaLoader {
     constructor() {
         this.schemas = {};
-        this.ajv = new Ajv();
+        this.ajv = new Ajv({ nullable: true });
     }
 
     getSchema($id) {
@@ -153,11 +231,11 @@ class SchemaLoader {
             throw new Error('The schema definition does not have an $id field');
         }
         this.ajv.addSchema(def);
-        this.schemas[def['$id']] = new Schema(this, def);
+        this.schemas[def.$id] = new Schema(this, def);
     }
 
     removeSchema($id) {
-        this.ajv.removeSchema(def);
+        this.ajv.removeSchema($id);
         delete this.schemas[$id];
     }
 
@@ -204,7 +282,7 @@ SchemaLoader.load = (rootSchemaDef, resolveDirs = []) => {
             } catch (e) {
                 continue;
             }
-            if (typeof def !== 'object' || def['$id'] !== $ref) {
+            if (typeof def !== 'object' || def.$id !== $ref) {
                 continue;
             }
             loader.addSchema(def);
@@ -217,6 +295,10 @@ SchemaLoader.load = (rootSchemaDef, resolveDirs = []) => {
 
     traverseObj(rootSchemaDef, '$ref', handler);
     return loader;
-}
+};
 
-module.exports = SchemaLoader;
+module.exports = {
+    Schema,
+    SchemaLoader,
+    DefaultValue
+};

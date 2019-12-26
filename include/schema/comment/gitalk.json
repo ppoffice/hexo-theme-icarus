@@ -34,35 +34,42 @@
         "per_page": {
             "type": "number",
             "description": "Pagination size, with maximum 100",
-            "default": 10
+            "default": 10,
+            "nullable": true
         },
         "distraction_free_mode": {
             "type": "boolean",
             "description": "Facebook-like distraction free mode",
-            "default": false
+            "default": false,
+            "nullable": true
         },
         "pager_direction": {
             "type": "string",
             "description": "Comment sorting direction, available values are `last` and `first`",
-            "default": "last"
+            "default": "last",
+            "nullable": true
         },
         "create_issue_manually": {
             "type": "boolean",
             "description": "Create GitHub issues manually for each page",
-            "default": false
+            "default": false,
+            "nullable": true
         },
         "proxy": {
             "type": "string",
-            "description": "GitHub oauth request reverse proxy for CORS"
+            "description": "GitHub oauth request reverse proxy for CORS",
+            "nullable": true
         },
         "flip_move_options": {
             "type": "object",
-            "description": "Comment list animation"
+            "description": "Comment list animation",
+            "nullable": true
         },
         "enable_hotkey": {
             "type": "boolean",
             "description": "Enable hot key (cmd|ctrl + enter) submit comment",
-            "default": true
+            "default": true,
+            "nullable": true
         }
     },
     "required": [

@@ -23,6 +23,6 @@
     "required": [
         "type",
         "business",
-        "currencyCode"
+        "currency_code"
     ]
 }
