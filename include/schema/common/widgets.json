@@ -36,6 +36,9 @@
             },
             {
                 "$ref": "/widget/subscribe_email.json"
+            },
+            {
+                "$ref": "/widget/adsense.json"
             }
         ],
         "required": [

@@ -19,6 +19,9 @@ widget:
     links: '链接'
     tag_cloud: '标签云'
     catalogue: '目录'
+    subscribe_email: '订阅更新'
+    subscribe: '订阅'
+    adsense: '广告'
 article:
     more: '阅读更多'
     comments: '评论'

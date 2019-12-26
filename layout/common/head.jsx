@@ -73,6 +73,11 @@ module.exports = class extends Component {
             images = [url_for('/img/og_image.png')];
         }
 
+        let adsenseClientId = null;
+        if (Array.isArray(config.widgets)) {
+            adsenseClientId = config.widgets.find(widget => widget.type === 'adsense').client_id;
+        }
+
         return <head>
             <meta charset="utf-8" />
             {meta_generator ? <meta name="generator" content={`Hexo ${env.version}`} /> : null}
@@ -109,6 +114,9 @@ module.exports = class extends Component {
             {hlTheme ? <link rel="stylesheet" href={cdn('highlight.js', '9.12.0', 'styles/' + hlTheme + '.css')} /> : null}
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />
             <link rel="stylesheet" href={url_for('/css/style.css')} />
+
+            {adsenseClientId ? <script data-ad-client={adsenseClientId}
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async={true}></script> : null}
         </head>;
     }
 };
