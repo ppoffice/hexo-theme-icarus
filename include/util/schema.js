@@ -157,7 +157,8 @@ class Schema {
         }
         const defaultValue = new DefaultValue(value, def.description);
         if ('oneOf' in def && Array.isArray(def.oneOf) && def.oneOf.length) {
-            return defaultValue.merge(this.getDefaultValue(def.oneOf[0]));
+            defaultValue.merge(this.getDefaultValue(def.oneOf[0]));
+            defaultValue.description = def.description;
         }
         return defaultValue;
     }

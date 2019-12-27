@@ -25,7 +25,7 @@ class Gitalk extends Component {
         if (!id || !repo || !owner || !admin || !clientId || !clientSecret) {
             return <div class="notification is-danger">
                 You forgot to set the <code>owner</code>, <code>admin</code>, <code>repo</code>,
-                <code>clientId</code>, or <code>clientSecret</code> for Gittalk.
+                <code>client_id</code>, or <code>client_secret</code> for Gitalk.
                 Please set it in <code>_config.yml</code>.
             </div>;
         }

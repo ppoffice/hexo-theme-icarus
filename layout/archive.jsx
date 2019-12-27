@@ -19,7 +19,7 @@ module.exports = class extends Component {
                         {posts.map(post => {
                             const categories = [];
                             post.categories.forEach((category, i) => {
-                                categories.push(<a class="has-link-grey" href={category.url}>{category.name}</a>);
+                                categories.push(<a class="has-link-grey" href={url_for(category.path)}>{category.name}</a>);
                                 if (i < post.categories.length - 1) {
                                     categories.push(' / ');
                                 }

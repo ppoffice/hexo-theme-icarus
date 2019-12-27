@@ -18,7 +18,7 @@
         },
         "iconcdn": {
             "type": "string",
-            "description": "Name or URL of the webfont Icon CDN provider",
+            "description": "Name or URL of the fontawesome icon font CDN provider",
             "default": "fontawesome",
             "nullable": true
         }

@@ -121,6 +121,7 @@ require('../include/generator/insight')(hexo);
 require('../include/filter/locals')(hexo);
 require('../include/helper/cdn')(hexo);
 require('../include/helper/page')(hexo);
+require('../include/helper/thumbnail')(hexo);
 
 /**
  * Remove Hexo filters that could cause OOM

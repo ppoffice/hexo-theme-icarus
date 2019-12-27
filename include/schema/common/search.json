@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "/common/search.json",
-    "description": "Search plugin configurations",
+    "description": "Search plugin configurations\nhttps://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/",
     "type": "object",
     "oneOf": [
         {

@@ -34,7 +34,7 @@ class DisqusJs extends Component {
             api: '${api}',
             admin: '${admin}',
             adminLabel: '${adminLabel}',
-            nesting: ${nesting}%>
+            nesting: ${nesting}
         });`;
         return <Fragment>
             <link rel="stylesheet" href={cssUrl} />

@@ -6,86 +6,94 @@
  *     <%- fontcdn(fontName) %>
  *     <%- iconcdn() %>
  */
-const cdn_providers = {
-    cdnjs: 'https://cdnjs.cloudflare.com/ajax/libs/${ package }/${ version }/${ filename }',
-    jsdelivr: 'https://cdn.jsdelivr.net/npm/${ package }@${ version }/${ filename }',
-    unpkg: 'https://unpkg.com/${ package }@${ version }/${ filename }'
+
+const PROVIDERS = {
+    LIBRARY: {
+        cdnjs: '[cdnjs]https://cdnjs.cloudflare.com/ajax/libs/${ package }/${ version }/${ filename }',
+        loli: '[cdnjs]https://cdnjs.loli.net/ajax/libs/${ package }/${ version }/${ filename }',
+        jsdelivr: 'https://cdn.jsdelivr.net/npm/${ package }@${ version }/${ filename }',
+        unpkg: 'https://unpkg.com/${ package }@${ version }/${ filename }'
+    },
+    FONT: {
+        google: 'https://fonts.googleapis.com/${ type }?family=${ fontname }',
+        loli: 'https://fonts.loli.net/${ type }?family=${ fontname }'
+    },
+    ICON: {
+        fontawesome: 'https://use.fontawesome.com/releases/v5.12.0/css/all.css'
+    }
 };
 
-const font_providers = {
-    google: 'https://fonts.googleapis.com/${ type }?family=${ fontname }'
-};
-
-const icon_providers = {
-    fontawesome: 'https://use.fontawesome.com/releases/v5.4.1/css/all.css'
+/**
+ * Convert npm library path to CDN.js path
+ */
+const CDNJS_FIXTURES = {
+    'moment': (ver, fname) => [
+        'moment.js', ver, fname.startsWith('min/') ? fname.substr(4) : fname
+    ],
+    'outdatedbrowser': (ver, fname) => [
+        'outdated-browser', ver, fname.startsWith('outdatedbrowser/') ? fname.substr(16) : fname
+    ],
+    'highlight.js': (ver, fname) => [
+        'highlight.js', ver, fname.endsWith('.css') && fname.indexOf('.min.') === -1
+            ? fname.substr(0, fname.length - 4) + '.min.css' : fname
+    ],
+    'mathjax': (ver, fname) => [
+        'mathjax', ver, fname.startsWith('unpacked/') ? fname.substr(9) : fname
+    ],
+    'katex': (ver, fname) => [
+        'KaTeX', ver, fname
+    ],
+    'pace-js': (ver, fname) => [
+        'pace', ver, fname
+    ],
+    'clipboard': (ver, fname) => [
+        'clipboard.js', ver, fname
+    ],
+    // disqusjs is not hosted on CDN.js
+    'disqusjs': (ver, fname) => []
 };
 
 module.exports = function(hexo) {
     hexo.extend.helper.register('cdn', function(_package, version, filename) {
-        let provider = this.config.provider && 'cdn' in this.config.provider ? this.config.provider.cdn : 'jsdelivr';
-
+        let { cdn = 'jsdelivr' } = typeof this.config.providers === 'object' ? this.config.providers : {};
+        if (cdn in PROVIDERS.LIBRARY) {
+            cdn = PROVIDERS.LIBRARY[cdn];
+        }
         // cdn.js does not follow a GitHub npm style like jsdeliver and unpkg do. Patch it!
-        if (provider === 'cdnjs' || provider.startsWith('[cdnjs]')) {
-            if (provider.startsWith('[cdnjs]')) {
-                provider = provider.substr(7);
+        if (cdn === 'cdnjs' || cdn.startsWith('[cdnjs]')) {
+            if (cdn.startsWith('[cdnjs]')) {
+                cdn = cdn.substr(7);
             }
             if (filename.startsWith('dist/')) {
                 filename = filename.substr(5);
             }
-            if (_package === 'moment') {
-                _package = 'moment.js';
-                filename = filename.startsWith('min/') ? filename.substr(4) : filename;
-            }
-            if (_package === 'outdatedbrowser') {
-                _package = 'outdated-browser';
-                filename = filename.startsWith('outdatedbrowser/') ? filename.substr(16) : filename;
-            }
-            if (_package === 'highlight.js') {
-                filename = filename.endsWith('.css') && filename.indexOf('.min.') === -1
-                    ? filename.substr(0, filename.length - 4) + '.min.css' : filename;
-            }
-            if (_package === 'mathjax') {
-                filename = filename.startsWith('unpacked/') ? filename.substr(9) : filename;
-            }
-            if (_package === 'pace-js') {
-                _package = 'pace';
-            }
-            if (_package === 'clipboard') {
-                _package = 'clipboard.js';
-            }
-            if (_package === 'disqusjs') {
-                provider = 'jsdelivr';
-            }
-            if (_package === 'katex') {
-                _package = 'KaTeX.js';
+            if (Object.prototype.hasOwnProperty.call(CDNJS_FIXTURES, _package)) {
+                [_package, version, filename] = CDNJS_FIXTURES[_package](version, filename);
+                // package is not hosted on CDN.js
+                if (!_package) {
+                    cdn = 'jsdelivr';
+                }
             }
         }
-        if (provider !== null && provider in cdn_providers) {
-            provider = cdn_providers[provider];
-        }
-        return provider.replace(/\${\s*package\s*}/gi, _package)
+        return cdn.replace(/\${\s*package\s*}/gi, _package)
             .replace(/\${\s*version\s*}/gi, version)
             .replace(/\${\s*filename\s*}/gi, filename);
     });
 
     hexo.extend.helper.register('fontcdn', function(fontName, type = 'css') {
-        let provider = this.config.provider && 'fontcdn' in this.config.provider ? this.config.provider.fontcdn : 'google';
-        if (provider !== null && provider in font_providers) {
-            provider = font_providers[provider];
+        let { fontcdn = 'google' } = typeof this.config.providers === 'object' ? this.config.providers : {};
+        if (fontcdn in PROVIDERS.FONT) {
+            fontcdn = PROVIDERS.FONT[fontcdn];
         }
-        return provider.replace(/\${\s*fontname\s*}/gi, fontName)
+        return fontcdn.replace(/\${\s*fontname\s*}/gi, fontName)
             .replace(/\${\s*type\s*}/gi, type);
     });
 
-    hexo.extend.helper.register('iconcdn', function(provider = null) {
-        if (provider !== null && provider in icon_providers) {
-            provider = icon_providers[provider];
-        } else {
-            provider = this.config.provider && 'iconcdn' in this.config.provider ? this.config.provider.iconcdn : 'fontawesome';
-            if (provider !== null && provider in icon_providers) {
-                provider = icon_providers[provider];
-            }
+    hexo.extend.helper.register('iconcdn', function() {
+        let { iconfont = 'fontawesome' } = typeof this.config.providers === 'object' ? this.config.providers : {};
+        if (iconfont in PROVIDERS.ICON) {
+            iconfont = PROVIDERS.ICON[iconfont];
         }
-        return provider;
+        return iconfont;
     });
 };
