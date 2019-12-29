@@ -15,7 +15,7 @@ class Archives extends Component {
                     <h3 class="menu-label">{title}</h3>
                     <ul class="menu-list">
                         {items.map(archive => <li>
-                            <a class="level is-marginless" href={archive.url}>
+                            <a class="level is-mobile is-marginless" href={archive.url}>
                                 <span class="level-start">
                                     <span class="level-item">{archive.name}</span>
                                 </span>

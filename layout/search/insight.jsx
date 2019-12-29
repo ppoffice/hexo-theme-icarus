@@ -3,7 +3,7 @@ const { cacheComponent } = require('../util/cache');
 
 class Insight extends Component {
     render() {
-        const { hint, translation, url_for } = this.props;
+        const { hint, translation, contentUrl, jsUrl, cssUrl } = this.props;
 
         const js = `(function (window) {
             var INSIGHT_CONFIG = {
@@ -14,14 +14,13 @@ class Insight extends Component {
                     TAGS: '${translation.tags}',
                     UNTITLED: '${translation.untitled}',
                 },
-                CONTENT_URL: '${url_for('/content.json')}',
+                CONTENT_URL: '${contentUrl}',
             };
             window.INSIGHT_CONFIG = INSIGHT_CONFIG;
         })(window);`;
 
         return <Fragment>
-            <link rel="stylesheet" href={url_for('/css/search.css')} />
-            <link rel="stylesheet" href={url_for('/css/insight.css')} />
+            <link rel="stylesheet" href={cssUrl} />
             <div class="searchbox ins-search">
                 <div class="searchbox-container ins-search-container">
                     <div class="searchbox-input-wrapper">
@@ -34,7 +33,7 @@ class Insight extends Component {
                 </div>
             </div>
             <script dangerouslySetInnerHTML={{ __html: js }}></script>
-            <script src={url_for('/js/insight.js')} defer={true}></script>
+            <script src={jsUrl} defer={true}></script>
         </Fragment>;
     }
 }
@@ -51,6 +50,8 @@ module.exports = cacheComponent(Insight, 'search.insight', props => {
             tags: helper.__('insight.tags'),
             untitled: helper.__('insight.untitled')
         },
-        url_for: helper.url_for
+        contentUrl: helper.url_for('/content.json'),
+        jsUrl: helper.url_for('/js/insight.js'),
+        cssUrl: helper.url_for('/css/insight.css')
     };
 });

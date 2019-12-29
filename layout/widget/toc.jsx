@@ -85,7 +85,7 @@ class Toc extends Component {
         if ('id' in toc && 'index' in toc && 'text' in toc) {
             result = <li>
                 <a class="is-flex" href={'#' + toc.id}>
-                    <span class="has-mr-6">{toc.index}</span>
+                    <span class="mr-2">{toc.index}</span>
                     <span>{toc.text}</span>
                 </a>
                 {result}

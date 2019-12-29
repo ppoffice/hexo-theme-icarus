@@ -6,7 +6,7 @@ class AnimeJs extends Component {
         if (this.props.head) {
             return <style dangerouslySetInnerHTML={{ __html: 'body>.footer,body>.navbar,body>.section{opacity:0}' }}></style>;
         }
-        return <script src={this.props.url_for('/js/animation.js')}></script>;
+        return <script src={this.props.jsUrl}></script>;
 
     }
 }
@@ -15,6 +15,6 @@ module.exports = cacheComponent(AnimeJs, 'plugin.animejs', props => {
     const { helper, head } = props;
     return {
         head,
-        url_for: helper.url_for
+        jsUrl: helper.url_for('/js/animation.js')
     };
 });

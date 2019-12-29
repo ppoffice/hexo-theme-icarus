@@ -48,7 +48,7 @@ function getColumnVisibilityClass(columnCount, position) {
 }
 
 function getColumnOrderClass(position) {
-    return position === 'left' ? 'has-order-1' : 'has-order-3';
+    return position === 'left' ? 'order-1' : 'order-3';
 }
 
 function isColumnSticky(config, position) {

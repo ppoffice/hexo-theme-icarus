@@ -1,0 +1,545 @@
+bulma-stylus-root = "../../../../node_modules/bulma-stylus/stylus"
+
+/* ---------------------------------
+ *   Override Bulma CSS Framework
+ * --------------------------------- */
+$body-size ?= 14px
+$body-background-color ?= #f7f7f7
+
+$family-sans-serif ?= Ubuntu, Roboto, "Open Sans", "Microsoft YaHei", sans-serif
+$family-code ?= "Source Code Pro", monospace, "Microsoft YaHei"
+
+$primary ?= $blue
+$custom-colors ?= {
+    grey-lightest: {
+        '1': $grey-lightest
+        '2': $grey-darker
+    }
+}
+
+$gap ?= 64px
+$tablet ?= 769px
+$desktop ?= 1088px
+$widescreen ?= 1280px
+$fullhd ?= 1472px
+
+$shadow ?= 0 4px 10px rgba(0, 0, 0, 0.05)
+
+$control-height ?= 2.25em
+$button-padding-vertical ?= calc(0.375em - 1px)
+
+$card-radius ?= $radius
+$card-media-margin ?= 0.75rem
+$card-shadow ?= $shadow, 0 0 1px rgba(0,0,0,0.1)
+
+$content-heading-weight ?= $weight-normal
+
+$article-size ?= 1.1rem
+
+// FIXME: https://github.com/groenroos/bulma-stylus/issues/11
+@import bulma-stylus-root + "/utilities/initial-variables"
+@import bulma-stylus-root + "/utilities/functions"
+@import bulma-stylus-root + "/utilities/derived-variables"
+
+$colors = merge($colors, $custom-colors)
+
+@import bulma-stylus-root + "/utilities/animations"
+@import bulma-stylus-root + "/utilities/mixins"
+@import bulma-stylus-root + "/utilities/controls"
+@import bulma-stylus-root + "/base/_all"
+@import bulma-stylus-root + "/components/_all"
+@import bulma-stylus-root + "/elements/_all"
+@import bulma-stylus-root + "/form/_all"
+@import bulma-stylus-root + "/grid/_all"
+@import bulma-stylus-root + "/layout/_all"
+
+
+/* ---------------------------------
+ *          Custom Layout
+ * --------------------------------- */
++widescreen()
+    .is-1-column .container
+    .is-2-column .container
+        max-width: $desktop - 2 * $gap
+        width: $desktop - 2 * $gap
++fullhd()
+    .is-2-column .container
+        max-width: $widescreen - 2 * $gap
+        width: $widescreen - 2 * $gap
+    .is-1-column .container
+        max-width: $desktop - 2 * $gap
+        width: $desktop - 2 * $gap
++tablet()
+    .column-main,
+    .column-left,
+    .column-right,
+    .column-right-shadow
+        &.is-sticky
+            align-self: flex-start
+            position: -webkit-sticky
+            position: sticky
+            top: .75rem
+    .column-right-shadow
+        &.is-sticky
+            top: 1.5rem
++mobile()
+    .section
+        padding: 1.5rem 1rem
+
+.navbar-main
+    box-shadow: $shadow
+    .navbar-menu,
+    .navbar-start,
+    .navbar-end
+        align-items: stretch
+        display: flex
+        padding: 0
+        flex-shrink: 0
+    .navbar-menu
+        flex-grow: 1
+        flex-shrink: 0
+        overflow-x: auto
+    .navbar-start
+        justify-content: flex-start
+        margin-right: auto
+    .navbar-end
+        justify-content: flex-end
+        margin-left: auto
+    .navbar-item
+        display: flex
+        align-items: center
+        padding: 1.25rem 0.75rem
+        &.is-active
+            color: $primary
+            background-color: transparent
+    +until($navbar-breakpoint)
+        .navbar-menu
+            justify-content: center
+            box-shadow: none
+        .navbar-start
+            margin-right: 0
+        .navbar-end
+            margin-left: 0
+
+.card
+    border-radius: $card-radius
+    & + .card,
+    & + .column-right-shadow
+        margin-top: 1.5rem
+    &.card-transparent
+        box-shadow: none
+        background: transparent
+    .card-image
+        overflow: hidden
+        border-top-left-radius: $card-radius
+        border-top-right-radius: $card-radius
+    .media + .media
+        border: none
+        margin-top: 0
+
+.content
+    h1
+        font-size: 1.75em
+    h2
+        font-size: 1.5em
+    h3
+        font-size: 1.25em
+    h4
+        font-size: 1.125em
+    h5
+        font-size: 1em
+    pre
+        font-size: 0.85em
+    code
+        padding: 0
+        background: transparent
+    blockquote
+        footer
+            strong + cite
+                margin-left: 0.5em
+
+
+/* ---------------------------------
+ *         Font icon fixes
+ * --------------------------------- */
+.fa, .fab, .fal, .far, .fas
+    line-height: inherit
+
+
+/* ---------------------------------
+ *        Fix Gist Snippet
+ * --------------------------------- */
+.gist
+    table
+        tr:hover
+            background: transparent
+        td
+            border: none
+    .file
+        all: initial
+
+
+/* ---------------------------------
+ *        Fix code highlight
+ * --------------------------------- */
+figure.highlight
+    padding: 0
+    width: 100%
+    position: relative
+    margin: 1em 0 1em !important
+    &.folded
+        .highlight-body
+            height: 0
+
+    pre,
+    table tr:hover
+        color: inherit
+        background: transparent
+
+    table
+        width: auto
+
+        tr td
+            border: none
+        tr:not(:first-child) td
+            padding-top: 0
+        tr:not(:last-child) td
+            padding-bottom: 0
+
+    pre
+        padding: 0
+        overflow: visible
+
+        .line,
+        code .hljs
+            line-height: 1.5rem
+
+    figcaption,
+    .gutter
+        background: rgba(200, 200, 200, 0.15)
+
+    figcaption
+        padding: .3em .75em
+        text-align: left
+        font-style: normal
+        font-size: .8em
+        &:after
+            clear: both
+            content: " "
+            display: table
+
+        span
+            font-weight: 500
+            font-family: $family-code
+
+        .fold
+        a
+            color: #9a9a9a
+
+        a
+            float: right
+            margin-left: 0.5em
+
+        .fold
+            margin-right: 0.5em
+            cursor: pointer
+
+    .highlight-body
+        overflow: auto
+
+    .gutter
+        text-align: right
+
+    .tag,
+    .title,
+    .number,
+    .section
+        display: inherit
+        font: inherit
+        margin: inherit
+        padding: inherit
+        background: inherit
+        height: inherit
+        text-align: inherit
+        vertical-align: inherit
+        min-width: inherit
+        border-radius: inherit
+
+
+/* ---------------------------------
+ *  Custom Element/Component styles
+ * --------------------------------- */
+article
+    &.media
+        .media-content
+            color: $grey
+            .title
+                line-height: inherit
+                color: $black-ter
+    &.article
+        .article-meta,
+        .article-tags
+            color: $grey
+        .article-meta
+            overflow-x: auto
+            margin-bottom: 0.5rem
+        .article-more
+            @extend .button.is-light
+        .content
+            font-size: $article-size
+            blockquote.pullquote
+                float: right
+                max-width: 50%
+                font-size: 1.15rem
+                position: relative
+            a
+                word-wrap: break-word
+
+footer.footer
+    background: $white
+    .level-start
+        +mobile()
+            text-align: center
+    .level-end
+        .field
+            flex-wrap: wrap
+            align-items: center
+            +mobile()
+                justify-content: center
+                margin-top: 1rem
+            .button
+                background: transparent
+
+.navbar-logo,
+.footer-logo
+    img
+        max-height: 1.75rem
+
+.thumbnail
+    object-fit: cover
+    width: 100% !important
+    height: 100% !important
+
+.pagination
+    .pagination-previous,
+    .pagination-next
+        a
+            color: $black-ter
+    .pagination-link,
+    .pagination-previous,
+    .pagination-next
+        border: none
+        background: $white
+        box-shadow: $shadow
+    .pagination-link.is-current
+        background: $primary
+
+.post-navigation
+    color: $grey
+    flex-wrap: wrap
+    justify-content: space-around
+    .level-item
+        margin-bottom: 0
+
+.searchbox
+    display: none
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 100
+    background: rgba(0, 0, 0, 0.7)
+    &.show
+        display: block
+    &,
+    .searchbox-container
+        position: fixed
+    .searchbox-container
+        overflow: hidden
+    .searchbox-selectable 
+        cursor: pointer
+    .searchbox-input-wrapper
+        position: relative
+        .searchbox-input
+            width: 100%
+            border: none
+            outline: none
+            font-size: 16px
+            box-shadow: none
+            font-weight: 200
+            border-radius: 0
+            background: #fff
+            line-height: 20px
+            box-sizing: border-box
+            padding: 12px 28px 12px 20px
+            border-bottom: 1px solid #e2e2e2
+        .searchbox-close
+            top: 50%
+            right: 6px
+            width: 20px
+            height: 20px
+            line-height: 20px
+            font-size: 16px
+            margin-top: -11px
+            position: absolute
+            text-align: center
+            display: inline-block
+            &:hover
+                color: $primary
+    .searchbox-result-wrapper 
+        left: 0
+        right: 0
+        top: 45px
+        bottom: 0
+        overflow-y: auto
+        position: absolute
+    .searchbox-container
+        left: 50%
+        top: 100px
+        width: 540px
+        z-index: 101
+        bottom: 100px
+        margin-left: -270px
+        box-sizing: border-box
+@media screen and (max-width: 559px), screen and (max-height: 479px)
+    .searchbox .searchbox-container
+        top: 0
+        left: 0
+        margin: 0
+        width: 100%
+        height: 100%
+        background: #f7f7f7
+
+.timeline
+    margin-left: 1rem
+    padding-left: 1.5rem
+    padding-top: 1rem
+    border-left: 1px solid hsl(0, 0%, 86%)
+    .media
+        position: relative
+        &:before,
+        &:last-child:after
+            content: ''
+            display: block
+            position: absolute
+            left: calc(-5px - 1.5rem)
+        &:before
+            width: 9px
+            height: 9px
+            top: 1.3rem
+            background: hsl(0, 0%, 86%)
+            border-radius: 50%
+        &:first-child:before
+            top: 0.3rem
+        &:last-child:after
+            top: calc(1.3rem + 9px)
+            width: 9px
+            bottom: 0
+            background: white
+        &:first-child:last-child:after
+            top: calc(0.3rem + 9px)
+
+.rtl
+     direction: rtl
+     .level
+        &, &.is-mobile
+            .level-item:not(:last-child)
+                margin-left: 0.75rem
+                margin-right: 0
+
+.donate
+    position: relative
+    .qrcode
+        display: none
+        position: absolute
+        z-index: 99
+        bottom: 2.5em
+        line-height: 0
+        overflow: hidden
+        border-radius: 4px
+        box-shadow: 0 4px 10px rgba(0,0,0,.1), 0 0 1px rgba(0,0,0,.2)
+        img
+            max-width: 280px
+    &:hover
+        .qrcode
+            display: block
+    &:first-child:not(:last-child)
+        .qrcode
+            left: -0.75rem
+    &:last-child:not(:first-child)
+        .qrcode
+            right: -0.75rem
+
++mobile()
+    #toc
+        display: none
+        position: fixed
+        margin: 1rem
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: 100
+        max-height: calc(100vh - 2rem)
+        overflow-y: auto
+    #toc-mask
+        display: none
+        position: fixed
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: 99
+        background: rgba(0, 0, 0, 0.7)
+    #toc,
+    #toc-mask
+        &.is-active
+            display: block
+
+#back-to-top
+    position: fixed
+    padding: 8px 0
+    transition: 0.4s ease opacity, 0.4s ease width, 0.4s ease transform, 0.4s ease border-radius
+    opacity: 0
+    line-height: 24px
+    outline: none
+    transform: translateY(120px)
+    .fade-in
+        opacity: 1
+    .rise-up
+        transform: translateY(0)
+
+.pace
+    user-select: none
+    pointer-events: none
+    .pace-progress
+        top: 0
+        right: 100%
+        width: 100%
+        height: 2px
+        z-index: 2000
+        position: fixed
+        background: $primary
+  
+.pace-inactive
+    display: none
+
+// Overflow table
+.table-overflow
+    overflow-x: auto
+    table
+        width: auto!important
+        th
+            word-break: keep-all
+
+// Video container
+.video-container
+    position: relative
+    padding-bottom: 56.25%
+    padding-top: 25px
+    height: 0
+    iframe
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%

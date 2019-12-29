@@ -4,7 +4,7 @@ const { cacheComponent } = require('../util/cache');
 class Categories extends Component {
     renderList(categories, showCount) {
         return categories.map(category => <li>
-            <a class="level is-marginless" href={category.url}>
+            <a class="level is-mobile is-marginless" href={category.url}>
                 <span class="level-start">
                     <span class="level-item">{category.name}</span>
                 </span>
@@ -12,7 +12,7 @@ class Categories extends Component {
                     <span class="level-item tag">{category.count}</span>
                 </span> : null}
             </a>
-            {category.children.length ? <ul>{this.renderList(category.children, showCount)}</ul> : null}
+            {category.children.length ? <ul class="mr-0">{this.renderList(category.children, showCount)}</ul> : null}
         </li>);
     }
 

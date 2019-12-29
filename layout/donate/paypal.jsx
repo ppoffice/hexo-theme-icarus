@@ -32,7 +32,6 @@ module.exports = cacheComponent(Paypal, 'donate.paypal', props => {
     return {
         business: donate.business,
         currencyCode: donate.currency_code,
-        title: helper.__('donate.' + donate.type),
-        url_for: helper.url_for
+        title: helper.__('donate.' + donate.type)
     };
 });

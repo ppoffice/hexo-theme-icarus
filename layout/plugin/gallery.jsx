@@ -3,7 +3,7 @@ const { cacheComponent } = require('../util/cache');
 
 class Gallery extends Component {
     render() {
-        const { head, lightGallery, justifiedGallery, url_for } = this.props;
+        const { head, jsUrl, lightGallery, justifiedGallery } = this.props;
         if (head) {
             return <Fragment>
                 <link rel="stylesheet" href={lightGallery.cssUrl} />
@@ -13,7 +13,7 @@ class Gallery extends Component {
         return <Fragment>
             <script src={lightGallery.jsUrl} defer={true}></script>
             <script src={justifiedGallery.jsUrl} defer={true}></script>
-            <script src={url_for('/js/gallery.js')} defer={true}></script>
+            <script src={jsUrl} defer={true}></script>
         </Fragment>;
 
     }
@@ -23,7 +23,7 @@ module.exports = cacheComponent(Gallery, 'plugin.gallery', props => {
     const { head, helper } = props;
     return {
         head,
-        url_for: helper.url_for,
+        jsUrl: helper.url_for('/js/gallery.js'),
         lightGallery: {
             jsUrl: helper.cdn('lightgallery', '1.6.8', 'dist/js/lightgallery.min.js'),
             cssUrl: helper.cdn('lightgallery', '1.6.8', 'dist/css/lightgallery.min.css')

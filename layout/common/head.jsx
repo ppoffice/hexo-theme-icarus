@@ -136,7 +136,6 @@ module.exports = class extends Component {
             {canonical_url ? <link rel="canonical" href={canonical_url} /> : null}
             {rss ? <link rel="alternative" href={url_for(rss)} title={config.title} type="application/atom+xml" /> : null}
             {favicon ? <link rel="icon" href={url_for(favicon)} /> : null}
-            <link rel="stylesheet" href={cdn('bulma', '0.7.2', 'css/bulma.css')} />
             <link rel="stylesheet" href={iconcdn()} />
             <link rel="stylesheet" href={fontcdn('Ubuntu:400,600|Source+Code+Pro')} />
             {hlTheme ? <link rel="stylesheet" href={cdn('highlight.js', '9.12.0', 'styles/' + hlTheme + '.css')} /> : null}

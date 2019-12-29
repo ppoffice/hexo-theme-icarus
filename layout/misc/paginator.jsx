@@ -38,18 +38,16 @@ module.exports = class extends Component {
             return elements;
         }
 
-        return <div class="card card-transparent">
-            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-                <div class={`pagination-previous${current > 1 ? '' : ' is-invisible is-hidden-mobile'}`}>
-                    <a class="is-flex-grow has-text-black-ter" href={getPageUrl(current - 1)}>{prevTitle}</a>
-                </div>
-                <div class={`pagination-next${current < total ? '' : ' is-invisible is-hidden-mobile'}`}>
-                    <a class="is-flex-grow has-text-black-ter" href={getPageUrl(current + 1)}>{nextTitle}</a>
-                </div>
-                <ul class="pagination-list is-hidden-mobile">
-                    {pagination(current, total)}
-                </ul>
-            </nav>
-        </div>;
+        return <nav class="pagination is-centered mt-4" role="navigation" aria-label="pagination">
+            <div class={`pagination-previous${current > 1 ? '' : ' is-invisible is-hidden-mobile'}`}>
+                <a href={getPageUrl(current - 1)}>{prevTitle}</a>
+            </div>
+            <div class={`pagination-next${current < total ? '' : ' is-invisible is-hidden-mobile'}`}>
+                <a href={getPageUrl(current + 1)}>{nextTitle}</a>
+            </div>
+            <ul class="pagination-list is-hidden-mobile">
+                {pagination(current, total)}
+            </ul>
+        </nav>;
     }
 };

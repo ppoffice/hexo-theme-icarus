@@ -1,6 +1,8 @@
 /* eslint-disable node/no-unsupported-features/node-builtins */
 (function($, moment, ClipboardJS, config) {
-    $('.columns .column-right-shadow').append($('.columns .column-right').children().clone());
+    if (!$('.columns .column-right-shadow').children().length) {
+        $('.columns .column-right-shadow').append($('.columns .column-right').children().clone());
+    }
 
     $('.article img:not(".not-gallery-item")').each(function() {
         // wrap images with link and add caption if possible
@@ -27,9 +29,9 @@
     function adjustNavbar() {
         const navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
         if ($(document).outerWidth() < navbarWidth) {
-            $('.navbar-main .navbar-menu').addClass('is-flex-start');
+            $('.navbar-main .navbar-menu').addClass('justify-content-start');
         } else {
-            $('.navbar-main .navbar-menu').removeClass('is-flex-start');
+            $('.navbar-main .navbar-menu').removeClass('justify-content-start');
         }
     }
     adjustNavbar();

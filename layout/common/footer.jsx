@@ -18,13 +18,13 @@ class Footer extends Component {
         return <footer class="footer">
             <div class="container">
                 <div class="level">
-                    <div class="level-start has-text-centered-mobile">
-                        <a class="footer-logo is-block has-mb-6" href={siteUrl}>
+                    <div class="level-start">
+                        <a class="footer-logo is-block mb-2" href={siteUrl}>
                             {logo && logo.text ? logo.text : <img src={logoUrl} alt={siteTitle} height="28" />}
                         </a>
-                        <p class="is-size-7">
+                        <p class="size-small">
                             <span dangerouslySetInnerHTML={{ __html: `&copy; ${siteYear} ${author || siteTitle}` }}></span>
-                            &nbsp;&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &
+                            &nbsp;&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>&nbsp;&&nbsp;
                             <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                             {showVisitorCounter ? <br /> : null}
                             {showVisitorCounter ? <span id="busuanzi_container_site_uv"
@@ -32,7 +32,7 @@ class Footer extends Component {
                         </p>
                     </div>
                     <div class="level-end">
-                        {Object.keys(links).length ? <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                        {Object.keys(links).length ? <div class="field has-addons">
                             {Object.keys(links).map(name => {
                                 const link = links[name];
                                 return <p class="control">

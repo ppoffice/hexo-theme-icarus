@@ -17,7 +17,7 @@ class Tags extends Component {
                         {tags.map(tag => <div class="control">
                             <a class="tags has-addons" href={tag.url}>
                                 <span class="tag">{tag.name}</span>
-                                {showCount ? <span class="tag is-grey">{tag.count}</span> : null}
+                                {showCount ? <span class="tag is-grey-lightest">{tag.count}</span> : null}
                             </a>
                         </div>)}
                     </div>

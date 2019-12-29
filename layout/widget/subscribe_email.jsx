@@ -14,14 +14,14 @@ class SubscribeEmail extends Component {
                         <input type="hidden" value={feedburnerId} name="uri" />
                         <input type="hidden" name="loc" value="en_US" />
                         <div class="field has-addons">
-                            <div class="control has-icons-left">
+                            <div class="control has-icons-left is-expanded">
                                 <input class="input" name="email" type="email" placeholder="Email" />
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-envelope"></i>
                                 </span>
                             </div>
                             <div class="control">
-                                <input class="button is-link" type="submit" value={buttonTitle} />
+                                <input class="button is-primary" type="submit" value={buttonTitle} />
                             </div>
                             {description ? <p class="help">{description}</p> : null}
                         </div>

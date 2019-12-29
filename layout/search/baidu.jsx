@@ -3,7 +3,7 @@ const { cacheComponent } = require('../util/cache');
 
 class Baidu extends Component {
     render() {
-        const { url, hint, url_for } = this.props;
+        const { url, hint } = this.props;
 
         const js = `(function ($) {
             $('.search-form').on('submit', function (e) {
@@ -23,7 +23,6 @@ class Baidu extends Component {
         })(document, jQuery);`;
 
         return <Fragment>
-            <link rel="stylesheet" href={url_for('/css/search.css')} />
             <div class="searchbox">
                 <div class="searchbox-container">
                     <div class="searchbox-input-wrapper">
@@ -44,7 +43,6 @@ module.exports = cacheComponent(Baidu, 'search.baidu', props => {
 
     return {
         url: config.url,
-        hint: helper.__('search.hint'),
-        url_for: helper.url_for
+        hint: helper.__('search.hint')
     };
 });

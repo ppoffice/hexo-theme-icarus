@@ -3,7 +3,7 @@ const { cacheComponent } = require('../util/cache');
 
 class Alipay extends Component {
     render() {
-        const { title, qrcode, url_for } = this.props;
+        const { title, qrcode } = this.props;
         if (!qrcode) {
             return <div class="notification is-danger">
                 You forgot to set the <code>qrcode</code> for Alipay.
@@ -15,7 +15,7 @@ class Alipay extends Component {
                 <i class="fab fa-alipay"></i>
             </span>
             <span>{title}</span>
-            <span class="qrcode"><img src={url_for(qrcode)} alt={title} /></span>
+            <span class="qrcode"><img src={qrcode} alt={title} /></span>
         </a>;
     }
 }
@@ -24,8 +24,7 @@ module.exports = cacheComponent(Alipay, 'donate.alipay', props => {
     const { donate, helper } = props;
 
     return {
-        qrcode: donate.qrcode,
         title: helper.__('donate.' + donate.type),
-        url_for: helper.url_for
+        qrcode: helper.url_for(donate.qrcode)
     };
 });

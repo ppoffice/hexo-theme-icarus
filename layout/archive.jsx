@@ -1,6 +1,7 @@
 const moment = require('moment');
 const { Component, Fragment } = require('inferno');
 const Paginator = require('./misc/paginator');
+const ArticleMedia = require('./common/article-media');
 
 module.exports = class extends Component {
     render() {
@@ -12,34 +13,22 @@ module.exports = class extends Component {
         function renderArticleList(posts, year, month = null) {
             const time = moment([page.year, page.month ? page.month - 1 : null].filter(i => i !== null));
 
-            return <div class="card widget">
+            return <div class="card">
                 <div class="card-content">
-                    <h3 class="tag is-link">{month === null ? year : time.locale(language).format('MMMM YYYY')}</h3>
+                    <h3 class="tag is-primary">{month === null ? year : time.locale(language).format('MMMM YYYY')}</h3>
                     <div class="timeline">
                         {posts.map(post => {
-                            const categories = [];
-                            post.categories.forEach((category, i) => {
-                                categories.push(<a class="has-link-grey" href={url_for(category.path)}>{category.name}</a>);
-                                if (i < post.categories.length - 1) {
-                                    categories.push(' / ');
-                                }
-                            });
-                            return <article class="media">
-                                {has_thumbnail(post) ? <a href={url_for(post.link || post.path)} class="media-left">
-                                    <p class="image is-64x64">
-                                        <img class="thumbnail" src={get_thumbnail(post)} alt={post.title || get_thumbnail(post)} />
-                                    </p>
-                                </a> : null}
-                                <div class="media-content">
-                                    <div class="content">
-                                        <time class="has-text-grey is-size-7 is-block is-uppercase"
-                                            dateTime={date_xml(post.date)}>{date(post.date)}</time>
-                                        <a class="title has-link-black-ter is-size-6 has-text-weight-normal"
-                                            href={url_for(post.link || post.path)} >{post.title}</a>
-                                        {categories.length ? <p class="is-size-7 is-uppercase">{categories}</p> : null}
-                                    </div>
-                                </div>
-                            </article>;
+                            const categories = post.categories.map(category => ({
+                                url: url_for(category.path),
+                                name: category.name
+                            }));
+                            return <ArticleMedia
+                                thumbnail={has_thumbnail(post) ? get_thumbnail(post) : null}
+                                url={url_for(post.link || post.path)}
+                                title={post.title}
+                                date={date(post.date)}
+                                dateXml={date_xml(post.date)}
+                                categories={categories} />;
                         })}
                     </div>
                 </div>

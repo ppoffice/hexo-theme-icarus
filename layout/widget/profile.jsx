@@ -34,13 +34,13 @@ class Profile extends Component {
                 <nav class="level">
                     <div class="level-item has-text-centered" style="flex-shrink: 1">
                         <div>
-                            <figure class="image is-128x128 has-mb-6">
+                            <figure class="image is-128x128 mx-auto mb-2">
                                 <img class={avatarRounded ? 'is-rounded' : ''} src={avatar} alt={author} />
                             </figure>
                             {author ? <p class="is-size-4 is-block">{author}</p> : null}
                             {authorTitle ? <p class="is-size-6 is-block">{authorTitle}</p> : null}
-                            {location ? <p class="is-size-6 is-flex is-flex-center has-text-grey">
-                                <i class="fas fa-map-marker-alt has-mr-7"></i>
+                            {location ? <p class="is-size-6 is-flex justify-content-center has-text-grey">
+                                <i class="fas fa-map-marker-alt mr-1"></i>
                                 <span>{location}</span>
                             </p> : null}
                         </div>
@@ -73,7 +73,7 @@ class Profile extends Component {
                     </div>
                 </nav>
                 {followLink ? <div class="level">
-                    <a class="level-item button is-link is-rounded" href={followLink} target="_blank" rel="noopener">{followTitle}</a>
+                    <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener">{followTitle}</a>
                 </div> : null}
                 {this.renderSocialLinks(socialLinks)}
             </div>

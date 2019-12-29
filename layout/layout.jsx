@@ -23,7 +23,7 @@ module.exports = class extends Component {
                         <div class="columns">
                             <div class={classname({
                                 column: true,
-                                'has-order-2': true,
+                                'order-2': true,
                                 'column-main': true,
                                 'is-12': columnCount === 1,
                                 'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,

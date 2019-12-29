@@ -3,14 +3,14 @@ const { cacheComponent } = require('../util/cache');
 
 class BuyMeACoffee extends Component {
     render() {
-        const { title, url, url_for } = this.props;
+        const { title, url } = this.props;
         if (!url) {
             return <div class="notification is-danger">
                 You forgot to set the <code>url</code> for &quot;Buy me a coffee&quot;.
                 Please set it in <code>_config.yml</code>.
             </div>;
         }
-        return <a class="button donate" href={url_for(url)} style={{
+        return <a class="button donate" href={url} style={{
             'background-color': 'rgba(255,128,62,.87)',
             'border-color': 'transparent',
             'color': 'white'
@@ -27,8 +27,7 @@ module.exports = cacheComponent(BuyMeACoffee, 'donate.buymeacoffee', props => {
     const { donate, helper } = props;
 
     return {
-        url: donate.url,
-        title: helper.__('donate.' + donate.type),
-        url_for: helper.url_for
+        url: helper.url_for(donate.url),
+        title: helper.__('donate.' + donate.type)
     };
 });
