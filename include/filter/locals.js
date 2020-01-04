@@ -48,10 +48,10 @@ module.exports = hexo => {
         if (page) {
             if ((page.layout !== 'page' || page.layout !== 'post') && ALTERNATIVE_CONFIG[page.layout]) {
                 // load alternative config if exists
-                locals.config = Object.assign({}, Object.getPrototypeOf(locals).config, ALTERNATIVE_CONFIG[page.layout]);
+                locals.config = Object.assign({}, Object.getPrototypeOf(locals).theme || locals.theme, ALTERNATIVE_CONFIG[page.layout]);
             } else {
                 // site config already merged into theme config in hexo/lib/hexo/index.js#Hexo.prototype._generateLocals()
-                locals.config = Object.assign({}, Object.getPrototypeOf(locals).theme);
+                locals.config = Object.assign({}, Object.getPrototypeOf(locals).theme || locals.theme);
             }
             // merge page configs
             if (page.__post === true) {

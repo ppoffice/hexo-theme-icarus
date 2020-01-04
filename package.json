@@ -26,7 +26,7 @@
     "ajv": "^6.10.2",
     "bulma-stylus": "0.8.0",
     "deepmerge": "^4.2.2",
-    "hexo": "^4.0.0",
+    "hexo": "^4.2.0",
     "hexo-log": "^1.0.0",
     "hexo-pagination": "^1.0.0",
     "hexo-renderer-inferno": "^0.1.1",
@@ -35,6 +35,7 @@
     "inferno": "^7.3.3",
     "inferno-create-element": "^7.3.3",
     "js-yaml": "^3.13.1",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "semver": ">=5.0.0"
   }
 }
