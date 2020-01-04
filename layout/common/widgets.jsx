@@ -18,16 +18,15 @@ function formatWidgets(widgets) {
     return result;
 }
 
+function hasColumn(widgets, position) {
+    if (Array.isArray(widgets)) {
+        return typeof widgets.find(widget => widget.position === position) !== 'undefined';
+    }
+    return false;
+}
+
 function getColumnCount(widgets) {
-    let count = 1;
-    const w = formatWidgets(widgets);
-    if ('left' in w && w.left.length) {
-        count++;
-    }
-    if ('right' in w && w.right.length) {
-        count++;
-    }
-    return count;
+    return [hasColumn(widgets, 'left'), hasColumn(widgets, 'right')].filter(v => !!v).length + 1;
 }
 
 function getColumnSizeClass(columnCount) {
@@ -88,7 +87,7 @@ class Widgets extends Component {
                 }
                 return null;
             })}
-            {position === 'left' ? <div class={classname({
+            {position === 'left' && hasColumn(config.widgets, 'right') ? <div class={classname({
                 'column-right-shadow': true,
                 'is-hidden-widescreen': true,
                 'is-sticky': isColumnSticky(config, 'right')
