@@ -27,12 +27,12 @@ module.exports = class extends Component {
             for (const i of range) {
                 if (l) {
                     if (i - l === 2) {
-                        elements.push(<li><a class="pagination-link has-text-black-ter" href={getPageUrl(l + 1)}>{l + 1}</a></li>);
+                        elements.push(<li><a class="pagination-link" href={getPageUrl(l + 1)}>{l + 1}</a></li>);
                     } else if (i - l !== 1) {
-                        elements.push(<li><span class="pagination-ellipsis has-text-black-ter" dangerouslySetInnerHTML={{ __html: '&hellip;' }}></span></li>);
+                        elements.push(<li><span class="pagination-ellipsis" dangerouslySetInnerHTML={{ __html: '&hellip;' }}></span></li>);
                     }
                 }
-                elements.push(<li><a class={`pagination-link${c === i ? ' is-current' : ' has-text-black-ter'}`} href={getPageUrl(i)}>{i}</a></li>);
+                elements.push(<li><a class={`pagination-link${c === i ? ' is-current' : ''}`} href={getPageUrl(i)}>{i}</a></li>);
                 l = i;
             }
             return elements;

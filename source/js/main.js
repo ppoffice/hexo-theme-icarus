@@ -9,7 +9,7 @@
         if ($(this).parent('a').length === 0) {
             $(this).wrap('<a class="gallery-item" href="' + $(this).attr('src') + '"></a>');
             if (this.alt) {
-                $(this).after('<div class="has-text-centered is-size-6 has-text-grey caption">' + this.alt + '</div>');
+                $(this).after('<p class="has-text-centered is-size-6 caption">' + this.alt + '</p>');
             }
         }
     });

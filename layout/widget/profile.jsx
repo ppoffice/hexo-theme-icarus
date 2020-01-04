@@ -9,7 +9,7 @@ class Profile extends Component {
         }
         return <div class="level is-mobile">
             {links.filter(link => typeof link === 'object').map(link => {
-                return <a class="level-item button is-white is-marginless"
+                return <a class="level-item button is-transparent is-marginless"
                     target="_blank" rel="noopener" title={link.name} href={link.url}>
                     {'icon' in link ? <i class={link.icon}></i> : link.name}
                 </a>;
@@ -32,14 +32,14 @@ class Profile extends Component {
         return <div class="card widget">
             <div class="card-content">
                 <nav class="level">
-                    <div class="level-item has-text-centered" style="flex-shrink: 1">
+                    <div class="level-item has-text-centered flex-shrink-1">
                         <div>
                             <figure class="image is-128x128 mx-auto mb-2">
                                 <img class={avatarRounded ? 'is-rounded' : ''} src={avatar} alt={author} />
                             </figure>
-                            {author ? <p class="is-size-4 is-block">{author}</p> : null}
+                            {author ? <p class="title is-size-4 is-block line-height-inherit">{author}</p> : null}
                             {authorTitle ? <p class="is-size-6 is-block">{authorTitle}</p> : null}
-                            {location ? <p class="is-size-6 is-flex justify-content-center has-text-grey">
+                            {location ? <p class="is-size-6 is-flex justify-content-center">
                                 <i class="fas fa-map-marker-alt mr-1"></i>
                                 <span>{location}</span>
                             </p> : null}
@@ -51,7 +51,7 @@ class Profile extends Component {
                         <div>
                             <p class="heading">{counter.post.title}</p>
                             <a href={counter.post.url}>
-                                <p class="title has-text-weight-normal">{counter.post.count}</p>
+                                <p class="title">{counter.post.count}</p>
                             </a>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ class Profile extends Component {
                         <div>
                             <p class="heading">{counter.category.title}</p>
                             <a href={counter.category.url}>
-                                <p class="title has-text-weight-normal">{counter.category.count}</p>
+                                <p class="title">{counter.category.count}</p>
                             </a>
                         </div>
                     </div>
@@ -67,7 +67,7 @@ class Profile extends Component {
                         <div>
                             <p class="heading">{counter.tag.title}</p>
                             <a href={counter.tag.url}>
-                                <p class="title has-text-weight-normal">{counter.tag.count}</p>
+                                <p class="title">{counter.tag.count}</p>
                             </a>
                         </div>
                     </div>

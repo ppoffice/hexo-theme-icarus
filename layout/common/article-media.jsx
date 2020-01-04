@@ -20,7 +20,7 @@ module.exports = class extends Component {
             </a> : null}
             <div class="media-content size-small">
                 <p><time dateTime={dateXml}>{date}</time></p>
-                <p><a href={url} class="title is-size-6 has-text-weight-normal link-muted">{title}</a></p>
+                <p class="title is-6"><a href={url} class="link-muted">{title}</a></p>
                 <p class="is-uppercase">{categoryTags.length ? categoryTags : null}</p>
             </div>
         </article>;

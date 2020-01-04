@@ -12,7 +12,7 @@ module.exports = class extends Component {
 
         return <div class="card">
             <div class="card-content">
-                <h3 class="title is-5 has-text-weight-normal">{__('article.comments')}</h3>
+                <h3 class="title is-5">{__('article.comments')}</h3>
                 {(() => {
                     try {
                         const Comment = require('../comment/' + comment.type);

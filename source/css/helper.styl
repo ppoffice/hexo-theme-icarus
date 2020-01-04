@@ -87,7 +87,7 @@ for n in (0..5)
  * --------------------------------- */
 for n in (0..5)
     .order-{n}
-        order: n
+        order: n !important
 
 
 .justify-content-start
@@ -95,6 +95,9 @@ for n in (0..5)
 
 .justify-content-center
     justify-content: center !important
+
+.flex-shrink-1
+    flex-shrink: 1 !important
 
 
 /* ---------------------------------
@@ -110,7 +113,10 @@ for n in (0..5)
  *           Font helpers
  * --------------------------------- */
 .size-small
-    font-size: .85rem
+    font-size: .85rem !important
+
+.line-height-inherit
+    line-height: inherit !important
 
 
 /* ---------------------------------

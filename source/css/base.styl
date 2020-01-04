@@ -25,6 +25,8 @@ $fullhd ?= 1472px
 
 $shadow ?= 0 4px 10px rgba(0, 0, 0, 0.05)
 
+$title-weight ?= $weight-normal
+
 $control-height ?= 2.25em
 $button-padding-vertical ?= calc(0.375em - 1px)
 
@@ -121,14 +123,14 @@ $colors = merge($colors, $custom-colors)
         .navbar-end
             margin-left: 0
 
+.title
+    color: $black-ter
+
 .card
     border-radius: $card-radius
     & + .card,
     & + .column-right-shadow
         margin-top: 1.5rem
-    &.card-transparent
-        box-shadow: none
-        background: transparent
     .card-image
         overflow: hidden
         border-top-left-radius: $card-radius
@@ -268,14 +270,18 @@ figure.highlight
 
 /* ---------------------------------
  *  Custom Element/Component styles
- * --------------------------------- */
+ * --------------------------------- */ 
+.button.is-transparent
+    @extend .button.is-white
+    background: transparent !important
+
 article
     &.media
         .media-content
             color: $grey
             .title
+                margin: 0
                 line-height: inherit
-                color: $black-ter
     &.article
         .article-meta,
         .article-tags
@@ -307,8 +313,6 @@ footer.footer
             +mobile()
                 justify-content: center
                 margin-top: 1rem
-            .button
-                background: transparent
 
 .navbar-logo,
 .footer-logo
@@ -321,6 +325,8 @@ footer.footer
     height: 100% !important
 
 .pagination
+    .pagination-link,
+    .pagination-ellipsis,
     .pagination-previous,
     .pagination-next
         a
@@ -470,6 +476,10 @@ footer.footer
         .qrcode
             right: -0.75rem
 
+.gallery-item
+    .caption
+        color: $grey
+
 +mobile()
     #toc
         display: none
@@ -503,9 +513,9 @@ footer.footer
     line-height: 24px
     outline: none
     transform: translateY(120px)
-    .fade-in
+    &.fade-in
         opacity: 1
-    .rise-up
+    &.rise-up
         transform: translateY(0)
 
 .pace
