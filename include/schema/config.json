@@ -44,8 +44,8 @@
         "comment": {
             "$ref": "/common/comment.json"
         },
-        "donates": {
-            "$ref": "/common/donates.json"
+        "donate": {
+            "$ref": "/common/donate.json"
         },
         "share": {
             "$ref": "/common/share.json"
