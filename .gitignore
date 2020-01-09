@@ -108,3 +108,5 @@ dist
 
 _config*.yml*
 yarn.lock
+
+.idea
