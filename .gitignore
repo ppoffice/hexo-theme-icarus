@@ -109,8 +109,8 @@ dist
 _config*.yml*
 yarn.lock
 
+# Intellij Idea config file
 .idea
-
 *.ipr
 *.iws
 *.iml
