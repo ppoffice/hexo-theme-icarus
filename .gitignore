@@ -110,3 +110,7 @@ _config*.yml*
 yarn.lock
 
 .idea
+
+*.ipr
+*.iws
+*.iml
