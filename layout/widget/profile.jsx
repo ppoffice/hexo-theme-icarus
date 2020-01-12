@@ -119,7 +119,7 @@ module.exports = cacheComponent(Profile, 'widget.profile', props => {
         }
         return {
             name,
-            url: url_for(link.name),
+            url: url_for(link.url),
             icon: link.icon
         };
     });
