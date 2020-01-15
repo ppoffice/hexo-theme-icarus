@@ -2,6 +2,10 @@
 version: 2.6.0
 # Path or URL to the website's icon
 favicon: /images/favicon.svg
+# Additional HTML meta tags in an array.
+meta: 
+# canonical_url of your site
+canonical_url: 
 # Path or URL to RSS atom.xml
 rss:
 # Path or URL to the website's logo to be shown on the left of the navigation bar or footer
@@ -32,7 +36,7 @@ navbar:
     links:
         Download on GitHub:
             icon: fab fa-github
-            url: 'http://github.com/ppoffice/hexo-theme-icarus'
+            url: 'https://github.com/ppoffice/hexo-theme-icarus'
 # Footer section link settings
 footer:
     # Links to be shown on the right of the footer section
@@ -45,7 +49,7 @@ footer:
             url: 'https://creativecommons.org/licenses/by/4.0/'
         Download on GitHub:
             icon: fab fa-github
-            url: 'http://github.com/ppoffice/hexo-theme-icarus'
+            url: 'https://github.com/ppoffice/hexo-theme-icarus'
 # Article display settings
 article:
     # Code highlight settings
@@ -62,18 +66,18 @@ article:
     # Whether to show estimate article reading time
     readtime: true
 # Search plugin settings
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Search-Plugins
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search
 search:
     # Name of the search plugin
     type: insight
 # Comment plugin settings
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Comment-Plugins
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment
 comment:
     # Name of the comment plugin
     type: disqus
     shortname: hexo-theme-icarus
 # Donation entries
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 # donate:
 #     -
 #         # Donation entry name
@@ -98,7 +102,7 @@ comment:
 #         # URL to the Patreon page
 #         url: https://www.patreon.com/
 # Share plugin settings
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Share-Plugins
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Share-Plugins
 share:
     # Share plugin name
     type: sharethis
@@ -109,15 +113,15 @@ sidebar:
     # left sidebar settings
     left:
         # Whether the left sidebar is sticky when page scrolls
-        # http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
+        # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
         sticky: false
     # right sidebar settings
     right:
         # Whether the right sidebar is sticky when page scrolls
-        # http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
+        # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
         sticky: false
 # Sidebar widget settings
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
     -
         # Widget name
@@ -137,21 +141,21 @@ widgets:
         # Whether to show avatar image rounded or square
         avatar_rounded: false
         # Path or URL for the follow button
-        follow_link: 'http://github.com/ppoffice'
+        follow_link: 'https://github.com/ppoffice'
         # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
                 icon: fab fa-github
-                url: 'http://github.com/ppoffice'
+                url: 'https://github.com/ppoffice'
             Facebook:
                 icon: fab fa-facebook
-                url: 'http://facebook.com'
+                url: 'https://facebook.com'
             Twitter:
                 icon: fab fa-twitter
-                url: 'http://twitter.com'
+                url: 'https://twitter.com'
             Dribbble:
                 icon: fab fa-dribbble
-                url: 'http://dribbble.com'
+                url: 'https://dribbble.com'
             RSS:
                 icon: fas fa-rss
                 url: /
@@ -199,28 +203,28 @@ plugins:
     # Enable page animations
     animejs: true
     # Enable the lightGallery and Justified Gallery plugins
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
+    # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
     gallery: true
     # Enable the Outdated Browser plugin
-    # http://outdatedbrowser.com/
+    # https://outdatedbrowser.com/
     outdated-browser: true
     # Enable the MathJax plugin
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/mathjax-plugin/
+    # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/mathjax-plugin/
     mathjax: true
     # Show the back to top button on mobile devices
     back-to-top: true
     # Google Analytics plugin settings
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Google-Analytics
+    # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Google-Analytics
     google-analytics:
         # Google Analytics tracking id
         tracking_id: UA-72437521-5
     # Baidu Analytics plugin settings
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Baidu-Analytics
+    # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Baidu-Analytics
     baidu-analytics:
         # Baidu Analytics tracking id
         tracking_id:
     # Hotjar user feedback plugin
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Hotjar
+    # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Hotjar
     hotjar:
         # Hotjar site id
         site_id: 1067642
@@ -230,7 +234,7 @@ plugins:
     # https://busuanzi.ibruce.info
     busuanzi: false
 # CDN provider settings
-# http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
+# https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
     # Name or URL of the JavaScript and/or stylesheet CDN provider
     cdn: jsdelivr

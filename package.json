@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "4.0.0"
+    "version": "4.2.0"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "clean-css": "^4.2.1",
     "hexo": "^4.0.0",
-    "hexo-all-minifier": "^0.5.3",
     "hexo-deployer-git": "^2.0.0",
     "hexo-filter-github-emojis": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
