@@ -62,37 +62,46 @@
             }
         });
 
-        if (typeof ClipboardJS !== 'undefined' && config.article.highlight.clipboard) {
+
+        const clipboard = config.article.highlight.clipboard;
+        const fold = config.article.highlight.fold.trim();
+
+        $('figure.highlight').each(function() {
+            if ($(this).find('figcaption').length) {
+                $(this).find('figcaption').addClass('level');
+                $(this).find('figcaption').append('<div class="level-left">');
+                $(this).find('figcaption').append('<div class="level-right">');
+                $(this).find('figcaption div.level-left').append($(this).find('figcaption').find('span'));
+                $(this).find('figcaption div.level-right').append($(this).find('figcaption').find('a'));
+            } else {
+                if (clipboard || fold) {
+                    $(this).prepend('<figcaption class="level"><div class="level-left"></div><div class="level-right"></div></figcaption>');
+                }
+            }
+        });
+
+        if (typeof ClipboardJS !== 'undefined' && clipboard) {
             $('figure.highlight').each(function() {
                 const id = 'code-' + Date.now() + (Math.random() * 1000 | 0);
                 const button = '<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#' + id + ' .code"><i class="fas fa-copy"></i></a>';
                 $(this).attr('id', id);
-                if ($(this).find('figcaption').length) {
-                    $(this).find('figcaption').prepend(button);
-                } else {
-                    $(this).prepend('<figcaption>' + button + '</figcaption>');
-                }
+                $(this).find('figcaption div.level-right').append(button);
             });
             new ClipboardJS('.highlight .copy'); // eslint-disable-line no-new
         }
-        const fold = config.article.highlight.fold;
-        if (fold.trim()) {
+
+        if (fold) {
             $('figure.highlight').each(function() {
-                if ($(this).find('figcaption').length) {
-                    // fold individual code block
-                    if ($(this).find('figcaption').find('span').length > 0) {
-                        const span = $(this).find('figcaption').find('span').eq(0);
-                        if (span[0].innerText.indexOf('>folded') > -1) {
-                            span[0].innerText = span[0].innerText.replace('>folded', '');
-                            $(this).find('figcaption').prepend(createFoldButton('folded'));
-                            toggleFold(this, true);
-                            return;
-                        }
+                if ($(this).find('figcaption').find('span').length > 0) {
+                    const span = $(this).find('figcaption').find('span');
+                    if (span[0].innerText.indexOf('>folded') > -1) {
+                        span[0].innerText = span[0].innerText.replace('>folded', '');
+                        $(this).find('figcaption div.level-left').prepend(createFoldButton('folded'));
+                        toggleFold(this, true);
+                        return;
                     }
-                    $(this).find('figcaption').prepend(createFoldButton(fold));
-                } else {
-                    $(this).prepend('<figcaption>' + createFoldButton(fold) + '</figcaption>');
                 }
+                $(this).find('figcaption div.level-left').prepend(createFoldButton(fold));
                 toggleFold(this, fold === 'folded');
             });
 
