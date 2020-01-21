@@ -68,7 +68,7 @@
 
         $('figure.highlight').each(function() {
             if ($(this).find('figcaption').length) {
-                $(this).find('figcaption').addClass('level');
+                $(this).find('figcaption').addClass('level is-mobile');
                 $(this).find('figcaption').append('<div class="level-left">');
                 $(this).find('figcaption').append('<div class="level-right">');
                 $(this).find('figcaption div.level-left').append($(this).find('figcaption').find('span'));
