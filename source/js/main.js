@@ -75,7 +75,7 @@
                 $(this).find('figcaption div.level-right').append($(this).find('figcaption').find('a'));
             } else {
                 if (clipboard || fold) {
-                    $(this).prepend('<figcaption class="level"><div class="level-left"></div><div class="level-right"></div></figcaption>');
+                    $(this).prepend('<figcaption class="level is-mobile"><div class="level-left"></div><div class="level-right"></div></figcaption>');
                 }
             }
         });
