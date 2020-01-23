@@ -1,5 +1,6 @@
 const logger = require('hexo-log')();
 const { Component } = require('inferno');
+const view = require('hexo-component-inferno/lib/core/view');
 
 module.exports = class extends Component {
     render() {
@@ -10,7 +11,7 @@ module.exports = class extends Component {
         }
 
         try {
-            const Share = require('../share/' + share.type);
+            const Share = view.require('share/' + share.type);
             return <Share config={config} page={page} helper={helper} share={share} />;
         } catch (e) {
             logger.w(`Icarus cannot load share button "${share.type}"`);

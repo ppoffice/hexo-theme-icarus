@@ -1,7 +1,7 @@
 const moment = require('moment');
 const { Component, Fragment } = require('inferno');
-const Paginator = require('./misc/paginator');
-const ArticleMedia = require('./common/article-media');
+const Paginator = require('hexo-component-inferno/lib/view/misc/paginator');
+const ArticleMedia = require('hexo-component-inferno/lib/view/common/article-media');
 
 module.exports = class extends Component {
     render() {

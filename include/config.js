@@ -10,8 +10,8 @@ module.exports = hexo => {
         const SCHEMA_ROOT = path.join(hexo.theme_dir, 'include/schema/');
         const CONFIG_PATH = path.join(hexo.theme_dir, '_config.yml');
 
-        const yaml = require('../include/util/yaml');
-        const { SchemaLoader } = require('../include/util/schema');
+        const yaml = require('hexo-component-inferno/lib/util/yaml');
+        const { SchemaLoader } = require('hexo-component-inferno/lib/core/schema');
         const loader = SchemaLoader.load(require(path.join(SCHEMA_ROOT, 'config.json')), SCHEMA_ROOT);
         const schema = loader.getSchema('/config.json');
         logger.info('=== Checking the configuration file ===');
@@ -32,7 +32,7 @@ module.exports = hexo => {
             let cfg = yaml.parse(cfgStr);
             // Check config version
             if (!process.argv.includes('--icarus-dont-upgrade-config')) {
-                const migrator = new(require('../include/util/migrate'))(path.join(hexo.theme_dir, 'include/migration'));
+                const migrator = new(require('hexo-component-inferno/lib/core/migrate'))(path.join(hexo.theme_dir, 'include/migration'));
                 // Upgrade config
                 if (migrator.isOudated(cfg.version)) {
                     logger.info(`Your configuration file is outdated (${cfg.version} < ${migrator.getLatestVersion()}). `

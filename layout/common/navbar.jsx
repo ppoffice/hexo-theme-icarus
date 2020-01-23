@@ -1,6 +1,6 @@
 const { Component, Fragment } = require('inferno');
-const { cacheComponent } = require('../util/cache');
-const classname = require('../util/classname');
+const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
+const classname = require('hexo-component-inferno/lib/util/classname');
 
 function isSameLink(a, b) {
     function santize(url) {

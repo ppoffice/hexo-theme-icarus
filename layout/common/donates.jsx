@@ -1,5 +1,6 @@
 const logger = require('hexo-log')();
 const { Component } = require('inferno');
+const view = require('hexo-component-inferno/lib/core/view');
 
 module.exports = class extends Component {
     render() {
@@ -17,7 +18,7 @@ module.exports = class extends Component {
                         const type = service.type;
                         if (typeof type === 'string') {
                             try {
-                                const Donate = require('../donate/' + type);
+                                const Donate = view.require('donate/' + type);
                                 return <Donate helper={helper} donate={service} />;
                             } catch (e) {
                                 logger.w(`Icarus cannot load donate button "${type}"`);

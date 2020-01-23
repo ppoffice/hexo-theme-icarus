@@ -1,5 +1,5 @@
 const { Component } = require('inferno');
-const { cacheComponent } = require('../util/cache');
+const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 
 class Footer extends Component {
     render() {

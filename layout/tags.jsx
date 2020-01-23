@@ -1,5 +1,5 @@
 const { Component } = require('inferno');
-const Tags = require('./widget/tags');
+const Tags = require('hexo-component-inferno/lib/view/widget/tags');
 
 module.exports = class extends Component {
     render() {

@@ -1,11 +1,11 @@
 const { Component } = require('inferno');
+const classname = require('hexo-component-inferno/lib/util/classname');
 const Head = require('./common/head');
 const Navbar = require('./common/navbar');
 const Widgets = require('./common/widgets');
 const Footer = require('./common/footer');
 const Scripts = require('./common/scripts');
 const Search = require('./common/search');
-const classname = require('./util/classname');
 
 module.exports = class extends Component {
     render() {

@@ -1,5 +1,5 @@
 const { Component } = require('inferno');
-const Categories = require('./widget/categories');
+const Categories = require('hexo-component-inferno/lib/view/widget/categories');
 
 module.exports = class extends Component {
     render() {

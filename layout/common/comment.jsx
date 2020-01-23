@@ -1,5 +1,6 @@
 const logger = require('hexo-log')();
 const { Component } = require('inferno');
+const view = require('hexo-component-inferno/lib/core/view');
 
 module.exports = class extends Component {
     render() {
@@ -15,7 +16,7 @@ module.exports = class extends Component {
                 <h3 class="title is-5">{__('article.comments')}</h3>
                 {(() => {
                     try {
-                        const Comment = require('../comment/' + comment.type);
+                        const Comment = view.require('comment/' + comment.type);
                         return <Comment config={config} page={page} helper={helper} comment={comment} />;
                     } catch (e) {
                         logger.w(`Icarus cannot load comment "${comment.type}"`);

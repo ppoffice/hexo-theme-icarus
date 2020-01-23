@@ -1,6 +1,7 @@
 const logger = require('hexo-log')();
 const { Component } = require('inferno');
-const classname = require('../util/classname');
+const view = require('hexo-component-inferno/lib/core/view');
+const classname = require('hexo-component-inferno/lib/util/classname');
 
 function formatWidgets(widgets) {
     const result = {};
@@ -80,7 +81,7 @@ class Widgets extends Component {
                     return null;
                 }
                 try {
-                    const Widget = require('../widget/' + widget.type);
+                    const Widget = view.require('widget/' + widget.type);
                     return <Widget site={site} helper={helper} config={config} page={page} widget={widget} />;
                 } catch (e) {
                     logger.w(`Icarus cannot load widget "${widget.type}"`);

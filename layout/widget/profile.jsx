@@ -1,6 +1,6 @@
 const { Component } = require('inferno');
 const gravatrHelper = require('hexo-util').gravatar;
-const { cacheComponent } = require('../util/cache');
+const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 
 class Profile extends Component {
     renderSocialLinks(links) {

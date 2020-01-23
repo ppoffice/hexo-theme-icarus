@@ -1,7 +1,7 @@
 const { Component } = require('inferno');
-const MetaTags = require('../misc/meta');
-const OpenGraph = require('../misc/open_graph');
-const StructuredData = require('../misc/structured_data');
+const MetaTags = require('hexo-component-inferno/lib/view/misc/meta');
+const OpenGraph = require('hexo-component-inferno/lib/view/misc/open_graph');
+const StructuredData = require('hexo-component-inferno/lib/view/misc/structured_data');
 const Plugins = require('./plugins');
 
 function getPageTitle(page, siteTitle, helper) {
