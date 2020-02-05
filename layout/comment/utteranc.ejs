@@ -1,0 +1,15 @@
+<% if (!has_config('comment.repo')) { %>
+<div class="notification is-danger">
+    You forgot to set the <code>repo</code> for utteranc. Please set it in <code>_config.yml</code>.
+</div>
+<% } else { %>
+<div id="utteranc-thread" class="content"></div>
+<script src="https://utteranc.es/client.js"
+        repo="<%= get_config('comment.repo') %>"
+        issue-term="url"
+        label="💬"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<% } %>
