@@ -40,14 +40,24 @@ body, button, input, select, textarea
     .column-left,
     .column-right,
     .column-right-shadow
+    .widget
         &.is-sticky
             align-self: flex-start
             position: -webkit-sticky
             position: sticky
-            top: .75rem
+            top: 0.75rem
     .column-right-shadow
         &.is-sticky
             top: 1.5rem
+
+    .has-navbar-fixed-top
+        .column-main,
+        .column-left,
+        .column-right,
+        .column-right-shadow
+        .widget
+            &.is-sticky
+                top: 5.5rem
 
 .tag
     &.is-grey
@@ -79,7 +89,7 @@ img.thumbnail
 
 .navbar-main
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05)
-    .navbar-menu,
+    .navbar-menu.is-active,
     .navbar-start,
     .navbar-end
         align-items: stretch
@@ -89,7 +99,7 @@ img.thumbnail
     .navbar-menu
         flex-grow: 1
         flex-shrink: 0
-        overflow-x: auto
+        // overflow-x: auto
     .navbar-start
         justify-content: flex-start
         margin-right: auto
@@ -99,11 +109,22 @@ img.thumbnail
     .navbar-item
         display: flex
         align-items: center
-        padding: 1.25rem 0.75rem
+        padding: 1rem 0.75rem
         &.is-active
             color: hsl(217, 71%, 53%)
             background-color: transparent
+    .navbar-dropdown .navbar-item
+        padding: 0.5rem 0.75rem;
     @media screen and (max-width: screen-desktop - 1)
+        .navbar-burger
+            align-items: stretch
+            display: flex
+            margin-top: 0.5rem  // center it
+            flex-shrink: 0
+            margin-left: 0
+            margin-right: auto  // override config to put it to left
+        .navbar-right-space
+            margin-left: auto
         .navbar-menu
             justify-content: center
             box-shadow: none
@@ -472,3 +493,19 @@ figure.highlight
             border: none
     .file
         all: initial
+
+/* ---------------------------------
+ *        ToC Extension
+ * --------------------------------- */
+ .menu-list .is-current
+    color: hsl(217, 71%, 53%)
+
+/* ---------------------------------
+ *        ToC Link Position Fix
+ * --------------------------------- */
+:target::before {
+  content: "";
+  display: block;
+  height: 5.25rem;
+  margin: -5.25rem 0 0;
+}

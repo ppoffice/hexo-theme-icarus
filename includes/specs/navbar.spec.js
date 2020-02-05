@@ -14,7 +14,7 @@ module.exports = {
             About: '/about'
         },
         '*': {
-            [type]: 'string',
+            [type]: ['string', 'object'],
             [doc]: 'Path or URL to the menu item'
         }
     },
@@ -27,5 +27,10 @@ module.exports = {
                 url: 'https://github.com/ppoffice/hexo-theme-icarus'
             }
         }
+    },
+    sticky: {
+        [type]: 'boolean',
+        [doc]: 'Navigation bar sticky on the top',
+        [defaultValue]: true
     }
 };

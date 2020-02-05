@@ -1,20 +1,46 @@
-<nav class="navbar navbar-main">
+<nav class="navbar navbar-main <%- get_config('navbar.sticky', false) ? 'is-fixed-top' : '' %>" role="navigation" aria-label="dropdown navigation">
     <div class="container">
         <div class="navbar-brand is-flex-center">
-            <a class="navbar-item navbar-logo" href="<%- url_for('/') %>">
-            <% if (logo && logo.text) { %>
-                <%= logo.text %>
-            <% } else { %>
-                <img src="<%- url_for(logo) %>" alt="<%= title %>" height="28">
-            <% } %>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarContent">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
             </a>
+            <a class="navbar-item navbar-logo" href="<%- url_for('/') %>">
+                <% if (logo && logo.text) { %>
+                    <%= logo.text %>
+                <% } else { %>
+                    <img src="<%- url_for(logo) %>" alt="<%= title %>" height="28">
+                <% } %>
+            </a>
+            <a class="navbar-right-space"></a>
+            <% if (hasToc) { %>
+                <a class="navbar-item is-hidden-tablet catalogue" title="<%= _p('widget.catalogue', Infinity) %>" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+            <% } %>
+            <% if (search) { %>
+                <a class="navbar-item search is-hidden-desktop" title="<%= __('search.search') %>" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+            <% } %>
         </div>
-        <div class="navbar-menu">
+        <div id="navbarContent" class="navbar-menu">
             <% if (Object.keys(menus).length) { %>
             <div class="navbar-start">
                 <% for (let i in menus) { let menu = menus[i]; %>
-                <a class="navbar-item<% if (actives[i]) { %> is-active<% } %>"
-                href="<%- url_for(menu) %>"><%= i %></a>
+                    <% if (typeof menu === 'string') { %>
+                        <a class="navbar-item<% if (is_same_link(menu, page.path)) { %> is-active<% } %>" href="<%- url_for(menu) %>"><%= i %></a>
+                    <% } else { %>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link"><%= i %></a>
+                            <div class="navbar-dropdown is-boxed">
+                                <% for (let j in menu) { let submenu = menu[j]; %>
+                                    <a class="navbar-item<% if (is_same_link(submenu, page.path)) { %> is-active<% } %>" href="<%- url_for(submenu) %>"><%= j %></a>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% } %>
                 <% } %>
             </div>
             <% } %>
@@ -22,26 +48,49 @@
                 <% if (Object.keys(links).length) { %>
                     <% for (let name in links) {
                             let link = links[name]; %>
-                    <a class="navbar-item" target="_blank" rel="noopener" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
-                        <% if (typeof(link) === 'string') { %>
-                        <%= name %>
-                        <% } else { %>
-                        <i class="<%= link.icon %>"></i>
-                        <% } %>
-                    </a>
+                        <a class="navbar-item" target="_blank" rel="noopener" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
+                            <% if (typeof(link) === 'string') { %>
+                                <%= name %>
+                            <% } else { %>
+                                <i class="<%= link.icon %>"></i>
+                            <% } %>
+                        </a>
                     <% } %>
                 <% } %>
-                <% if (hasToc) { %>
-                <a class="navbar-item is-hidden-tablet catalogue" title="<%= _p('widget.catalogue', Infinity) %>" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                <% } %>
                 <% if (search) { %>
-                <a class="navbar-item search" title="<%= __('search.search') %>" href="javascript:;">
-                    <i class="fas fa-search"></i>
-                </a>
+                    <a class="navbar-item search is-hidden-touch" title="<%= __('search.search') %>" href="javascript:;">
+                        <i class="fas fa-search"></i>
+                    </a>
                 <% } %>
             </div>
         </div>
     </div>
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+// Get all "navbar-burger" elements
+const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+// Check if there are any navbar burgers
+if ($navbarBurgers.length > 0) {
+
+  // Add a click event on each of them
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+
+      // Get the target from the "data-target" attribute
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+
+    });
+  });
+}
+
+});
+</script>

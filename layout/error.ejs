@@ -1,0 +1,15 @@
+<% post = page; %>
+<div class="card">
+    <div class="card-content article <%= post.hasOwnProperty('direction') ? post.direction : '' %>">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+            </div>
+        </div>
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            <%= post.title %>
+        </h1>
+        <div class="content">
+            <%- post.content %>
+        </div>
+    </div>
+</div>

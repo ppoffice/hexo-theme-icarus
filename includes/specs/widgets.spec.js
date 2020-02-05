@@ -4,6 +4,7 @@ const DEFAULT_WIDGETS = [
     {
         type: 'profile',
         position: 'left',
+        hide_in_post: false,
         author: 'Your name',
         author_title: 'Your title',
         location: 'Your location',
@@ -36,11 +37,14 @@ const DEFAULT_WIDGETS = [
     },
     {
         type: 'toc',
-        position: 'left'
+        position: 'left',
+        hide_in_post: false,
+        sticky: false
     },
     {
         type: 'links',
         position: 'left',
+        hide_in_post: false,
         links: {
             Hexo: 'https://hexo.io',
             PPOffice: 'https://github.com/ppoffice'
@@ -48,22 +52,27 @@ const DEFAULT_WIDGETS = [
     },
     {
         type: 'category',
+        hide_in_post: false,
         position: 'left'
     },
     {
         type: 'tagcloud',
+        hide_in_post: false,
         position: 'left'
     },
     {
         type: 'recent_posts',
+        hide_in_post: false,
         position: 'right'
     },
     {
         type: 'archive',
+        hide_in_post: false,
         position: 'right'
     },
     {
         type: 'tag',
+        hide_in_post: false,
         position: 'right'
     }
 ];
@@ -158,6 +167,11 @@ module.exports = {
             [format]: /^(left|right)$/,
             [required]: true,
             [defaultValue]: 'left'
+        },
+        hide_in_post: {
+            [type]: 'boolean',
+            [doc]: 'Hide the widget in posts (not pages)',
+            [defaultValue]: false
         },
         ...ProfileSpec,
         ...LinksSpec,

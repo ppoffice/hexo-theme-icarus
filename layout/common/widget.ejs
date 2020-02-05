@@ -18,16 +18,21 @@
     return position === 'left' ? 'has-order-1' : 'has-order-3';
 } %>
 <% function sticky_class(position) {
-    return get_config('sidebar.' + position + '.sticky', false) ? 'is-sticky' : '';
+    return (get_config('sidebar.' + position + '.sticky', false) ||
+            (page.layout != 'post' && get_config('sidebar.' + position + '.sticky_page_only', false))) ? 'is-sticky' : '';
 } %>
 <div class="column <%= side_column_class() %> <%= visibility_class() %> <%= order_class() %> column-<%= position %> <%= sticky_class(position) %>">
     <% get_widgets(position).forEach(widget => {%>
-        <%- _partial('widget/' + widget.type, { widget }) %>
+        <% if (page.layout != 'post' || !widget.hide_in_post) { %>
+            <%- _partial('widget/' + widget.type, { widget }) %>
+        <% } %>
     <% }) %>
-    <% if (position === 'left') { %>
+    <% if (position === 'left' && get_config('sidebar.left.shadow_right', false)) { %>
         <div class="column-right-shadow is-hidden-widescreen <%= sticky_class('right') %>">
         <% get_widgets('right').forEach(widget => {%>
-            <%- _partial('widget/' + widget.type, { widget }) %>
+            <% if (page.layout != 'post' || !widget.hide_in_post) { %>
+                <%- _partial('widget/' + widget.type, { widget }) %>
+            <% } %>
         <% }) %>
         </div>
     <% } %>

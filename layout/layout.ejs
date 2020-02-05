@@ -3,25 +3,43 @@
 <head>
     <%- _partial('common/head') %>
 </head>
-<body class="is-<%= column_count() %>-column">
+<body class="is-<%= column_count() %>-column <%- get_config('navbar.sticky', false) ? 'has-navbar-fixed-top' : '' %>">
     <%- _partial('common/navbar') %>
-    <% function main_column_class() {
-        switch (column_count()) {
-            case 1:
-                return 'is-12';
-            case 2:
-                return 'is-8-tablet is-8-desktop is-8-widescreen';
-            case 3:
-                return 'is-8-tablet is-8-desktop is-6-widescreen'
-        }
-        return '';
-    } %>
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column <%= main_column_class() %> has-order-2 column-main"><%- body %></div>
-                <%- _partial('common/widget', { position: 'left' }) %>
-                <%- _partial('common/widget', { position: 'right' }) %>
+                <% function main_column_class(count) {
+                    switch (count) {
+                        case 1:
+                            return 'is-12';
+                        case 2:
+                            return 'is-8-tablet is-8-desktop is-8-widescreen';
+                        case 3:
+                            return 'is-8-tablet is-8-desktop is-6-widescreen'
+                    }
+                    return '';
+                } %>
+                <% if (page.layout == 'error_page') { %>
+                    <!-- Error Page -->
+                    <div class="column is-12 has-order-2 column-main"><%- _partial('error') %></div>
+                <% } else if (page.layout == 'raw') { %>
+                    <!-- Raw Page -->
+                    <%- page.content %>
+                <% } else { %>
+                    <!-- Normal Page -->
+                    <% column = column_count(); %>
+                    <% if ((page.layout == 'post' && get_config('sidebar.left.hide_in_post', false)) || page.no_left_widget) { %>
+                        <% if (has_column('left')) column--; %>
+                    <% } else { %>
+                        <%- _partial('common/widget', { position: 'left' }) %>
+                    <% } %>
+                    <% if ((page.layout == 'post' && get_config('sidebar.right.hide_in_post', false)) || page.no_right_widget) { %>
+                        <% if (has_column('right')) column--; %>
+                    <% } else {  %>
+                        <%- _partial('common/widget', { position: 'right' }) %>
+                    <% } %>
+                    <div class="column <%= main_column_class(column) %> has-order-2 column-main"><%- body %></div>
+                <% } %>
             </div>
         </div>
     </section>
