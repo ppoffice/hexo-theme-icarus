@@ -1,0 +1,23 @@
+<% if (!has_config('comment.app_id') || !has_config('comment.app_key')) { %>
+<div class="notification is-danger">
+    You forgot to set the <code>app_id</code> or <code>app_key</code> for Valine EX. Please set it in <code>_config.yml</code>.
+</div>
+<% } else { %>
+<div id="valineex-thread" class="content"></div>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/Valineex.min.js"></script>
+<script type="text/javascript">
+  new Valine({
+    lang:"zh-cn",
+    av: AV,
+    admin_email:"<%= get_config(comment.admin_email) %>",
+    el:"#valineex-thread",
+    appId:"<%= get_config(comment.app_id) %>",
+    appKey:"<%= get_config(comment.app_key) %>",
+    emoticon_url:"<%= get_config(comment.emoticon_url) %>",
+    emoticon_list:<%= get_config(comment.emoticon_list) %>
+    placeholder:"<%= get_config(comment.placeholder) %>",
+  });
+</script>
+<% } %>
