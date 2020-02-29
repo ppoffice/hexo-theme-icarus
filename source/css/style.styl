@@ -339,12 +339,16 @@ img.thumbnail
     h5
         font-size: 1em
     code, pre
-        font-size: 0.85em
         font-family: family-mono
+    pre
+        font-size: 0.85em
     code
-        color: hsl(348, 100%, 61%)
-        background: transparent
         padding: 0
+        background: transparent
+    & > code,
+    :not(pre) > code
+        font-size: 0.85em
+        color: hsl(348, 100%, 61%)
     blockquote
         footer
             strong + cite
@@ -370,11 +374,19 @@ figure.highlight
     table
         width: auto
 
+        tr td
+                border: none
+        tr:not(:first-child) td
+            padding-top: 0
+        tr:not(:last-child) td
+            padding-bottom: 0
+
     pre
         padding: 0
         overflow: visible
 
-        .line
+        .line,
+        code .hljs
             line-height: 1.5rem
 
     figcaption,
@@ -382,14 +394,11 @@ figure.highlight
         background: rgba(200, 200, 200, 0.15)
 
     figcaption
+        margin: 0 !important
         padding: .3em .75em
         text-align: left
         font-style: normal
         font-size: .8em
-        &:after
-            clear: both
-            content: " "
-            display: table
 
         span
             font-weight: 500
@@ -400,7 +409,6 @@ figure.highlight
             color: #9a9a9a
 
         a
-            float: right
             margin-left: 0.5em
 
         .fold

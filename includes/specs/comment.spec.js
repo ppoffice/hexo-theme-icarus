@@ -124,6 +124,33 @@ const ValineSpec = {
     }
 };
 
+const UtterancesSpec = {
+    repo: {
+        [type]: 'string',
+        [doc]: 'The repository willed connect to utterances',
+        [required]: true,
+        [requires]: comment => comment.type === 'utterances'
+    },
+    issue_term: {
+        [type]: 'string',
+        [doc]: 'Blog Post ↔️ Issue Mapping',
+        [defaultValue]: 'pathname',
+        [requires]: comment => comment.type === 'utterances'
+    },
+    label: {
+        [type]: 'string',
+        [doc]: 'Issue Label',
+        [defaultValue]: '',
+        [requires]: comment => comment.type === 'utterances'
+    },
+    theme: {
+        [type]: 'string',
+        [doc]: 'Utterances theme',
+        [defaultValue]: 'github-light',
+        [requires]: comment => comment.type === 'utterances'
+    }
+};
+
 module.exports = {
     [type]: 'object',
     [doc]: 'Comment plugin settings\nhttps://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment',
@@ -137,5 +164,6 @@ module.exports = {
     ...GitmentGitalkSpec,
     ...IssoSpec,
     ...LiveReSpec,
-    ...ValineSpec
+    ...ValineSpec,
+    ...UtterancesSpec
 }

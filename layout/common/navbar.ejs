@@ -26,7 +26,7 @@
                 <% if (Object.keys(links).length) { %>
                     <% for (let name in links) {
                             let link = links[name]; %>
-                    <a class="navbar-item" target="_blank" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
+                    <a class="navbar-item" target="_blank" rel="noopener" title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
                         <% if (typeof(link) === 'string') { %>
                         <%= name %>
                         <% } else { %>
