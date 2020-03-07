@@ -1,0 +1,311 @@
+/* Copyright 2017 The Chromium Authors. All rights reserved.
+   * Use of this source code is governed by a BSD-style license that can be
+   * found in the LICENSE file. */
+
+a {
+    color: rgb(88, 88, 88);
+}
+
+body {
+    background-color: rgb(247, 247, 247);
+    color: rgb(100, 100, 100);
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    font-size: 125%;
+}
+
+/* Copyright 2014 The Chromium Authors. All rights reserved.
+    Use of this source code is governed by a BSD-style license that can be
+    found in the LICENSE file. */
+
+.interstitial-wrapper {
+    box-sizing: border-box;
+    font-size: 1em;
+    line-height: 1.6em;
+    margin: 14vh auto 0;
+    max-width: 600px;
+    width: 100%;
+}
+
+@media (max-width: 700px) {
+    .interstitial-wrapper {
+        padding: 0 10%;
+    }
+}
+
+@media (max-width: 420px) {
+    .interstitial-wrapper {
+        padding: 0 5%;
+    }
+}
+
+/**
+* Mobile specific styling.
+* Navigation buttons are anchored to the bottom of the screen.
+* Details message replaces the top content in its own scrollable area.
+*/
+
+/* Fixed nav. */
+
+@media (min-width: 240px) and (max-width: 420px) and (min-height: 401px),
+(min-width: 421px) and (min-height: 240px) and (max-height: 560px) {
+    .interstitial-wrapper {
+        max-width: 736px;
+    }
+}
+
+@media (max-width: 420px) and (orientation: portrait),
+(max-height: 560px) {
+    body {
+        margin: 0 auto;
+    }
+
+    .interstitial-wrapper {
+        box-sizing: border-box;
+        margin: 7vh auto 12px;
+        padding: 0 24px;
+        position: relative;
+    }
+}
+
+@media (min-width: 421px) and (min-height: 500px) and (max-height: 560px) {
+    .interstitial-wrapper {
+        margin-top: 10vh;
+    }
+}
+
+@media (min-height: 400px) and (orientation:portrait) {
+    .interstitial-wrapper {
+        margin-bottom: 145px;
+    }
+}
+
+
+@media (min-height: 500px) and (max-height: 650px) and (max-width: 414px) and (orientation: portrait) {
+    .interstitial-wrapper {
+        margin-top: 7vh;
+    }
+}
+
+@media (min-height: 650px) and (max-width: 414px) and (orientation: portrait) {
+    .interstitial-wrapper {
+        margin-top: 10vh;
+    }
+}
+
+/* Small mobile screens. No fixed nav. */
+
+@media (max-height: 400px) and (orientation: portrait),
+(max-height: 239px) and (orientation: landscape),
+(max-width: 419px) and (max-height: 399px) {
+    .interstitial-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+}
+
+/* Copyright 2013 The Chromium Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file. */
+
+
+.snackbar {
+    background: #323232;
+    border-radius: 2px;
+    bottom: 24px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: .87em;
+    left: 24px;
+    max-width: 568px;
+    min-width: 288px;
+    opacity: 0;
+    padding: 16px 24px 12px;
+    position: fixed;
+    transform: translateY(90px);
+    will-change: opacity, transform;
+    z-index: 999;
+}
+
+.snackbar-show {
+    -webkit-animation: show-snackbar .25s cubic-bezier(0.0, 0.0, 0.2, 1) forwards,
+    hide-snackbar .25s cubic-bezier(0.4, 0.0, 1, 1) forwards 5s;
+}
+
+@-webkit-keyframes show-snackbar {
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes hide-snackbar {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(90px);
+    }
+}
+
+/* Offline page */
+
+.offline {
+    transition: -webkit-filter 1.5s cubic-bezier(0.65, 0.05, 0.36, 1),
+    background-color 1.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+    will-change: -webkit-filter, background-color;
+}
+
+.offline .interstitial-wrapper {
+    color: #2b2b2b;
+    font-size: 1em;
+    line-height: 1.55;
+    margin: 0 auto;
+    max-width: 600px;
+    padding-top: 100px;
+    width: 100%;
+}
+
+.offline .runner-container {
+    direction: ltr;
+    height: 150px;
+    max-width: 600px;
+    overflow: hidden;
+    position: absolute;
+    top: 35px;
+    width: 44px;
+}
+
+.offline .runner-canvas {
+    height: 150px;
+    max-width: 600px;
+    opacity: 1;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+.offline .controller {
+    background: rgba(247, 247, 247, .1);
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: 1;
+}
+
+#offline-resources {
+    display: none;
+}
+
+@media (max-width: 420px) {
+    .snackbar {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media (max-height: 350px) {
+    h1 {
+        margin: 0 0 15px;
+    }
+
+    .icon-offline {
+        margin: 0 0 10px;
+    }
+
+    .interstitial-wrapper {
+        margin-top: 5%;
+    }
+
+    .nav-wrapper {
+        margin-top: 30px;
+    }
+}
+
+@media (min-width: 420px) and (max-width: 736px) and (min-height: 240px) and (max-height: 420px) and (orientation:landscape) {
+    .interstitial-wrapper {
+        margin-bottom: 100px;
+    }
+}
+
+@media (max-width: 360px) and (max-height: 480px) {
+    .offline .interstitial-wrapper {
+        padding-top: 60px;
+    }
+
+    .offline .runner-container {
+        top: 8px;
+    }
+}
+
+@media (min-height: 240px) and (orientation: landscape) {
+    .offline .interstitial-wrapper {
+        margin-bottom: 90px;
+    }
+
+    .icon-offline {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-height: 320px) and (orientation: landscape) {
+    .icon-offline {
+        margin-bottom: 0;
+    }
+
+    .offline .runner-container {
+        top: 10px;
+    }
+}
+
+@media (max-width: 240px) {
+    .interstitial-wrapper {
+        overflow: inherit;
+        padding: 0 8px;
+    }
+}
+
+.arcade-mode,
+.arcade-mode .runner-container,
+.arcade-mode .runner-canvas {
+    image-rendering: pixelated;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.arcade-mode .interstitial-wrapper {
+    height: 100vh;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.arcade-mode .runner-container {
+    left: 0;
+    margin: auto;
+    right: 0;
+    transform-origin: top center;
+    transition: transform 250ms cubic-bezier(0.4, 0.0, 1, 1) .4s;
+    z-index: 2;
+}
+
+.v-fork-me {
+  position:fixed;
+  right:0;top:0;
+  z-index:999;
+}
+
+@media (max-width: 979px) {
+  .v-fork-me {
+    display: none;
+  }
+}

@@ -1,0 +1,25 @@
+<div class="my_post_copyright">
+    <div style="text-align:center;color: #ccc;font-size:14px;">------ 版权信息 ------</div>
+    <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+    <p><span>本文标题:</span><a href="<%= url_for(page.path) %>"><%= page_title() %></a></p>
+    <p><span>文章作者:</span><a href="/"><%= get_config('author') %></a></p>
+    <p><span>发布时间:</span><%= date(post.date) %></p>
+    <p>
+        <span>原始链接:</span><a href="<%= url_for(page.path) %>" title="<%= page_title() %>"><%= get_config('permalink') %></a>
+        <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="<%= get_config('permalink') %>"  aria-label="复制成功！"></i></span>
+    </p>
+    <p><span>许可协议:</span><i class="fab fa-creative-commons"></i>转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+        clipboard.on('success', function(){
+            swal({   
+                title: "",   
+                text: '复制成功',
+                icon: "success", 
+                showConfirmButton: true
+            });
+         });
+    });  
+</script>
