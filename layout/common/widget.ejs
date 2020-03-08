@@ -1,15 +1,10 @@
 <% if (get_widgets(position).length) { %>
-<% function side_column_class(ispost) {
+<% function side_column_class() {
     switch (column_count()) {
         case 2:
             return 'is-4-tablet is-4-desktop is-3-widescreen';
         case 3:
-            if(ispost === false){
-                return 'is-one-third-tablet is-3-desktop is-3-widescreen';
-            }
-            else{
-                return 'is-one-third-tablet is-3-desktop is-one-fifth-widescreen';
-            }
+            return 'is-one-third-tablet is-3-desktop is-one-fifth-widescreen';
             
     }
     return '';
@@ -30,13 +25,12 @@
     else{
         return position === 'right' ? 'has-order-3' : 'has-order-1';
     }
-    
 } %>
 <% function sticky_class(position) {    
     return get_config('sidebar.' + position + '.sticky', false) ? 'is-sticky' : '';
 } %>
 
-<div class="column <%= side_column_class(is_post()) %> <%= visibility_class() %> <%= order_class() %> column-<%= position %> <%= sticky_class(position) %>">    
+<div class="column <%= side_column_class() %> <%= visibility_class() %> <%= order_class() %> column-<%= position %> <%= sticky_class(position) %>">    
     <% get_widgets(position).forEach(widget => {%>
         <%- _partial('widget/' + widget.type, { widget }) %>
     <% }) %>
