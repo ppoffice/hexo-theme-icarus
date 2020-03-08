@@ -20,7 +20,7 @@ module.exports = function (hexo) {
             const posts = category.posts.sort('-date');
             const data = pagination(category.path, posts, {
                 perPage: perPage,
-                layout: ['category', 'archive', 'index'],
+                layout: ['custom_cat', 'category', 'index'],
                 format: paginationDir + '/%d/',
                 data: {
                     category: category.name,

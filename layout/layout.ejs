@@ -5,23 +5,29 @@
 </head>
 <body class="is-<%= column_count() %>-column">
     <%- _partial('common/navbar') %>
-    <% function main_column_class() {
+    <% function main_column_class(post) {
         switch (column_count()) {
             case 1:
                 return 'is-12';
             case 2:
                 return 'is-8-tablet is-8-desktop is-8-widescreen';
             case 3:
-                return 'is-8-tablet is-8-desktop is-6-widescreen'
+                if(post === false){
+                    return 'is-two-thirds-tablet is-6-desktop is-6-widescreen'
+                }
+                else{
+                    return 'is-two-thirds-tablet is-9-desktop is-three-fifths-widescreen'
+                }
+                
         }
         return '';
     } %>
     <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column <%= main_column_class() %> has-order-2 column-main"><%- body %></div>
-                <%- _partial('common/widget', { position: 'left' }) %>
-                <%- _partial('common/widget', { position: 'right' }) %>
+        <div>
+            <div class="columns is-centered">
+                <%-  _partial('common/widget', { position: 'left' }) %>
+                <div class="column <%= main_column_class(is_post()) %> has-order-2 column-main"><%- body %></div>
+                <%-  _partial('common/widget', { position: 'right' }) %>
             </div>
         </div>
     </section>

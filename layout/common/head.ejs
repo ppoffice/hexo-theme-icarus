@@ -26,8 +26,17 @@
 <% } %>
 
 <% if (has_config('favicon')) { %>
-<link rel="icon" href="<%- url_for(get_config('favicon')) %>">
+    <link rel="apple-touch-icon" sizes="128x128" href="<%- url_for(get_config('favicon')) %>">
 <% } %>
+
+<% if (has_config('favicon')) { %>
+<link rel="icon" sizes="32x32" href="<%- url_for(get_config('favicon')) %>">
+<% } %>
+
+<% if (has_config('favicon')) { %>
+    <link rel="mask-icon" href="<%- url_for(get_config('favicon')) %>" color="{{ theme.android_chrome_color }}">
+<% } %>
+
 
 <%- _css(cdn('bulma', '0.7.2', 'css/bulma.css')) %>
 <%- _css(iconcdn()) %>

@@ -16,7 +16,10 @@
                 <% if (busuanzi) { %>
                 <br>
                 <span id="busuanzi_container_site_uv">
-                <%- _p('plugin.visitor', '<span id="busuanzi_value_site_uv">0</span>') %>
+                <%- _p('plugin.visitor', '<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>') %>
+                </span>
+                <span id="busuanzi_container_site_pv">
+                    <%- _p('plugin.visit', '<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>') %>
                 </span>
                 <% } %>
                 </p>
@@ -34,6 +37,7 @@
                         <i class="<%= link.icon %>"></i>
                         <% } %>
                     </a>
+                    
                 </p>
                 <% } %>
                 </div>
@@ -41,4 +45,10 @@
             </div>
         </div>
     </div>
+    <!-- <script>
+        var uv = document.getElementById("busuanzi_value_site_uv")
+        var pv = document.getElementById("busuanzi_value_site_pv")
+        uv.innerText = patseInt(uv.value) + 30
+        pv.innerText = patseInt(pv.value) + 5
+    </script>  -->
 </footer>

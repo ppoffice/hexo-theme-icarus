@@ -1,12 +1,15 @@
 <nav class="navbar navbar-main">
     <div class="container">
-        <div class="navbar-brand is-flex-center">
+        <div class="navbar-brand is-flex-center"> 
+            <div class="is-hidden-mobile">
+                <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+            </div>
             <a class="navbar-item navbar-logo" href="<%- url_for('/') %>">
             <% if (logo && logo.text) { %>
                 <%= logo.text %>
             <% } else { %>
                 <img src="<%- url_for(logo) %>" alt="<%= title %>" height="28">
-            <% } %>
+            <% } %> 
             </a>
         </div>
         <div class="navbar-menu">

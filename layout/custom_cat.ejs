@@ -1,4 +1,4 @@
-<% function buildArchive(posts, year, month = null) {
+<% function buildArchive(posts, category = null) {
     const time = moment([page.year, page.month ? page.month - 1 : null].filter(i => i !== null)); %>
 <div class="card widget">
     <div class="card-content">
@@ -34,7 +34,7 @@
                                         class: 'has-link-grey ',
                                         show_count: false,
                                         style: 'none',
-                                        separator: ' & '
+                                        separator: ' / '
                                     }) %>
                                 </div>
                                 <% } %>
@@ -48,7 +48,8 @@
     </div>
 </div>
 <% }
-if (!page.year) {
+
+if (page.year) {
     let years = {};
     page.posts.each(p => years[p.date.year()] = null);
     for (let year of Object.keys(years).sort((a, b) => b - a)) {
@@ -56,7 +57,7 @@ if (!page.year) {
         <%- buildArchive(posts, year, null) %>
     <% }
 } else { %>
-<%- buildArchive(page.posts, page.year, page.month) %>
+<%- buildArchive(page.posts, page.category) %>
 <% } %>
 <% if (page.total > 1) { %>
     <%- _partial('common/paginator') %>

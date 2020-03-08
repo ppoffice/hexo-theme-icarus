@@ -3,7 +3,8 @@
     <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
     <p><span>本文标题:</span><a href="<%= url_for(page.path) %>"><%= page_title() %></a></p>
     <p><span>文章作者:</span><a href="/"><%= get_config('author') %></a></p>
-    <p><span>发布时间:</span><%= date(post.date) %></p>
+    <p><span>发布时间:</span><%= date(page.date) %></p>
+    <p><span>修改时间:</span><%= date(page.updated) %></p>
     <p>
         <span>原始链接:</span><a href="<%= url_for(page.path) %>" title="<%= page_title() %>"><%= get_config('permalink') %></a>
         <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="<%= get_config('permalink') %>"  aria-label="复制成功！"></i></span>

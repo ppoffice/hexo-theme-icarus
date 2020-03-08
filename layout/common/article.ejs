@@ -11,7 +11,8 @@
         <% if (post.layout != 'page') { %>
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time>
+                <!-- <time class="level-item has-text-grey" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time> -->
+                <span class="level-item has-text-grey"><%= date(post.date) %></span>
                 <% if (post.categories && post.categories.length) { %>
                 <div class="level-item">
                 <%- list_categories(post.categories, {
@@ -32,7 +33,7 @@
                 <% if (!index && (has_config('plugins.busuanzi') ? get_config('plugins.busuanzi') : false)) { %>
                 <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
                     <i class="far fa-eye"></i>
-                    <%- _p('plugin.visit', '<span id="busuanzi_value_page_pv">0</span>') %>
+                    <%- _p('plugin.visit', '<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>') %>
                 </span>
                 <% } %>
             </div>
@@ -48,6 +49,9 @@
         <div class="content">
             <%- index && post.excerpt ? post.excerpt : post.content %>
         </div>
+        <% if (is_post()===true) { %>
+            <%- _partial('common/copyright') %>
+        <% } %>
         <% if (!index && post.tags && post.tags.length) { %>
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
@@ -76,7 +80,6 @@
         <% } %>
     </div>
 </div>
-
 <% const services = has_config('donate') ? get_config('donate') : []; %>
 <% if (!index && services.length > 0) { %>
 <div class="card">

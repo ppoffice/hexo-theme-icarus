@@ -1,10 +1,14 @@
 family-sans = "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif
 family-mono = "Source Code Pro", monospace, "Microsoft YaHei"
-gap = 64px
+gap =32px
+// screen-tablet = 769px
+// screen-desktop = 1024px
+// screen-widescreen = 1280px
+// screen-fullhd = 1440px
 screen-tablet = 769px
 screen-desktop = 1088px
 screen-widescreen = 1280px
-screen-fullhd = 1472px
+screen-fullhd = 1472px 
 
 /* ---------------------------------
  *       Override CSS Framework
@@ -28,8 +32,8 @@ body, button, input, select, textarea
         max-width: screen-widescreen - 2 * gap
         width: screen-widescreen - 2 * gap
     .is-1-column .container
-        max-width: screen-desktop - 2 * gap
-        width: screen-desktop - 2 * gap
+        max-width: screen-widescreen - 2 * gap
+        width: screen-widescreen - 2 * gap
 
 @media screen and (max-width: screen-tablet - 1)
     .section
@@ -103,7 +107,7 @@ img.thumbnail
         &.is-active
             color: hsl(217, 71%, 53%)
             background-color: transparent
-    @media screen and (max-width: screen-desktop - 1)
+    @media screen and (max-width: screen-desktop + 2*gap)
         .navbar-menu
             justify-content: center
             box-shadow: none
@@ -181,7 +185,6 @@ img.thumbnail
             max-width: 50%
             font-size: 1.15rem
             position: relative
-        a
             word-wrap: break-word
 
 .rtl
@@ -326,18 +329,31 @@ img.thumbnail
  *        Fix content elements
  * --------------------------------- */
 .content
+    a 
+        color: #22a2c9
     h1, h2, h3, h4, h5, h6
         font-weight: 400
     h1
         font-size: 1.75em
+        padding-bottom: .4rem
+        line-height: 1.3
     h2
         font-size: 1.5em
+        line-height: 1.225
+        margin: 35px 0 15px
+        padding-bottom: 0.5em
+        border-bottom: 1px solid #ddd
     h3
         font-size: 1.25em
+        line-height: 1.3
+        margin: 20px 0 7px
     h4
         font-size: 1.125em
     h5
         font-size: 1em
+    h6
+        font-size: 1rem
+        color:#777
     code, pre
         font-family: family-mono
     pre
@@ -348,8 +364,10 @@ img.thumbnail
     & > code,
     :not(pre) > code
         font-size: 0.85em
-        color: hsl(348, 100%, 61%)
+        color: #e96900
     blockquote
+        color: #777777
+        background: #f3f4f4
         footer
             strong + cite
                 margin-left: 0.5em
@@ -387,7 +405,7 @@ figure.highlight
 
         .line,
         code .hljs
-            line-height: 1.5rem
+            line-height: 1.25rem
 
     figcaption,
     .gutter
@@ -472,3 +490,5 @@ figure.highlight
             border: none
     .file
         all: initial
+
+@import copyright

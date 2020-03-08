@@ -9,11 +9,12 @@
 <script>
     new Valine({
         el: '#valine-thread' ,
-        notify: <%= get_config('comment.notify') %>,
-        verify: <%= get_config('comment.verify') %>,
+        avatar: 'retro',
+        notify: <%= get_config('comment.notify') %> ,
+        verify: <%= get_config('comment.verify') %> ,
         app_id: '<%= get_config('comment.app_id') %>',
         app_key: '<%= get_config('comment.app_key') %>',
-        placeholder: '<%= get_config('comment.placeholder') %>'
+        placeholder: '<%= get_config('comment.placeholder') %>',
     });
 </script>
 <% } %>

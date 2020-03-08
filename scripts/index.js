@@ -3,6 +3,7 @@ require('../includes/tasks/check_deps');
 require('../includes/tasks/check_config');
 require('../includes/generators/categories')(hexo);
 require('../includes/generators/category')(hexo);
+require('../includes/generators/tag')(hexo);
 require('../includes/generators/tags')(hexo);
 require('../includes/generators/insight')(hexo);
 require('../includes/helpers/cdn')(hexo);

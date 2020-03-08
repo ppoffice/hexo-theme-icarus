@@ -82,6 +82,10 @@
     box-sizing: border-box;
 }
 
+.has-flash{
+    display: block;
+}
+
 @media screen and (max-width: 559px), screen and (max-height: 479px) {
     .searchbox .searchbox-container {
         top: 0;
@@ -91,4 +95,8 @@
         height: 100%;
         background: #f7f7f7;
     }
+    .has-flash{
+        display: none;
+    }
 }
+
