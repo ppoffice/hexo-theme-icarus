@@ -4,8 +4,12 @@
         case 2:
             return 'is-4-tablet is-4-desktop is-3-widescreen';
         case 3:
-            return 'is-one-third-tablet is-3-desktop is-one-fifth-widescreen';
-            
+            if(is_post() === false){
+                return 'is-one-third-tablet is-3-desktop is-3-widescreen is-3-fullhd';
+            }
+            else{
+                return 'is-one-third-tablet is-3-desktop is-one-fifth-widescreen is-one-fifth-fullhd';
+            }
     }
     return '';
 } %>

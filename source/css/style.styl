@@ -1,6 +1,6 @@
 family-sans = "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif
 family-mono = "Source Code Pro", monospace, "Microsoft YaHei"
-gap =32px
+gap = 64px
 // screen-tablet = 769px
 // screen-desktop = 1024px
 // screen-widescreen = 1280px
@@ -32,8 +32,8 @@ body, button, input, select, textarea
         max-width: screen-widescreen - 2 * gap
         width: screen-widescreen - 2 * gap
     .is-1-column .container
-        max-width: screen-widescreen - 2 * gap
-        width: screen-widescreen - 2 * gap
+        max-width: screen-desktop - 2 * gap
+        width: screen-desktop - 2 * gap
 
 @media screen and (max-width: screen-tablet - 1)
     .section
@@ -107,7 +107,7 @@ img.thumbnail
         &.is-active
             color: hsl(217, 71%, 53%)
             background-color: transparent
-    @media screen and (max-width: screen-desktop + 2*gap)
+    @media screen and (max-width: screen-desktop)
         .navbar-menu
             justify-content: center
             box-shadow: none
@@ -491,4 +491,36 @@ figure.highlight
     .file
         all: initial
 
+/* ---------------------------------
+ *        Add Copyright CSS
+ * --------------------------------- */
 @import copyright
+/* ---------------------------------
+ *        Add tip block
+ * --------------------------------- */
+.content .tip {
+    position: relative;
+    margin: 2em 0;
+    padding: 12px 24px 12px 30px;
+    border-left: 4px solid #f66;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-color: #f6f8fa;
+}
+.content .tip:before {
+    content: "!";
+    position: absolute;
+    top: 14px;
+    left: -12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    font-family: Dosis, "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f66;
+    color: #fff;
+}
+.content .tip br { display: none; }
