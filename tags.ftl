@@ -1,5 +1,5 @@
 <#include "layout/layout.ftl">
 <#include "layout/common/article.ftl">
-<@layout title="标签 - ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_description!}" canonical="${context!}/tags">
+<@layout title="标签 - ${blog_title!}" canonical="${tags_url!}">
     <#include "layout/tags.ftl">
 </@layout>

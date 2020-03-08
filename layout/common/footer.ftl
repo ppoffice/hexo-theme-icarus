@@ -2,11 +2,11 @@
     <div class="container">
         <div class="level">
             <div class="level-start has-text-centered-mobile">
-                <a class="footer-logo is-block has-mb-6" href="${context!}">
-                    <#if options.blog_logo?? && options.blog_logo!=''>
-                        <img src="${options.blog_logo!}" alt="${options.blog_title!}" height="28">
+                <a class="footer-logo is-block has-mb-6" href="${blog_url!}">
+                    <#if blog_logo?? && blog_logo!=''>
+                        <img src="${blog_logo!}" alt="${blog_title!}" height="28">
                     <#else>
-                        ${options.blog_title!}
+                        ${blog_title!}
                     </#if>
                 </a>
                 <p class="is-size-7">

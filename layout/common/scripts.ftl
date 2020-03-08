@@ -6,7 +6,7 @@
 <#include "../plugin/back-to-top.ftl">
 
 
-<script src="${static!}/source/js/bundle.js"></script>
+<script src="${theme_base!}/source/js/bundle.js"></script>
 
 <script>
     var url = location.href;

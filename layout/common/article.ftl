@@ -4,7 +4,7 @@
     <#if post.thumbnail?? && post.thumbnail!=''>
         <div class="card-image">
             <#if index>
-                <a href="${context!}/archives/${post.url!}">
+                <a href="${post.fullPath!}">
                     <img class="thumbnail" src="${post.thumbnail!}" alt="${post.title!}">
                 </a>
             <#else>
@@ -22,7 +22,7 @@
                      <#if post.categories?? && post.categories?size gt 0>
                         <div class="level-item">
                             <#list post.categories as category>
-                                <a class="has-link-grey -link" href="${context!}/categories/${category.slugName!}">${category.name!}</a>&nbsp;
+                                <a class="has-link-grey -link" href="${category.fullPath!}">${category.name!}</a>&nbsp;
                             </#list>
                         </div>
                     </#if>
@@ -30,7 +30,7 @@
                     <#if categories?? && categories?size gt 0>
                         <div class="level-item">
                             <#list categories as category>
-                                <a class="has-link-grey -link" href="${context!}/categories/${category.slugName!}">${category.name!}</a>&nbsp;
+                                <a class="has-link-grey -link" href="${category.fullPath!}">${category.name!}</a>&nbsp;
                             </#list>
                         </div>
                     </#if>
@@ -39,7 +39,7 @@
         </div>
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             <#if index>
-                <a class="has-link-black-ter" href="${context!}/archives/${post.url!}">${post.title!}</a>
+                <a class="has-link-black-ter" href="${post.fullPath!}">${post.title!}</a>
             <#else>
                 ${post.title!}
             </#if>
@@ -57,7 +57,7 @@
                     <div class="level-item">
                         <span class="is-size-6 has-text-grey has-mr-7">#</span>
                         <#list tags as tag>
-                            <a class="has-link-grey -link" href="${context!}/tags/${tag.slugName!}">${tag.name!}</a>&nbsp;
+                            <a class="has-link-grey -link" href="${tag.fullPath!}">${tag.name!}</a>&nbsp;
                         </#list>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="${context!}/archives/${post.url!}#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="${post.fullPath!}#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
         <div class="level post-navigation is-flex-wrap is-mobile">
             <#if prePost??>
             <div class="level-start">
-                <a class="level level-item has-link-grey article-nav-prev" href="${context!}/archives/${prePost.url}">
+                <a class="level level-item has-link-grey article-nav-prev" href="${prePost.fullPath!}">
                     <i class="level-item fas fa-chevron-left"></i>
                     <span class="level-item">${prePost.title!}</span>
                 </a>
@@ -109,7 +109,7 @@
             </#if>
             <#if nextPost??>
             <div class="level-end">
-                <a class="level level-item has-link-grey article-nav-next" href="${context!}/archives/${nextPost.url}">
+                <a class="level level-item has-link-grey article-nav-next" href="${nextPost.fullPath!}">
                     <span class="level-item">${nextPost.title!}</span>
                     <i class="level-item fas fa-chevron-right"></i>
                 </a>

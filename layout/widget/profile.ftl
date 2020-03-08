@@ -92,7 +92,7 @@
                     <i class="fab fa-telegram"></i>
                 </a>
             </#if>
-            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="${context!}/atom.xml">
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="${atom_url!}">
                 <i class="fas fa-rss"></i>
             </a>
         </div>

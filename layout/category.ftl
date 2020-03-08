@@ -2,7 +2,7 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="${context!}/categories">分类></a></li>
+            <li><a href="${categories_url!}">分类></a></li>
             <li class="is-active"><a href="#" aria-current="page">${category.name}</a></li>
         </ul>
         </nav>
@@ -15,14 +15,10 @@
     <div class="card card-transparent">
         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
             <div class="pagination-previous<#if posts.number gt 0><#else > is-invisible is-hidden-mobile</#if>">
-                <#if posts.number == 1>
-                    <a class="is-flex-grow has-text-black-ter" href="${context!}/categories/${category.slugName!}">上一页</a>
-                <#else>
-                    <a class="is-flex-grow has-text-black-ter" href="${context!}/categories/${category.slugName!}/page/${posts.number}">上一页</a>
-                </#if>
+                <a class="is-flex-grow has-text-black-ter" href="${prePageFullPath!}">上一页</a>
             </div>
             <div class="pagination-next<#if posts.getTotalPages() gt posts.number+1><#else > is-invisible is-hidden-mobile</#if>">
-                <a class="is-flex-grow has-text-black-ter" href="${context!}/categories/${category.slugName!}/page/${posts.number+2}">下一页</a>
+                <a class="is-flex-grow has-text-black-ter" href="${nextPageFullPath!}">下一页</a>
             </div>
             <ul class="pagination-list is-hidden-mobile">
                 <#list rainbow as r>

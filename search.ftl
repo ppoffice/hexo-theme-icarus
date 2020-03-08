@@ -1,6 +1,6 @@
 <#include "layout/layout.ftl">
 <#include "layout/common/article.ftl">
-<@layout title="搜索：${keyword} - ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_description!}" canonical="${context!}/search?keyword=${keyword}">
+<@layout title="搜索：${keyword} - ${blog_title!}" canonical="${blog_url!}/search?keyword=${keyword}">
     <#list posts.content as post>
         <@article post,'index','null',true />
     </#list>

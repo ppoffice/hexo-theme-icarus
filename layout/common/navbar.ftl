@@ -2,11 +2,11 @@
 <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
-            <a class="navbar-item navbar-logo" href="${context!}">
-                <#if options.blog_logo?? && options.blog_logo!=''>
-                    <img src="${options.blog_logo!}" alt="${options.blog_title!}" height="28">
+            <a class="navbar-item navbar-logo" href="${blog_url!}">
+                <#if blog_logo?? && blog_logo!=''>
+                    <img src="${blog_logo!}" alt="${blog_title!}" height="28">
                 <#else>
-                    ${options.blog_title!}
+                    ${blog_title!}
                 </#if>
             </a>
         </div>

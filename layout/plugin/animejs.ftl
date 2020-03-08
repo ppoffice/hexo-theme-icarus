@@ -1,1 +1,1 @@
-<script src="${static!}/source/js/animation.js"></script>
+<script src="${theme_base!}/source/js/animation.js"></script>

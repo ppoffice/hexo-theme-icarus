@@ -8,7 +8,7 @@
                 <@categoryTag method="list">
                     <#list categories as category>
                         <li>
-                            <a class="level is-marginless" href="${context!}/categories/${category.slugName!}">
+                            <a class="level is-marginless" href="${category.fullPath!}">
                                 <span class="level-start">
                                     <span class="level-item">${category.name}</span>
                                 </span>

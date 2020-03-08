@@ -8,7 +8,7 @@
                 <@tagTag method="list">
                     <#list tags as tag>
                         <div class="control">
-                            <a class="tags has-addons" href="${context!}/tags/${tag.slugName!}">
+                            <a class="tags has-addons" href="${tag.fullPath!}">
                                 <span class="tag">${tag.name}</span>
                                 <span class="tag is-grey">${tag.postCount!}</span>
                             </a>
