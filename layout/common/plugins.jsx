@@ -14,7 +14,8 @@ module.exports = class extends Component {
                     return null;
                 }
                 try {
-                    const Plugin = view.require('plugin/' + name);
+                    let Plugin = view.require('plugin/' + name);
+                    Plugin = Plugin.Cacheable ? Plugin.Cacheable : Plugin;
                     return <Plugin site={site} config={config} page={page} helper={helper} plugin={plugins[name]} head={head} />;
                 } catch (e) {
                     logger.w(`Icarus cannot load plugin "${name}"`);

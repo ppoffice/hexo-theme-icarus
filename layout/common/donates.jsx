@@ -18,7 +18,8 @@ module.exports = class extends Component {
                         const type = service.type;
                         if (typeof type === 'string') {
                             try {
-                                const Donate = view.require('donate/' + type);
+                                let Donate = view.require('donate/' + type);
+                                Donate = Donate.Cacheable ? Donate.Cacheable : Donate;
                                 return <Donate helper={helper} donate={service} />;
                             } catch (e) {
                                 logger.w(`Icarus cannot load donate button "${type}"`);

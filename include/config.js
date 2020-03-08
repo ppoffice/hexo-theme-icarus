@@ -4,6 +4,7 @@ const path = require('path');
 const util = require('util');
 const crypto = require('crypto');
 const logger = require('hexo-log')();
+const { Migrator } = require('hexo-component-inferno/lib/core/migrate');
 
 module.exports = hexo => {
     if (!process.argv.includes('--icarus-dont-check-config')) {
@@ -32,7 +33,8 @@ module.exports = hexo => {
             let cfg = yaml.parse(cfgStr);
             // Check config version
             if (!process.argv.includes('--icarus-dont-upgrade-config')) {
-                const migrator = new(require('hexo-component-inferno/lib/core/migrate'))(path.join(hexo.theme_dir, 'include/migration'));
+                const head = require(path.join(hexo.theme_dir, 'include/migration/head'));
+                const migrator = new Migrator(head);
                 // Upgrade config
                 if (migrator.isOudated(cfg.version)) {
                     logger.info(`Your configuration file is outdated (${cfg.version} < ${migrator.getLatestVersion()}). `
@@ -57,7 +59,7 @@ module.exports = hexo => {
             const result = schema.validate(cfg);
             if (result !== true) {
                 logger.warn('Configuration file failed one or more checks.');
-                logger.warn('Icarus may still run, but you will encounter excepted results.');
+                logger.warn('Icarus may still run, but you will encounter unexcepted results.');
                 logger.warn('Here is some information for you to correct the configuration file.');
                 logger.warn(util.inspect(result));
             }

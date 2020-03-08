@@ -16,7 +16,8 @@ module.exports = class extends Component {
                 <h3 class="title is-5">{__('article.comments')}</h3>
                 {(() => {
                     try {
-                        const Comment = view.require('comment/' + comment.type);
+                        let Comment = view.require('comment/' + comment.type);
+                        Comment = Comment.Cacheable ? Comment.Cacheable : Comment;
                         return <Comment config={config} page={page} helper={helper} comment={comment} />;
                     } catch (e) {
                         logger.w(`Icarus cannot load comment "${comment.type}"`);

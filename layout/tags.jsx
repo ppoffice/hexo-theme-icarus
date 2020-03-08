@@ -5,6 +5,6 @@ module.exports = class extends Component {
     render() {
         const { site, helper } = this.props;
 
-        return <Tags site={site} helper={helper} />;
+        return <Tags.Cacheable site={site} helper={helper} />;
     }
 };
