@@ -19,10 +19,10 @@
                 return 'is-8-tablet is-8-desktop is-8-widescreen';
             case 3:
                 if(is_post() === false){
-                    return 'is-two-thirds-tablet is-6-desktop is-6-widescreen is-5-fullhd'
+                    return get_config('proportion.homepage.article');
                 }
                 else{
-                    return 'is-two-thirds-tablet is-9-desktop is-three-fifths-widescreen is-three-fifths-fullhd'
+                    return get_config('proportion.post.article');
                 }
                 
         }

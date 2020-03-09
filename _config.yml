@@ -11,7 +11,9 @@ canonical_url: https://www.annewqx.top/
 rss: atom.xml
     
 # Path or URL to the website's logo to be shown on the left of the navigation bar or footer
-logo: /images/logo.svg
+logo: 
+    light: /images/logo.svg
+    dark: /images/logo_dark.png
 # Open Graph metadata
 # https://hexo.io/docs/helpers.html#open-graph
 open_graph:
@@ -118,6 +120,17 @@ donate:
 share:
     # Share plugin name
     # type: sharejs
+
+# Sidebar proportion settings.
+# 
+proportion:
+    homepage:
+        sidebar: 'is-one-third-tablet is-3-desktop is-3-widescreen is-one-fifth-fullhd'
+        article: 'is-two-thirds-tablet is-6-desktop is-6-widescreen is-5-fullhd'
+    post:
+        sidebar: 'is-one-third-tablet is-3-desktop is-one-fifth-widescreen is-one-fifth-fullhd'
+        article: 'is-two-thirds-tablet is-9-desktop is-three-fifths-widescreen is-three-fifths-fullhd'
+
 # Sidebar settings.
 # Please be noted that a sidebar is only visible when it has at least one widget
 sidebar:
@@ -289,3 +302,5 @@ providers:
     fontcdn: google
     # Name or URL of the webfont Icon CDN provider
     iconcdn: fontawesome
+
+
