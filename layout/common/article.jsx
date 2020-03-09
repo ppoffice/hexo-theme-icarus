@@ -37,7 +37,7 @@ module.exports = class extends Component {
                     {page.layout !== 'page' ? <div class="article-meta size-small is-uppercase level is-mobile">
                         <div class="level-left">
                             {/* Date */}
-                            <time class="level-item" dateTime={date_xml(page.date)}>{date(page.date)}</time>
+                            <time class="level-item" dateTime={date_xml(page.date)} title={date_xml(page.date)}>{date(page.date)}</time>
                             {/* Categories */}
                             {page.categories && page.categories.length ? <span class="level-item">
                                 {(() => {

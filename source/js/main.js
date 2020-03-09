@@ -4,16 +4,6 @@
         $('.columns .column-right-shadow').append($('.columns .column-right').children().clone());
     }
 
-    $('.article img:not(".not-gallery-item")').each(function() {
-        // wrap images with link and add caption if possible
-        if ($(this).parent('a').length === 0) {
-            $(this).wrap('<a class="gallery-item" href="' + $(this).attr('src') + '"></a>');
-            if (this.alt) {
-                $(this).after('<p class="has-text-centered is-size-6 caption">' + this.alt + '</p>');
-            }
-        }
-    });
-
     if (typeof moment === 'function') {
         $('.article-meta time').each(function() {
             $(this).text(moment($(this).attr('datetime')).fromNow());
@@ -138,10 +128,10 @@
         if (!sitehost) return false;
 
         // handle relative url
-        var data;
+        let data;
         try {
             data = new URL(input, 'http://' + sitehost);
-        } catch (e) { return false;}
+        } catch (e) { return false; }
 
         // handle mailto: javascript: vbscript: and so on
         if (data.origin === 'null') return false;

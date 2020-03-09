@@ -16,6 +16,9 @@
         "busuanzi": {
             "$ref": "/plugin/busuanzi.json"
         },
+        "cnzz": {
+            "$ref": "/plugin/cnzz.json"
+        },
         "gallery": {
             "$ref": "/plugin/gallery.json"
         },
