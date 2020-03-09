@@ -31,8 +31,18 @@
     <section class="section">
         <div>
             <div class="columns is-centered">
+                <div class="column <%= main_column_class() %> has-order-2 column-main">
+                    <%- body %>
+                    <% if (is_categories() === true) { %>
+                        <%- _partial('tags') %>
+                        <%- _partial('archive') %>
+                    <% } %>
+                    <% if (is_tags() === true) { %>
+                        <%- _partial('categories') %>
+                        <%- _partial('archive') %>
+                    <% } %>
+                </div>
                 <%-  _partial('common/widget', { position: 'left' }) %>
-                <div class="column <%= main_column_class() %> has-order-2 column-main"><%- body %></div>
                 <%-  _partial('common/widget', { position: 'right' }) %>
             </div>
         </div>

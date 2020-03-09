@@ -20,7 +20,7 @@ module.exports = function (hexo) {
             const posts = tag.posts.sort('-date');
             const data = pagination(tag.path, posts, {
                 perPage: perPage,
-                layout: ['custom_tag', 'tag', 'index'],
+                layout: ['custom_tag','tag', 'index'],
                 format: paginationDir + '/%d/',
                 data: {
                     tag: tag.name,
