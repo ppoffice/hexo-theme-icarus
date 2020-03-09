@@ -9,11 +9,11 @@
         }
     });
 
-    if (typeof (moment) === 'function') {
-        $('.article-meta time').each(function () {
-            $(this).text(moment($(this).attr('datetime')).fromNow());
-        });
-    }
+    // if (typeof (moment) === 'function') {
+    //     $('.article-meta time').each(function () {
+    //         $(this).text(moment($(this).attr('datetime')).fromNow());
+    //     });
+    // }
 
     $('.article > .content > table').each(function () {
         if ($(this).width() > $(this).parent().width()) {

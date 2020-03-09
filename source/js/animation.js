@@ -32,7 +32,7 @@
                 setTimeout(function () {
                     element.style.opacity = '1';
                     element.style.transform = '';
-                    element.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+                    element.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out, box-shadow 0.3s ease-in-out';
                 }, i * 100);
                 i++;
             });

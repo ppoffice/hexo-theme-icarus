@@ -2,7 +2,7 @@
 <% function side_column_class() {
     switch (column_count()) {
         case 2:
-            return 'is-4-tablet is-4-desktop is-3-widescreen';
+            return 'is-4-tablet is-3-desktop is-3-widescreen is-3-fullhd';
         case 3:
             if(is_post() === false){
                 return get_config('proportion.homepage.sidebar');
@@ -16,6 +16,9 @@
 <% function visibility_class() {
     if(is_post()===false && column_count() === 3 && position === 'right'){
         return 'is-hidden-touch';
+    }
+    if(is_home()===false && is_post()===false){
+        return 'is-hidden-mobile';
     }
     if(is_post()===true && column_count() === 3 && position === 'left'){
         return 'is-hidden-touch  is-hidden-desktop-only';

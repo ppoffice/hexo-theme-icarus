@@ -2,7 +2,7 @@
  * Helper functions for controlling layout.
  *
 * @example
-*     <%- get_widgets(position) %>
+*     <%- (position) %>
 *     <%- has_column() %>
 *     <%- column_count() %>
  */

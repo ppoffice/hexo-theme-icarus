@@ -129,7 +129,7 @@ proportion:
         article: 'is-two-thirds-tablet is-6-desktop is-6-widescreen is-5-fullhd'
     post:
         sidebar: 'is-one-third-tablet is-3-desktop is-one-fifth-widescreen is-one-fifth-fullhd'
-        article: 'is-two-thirds-tablet is-9-desktop is-three-fifths-widescreen is-three-fifths-fullhd'
+        article: 'is-two-thirds-tablet is-9-desktop is-7-widescreen is-three-fifths-fullhd'
 
 # Sidebar settings.
 # Please be noted that a sidebar is only visible when it has at least one widget
@@ -138,7 +138,7 @@ sidebar:
     left:
         # Whether the left sidebar is sticky when page scrolls
         # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
-        sticky: true
+        sticky: false
     # right sidebar settings
     right:
         # Whether the right sidebar is sticky when page scrolls
@@ -147,11 +147,6 @@ sidebar:
 # Sidebar widget settings
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
-    -
-        # Widget name
-        type: toc
-        # Where should the widget be placed, left or right
-        position: right
     -
         # Widget name
         type: profile
@@ -200,6 +195,12 @@ widgets:
             # RSS:
             #     icon: fas fa-rss
             #     url: atom.xml
+    
+    -
+        # Widget name
+        type: toc
+        # Where should the widget be placed, left or right
+        position: right
     -
         # Widget name
         type: tagcloud

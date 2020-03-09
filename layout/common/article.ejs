@@ -8,11 +8,21 @@
     </div>
     <% } %>
     <div class="card-content article <%= post.hasOwnProperty('direction') ? post.direction : '' %>">
+       <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            <% if (index) { %>
+            <a class="has-link-black-ter" href="<%- url_for(post.link ? post.link : post.path) %>"><i class="fas fa-angle-double-right"></i><%= post.title %></a>
+            <% } else { %>
+            <i class="fas fa-angle-double-right"></i><%= post.title %>
+            <% } %>
+        </h1>
         <% if (post.layout != 'page') { %>
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
                 <!-- <time class="level-item has-text-grey" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time> -->
-                <span class="level-item has-text-grey"><%= date(post.date) %></span>
+                <time class="level-item has-text-grey" datetime="<%= date_xml(post.date) %>"><i class="far fa-calendar-alt">&nbsp;</i><%= date(post.date) %></time>
+                <% if (post.updated && post.updated > post.date) { %>
+                <time class="level-item has-text-grey is-hidden-mobile" datetime="<%= date_xml(post.updated) %>"><i class="far fa-calendar-check">&nbsp;</i><%= date(post.updated) %></time>
+                <% } %>
                 <% if (post.categories && post.categories.length) { %>
                 <div class="level-item">
                 <%- list_categories(post.categories, {
@@ -39,13 +49,13 @@
             </div>
         </div>
         <% } %>
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+        <!-- <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             <% if (index) { %>
                 <a class="has-link-black-ter" href="<%- url_for(post.link ? post.link : post.path) %>"><%= post.title %></a>
             <% } else { %>
                 <%= post.title %>
             <% } %>
-        </h1>
+        </h1> -->
         <div class="content">
             <%- index && post.excerpt ? post.excerpt : post.content %>
         </div>
@@ -53,21 +63,39 @@
             <%- _partial('common/copyright') %>
         <% } %>
         <% if (!index && post.tags && post.tags.length) { %>
+        <hr style="height:1px;margin:1rem 0"/>
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <!-- <span class="is-size-6 has-text-grey has-mr-7">#</span> -->
+                    <i class="fas fa-tags has-text-grey"></i>&nbsp;
                     <%- list_tags(post.tags, {
                         class: 'has-link-grey ',
                         show_count: false,
-                        style: 'link'
+                        style: 'link',
+                        separator: ',&nbsp;'
                     }) %>
                 </div>
             </div>
         </div>
         <% } %>
         <% if (index && post.excerpt) { %>
-        <div class="level is-mobile">
+        <hr style="height:1px;margin:1rem 0"/>
+        <div class="level is-mobile is-flex">
+            <div class="level-start">
+                <% if (post.tags && post.tags.length) { %>
+                <div class="level-item is-size-7 is-uppercase">
+                <i class="fas fa-tags has-text-grey"></i>&nbsp;
+                <%- list_tags(post.tags, {
+                    class: 'has-link-grey ',
+                    show_count: false,
+                    style: 'link',
+                    separator: ',&nbsp;'
+                }) %>
+                </div>
+                <% } %>
+            </div>
+        <!-- <div class="level is-mobile"></div> -->
             <div class="level-start">
                 <div class="level-item">
                 <a class="button is-size-7 is-light" href="<%- url_for(post.path) %>#more"><%= __('article.more') %></a>

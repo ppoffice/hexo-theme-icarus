@@ -46,6 +46,17 @@ module.exports = function (hexo) {
         return [title, siteTitle].filter(str => typeof (str) !== 'undefined' && str.trim() !== '').join(' - ');
     });
 
+    // hexo.extend.helper.register('has_thumbnail', function (post, isArticle = false) {
+    //     const getConfig = hexo.extend.helper.get('get_config').bind(this);
+    //     const allowThumbnail = getConfig('article.thumbnail', true);
+    //     if (!allowThumbnail) {
+    //         return false;
+    //     }
+    //     return post.hasOwnProperty('thumbnail') && post.thumbnail;
+    //     if (isArticle && post['article-thumbnail'] === false){
+    //         return false;
+    //     }
+    // });
     hexo.extend.helper.register('has_thumbnail', function (post) {
         const getConfig = hexo.extend.helper.get('get_config').bind(this);
         const allowThumbnail = getConfig('article.thumbnail', true);
