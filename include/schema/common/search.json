@@ -12,6 +12,9 @@
         },
         {
             "$ref": "/search/google_cse.json"
+        },
+        {
+            "$ref": "/search/algolia.json"
         }
     ]
 }

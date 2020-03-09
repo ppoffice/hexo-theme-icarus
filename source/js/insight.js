@@ -2,44 +2,114 @@
  * Insight search plugin
  * @author PPOffice { @link https://github.com/ppoffice }
  */
-(function($, CONFIG) {
-    const $main = $('.ins-search');
-    const $input = $main.find('.ins-search-input');
-    const $wrapper = $main.find('.ins-section-wrapper');
-    const $container = $main.find('.ins-section-container');
-    $main.parent().remove('.ins-search');
-    $('body').append($main);
+function loadInsight(config, translation) { // eslint-disable-line no-unused-vars
+    const $main = $('.searchbox');
+    const $input = $main.find('.searchbox-input');
+    const $container = $main.find('.searchbox-body');
 
     function section(title) {
-        return $('<section>').addClass('ins-section')
-            .append($('<header>').addClass('ins-section-header').text(title));
+        return $('<section>').addClass('searchbox-result-section').append($('<header>').text(title));
+    }
+
+    function merge(ranges) {
+        let last;
+        const result = [];
+
+        ranges.forEach(r => {
+            if (!last || r[0] > last[1]) {
+                result.push(last = r);
+            } else if (r[1] > last[1]) {
+                last[1] = r[1];
+            }
+        });
+
+        return result;
+    }
+
+    function findAndHighlight(text, matches, maxlen) {
+        if (!Array.isArray(matches) || !matches.length || !text) {
+            return maxlen ? text.slice(0, maxlen) : text;
+        }
+        const testText = text.toLowerCase();
+        const indices = matches.map(match => {
+            const index = testText.indexOf(match.toLowerCase());
+            if (!match || index === -1) {
+                return null;
+            }
+            return [index, index + match.length];
+        }).filter(match => {
+            return match !== null;
+        }).sort((a, b) => {
+            return a[0] - b[0] || a[1] - b[1];
+        });
+
+        if (!indices.length) {
+            return text;
+        }
+
+        let result = ''; let last = 0;
+        const ranges = merge(indices);
+        const sumRange = [ranges[0][0], ranges[ranges.length - 1][1]];
+        if (maxlen && maxlen < sumRange[1]) {
+            last = sumRange[0];
+        }
+
+        for (let i = 0; i < ranges.length; i++) {
+            const range = ranges[i];
+            result += text.slice(last, Math.min(range[0], sumRange[0] + maxlen));
+            if (maxlen && range[0] >= sumRange[0] + maxlen) {
+                break;
+            }
+            result += '<em>' + text.slice(range[0], range[1]) + '</em>';
+            last = range[1];
+            if (i === ranges.length - 1) {
+                if (maxlen) {
+                    result += text.slice(range[1], Math.min(text.length, sumRange[0] + maxlen + 1));
+                } else {
+                    result += text.slice(range[1]);
+                }
+            }
+        }
+
+        return result;
     }
 
     function searchItem(icon, title, slug, preview, url) {
-        return $('<div>').addClass('ins-selectable').addClass('ins-search-item')
-            .append($('<header>').append($('<i>').addClass('fa').addClass('fa-' + icon))
-                .append($('<span>').addClass('ins-title').text(title != null && title !== '' ? title : CONFIG.TRANSLATION.UNTITLED))
-                .append(slug ? $('<span>').addClass('ins-slug').text(slug) : null))
-            .append(preview ? $('<p>').addClass('ins-search-preview').text(preview) : null)
-            .attr('data-url', url);
+        title = title != null && title !== '' ? title : translation.untitled;
+
+        return `<a class="searchbox-result-item" href="${url}">
+            <span class="searchbox-result-icon">
+                <i class="fa fa-${icon}" />
+            </span>
+            <span class="searchbox-result-content">
+                <span class="searchbox-result-title">
+                    ${title}
+                    ${slug ? '<span class="searchbox-result-title-secondary">(' + slug + ')</span>' : ''}
+                </span>
+                ${preview ? '<span class="searchbox-result-preview">' + preview + '</span>' : ''}
+            </span>
+        </a>`;
     }
 
-    function sectionFactory(type, array) {
+    function sectionFactory(keywords, type, array) {
         let $searchItems;
         if (array.length === 0) return null;
-        const sectionTitle = CONFIG.TRANSLATION[type];
+        const sectionTitle = translation[type.toLowerCase()];
         switch (type) {
             case 'POSTS':
             case 'PAGES':
                 $searchItems = array.map(item => {
-                    // Use config.root instead of permalink to fix url issue
-                    return searchItem('file', item.title, null, item.text.slice(0, 150), item.link);
+                    const title = findAndHighlight(item.title, keywords);
+                    const text = findAndHighlight(item.text, keywords, 100);
+                    return searchItem('file', title, null, text, item.link);
                 });
                 break;
             case 'CATEGORIES':
             case 'TAGS':
                 $searchItems = array.map(item => {
-                    return searchItem(type === 'CATEGORIES' ? 'folder' : 'tag', item.name, item.slug, null, item.link);
+                    const name = findAndHighlight(item.name, keywords);
+                    const slug = findAndHighlight(item.slug, keywords);
+                    return searchItem(type === 'CATEGORIES' ? 'folder' : 'tag', name, slug, null, item.link);
                 });
                 break;
             default:
@@ -52,7 +122,7 @@
         return keywords.split(' ').filter(keyword => {
             return !!keyword;
         }).map(keyword => {
-            return keyword.toUpperCase();
+            return keyword.toLowerCase();
         });
     }
 
@@ -68,7 +138,7 @@
                 if (!Object.prototype.hasOwnProperty.call(obj, field)) {
                     return false;
                 }
-                if (obj[field].toUpperCase().indexOf(keyword) > -1) {
+                if (obj[field].toLowerCase().indexOf(keyword) > -1) {
                     return true;
                 }
                 return false;
@@ -150,28 +220,29 @@
         };
     }
 
-    function searchResultToDOM(searchResult) {
+    function searchResultToDOM(keywords, searchResult) {
         $container.empty();
         for (const key in searchResult) {
-            $container.append(sectionFactory(key.toUpperCase(), searchResult[key]));
+            $container.append(sectionFactory(parseKeywords(keywords),
+                key.toUpperCase(), searchResult[key]));
         }
     }
 
     function scrollTo($item) {
         if ($item.length === 0) return;
-        const wrapperHeight = $wrapper[0].clientHeight;
-        const itemTop = $item.position().top - $wrapper.scrollTop();
+        const wrapperHeight = $container[0].clientHeight;
+        const itemTop = $item.position().top - $container.scrollTop();
         const itemBottom = $item[0].clientHeight + $item.position().top;
-        if (itemBottom > wrapperHeight + $wrapper.scrollTop()) {
-            $wrapper.scrollTop(itemBottom - $wrapper[0].clientHeight);
+        if (itemBottom > wrapperHeight + $container.scrollTop()) {
+            $container.scrollTop(itemBottom - $container[0].clientHeight);
         }
         if (itemTop < 0) {
-            $wrapper.scrollTop($item.position().top);
+            $container.scrollTop($item.position().top);
         }
     }
 
     function selectItemByDiff(value) {
-        const $items = $.makeArray($container.find('.ins-selectable'));
+        const $items = $.makeArray($container.find('.searchbox-result-item'));
         let prevPosition = -1;
         $items.forEach((item, index) => {
             if ($(item).hasClass('active')) {
@@ -187,17 +258,17 @@
 
     function gotoLink($item) {
         if ($item && $item.length) {
-            location.href = $item.attr('data-url');
+            location.href = $item.attr('href');
         }
     }
 
-    $.getJSON(CONFIG.CONTENT_URL, json => {
-        if (location.hash.trim() === '#ins-search') {
+    $.getJSON(config.contentUrl, json => {
+        if (location.hash.trim() === '#insight-search') {
             $main.addClass('show');
         }
         $input.on('input', function() {
             const keywords = $(this).val();
-            searchResultToDOM(search(json, keywords));
+            searchResultToDOM(keywords, search(json, keywords));
         });
         $input.trigger('input');
     });
@@ -205,14 +276,14 @@
     let touch = false;
     $(document).on('click focus', '.navbar-main .search', () => {
         $main.addClass('show');
-        $main.find('.ins-search-input').focus();
-    }).on('click touchend', '.ins-search-item', function(e) {
+        $main.find('.searchbox-input').focus();
+    }).on('click touchend', '.searchbox-result-item', function(e) {
         if (e.type !== 'click' && !touch) {
             return;
         }
         gotoLink($(this));
         touch = false;
-    }).on('click touchend', '.ins-close', e => {
+    }).on('click touchend', '.searchbox-close', e => {
         if (e.type !== 'click' && !touch) {
             return;
         }
@@ -232,11 +303,11 @@
             case 40: // DOWN
                 selectItemByDiff(1); break;
             case 13: // ENTER
-                gotoLink($container.find('.ins-selectable.active').eq(0)); break;
+                gotoLink($container.find('.searchbox-result-item.active').eq(0)); break;
         }
     }).on('touchstart', e => {
         touch = true;
     }).on('touchmove', e => {
         touch = false;
     });
-}(jQuery, window.INSIGHT_CONFIG));
+}

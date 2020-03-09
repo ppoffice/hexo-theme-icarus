@@ -11,6 +11,9 @@ common:
     post:
         one: '文章'
         other: '文章'
+    page:
+        one: '页面'
+        other: '页面'
     prev: '上一页'
     next: '下一页'
 widget:
@@ -32,6 +35,8 @@ donate:
     title: '喜欢这篇文章？打赏一下作者吧'
     alipay: '支付宝'
     wechat: '微信'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
     buymeacoffee: '送我杯咖啡'
 plugin:
     backtotop: '回到顶端'
@@ -40,10 +45,6 @@ plugin:
 search:
     search: '搜索'
     hint: '想要查找什么...'
-insight:
-    hint: '想要查找什么...'
-    posts: '文章'
-    pages: '页面'
-    categories: '分类'
-    tags: '标签'
+    no_result: '未找到搜索结果'
     untitled: '(无标题)'
+    empty_preview: '(无内容预览)'

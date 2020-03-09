@@ -3,37 +3,26 @@ const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 
 class Insight extends Component {
     render() {
-        const { hint, translation, contentUrl, jsUrl, cssUrl } = this.props;
+        const { translation, contentUrl, jsUrl } = this.props;
 
-        const js = `(function (window) {
-            var INSIGHT_CONFIG = {
-                TRANSLATION: {
-                    POSTS: '${translation.posts}',
-                    PAGES: '${translation.pages}',
-                    CATEGORIES: '${translation.categories}',
-                    TAGS: '${translation.tags}',
-                    UNTITLED: '${translation.untitled}',
-                },
-                CONTENT_URL: '${contentUrl}',
-            };
-            window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-        })(window);`;
+        const js = `document.addEventListener('DOMContentLoaded', function () {
+            loadInsight(${JSON.stringify({ contentUrl })}, ${JSON.stringify(translation)});
+        });`;
 
         return <Fragment>
-            <link rel="stylesheet" href={cssUrl} />
-            <div class="searchbox ins-search">
-                <div class="searchbox-container ins-search-container">
-                    <div class="searchbox-input-wrapper">
-                        <input type="text" class="searchbox-input ins-search-input" placeholder={hint} />
-                        <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+            <div class="searchbox">
+                <div class="searchbox-container">
+                    <div class="searchbox-header">
+                        <div class="searchbox-input-container">
+                            <input type="text" class="searchbox-input" placeholder={translation.hint}/>
+                        </div>
+                        <a class="searchbox-close" href="javascript:;">&times;</a>
                     </div>
-                    <div class="searchbox-result-wrapper ins-section-wrapper">
-                        <div class="ins-section-container"></div>
-                    </div>
+                    <div class="searchbox-body"></div>
                 </div>
             </div>
-            <script dangerouslySetInnerHTML={{ __html: js }}></script>
             <script src={jsUrl} defer={true}></script>
+            <script dangerouslySetInnerHTML={{ __html: js }}></script>
         </Fragment>;
     }
 }
@@ -42,17 +31,16 @@ Insight.Cacheable = cacheComponent(Insight, 'search.insight', props => {
     const { helper } = props;
 
     return {
-        hint: helper.__('search.hint'),
         translation: {
-            posts: helper.__('insight.posts'),
-            pages: helper.__('insight.pages'),
-            categories: helper.__('insight.categories'),
-            tags: helper.__('insight.tags'),
-            untitled: helper.__('insight.untitled')
+            hint: helper.__('search.hint'),
+            untitled: helper.__('search.untitled'),
+            posts: helper._p('common.post', Infinity),
+            pages: helper._p('common.page', Infinity),
+            categories: helper._p('common.category', Infinity),
+            tags: helper._p('common.tag', Infinity)
         },
         contentUrl: helper.url_for('/content.json'),
-        jsUrl: helper.url_for('/js/insight.js'),
-        cssUrl: helper.url_for('/css/insight.css')
+        jsUrl: helper.url_for('/js/insight.js')
     };
 });
 
