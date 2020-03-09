@@ -38,7 +38,7 @@ class Insight extends Component {
     }
 }
 
-module.exports = cacheComponent(Insight, 'search.insight', props => {
+Insight.Cacheable = cacheComponent(Insight, 'search.insight', props => {
     const { helper } = props;
 
     return {
@@ -55,3 +55,5 @@ module.exports = cacheComponent(Insight, 'search.insight', props => {
         cssUrl: helper.url_for('/css/insight.css')
     };
 });
+
+module.exports = Insight;

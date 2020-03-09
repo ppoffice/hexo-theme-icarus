@@ -81,7 +81,7 @@ class Profile extends Component {
     }
 }
 
-module.exports = cacheComponent(Profile, 'widget.profile', props => {
+Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
     const { site, helper, widget } = props;
     const {
         avatar,
@@ -152,3 +152,5 @@ module.exports = cacheComponent(Profile, 'widget.profile', props => {
         socialLinks
     };
 });
+
+module.exports = Profile;

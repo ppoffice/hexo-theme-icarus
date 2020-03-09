@@ -15,7 +15,7 @@ class BackToTop extends Component {
     }
 }
 
-module.exports = cacheComponent(BackToTop, 'plugin.backtotop', props => {
+BackToTop.Cacheable = cacheComponent(BackToTop, 'plugin.backtotop', props => {
     const { helper, head } = props;
     if (head) {
         return null;
@@ -25,3 +25,5 @@ module.exports = cacheComponent(BackToTop, 'plugin.backtotop', props => {
         jsUrl: helper.url_for('/js/back-to-top.js')
     };
 });
+
+module.exports = BackToTop;
