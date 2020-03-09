@@ -3,8 +3,8 @@ const logger = require('hexo-log')();
 module.exports = hexo => {
     logger.info('=== Registering Hexo extensions ===');
     require('hexo-component-inferno/lib/hexo/filter/locals')(hexo);
-    require('./generator/category')(hexo);
-    require('./generator/insight')(hexo);
+    require('./hexo/generator/category')(hexo);
+    require('./hexo/generator/insight')(hexo);
     require('hexo-component-inferno/lib/hexo/generator/categories')(hexo);
     require('hexo-component-inferno/lib/hexo/generator/tags')(hexo);
     require('hexo-component-inferno/lib/hexo/helper/cdn')(hexo);
