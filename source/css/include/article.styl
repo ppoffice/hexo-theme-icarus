@@ -1,0 +1,101 @@
+/* ---------------------------------
+ *    Article Summary and Content
+ * --------------------------------- */
+$article-font-size ?= 1.1rem
+
+article
+    &.media
+        .media-content
+            color: $text-light
+
+            .title
+                margin: 0
+                line-height: inherit
+
+    &.article
+        .article-meta, .article-tags
+            color: $text-light
+
+        .article-meta
+            overflow-x: auto
+            margin-bottom: .5rem
+
+        .article-more
+            @extend .button.is-light
+
+        .content
+            font-size: $article-font-size
+
+            a
+                word-wrap: break-word
+
+            h1
+                font-size: 1.75em
+
+            h2
+                font-size: 1.5em
+
+            h3
+                font-size: 1.25em
+
+            h4
+                font-size: 1.125em
+
+            h5
+                font-size: 1em
+
+            pre
+                font-size: .85em
+
+            code
+                padding: 0
+                background: transparent
+
+            blockquote
+                &.pullquote
+                    float: right
+                    max-width: 50%
+                    font-size: 1.15rem
+                    position: relative
+
+                footer
+                    strong + cite
+                        margin-left: .5em
+
+.rtl
+    direction: rtl
+
+    .level
+        &, &.is-mobile
+            .level-item:not(:last-child)
+                margin-left: .75rem
+                margin-right: 0
+
+.thumbnail
+    object-fit: cover
+    width: 100% !important
+    height: 100% !important
+
+// Overflow table
+.table-overflow
+    overflow-x: auto
+
+    table
+        width: auto !important
+
+        th
+            word-break: keep-all
+
+// Video container
+.video-container
+    position: relative
+    padding-bottom: 56.25%
+    padding-top: 25px
+    height: 0
+
+    iframe
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%

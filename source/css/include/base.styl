@@ -1,0 +1,60 @@
+bulma-stylus-root = "../../../../node_modules/bulma-stylus/stylus"
+
+/* ---------------------------------
+ *   Override Bulma CSS Framework
+ * --------------------------------- */
+$body-size ?= 14px
+$body-background-color ?= #f7f7f7
+
+$family-sans-serif ?= Ubuntu, Roboto, "Open Sans", "Microsoft YaHei", sans-serif
+$family-code ?= "Source Code Pro", monospace, "Microsoft YaHei"
+
+$primary ?= $blue
+$custom-colors ?= {
+    grey-lightest: {
+        '1': $grey-lightest
+        '2': $grey-darker
+    }
+}
+
+$navbar-item-active-color ?= $primary
+$footer-background-color ?= $scheme-main
+
+$gap ?= 64px
+$tablet ?= 769px
+$desktop ?= 1088px
+$widescreen ?= 1280px
+$fullhd ?= 1472px
+
+$shadow ?= 0 4px 10px rgba(0, 0, 0, 0.05)
+
+$title-weight ?= $weight-normal
+
+$control-height ?= 2.25em
+$button-padding-vertical ?= calc(0.375em - 1px)
+
+$card-radius ?= $radius
+$card-media-margin ?= 0.75rem
+$card-shadow ?= $shadow, 0 0 1px rgba(0, 0, 0, 0.1)
+
+$content-heading-weight ?= $weight-normal
+
+
+$logo-height ?= 1.75rem
+
+// FIXME: https://github.com/groenroos/bulma-stylus/issues/11
+@import bulma-stylus-root + "/utilities/initial-variables"
+@import bulma-stylus-root + "/utilities/functions"
+@import bulma-stylus-root + "/utilities/derived-variables"
+
+$colors = merge($colors, $custom-colors)
+
+@import bulma-stylus-root + "/utilities/animations"
+@import bulma-stylus-root + "/utilities/mixins"
+@import bulma-stylus-root + "/utilities/controls"
+@import bulma-stylus-root + "/base/_all"
+@import bulma-stylus-root + "/components/_all"
+@import bulma-stylus-root + "/elements/_all"
+@import bulma-stylus-root + "/form/_all"
+@import bulma-stylus-root + "/grid/_all"
+@import bulma-stylus-root + "/layout/_all"

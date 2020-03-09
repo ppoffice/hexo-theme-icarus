@@ -1,0 +1,47 @@
+/* ---------------------------------
+ *           Top Navigation
+ * --------------------------------- */
+.navbar-main
+    box-shadow: $shadow
+
+    .navbar-menu, .navbar-start, .navbar-end
+        align-items: stretch
+        display: flex
+        padding: 0
+        flex-shrink: 0
+
+    .navbar-menu
+        flex-grow: 1
+        flex-shrink: 0
+        overflow-x: auto
+
+    .navbar-start
+        justify-content: flex-start
+        margin-right: auto
+
+    .navbar-end
+        justify-content: flex-end
+        margin-left: auto
+
+    .navbar-item
+        display: flex
+        align-items: center
+        padding: 1.25rem .75rem
+
+        &.is-active
+            background-color: transparent
+
+    +until($navbar-breakpoint)
+        .navbar-menu
+            justify-content: center
+            box-shadow: none
+
+        .navbar-start
+            margin-right: 0
+
+        .navbar-end
+            margin-left: 0
+
+.navbar-logo
+    img
+        max-height: $logo-height

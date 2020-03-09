@@ -1,0 +1,32 @@
+/* ---------------------------------
+ *         Responsive Layout
+ * --------------------------------- */
++widescreen()
+    .is-1-column .container, .is-2-column .container
+        max-width: $desktop - 2 * $gap
+        width: $desktop - 2 * $gap
+
++fullhd()
+    .is-2-column .container
+        max-width: $widescreen - 2 * $gap
+        width: $widescreen - 2 * $gap
+
+    .is-1-column .container
+        max-width: $desktop - 2 * $gap
+        width: $desktop - 2 * $gap
+
++tablet()
+    .column-main, .column-left, .column-right, .column-right-shadow
+        &.is-sticky
+            align-self: flex-start
+            position: -webkit-sticky
+            position: sticky
+            top: .75rem
+
+    .column-right-shadow
+        &.is-sticky
+            top: 1.5rem
+
++mobile()
+    .section
+        padding: 1.5rem 1rem

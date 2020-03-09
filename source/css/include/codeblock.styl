@@ -1,0 +1,101 @@
+/* ---------------------------------
+ *          Code Highlight
+ * --------------------------------- */
+$codeblock-caption-bg ?= rgba(200, 200, 200, .15)
+
+figure.highlight
+    padding: 0
+    width: 100%
+    position: relative
+    margin: 1em 0 1em !important
+
+    &.folded
+        .highlight-body
+            height: 0
+
+    pre, table tr:hover
+        color: inherit
+        background: transparent
+
+    table
+        width: auto
+
+        tr td
+            border: none
+
+        tr:not(:first-child) td
+            padding-top: 0
+
+        tr:not(:last-child) td
+            padding-bottom: 0
+
+    pre
+        padding: 0
+        overflow: visible
+
+        .line, code .hljs
+            line-height: 1.5rem
+
+    figcaption, .gutter
+        background: $codeblock-caption-bg
+
+    figcaption
+        margin: 0 !important
+        padding: .3em 0em .3em .75em
+        font-style: normal
+        font-size: .8em
+
+        *
+            color: $grey
+
+        span
+            font-weight: 500
+            font-family: $family-code
+
+        .level-left *:not(:last-child)
+            margin-right: .5em
+
+        .level-right *:not(:first-child)
+            margin-left: .5em
+
+        .fold
+            cursor: pointer
+
+        &.level
+            overflow: auto
+
+            .level-right
+                a
+                    padding: 0em .75em
+
+    .highlight-body
+        overflow: auto
+
+    .gutter
+        text-align: right
+
+    .tag, .title, .number, .section
+        display: inherit
+        font: inherit
+        margin: inherit
+        padding: inherit
+        background: inherit
+        height: inherit
+        text-align: inherit
+        vertical-align: inherit
+        min-width: inherit
+        border-radius: inherit
+
+/* ---------------------------------
+ *        Fix Gist Snippet
+ * --------------------------------- */
+.gist
+    table
+        tr:hover
+            background: transparent
+
+        td
+            border: none
+
+    .file
+        all: initial

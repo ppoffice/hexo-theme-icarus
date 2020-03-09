@@ -1,28 +1,34 @@
-$box-shadow = 0 4px 10px rgba(0, 0, 0, .05), 0 0 1px rgba(0, 0, 0, .1)
-$border-radius = 4px
-$bg-shadow = rgba(0, 0, 0, .7)
-$bg-container = #f7f7f7
-$bg-primary = rgb(39, 108, 218)
-$fg-primary = #fff
-$fg-input = #333
-$bg-input = #fff
-$bg-close-hover = $bg-container
-$bg-close-active = #eee
-$fg-result-header = #aaa
-$fg-result-item-secondary = #aaa
-$bg-result-item-hover = #fff
-$fg-result-item-active = $fg-primary
-$bg-result-item-active = $bg-primary
-$bg-result-item-highlight = $yellow
-$fg-pagination-item = #333
-$bg-pagination-item = #fff
-$bg-pagination-item-hover = $bg-container
-$fg-pagination-item-active = $fg-primary
-$bg-pagination-item-active = $bg-primary
-$bg-pagination-item-disabled = $bg-container
-$fg-border = #e2e2e2
-$container-width = 540px
-$container-margin = 100px
+/* ---------------------------------
+ *           Search Box
+ * --------------------------------- */
+// container sizes
+$searchbox-container-width ?= 540px
+$searchbox-container-margin ?= 100px
+$searchbox-breakpoint-width ?= 559px
+$searchbox-breakpoint-height ?= 479px
+// overlay and container styles
+$searchbox-box-shadow ?= $card-shadow
+$searchbox-border-radius ?= $radius
+$searchbox-bg-overlay ?= $modal-background-background-color
+$searchbox-bg-container ?= $white-ter
+$searchbox-border ?= $border
+// header styles
+$searchbox-bg-input ?= $white
+$searchbox-bg-close-hover ?= $searchbox-bg-container
+$searchbox-bg-close-active ?= $grey-lighter
+// body styles
+$searchbox-fg-result-header ?= $grey-light
+$searchbox-fg-result-item-secondary ?= $grey-light
+$searchbox-bg-result-item-hover ?= $searchbox-bg-input
+$searchbox-fg-result-item-active ?= findColorInvert($primary)
+$searchbox-bg-result-item-active ?= $primary
+$searchbox-bg-result-item-highlight ?= $yellow
+// footer styles
+$searchbox-bg-pagination-item ?= $searchbox-bg-input
+$searchbox-bg-pagination-item-hover ?= $searchbox-bg-container
+$searchbox-fg-pagination-item-active ?= findColorInvert($primary)
+$searchbox-bg-pagination-item-active ?= $primary
+$searchbox-bg-pagination-item-disabled ?= $searchbox-bg-container
 
 .searchbox
     display: none
@@ -33,7 +39,7 @@ $container-margin = 100px
     z-index: 100
     font-size: 1rem
     line-height: 0
-    background: $bg-shadow
+    background: $searchbox-bg-overlay
 
     &.show
         display: flex
@@ -59,12 +65,12 @@ $container-margin = 100px
         z-index: 101
         display: flex
         overflow: hidden
-        box-shadow: $box-shadow
-        border-radius: $border-radius
-        background-color: $bg-container
-        width: $container-width
-        top: $container-margin
-        bottom: $container-margin
+        box-shadow: $searchbox-box-shadow
+        border-radius: $searchbox-border-radius
+        background-color: $searchbox-bg-container
+        width: $searchbox-container-width
+        top: $searchbox-container-margin
+        bottom: $searchbox-container-margin
 
     .searchbox-header, .searchbox-body, .searchbox-footer
         width: 100%
@@ -74,7 +80,7 @@ $container-margin = 100px
         flex-direction: row
         line-height: 1.5em
         font-weight: normal
-        background-color: $bg-input
+        background-color: $searchbox-bg-input
 
     .searchbox-input-container
         display: flex
@@ -82,51 +88,49 @@ $container-margin = 100px
 
     .searchbox-input
         flex-grow: 1
-        color: $fg-input
         box-sizing: border-box
         padding: .75em 0 .75em 1.25em
 
     .searchbox-close
         display: inline-block
-        color: $fg-input
         font-size: 1.5em
         padding: .5em .75em
         cursor: pointer
 
         &:hover
-            background: $bg-close-hover
+            background: $searchbox-bg-close-hover
 
         &:active
-            background: $bg-close-active
+            background: $searchbox-bg-close-active
 
     .searchbox-body
         flex-grow: 1
         overflow-y: auto
-        border-top: 1px solid $fg-border
+        border-top: 1px solid $searchbox-border
 
     .searchbox-result-section header, .searchbox-result-item
         padding: .75em 1em
 
     .searchbox-result-section
-        border-bottom: 1px solid $fg-border
+        border-bottom: 1px solid $searchbox-border
 
         header
-            color: $fg-result-header
+            color: $searchbox-fg-result-header
 
     .searchbox-result-item
         display: flex
         flex-direction: row
 
         &:not(.disabled):not(.active):not(:active):hover
-            background-color: $bg-result-item-hover
+            background-color: $searchbox-bg-result-item-hover
 
         &:active, &.active
-            color: $fg-result-item-active
-            background-color: $bg-result-item-active
+            color: $searchbox-fg-result-item-active
+            background-color: $searchbox-bg-result-item-active
 
         em
             font-style: normal
-            background: $bg-result-item-highlight
+            background: $searchbox-bg-result-item-highlight
 
     .searchbox-result-icon
         margin-right: 1em
@@ -141,14 +145,14 @@ $container-margin = 100px
         text-overflow: ellipsis
 
     .searchbox-result-title-secondary
-        color: $fg-result-item-secondary
+        color: $searchbox-fg-result-item-secondary
 
     .searchbox-result-preview
         margin-top: .25em
 
     .searchbox-result-item:not(:active):not(.active)
         .searchbox-result-preview
-            color: $fg-result-item-secondary
+            color: $searchbox-fg-result-item-secondary
 
     .searchbox-footer
         padding: .5em 1em
@@ -168,26 +172,25 @@ $container-margin = 100px
         .searchbox-pagination-link
             overflow: hidden
             padding: .5em .8em
-            color: $fg-pagination-item
-            box-shadow: $box-shadow
-            border-radius: $border-radius
-            background-color: $bg-pagination-item
+            box-shadow: $searchbox-box-shadow
+            border-radius: $searchbox-border-radius
+            background-color: $searchbox-bg-pagination-item
 
         .searchbox-pagination-item.active
             .searchbox-pagination-link
-                color: $fg-pagination-item-active
-                background-color: $bg-pagination-item-active
+                color: $searchbox-fg-pagination-item-active
+                background-color: $searchbox-bg-pagination-item-active
 
         .searchbox-pagination-item.disabled
             .searchbox-pagination-link
                 cursor: not-allowed
-                background-color: $bg-pagination-item-disabled
+                background-color: $searchbox-bg-pagination-item-disabled
 
         .searchbox-pagination-item:not(.active):not(.disabled)
             .searchbox-pagination-link:hover
-                background-color: $bg-pagination-item-hover
+                background-color: $searchbox-bg-pagination-item-hover
 
-@media screen and (max-width: 559px), screen and (max-height: 479px)
+@media screen and (max-width: $searchbox-breakpoint-width), screen and (max-height: $searchbox-breakpoint-height)
     .searchbox .searchbox-container
         top: 0
         left: 0
