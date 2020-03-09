@@ -78,6 +78,7 @@ function loadAlgolia(config, translation) { // eslint-disable-line no-unused-var
 
     $(document).on('click', '.navbar-main .search', () => {
         $('.searchbox').toggleClass('show');
+        $('.searchbox-input').focus();
     }).on('click', '.searchbox .searchbox-mask', () => {
         $('.searchbox').removeClass('show');
     }).on('click', '.searchbox-close', () => {

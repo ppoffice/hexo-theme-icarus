@@ -31,7 +31,8 @@ class Algolia extends Component {
                     <div class="searchbox-header">
                         <div class="searchbox-input-container" id="algolia-input">
                         </div>
-                        <div class="is-flex" id="algolia-poweredby" style="align-items:center;line-height:0"></div>
+                        <div class="is-flex" id="algolia-poweredby"
+                            style="margin:0 .5em 0 1em;align-items:center;line-height:0"></div>
                         <a class="searchbox-close" href="javascript:;">&times;</a>
                     </div>
                     <div class="searchbox-body"></div>
