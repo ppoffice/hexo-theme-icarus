@@ -8,8 +8,9 @@
             <% if (logo && logo.text) { %>
                 <%= logo.text %>
             <% } else { %>
-                <img src="<%- url_for(logo) %>" alt="<%= title %>" height="28">
-            <% } %> 
+                <img class="logo-img" src="<%- url_for(logo.light) %>" alt="<%= title %>" height="28" />
+                <img class="logo-img-dark" src="<%- url_for(logo.dark) %>" alt="<%= title %>" height="28" />
+            <% } %>
             </a>
         </div>
         <div class="navbar-menu">
@@ -22,6 +23,9 @@
             </div>
             <% } %>
             <div class="navbar-end">
+                <a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="night-icon"></i>
+                </a>
                 <% if (Object.keys(links).length) { %>
                     <% for (let name in links) {
                             let link = links[name]; %>

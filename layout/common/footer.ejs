@@ -6,7 +6,8 @@
                 <% if (logo && logo.text) { %>
                     <%= logo.text %>
                 <% } else { %>
-                    <img src="<%- url_for(logo) %>" alt="<%= title %>" height="28">
+                    <img class="logo-img" src="<%- url_for(logo.light) %>" alt="<%= title %>" height="28" />
+                    <img class="logo-img-dark" src="<%- url_for(logo.dark) %>" alt="<%= title %>" height="28" />
                 <% } %>
                 </a>
                 <p class="is-size-7">
