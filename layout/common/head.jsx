@@ -30,13 +30,14 @@ function getPageTitle(page, siteTitle, helper) {
 module.exports = class extends Component {
     render() {
         const { env, site, config, helper, page } = this.props;
-        const { url_for, cdn, iconcdn, fontcdn, is_post } = helper;
+        const { url_for, cdn, iconcdn, is_post } = helper;
         const {
             url,
             meta_generator = true,
             head = {},
             article,
-            highlight
+            highlight,
+            variant = 'default'
         } = config;
         const {
             meta = [],
@@ -137,10 +138,9 @@ module.exports = class extends Component {
             {rss ? <link rel="alternative" href={url_for(rss)} title={config.title} type="application/atom+xml" /> : null}
             {favicon ? <link rel="icon" href={url_for(favicon)} /> : null}
             <link rel="stylesheet" href={iconcdn()} />
-            <link rel="stylesheet" href={fontcdn('Ubuntu:400,600|Source+Code+Pro')} />
             {hlTheme ? <link rel="stylesheet" href={cdn('highlight.js', '9.12.0', 'styles/' + hlTheme + '.css')} /> : null}
+            <link rel="stylesheet" href={url_for('/css/' + variant + '.css')} />
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />
-            <link rel="stylesheet" href={url_for('/css/style.css')} />
 
             {adsenseClientId ? <script data-ad-client={adsenseClientId}
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async={true}></script> : null}

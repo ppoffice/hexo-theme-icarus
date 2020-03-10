@@ -9,6 +9,15 @@
             "description": "Version of the configuration file",
             "default": "3.0.0"
         },
+        "variant": {
+            "type": "string",
+            "description": "Icarus theme variant, can be \"default\" or \"cyberpunk\"",
+            "enum": [
+                "default",
+                "cyberpunk"
+            ],
+            "default": "default"
+        },
         "logo": {
             "type": [
                 "string",
