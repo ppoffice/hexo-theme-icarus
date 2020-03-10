@@ -6,6 +6,8 @@
 <%- meta() %>
 <title><%= page_title() %></title>
 
+<script data-ad-client="ca-pub-6929188339121540" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 <% if (has_config('open_graph')) { %>
     <%- open_graph({
         twitter_id: get_config('open_graph.twitter_id'),
@@ -16,6 +18,7 @@
         image: get_og_image(page)
     }) %>
 <% } %>
+
 
 <% if (has_config('canonical_url')) { %>
 <link rel="canonical" href="<%- get_config('canonical_url') %>" />
@@ -36,8 +39,6 @@
 <% if (has_config('favicon')) { %>
     <link rel="mask-icon" href="<%- url_for(get_config('favicon')) %>" color="{{ theme.android_chrome_color }}">
 <% } %>
-<
-
 
 <%- _css(cdn('bulma', '0.7.2', 'css/bulma.css')) %>
 <%- _css(iconcdn()) %>

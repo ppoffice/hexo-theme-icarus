@@ -1,9 +1,8 @@
 family-sans = "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif
 family-mono = "Source Code Pro", monospace, "Microsoft YaHei"
-gap = 64px
-screen-mobile = 520px
+gap = 32px
 screen-tablet = 769px
-screen-desktop = 1088px
+screen-desktop = 1024px
 screen-widescreen = 1280px
 screen-fullhd = 1472px 
 
@@ -18,6 +17,7 @@ body
 
 body, button, input, select, textarea
     font-family: family-sans
+    
 
 @media screen and (min-width: screen-widescreen)
     .is-1-column .container
@@ -61,7 +61,7 @@ body, button, input, select, textarea
         box-shadow: 0 6px 15px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.1)
     & + .card,
     & + .column-right-shadow
-        margin-top: 1.5rem
+        margin-top: 1.0rem
     &.card-transparent
         box-shadow: none
         background: transparent
@@ -191,7 +191,7 @@ img.thumbnail
      .level
         &, &.is-mobile
             .level-item:not(:last-child)
-                margin-left: 0.75rem
+                margin-left: 0rem
                 margin-right: 0
 
 .donate

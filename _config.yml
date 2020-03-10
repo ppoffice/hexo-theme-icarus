@@ -203,6 +203,11 @@ widgets:
         position: right
     -
         # Widget name
+        type: related_posts
+        # Where should the widget be placed, left or right
+        position: right
+    -
+        # Widget name
         type: tagcloud
         # Where should the widget be placed, left or right
         position: right

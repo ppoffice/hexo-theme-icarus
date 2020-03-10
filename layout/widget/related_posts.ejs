@@ -1,0 +1,41 @@
+<% function build_list(tags,post) {
+    let flag = true;
+    return tags.map(tag => {
+        let result ='';
+        post.tags.map(ptag => {
+            if( ptag.name === tag.name && post.title != page.title && flag === true){
+                if (get_config('article.thumbnail')=== true ){
+                    result+= `<article class="media"> <a href="${url_for(post.link ? post.link : post.path)}" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="${get_thumbnail(post)}" alt="${post.title}">
+                        </p>
+                    </a>`;
+                }
+                result+=`<div class="media-content">
+                    <div class="content">
+                        <div><time class="has-text-grey is-size-7 is-uppercase" datetime="${date_xml(post.date)}">${date(post.date)}</time></div>
+                        <a href="${url_for((post.link?post.link:post.path))}" class="title has-link-black-ter is-size-6 has-text-weight-normal">${post.title}</a>
+                    </div>
+                </div>
+            </article>`;
+            flag = false;
+            return result;
+            }
+            return result;
+        })
+        return result;
+    }).join('');
+}
+%>
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            related posts
+        </h3>
+        <% site.posts.forEach(post => { %> 
+            <%- build_list(page.tags , post) %>
+        <% }) %>
+    </div>
+</div>
+
+
