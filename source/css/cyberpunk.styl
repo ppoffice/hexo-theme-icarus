@@ -26,6 +26,10 @@ $navbar-item-color ?= $black
 $navbar-item-active-color ?= $black
 $navbar-item-hover-color ?= $black
 $navbar-item-hover-background-color ?= transparent
+$navbar-item-margin-v ?= 1.25rem
+$navbar-item-margin-h ?= .25rem
+$navbar-item-padding-v ?= 0
+$navbar-item-padding-h ?= .5rem
 $menu-label-color ?= $blue
 $menu-item-hover-color ?= $black
 $menu-item-hover-background-color ?= $yellow
@@ -43,12 +47,87 @@ $searchbox-bg-result-item-hover ?= $black
 
 @import 'style'
 
+cut-corner-left(size)
+    clip-path: unquote('polygon(' + size + ' 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%, 0 ' + size + ')')
+
+cut-corner-right(size)
+    clip-path: unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '), 0 0)')
+
+cut-corner-inner(size)
+    clip-path: unquote('polygon(1px 1px, calc(100% - ' + size + ' - 1px) 1px, calc(100% - 1px) calc(1px + ' + size + '), calc(100% - 1px) calc(100% - 1px), calc(1px + ' + size + ') calc(100% - 1px), 1px calc(100% - ' + size + ' - 1px), 1px 1px)')
+
+cut-corner-inner-top-right(size)
+    clip-path: unquote('polygon(1px 1px, calc(100% - ' + size + ' - 1px) 1px, calc(100% - 1px) ' + size + ', calc(100% - 1px) calc(100% + 1px), 1px calc(100% + 1px))')
+
+cut-corner-inner-bottom-left(size)
+    clip-path: unquote('polygon(1px -1px, calc(100% - 1px) -1px, calc(100% - 1px) calc(100% - 1px), calc(1px + ' + size + ') calc(100% - 1px), 1px calc(100% - 1px - ' + size + '))')
+
 body
     counter-reset: card
 
 ::selection
     color: $black
     background: $blue
+
+.card:not(#back-to-top)
+    overflow: visible
+    counter-increment: card
+
+    &:before, &:after
+        position: absolute
+
+    &:before
+        content: ''
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        background-color: $blue
+        cut-corner-right(16px)
+
+    &:after
+        content: 'R' counter(card)
+        color: $blue
+        right: 2rem
+        bottom: -.6em
+        font-size: .75rem
+        padding: 0 .25em
+        background: $body-background-color
+
+    .card-image, .card-content
+        cut-corner-inner-top-right(16px)
+
+    .card-content
+        background-color: $body-background-color
+        cut-corner-inner(16px)
+
+    .card-image + .card-content
+        cut-corner-inner-bottom-left(16px)
+
+.button
+    border: none
+    outline: none
+    cut-corner-left(8px)
+
+    &.is-primary
+        border-radius: 0 !important
+
+.menu-list a
+    cut-corner-left(8px)
+
+.tags.has-addons
+    .tag:first-child
+        background: $yellow !important
+
+    .tag:last-child
+        background: $blue !important
+
+.pagination-previous, .pagination-next, .pagination-link
+    cut-corner-left(8px)
+    &:hover
+        background-color: $blue
+        &, a
+            color: $black
 
 .navbar-main
     padding-top: 10px
@@ -66,10 +145,29 @@ body
     .navbar-start
         .navbar-item
             &:hover, &.is-active
-                text-decoration: underline
+                color: $navbar-background-color
+                background-color: $body-background-color !important
 
-        &.is-active
-            font-weight: bold
+article.article,
+article.media
+    .title a
+        background-image: linear-gradient(transparent calc(100% - 2px), $text-strong 2px)
+        background-repeat: no-repeat
+        background-size: 0 100%
+        transition: background-size .25s ease-in-out
+
+    .title:hover a
+        background-size: 100% 100%
+
+article.article
+    .article-more
+        @extend .button.is-link
+
+.content
+    blockquote
+        background: transparent
+        border: .5px solid $blue
+        border-left: 5px solid $blue
 
 .footer
     position: relative
@@ -86,97 +184,18 @@ body
     & > .container
         padding-top: 40px
 
-.card:not(#back-to-top)
-    overflow: visible
-    box-shadow: 0 0 0 .9px $blue
-    counter-increment: card
-
-    &:before, &:after
-        content: ''
-        position: absolute
-        width: 12.5px
-        height: 21.5px
-        z-index: 10
-        background: $body-background-color
-
+.timeline .media
     &:before
-        top: -12px
-        right: -1.5px
-        border-left: 1px solid $blue
-        transform: rotate(-45deg)
-        transform-origin: right center
-
-    &:after
-        left: -1.5px
-        bottom: -12px
-        border-right: 1px solid $blue
-        transform: rotate(-45deg)
-        transform-origin: left center
-
-    .card-content
-        &:after
-            content: 'R' counter(card)
-            display: inline-block
-            position: absolute
-            color: $blue
-            right: 2rem
-            bottom: -.6em
-            font-size: .75rem
-            padding: 0 .25em
-            background: $body-background-color
-
-.button:not(.is-transparent), .pagination-link.is-current
-    border: none
-    outline: none
-
-    &.is-primary
-        border-radius: 0 !important
-
-    &.article-more
-        color: $black
-        background-color: $blue
-        margin-left: auto
-
-    &:before, &:after
-        content: ''
-        position: absolute
-        width: 0
-        z-index: 10
-
-    &:before
-        top: 0
-        left: 0
-        border-top: 8px solid $card-background-color
-        border-right: 8px solid transparent
-
-    &:after
-        right: 0
-        bottom: 0
-        border-left: 8px solid transparent
-        border-bottom: 8px solid $card-background-color
-
-.tags
-    .tag + .is-grey-lightest
-        background: $yellow
-
-article.article
-    .title a
-        background-image: linear-gradient(transparent calc(100% - 2px), $text-strong 2px)
-        background-repeat: no-repeat
-        background-size: 0 100%
-        transition: background-size .25s ease-in-out
-
-    .title:hover a
-        background-size: 100% 100%
-
-.content
-    blockquote
-        background: transparent
-        border: .5px solid $blue
-        border-left: 5px solid $blue
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%)
 
 .searchbox .searchbox-container
     border: 1px solid $blue
+
+    .searchbox-body
+        border-bottom: 1px solid $searchbox-border
+
+        li:last-child .searchbox-result-section
+            border-bottom: none
 
     .searchbox-result-item
         em
@@ -186,3 +205,4 @@ article.article
     color: $black
     background: $blue
     margin-top: 45px
+    cut-corner-left(8px)

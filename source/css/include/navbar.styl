@@ -1,6 +1,11 @@
 /* ---------------------------------
  *           Top Navigation
  * --------------------------------- */
+$navbar-item-padding-v ?= 1.25rem
+$navbar-item-padding-h ?= .75rem
+$navbar-item-margin-v ?= 0
+$navbar-item-margin-h ?= 0
+
 .navbar-main
     box-shadow: $shadow
 
@@ -26,7 +31,8 @@
     .navbar-item
         display: flex
         align-items: center
-        padding: 1.25rem .75rem
+        padding: $navbar-item-padding-v $navbar-item-padding-h
+        margin: $navbar-item-margin-v $navbar-item-margin-h
 
         &.is-active
             background-color: transparent
