@@ -16,9 +16,13 @@ $black-bis ?= #050a0e
 // derived colors
 $scheme-main ?= $black
 $primary ?= $yellow
+$link ?= $blue
+$link-hover ?= $primary
 $text ?= $white
 $text-strong ?= $yellow
 $body-background-color ?= $scheme-main
+$input-color ?= $text
+$input-placeholder-color ?= rgba($input-color, .8)
 $footer-color ?= $black
 $footer-background-color ?= $yellow
 $navbar-background-color ?= $yellow
@@ -47,20 +51,20 @@ $searchbox-bg-result-item-hover ?= $black
 
 @import 'style'
 
-cut-corner-left(size)
+cut-corner(size)
     clip-path: unquote('polygon(' + size + ' 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%, 0 ' + size + ')')
 
-cut-corner-right(size)
+cut-corner-reverse(size)
     clip-path: unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '), 0 0)')
 
-cut-corner-inner(size)
-    clip-path: unquote('polygon(1px 1px, calc(100% - ' + size + ' - 1px) 1px, calc(100% - 1px) calc(1px + ' + size + '), calc(100% - 1px) calc(100% - 1px), calc(1px + ' + size + ') calc(100% - 1px), 1px calc(100% - ' + size + ' - 1px), 1px 1px)')
+cut-corner-top-right(size)
+    clip-path: unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, 0 100%)')
 
-cut-corner-inner-top-right(size)
-    clip-path: unquote('polygon(1px 1px, calc(100% - ' + size + ' - 1px) 1px, calc(100% - 1px) ' + size + ', calc(100% - 1px) calc(100% + 1px), 1px calc(100% + 1px))')
+cut-corner-bottom-left(size)
+    clip-path: unquote('polygon(0 0, 100% 0, 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '))')
 
-cut-corner-inner-bottom-left(size)
-    clip-path: unquote('polygon(1px -1px, calc(100% - 1px) -1px, calc(100% - 1px) calc(100% - 1px), calc(1px + ' + size + ') calc(100% - 1px), 1px calc(100% - 1px - ' + size + '))')
+cut-corner-bottom-right(size)
+    clip-path: unquote('polygon(0 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%)')
 
 body
     counter-reset: card
@@ -78,12 +82,12 @@ body
 
     &:before
         content: ''
-        top: 0
-        left: 0
-        right: 0
-        bottom: 0
+        top: -1.2px
+        left: -1.2px
+        right: -1.2px
+        bottom: -1.2px
         background-color: $blue
-        cut-corner-right(16px)
+        cut-corner-reverse(16px)
 
     &:after
         content: 'R' counter(card)
@@ -95,25 +99,30 @@ body
         background: $body-background-color
 
     .card-image, .card-content
-        cut-corner-inner-top-right(16px)
+        cut-corner-top-right(16px)
 
     .card-content
         background-color: $body-background-color
-        cut-corner-inner(16px)
+        cut-corner-reverse(16px)
 
     .card-image + .card-content
-        cut-corner-inner-bottom-left(16px)
+        cut-corner-bottom-left(16px)
 
 .button
     border: none
     outline: none
-    cut-corner-left(8px)
+    cut-corner(8px)
 
     &.is-primary
         border-radius: 0 !important
 
+.field.has-addons
+    .control:not(:first-child)
+        .button
+            cut-corner-bottom-right(8px)
+
 .menu-list a
-    cut-corner-left(8px)
+    cut-corner(8px)
 
 .tags.has-addons
     .tag:first-child
@@ -123,9 +132,11 @@ body
         background: $blue !important
 
 .pagination-previous, .pagination-next, .pagination-link
-    cut-corner-left(8px)
+    cut-corner(8px)
+
     &:hover
         background-color: $blue
+
         &, a
             color: $black
 
@@ -148,8 +159,7 @@ body
                 color: $navbar-background-color
                 background-color: $body-background-color !important
 
-article.article,
-article.media
+article.article, article.media
     .title a
         background-image: linear-gradient(transparent calc(100% - 2px), $text-strong 2px)
         background-repeat: no-repeat
@@ -205,4 +215,4 @@ article.article
     color: $black
     background: $blue
     margin-top: 45px
-    cut-corner-left(8px)
+    cut-corner(8px)
