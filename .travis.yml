@@ -8,12 +8,10 @@ node_js:
   - "8"
   - "node"
 
-before_script:
-  - export DEPS=$(node -e "const deps=require('./package.json').peerDependencies;console.log(Object.keys(deps).map(key=>key+'@'+deps[key]).join(' '));")
-  - npm install $DEPS
-
 script:
   - echo "Running tests against $(node -v) ..."
+  - export DEPS=$(node -e "const deps=require('./package.json').peerDependencies;console.log(Object.keys(deps).map(key=>key+'@'+deps[key]).join(' '));")
+  - npm install $DEPS
   - npm run lint
 
 jobs:
@@ -46,6 +44,7 @@ jobs:
     - stage: github release
       node_js: "10"
       script: echo "Deploying to github release ..."
+      skip_cleanup: false
       deploy:
         provider: releases
         token: $GITHUB_TOKEN
