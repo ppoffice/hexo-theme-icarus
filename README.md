@@ -75,7 +75,7 @@ blog feature-rich and powerful.
     <td>Baidu</td>
     <td>Share.js</td>
     <td>External Site Links</td>
-    <td>Light Gallery and Justified Gallery</td>
+    <td>Light and Justified Gallery</td>
   </tr>
   <tr>
     <td>Gitalk</td>
@@ -134,14 +134,14 @@ Icarus directly import stylesheets from the [highlight.js](https://highlightjs.o
 
 <table>
     <tr>
-        <td>Atom One Light</td>
-        <td>Monokai</td>
-        <td>Kimbie Dark</td>
+        <th>Atom One Light</th>
+        <th>Monokai</th>
+        <th>Kimbie Dark</th>
     </tr>
     <tr>
-        <td><img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/atom-one-light.png?1"></td>
-        <td><img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/monokai.png?1"></td>
-        <td><img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/kimbie-dark.png"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/atom-one-light.png?1"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/monokai.png?1"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/kimbie-dark.png"></td>
     </tr>
 </table>
 
@@ -166,10 +166,10 @@ Icarus allows you to configure your site on a per-page or per-layout basis.
         </td>
         <td>
 <pre>widgets:
-- type: profile
-  position: left
-- type: recent_posts
-  position: left</pre>
+  - type: profile
+    position: left
+  - type: recent_posts
+    position: left</pre>
         </td>
         <td>
 <pre>widgets: null
@@ -180,9 +180,9 @@ Icarus allows you to configure your site on a per-page or per-layout basis.
         </td>
     </tr>
     <tr>
-        <td><img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/default-config.png"></td>
-        <td><img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/post-config.png"></td>
-        <td><img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/layout-config.png"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/default-config.png"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/post-config.png"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/layout-config.png"></td>
     </tr>
 </table>
 </div>

@@ -1,7 +1,7 @@
 /**
  * Add resolved variables to the theme config for stylus.
  */
-module.exports = function (hexo) {
+module.exports = function(hexo) {
     hexo.extend.filter.register('template_locals', locals => {
         const fontcdn = hexo.extend.helper.get('fontcdn').bind(hexo);
         hexo.theme.config['@fontface'] = {
