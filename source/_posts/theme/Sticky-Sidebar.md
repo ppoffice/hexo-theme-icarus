@@ -42,13 +42,13 @@ widgets:
         type: recent_posts
         position: left
     -
-        type: archive
+        type: archives
         position: left
     -
-        type: category
+        type: categories
         position: left
     -
-        type: tag
+        type: tags
         position: left
 ---
 Sometimes you may want your sidebar's position to stay fixed when other parts of your page scrolls. This can be done via the `sticky` option of the sidebar in the theme's `_config.yml`. You can set any of the sidebar or even both of them to `sticky`.

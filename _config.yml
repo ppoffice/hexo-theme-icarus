@@ -93,4 +93,7 @@ marked:
 githubEmojis:
   className: not-gallery-item
 
-all_minifier: true
+algolia:
+  applicationID: RYILPF5LG6
+  apiKey: c358c55d21fca7cf3e935baced47bc28
+  indexName: icarus

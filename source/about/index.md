@@ -1,8 +1,8 @@
 title:
 toc: true
 ---
-<p align="center" class="has-mb-6">
-<img class="not-gallery-item" style="height:48px" src="/hexo-theme-icarus/images/logo.svg">
+<p align="center" class="mb-2">
+<img class="not-gallery-item" style="height:48px" src="/hexo-theme-icarus/img/logo.svg">
 <br> A simple, delicate, and modern theme for the static site generator Hexo.
 </p>
 <p class="is-size-6 has-text-centered">

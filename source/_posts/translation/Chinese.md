@@ -18,10 +18,10 @@ comment:
     placeholder: 快来评论吧
 plugins:
     gallery: true
-    outdated-browser: true
+    outdated_browser: true
     mathjax: true
     animejs: true
-    back-to-top: true
+    back_to_top: true
     progressbar: true
 ---
 作为静态网站生成器Hexo的一款主题，Icarus以简洁、现代和精美为设计理念。在灵活且强大的配置系统的助力下，用户可以自由实现单栏与多栏的灵活页面布局。同时，Icarus提供了丰富的插件与挂件供用户选择，让网站的个性化配置变得触手可及。此外，得力于全新设计的API，开发者可以更便捷地对Icarus进行深层定制。

@@ -4,7 +4,7 @@ categories:
 - Plugins
 - Search
 search:
-    type: google-cse
+    type: google_cse
     cx: 006888261376761189075:qxqdcvqzio0
 ---
 

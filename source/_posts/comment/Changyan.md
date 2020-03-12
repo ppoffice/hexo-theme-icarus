@@ -5,7 +5,7 @@ categories:
 - Comment
 comment:
     type: changyan
-    appid: cyrDUlCiF
+    app_id: cyrDUlCiF
     conf: prod_43aadda874910d8f86160e62e6a1ade7
 ---
 

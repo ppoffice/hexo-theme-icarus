@@ -1,39 +1,91 @@
-# Version of the Icarus theme that is currently used
-version: 2.6.0
-# Path or URL to the website's icon
-favicon: /images/favicon.svg
-# Path or URL to RSS atom.xml
-rss:
-# Path or URL to the website's logo to be shown on the left of the navigation bar or footer
-logo: /images/logo.svg
-# Open Graph metadata
-# https://hexo.io/docs/helpers.html#open-graph
-open_graph:
-    # Facebook App ID
-    fb_app_id:
-    # Facebook Admin ID
-    fb_admins:
-    # Twitter ID
-    twitter_id:
-    # Twitter site
-    twitter_site:
-    # Google+ profile link
-    google_plus:
-# Navigation bar link settings
+# Version of the configuration file
+version: 3.0.0
+# Icarus theme variant, can be "default" or "cyberpunk"
+variant: default
+# Path or URL to the website's logo
+logo: /img/logo.svg
+# Page metadata configurations
+head:
+    # URL or path to the website's icon
+    favicon: /img/favicon.svg
+    # Canonical URL of the current page
+    canonical_url: 
+    # Open Graph metadata
+    # https://hexo.io/docs/helpers.html#open-graph
+    open_graph:
+        # Page title (og:title) (optional)
+        # You should leave this blank for most of the time
+        title: 
+        # Page type (og:type) (optional)
+        # You should leave this blank for most of the time
+        type: blog
+        # Page URL (og:url) (optional)
+        # You should leave this blank for most of the time
+        url: 
+        # Page cover (og:image) (optional) Default to the Open Graph image or thumbnail of the page
+        # You should leave this blank for most of the time
+        image: 
+        # Site name (og:site_name) (optional)
+        # You should leave this blank for most of the time
+        site_name: 
+        # Page author (article:author) (optional)
+        # You should leave this blank for most of the time
+        author: 
+        # Page description (og:description) (optional)
+        # You should leave this blank for most of the time
+        description: 
+        # Twitter card type (twitter:card)
+        twitter_card: 
+        # Twitter ID (twitter:creator)
+        twitter_id: 
+        # Twitter ID (twitter:creator)
+        twitter_site: 
+        # Google+ profile link (deprecated)
+        google_plus: 
+        # Facebook admin ID
+        fb_admins: 
+        # Facebook App ID
+        fb_app_id: 
+    # Structured data of the page
+    # https://developers.google.com/search/docs/guides/intro-structured-data
+    structured_data:
+        # Page title (optional)
+        # You should leave this blank for most of the time
+        title: 
+        # Page description (optional)
+        # You should leave this blank for most of the time
+        description: 
+        # Page URL (optional)
+        # You should leave this blank for most of the time
+        url: 
+        # Page author (article:author) (optional)
+        # You should leave this blank for most of the time
+        author: 
+        # Page images (optional) Default to the Open Graph image or thumbnail of the page
+        # You should leave this blank for most of the time
+        image: 
+    # Additional HTML meta tags in an array
+    meta:
+        # Meta tag specified in <attribute>=<value> style
+        # E.g., name=theme-color;content=#123456 => <meta name="theme-color" content="#123456">
+        - ''
+    # URL or path to the website's RSS atom.xml
+    rss: 
+# Page top navigation bar configurations
 navbar:
-    # Navigation bar menu links
+    # Naviagtion menu items
     menu:
         Home: /
         Archives: /archives
         Categories: /categories
         Tags: /tags
         About: /about
-    # Navigation bar links to be shown on the right
+    # Links to be shown on the right of the navigation bar
     links:
         Download on GitHub:
             icon: fab fa-github
-            url: 'http://github.com/ppoffice/hexo-theme-icarus'
-# Footer section link settings
+            url: 'https://github.com/ppoffice/hexo-theme-icarus'
+# Page footer configurations
 footer:
     # Links to be shown on the right of the footer section
     links:
@@ -45,196 +97,221 @@ footer:
             url: 'https://creativecommons.org/licenses/by/4.0/'
         Download on GitHub:
             icon: fab fa-github
-            url: 'http://github.com/ppoffice/hexo-theme-icarus'
-# Article display settings
+            url: 'https://github.com/ppoffice/hexo-theme-icarus'
+# Article related configurations
 article:
     # Code highlight settings
     highlight:
         # Code highlight themes
         # https://github.com/highlightjs/highlight.js/tree/master/src/styles
         theme: atom-one-light
-        # Show code copying button
+        # Show copy code button
         clipboard: true
         # Default folding status of the code blocks. Can be "", "folded", "unfolded"
         fold: unfolded
-    # Whether to show article thumbnail images
+    # Whether to show thumbnail image for every article
     thumbnail: true
-    # Whether to show estimate article reading time
+    # Whether to show estimated article reading time
     readtime: true
-# Search plugin settings
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Search-Plugins
+# Search plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/
 search:
-    # Name of the search plugin
     type: insight
-# Comment plugin settings
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Comment-Plugins
+# Comment plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
 comment:
-    # Name of the comment plugin
     type: disqus
+    # Disqus shortname
     shortname: hexo-theme-icarus
-# Donation entries
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
-# donate:
+# Donate plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/
+# donates:
+#     # Alipay donate button configurations
 #     -
-#         # Donation entry name
 #         type: alipay
-#         # Qrcode image URL
-#         qrcode: /gallery/donate/alipay.png
+#         # Alipay qrcode image URL
+#         qrcode: ''
+#     # "Buy me a coffee" donate button configurations
 #     -
-#         # Donation entry name
-#         type: wechat
-#         # Qrcode image URL
-#         qrcode: /gallery/donate/wechat.jpg
+#         type: buymeacoffee
+#         # URL to the "Buy me a coffee" page
+#         url: ''
+#     # Patreon donate button configurations
 #     -
-#         # Donation entry name
-#         type: paypal
-#         # Paypal business ID or email address
-#         business: paypal@paypal.com
-#         # Currency code
-#         currency_code: USD
-#     -
-#         # Donation entry name
 #         type: patreon
 #         # URL to the Patreon page
-#         url: https://www.patreon.com/
-# Share plugin settings
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Share-Plugins
+#         url: ''
+#     # Paypal donate button configurations
+#     -
+#         type: paypal
+#         # Paypal business ID or email address
+#         business: ''
+#         # Currency code
+#         currency_code: USD
+#     # Wechat donate button configurations
+#     -
+#         type: wechat
+#         # Wechat qrcode image URL
+#         qrcode: ''
+# Share plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/
 share:
-    # Share plugin name
     type: sharethis
+    # URL to the ShareThis share plugin script
     install_url: //platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&product=inline-share-buttons
-# Sidebar settings.
+# Sidebar configurations.
 # Please be noted that a sidebar is only visible when it has at least one widget
 sidebar:
-    # left sidebar settings
+    # Left sidebar configurations
     left:
-        # Whether the left sidebar is sticky when page scrolls
-        # http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
+        # Whether the sidebar sticks to the top when page scrolls
         sticky: false
-    # right sidebar settings
+    # Right sidebar configurations
     right:
-        # Whether the right sidebar is sticky when page scrolls
-        # http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
+        # Whether the sidebar sticks to the top when page scrolls
         sticky: false
-# Sidebar widget settings
+# Sidebar widget configurations
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
+    # Profile widget configurations
     -
-        # Widget name
-        type: profile
-        # Where should the widget be placed, left or right
+        # Where should the widget be placed, left sidebar or right sidebar
         position: left
-        # Author name to be shown in the profile widget
+        type: profile
+        # Author name
         author: PPOffice
-        # Title of the author to be shown in the profile widget
+        # Author title
         author_title: Web Developer
-        # Author's current location to be shown in the profile widget
+        # Author's current location
         location: Earth, Solar System
-        # Path or URL to the avatar to be shown in the profile widget
-        avatar:
-        # Email address for the Gravatar to be shown in the profile widget
-        gravatar:
-        # Whether to show avatar image rounded or square
+        # URL or path to the avatar image
+        avatar: 
+        # Whether show the rounded avatar image
         avatar_rounded: false
-        # Path or URL for the follow button
-        follow_link: 'http://github.com/ppoffice'
+        # Email address for the Gravatar
+        gravatar: 
+        # URL or path for the follow button
+        follow_link: 'https://github.com/ppoffice'
         # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
                 icon: fab fa-github
-                url: 'http://github.com/ppoffice'
+                url: 'https://github.com/ppoffice'
             Facebook:
                 icon: fab fa-facebook
-                url: 'http://facebook.com'
+                url: 'https://facebook.com'
             Twitter:
                 icon: fab fa-twitter
-                url: 'http://twitter.com'
+                url: 'https://twitter.com'
             Dribbble:
                 icon: fab fa-dribbble
-                url: 'http://dribbble.com'
+                url: 'https://dribbble.com'
             RSS:
                 icon: fas fa-rss
                 url: /
+    # Table of contents widget configurations
     -
-        # Widget name
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
         type: toc
-        # Where should the widget be placed, left or right
-        position: left
+    # Recommendation links widget configurations
     -
-        # Widget name
-        type: links
-        # Where should the widget be placed, left or right
+        # Where should the widget be placed, left sidebar or right sidebar
         position: left
-        # Links to be shown in the links widget
+        type: links
+        # Names and URLs of the sites
         links:
             Hexo: 'https://hexo.io'
             Bulma: 'https://bulma.io'
+    # Categories widget configurations
     -
-        # Widget name
-        type: category
-        # Where should the widget be placed, left or right
+        # Where should the widget be placed, left sidebar or right sidebar
         position: left
+        type: categories
+    # Recent posts widget configurations
     -
-        # Widget name
-        type: tagcloud
-        # Where should the widget be placed, left or right
-        position: left
-    -
-        # Widget name
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: right
         type: recent_posts
-        # Where should the widget be placed, left or right
-        position: right
+    # Archives widget configurations
     -
-        # Widget name
-        type: archive
-        # Where should the widget be placed, left or right
+        # Where should the widget be placed, left sidebar or right sidebar
         position: right
+        type: archives
+    # Tags widget configurations
     -
-        # Widget name
-        type: tag
-        # Where should the widget be placed, left or right
+        # Where should the widget be placed, left sidebar or right sidebar
         position: right
-# Other plugin settings
+        type: tags
+    # Google FeedBurner email subscription widget configurations
+    # -
+    #     # Where should the widget be placed, left sidebar or right sidebar
+    #     position: left
+    #     type: subscribe_email
+    #     # Hint text under the email input
+    #     description: 
+    #     # Feedburner ID
+    #     feedburner_id: ''
+    # Google AdSense unit configurations
+    # -
+    #     # Where should the widget be placed, left sidebar or right sidebar
+    #     position: left
+    #     type: adsense
+    #     # AdSense client ID
+    #     client_id: ''
+    #     # AdSense AD unit ID
+    #     slot_id: ''
+# Plugin configurations
 plugins:
-    # Enable page animations
+    # Enable page startup animations
     animejs: true
-    # Enable the lightGallery and Justified Gallery plugins
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
-    gallery: true
-    # Enable the Outdated Browser plugin
-    # http://outdatedbrowser.com/
-    outdated-browser: true
-    # Enable the MathJax plugin
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/mathjax-plugin/
-    mathjax: true
-    # Show the back to top button on mobile devices
-    back-to-top: true
-    # Google Analytics plugin settings
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Google-Analytics
-    google-analytics:
-        # Google Analytics tracking id
-        tracking_id: UA-72437521-5
+    # Show the "back to top" button
+    back_to_top: true
     # Baidu Analytics plugin settings
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Baidu-Analytics
-    baidu-analytics:
-        # Baidu Analytics tracking id
-        tracking_id:
-    # Hotjar user feedback plugin
-    # http://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Hotjar
-    hotjar:
-        # Hotjar site id
-        site_id: 1067642
-    # Show a loading progress bar at top of the page
-    progressbar: true
+    # https://tongji.baidu.com
+    baidu_analytics:
+        # Baidu Analytics tracking ID
+        tracking_id: 
     # BuSuanZi site/page view counter
     # https://busuanzi.ibruce.info
     busuanzi: false
+    # CNZZ statistics
+    # https://www.umeng.com/web
+    cnzz:
+        # CNZZ tracker id
+        id: 
+        # CNZZ website id
+        web_id: 
+    # Enable the lightGallery and Justified Gallery plugins
+    # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
+    gallery: true
+    # Google Analytics plugin settings
+    # https://analytics.google.com
+    google_analytics:
+        # Google Analytics tracking ID
+        tracking_id: UA-72437521-5
+    # Hotjar user feedback plugin
+    # https://www.hotjar.com/
+    hotjar:
+        # Hotjar site id
+        site_id: 
+    # Enable the KaTeX math typesetting supprot
+    # https://katex.org/
+    katex: false
+    # Enable the MathJax math typesetting support
+    # https://www.mathjax.org/
+    mathjax: true
+    # Enable the Outdated Browser plugin
+    # http://outdatedbrowser.com/
+    outdated_browser: true
+    # Show a progress bar at top of the page on page loading
+    progressbar: true
 # CDN provider settings
-# http://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
+# https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
-    # Name or URL of the JavaScript and/or stylesheet CDN provider
+    # Name or URL template of the JavaScript and/or stylesheet CDN provider
     cdn: jsdelivr
-    # Name or URL of the webfont CDN provider
+    # Name or URL template of the webfont CDN provider
     fontcdn: google
-    # Name or URL of the webfont Icon CDN provider
+    # Name or URL of the fontawesome icon font CDN provider
     iconcdn: fontawesome
