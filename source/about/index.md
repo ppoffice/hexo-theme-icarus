@@ -2,137 +2,225 @@ title:
 toc: true
 ---
 <p align="center" class="mb-2">
-<img class="not-gallery-item" style="height:48px" src="/hexo-theme-icarus/img/logo.svg">
+<img class="not-gallery-item" style="height:48px" src="https://ppoffice.github.io/hexo-theme-icarus/img/logo.svg">
 <br> A simple, delicate, and modern theme for the static site generator Hexo.
-</p>
-<p class="is-size-6 has-text-centered">
-<a href="http://ppoffice.github.io/hexo-theme-icarus/">Preview</a> |
-<a href="http://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
+<br>
+<a href="https://ppoffice.github.io/hexo-theme-icarus/">Preview</a> |
+<a href="https://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
 <a href="https://github.com/ppoffice/hexo-theme-icarus/archive/master.zip">Download</a>
 </p>
 
-![Icarus](/hexo-theme-icarus/gallery/preview.png "Icarus Preview")
-
-### :gift: Features
-
-**Extensive Plugin Support**
-
-Icarus includes plentiful search, comment, sharing and other plugins out of the box. You can choose any of them to enrich your
-blog experience, or build your own plugin easily referring to the existing Icarus plugins.
-
-Comment plugins
-
-- [Changyan](/hexo-theme-icarus/Plugins/Comment/changyan-comment-plugin/)
-- [Disqus](/hexo-theme-icarus/Plugins/Comment/disqus-comment-plugin/)
-- [Facebook](/hexo-theme-icarus/Plugins/Comment/facebook-comment-plugin/)
-- [Gitment](/hexo-theme-icarus/Plugins/Comment/gitment-comment-plugin/)
-- [Isso](/hexo-theme-icarus/Plugins/Comment/isso-comment-plugin/)
-- [LiveRe](/hexo-theme-icarus/Plugins/Comment/livere-comment-plugin/)
-- [Valine](/hexo-theme-icarus/Plugins/Comment/valine-comment-plugin/)
-
-Search plugins
-
-- [Insight Search](/hexo-theme-icarus/Plugins/Search/insight-search-plugin/)
-- [Google Custom Search Engine](/hexo-theme-icarus/Plugins/Search/google-cse-plugin/)
-- [Baidu Site Search](/hexo-theme-icarus/Plugins/Search/baidu-search-plugin/)
-
-Share plugins
-
-- [AddThis](/hexo-theme-icarus/Plugins/Share/addthis-share-plugin/)
-- [AddToAny](/hexo-theme-icarus/Plugins/Share/addtoany-share-plugin/)
-- [Baidu Share](/hexo-theme-icarus/Plugins/Share/baidu-share-plugin/)
-- [Share.js](/hexo-theme-icarus/Plugins/Share/share-js-share-plugin/)
-- [ShareThis](/hexo-theme-icarus/Plugins/Share/sharethis-share-plugin/)
-
-Donation Buttons
-
-- [Alipay](/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Alipay)
-- [Wechat](/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Wechat)
-- [Paypal](/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Paypal)
-- [Patreon](/hexo-theme-icarus/Plugins/Donation/making-money-off-your-blog-with-donation-buttons/#Patreon)
-
-Other plugins
-
-- [Hexo Tag Plugin](/hexo-theme-icarus/Configuration/Posts/hexo-built-in-tag-helpers/)
-- [lightGallery & Justified Gallery](/hexo-theme-icarus/Plugins/General/gallery-plugin/)
-- [MathJax](/hexo-theme-icarus/Plugins/General/mathjax-plugin/)
-- [Site Analytics](/hexo-theme-icarus/Plugins/General/site-analytics-plugin/)
-
-**Rich Code Highlight Theme Choices**
-
-Icarus directly import code highlight themes from the [highlight.js](https://highlightjs.org/) package, and makes more than
-70 highlight themes available to you.
-
-<div class="columns is-multiline is-mobile">
-<div class="column is-half-mobile"><img src="/hexo-theme-icarus/gallery/code-highlight/atom-one-light.png"></div>
-<div class="column is-half-mobile"><img src="/hexo-theme-icarus/gallery/code-highlight/monokai.png"></div>
-<div class="column is-half-mobile"><img src="/hexo-theme-icarus/gallery/code-highlight/androidstudio.png"></div>
-</div>
-
-**Elastic Theme Configuration**
-
-In addition to the minimalistic and easy-to-understand configuration design, Icarus allows you to set configurations on a
-per-page basis with the ability to merge and override partial configurations.
-
-<div class="columns is-multiline">
-    <div class="column is-half is-12-mobile">
-        {% codeblock lang:yaml _config.yml %}
-        menu:
-          Archives: /archives
-          Categories: /categories
-          Tags: /tags
-          About: /about
-        {% endcodeblock %}
-        <img class="not-gallery-item" style="height:44px" src="/hexo-theme-icarus/gallery/navbar/main-config.png">
-    </div>
-    <div class="column is-half is-12-mobile">
-        {% codeblock lang:yaml post.md %}
-        title: A Simple Post
-        menu:
-          Go Home: /index.html
-        ---
-        # Here is some simple markdown.
-        {% endcodeblock %}
-        <img class="not-gallery-item" style="height:44px" src="/hexo-theme-icarus/gallery/navbar/post-config.png">
-    </div>
-</div>
-
-**Responsive Layout**
-
-No matter what modern browsering device your audiences are using, they can always get the best experience because Icarus's responsive
-layout across multiple viewpoints.
-
-![Responsive Layout](/hexo-theme-icarus/gallery/responsive.png)
+![Icarus](https://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png?1 "Icarus Preview")
 
 ### :cd: Installation
 
 Download & extract or `git clone` Icarus from GitHub to your blog's theme folder, and that's it!
 
 ```shell
-git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
+$ git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
+$ hexo s // start a live server
 ```
 
-Once started, Icarus will remind you of any missing dependencies and configuration files.
+Once started, Icarus will remind you of any missing dependencies to install.
+And it will create a theme configuration file (`_config.yml`) if it is not there.
+
+### :gift: Features
+
+**Cyberpunk Theme Variant**
+
+Tap into the future cyber world with the newly added Cyberpunk theme variant.
+Inspired by [Cyberpunk 2077](https://www.cyberpunk.net).
+
+![Icarus Cyberpunk](https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/cyberpunk.png "Icarus Cyberpunk")
+
+**Extensive Plugin Support**
+
+Icarus includes plentiful search, comment, sharing and other plugins out of the box that makes your
+blog feature-rich and powerful.
+
+<table>
+  <tr>
+    <th><a href="https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/">Comment</a></th>
+    <th><a href="https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/">Donation</a></th>
+    <th><a href="https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/">Search</a></th>
+    <th><a href="https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/">Share</a></th>
+    <th><a href="https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/">Widgets</a></th>
+    <th><a href="https://blog.zhangruipeng.me/hexo-theme-icarus/categories/Plugins/General/">Other Plugins</a></th>
+  </tr>
+  <tr>
+    <td>Changyan</td>
+    <td>Alipay</td>
+    <td>Insight</td>
+    <td>AddThis</td>
+    <td>Google AdSense</td>
+    <td>Baidu Analytics</td>
+  </tr>
+  <tr>
+    <td>Disqus</td>
+    <td>Buy Me A Coffee</td>
+    <td>Algolia</td>
+    <td>AddToAny</td>
+    <td>Archives</td>
+    <td>BuSuanZi Vistor Counter</td>
+  </tr>
+  <tr>
+    <td>DisqusJS</td>
+    <td>Patreon</td>
+    <td>Google CSE</td>
+    <td>Baidu Share</td>
+    <td>Categories</td>
+    <td>CNZZ Analytics</td>
+  </tr>
+  <tr>
+    <td>Facebook</td>
+    <td>Paypal</td>
+    <td>Baidu</td>
+    <td>Share.js</td>
+    <td>External Site Links</td>
+    <td>Light and Justified Gallery</td>
+  </tr>
+  <tr>
+    <td>Gitalk</td>
+    <td>Wechat</td>
+    <td></td>
+    <td>ShareThis</td>
+    <td>Recent Posts</td>
+    <td>Google Analytics</td>
+  </tr>
+  <tr>
+    <td>Gitment</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Google Feedburner</td>
+    <td>Hotjar User Feedback</td>
+  </tr>
+  <tr>
+    <td>Isso</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Author Profile</td>
+    <td>KaTex</td>
+  </tr>
+  <tr>
+    <td>LiveRe</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Tags</td>
+    <td>MathJax</td>
+  </tr>
+  <tr>
+    <td>Utterances</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Table of Contents</td>
+    <td>Outdated Browser Detection</td>
+  </tr>
+  <tr>
+    <td>Valine</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Page Loading Animations<br></td>
+  </tr>
+</table>
+
+**Rich Code Highlight Theme Choices**
+
+Icarus directly import stylesheets from the [highlight.js](https://highlightjs.org/) package and makes more than
+90 code highlight themes available to you.
+
+<table>
+    <tr>
+        <th>Atom One Light</th>
+        <th>Monokai</th>
+        <th>Kimbie Dark</th>
+    </tr>
+    <tr>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/atom-one-light.png?2"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/monokai.png?2"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/kimbie-dark.png?2"></td>
+    </tr>
+</table>
+
+**Flexible Theme Configuration**
+
+Icarus allows you to configure your site on a per-page or per-layout basis.
+
+<table>
+    <tr>
+        <th>_config.yml</th>
+        <th>post.md</th>
+        <th>_config.page.yml</th>
+    </tr>
+    <tr>
+        <td>
+{% codeblock %}
+widgets:
+  - type: profile
+    position: left
+  - type: recent_posts
+    position: right
+{% endcodeblock %}
+        </td>
+        <td>
+{% codeblock %}
+widgets:
+  - type: profile
+    position: left
+  - type: recent_posts
+    position: left
+{% endcodeblock %}
+        </td>
+        <td>
+{% codeblock %}
+widgets: null
+
+
+
+
+{% endcodeblock %}
+        </td>
+    </tr>
+    <tr>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/default-config.png"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/post-config.png"></td>
+        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/layout-config.png"></td>
+    </tr>
+</table>
+
+<br>
+
+**Responsive Layout**
+
+Give your audiences best viewing experience with Icarus's mobile-friendly responsive layout.
+
+![Responsive Layout](https://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.png)
 
 ### :hammer: Development
 
 This project is built with
 
-- Hexo 3.7.1
-- Ejs
-- Stylus
-- Bulma 0.7.2
+- [Hexo](https://hexo.io/)
+- [Inferno.js](https://infernojs.org/)
+- [Stylus](https://stylus-lang.com/)
+- [Bulma](https://bulma.io/)
 
-Please refer to the documentation for Icarus implementation details.
+Please refer to the [documentation](https://ppoffice.github.io/hexo-theme-icarus/categories/) and 
+[contributing guide](https://github.com/ppoffice/hexo-theme-icarus/blob/master/CONTRIBUTING.md) for implementation details.
 
 ### :tada: Contribute
 
 If you feel like to help us build a better Icarus, you can
 
-- :electric_plug: Write a plugin
-- :black_nib: <a href="https://github.com/ppoffice/hexo-theme-icarus/new/site/source/_posts">Submit a tutorial</a>
-- :triangular_flag_on_post: <a href="https://github.com/ppoffice/hexo-theme-icarus/issues/new">Report a bug</a>
-- :earth_asia: <a href="https://github.com/ppoffice/hexo-theme-icarus/tree/master/languages">Add a translation</a>
+:black_nib: [Submit a tutorial](https://github.com/ppoffice/hexo-theme-icarus/new/site/source/_posts) |
+:earth_asia: [Add a translation](https://github.com/ppoffice/hexo-theme-icarus/tree/master/languages) |
+:triangular_flag_on_post: [Report a bug](https://github.com/ppoffice/hexo-theme-icarus/issues/new) |
+:electric_plug: [Suggest a new feature](https://github.com/ppoffice/hexo-theme-icarus/pulls)
 
 ### :memo: License
 

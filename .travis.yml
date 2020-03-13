@@ -1,0 +1,25 @@
+language: node_js
+
+os: linux
+
+cache: false
+
+jobs:
+  include:
+    - stage: github pages
+      node_js: "10"
+      script:
+        - echo "Publish site to github pages ..."
+        - npm install -g hexo-cli
+        - cp _config.theme.yml themes/icarus/_config.yml
+        - ([[ -e _config.page.yml ]] && cp _config.page.yml themes/icarus/) || true
+        - ([[ -e _config.post.yml ]] && cp _config.post.yml themes/icarus/) || true
+        - hexo g
+      deploy:
+        provider: pages
+        token: $GITHUB_TOKEN
+        keep_history: false
+        local_dir: public
+        skip_cleanup: true
+        on:
+          tags: true
