@@ -63,6 +63,7 @@ $menu-list-border-left ?= 1px solid $text
 $tag-color ?= $black
 $tag-background-color ?= $blue
 $timeline-fg-line ?= $blue
+$timeline-bg-line ?= $body-background-color
 $post-navigation-fg ?= $white-bis
 $searchbox-bg-container ?= $black-bis
 $searchbox-border ?= $blue
@@ -73,20 +74,24 @@ $searchbox-bg-result-item-hover ?= $black
 
 @import 'style'
 
+clip-path(clip)
+    clip-path: clip
+    -webkit-clip-path: clip
+
 cut-corner(size)
-    clip-path: unquote('polygon(' + size + ' 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%, 0 ' + size + ')')
+    clip-path(unquote('polygon(' + size + ' 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%, 0 ' + size + ')'))
 
 cut-corner-reverse(size)
-    clip-path: unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '), 0 0)')
+    clip-path(unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '), 0 0)'))
 
 cut-corner-top-right(size)
-    clip-path: unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, 0 100%)')
+    clip-path(unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, 0 100%)'))
 
 cut-corner-bottom-left(size)
-    clip-path: unquote('polygon(0 0, 100% 0, 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '))')
+    clip-path(unquote('polygon(0 0, 100% 0, 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '))'))
 
 cut-corner-bottom-right(size)
-    clip-path: unquote('polygon(0 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%)')
+    clip-path(unquote('polygon(0 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%)'))
 
 undercover-before()
     position: relative
@@ -142,6 +147,39 @@ body
     .card-image + .card-content:before
         cut-corner-bottom-left(16px)
 
+clip-button($color, $color-invert)
+    &:before
+        background-color: $color
+        color: $color-invert
+
+    &:hover:before, &.is-hovered:before
+        background-color: darken($color, 2.5%)
+        color: $color-invert
+
+    &:focus:before, &.is-focused:before
+        color: $color-invert
+
+    &:active:before, &.is-active:before
+        background-color: darken($color, 5%)
+        color: $color-invert
+
+    &[disabled]:before, fieldset[disabled] &:before
+        background-color: $color
+
+    &.is-inverted
+        &:before
+            background-color: $color-invert
+            color: $color
+
+            &:hover:before, &.is-hovered:before
+                background-color: darken($color-invert, 5%)
+
+            &[disabled]:before, fieldset[disabled] &:before
+                background-color: $color-invert
+                border-color: transparent
+                box-shadow: none
+                color: $color
+
 .button:not(input)
     border: none
     outline: none
@@ -158,37 +196,7 @@ body
         $color-invert = $pair['2']
 
         &.is-{$name}
-            &:before
-                background-color: $color
-                color: $color-invert
-
-            &:hover:before, &.is-hovered:before
-                background-color: darken($color, 2.5%)
-                color: $color-invert
-
-            &:focus:before, &.is-focused:before
-                color: $color-invert
-
-            &:active:before, &.is-active:before
-                background-color: darken($color, 5%)
-                color: $color-invert
-
-            &[disabled]:before, fieldset[disabled] &:before
-                background-color: $color
-
-            &.is-inverted
-                &:before
-                    background-color: $color-invert
-                    color: $color
-
-                    &:hover:before, &.is-hovered:before
-                        background-color: darken($color-invert, 5%)
-
-                    &[disabled]:before, fieldset[disabled] &:before
-                        background-color: $color-invert
-                        border-color: transparent
-                        box-shadow: none
-                        color: $color
+            clip-button($color, $color-invert)
 
 .field.has-addons
     .control:not(:first-child)
@@ -245,7 +253,7 @@ article.article, article.media
 
 article.article
     .article-more
-        @extend .button.is-link
+        clip-button($info, $info-invert)
 
 .content
     blockquote
