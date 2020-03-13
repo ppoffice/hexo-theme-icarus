@@ -22,4 +22,4 @@ jobs:
         local_dir: public
         skip_cleanup: true
         on:
-          tags: true
+          branch: site
