@@ -1,4 +1,4 @@
-bulma-stylus-root = "../../../../node_modules/bulma-stylus/stylus"
+bulma-stylus-root = '../../../../node_modules/bulma-stylus/stylus'
 
 /* ---------------------------------
  *   Override Bulma CSS Framework
@@ -6,8 +6,8 @@ bulma-stylus-root = "../../../../node_modules/bulma-stylus/stylus"
 $body-size ?= 14px
 $body-background-color ?= #f7f7f7
 
-$family-sans-serif ?= Ubuntu, Roboto, "Open Sans", "Microsoft YaHei", sans-serif
-$family-code ?= "Source Code Pro", monospace, "Microsoft YaHei"
+$family-sans-serif ?= Ubuntu, Roboto, 'Open Sans', 'Microsoft YaHei', sans-serif
+$family-code ?= 'Source Code Pro', monospace, 'Microsoft YaHei'
 
 $primary ?= $blue
 $custom-colors ?= {
@@ -43,18 +43,18 @@ $content-heading-weight ?= $weight-normal
 $logo-height ?= 1.75rem
 
 // FIXME: https://github.com/groenroos/bulma-stylus/issues/11
-@import bulma-stylus-root + "/utilities/initial-variables"
-@import bulma-stylus-root + "/utilities/functions"
-@import bulma-stylus-root + "/utilities/derived-variables"
+@import bulma-stylus-root + '/utilities/initial-variables'
+@import bulma-stylus-root + '/utilities/functions'
+@import bulma-stylus-root + '/utilities/derived-variables'
 
 $colors = merge($colors, $custom-colors)
 
-@import bulma-stylus-root + "/utilities/animations"
-@import bulma-stylus-root + "/utilities/mixins"
-@import bulma-stylus-root + "/utilities/controls"
-@import bulma-stylus-root + "/base/_all"
-@import bulma-stylus-root + "/components/_all"
-@import bulma-stylus-root + "/elements/_all"
-@import bulma-stylus-root + "/form/_all"
-@import bulma-stylus-root + "/grid/_all"
-@import bulma-stylus-root + "/layout/_all"
+@import bulma-stylus-root + '/utilities/animations'
+@import bulma-stylus-root + '/utilities/mixins'
+@import bulma-stylus-root + '/utilities/controls'
+@import bulma-stylus-root + '/base/_all'
+@import bulma-stylus-root + '/components/_all'
+@import bulma-stylus-root + '/elements/_all'
+@import bulma-stylus-root + '/form/_all'
+@import bulma-stylus-root + '/grid/_all'
+@import bulma-stylus-root + '/layout/_all'
