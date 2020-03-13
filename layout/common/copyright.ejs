@@ -1,15 +1,18 @@
 <div class="my_post_copyright">
-    <div style="text-align:center;color: #ccc;font-size:14px;">------ copyright ------</div>
+    <div style="text-align:center" class="menu-label">------ copyright ------</div>
+    <p style="text-align:center" class="menu-label"> 本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank"><i class="fab fa-creative-commons" style="color:#29a329"></a></i> 许可协议</p>  
+
     <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+    <div class="has-text-grey is-size-7 is-block">
     <p><span>title:</span><a href="<%= url_for(page.path) %>"><%= page.title %></a></p>
     <p><span>author:</span><a href="/"><%= get_config('author') %></a></p>
     <p>
-        <span>ink:</span><a href="<%= url_for(page.path) %>" title="<%= page_title() %>"><%= get_config('permalink') %></a>
+        <span>link:</span><a href="<%= url_for(page.path) %>" title="<%= page_title() %>"><%= get_config('permalink') %></a>
         <span class="copy-path"  title="Click to Copy Link"><i class="fa fa-clipboard" data-clipboard-text="<%= get_config('permalink') %>"  aria-label="复制成功！"></i></span>
     </p>
     <p><span>publish time:</span><%= date(page.date) %></p>
     <p><span>update time:</span><%= date(page.updated) %></p>
-    <p><span>版权声明</span>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank"><i class="fab fa-creative-commons" style="color:#808080"></a></i> 许可协议</p>  
+    </div>
 </div>
 <!-- <ul class="post-copyright">
     <li><strong>本文标题：</strong><a href="<%= post.permalink %>"><%= page.title %></a></li>

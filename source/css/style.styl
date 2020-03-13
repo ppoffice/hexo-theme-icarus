@@ -106,7 +106,7 @@ img.thumbnail
         &.is-active
             color: hsl(217, 71%, 53%)
             background-color: transparent
-    @media screen and (max-width: screen-desktop)
+    @media screen and (max-width: screen-desktop + 2 * gap)
         .navbar-menu
             justify-content: center
             box-shadow: none
@@ -363,7 +363,7 @@ img.thumbnail
     & > code,
     :not(pre) > code
         font-size: 0.85em
-        color: #e96900
+        color: #f5871f
     blockquote
         color: #777777
         background: #f3f4f4
@@ -452,16 +452,71 @@ figure.highlight
         vertical-align: inherit
         min-width: inherit
         border-radius: inherit
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
-    .hljs-deletion
-        background-color: #ffd3d8
-    .hljs-addition
-        background-color: #c7ffd7
-.night
-    .hljs-deletion
-        background-color: #0e1225 !important
-    .hljs-addition
-        background-color: #0e1225 !important
+/* ---------------------------------
+ *        Use tommorrow highlight
+ * --------------------------------- */
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #c82829;
+}
+.hljs-deletion{
+    background-color: #ffd3d8;
+}
+.hljs-addition{
+     background-color: #c7ffd7;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+  color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+  color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #8959a8;
+}
 
 /* ---------------------------------
  *          Overflow Table
@@ -554,6 +609,13 @@ dark-primary-color = rgb(55, 61, 72)
 dark-primary-color-hover = rgb(67, 74, 86)
 dark-primary-color-active = rgb(44, 49, 58)
 dark-font-color = #c0c0c0
+
+.night
+    .hljs-deletion
+        background-color: #0e1225 !important
+    .hljs-addition
+        background-color: #0e1225 !important
+
 
 #universe
     display: none
