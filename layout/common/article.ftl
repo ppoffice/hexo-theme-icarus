@@ -96,14 +96,14 @@
     </#if>
 </#if>
 
-<#if !index && nextPost?? && prePost??>
+<#if !index && (nextPost?? || prevPost??)>
     <div class="card card-transparent">
         <div class="level post-navigation is-flex-wrap is-mobile">
-            <#if prePost??>
+            <#if prevPost??>
             <div class="level-start">
-                <a class="level level-item has-link-grey article-nav-prev" href="${prePost.fullPath!}">
+                <a class="level level-item has-link-grey article-nav-prev" href="${prevPost.fullPath!}">
                     <i class="level-item fas fa-chevron-left"></i>
-                    <span class="level-item">${prePost.title!}</span>
+                    <span class="level-item">${prevPost.title!}</span>
                 </a>
             </div>
             </#if>
