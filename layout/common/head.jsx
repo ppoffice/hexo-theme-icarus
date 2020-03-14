@@ -3,6 +3,7 @@ const MetaTags = require('hexo-component-inferno/lib/view/misc/meta');
 const OpenGraph = require('hexo-component-inferno/lib/view/misc/open_graph');
 const StructuredData = require('hexo-component-inferno/lib/view/misc/structured_data');
 const Plugins = require('./plugins');
+const {stripHTML} = require('hexo-util');
 
 function getPageTitle(page, siteTitle, helper) {
     let title = page.title;
@@ -30,7 +31,7 @@ function getPageTitle(page, siteTitle, helper) {
 module.exports = class extends Component {
     render() {
         const { env, site, config, helper, page } = this.props;
-        const { url_for, cdn, iconcdn, is_post, remove_html_tag } = helper;
+        const { url_for, cdn, iconcdn, is_post } = helper;
         const {
             url,
             meta_generator = true,
@@ -112,7 +113,7 @@ module.exports = class extends Component {
                 date={page.date}
                 updated={page.updated}
                 author={open_graph.author || config.author}
-                description={page.description || remove_html_tag(page.excerpt) || open_graph.description || page.content || config.description}
+                description={page.description || stripHTML(page.excerpt) || open_graph.description || page.content || config.description}
                 keywords={page.keywords || (page.tags && page.tags.length ? page.tags : undefined) || config.keywords}
                 url={page.permalink || open_graph.url || url}
                 images={openGraphImages}
@@ -127,7 +128,7 @@ module.exports = class extends Component {
 
             {typeof structured_data === 'object' ? <StructuredData
                 title={page.title || structured_data.title || config.title}
-                description={page.description || remove_html_tag(page.excerpt) || structured_data.description || page.content || config.description}
+                description={page.description || stripHTML(page.excerpt) || structured_data.description || page.content || config.description}
                 url={page.permalink || structured_data.url || url}
                 author={structured_data.author || config.author}
                 date={page.date}
