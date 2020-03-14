@@ -6,7 +6,7 @@ favicon: /images/favicon-64px.png
 # Additional HTML meta tags in an array.
 meta: 
 # canonical_url of your site
-canonical_url: https://www.annewqx.top/
+canonical_url: https://annewqx.top/
 # Path or URL to RSS atom.xml
 rss: atom.xml
     
@@ -36,7 +36,7 @@ navbar:
         Life: /categories/Life
         Categories: /categories
         Archives: /archives
-        About: /about
+        Comment: /about
     # Navigation bar links to be shown on the right
     links:
         Download on GitHub:
@@ -125,8 +125,8 @@ share:
 # 
 proportion:
     homepage:
-        sidebar: 'is-one-third-tablet is-3-desktop is-3-widescreen is-one-fifth-fullhd'
-        article: 'is-two-thirds-tablet is-6-desktop is-6-widescreen is-5-fullhd'
+        sidebar: 'is-one-third-tablet is-3-desktop is-one-fifth-widescreen is-one-fifth-fullhd'
+        article: 'is-two-thirds-tablet is-6-desktop is-5-widescreen is-5-fullhd'
     post:
         sidebar: 'is-one-third-tablet is-3-desktop is-one-fifth-widescreen is-one-fifth-fullhd'
         article: 'is-two-thirds-tablet is-9-desktop is-7-widescreen is-three-fifths-fullhd'
@@ -186,7 +186,7 @@ widgets:
                 icon: fab fa-zhihu
                 url: 'https://www.zhihu.com/people/anne-wu-7'
             Music:
-                icon: fab fa-spotify
+                icon: fa fa-music
                 url: 'https://music.163.com/#/user/home?id=122741706'
             Steam:
                 icon: fab fa-steam
@@ -260,14 +260,7 @@ widgets:
     #     feedburner_id: 04299627998705547305
     #     description: wqxanne@gmail.com
     #     position: right
-
-neteaseMusic: 
-    enable: true
-    id: 4878237788
-revolveMap: 
-    enable: true
-    id: 53u8jvixw8q
-
+    
 # Other plugin settings
 plugins:
     # Enable page animations
