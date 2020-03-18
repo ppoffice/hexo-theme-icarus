@@ -19,6 +19,7 @@ module.exports = class extends Component {
         const { article, plugins } = config;
         const { has_thumbnail, get_thumbnail, url_for, date, date_xml, __, _p } = helper;
 
+        const indexLaunguage = config.language || 'en';
         const language = page.lang || page.language || config.language || 'en';
 
         return <Fragment>
@@ -56,7 +57,7 @@ module.exports = class extends Component {
                                 {(() => {
                                     const words = getWordCount(page._content);
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
-                                    return `${time.locale(language).humanize()} ${__('article.read')} (${__('article.about')} ${words} ${__('article.words')})`;
+                                    return `${time.locale(index ? indexLaunguage : language).humanize()} ${__('article.read')} (${__('article.about')} ${words} ${__('article.words')})`;
                                 })()}
                             </span> : null}
                             {/* Visitor counter */}
