@@ -6,7 +6,7 @@
                     标签云
                 </h3>
                 <#list tags as tag>
-                    <a href="${tag.fullPath!}" style="font-size:${tag.postCount+tag.name?length}px">${tag.name!}</a>
+                    <a href="${tag.fullPath!}" style="font-size:${tag.postCount+tag.name?length+tag.slug?length}px">${tag.name!}</a>
                 </#list>
             </div>
         </div>
