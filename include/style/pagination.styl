@@ -1,0 +1,29 @@
+/* ---------------------------------
+ *  Pagination and Post Navigation
+ * --------------------------------- */
+$pagination-box-shadow ?= $card-shadow
+$pagination-background-color ?= $button-background-color
+$post-navigation-fg ?= $grey
+
+.pagination
+    .pagination-link,
+    .pagination-ellipsis,
+    .pagination-previous,
+    .pagination-next
+        a
+            color: $pagination-color
+    .pagination-link,
+    .pagination-previous,
+    .pagination-next
+        border: none
+        background: $pagination-background-color
+        box-shadow: $pagination-box-shadow
+    .pagination-link.is-current
+        background: $pagination-current-background-color
+
+.post-navigation
+    color: $post-navigation-fg
+    flex-wrap: wrap
+    justify-content: space-around
+    .level-item
+        margin-bottom: 0

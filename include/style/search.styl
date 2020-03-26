@@ -1,0 +1,201 @@
+/* ---------------------------------
+ *           Search Box
+ * --------------------------------- */
+// container sizes
+$searchbox-container-width ?= 540px
+$searchbox-container-margin ?= 100px
+$searchbox-breakpoint-width ?= 559px
+$searchbox-breakpoint-height ?= 479px
+// overlay and container styles
+$searchbox-box-shadow ?= $card-shadow
+$searchbox-border-radius ?= $radius
+$searchbox-bg-overlay ?= $modal-background-background-color
+$searchbox-bg-container ?= $white-ter
+$searchbox-border ?= $border
+// header styles
+$searchbox-bg-input ?= $white
+$searchbox-bg-close-hover ?= $searchbox-bg-container
+$searchbox-bg-close-active ?= $grey-lighter
+// body styles
+$searchbox-fg-result-header ?= $grey-light
+$searchbox-fg-result-item-secondary ?= $grey-light
+$searchbox-bg-result-item-hover ?= $searchbox-bg-input
+$searchbox-fg-result-item-active ?= findColorInvert($primary)
+$searchbox-bg-result-item-active ?= $primary
+$searchbox-bg-result-item-highlight ?= $yellow
+// footer styles
+$searchbox-bg-pagination-item ?= $searchbox-bg-input
+$searchbox-bg-pagination-item-hover ?= $searchbox-bg-container
+$searchbox-fg-pagination-item-active ?= findColorInvert($primary)
+$searchbox-bg-pagination-item-active ?= $primary
+$searchbox-bg-pagination-item-disabled ?= $searchbox-bg-container
+
+.searchbox
+    display: none
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 100
+    font-size: 1rem
+    line-height: 0
+    background: $searchbox-bg-overlay
+
+    &.show
+        display: flex
+
+    a, a:hover
+        color: inherit
+        text-decoration: none
+
+    input
+        font-size: 1rem
+        border: none
+        outline: none
+        box-shadow: none
+        border-radius: 0
+
+    &, .searchbox-container
+        position: fixed
+        align-items: center
+        flex-direction: column
+        line-height: 1.25em
+
+    .searchbox-container
+        z-index: 101
+        display: flex
+        overflow: hidden
+        box-shadow: $searchbox-box-shadow
+        border-radius: $searchbox-border-radius
+        background-color: $searchbox-bg-container
+        width: $searchbox-container-width
+        top: $searchbox-container-margin
+        bottom: $searchbox-container-margin
+
+    .searchbox-header, .searchbox-body, .searchbox-footer
+        width: 100%
+
+    .searchbox-header
+        display: flex
+        flex-direction: row
+        line-height: 1.5em
+        font-weight: normal
+        background-color: $searchbox-bg-input
+
+    .searchbox-input-container
+        display: flex
+        flex-grow: 1
+
+    .searchbox-input
+        flex-grow: 1
+        color: inherit
+        box-sizing: border-box
+        padding: .75em 0 .75em 1.25em
+        background: $searchbox-bg-input
+
+    .searchbox-close
+        display: inline-block
+        font-size: 1.5em
+        padding: .5em .75em
+        cursor: pointer
+
+        &:hover
+            background: $searchbox-bg-close-hover
+
+        &:active
+            background: $searchbox-bg-close-active
+
+    .searchbox-body
+        flex-grow: 1
+        overflow-y: auto
+        border-top: 1px solid $searchbox-border
+
+    .searchbox-result-section header, .searchbox-result-item
+        padding: .75em 1em
+
+    .searchbox-result-section
+        border-bottom: 1px solid $searchbox-border
+
+        header
+            color: $searchbox-fg-result-header
+
+    .searchbox-result-item
+        display: flex
+        flex-direction: row
+
+        &:not(.disabled):not(.active):not(:active):hover
+            background-color: $searchbox-bg-result-item-hover
+
+        &:active, &.active
+            color: $searchbox-fg-result-item-active
+            background-color: $searchbox-bg-result-item-active
+
+        em
+            font-style: normal
+            background: $searchbox-bg-result-item-highlight
+
+    .searchbox-result-icon
+        margin-right: 1em
+
+    .searchbox-result-content
+        overflow: hidden
+
+    .searchbox-result-title, .searchbox-result-preview
+        display: block
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+
+    .searchbox-result-title-secondary
+        color: $searchbox-fg-result-item-secondary
+
+    .searchbox-result-preview
+        margin-top: .25em
+
+    .searchbox-result-item:not(:active):not(.active)
+        .searchbox-result-preview
+            color: $searchbox-fg-result-item-secondary
+
+    .searchbox-footer
+        padding: .5em 1em
+
+    .searchbox-pagination
+        margin: 0
+        padding: 0
+        list-style: none
+        text-align: center
+
+        .searchbox-pagination-item
+            margin: 0 .25rem
+
+        .searchbox-pagination-item, .searchbox-pagination-link
+            display: inline-block
+
+        .searchbox-pagination-link
+            overflow: hidden
+            padding: .5em .8em
+            box-shadow: $searchbox-box-shadow
+            border-radius: $searchbox-border-radius
+            background-color: $searchbox-bg-pagination-item
+
+        .searchbox-pagination-item.active
+            .searchbox-pagination-link
+                color: $searchbox-fg-pagination-item-active
+                background-color: $searchbox-bg-pagination-item-active
+
+        .searchbox-pagination-item.disabled
+            .searchbox-pagination-link
+                cursor: not-allowed
+                background-color: $searchbox-bg-pagination-item-disabled
+
+        .searchbox-pagination-item:not(.active):not(.disabled)
+            .searchbox-pagination-link:hover
+                background-color: $searchbox-bg-pagination-item-hover
+
+@media screen and (max-width: $searchbox-breakpoint-width), screen and (max-height: $searchbox-breakpoint-height)
+    .searchbox .searchbox-container
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        border-radius: 0

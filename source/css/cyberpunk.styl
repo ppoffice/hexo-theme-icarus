@@ -1,0 +1,300 @@
+@import url(hexo-config('@fontface.cyberpunk'))
+
+$family-sans-serif ?= 'Oxanium', Ubuntu, Roboto, 'Open Sans', 'Microsoft YaHei', sans-serif
+$family-code ?= 'Roboto Mono', monospace, 'Microsoft YaHei'
+// shadow and radius
+$shadow ?= none
+$radius ?= 0
+$radius-small ?= 0
+// base colors
+$white ?= #fff
+$white-bis ?= #cdcdcd
+$grey ?= #848484
+$black ?= #000
+$black-bis ?= #050a0e
+$orange ?= #ff8e3c
+$yellow ?= #fcee09
+$green ?= #00ff41
+$blue ?= #02d7f2
+$purple ?= #9561d2
+$red ?= #ff003c
+$primary ?= $yellow
+$info ?= $blue
+$success ?= $green
+$warning ?= $orange
+$danger ?= $red
+// invert colors
+$orange-invert ?= #121617
+$yellow-invert ?= #121617
+$green-invert ?= #121617
+$blue-invert ?= #121617
+$purple-invert ?= #121617
+$red-invert ?= #121617
+$primary-invert ?= #121617
+$info-invert ?= #121617
+$success-invert ?= #121617
+$warning-invert ?= #121617
+$danger-invert ?= #121617
+// derived colors
+$scheme-main ?= $black
+$link ?= $blue
+$link-hover ?= $primary
+$text ?= $white-bis
+$text-strong ?= $yellow
+$body-background-color ?= $scheme-main
+$input-color ?= $text
+$input-placeholder-color ?= rgba($input-color, .8)
+$footer-color ?= $black
+$footer-background-color ?= $yellow
+$navbar-background-color ?= $yellow
+$navbar-item-color ?= $black
+$navbar-item-active-color ?= $black
+$navbar-item-hover-color ?= $black
+$navbar-item-hover-background-color ?= transparent
+$navbar-item-margin-v ?= 1.25rem
+$navbar-item-margin-h ?= .25rem
+$navbar-item-padding-v ?= 0
+$navbar-item-padding-h ?= .5rem
+$card-background-color ?= transparent
+$menu-label-color ?= $blue
+$menu-item-hover-color ?= $black
+$menu-item-hover-background-color ?= $yellow
+$menu-list-border-left ?= 1px solid $text
+$tag-color ?= $black
+$tag-background-color ?= $blue
+$timeline-fg-line ?= $blue
+$timeline-bg-line ?= $body-background-color
+$post-navigation-fg ?= $white-bis
+$searchbox-bg-container ?= $black-bis
+$searchbox-border ?= $blue
+$searchbox-bg-input ?= $black-bis
+$searchbox-bg-close-hover ?= $black
+$searchbox-bg-close-active ?= $searchbox-bg-close-hover
+$searchbox-bg-result-item-hover ?= $black
+
+@import 'style'
+
+clip-path(clip)
+    clip-path: clip
+    -webkit-clip-path: clip
+
+cut-corner(size)
+    clip-path(unquote('polygon(' + size + ' 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%, 0 ' + size + ')'))
+
+cut-corner-reverse(size)
+    clip-path(unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '), 0 0)'))
+
+cut-corner-top-right(size)
+    clip-path(unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, 0 100%)'))
+
+cut-corner-bottom-left(size)
+    clip-path(unquote('polygon(0 0, 100% 0, 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '))'))
+
+cut-corner-bottom-right(size)
+    clip-path(unquote('polygon(0 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%)'))
+
+undercover-before()
+    position: relative
+
+    &:before
+        content: ''
+        position: absolute
+        z-index: -1
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+
+body
+    counter-reset: card
+
+::selection
+    color: $black
+    background: $blue
+
+.card:not(#back-to-top)
+    position: relative
+    counter-increment: card
+
+    &, .card-content
+        undercover-before()
+
+    &:before
+        top: -1.2px
+        left: -1.2px
+        right: -1.2px
+        bottom: -1.2px
+        background-color: $blue
+        cut-corner-reverse(16px)
+
+    &:after
+        content: 'R' counter(card)
+        position: absolute
+        color: $blue
+        right: 2rem
+        bottom: -.6em
+        font-size: .75rem
+        padding: 0 .25em
+        background: $body-background-color
+
+    .card-image
+        cut-corner-top-right(16px)
+
+    .card-content:before
+        background-color: $body-background-color
+        cut-corner-reverse(16px)
+
+    .card-image + .card-content:before
+        cut-corner-bottom-left(16px)
+
+clip-button($color, $color-invert)
+    &:before
+        background-color: $color
+        color: $color-invert
+
+    &:hover:before, &.is-hovered:before
+        background-color: darken($color, 2.5%)
+        color: $color-invert
+
+    &:focus:before, &.is-focused:before
+        color: $color-invert
+
+    &:active:before, &.is-active:before
+        background-color: darken($color, 5%)
+        color: $color-invert
+
+    &[disabled]:before, fieldset[disabled] &:before
+        background-color: $color
+
+    &.is-inverted
+        &:before
+            background-color: $color-invert
+            color: $color
+
+            &:hover:before, &.is-hovered:before
+                background-color: darken($color-invert, 5%)
+
+            &[disabled]:before, fieldset[disabled] &:before
+                background-color: $color-invert
+                border-color: transparent
+                box-shadow: none
+                color: $color
+
+.button:not(input)
+    border: none
+    outline: none
+    background: transparent !important
+    undercover-before()
+
+    &:before
+        cut-corner(8px)
+
+    // clip-path will cut off overflown content inside a button
+    // thus we need to use :before pseudo-element to style the buttons
+    for $name, $pair in $colors
+        $color = $pair['1']
+        $color-invert = $pair['2']
+
+        &.is-{$name}
+            clip-button($color, $color-invert)
+
+.field.has-addons
+    .control:not(:first-child)
+        .button
+            cut-corner-bottom-right(8px)
+
+.menu-list a
+    cut-corner(8px)
+
+.tags.has-addons
+    .tag:first-child
+        background: $yellow !important
+
+    .tag:last-child
+        background: $blue !important
+
+.pagination-previous, .pagination-next, .pagination-link
+    cut-corner(8px)
+
+    &:hover
+        background-color: $blue
+
+        &, a
+            color: $black
+
+.navbar-main
+    padding-top: 10px
+    padding-bottom: 30px
+
+    &:after
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        bottom: -2px
+        background: url('../img/razor-top-black.svg') repeat-x top
+        height: 40px
+
+    .navbar-menu
+        .navbar-item
+            &:hover, &.is-active
+                color: $navbar-background-color
+                background-color: $body-background-color !important
+
+article.article, article.media
+    .title a
+        background-image: linear-gradient(transparent calc(100% - 2px), $text-strong 2px)
+        background-repeat: no-repeat
+        background-size: 0 100%
+        transition: background-size .25s ease-in-out
+
+    .title:hover a
+        background-size: 100% 100%
+
+article.article
+    .article-more
+        clip-button($info, $info-invert)
+
+.content
+    blockquote
+        background: transparent
+        border: .5px solid $blue
+        border-left: 5px solid $blue
+
+.footer
+    position: relative
+
+    &:before
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        top: -1px
+        height: 39px
+        background: url('../img/razor-bottom-black.svg') repeat-x top
+
+    & > .container
+        padding-top: 40px
+
+.timeline .media
+    &:before
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%)
+
+.searchbox .searchbox-container
+    border: 1px solid $blue
+
+    .searchbox-body
+        border-bottom: 1px solid $searchbox-border
+
+        li:last-child .searchbox-result-section
+            border-bottom: none
+
+    .searchbox-result-item
+        em
+            color: $black
+
+#back-to-top
+    color: $black
+    background: $blue
+    margin-top: 45px
+    cut-corner(8px)

@@ -1,0 +1,82 @@
+/* ---------------------------------
+ *        Back to Top Button
+ * --------------------------------- */
+#back-to-top
+    position: fixed
+    opacity: 0
+    outline: none
+    padding: 8px 0
+    line-height: 24px
+    border-radius: $card-radius
+    transform: translateY(120px)
+    transition: .4s ease opacity, .4s ease width, .4s ease transform, .4s ease border-radius
+
+    &.is-rounded
+        border-radius: 50%
+
+    &.fade-in
+        opacity: 1
+
+    &.rise-up
+        transform: translateY(0)
+
+/* ---------------------------------
+ *          Gallery Plugin
+ * --------------------------------- */
+.gallery-item
+    .caption
+        color: $grey
+
+/* ---------------------------------
+ *      Table of Content Widget
+ * --------------------------------- */
++mobile()
+    #toc
+        display: none
+        position: fixed
+        margin: 1rem
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: 100
+        max-height: calc(100vh - 2rem)
+        overflow-y: auto
+
+    #toc-mask
+        display: none
+        position: fixed
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: 99
+        background: rgba(0, 0, 0, .7)
+
+    #toc, #toc-mask
+        &.is-active
+            display: block
+
+/* ---------------------------------
+ *      Page Loading Progressbar
+ * --------------------------------- */
+.pace
+    user-select: none
+    pointer-events: none
+
+    .pace-progress
+        top: 0
+        right: 100%
+        width: 100%
+        height: 2px
+        z-index: 2000
+        position: fixed
+        background: $primary
+
+.pace-inactive
+    display: none
+
+/* ---------------------------------
+ *       Fix FontAwesome Icons
+ * --------------------------------- */
+.fa, .fab, .fal, .far, .fas
+    line-height: inherit

@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/donates.json",
+    "description": "Donate plugin configurations\nhttps://blog.zhangruipeng.me/hexo-theme-icarus/categories/Plugins/Donation/",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "oneOf": [
+            {
+                "$ref": "/donate/alipay.json"
+            },
+            {
+                "$ref": "/donate/buymeacoffee.json"
+            },
+            {
+                "$ref": "/donate/patreon.json"
+            },
+            {
+                "$ref": "/donate/paypal.json"
+            },
+            {
+                "$ref": "/donate/wechat.json"
+            }
+        ]
+    }
+}

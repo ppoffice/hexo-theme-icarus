@@ -1,0 +1,161 @@
+/* ---------------------------------
+ *          Spacing helpers
+ * --------------------------------- */
+$spacer ?= 1rem
+$spacers ?= 0, $spacer * .25, $spacer * .5, $spacer, $spacer * 1.5, $spacer * 3
+
+for n in (0 .. 5)
+    .ml-{n}
+        margin-left: $spacers[n] !important
+
+    .mr-{n}
+        margin-right: $spacers[n] !important
+
+    .mx-{n}
+        @extend .ml-{n}, .mr-{n}
+
+    .ml-n{n}
+        margin-left: - $spacers[n] !important
+
+    .mr-n{n}
+        margin-right: - $spacers[n] !important
+
+    .mx-n{n}
+        @extend .ml-n{n}, .mr-n{n}
+
+    .mt-{n}
+        margin-top: $spacers[n] !important
+
+    .mb-{n}
+        margin-bottom: $spacers[n] !important
+
+    .my-{n}
+        @extend .mt-{n}, .mb-{n}
+
+    .mt-n{n}
+        margin-top: - $spacers[n] !important
+
+    .mb-n{n}
+        margin-bottom: - $spacers[n] !important
+
+    .my-n{n}
+        @extend .mt-n{n}, .mb-n{n}
+
+    .pl-{n}
+        padding-left: $spacers[n] !important
+
+    .pr-{n}
+        padding-right: $spacers[n] !important
+
+    .px-{n}
+        @extend .pl-{n}, .pr-{n}
+
+    .pl-n{n}
+        padding-left: - $spacers[n] !important
+
+    .pr-n{n}
+        padding-right: - $spacers[n] !important
+
+    .px-n{n}
+        @extend .pl-n{n}, .pr-n{n}
+
+    .pt-{n}
+        padding-top: $spacers[n] !important
+
+    .pb-{n}
+        padding-bottom: $spacers[n] !important
+
+    .py-{n}
+        @extend .pt-{n}, .pb-{n}
+
+    .pt-n{n}
+        padding-top: - $spacers[n] !important
+
+    .pb-n{n}
+        padding-bottom: - $spacers[n] !important
+
+    .py-n{n}
+        @extend .pt-n{n}, .pb-n{n}
+
+.ml-auto
+    margin-left: auto !important
+
+.mr-auto
+    margin-right: auto !important
+
+.mx-auto
+    @extend .ml-auto, .mr-auto
+
+.mt-auto
+    margin-top: auto !important
+
+.mb-auto
+    margin-bottom: auto !important
+
+.my-auto
+    @extend .mt-auto, .mb-auto
+
+.pl-auto
+    margin-left: auto !important
+
+.pr-auto
+    margin-right: auto !important
+
+.px-auto
+    @extend .pl-auto, .pr-auto
+
+.pt-auto
+    margin-top: auto !important
+
+.pb-auto
+    margin-bottom: auto !important
+
+.py-auto
+    @extend .pt-auto, .pb-auto
+
+/* ---------------------------------
+ *           Flex helpers
+ * --------------------------------- */
+for n in (0 .. 5)
+    .order-{n}
+        order: n !important
+
+.justify-content-start
+    justify-content: start !important
+
+.justify-content-center
+    justify-content: center !important
+
+.flex-shrink-1
+    flex-shrink: 1 !important
+
+/* ---------------------------------
+ *           Color helpers
+ * --------------------------------- */
+.link-muted
+    color: inherit
+
+    &:hover
+        color: $primary !important
+
+/* ---------------------------------
+ *           Font helpers
+ * --------------------------------- */
+.size-small
+    font-size: .85rem !important
+
+.line-height-inherit
+    line-height: inherit !important
+
+/* ---------------------------------
+ *          Image helpers
+ * --------------------------------- */
+.image.is-7by3
+    padding-top: 42.8%
+
+    img
+        bottom: 0
+        left: 0
+        position: absolute
+        right: 0
+        top: 0

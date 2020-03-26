@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/widgets.json",
+    "description": "Sidebar widget configurations\nhttp://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "position": {
+                "type": "string",
+                "description": "Where should the widget be placed, left sidebar or right sidebar",
+                "default": "left"
+            }
+        },
+        "oneOf": [
+            {
+                "$ref": "/widget/profile.json"
+            },
+            {
+                "$ref": "/widget/toc.json"
+            },
+            {
+                "$ref": "/widget/links.json"
+            },
+            {
+                "$ref": "/widget/categories.json"
+            },
+            {
+                "$ref": "/widget/recent_posts.json"
+            },
+            {
+                "$ref": "/widget/archives.json"
+            },
+            {
+                "$ref": "/widget/tags.json"
+            },
+            {
+                "$ref": "/widget/subscribe_email.json"
+            },
+            {
+                "$ref": "/widget/adsense.json"
+            }
+        ],
+        "required": [
+            "position"
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/navbar.json",
+    "description": "Page top navigation bar configurations",
+    "type": "object",
+    "properties": {
+        "menu": {
+            "type": "object",
+            "description": "Naviagtion menu items",
+            "patternProperties": {
+                ".+": {
+                    "type": "string",
+                    "description": "URL or path of the menu link"
+                }
+            },
+            "examples": [
+                {
+                    "Home": "/",
+                    "Archives": "/archives",
+                    "Categories": "/categories",
+                    "Tags": "/tags",
+                    "About": "/about"
+                }
+            ],
+            "nullable": true
+        },
+        "links": {
+            "$ref": "/misc/poly_links.json",
+            "description": "Links to be shown on the right of the navigation bar",
+            "examples": [
+                {
+                    "Download on GitHub": {
+                        "icon": "fab fa-github",
+                        "url": "https://github.com/ppoffice/hexo-theme-icarus"
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,38 @@
+/* ---------------------------------
+ *          Archive Timeline
+ * --------------------------------- */
+$timeline-fg-line ?= $grey-lighter
+$timeline-bg-line ?= $card-background-color
+
+.timeline
+    margin-left: 1rem
+    padding: 1rem 0 0 1.5rem
+    border-left: 1px solid $timeline-fg-line
+
+    .media
+        position: relative
+
+        &:before, &:last-child:after
+            content: ''
+            display: block
+            position: absolute
+            left: calc(-.375rem - 1.5rem - .25px)
+
+        &:before
+            width: .75rem
+            height: .75rem
+            top: calc(1rem + 1.5 * .85rem / 2 - .75rem / 2)
+            background: $timeline-fg-line
+            border-radius: 50%
+
+        &:first-child:before
+            top: calc(1.5 * .85rem / 2 - .75rem / 2)
+
+        &:last-child:after
+            width: .75rem
+            top: calc(1rem + 1.5 * .85rem / 2 + .75rem / 2)
+            bottom: 0
+            background: $timeline-bg-line
+
+        &:first-child:last-child:after
+            top: calc(1.5 * .85rem / 2 + .75rem / 2)

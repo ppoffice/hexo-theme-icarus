@@ -1,0 +1,68 @@
+{
+  "extends": [
+    "hexo",
+    "plugin:react/recommended",
+    "plugin:json/recommended"
+  ],
+  "settings": {
+    "node": {
+      "tryExtensions": [
+        ".js",
+        ".jsx",
+        ".json"
+      ]
+    },
+    "react": {
+      "version": "16.0"
+    }
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/jsx-uses-vars": "error",
+    "indent": [
+      "error",
+      4,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": [
+          "class",
+          "onclick",
+          "onload",
+          "onsubmit",
+          "crossorigin"
+        ]
+      }
+    ],
+    "react/react-in-jsx-scope": [
+      "off"
+    ],
+    "react/prop-types": [
+      "off"
+    ],
+    "react/display-name": [
+      "off"
+    ],
+    "react/jsx-key": [
+      "off"
+    ],
+    "react/jsx-no-target-blank": [
+      "error",
+      {
+        "allowReferrer": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/comment.json",
+    "description": "Comment plugin configurations\nhttps://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/",
+    "type": "object",
+    "oneOf": [
+        {
+            "$ref": "/comment/disqus.json"
+        },
+        {
+            "$ref": "/comment/changyan.json"
+        },
+        {
+            "$ref": "/comment/disqusjs.json"
+        },
+        {
+            "$ref": "/comment/facebook.json"
+        },
+        {
+            "$ref": "/comment/gitalk.json"
+        },
+        {
+            "$ref": "/comment/gitment.json"
+        },
+        {
+            "$ref": "/comment/isso.json"
+        },
+        {
+            "$ref": "/comment/livere.json"
+        },
+        {
+            "$ref": "/comment/utterances.json"
+        },
+        {
+            "$ref": "/comment/valine.json"
+        }
+    ]
+}

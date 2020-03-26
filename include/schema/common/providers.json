@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/providers.json",
+    "description": "CDN provider settings\nhttps://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/",
+    "type": "object",
+    "properties": {
+        "cdn": {
+            "type": "string",
+            "description": "Name or URL template of the JavaScript and/or stylesheet CDN provider",
+            "default": "jsdelivr",
+            "nullable": true
+        },
+        "fontcdn": {
+            "type": "string",
+            "description": "Name or URL template of the webfont CDN provider",
+            "default": "google",
+            "nullable": true
+        },
+        "iconcdn": {
+            "type": "string",
+            "description": "Name or URL of the fontawesome icon font CDN provider",
+            "default": "fontawesome",
+            "nullable": true
+        }
+    }
+}

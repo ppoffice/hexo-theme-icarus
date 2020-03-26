@@ -1,0 +1,53 @@
+/* ---------------------------------
+ *           Top Navigation
+ * --------------------------------- */
+$navbar-item-padding-v ?= 1.25rem
+$navbar-item-padding-h ?= .75rem
+$navbar-item-margin-v ?= 0
+$navbar-item-margin-h ?= 0
+
+.navbar-main
+    box-shadow: $shadow
+
+    .navbar-menu, .navbar-start, .navbar-end
+        align-items: stretch
+        display: flex
+        padding: 0
+        flex-shrink: 0
+
+    .navbar-menu
+        flex-grow: 1
+        flex-shrink: 0
+        overflow-x: auto
+
+    .navbar-start
+        justify-content: flex-start
+        margin-right: auto
+
+    .navbar-end
+        justify-content: flex-end
+        margin-left: auto
+
+    .navbar-item
+        display: flex
+        align-items: center
+        padding: $navbar-item-padding-v $navbar-item-padding-h
+        margin: $navbar-item-margin-v $navbar-item-margin-h
+
+        &.is-active
+            background-color: transparent
+
+    +until($navbar-breakpoint)
+        .navbar-menu
+            justify-content: center
+            box-shadow: none
+
+        .navbar-start
+            margin-right: 0
+
+        .navbar-end
+            margin-left: 0
+
+.navbar-logo
+    img
+        max-height: $logo-height

@@ -1,0 +1,78 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/config.json",
+    "description": "The configuration file definition",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "string",
+            "description": "Version of the configuration file",
+            "default": "3.0.0"
+        },
+        "variant": {
+            "type": "string",
+            "description": "Icarus theme variant, can be \"default\" or \"cyberpunk\"",
+            "enum": [
+                "default",
+                "cyberpunk"
+            ],
+            "default": "default"
+        },
+        "logo": {
+            "type": [
+                "string",
+                "object"
+            ],
+            "description": "Path or URL to the website's logo",
+            "default": "/img/logo.svg",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "Text to be shown in place of the logo image"
+                }
+            },
+            "required": [
+                "text"
+            ]
+        },
+        "head": {
+            "$ref": "/common/head.json"
+        },
+        "navbar": {
+            "$ref": "/common/navbar.json"
+        },
+        "footer": {
+            "$ref": "/common/footer.json"
+        },
+        "article": {
+            "$ref": "/common/article.json"
+        },
+        "search": {
+            "$ref": "/common/search.json"
+        },
+        "comment": {
+            "$ref": "/common/comment.json"
+        },
+        "donates": {
+            "$ref": "/common/donates.json"
+        },
+        "share": {
+            "$ref": "/common/share.json"
+        },
+        "sidebar": {
+            "$ref": "/common/sidebar.json"
+        },
+        "widgets": {
+            "$ref": "/common/widgets.json"
+        },
+        "plugins": {
+            "$ref": "/common/plugins.json"
+        },
+        "providers": {
+            "$ref": "/common/providers.json"
+        }
+    },
+    "required": [
+        "version"
+    ]
+}

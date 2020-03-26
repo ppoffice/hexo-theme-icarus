@@ -1,6 +1,0 @@
-<% page.posts.each(function(post){ %>
-    <%- _partial('common/article', { post, index: true }) %>
-<% }); %>
-<% if (page.total > 1) { %>
-    <%- _partial('common/paginator') %>
-<% } %>

@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/article.json",
+    "description": "Article related configurations",
+    "type": "object",
+    "properties": {
+        "highlight": {
+            "type": "object",
+            "description": "Code highlight settings",
+            "properties": {
+                "theme": {
+                    "type": "string",
+                    "description": "Code highlight themes\nhttps://github.com/highlightjs/highlight.js/tree/master/src/styles",
+                    "default": "atom-one-light",
+                    "nullable": true
+                },
+                "clipboard": {
+                    "type": "boolean",
+                    "description": "Show copy code button",
+                    "default": true,
+                    "nullable": true
+                },
+                "fold": {
+                    "type": "string",
+                    "description": "Default folding status of the code blocks. Can be \"\", \"folded\", \"unfolded\"",
+                    "enum": [
+                        "",
+                        "folded",
+                        "unfolded"
+                    ],
+                    "default": "unfolded",
+                    "nullable": true
+                }
+            },
+            "nullable": true
+        },
+        "thumbnail": {
+            "type": "boolean",
+            "description": "Whether to show thumbnail image for every article",
+            "default": true,
+            "nullable": true
+        },
+        "readtime": {
+            "type": "boolean",
+            "description": "Whether to show estimated article reading time",
+            "default": true,
+            "nullable": true
+        }
+    }
+}

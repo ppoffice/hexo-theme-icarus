@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/common/share.json",
+    "description": "Share plugin configurations\nhttps://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/",
+    "type": "object",
+    "oneOf": [
+        {
+            "$ref": "/share/sharethis.json"
+        },
+        {
+            "$ref": "/share/addthis.json"
+        },
+        {
+            "$ref": "/share/addtoany.json"
+        },
+        {
+            "$ref": "/share/bdshare.json"
+        },
+        {
+            "$ref": "/share/sharejs.json"
+        }
+    ]
+}
