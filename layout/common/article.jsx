@@ -8,6 +8,9 @@ const Comment = require('./comment');
  * Get the word count of text.
  */
 function getWordCount(content) {
+    if (typeof content === 'undefined') {
+        return 0;
+    }
     content = content.replace(/<\/?[a-z][^>]*>/gi, '');
     content = content.trim();
     return content ? (content.match(/[\u00ff-\uffff]|[a-zA-Z]+/g) || []).length : 0;
