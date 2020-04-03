@@ -43,7 +43,7 @@ module.exports = class extends Component {
             meta = [],
             open_graph = {},
             structured_data = {},
-            canonical_url,
+            canonical_url = page.permalink,
             rss,
             favicon
         } = head;
@@ -102,7 +102,7 @@ module.exports = class extends Component {
             <meta charset="utf-8" />
             {meta_generator ? <meta name="generator" content={`Hexo ${env.version}`} /> : null}
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-            <MetaTags meta={meta} />
+            {meta && meta.length ? <MetaTags meta={meta} /> : null}
 
             <title>{getPageTitle(page, config.title, helper)}</title>
 
