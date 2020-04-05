@@ -1,5 +1,5 @@
 title: Configuring Icarus
-date: 2018-10-22 19:23:58
+date: 2018-10-22 19:23:57
 thumbnail: /gallery/thumbnails/plant.jpg
 categories:
 - Configuration
