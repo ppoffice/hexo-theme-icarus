@@ -12,6 +12,8 @@
 
 ### :cd: Installation
 
+[![Join the chat at https://gitter.im/hexo-theme-icarus/community](https://badges.gitter.im/hexo-theme-icarus/community.svg)](https://gitter.im/hexo-theme-icarus/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Download & extract or `git clone` Icarus from GitHub to your blog's theme folder, and that's it!
 
 ```shell
