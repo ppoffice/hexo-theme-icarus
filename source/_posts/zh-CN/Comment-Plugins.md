@@ -1,5 +1,5 @@
 title: Icarus用户指南 - 评论系统
-date: 2017-01-31 21:55:37
+date: 2017-01-31
 categories:
 - Plugins
 - Comment
@@ -331,7 +331,7 @@ Gitment项目似乎已停止维护，建议使用Gitalk或utterances作为基于
         highlight: true                 # 可选填
         record_ip: false                # 可选填
     {% endcodeblock %}
-   
+
 
 <div class="notification is-warning is-size-6">
 文章内容有误？请点击<a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Comment-Plugins.md">此处</a>提交修改。
