@@ -42,15 +42,15 @@ donates:
         ...
 {% endcodeblock %}
 
+<!-- more -->
 
-<div class="notification is-info is-size-6">
+
+<div class="notification is-link is-size-6">
 
 Icarus的赞赏按钮由[ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno)
 提供，具体提供的按钮种类与配置以其为准。
 
 </div>
-
-<!-- more -->
 
 <style>
 .content ol:not([type]) {
@@ -59,6 +59,8 @@ Icarus的赞赏按钮由[ppoffice/hexo-component-inferno](https://github.com/ppo
 </style>
 
 ## 支付宝
+
+**安装指南**
 
 登录支付宝并导出个人支付二维码图片放置在网站的图片或附件文件夹下，或上传至图床，然后在主题配置中添加如下配置项：
 
@@ -73,6 +75,8 @@ donates:
 
 ## Buy me a Coffee
 
+**安装指南**
+
 注册[Buy me a Coffee](https://www.buymeacoffee.com/)并复制个人赞助页面的地址，填写到如下主题配置中：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
@@ -84,6 +88,8 @@ donates:
 {% endcodeblock %}
 
 ## Paypal
+
+**安装指南**
 
 1. 注册并登录Paypal，点击[此链接](https://www.paypal.com/donate/buttons/)来创建Paypal捐赠按钮。
 
@@ -120,6 +126,8 @@ donates:
 
 ## Patreon
 
+**安装指南**
+
 注册[Patreon](https://www.patreon.com/)并复制个人赞助页面的地址，填写到如下主题配置中：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
@@ -131,6 +139,8 @@ donate:
 {% endcodeblock %}
 
 ## 微信
+
+**安装指南**
 
 登录微信并导出个人支付二维码图片放置在网站的图片或附件文件夹下，或上传至图床，然后在主题配置中添加如下配置项：
 

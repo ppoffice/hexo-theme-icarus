@@ -44,8 +44,10 @@ donates:
         ...
 {% endcodeblock %}
 
+<!-- more -->
 
-<div class="notification is-info is-size-6">
+
+<div class="notification is-link is-size-6">
 
 The donation button feature of Icarus is provided by
 [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
@@ -53,9 +55,9 @@ Please refer to it for a complete list of supported buttons and their configurat
 
 </div>
 
-<!-- more -->
-
 ## Alipay
+
+**Installation Guide**
 
 Log into Alipay and export payment QR code. Save the picture to a photo or asset directory
 of your Hexo website or upload it to an image sharing service.
@@ -72,6 +74,8 @@ donates:
 
 ## Buy me a Coffee
 
+**Installation Guide**
+
 Register for [Buy me a Coffee](https://www.buymeacoffee.com/) and copy the URL to your personal page.
 Add the following configuration to your theme's configuration file:
 
@@ -84,6 +88,8 @@ donates:
 {% endcodeblock %}
 
 ## Paypal
+
+**Installation Guide**
 
 1. Register and log into Paypal, click [here](https://www.paypal.com/donate/buttons/) to make a Paypal donation
    button.
@@ -122,6 +128,8 @@ donates:
 
 ## Patreon
 
+**Installation Guide**
+
 Register for [Patreon](https://www.patreon.com/) and copy the URL to your personal page.
 Add the following configuration to your theme's configuration file:
 
@@ -134,6 +142,8 @@ donate:
 {% endcodeblock %}
 
 ## WeChat
+
+**Installation Guide**
 
 Log into WeChat and export payment QR code. Save the picture to a photo or asset directory
 of your Hexo website or upload it to an image sharing service.

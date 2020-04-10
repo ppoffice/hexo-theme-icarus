@@ -11,14 +11,14 @@ toc: true
 
 本文介绍Icarus 3支持的一些用户评论插件的安装配置。
 
-<div class="notification is-info is-size-6">
+<!-- more -->
+
+<div class="notification is-link is-size-6">
 
 Icarus的用户评论插件由[ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno)
 提供，具体提供的插件种类与配置以其为准。
 
 </div>
-
-<!-- more -->
 
 <style>
 .content ol:not([type]) {
@@ -145,13 +145,16 @@ DisqusJS适用于原版Disqus服务访问受限的地区使用。关于DisqusJS�
 
 ##  Facebook
 
+<div class="notification is-warning is-size-6">
+此评论插件可能会被部分广告拦截浏览器扩展拦截，请酌情使用。
+</div>
+
 <div>
 <strong>安装指南</strong>
 <a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/comment/Facebook %}">在线预览</a>
 </div>
 
 1. Facebook的评论服务配置较为简单，仅需在主题配置中将`comment`的`type`设置为`facebook`即可。
-   需要注意的是，部分广告拦截插件会将Facebook评论拦截，请酌情使用。
 
     {% codeblock themes/icarus/_config.yml lang:yaml %}
     comment:
@@ -251,6 +254,10 @@ Gitment项目似乎已停止维护，建议使用Gitalk或utterances作为基于
 
 
 ## LiveRe
+
+<div class="notification is-warning is-size-6">
+此评论插件可能会被部分广告拦截浏览器扩展拦截，请酌情使用。
+</div>
 
 <div>
 <strong>安装指南</strong>

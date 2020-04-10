@@ -1,10 +1,9 @@
-title: LiveRe Comment Plugin
-date: 2015-01-01
+title: Baidu Share Buttons
+date: 2014-01-01
 tags:
 - Demo
-comment:
-    type: livere
-    uid: MTAyMC8zNTExMS8xMTY0Ng==
+share:
+    type: bdshare
 ---
 
 <div class="notification is-warning is-size-6">
@@ -14,5 +13,5 @@ Please report your issues with this plugin to
 </div>
 
 <div class="notification is-info is-size-6">
-Please turn off your ad blockers if you do not see the comment section.
+Please turn off your ad blockers if you do not see the buttons.
 </div>
