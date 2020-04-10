@@ -42,7 +42,7 @@ class Footer extends Component {
                                 </p>;
                             })}
                         </div> : null}
-						<div style="text-align:center">
+						<div style="text-align:center;margin-top:-12px" class="size-small">
 							<img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png" style="vertical-align: text-bottom;"></img>
 							<a href="http://www.beian.miit.gov.cn/" target="_blank" style="margin-left:5px;color:black;opacity:0.7">津ICP备16009041号-3</a>
 						</div>
