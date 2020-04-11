@@ -1,4 +1,4 @@
-title: Icarus用户指南 - 评论系统
+title: Icarus用户指南 - 用户评论插件
 date: 2017-01-31
 categories:
 - Plugins

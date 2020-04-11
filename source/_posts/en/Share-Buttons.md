@@ -218,5 +218,5 @@ Please use to other services as alternatives.
 
 
 <div class="notification is-warning is-size-6">
-Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Share-Buttons.md">here</a> to submit your revision.
+Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Share-Buttons.md">here</a> to submit your revision.
 </div>
