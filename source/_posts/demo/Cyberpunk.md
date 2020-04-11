@@ -6,7 +6,54 @@ variant: cyberpunk
 article:
     highlight:
         theme: qtcreator_dark
-thumbnail: /uncategorized/cyberpunk-theme-variant/CP77-KV-en.jpg
+sidebar:
+    left:
+        sticky: false
+    right:
+        sticky: false
+widgets:
+    -
+        position: left
+        type: profile
+        author: PPOffice
+        author_title: Web Developer
+        location: Earth, Solar System
+        follow_link: 'https://github.com/ppoffice'
+        social_links:
+            Github:
+                icon: fab fa-github
+                url: 'https://github.com/ppoffice'
+            Facebook:
+                icon: fab fa-facebook
+                url: 'https://facebook.com'
+            Twitter:
+                icon: fab fa-twitter
+                url: 'https://twitter.com'
+            Dribbble:
+                icon: fab fa-dribbble
+                url: 'https://dribbble.com'
+            RSS:
+                icon: fas fa-rss
+                url: /
+    -
+        position: left
+        type: links
+        links:
+            Hexo: 'https://hexo.io'
+            Bulma: 'https://bulma.io'
+    -
+        position: left
+        type: categories
+    -
+        position: right
+        type: recent_posts
+    -
+        position: right
+        type: archives
+    -
+        position: right
+        type: tags
+thumbnail: /gallery/thumbnails/CP77-KV-en.jpg
 ---
 
 Icarus includes a new variant called Cyberpunk starting from version 3.0.0.
