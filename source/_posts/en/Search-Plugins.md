@@ -19,9 +19,9 @@ This article covers some search plugins supported by Icarus 3.
 
 <div class="notification is-link is-size-6">
 
-The search plugins of Icarus is provided by
+The search plugins of Icarus are provided by
 [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
-Please refer to it for a complete list of supported buttons and their configurations.
+Please refer to it for a complete list of supported plugins and their configurations.
 
 </div>
 

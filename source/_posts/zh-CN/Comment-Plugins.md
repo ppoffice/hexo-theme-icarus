@@ -9,6 +9,10 @@ language: zh-CN
 toc: true
 ---
 
+<div class="notification is-success is-size-6">
+本文同时提供以下语言的翻译：<a href="{% post_path en/Comment-Plugins %}">English</a>。
+</div>
+
 本文介绍Icarus 3支持的一些用户评论插件的安装配置。
 
 <!-- more -->
@@ -84,7 +88,7 @@ Icarus的用户评论插件由[ppoffice/hexo-component-inferno](https://github.c
    在页面上找到Shortname配置值并复制到主题配置文件相应的评论配置项中(`comment`下的`shortname`)。
    例如，下图中的Shortname为`test-usildmkxo`
 
-   {% asset_img disqus-general-settings.png "General Settings - Disqus Admin" %}
+   ![General Settings - Disqus Admin](/hexo-theme-icarus/gallery/screenshots/disqus-general-settings.png)
 
    复制到配置文件中为
 
@@ -272,7 +276,7 @@ Gitment项目似乎已停止维护，建议使用Gitalk或utterances作为基于
 
 3. 复制代码中`data-uid="..."`引号内的编号，填写到主题配置中的相应选项中。例如，下方的LiveRe代码
 
-   {% asset_img livere-code.png "LiveRe - Install" %}
+   ![LiveRe - Install](/hexo-theme-icarus/gallery/screenshots/livere-code.png)
 
    对应的主题配置为
 
@@ -296,7 +300,7 @@ Gitment项目似乎已停止维护，建议使用Gitalk或utterances作为基于
    点击“配置”(Configure)按钮，在下一页面中选择需要安装utterances的用户。在安装页面，你可以选择将其安装到所有仓库(All repositories)
    或是选定的一些仓库(Only select repositories)。点击“安装”(Install)。
 
-3. 若安装成功，网页跳转到[utterances官网](https://utteranc.es/)后。之后可以阅读页面上的配置项的说明，并按照说明将对应配置值填入到
+3. 若安装成功，网页跳转到[utterances官网](https://utteranc.es/)。之后可以阅读页面上的配置项的说明，并按照说明将对应配置值填入到
    主题配置中。下方为示例配置：
 
     {% codeblock themes/icarus/_config.yml lang:yaml %}
