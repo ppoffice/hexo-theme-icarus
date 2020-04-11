@@ -1,5 +1,5 @@
 title: Icarus用户指南 - 用户评论插件
-date: 2017-01-31
+date: 2016-01-01
 categories:
 - Plugins
 - Comment
@@ -7,6 +7,10 @@ tags:
 - Icarus用户指南
 language: zh-CN
 toc: true
+providers:
+    cdn: loli
+    fontcdn: loli
+    iconcdn: fontawesome
 ---
 
 <div class="notification is-success is-size-6">

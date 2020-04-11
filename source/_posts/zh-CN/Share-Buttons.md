@@ -1,5 +1,5 @@
 title: Icarus用户指南 - 分享按钮
-date: 2017-01-31
+date: 2016-01-01
 categories:
 - Plugins
 - Share
@@ -10,6 +10,10 @@ toc: true
 share:
     type: sharethis
     install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8fc96750876c7d
+providers:
+    cdn: loli
+    fontcdn: loli
+    iconcdn: fontawesome
 ---
 
 <div class="notification is-success is-size-6">

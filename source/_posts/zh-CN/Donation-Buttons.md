@@ -1,5 +1,5 @@
 title: Icarus用户指南 - 赞赏按钮
-date: 2017-01-31
+date: 2016-01-01
 categories:
 - Plugins
 - Donation
@@ -24,6 +24,10 @@ donates:
     -
         type: wechat
         qrcode: /gallery/donate/wechat.jpg
+providers:
+    cdn: loli
+    fontcdn: loli
+    iconcdn: fontawesome
 ---
 
 <div class="notification is-success is-size-6">
