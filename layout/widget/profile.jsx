@@ -75,7 +75,7 @@ class Profile extends Component {
                 {followLink ? <div class="level">
                     <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener">{followTitle}</a>
                 </div> : null}
-                {this.renderSocialLinks(socialLinks)}
+                {socialLinks ? this.renderSocialLinks(socialLinks) : null}
             </div>
         </div>;
     }
@@ -109,7 +109,7 @@ Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
     const categoryCount = site.categories.filter(category => category.length).length;
     const tagCount = site.tags.filter(tag => tag.length).length;
 
-    const socialLinks = Object.keys(social_links).map(name => {
+    const socialLinks = social_links ? Object.keys(social_links).map(name => {
         const link = social_links[name];
         if (typeof link === 'string') {
             return {
@@ -122,7 +122,7 @@ Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
             url: url_for(link.url),
             icon: link.icon
         };
-    });
+    }) : null;
 
     return {
         avatar: getAvatar(),

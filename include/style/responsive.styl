@@ -16,16 +16,16 @@
         width: $desktop - 2 * $gap
 
 +tablet()
+    .is-sticky
+        position: -webkit-sticky
+        position: sticky
+        top: 1.5rem
+        z-index: 99
+
     .column-main, .column-left, .column-right, .column-right-shadow
         &.is-sticky
-            align-self: flex-start
-            position: -webkit-sticky
-            position: sticky
             top: .75rem
-
-    .column-right-shadow
-        &.is-sticky
-            top: 1.5rem
+            align-self: flex-start
 
 +mobile()
     .section

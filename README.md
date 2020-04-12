@@ -43,7 +43,7 @@ blog feature-rich and powerful.
     <th><a href="https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/">Search</a></th>
     <th><a href="https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/">Share</a></th>
     <th><a href="https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/">Widgets</a></th>
-    <th><a href="https://blog.zhangruipeng.me/hexo-theme-icarus/categories/Plugins/General/">Other Plugins</a></th>
+    <th><a href="https://blog.zhangruipeng.me/hexo-theme-icarus/categories/Plugins/">Other Plugins</a></th>
   </tr>
   <tr>
     <td>Changyan</td>
