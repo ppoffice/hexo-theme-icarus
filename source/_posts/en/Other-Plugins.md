@@ -78,6 +78,8 @@ In this case, we will not need the empty lines between HTML tags.
 Here is an image grid created by Justified Gallery.
 You can also view the full image using lightGallery by clicking on any image.
 
+> The following photos come from <a href="https://www.pexels.com">pexel.com</a>
+
 <div class="justified-gallery">
 
 ![Elephant](/hexo-theme-icarus/gallery/animals/elephant.jpeg)

@@ -31,7 +31,7 @@ This article is also available in: <a href="{% post_path zh-CN/Donation-Buttons 
 </div>
 
 This article covers some donation buttons supported by Icarus 3.
-If you need to display multiple donation buttons at once, simply add individual button configurations
+If you need to display multiple donation buttons at once, simply add individual button configuration
 to the `donates` array like this
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}

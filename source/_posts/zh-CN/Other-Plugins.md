@@ -77,6 +77,8 @@ plugins:
 
 下面是Justified Gallery实现的多图片网格化展示。点击其中的任意可另外查看lightGallery的全图展示效果。
 
+> 下面的图片来源于<a href="https://www.pexels.com">pexel.com</a>
+
 <div class="justified-gallery">
 
 ![Elephant](/hexo-theme-icarus/gallery/animals/elephant.jpeg)

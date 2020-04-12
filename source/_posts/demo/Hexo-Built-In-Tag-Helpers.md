@@ -1,10 +1,7 @@
 title: Hexo Built-in Tag Helpers
-date: 2016-07-08 20:07:55
-categories:
-- Configuration
-- Posts
+date: 2018-01-01
 tags:
-- Getting Started
+- Demo
 toc: true
 ---
 
@@ -193,7 +190,7 @@ To embed an iframe:
 {% iframe url [width] [height] %}
 ```
 
-{% iframe https://hexo.io 100% 400 %}
+{% iframe https://blog.zhangruipeng.me/hexo-theme-icarus 100% 400 %}
 
 ## Image
 
