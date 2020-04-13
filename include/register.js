@@ -3,7 +3,6 @@ const logger = require('hexo-log')();
 module.exports = hexo => {
     logger.info('=== Registering Hexo extensions ===');
     require('hexo-component-inferno/lib/hexo/filter/locals')(hexo);
-    require('./hexo/filter/stylus')(hexo);
     require('./hexo/generator/category')(hexo);
     require('hexo-component-inferno/lib/hexo/generator/assets')(hexo);
     require('hexo-component-inferno/lib/hexo/generator/insight')(hexo);
