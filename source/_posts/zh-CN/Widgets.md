@@ -56,7 +56,7 @@ widgets:
 providers:
     cdn: loli
     fontcdn: loli
-    iconcdn: fontawesome
+    iconcdn: loli
 ---
 
 <div class="notification is-success is-size-6">

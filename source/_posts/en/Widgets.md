@@ -69,11 +69,11 @@ Here is an example:
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
     -
-        type: ... # 挂件1
+        type: ... # Widget 1
         position: left
         ...
     -
-        type: ... # 挂件2
+        type: ... # Widget 2
         position: right
         ...
 {% endcodeblock %}
