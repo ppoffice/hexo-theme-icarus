@@ -89,14 +89,16 @@ module.exports = class extends Component {
         }
 
         let openGraphImages = images;
-        if ((Array.isArray(open_graph.image) && open_graph.image.length > 0) || typeof open_graph.image === 'string') {
+        if ((typeof open_graph === 'object' && open_graph !== null)
+            && ((Array.isArray(open_graph.image) && open_graph.image.length > 0) || typeof open_graph.image === 'string')) {
             openGraphImages = open_graph.image;
         } else if ((Array.isArray(page.photos) && page.photos.length > 0) || typeof page.photos === 'string') {
             openGraphImages = page.photos;
         }
 
         let structuredImages = images;
-        if ((Array.isArray(structured_data.image) && structured_data.image.length > 0) || typeof structured_data.image === 'string') {
+        if ((typeof structured_data === 'object' && structured_data !== null)
+            && ((Array.isArray(structured_data.image) && structured_data.image.length > 0) || typeof structured_data.image === 'string')) {
             structuredImages = structured_data.image;
         } else if ((Array.isArray(page.photos) && page.photos.length > 0) || typeof page.photos === 'string') {
             structuredImages = page.photos;
@@ -110,7 +112,7 @@ module.exports = class extends Component {
 
             <title>{getPageTitle(page, config.title, helper)}</title>
 
-            {typeof open_graph === 'object' ? <OpenGraph
+            {typeof open_graph === 'object' && open_graph !== null ? <OpenGraph
                 type={open_graph.type || (is_post(page) ? 'article' : 'website')}
                 title={open_graph.title || page.title || config.title}
                 date={page.date}
@@ -129,7 +131,7 @@ module.exports = class extends Component {
                 facebookAdmins={open_graph.fb_admins}
                 facebookAppId={open_graph.fb_app_id} /> : null}
 
-            {typeof structured_data === 'object' ? <StructuredData
+            {typeof structured_data === 'object' && structured_data !== null ? <StructuredData
                 title={structured_data.title || config.title}
                 description={structured_data.description || page.description || page.excerpt || page.content || config.description}
                 url={structured_data.url || page.permalink || url}
