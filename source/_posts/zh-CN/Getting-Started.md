@@ -1,5 +1,5 @@
 title: Icarus快速上手
-date: 2016-01-02
+date: 2016-01-04
 thumbnail: /gallery/thumbnails/chinese-painting.jpg
 tags:
 - Getting Started
