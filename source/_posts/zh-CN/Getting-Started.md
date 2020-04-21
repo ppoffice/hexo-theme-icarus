@@ -60,7 +60,7 @@ hexo s
 **额外资源**
 
 下面的一些资源可以帮助你进一步个性化你的站点。
-你也可以[点击此处](https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Getting-Started.md)来提交你的Icarus个性化配置教程。
+你也可以[点击此处](https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Getting-Started.md)来提交你的Icarus个性化配置教程。
 
 <div class="menu-list is-size-6">
 <a href="https://hexo.io/zh-cn/docs/index.html"><i class="fas fa-bookmark mr-2"></i> Hexo中文文档</a>
