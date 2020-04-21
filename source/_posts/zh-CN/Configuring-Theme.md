@@ -68,7 +68,7 @@ WARN  [
 - 文章/页面的[front-matter](https://hexo.io/docs/front-matter.html)
 - 根目录下的站点配置文件`_config.yml`
 
-`_config.post.yml`和`_config.page.yml`配置文件与默认配置文件的格式和定义想吐。
+`_config.post.yml`和`_config.page.yml`配置文件与默认配置文件的格式和定义相同。
 你可以在`_config.post.yml`中设置仅对文章页面生效的配置，而这些配置将覆盖默认配置文件中的同名配置。
 例如，你可以在此配置文件中把所有的挂件放置在页面左侧，从而将所有的文章页面设置为两栏布局，同时其他页面仍保持三栏布局：
 

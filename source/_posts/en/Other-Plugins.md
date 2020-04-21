@@ -120,6 +120,33 @@ This is another block expression:
 \\[f(x) = \int_{-\infty}^\infty\hat f(\xi)e^{2 \pi i \xi x}d\xi\\]
 {% endcodeblock %}
 
+Sometimes your \\(\TeX\\) syntax will be mistaken as Markdown syntax, which will result in rendering error.
+For instance, the following equation will not work since it contains more than one `_` (underscores), 
+which are mistaken for the italic text when processed by the Markdown renderer:
+
+{% codeblock Some-Post.md lang:tex %}
+$$
+\hat{x}_{k}=\hat{x}_{k}^{-}+K_{t}\left(y_{k}\right)
+$$
+{% endcodeblock %}
+
+In this case, you can either escape every character that may cause confusion:
+
+{% codeblock Some-Post.md lang:tex %}
+$$
+\hat{x}\_{k}=\hat{x}\_{k}^{-}+K\_{t}\left(y\_{k}\right)
+$$
+{% endcodeblock %}
+
+or simply wrap the whole equation with an additional HTML tag:
+
+{% codeblock Some-Post.md lang:tex %}
+<div>
+$$
+\hat{x}_{k}=\hat{x}_{k}^{-}+K_{t}\left(y_{k}\right)
+$$
+</div>
+{% endcodeblock %}
 
 ## MathJax
 
@@ -221,6 +248,9 @@ Expressions should be wrapped in <code>\\`</code> in this case.
 {% codeblock AsciiMath-Example.md lang:markdown >folded %}
 When \`a != 0\`, there are two solutions to \`ax^2 + bx + c = 0\` and they are <p style="text-align:center">\`x = (-b +- sqrt(b^2-4ac))/(2a)\`.</p>
 {% endcodeblock %}
+
+Sometimes your latex syntax will be mistaken as Markdown syntax, which will result in rendering error.
+Please refer to the [KaTeX](#KaTeX) section for solutions to this.
 
 **Preview(\\(\TeX\\) & \\(\LaTeX\\))**
 

@@ -13,9 +13,8 @@ toc: true
 Icarus' default theme configuration file `_config.yml` resides in the `themes/icarus` directory.
 It defines the global layout and style settings of the theme as well as external features such as comment 
 plugins and widgets.
-In this post, we will be covering settings that relate to the styling and overall layout of your site.
-We will be covering the mechanisms used by Icarus to configure your site and going through the format and meaning of some configuration
-settings.
+In this post, we will cover the mechanisms used by Icarus to configure your site and going through the format 
+and meaning of some configuration settings.
 
 <!-- more -->
 

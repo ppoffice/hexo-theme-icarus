@@ -57,6 +57,19 @@ hexo s
 您可以继续阅读[Icarus用户指南](/hexo-theme-icarus/tags/Icarus用户指南/)系列文章来了解Icarus的使用与配置。
 同时，您可以从Icarus的[`site`分支](https://github.com/ppoffice/hexo-theme-icarus/tree/site)上获取本网站的源码供您参考。
 
+**额外资源**
+
+下面的一些资源可以帮助你进一步个性化你的站点。
+你也可以[点击此处](https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Getting-Started.md)来提交你的Icarus个性化配置教程。
+
+<div class="menu-list is-size-6">
+<a href="https://hexo.io/zh-cn/docs/index.html"><i class="fas fa-bookmark mr-2"></i> Hexo中文文档</a>
+<a href="https://removeif.github.io/theme/%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81%E5%88%86%E4%BA%AB.html"><i class="fas fa-bookmark mr-2"></i> 博客源码分享 by 辣椒の酱</a>
+<a href="https://www.imaegoo.com/2020/icarus-3-guide/"><i class="fas fa-bookmark mr-2"></i> hexo-theme-icarus 3 食用经验分享 by iMaeGoo</a>
+</div>
+
+<br>
+
 <div class="notification is-warning is-size-6">
 文章内容有误？请点击<a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Getting-Started.md">此处</a>提交修改。
 </div>

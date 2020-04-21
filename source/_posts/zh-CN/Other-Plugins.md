@@ -116,6 +116,33 @@ $$\displaystyle \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} 
 \\[f(x) = \int_{-\infty}^\infty\hat f(\xi)e^{2 \pi i \xi x}d\xi\\]
 {% endcodeblock %}
 
+有时你的\\(\TeX\\)语法会被错认为Markdown语法而导致公式渲染异常。
+例如，下面的公式不会渲染成功，因为其中包含多个`_`(下划线)而被Markdown渲染器错误的认成Markdown的斜体字语法。
+
+{% codeblock Some-Post.md lang:tex %}
+$$
+\hat{x}_{k}=\hat{x}_{k}^{-}+K_{t}\left(y_{k}\right)
+$$
+{% endcodeblock %}
+
+在这种情况下，你可以选择转义每个可能导致歧义的字符：
+
+{% codeblock Some-Post.md lang:tex %}
+$$
+\hat{x}\_{k}=\hat{x}\_{k}^{-}+K\_{t}\left(y\_{k}\right)
+$$
+{% endcodeblock %}
+
+或是简单的将整个公式用一个HTML标签包裹起来：
+
+{% codeblock Some-Post.md lang:tex %}
+<div>
+$$
+\hat{x}_{k}=\hat{x}_{k}^{-}+K_{t}\left(y_{k}\right)
+$$
+</div>
+{% endcodeblock %}
+
 
 ## MathJax
 
@@ -211,6 +238,9 @@ A =
 {% codeblock AsciiMath-Example.md lang:markdown >folded %}
 当\`a != 0\`，方程\`ax^2 + bx + c = 0\`有两个解，它们是<p style="text-align:center">\`x = (-b +- sqrt(b^2-4ac))/(2a)\`.</p>
 {% endcodeblock %}
+
+有时你的\\(\TeX\\)语法会被错认为Markdown语法而导致公式渲染异常。
+请参照[KaTeX](#KaTeX)一节来解决此问题。
 
 **效果预览(\\(\TeX\\) & \\(\LaTeX\\))**
 
