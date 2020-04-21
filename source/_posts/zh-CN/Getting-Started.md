@@ -66,6 +66,7 @@ hexo s
 <a href="https://hexo.io/zh-cn/docs/index.html"><i class="fas fa-bookmark mr-2"></i> Hexo中文文档</a>
 <a href="https://removeif.github.io/theme/%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81%E5%88%86%E4%BA%AB.html"><i class="fas fa-bookmark mr-2"></i> 博客源码分享 by 辣椒の酱</a>
 <a href="https://www.imaegoo.com/2020/icarus-3-guide/"><i class="fas fa-bookmark mr-2"></i> hexo-theme-icarus 3 食用经验分享 by iMaeGoo</a>
+<a href="https://www.imaegoo.com/2020/icarus-with-bulma/"><i class="fas fa-bookmark mr-2"></i> 活用 Bulma 美化 Icarus 文章 by iMaeGoo</a>
 </div>
 
 <br>
