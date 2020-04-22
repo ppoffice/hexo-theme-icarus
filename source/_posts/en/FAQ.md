@@ -12,9 +12,9 @@ the answer to your question here.
 
 <!-- more -->
 
-<!-- <div class="notification is-success is-size-6">
+<div class="notification is-success is-size-6">
 This article is also available in: <a href="{% post_path zh-CN/FAQ %}">简体中文</a>.
-</div> -->
+</div>
 
 
 ## Site
@@ -66,7 +66,7 @@ Change the number in these class names to the one you want.
 
 You can refer to the [Bulma documentation](https://bulma.io/documentation/columns/sizes/) for more details on the 
 column system.
-Please make sure the number of widget columns and the main content column add up to 12 under the same screen size.
+Please make sure the number in the class names of widget columns and the main content column add up to 12 under the same screen size.
 For example, if you change the width of the widget column to `is-3-widescreen` and you only have one widget column,
 you need to make sure your main content column has a `is-9-widescreen`.
 
@@ -103,13 +103,13 @@ Then, fix some of the Node.js imports in the head of the file.
 
 After that, `hexo clean` your site and regenerate the HTML files.
 
-Similarly, you can override static files by copying them from the `hexo-component-inferno` repository and place them 
-to the corresponding directory under `themes/icarus/source`.
+Similarly, you can override built-in static files by copying them from the `hexo-component-inferno` repository and 
+place them to the corresponding directory under `themes/icarus/source`.
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
 I changed something in the layout files. 
-But why didn't the changes take effect when I refresh the page (when using <code>hexo s</code>)/when I <code>hexo generate</code>?
+But why didn't the changes take effect when I refresh the page (when using <code>hexo server</code>)/when I <code>hexo generate</code>?
 </div>
 </article>
 
@@ -167,7 +167,7 @@ How do I use fancy elements and styling in my posts just like this one?
 </div>
 </article>
 
-You can use raw HTML in your Markdown posts.
+You can use raw HTML in your Markdown files.
 Please refer to the [Bulma documentation](https://bulma.io/documentation/) for more details on available 
 elements and styles.
 
@@ -183,7 +183,7 @@ How can I get rid of them?
 
 If you don't want to enable some plugins/widgets, you can simply delete them or comment them out in the 
 configurations.
-For example, if you don't want to enable any comment plugin, just delete these lines:
+For example, if you don't want to enable any comment plugin, just comment these lines:
 
 {% codeblock themes/icarus/_config.yml lang:diff %}
 - comment:
