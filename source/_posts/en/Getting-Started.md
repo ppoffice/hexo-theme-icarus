@@ -60,11 +60,12 @@ Finally, use the following command to start the Hexo local server and begin comp
 hexo server
 {% endcodeblock %}
 
-You can check out the [Icarus User Guide](/hexo-theme-icarus/tags/Icarus-User-Guide/) to learn more about the 
-theme, widgets, and plugins.
-Additionally, you can refer to the source code of this site for more examples.
+To learn more about the theme, widgets, and plugins, check out the 
+[Icarus User Guide](/hexo-theme-icarus/tags/Icarus-User-Guide/).
+You can also refer to the source code of this site for more examples.
 It is in the [`site` branch](https://github.com/ppoffice/hexo-theme-icarus/tree/site) of the Icarus repository 
 on GitHub.
+Additionally, you may find help from other Icarus users on [Gitter](https://gitter.im/hexo-theme-icarus/).
 
 **Additional Resources**
 
