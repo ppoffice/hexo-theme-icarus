@@ -10,213 +10,53 @@ language: en
 toc: true
 ---
 
-Icarus' default theme configuration file `_config.yml` resides in the `themes/icarus` directory.
-It defines the global layout and style settings of the theme as well as external features such as comment 
-plugins and widgets.
-In this post, we will cover the mechanisms used by Icarus to configure your site and going through the format 
-and meaning of some configuration settings.
+Icarus' default theme configuration file is `themes/icarus/_config.yml`.
+It defines the global layout and style settings of the theme and controls external features such as plugins and widgets.
+This article details the general configurations of the theme.
+It also explains what configuration files are used and how Icarus generate and validate these configurations.
 
 <!-- more -->
 
-<div class="notification is-success is-size-6">
-This article is also available in: <a href="{% post_path zh-CN/Configuring-Theme %}">简体中文</a>.
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-lightbulb mr-2"></i>
+This article is also available in <a href="{% post_path zh-CN/Configuring-Theme %}">简体中文</a>.
 </div>
+</article>
 
-## Generate and Validate the Configuration
-
-An Icarus theme configuration file is written in [the `YAML` language](https://yaml.org/), and the default configuration file 
-`themes/icarus/_config.yml` is generated automatically from a set of [JSON schemas](https://json-schema.org/) when the theme is processed by Hexo and you don't have
-a theme configuration file available at that time.
-That's why you don't see an example file (`_config.yml.example`) under your theme directory and there's no
-need to create `_config.yml` yourself.
-Most of the JSON schema definitions sit in the `themes/icarus/include/schema` directory and the others are
-in the [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno) repository.
-You may attach the `--icarus-dont-generate-config` flag to your `hexo` commands to prevent configuration
-generation.
-
-The theme will also validate your configurations using these schemas every time you execute a `hexo` command
-in your site directory.
-If anything goes wrong during the validation, Icarus will print out the exact location of the misconfiguration
-and it's error type. For example, the following messages tell us that the value of `logo` setting should be
-either a string or an object, instead of an integer.
-You could ignore the warnings or append the `--icarus-dont-check-config` flag to your `hexo` commands to skip
-the validation, but it is not recommended to do so.
-
-{% codeblock "hexo log" %}
-INFO  === Checking package dependencies ===
-INFO  === Checking the configuration file ===
-WARN  Configuration file failed one or more checks.
-WARN  Icarus may still run, but you will encounter unexcepted results.
-WARN  Here is some information for you to correct the configuration file.
-WARN  [
-  {
-    keyword: 'type',
-    dataPath: '.logo',
-    schemaPath: '#/properties/logo/type',
-    params: { type: 'string,object' },
-    message: 'should be string,object'
-  }
-]
-{% endcodeblock %}
-
-Additionally, Icarus will try to use the migration scripts to upgrade your configuration to the newest version.
-These scripts are in the `themes/icarus/include/migration` directory.
-You may disable the upgrade by append the `--icarus-dont-upgrade-config` flag to your `hexo` commands.
-Finally, Icarus will also check the Node.js package dependencies and remind you to install them if you haven't.
-
-## Additional Configuration Files and Priority
-
-Apart from the default theme configuration file at `themes/icarus/_config.yml`, Icarus also look at configurations
-from the following sources:
-
-- `themes/icarus/_config.post.yml` and `themes/icarus/_config.page.yml`
-- Post/page's [front-matter](https://hexo.io/docs/front-matter.html)
-- Site `_config.yml` in the root directory
-
-`_config.post.yml` and `_config.page.yml` follows the same format and definitions of the default theme configuration 
-file.
-You may put post-specific configurations in `_config.post.yml`, and these configurations will override the default
-theme configurations.
-For example, you can apply a two-column layout for all posts by moving all widgets to the left side of the page while keeping a three-column layout in other pages:
-
-{% codeblock themes/icarus/_config.yml lang:yaml %}
-widgets:
-    -
-        type: recent_posts
-        position: left
-    -
-        type: categories
-        position: right
-    -
-        type: tags
-        position: right
-{% endcodeblock %}
-
-{% codeblock themes/icarus/_config.post.yml lang:yaml %}
-widgets:
-    -
-        type: recent_posts
-        position: left
-    -
-        type: categories
-        position: left
-    -
-        type: tags
-        position: left
-{% endcodeblock %}
-
-Similarly, `_config.page.yml` overrides the default theme configurations and only applies to all Hexo pages.
-Additionally, if you wish to override theme configurations for a certain post/page, you can put them in the 
-front-matter of that post/page.
-For example, if you can change the highlight.js theme of the code blocks by adding the setting in the post's
-front-matter like this:
-
-{% codeblock source/_post/some-post.md lang:yaml %}
-title: My first post
-date: '2015-01-01 00:00:01'
-article:
-    highlight:
-        theme: atom-one-dark
----
-# Some Post
-{% endcodeblock %}
-
-The above setting in the front-matter will always override the same setting in the `_config.post.yml` and
-`_config.yml`.
-This feature can be very useful for displaying customized/optimized pages to a specific audience.
-For example, you can enable faster CDNs or a localized comment service based on the country and language of the 
-page viewers.
-However, it should be noted that the post or page attributes defined by Hexo in the front-matter will not 
-override the theme configuration files. Examples are:
-
-- `title`
-- `date`
-- `updated`
-- `comments` (not `comment`)
-- `layout`
-- `source`
-- `photos`
-- `excerpt`
-
-Finally, the site configuration file `_config.yml` in the root directory will be override by all other 
-configuration files for the settings used by the theme.
-For instance, `title` in the `themes/icarus/_config.yml` will override `title` in the `_config.yml`, but
-`new_post_name` will not since it is not used by Icarus.
-
-In conclusion, the scopes of the configuration files and their priorities are
-
-<table class="table is-bordered is-striped">
-<tr>
-<th>A certain post/page</th>
-</tr>
-<tr>
-<td>
-<ul class="mt-0 ml-4">
-<li>front-matter overrides</li>
-<li><code>themes/icarus/_config.post.yml</code> or <code>themes/icarus/_config.page.yml</code> overrides</li>
-<li><code>themes/icarus/_config.yml</code> overrides</li>
-<li><code>_config.yml</code></li>
-</ul>
-</td>
-</tr>
-<tr>
-<th>All posts/pages</th>
-</tr>
-<tr>
-<td>
-<ul class="mt-0 ml-4">
-<li><code>themes/icarus/_config.post.yml</code> or <code>themes/icarus/_config.page.yml</code> overrides</li>
-<li><code>themes/icarus/_config.yml</code> overrides</li>
-<li><code>_config.yml</code></li>
-</ul>
-</td>
-</tr>
-<tr>
-<th>All HTML pages</th>
-</tr>
-<tr>
-<td>
-<ul class="mt-0 ml-4">
-<li><code>themes/icarus/_config.yml</code> overrides</li>
-<li><code>_config.yml</code></li>
-</ul>
-</td>
-</tr>
-<tr>
-</table>
-
-
-## Theme Configuration Walkthrough
+## General Theme Configurations
 
 ### Configuration version
+
+This version code is related to and but not always the same as the theme version code.
+Icarus uses it to determine whether to upgrade the default theme configuration file.
+You should not change it by yourself.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 version: 3.0.0
 {% endcodeblock %}
 
-This version code is related to and but not always the same as the theme version code.
-It is used when Icarus upgrade the configuration file via migration scripts.
-You should not change it by yourself.
-
 ### Theme variant
+
+Choose a skin for Icarus.
+`"default"` and `"cyberpunk"` are supported values currently.
+You can take a look at the Cyberpunk variant {% post_link demo/Cyberpunk "here" %}.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 variant: default
 {% endcodeblock %}
 
-Choose a skin for Icarus.
-"default" and "cyberpunk" are supported currently.
-You can take a look at the Cyberpunk variant {% post_link demo/Cyberpunk "here" %}.
-
 ### Logo
+
+Set the logo of your site.
+It will display on the navigation bar and the footer.
+The value of the `logo` can either be the path or URL to your logo image:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 logo: /img/logo.svg
 {% endcodeblock %}
 
-Set the logo of your site which will display on the navigation bar and the footer.
-The value of the `logo` setting can either be a path/URL to your logo image, or it can be the following if
-you want text instead of an image as the logo
+Or if you want the text instead, you can set it like the following:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 logo:
@@ -225,14 +65,19 @@ logo:
 
 ### Favicon
 
+You can specify the path or URL to your site's favicon in the `head` section.
+
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 head:
     favicon: /img/favicon.svg
 {% endcodeblock %}
 
-You may specify the path or URL to your site's favicon in the `head` section.
-
 ### Open Graph
+
+You can set up Open Graph in the `head` section.
+You should leave most of the settings blank in the configuration file.
+Only set those settings in the front-matter of your post if you need them.
+Please refer to [Hexo documentation](https://hexo.io/docs/helpers.html#open-graph) for details on each setting.
 
 {% codeblock themes/icarus/_config.yml lang:yaml >folded %}
 head:
@@ -272,12 +117,13 @@ head:
         fb_app_id: 
 {% endcodeblock %}
 
-You may set the Open Graph settings in the `head` section.
-You should leave some of the settings blank in the theme configuration file and only set those settings 
-in the front-matter of your post when needed.
-Please refer to [Hexo documentation](https://hexo.io/docs/helpers.html#open-graph) for details of each setting.
-
 ### Google Structured Data
+
+You can set up Google Structured Data in the `head` section.
+You should leave most of the settings blank in the configuration file.
+Only set those settings in the front-matter of your post if you need them.
+Please refer to [Search for Developers](https://developers.google.com/search/docs/guides/intro-structured-data) 
+for details on each setting.
 
 {% codeblock themes/icarus/_config.yml lang:yaml >folded %}
 head:
@@ -299,13 +145,13 @@ head:
         image: 
 {% endcodeblock %}
 
-You may set the Google Structured Data settings in the `head` section.
-You should leave most of the settings blank in the theme configuration file and only set those settings 
-in the front-matter of your post when needed.
-Please refer to [Search for Developers](https://developers.google.com/search/docs/guides/intro-structured-data) for details of 
-each setting.
-
 ### Page Metadata
+
+You can add custom `<meta>` tags to the generated HTML from the `meta` setting in the `head` section.
+Each meta tag should appear as an item of the `meta` array.
+The value of the `meta` setting should be in the `<field_name>=<field_value>` format 
+with `field_name` and `field_value` represent the field and value of the `<meta>` tag respectively.
+Separate the `<field_name>=<field_value>` pairs with `;` if the `<meta>` tag has multiple fields and values.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 head:
@@ -314,20 +160,20 @@ head:
         - 'name=generator;content="Hexo 4.2.0"'
 {% endcodeblock %}
 
-You can add custom HTML `<meta>` tags to all pages in the `meta` setting of the `head` section.
-Each meta tag should appear as an item of the `meta` array.
-The fields of the tag should be in the `<field_name>=<field_value>` format and they are separated by `;`.
-
 ### RSS
+
+You can add a link to your RSS feed at the `rss` setting in the `head` section.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 head:
     rss: /path/to/atom.xml
 {% endcodeblock %}
 
-You can add an RSS link in the page head via this setting.
-
 ### Navigation Bar
+
+The `navbar` section defines the menu items and links in the navigation bar.
+You may put any menu item in the navigation bar by adding `<link_name>: <link_url>` to the `menu` setting.
+To put links on the right side of the navigation bar, add `<link_name>: <link_url>` to the `links` setting.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 navbar:
@@ -346,10 +192,7 @@ navbar:
             url: 'https://github.com/ppoffice/hexo-theme-icarus'
 {% endcodeblock %}
 
-The `navbar` section defines the links showing in the navigation bar.
-You may add arbitrary links to the navigation menu by adding `<link_name>: <link_url>` to the `menu` setting.
-If you wish to add links on the right side of the navigation bar, please add `<link_name>: <link_url>` to the `links` setting.
-You can even use a FontAwesome icon instead of pure text as link with the following format:
+You can display a FontAwesome icon instead of text-only link with the following format:
 
 {% codeblock "Link format" lang:yaml %}
 <link_name>:
@@ -358,6 +201,9 @@ You can even use a FontAwesome icon instead of pure text as link with the follow
 {% endcodeblock %}
 
 ### Footer
+
+The `footer` section defines the links on the right side of the page footer.
+The link format is exactly the same as `links` in the `navbar` section.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 footer:
@@ -373,10 +219,17 @@ footer:
             url: 'https://github.com/ppoffice/hexo-theme-icarus'
 {% endcodeblock %}
 
-You may add arbitrary links to the page footer in the `links` setting of the `footer` section.
-The format of the links is the same as `links` in the `navbar` section.
-
 ### Code Highlight
+
+If you have enabled code highlighting in Hexo, you can customize the code blocks with `highlight` settings 
+in the `article` section.
+Choose a theme from all themes listed under 
+[highlight.js/src/styles](https://github.com/highlightjs/highlight.js/tree/9.18.1/src/styles).
+Then, copy the file name (without the `.css` extension) to the `theme` setting.
+
+To hide the "copy" button of every code block, set `clipboard` to `false`.
+If you wish to fold or unfold all code blocks, set the `fold` setting to `"folded"` or `"unfolded"`.
+You can also disable the folding feature by leaving the `fold` setting empty.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 article:
@@ -390,15 +243,7 @@ article:
         fold: unfolded
 {% endcodeblock %}
 
-If you have already enabled code highlighting in Hexo, you may customize the code blocks with `highlight` settings in the `article`
-section.
-You can choose a theme from all themes listed in [highlight.js/src/styles](https://github.com/highlightjs/highlight.js/tree/9.18.1/src/styles)
-and put the file name without the `.css` extension in the `theme` setting.
-You may also turn the "copy" button on or off by setting `clipboard` to `true` or `false`.
-Finally, if you wish to fold or unfold all code blocks, please set the `fold` setting to `folded` or `unfolded`.
-The folding feature can also be disabled if you leave the `fold` setting empty.
-Moreover, you can fold individual code blocks in the markdown file using the following syntax:
-
+Additionally, you can fold an individual code block in the Markdown file using the following syntax:
 
 ```
 {% codeblock "optional file name" lang:code_language_name >folded %}
@@ -408,39 +253,43 @@ Moreover, you can fold individual code blocks in the markdown file using the fol
 
 ### Thumbnail
 
-You can add thumbnail images to your posts in two steps.
-First, make sure the thumbnail is enabled in the theme's configuration file:
+You can add a thumbnail image to your post in two steps:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
-article:
-    thumbnail: true
-{% endcodeblock %}
+1. Make sure the thumbnail is enabled in the theme configurations:
 
-Then, provide an URL or path to the image file in the front-matter of your post:
+    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    article:
+        thumbnail: true
+    {% endcodeblock %}
 
-{% codeblock post.md lang:yaml %}
-title: Getting Started with Icarus
-thumbnail: /gallery/thumbnails/desert.jpg
----
-Post content...
-{% endcodeblock %}
+2. Provide a path or URL to the thumbnail image file in the front-matter of your post:
 
-The image path you put in the front-matter needs to be the absolute path or URL to the image, 
-or relative path to the source directory of your website.
-For example, if you want to use the `<your blog>/source/gallery/image.jpg` as a thumbnail, you will need to put
-`/gallery/image.jpg` in the front-matter.
+    {% codeblock post.md lang:yaml %}
+    title: Getting Started with Icarus
+    thumbnail: /gallery/thumbnails/desert.jpg
+    ---
+    Post content...
+    {% endcodeblock %}
+
+    If you choose to use the image path in the front-matter, you need to ensure the path is absolute
+    or relative to the source directory of your site.
+    For example, to use `<your blog>/source/gallery/image.jpg` as a thumbnail path, you need to put
+    `thumbnail: /gallery/image.jpg` in the front-matter.
 
 ### Read Time
+
+You can show a word counter and the estimated reading time of your article above the article title by 
+setting `readtime` to `true` in the `article` section.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 article:
     readtime: true
 {% endcodeblock %}
 
-You can show the word counter and estimated time on top of your article by setting `readtime` to `true`
-in the `article` section.
-
 ### Sidebar
+
+To make a sidebar fixed when you scroll the page, set the `sticky` setting of that sidebar to `true` in
+the `sidebar` section.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 sidebar:
@@ -450,19 +299,166 @@ sidebar:
         sticky: true
 {% endcodeblock %}
 
-Sometimes you may want your sidebar's position to stay fixed when your page scrolls.
-This can be done via the `sticky` settings in the `sidebar` section.
+
+### Other configurations
+
+You can refer to the [Icarus User Guide](/hexo-theme-icarus/tags/Icarus-User-Guide/) to learn more about 
+third-party plugins, widgets, and CDN provider configurations.
 
 
-## Other Configuration Settings
+## Configuration Files and Priority
 
-Please refer to the [Icarus User Guide](/hexo-theme-icarus/tags/Icarus-User-Guide/) series if you are interested
-in configurating third-party plugins, widgets, and CDN providers of Icarus.
+Apart from the default theme configuration file at `themes/icarus/_config.yml`, Icarus also looks at the following
+locations for alternative configurations:
+
+- `themes/icarus/_config.post.yml` and `themes/icarus/_config.page.yml`
+- Post/page's [front-matter](https://hexo.io/docs/front-matter.html)
+- Site `_config.yml` in the root directory
+
+`_config.post.yml` and `_config.page.yml` follow the same format and configuration definitions as the default theme 
+configuration file.
+You can put configurations that apply to all posts in `_config.post.yml`, and these configurations will override 
+`themes/icarus/_config.yml`.
+For example, you can adopt a two-column layout in all posts by moving all widgets to one side of the page while 
+keeping a three-column layout in other pages:
+
+{% codeblock themes/icarus/_config.yml lang:yaml %}
+widgets:
+    -
+        type: recent_posts
+        position: left
+    -
+        type: categories
+        position: right
+    -
+        type: tags
+        position: right
+{% endcodeblock %}
+
+{% codeblock themes/icarus/_config.post.yml lang:yaml %}
+widgets:
+    -
+        type: recent_posts
+        position: left
+    -
+        type: categories
+        position: left
+    -
+        type: tags
+        position: left
+{% endcodeblock %}
+
+Similarly, `_config.page.yml` applies to all Hexo pages and overrides the default theme configurations.
+
+If you wish to override configurations only for a certain post/page, you can put these configurations in the 
+front-matter of that post/page.
+For example, you can change the code block highlight theme of a single post by setting it in that post's
+front-matter like the following:
+
+{% codeblock source/_post/some-post.md lang:yaml %}
+title: My first post
+date: '2015-01-01 00:00:01'
+article:
+    highlight:
+        theme: atom-one-dark
+---
+# Some Post
+{% endcodeblock %}
+
+The above setting will always override the `article.highlight` in `_config.post.yml` and `_config.yml`
+for that post.
+This layered configuration system is handy for differentiating page customizations and optimizations 
+for different audiences.
+For example, you can enable faster CDNs or a localized comment service based on the country and language 
+of your page viewers.
+However, it should be noted that inherit post or page attributes defined by Hexo will not override the 
+theme configurations from the front-matter.
+Examples are:
+
+- `title`
+- `date`
+- `updated`
+- `comments` (not `comment`)
+- `layout`
+- `source`
+- `photos`
+- `excerpt`
+
+Lastly, any other configuration files listed above will override the site configuration file `_config.yml` 
+for the settings used by the Icarus.
+For instance, `title` in the `themes/icarus/_config.yml` will override `title` in the `_config.yml`, but
+`new_post_name` will not since it is not used by Icarus.
+
+In conclusion, the scopes of the configuration locations and their priorities are:
+
+- A certain post or page
+
+    - front-matter overrides all configurations below.
+    - `themes/icarus/_config.post.yml` and `themes/icarus/_config.page.yml` override all configurations below.
+    - `themes/icarus/_config.yml` overrides all configurations below.
+    - `_config.yml`
+
+- All posts or pages
+
+    - `themes/icarus/_config.post.yml` or `themes/icarus/_config.page.yml` override all configurations below.
+    - `themes/icarus/_config.yml` overrides all configurations below.
+    - `_config.yml`
+
+- All posts, pages, and index pages
+
+    - `themes/icarus/_config.yml` overrides all configurations below.
+    - `_config.yml`
 
 
-<div class="notification is-warning is-size-6">
+## Configuration Generation and Validation
+
+All Icarus theme configurations are written in the [YAML language](https://yaml.org/).
+The default configuration file `themes/icarus/_config.yml` is generated automatically from a set of 
+[JSON schemas](https://json-schema.org/) when Hexo processes the theme.
+That's why you don't see an example file (`_config.yml.example`) under the theme directory.
+Most of the JSON schemas are in the `themes/icarus/include/schema` directory, while the others are
+in the [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno) repository.
+You can attach the `--icarus-dont-generate-config` flag to your `hexo` commands to prevent automatic configuration
+generation.
+
+The theme also validates your configurations against these schemas every time you execute a `hexo` command.
+If anything goes wrong during the validation, Icarus will print out the exact location of the misconfiguration
+and it's error type.
+For example, the following messages tell us that the value of the `logo` setting should be either a string or an 
+object, instead of an integer.
+You may skip the validation by appending the `--icarus-dont-check-config` flag to your `hexo` commands, but it is 
+not recommended to do so.
+
+{% codeblock "hexo log" %}
+INFO  === Checking package dependencies ===
+INFO  === Checking the configuration file ===
+WARN  Configuration file failed one or more checks.
+WARN  Icarus may still run, but you will encounter unexcepted results.
+WARN  Here is some information for you to correct the configuration file.
+WARN  [
+  {
+    keyword: 'type',
+    dataPath: '.logo',
+    schemaPath: '#/properties/logo/type',
+    params: { type: 'string,object' },
+    message: 'should be string,object'
+  }
+]
+{% endcodeblock %}
+
+Additionally, Icarus will execute migration scripts to upgrade the default theme configuration file to the newest 
+version if it is not.
+These scripts are in the `themes/icarus/include/migration` directory.
+You may disable the upgrade by appending the `--icarus-dont-upgrade-config` flag to your `hexo` commands.
+Finally, Icarus will also check the Node.js package dependencies and remind you to install them if you haven't.
+
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>
 Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Configuring-Theme.md">here</a> to submit your revision.
 </div>
+</article>
 
 
 <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-size:12px;line-height:1.2;display:inline-block;border-radius:3px" href="https://www.vecteezy.com/free-vector/vector-landscape" target="_blank" rel="noopener noreferrer" title="Vector Landscape Vectors by Vecteezy"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white" viewBox="0 0 32 32"><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Vector Landscape Vectors by Vecteezy</span></a>

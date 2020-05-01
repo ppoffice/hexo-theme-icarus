@@ -9,10 +9,10 @@ language: en
 Welcome to the Icarus documentation site!
 Icarus is a simple, delicate, and modern theme for the static site generator Hexo.
 It strives to be elegant in design while simple and straightforward to use.
-Its versatile and flexible configuration system to let power users lay out their sites to the finest details.
+Its versatile and flexible configuration system enables power users lay out their sites to the finest details.
 Icarus also offers a wide range of plugins and widgets to meet your various customization and optimization 
 needs.
-Moreover, its refreshed internal implementation enables better IDE support and third-party integration, which 
+Moreover, its refreshed implementation enables better IDE support and third-party integration, which 
 open to a sea of improvement possibilities.
 
 <!-- more -->
