@@ -4,34 +4,39 @@ thumbnail: /gallery/thumbnails/vector_landscape_3.svg
 toc: true
 ---
 
-The article presents some of the frequently asked questions about Icarus and their solutions.
-Please also read through the [Icarus User Guide](/hexo-theme-icarus/tags/Icarus-User-Guide/), 
-[Hexo documentation](https://hexo.io/docs/index.html) and 
-[Icarus GitHub Issues](https://github.com/ppoffice/hexo-theme-icarus/issues?q=) if you cannot find
-the answer to your question here.
+The article answers some frequently asked questions about Icarus.
+If your question is not answered here, you can also refer to 
+[Icarus User Guide](/hexo-theme-icarus/tags/Icarus-User-Guide/), 
+[Hexo documentation](https://hexo.io/docs/index.html), and 
+[GitHub Issues](https://github.com/ppoffice/hexo-theme-icarus/issues?q=).
+Additionally, you may find help from other Icarus users on [Gitter](https://gitter.im/hexo-theme-icarus/).
 
 <!-- more -->
 
-<div class="notification is-success is-size-6">
-This article is also available in: <a href="{% post_path zh-CN/FAQ %}">简体中文</a>.
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-lightbulb mr-2"></i>
+This article is also available in <a href="{% post_path zh-CN/FAQ %}">简体中文</a>.
 </div>
+</article>
 
 
 ## Site
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
-My Hexo site is not generating./There are errors when generating my site.
+I can't generate my site. / I met some errors when I generate my site.
 </div>
 </article>
 
-Icarus requires Node.js of version 8.3.0 and above, Hexo of version 4.2.0 and above, and some other
-package dependencies listed in the `peerDependencies` section of the 
+Icarus 3 runs on Node.js 8.3.0 or a newer version.
+It also requires Hexo 4.2.0 or a newer version.
+Apart from that, make sure you have all the Node.js dependencies installed.
+You can find them in the `peerDependencies` section of the 
 [`themes/icarus/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
 file.
-Please make sure you meet all the dependency requirements.
-Also, it is possible that dependencies of the previous theme you used could interfere with Icarus.
-Please remove them before you switch to Icarus.
+Also, remove all unused Node.js dependencies from your site, or they may cause strange problems to 
+Icarus.
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
@@ -39,44 +44,72 @@ How do I change the language of my site?
 </div>
 </article>
 
-Edit your site's `_config.yml` under the root directory, change the following setting:
+Open the site configuration file `_config.yml` under the root directory.
+Change the following setting:
 
 {% codeblock _config.yml lang:diff %}
 - language: en
 + language: <language_name>
 {% endcodeblock %}
 
-You can find available translations under the `themes/icarus/languages` directory.
-The file name without file extension is the language name used in `_config.yml`.
+You can find all available translations under the `themes/icarus/languages` directory.
+The `language_name` is the translation file name without the `.yml` extension.
 
 
 ## Layout
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
-How do I change the width of the page? How do I use a one/two/three-column layout in certain posts/pages?
+How do I change the page width? How do I use the one/two/three-column layout?
 </div>
 </article>
 
-To change the width of the page, you need to edit the style file located at `themes/icarus/include/style/responsive.styl`.
-This file defines the container width under different screen sizes.
-If you also want to change the column width of the widgets or the main content, please go to `themes/icarus/layout/common/widgets.jsx` and `themes/icarus/layout/layout.jsx`.
-Find the CSS class names like `is-12`, `is-8-tablet`, and `is-4-widescreen`.
-Change the number in these class names to the one you want.
+To change the page width, edit the style file `themes/icarus/include/style/responsive.styl`.
+It defines the container width under different screen sizes.
 
-You can refer to the [Bulma documentation](https://bulma.io/documentation/columns/sizes/) for more details on the 
+To change the width of the widgets or main content, edit `themes/icarus/layout/common/widgets.jsx` and 
+`themes/icarus/layout/layout.jsx`.
+Find the CSS class names like `is-12`, `is-8-tablet`, and `is-4-widescreen` in these files.
+The number in the class names marks the column size a column takes.
+The screen size after the number, such as `tablet` and `widescreen`, refers to the condition when the column
+sizes take effect.
+Change the number in the class names such that the column size of main column and widget column(s) add up to 
+12 under the same screen size.
+
+For example, to have the main content column wider on `widescreen`, you can make the following changes:
+
+{% codeblock themes/icarus/layout/layout.jsx lang:diff >folded %}
+ <div class={classname({
+     column: true,
+     'order-2': true,
+     'column-main': true,
+     'is-12': columnCount === 1,
+-    'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
++    'is-8-tablet is-8-desktop is-9-widescreen': columnCount === 2,
+     'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
+{% endcodeblock %}
+
+{% codeblock themes/icarus/layout/common/widgets.jsx lang:diff >folded %}
+ function getColumnSizeClass(columnCount) {
+     switch (columnCount) {
+         case 2:
+-            return 'is-4-tablet is-4-desktop is-4-widescreen';
++            return 'is-4-tablet is-4-desktop is-3-widescreen';
+         case 3:
+             return 'is-4-tablet is-4-desktop is-3-widescreen';
+{% endcodeblock %}
+
+You can refer to [Bulma documentation](https://bulma.io/documentation/columns/sizes/) for more details on the 
 column system.
-Please make sure the number in the class names of widget columns and the main content column add up to 12 under the same screen size.
-For example, if you change the width of the widget column to `is-3-widescreen` and you only have one widget column,
-you need to make sure your main content column has a `is-9-widescreen`.
 
-You can create a one-column layout by removing all widgets from your theme configurations.
-To use a two-column layout, please move all your widgets to the same side of the page by setting their `position`
-to `left` or `right`.
-The three-column layout can be achieved by placing widgets on both sides of the page.
+Here are some tips for creating a one/two/three-column layout:
 
-To change the layout in certain posts or pages, please refer to the 
-[Icarus User Guide - Configuring the Theme](/hexo-theme-icarus/Configuration/icarus-user-guide-configuring-the-theme/#Additional-Configuration-Files-and-Priority).
+- You can remove all widgets from your theme configurations to create a one-column layout.
+- You can move all your widgets to the same side of the page to create a two-column layout.
+- You can place widgets on both sides of the page to create a three-column layout.
+
+To change the layout for a single or all posts/pages, refer to 
+[Configuration Files and Priority](/hexo-theme-icarus/Configuration/icarus-user-guide-configuring-the-theme/#Configuration-Files-and-Priority).
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
@@ -84,56 +117,65 @@ Where are the layout files for widgets/comments/share...? How do I customize bui
 </div>
 </article>
 
-The layout files for comment plugins, donate buttons, site search, share buttons, widgets, and some other plugins
-have been moved to a separate Node.js package called [`hexo-component-inferno`](https://github.com/ppoffice/hexo-component-inferno).
-In doing this, the theme developers can better reuse common components across different themes and allow users to 
-override these built-in components easily.
+The layout files for plugins and widgets have been moved to a separate Node.js package called 
+[`hexo-component-inferno`](https://github.com/ppoffice/hexo-component-inferno).
+This help theme developers better reuse common components across different themes and make overriding these 
+components easy for average users.
 
-To customize these components, you may copy the layout files from the `hexo-component-inferno` repository and place
-them in the corresponding directories under the Icarus layout directory.
+To customize these components, copy the layout files from the `hexo-component-inferno` repository and place
+them in the corresponding directories under `themes/icarus/layout`.
 For example, if you want to customize the Valine comment plugin, you can copy 
 [`src/view/comment/valine.jsx`](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/src/view/comment/valine.jsx) 
-from the `hexo-component-inferno` repository and place it in the `themes/icarus/layout/comment` directory.
-Then, fix some of the Node.js imports in the head of the file.
+from the `hexo-component-inferno` repository to `themes/icarus/layout/comment/valine.jsx`.
+Also, remember to fix Node.js imports like the following:
 
 {% codeblock themes/icarus/layout/comment/valine.jsx lang:diff %}
 - const { cacheComponent } = require('../../util/cache');
 + const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 {% endcodeblock %}
 
-After that, `hexo clean` your site and regenerate the HTML files.
+Finally, `hexo clean` your site before regenerating the HTML.
 
-Similarly, you can override built-in static files by copying them from the `hexo-component-inferno` repository and 
-place them to the corresponding directory under `themes/icarus/source`.
+Similarly, you can override static files like 
+[`asset/js/insight.js`](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/asset/js/insight.js) 
+in the same way.
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
-I changed something in the layout files. 
-But why didn't the changes take effect when I refresh the page (when using <code>hexo server</code>)/when I <code>hexo generate</code>?
+Why don't my layout changes take effect when I refresh the page (assuming I am running the 
+<code>hexo server</code>?
 </div>
 </article>
 
-The layout files are cached when you start a local Hexo server with `hexo server`.
-Other times some intermediate data is cached in the `db.json` or memory.
-Please use `hexo clean` before `hexo server` or `hexo generate`.
+Icarus caches the layout files when you start the local Hexo server with the `hexo server` command.
+To make the layout changes take effect, restart the local server.
+
+Other times some intermediate data may be cached by Hexo in the memory or `db.json` database.
+Execute `hexo clean` before running `hexo server` or `hexo generate` should resolve this issue.
 
 
 ## Content
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
-My logo/images are not showing up./My images only shows in index pages but not posts.
+My images are not showing up. / My images only show in index pages but not in posts.
 </div>
 </article>
 
-Please make sure you use the absolute paths of your images.
-For example, if you put your images under `source/gallery/`, and your site is in a
-subdirectory of your domain name like `https://ppoffice.github.io/hexo-theme-icarus`,
-you should include your image like this: `/hexo-theme-icarus/gallery/<file_name>.<file_extension>`.
+Make sure you use the absolute paths to your images.
+For example, your site is in a subdirectory of your domain name like 
+`https://ppoffice.github.io/hexo-theme-icarus` and you `image.jpg` under `source/gallery/`.
+You should include your image like this: `/hexo-theme-icarus/gallery/image.jpg`.
 
-You can also use the Hexo `{% img %}` tag to omit the subdirectory part of your image path:
-<code>&#123;% img /gallery/&lt;file_name&gt;.&lt;file_extension&gt; ... %}</code>.
-Please refer to the [Hexo documentation](https://hexo.io/docs/tag-plugins#Image) for more details.
+You can also use Hexo's <code>{% raw %}{% img %}{% endraw %}</code> tag like the following to include an 
+image automatically:
+
+```
+{% img /gallery/image.jpg "Image title" %}
+```
+
+In this case, you may omit the subdirectory of your domain name.
+You can refer to [Hexo documentation](https://hexo.io/docs/tag-plugins#Image) for more details.
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
@@ -141,9 +183,11 @@ How to add an excerpt for a post? How to display the "Read more" button?
 </div>
 </article>
 
-Add `<!-- more -->` tag in your post.
-Post content before this tag will be marked as an excerpt and content after this tag will not show on the index page.
-You may also add custom excerpt by specifying it in the post's front-matter.
+Put a `<!-- more -->` tag in your post.
+Post content before this tag will be marked as an excerpt.
+Content after this tag will not show up on index pages.
+
+You can also specify a custom excerpt in the post's front-matter.
 
 {% codeblock some-post.md lang:yaml %}
 title: Some Post
@@ -159,31 +203,30 @@ How do I encrypt my posts?
 </div>
 </article>
 
-Please use third-party Hexo plugins like [hexo-blog-encrypt](https://github.com/MikeCoder/hexo-blog-encrypt).
+Use third-party Hexo plugins such as [hexo-blog-encrypt](https://github.com/MikeCoder/hexo-blog-encrypt).
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
-How do I use fancy elements and styling in my posts just like this one?
+How do I use those fancy elements in this article for my posts?
 </div>
 </article>
 
-You can use raw HTML in your Markdown files.
-Please refer to the [Bulma documentation](https://bulma.io/documentation/) for more details on available 
-elements and styles.
+Refer to [Bulma documentation](https://bulma.io/documentation/) for all available elements and styles.
+Copy the HTML snippets and put them in your Markdown files directly.
 
 
 ## Widgets and Plugins
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
-My page is showing red alerts, saying that some settings are not set for a plugin/widget.
-How can I get rid of them?
+How can I get rid of those red alerts that are showing on the page and warning me of configuration value not set?
 </div>
 </article>
 
-If you don't want to enable some plugins/widgets, you can simply delete them or comment them out in the 
-configurations.
-For example, if you don't want to enable any comment plugin, just comment these lines:
+Those alerts usually show up when you miss out on some plugin or widget configurations.
+If you don't want to enable a certain plugin or widget, delete it or comment it out from your theme configurations.
+
+For example, you can disable the comment plugins by commenting out the following lines:
 
 {% codeblock themes/icarus/_config.yml lang:diff %}
 - comment:
@@ -195,9 +238,12 @@ For example, if you don't want to enable any comment plugin, just comment these 
 {% endcodeblock %}
 
 
-<div class="notification is-warning is-size-6">
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>
 Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/FAQ.md">here</a> to submit your revision.
 </div>
+</article>
 
 
 <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-size:12px;line-height:1.2;display:inline-block;border-radius:3px" href="https://www.vecteezy.com/free-vector/vector-landscapee" target="_blank" rel="noopener noreferrer" title="Vector Landscape Vectors by Vecteezy"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white" viewBox="0 0 32 32"><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Vector Landscape Vectors by Vecteezy</span></a>
