@@ -5,9 +5,13 @@ tags:
 toc: true
 ---
 
-{% quote %}
-The following content is directly copied from <a href="https://hexo.io/docs/tag-plugins.html">Hexo official documentation</a>
-{% endquote %}
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-lightbulb mr-2"></i>
+The following content is taken from <a href="https://hexo.io/docs/tag-plugins.html">Hexo documentation</a>
+with minor revisions.
+</div>
+</article>
 
 Tag plugins are different from post tags. They are ported from Octopress and provide a useful way for you to quickly add specific content to your posts.
 <!-- more -->

@@ -6,12 +6,18 @@ share:
     type: bdshare
 ---
 
-<div class="notification is-warning is-size-6">
-This is for demonstration only.
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>
+This page is for demonstration only.
 Please report your issues with this plugin to 
 <a href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
 </div>
+</article>
 
-<div class="notification is-info is-size-6">
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>
 Please turn off your ad blockers if you do not see the buttons.
 </div>
+</article>

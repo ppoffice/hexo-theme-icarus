@@ -15,7 +15,7 @@ Additionally, you may find help from other Icarus users on [Gitter](https://gitt
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
-<i class="fas fa-lightbulb mr-2"></i>
+<i class="fas fa-globe-asia mr-2"></i>
 This article is also available in <a href="{% post_path zh-CN/FAQ %}">简体中文</a>.
 </div>
 </article>
@@ -23,7 +23,7 @@ This article is also available in <a href="{% post_path zh-CN/FAQ %}">简体中�
 
 ## Site
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 I can't generate my site. / I met some errors when I generate my site.
 </div>
@@ -38,7 +38,7 @@ file.
 Also, remove all unused Node.js dependencies from your site, or they may cause strange problems to 
 Icarus.
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 How do I change the language of my site?
 </div>
@@ -58,7 +58,7 @@ The `language_name` is the translation file name without the `.yml` extension.
 
 ## Layout
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 How do I change the page width? How do I use the one/two/three-column layout?
 </div>
@@ -111,7 +111,7 @@ Here are some tips for creating a one/two/three-column layout:
 To change the layout for a single or all posts/pages, refer to 
 [Configuration Files and Priority](/hexo-theme-icarus/Configuration/icarus-user-guide-configuring-the-theme/#Configuration-Files-and-Priority).
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 Where are the layout files for widgets/comments/share...? How do I customize built-in widgets/comments/share...?
 </div>
@@ -140,7 +140,7 @@ Similarly, you can override static files like
 [`asset/js/insight.js`](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/asset/js/insight.js) 
 in the same way.
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 Why don't my layout changes take effect when I refresh the page (assuming I am running the 
 <code>hexo server</code>?
@@ -156,7 +156,7 @@ Execute `hexo clean` before running `hexo server` or `hexo generate` should reso
 
 ## Content
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 My images are not showing up. / My images only show in index pages but not in posts.
 </div>
@@ -177,7 +177,7 @@ image automatically:
 In this case, you may omit the subdirectory of your domain name.
 You can refer to [Hexo documentation](https://hexo.io/docs/tag-plugins#Image) for more details.
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 How to add an excerpt for a post? How to display the "Read more" button?
 </div>
@@ -197,7 +197,7 @@ excerpt: This is an article about ...
 # Post content...
 {% endcodeblock %}
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 How do I encrypt my posts?
 </div>
@@ -205,7 +205,7 @@ How do I encrypt my posts?
 
 Use third-party Hexo plugins such as [hexo-blog-encrypt](https://github.com/MikeCoder/hexo-blog-encrypt).
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 How do I use those fancy elements in this article for my posts?
 </div>
@@ -217,7 +217,7 @@ Copy the HTML snippets and put them in your Markdown files directly.
 
 ## Widgets and Plugins
 
-<article class="message is-primary" style="font-size:1em">
+<article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
 How can I get rid of those red alerts that are showing on the page and warning me of configuration value not set?
 </div>
@@ -240,7 +240,7 @@ For example, you can disable the comment plugins by commenting out the following
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>
+<i class="fas fa-question-circle mr-2"></i>
 Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/FAQ.md">here</a> to submit your revision.
 </div>
 </article>

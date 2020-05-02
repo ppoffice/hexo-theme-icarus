@@ -19,7 +19,7 @@ It also explains what configuration files are used and how Icarus generate and v
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
-<i class="fas fa-lightbulb mr-2"></i>
+<i class="fas fa-globe-asia mr-2"></i>
 This article is also available in <a href="{% post_path zh-CN/Configuring-Theme %}">简体中文</a>.
 </div>
 </article>
@@ -455,7 +455,7 @@ Finally, Icarus will also check the Node.js package dependencies and remind you 
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>
+<i class="fas fa-question-circle mr-2"></i>
 Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Configuring-Theme.md">here</a> to submit your revision.
 </div>
 </article>
