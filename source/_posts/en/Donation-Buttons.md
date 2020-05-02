@@ -26,13 +26,6 @@ donates:
         qrcode: /gallery/donate/wechat.jpg
 ---
 
-<article class="message message-immersive is-primary">
-<div class="message-body">
-<i class="fas fa-globe-asia mr-2"></i>
-This article is also available in <a href="{% post_path zh-CN/Donation-Buttons %}">简体中文</a>.
-</div>
-</article>
-
 This article covers donation button configurations supported by Icarus 3.
 If you need to display multiple donation buttons at once, add individual button configuration
 to the `donates` array like the following:
@@ -46,6 +39,13 @@ donates:
         type: ... # Button 2
         ...
 {% endcodeblock %}
+
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-asia mr-2"></i>
+This article is also available in <a href="{% post_path zh-CN/Donation-Buttons %}">简体中文</a>.
+</div>
+</article>
 
 <!-- more -->
 
