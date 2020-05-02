@@ -26,13 +26,16 @@ donates:
         qrcode: /gallery/donate/wechat.jpg
 ---
 
-<div class="notification is-success is-size-6">
-This article is also available in: <a href="{% post_path zh-CN/Donation-Buttons %}">简体中文</a>.
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-asia mr-2"></i>
+This article is also available in <a href="{% post_path zh-CN/Donation-Buttons %}">简体中文</a>.
 </div>
+</article>
 
-This article covers some donation buttons supported by Icarus 3.
-If you need to display multiple donation buttons at once, simply add individual button configuration
-to the `donates` array like this
+This article covers donation button configurations supported by Icarus 3.
+If you need to display multiple donation buttons at once, add individual button configuration
+to the `donates` array like the following:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 donates:
@@ -46,65 +49,67 @@ donates:
 
 <!-- more -->
 
-
-<div class="notification is-link is-size-6">
-
-The donation button feature of Icarus is provided by
-[ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
-Please refer to it for a complete list of supported buttons and their configurations.
-
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>
+The following donation buttons are provided by
+<a href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
+Please refer to it for a complete list of supported buttons and their configuration details.
 </div>
+</article>
 
 ## Alipay
 
 **Installation Guide**
 
-Log into Alipay and export payment QR code. Save the picture to a photo or asset directory
-of your Hexo website or upload it to an image sharing service.
-Then, add the following configuration to your theme's configuration file:
+1. Log into Alipay and export payment QR code.
+2. Save the QR code picture to the asset directory of your Hexo website, or upload it to an image sharing service.
+3. Add the following configuration to your theme configurations:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
-donates:
-    -
-        type: alipay
-        # Path to your QR code image
-        qrcode: /path/to/alipay/qrcode.png
-{% endcodeblock %}
+    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    donates:
+        -
+            type: alipay
+            # Path to your QR code image
+            qrcode: /path/to/alipay/qrcode.png
+    {% endcodeblock %}
 
 
 ## Buy me a Coffee
 
 **Installation Guide**
 
-Register for [Buy me a Coffee](https://www.buymeacoffee.com/) and copy the URL to your personal page.
-Add the following configuration to your theme's configuration file:
+1. Register for [Buy me a Coffee](https://www.buymeacoffee.com/) and copy the URL to your personal page.
+2. Add the following configuration to your theme configurations:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
-donates:
-    -
-        type: buymeacoffee
-        # Path to your Buy me a Coffee personal page
-        url: /path/to/buymeacoffee/personal/page
-{% endcodeblock %}
+    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    donates:
+        -
+            type: buymeacoffee
+            # Path to your Buy me a Coffee personal page
+            url: /path/to/buymeacoffee/personal/page
+    {% endcodeblock %}
 
 ## Paypal
 
 **Installation Guide**
 
-1. Register and log into Paypal, click [here](https://www.paypal.com/donate/buttons/) to make a Paypal donation
-   button.
+1. Log into Paypal, click [here](https://www.paypal.com/donate/buttons/) to create a Paypal donation button.
 
-2. Select correct "Country/Region" and "Language" in the "Choose button style" page, click "Continue" to
+2. Select "Country/Region" and "Language" in the "Choose button style" page and click "Continue" to
    advance to the next page.
 
-3. Select "Use account ID" or "Use email addres" as the unique identifier of your account in the "Add organization
-   details" page. Click "Continue" to go to the next page.
+3. Select "Use account ID" or "Use email address" as the unique identifier of your account in the "Add organization
+   details" page.
+   Then, click "Continue" to go to the next page.
 
-4. Set the correct "Currency you'll receive donations in" and "Amount donors can give" to "Any amount" in the 
-   "Set donation amounts" page. We currently do not support the option of donating in "An exact amount".
+4. Choose the "Currency you'll receive donations in" and set "Amount donors can give" to "Any amount" in the 
+   "Set donation amounts" page.
+   We currently do not support the option of donating in "An exact amount".
    Click "Finish and Get Code" to go to the next page.
 
-5. Copy `business` and `currency_code` from the "Button HTML" on the page. Put them to the theme's configuration.
+5. Copy `business` and `currency_code` from the "Button HTML" on the page.
+   Put them to the `business` and `currency_code` settings in your theme configurations.
    For example, the following Paypal donation button code
 
     {% codeblock Paypal HTML code lang:html %}
@@ -116,7 +121,7 @@ donates:
     </form>
     {% endcodeblock %}
 
-    is translated into this configuration
+    maps to the following configuration:
 
     {% codeblock themes/icarus/_config.yml lang:yaml %}
     donates:
@@ -130,34 +135,37 @@ donates:
 
 **Installation Guide**
 
-Register for [Patreon](https://www.patreon.com/) and copy the URL to your personal page.
-Add the following configuration to your theme's configuration file:
+1. Register for [Patreon](https://www.patreon.com/) and copy the URL to your personal page.
+2. Add the following configuration to your theme configurations:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
-donate:
-    -
-        type: patreon
-        # Path to your Patreon personal page
-        url: /path/to/patreon/personal/page
-{% endcodeblock %}
+    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    donate:
+        -
+            type: patreon
+            # Path to your Patreon personal page
+            url: /path/to/patreon/personal/page
+    {% endcodeblock %}
 
 ## WeChat
 
 **Installation Guide**
 
-Log into WeChat and export payment QR code. Save the picture to a photo or asset directory
-of your Hexo website or upload it to an image sharing service.
-Then, add the following configuration to your theme's configuration file:
+1. Log into WeChat and export payment QR code.
+2. Save the QR code picture to the asset directory of your Hexo website, or upload it to an image sharing service.
+3. Add the following configuration to your theme configurations:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
-donates:
-    -
-        type: wechat
-        # Path to your QR code image
-        qrcode: /path/to/wechat/qrcode.png
-{% endcodeblock %}
+    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    donates:
+        -
+            type: wechat
+            # Path to your QR code image
+            qrcode: /path/to/wechat/qrcode.png
+    {% endcodeblock %}
 
 
-<div class="notification is-warning is-size-6">
-Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Donation-Buttons.md">here</a> to submit your revision.
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-question-circle mr-2"></i>
+Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Donation-Button.md">here</a> to submit your revision.
 </div>
+</article>
