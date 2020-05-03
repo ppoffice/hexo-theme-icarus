@@ -12,7 +12,7 @@ share:
     install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8fc96750876c7d
 ---
 
-This article covers some share buttons supported by Icarus 3.
+This article covers share buttons supported by Icarus 3.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
