@@ -19,8 +19,8 @@ open to a sea of improvement possibilities.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
-<i class="fas fa-globe-asia mr-2"></i>
-This article is also available in <a href="{% post_path zh-CN/Getting-Started %}">简体中文</a>.
+<i class="fas fa-globe-asia mr-2"></i>This article is also available in 
+<a href="{% post_path zh-CN/Getting-Started %}">简体中文</a>.
 </div>
 </article>
 
@@ -80,8 +80,9 @@ You can also submit your Icarus tutorial through [this link](https://github.com/
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
-<i class="fas fa-question-circle mr-2"></i>
-Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Getting-Started.md">here</a> to submit your revision.
+<i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
+Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Getting-Started.md">here</a> 
+to submit your revision.
 </div>
 </article>
 

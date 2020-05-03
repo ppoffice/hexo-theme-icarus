@@ -42,8 +42,8 @@ donates:
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
-<i class="fas fa-globe-asia mr-2"></i>
-This article is also available in <a href="{% post_path zh-CN/Donation-Buttons %}">简体中文</a>.
+<i class="fas fa-globe-asia mr-2"></i>This article is also available in 
+<a href="{% post_path zh-CN/Donation-Buttons %}">简体中文</a>.
 </div>
 </article>
 
@@ -51,8 +51,7 @@ This article is also available in <a href="{% post_path zh-CN/Donation-Buttons %
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
-<i class="fas fa-info-circle mr-2"></i>
-The following donation buttons are provided by
+<i class="fas fa-info-circle mr-2"></i>The following donation buttons are provided by
 <a href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
 Please refer to it for a complete list of supported buttons and their configuration details.
 </div>
@@ -165,7 +164,8 @@ Please refer to it for a complete list of supported buttons and their configurat
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
-<i class="fas fa-question-circle mr-2"></i>
-Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Donation-Button.md">here</a> to submit your revision.
+<i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
+Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Donation-Button.md">here</a> 
+to submit your revision.
 </div>
 </article>

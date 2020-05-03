@@ -15,8 +15,8 @@ Additionally, you may find help from other Icarus users on [Gitter](https://gitt
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
-<i class="fas fa-globe-asia mr-2"></i>
-This article is also available in <a href="{% post_path zh-CN/FAQ %}">简体中文</a>.
+<i class="fas fa-globe-asia mr-2"></i>This article is also available in 
+<a href="{% post_path zh-CN/FAQ %}">简体中文</a>.
 </div>
 </article>
 
@@ -240,8 +240,9 @@ For example, you can disable the comment plugins by commenting out the following
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
-<i class="fas fa-question-circle mr-2"></i>
-Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/FAQ.md">here</a> to submit your revision.
+<i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
+Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/FAQ.md">here</a> 
+to submit your revision.
 </div>
 </article>
 

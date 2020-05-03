@@ -7,8 +7,8 @@ toc: true
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
-<i class="fas fa-lightbulb mr-2"></i>
-The following content is taken from <a href="https://hexo.io/docs/tag-plugins.html">Hexo documentation</a>
+<i class="fas fa-lightbulb mr-2"></i>The following content is taken from 
+<a href="https://hexo.io/docs/tag-plugins.html">Hexo documentation</a>
 with minor revisions.
 </div>
 </article>
