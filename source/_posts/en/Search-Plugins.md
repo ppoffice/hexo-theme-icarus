@@ -31,8 +31,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 ## Algolia
 
 <div>
-<strong>Installation Guide</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/search/Algolia %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/search/Algolia %}">Preview</a>
 </div>
 
 1. Install the [hexo-algolia](https://github.com/oncletom/hexo-algolia) plugin under the root directory of your
@@ -42,14 +41,14 @@ Please refer to it for a complete list of supported plugins and their configurat
    Click the "Create Index" button on the dashboard when you log in for the first time.
    Then, enter the name of the index and click the "Create" button to complete index creation.
 
-   {% img "box ml-auto mr-auto" /gallery/screenshots/algolia-create-index.png 360 '"Create Index - Algolia" "Create Index - Algolia"' %}
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/algolia-create-index.png 360 '"Create Index - Algolia" "Create Index - Algolia"' %}
    <br>
 
 3. Next, click "API Keys" on the left navigation bar, copy "Application ID" and "Search-Only API Key" on the page.
    Open site configuration file `_config.yml` under the root directory of your Hexo site and fill in the above 
    information to the hexo-algolia plugin configurations.
 
-   {% img "box ml-auto mr-auto" /gallery/screenshots/algolia-api-keys.png 360 '"API Keys - Algolia" "API Keys - Algolia"' %}
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/algolia-api-keys.png 360 '"API Keys - Algolia" "API Keys - Algolia"' %}
    <br>
 
    For example, the following Aloglia index information:
@@ -76,7 +75,7 @@ Please refer to it for a complete list of supported plugins and their configurat
    Click the "Create" button to finish key creation.
    Copy the API key you just created, e.g., `727fbd8c998fe419318fa350db6793ca`.
 
-   {% img "box ml-auto mr-auto" /gallery/screenshots/algolia-create-api-key.png 360 '"Create API Key - Algolia" "Create API Key - Algolia"' %}
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/algolia-create-api-key.png 360 '"Create API Key - Algolia" "Create API Key - Algolia"' %}
    <br>
 
 5. Open a Windows Command Prompt (CMD) or Linux/macOS terminal and change the working directory to the root
@@ -128,8 +127,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 ## Google Custom Search Engine (CSE)
 
 <div>
-<strong>Installation Guide</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/search/Google-CSE %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/search/Google-CSE %}">Preview</a>
 </div>
 
 1. Log into your Google account and visit [Google CSE](https://cse.google.com/cse/create/new) to create a CSE.
@@ -138,13 +136,13 @@ Please refer to it for a complete list of supported plugins and their configurat
    Then, fill in the "Name of the search engine". 
    Click the "Create" button to finish engine creation.
 
-   {% img "box ml-auto mr-auto" /gallery/screenshots/google-cse-create.png 360 '"Create Custom Search - Google CSE" "Create Custom Search - Google CSE"' %}
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-cse-create.png 360 '"Create Custom Search - Google CSE" "Create Custom Search - Google CSE"' %}
    <br>
 
 2. Then, click the "Get code" button on the right side of "Add it to your site". Copy the value of `cx` to the 
    search settings in your theme's configuration file.
 
-   {% img "box ml-auto mr-auto" /gallery/screenshots/google-cse-code.png 360 '"Get Code - Google CSE" "Get Code - Google CSE"' %}
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-cse-code.png 360 '"Get Code - Google CSE" "Get Code - Google CSE"' %}
    <br>
 
    For example, the following HTML code:
