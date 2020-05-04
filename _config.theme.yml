@@ -295,7 +295,7 @@ plugins:
     katex: false
     # Enable the MathJax math typesetting support
     # https://www.mathjax.org/
-    mathjax: true
+    mathjax: false
     # Enable the Outdated Browser plugin
     # http://outdatedbrowser.com/
     outdated_browser: true

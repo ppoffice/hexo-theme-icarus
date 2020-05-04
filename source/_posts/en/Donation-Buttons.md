@@ -98,17 +98,30 @@ Please refer to it for a complete list of supported buttons and their configurat
 2. Select "Country/Region" and "Language" in the "Choose button style" page and click "Continue" to
    advance to the next page.
 
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/paypal-button-style.png 360 '"Choose Button Style - Paypal" "Choose Button Style - Paypal"' %}
+   <br>
+
 3. Select "Use account ID" or "Use email address" as the unique identifier of your account in the "Add organization
    details" page.
    Then, click "Continue" to go to the next page.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/paypal-organization-details.png 360 '"Add Organization Details - Paypal" "Add Organization Details - Paypal"' %}
+   <br>
 
 4. Choose the "Currency you'll receive donations in" and set "Amount donors can give" to "Any amount" in the 
    "Set donation amounts" page.
    We currently do not support the option of donating in "An exact amount".
    Click "Finish and Get Code" to go to the next page.
 
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/paypal-donation-amount.png 360 '"Set Donation Amounts - Paypal" "Set Donation Amounts - Paypal"' %}
+   <br>
+
 5. Copy `business` and `currency_code` from the "Button HTML" on the page.
    Put them to the `business` and `currency_code` settings in your theme configurations.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/paypal-get-code.png 360 '"Get Code - Paypal" "Get Code - Paypal"' %}
+   <br>
+
    For example, the following Paypal donation button code
 
     {% codeblock Paypal HTML code lang:html %}

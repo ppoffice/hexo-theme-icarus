@@ -7,6 +7,15 @@ tags:
 - Icarus用户指南
 language: zh-CN
 toc: true
+plugins:
+    animejs: true
+    back_to_top: true
+    gallery: true
+    google_analytics:
+        tracking_id: UA-72437521-5
+    mathjax: true
+    outdated_browser: true
+    progressbar: true
 providers:
     cdn: loli
     fontcdn: loli
