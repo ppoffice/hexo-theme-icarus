@@ -18,21 +18,24 @@ plugins:
     progressbar: true
 ---
 
-<div class="notification is-success is-size-6">
-This article is also available in: <a href="{% post_path zh-CN/Other-Plugins %}">简体中文</a>.
-</div>
+This article covers other plugins supported by Icarus 3.
 
-This article covers some other plugins supported by Icarus 3.
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-asia mr-2"></i>This article is also available in 
+<a href="{% post_path zh-CN/Other-Plugins %}">简体中文</a>.
+</div>
+</article>
 
 <!-- more -->
 
-<div class="notification is-link is-size-6">
-
-Some of the following plugins are provided by
-[ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
-Please refer to it for configuration details.
-
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>The following plugins are provided by
+<a href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
+Please refer to it for a complete list of supported plugins and their configuration details.
 </div>
+</article>
 
 
 ## Gallery
@@ -41,16 +44,16 @@ Please refer to it for configuration details.
 
 The gallery plugin of Icarus contains both [lightGallery](https://sachinchoolur.github.io/lightGallery/) and
 [Justified Gallery](https://miromannino.github.io/Justified-Gallery/) extensions.
-To enable it, please set `plugins` > `gallery` to `true` in your theme's configuration file.
+To enable it, set `plugins` > `gallery` to `true` in your theme configurations.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 plugins:
     gallery: true
 {% endcodeblock %}
 
-Additionally, in order to use Justified Gallery, please wrap your images with the `<div class="justified-gallery">`
+Additionally, in order to use Justified Gallery, wrap your images with the `<div class="justified-gallery">`
 and `</div>` HTML tag pair.
-Also, if you are using Markdown syntax to include images, please add additional empty lines between the HTMl tags and
+Also, if you are using Markdown syntax to include images, add additional empty lines between the HTMl tags and
 Markdown tags.
 For example, the Markdown code of the gallery preview below is
 
@@ -87,7 +90,11 @@ In this case, we will not need the empty lines between HTML tags.
 Here is an image grid created by Justified Gallery.
 You can also view the full image using lightGallery by clicking on any image.
 
-> The following photos come from <a href="https://www.pexels.com">pexel.com</a>
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>The following photos come from <a href="https://www.pexels.com">pexel.com</a>
+</div>
+</article>
 
 <div class="justified-gallery">
 
@@ -106,7 +113,7 @@ You can also view the full image using lightGallery by clicking on any image.
 **Installation Guide**
 
 You can use the KaTeX plugin to render \\(\TeX\\) expressions.
-To enable KaTeX, please set `plugins` > `katex` to `true` in your theme's configuration file.
+To enable KaTeX, please set `plugins` > `katex` to `true` in your theme configurations.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 plugins:
@@ -162,7 +169,7 @@ $$
 **Installation Guide**
 
 You can use MathJax to render \\(\TeX\\), MathML, or AsciiMath expressions.
-To enable MathJax, please set `plugins` > `mathjax` to `true` in your theme's configuration file.
+To enable MathJax, please set `plugins` > `mathjax` to `true` in your theme configurations.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 plugins:
@@ -346,7 +353,7 @@ When \`a != 0\`, there are two solutions to \`ax^2 + bx + c = 0\` and they are <
 
 You can use the Outdated Browser plugin to detect outdated browsers used by
 your site's visitors and remind them to upgrade their browsers.
-To enable it, please set `plugins` > `outdated_browser` to `true` in your theme's configuration file.
+To enable it, please set `plugins` > `outdated_browser` to `true` in your theme configurations.
 Click [here](https://bestvpn.org/outdatedbrowser/en) to see a live preview of this plugin.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
@@ -360,7 +367,7 @@ plugins:
 **Installation Guide**
 
 Page Loading Animations are enabled by Icarus by default.
-To disable it, please set `plugins` > `animejs` to `false` in your theme's configuration file.
+To disable it, please set `plugins` > `animejs` to `false` in your theme configurations.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 plugins:
@@ -368,7 +375,7 @@ plugins:
 {% endcodeblock %}
 
 Also, to disable the page loading progressbar, please set `plugins` > `progressbar` to `false` in 
-your theme's configuration file.
+your theme configurations.
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 plugins:
@@ -376,6 +383,10 @@ plugins:
 {% endcodeblock %}
 
 
-<div class="notification is-warning is-size-6">
-Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Other-Plugins.md">here</a> to submit your revision.
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
+Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Other-Plugins.md">here</a> 
+to submit your revision.
 </div>
+</article>
