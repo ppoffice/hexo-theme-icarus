@@ -55,14 +55,10 @@ widgets:
         type: toc
 ---
 
-<div class="notification is-success is-size-6">
-This article is also available in: <a href="{% post_path zh-CN/Widgets %}">简体中文</a>.
-</div>
-
-This article covers some widgets supported by Icarus 3.
-If you need to display multiple widgets at once, simply add individual widget configuration
+This article covers widgets supported by Icarus 3.
+To display multiple widgets at once, simply add individual widget configuration
 to the `widgets` array.
-They will appear in the order of their definition.
+They will appear in the order of their definitions.
 The `type` and `position` settings are required for every widget.
 Here is an example:
 
@@ -78,21 +74,28 @@ widgets:
         ...
 {% endcodeblock %}
 
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-asia mr-2"></i>This article is also available in 
+<a href="{% post_path zh-CN/Widgets %}">简体中文</a>.
+</div>
+</article>
+
 <!-- more -->
 
-<div class="notification is-link is-size-6">
-
-Most of the widgets of Icarus are provided by
-[ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
-Please refer to it for a complete list of supported widgets and configuration details.
-
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>The following widgets are provided by
+<a href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
+Please refer to it for a complete list of supported plugins and their configuration details.
 </div>
+</article>
 
 
 ## Profile
 
 You can showcase the post author/site admin information via the profile widget.
-Its configuration is list below:
+Its configuration is listed below:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -123,30 +126,30 @@ widgets:
 
 Some notes on the configuration:
 
-- If you wish to use [Gravatar](https://en.gravatar.com/) instead of the `avatar` setting as profile picture,
-  you can fill in the Gravatar email address in `gravatar` and leave `avatar` empty;
+- If you wish to use [Gravatar](https://en.gravatar.com/) instead of `avatar` as your profile picture,
+  fill in the Gravatar email address in the `gravatar` setting and leave `avatar` empty;
 
-- There two possible formats for `social_links`:
+- There two acceptable formats for `social_links`:
 
     **Icon**:
 
     {% codeblock social_links lang:yaml %}
-    <Name of the link>:
-        icon: <HTML class name of the FontAwesome5 icon>
-        url: <URL of the link>
+    <link_name>:
+        icon: <fontawesome_icon_class_name>
+        url: <link_url>
     {% endcodeblock %}
 
     **Text**:
 
     {% codeblock social_links lang:yaml %}
-    <Name of the link>: <URL of the link>
+    <link_name>: <link_url>
     {% endcodeblock %}
 
 
 ## Table of Contents
 
-To show the table of contents of the current post, please add the following widget configuration to your theme's
-configuration file:
+To show the table of contents of the current post, add the following widget configuration to your theme
+configurations:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -155,7 +158,7 @@ widgets:
         position: left
 {% endcodeblock %}
 
-Then, add `toc: true` to the front-matter of the post you wish to display the widget:
+Then, add `toc: true` to the front-matter of your post:
 
 {% codeblock Post.md lang:yaml %}
 title: A post with the table of contents
@@ -167,8 +170,8 @@ Post content...
 
 ## External Links
 
-You can display a list of external sites and links to them using the external links widget.
-An example of its configuration is listed below:
+You can display a list of external sites with the external links widget.
+An example configuration is listed below:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -184,7 +187,7 @@ widgets:
 
 ## Recent Posts
 
-Please use the following widget configuration to enable the recent posts widget:
+Use the following configuration to enable the recent posts widget:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -196,7 +199,7 @@ widgets:
 
 ## Archives
 
-Please use the following widget configuration to enable the archives widget:
+Use the following configuration to enable the archives widget:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -208,7 +211,7 @@ widgets:
 
 ## Categories
 
-Please use the following widget configuration to enable the categories widget:
+Use the following configuration to enable the categories widget:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -220,7 +223,7 @@ widgets:
 
 ## Tags
 
-Please use the following widget configuration to enable the tags widget:
+Use the following configuration to enable the tags widget:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -233,23 +236,48 @@ widgets:
 ## Subscribe Email
 
 The email subscription feature of Icarus is provided by Google Feedburner.
+To enable this widget, take the following steps:
 
-1. To turn on this widget, please generate the RSS feed of your Hexo site using some Hexo plugins like
+1. First, you need to generate the RSS feed of your Hexo site using a Hexo plugin like
    [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed).
 
-2. Then, log into [Google Feedburner](https://feedburner.google.com) and add your RSS feed.
-   Click the "My Feeds" link on the top of the page when finished.
+2. Then, go to [Google Feedburner](https://feedburner.google.com), log into your Google account,
+   and add your RSS feed by typing in the RSS feed address to the input box and click "Next".
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-homepage.png 360 '"Homepage - Feedburner" "Homepage - Feedburner"' %}
+   <br>
+
+3. Next, fill in the "Feed Title" on the next page.
+   Click "Next" to continue customizing your feed or click "Skip directly to feed management" to
+   finish.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-add-feed.png 360 '"Add Feed - Feedburner" "Add Feed - Feedburner"' %}
+   <br>
+
+4. When finished adding the feed, click the "My Feeds" link on the top of the page.
    Click your newly added feed on the "My Feeds" page.
 
-3. Click the "Publicize" tab and then the "Email Subscription" link on the left side of the page.
-   Click the "Activate" button and find the following information in the HTML code on the "Email Subscription"
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-feed-list.png 360 '"Feed List - Feedburner" "Feed List - Feedburner"' %}
+   <br>
+
+5. Switch to the "Publicize" tab and click the "Email Subscription" link on the left side of the page.
+   Enable "Email Subscription" by clicking the "Activate" button.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-activate-email.png 360 '"Activate Email Subscription - Feedburner" "Activate Email Subscription - Feedburner"' %}
+   <br>
+
+   
+6. Find the following information in the HTML code on the "Email Subscription"
    page:
 
    {% codeblock Google Feedburner URL %}
    https://feedburner.google.com/fb/a/mailverify?uri=******
    {% endcodeblock %}
 
-   Copy the ID after `uri=` (e.g., `feedforall/ABCD`) to the `feedburner_id` setting in the widget configuration.
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-get-code.png 360 '"Get Code - Feedburner" "Get Code - Feedburner"' %}
+   <br>
+
+   Copy the ID after `uri=` (e.g., `feedforall/ABCD`) to the `feedburner_id` setting of the widget configuration.
 
     {% codeblock themes/icarus/_config.yml lang:yaml %}
     widgets:
@@ -264,9 +292,9 @@ The email subscription feature of Icarus is provided by Google Feedburner.
 
 ## Google AdSense
 
-Please log into [Google AdSense](https://www.google.com/adsense) and create a new AD.
-Then, copy the values of `data-ad-client` and `data-ad-slot` from the HTML code of the AD to
-the `client_id` and `slot_id` setting of the widget respectively.
+Create a new AD on [Google AdSense](https://www.google.com/adsense).
+Then, copy the values of `data-ad-client` and `data-ad-slot` from the AD HTML code to
+the `client_id` and `slot_id` setting of the widget, respectively.
 Here is an example:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
@@ -279,6 +307,10 @@ widgets:
 {% endcodeblock %}
 
 
-<div class="notification is-warning is-size-6">
-Something wrong with this article? Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Widgets.md">here</a> to submit your revision.
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
+Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Widgets.md">here</a> 
+to submit your revision.
 </div>
+</article>
