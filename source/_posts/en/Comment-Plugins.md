@@ -71,8 +71,7 @@ Refer to <a href="http://changyan.kuaizhan.com/static/help/o-beian.html">ICP Lic
 ## Disqus
 
 <div>
-<strong>Installation Guide</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/comment/Disqus %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Disqus %}">Preview</a>
 </div>
 
 1. First, log into [Disqus](https://disqus.com/). Click the "GET STARTED" button on the 
@@ -140,8 +139,7 @@ You can refer to [https://github.com/SukkaW/DisqusJS](https://github.com/SukkaW/
 for the detailed configuration process of DisqusJS.
 
 <div>
-<strong>Installation Guide</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/comment/DisqusJS %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/DisqusJS %}">Preview</a>
 </div>
 
 1. Log into Disqus and visit [here](https://disqus.com/api/applications/).
@@ -199,8 +197,7 @@ for the detailed configuration process of DisqusJS.
 </article>
 
 <div>
-<strong>Installation Guide</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/comment/Facebook %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Facebook %}">Preview</a>
 </div>
 
 1. To enable Facebook comment, set the `type` of `comment` to `facebook`:
@@ -214,8 +211,7 @@ for the detailed configuration process of DisqusJS.
 ## Gitalk
 
 <div>
-<strong>Installation Guide</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/comment/Gitalk %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Gitalk %}">Preview</a>
 </div>
 
 1. Log into GitHub and [click here](https://github.com/settings/applications/new) to register a new OAuth
@@ -330,8 +326,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
 </article>
 
 <div>
-<strong>Installation Guide</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/comment/LiveRe %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/LiveRe %}">Preview</a>
 </div>
 
 1. First, log into [LiveRe](https://livere.com/).
@@ -390,8 +385,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
 ## utterances
 
 <div>
-<strong>Installation Guide</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/comment/Utterances %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Utterances %}">Preview</a>
 </div>
 
 1. Prepare a public GitHub repository.
@@ -449,8 +443,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
 ## Valine
 
 <div>
-<strong>Installation Guide</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/comment/Valine %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Valine %}">Preview</a>
 </div>
 
 1. Create a LeanCloud application following the [Quickstart guide](https://valine.js.org/quickstart.html).
