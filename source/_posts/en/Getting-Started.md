@@ -26,7 +26,7 @@ open to a sea of improvement possibilities.
 
 Before you continue to the installation of Icarus, take some time to review the 
 [Hexo documentation](https://hexo.io).
-To install Icarus, download the tarball from the GitHub and extract it to your Hexo blog's theme 
+To install Icarus, download the source code tarball from the GitHub and extract it to your Hexo site's theme 
 directory.
 Alternatively, you can use Git to clone the Icarus repository to the `themes` directory:
 
@@ -34,15 +34,15 @@ Alternatively, you can use Git to clone the Icarus repository to the `themes` di
 git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
 {% endcodeblock %}
 
-You may omit `-b <version number>` to get the latest development version of Icarus.
-You may also leave `--depth 1` out if you want to download full Git commit history of Icarus as well.
+You can omit `-b <version number>` to get the latest development version of Icarus.
+Leave `--depth 1` out if you want to download full Git commit history of Icarus as well.
 Furthermore, you can install Icarus as a Git submodule with the following command:
 
 {% codeblock "Git Bash/Shell" %}
 git submodule add https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
 {% endcodeblock %}
 
-Next, activate Icarus in your blog's `_config.yml` file:
+Next, activate Icarus in your site's `_config.yml` file:
 
 {% codeblock _config.yml lang:yaml %}
 theme: icarus

@@ -56,7 +56,7 @@ The value of the `logo` can either be the path or URL to your logo image:
 logo: /img/logo.svg
 {% endcodeblock %}
 
-Or if you want the text instead, you can set it like the following:
+or text if you set it like the following:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 logo:
@@ -149,7 +149,7 @@ head:
 
 You can add custom `<meta>` tags to the generated HTML from the `meta` setting in the `head` section.
 Each meta tag should appear as an item of the `meta` array.
-The value of the `meta` setting should be in the `<field_name>=<field_value>` format 
+The value of each `meta` item should be in the `<field_name>=<field_value>` format 
 with `field_name` and `field_value` represent the field and value of the `<meta>` tag respectively.
 Separate the `<field_name>=<field_value>` pairs with `;` if the `<meta>` tag has multiple fields and values.
 
@@ -273,7 +273,7 @@ You can add a thumbnail image to your post in two steps:
 
     If you choose to use the image path in the front-matter, you need to ensure the path is absolute
     or relative to the source directory of your site.
-    For example, to use `<your blog>/source/gallery/image.jpg` as a thumbnail path, you need to put
+    For example, to use `<your blog>/source/gallery/image.jpg` as a thumbnail image, you need to put
     `thumbnail: /gallery/image.jpg` in the front-matter.
 
 ### Read Time
@@ -384,30 +384,30 @@ Examples are:
 - `photos`
 - `excerpt`
 
-Lastly, any other configuration files listed above will override the site configuration file `_config.yml` 
+Lastly, all configuration sources listed above will override the site configuration file `_config.yml` 
 for the settings used by the Icarus.
 For instance, `title` in the `themes/icarus/_config.yml` will override `title` in the `_config.yml`, but
 `new_post_name` will not since it is not used by Icarus.
 
-In conclusion, the scopes of the configuration locations and their priorities are:
+In conclusion, the scopes of the configuration sources and their priorities are:
 
-- A certain post or page
+- For a certain post or page
 
-    - front-matter overrides all configurations below.
-    - `themes/icarus/_config.post.yml` and `themes/icarus/_config.page.yml` override all configurations below.
-    - `themes/icarus/_config.yml` overrides all configurations below.
-    - `_config.yml`
+    - front-matter overrides all configuration sources below.
+    - `themes/icarus/_config.post.yml` and `themes/icarus/_config.page.yml` override all configuration sources below.
+    - `themes/icarus/_config.yml` overrides all configuration sources below.
+    - `_config.yml`.
 
-- All posts or pages
+- For all posts or pages
 
-    - `themes/icarus/_config.post.yml` or `themes/icarus/_config.page.yml` override all configurations below.
-    - `themes/icarus/_config.yml` overrides all configurations below.
-    - `_config.yml`
+    - `themes/icarus/_config.post.yml` or `themes/icarus/_config.page.yml` override all configuration sources below.
+    - `themes/icarus/_config.yml` overrides all configuration sources below.
+    - `_config.yml`.
 
-- All posts, pages, and index pages
+- For all posts, pages, and index pages
 
-    - `themes/icarus/_config.yml` overrides all configurations below.
-    - `_config.yml`
+    - `themes/icarus/_config.yml` overrides all configuration sources below.
+    - `_config.yml`.
 
 
 ## Configuration Generation and Validation
@@ -423,7 +423,7 @@ generation.
 
 The theme also validates your configurations against these schemas every time you execute a `hexo` command.
 If anything goes wrong during the validation, Icarus will print out the exact location of the misconfiguration
-and it's error type.
+and its error type.
 For example, the following messages tell us that the value of the `logo` setting should be either a string or an 
 object, instead of an integer.
 You may skip the validation by appending the `--icarus-dont-check-config` flag to your `hexo` commands, but it is 
