@@ -40,7 +40,7 @@ Refer to <a href="http://changyan.kuaizhan.com/static/help/o-beian.html">ICP Lic
 
 **Installation Guide**
 
-1. First, register and log into [Changyan](http://changyan.kuaizhan.com). Get the comment HTML code by following
+1. First, log into [Changyan](http://changyan.kuaizhan.com). Get the comment HTML code by following
    [this article](http://changyan.kuaizhan.com/static/help/index.html).
 
 2. Copy the value of `appid` and `conf` to the corresponding settings in the theme configurations.
@@ -109,7 +109,7 @@ Refer to <a href="http://changyan.kuaizhan.com/static/help/o-beian.html">ICP Lic
    settings in the theme configurations.
    For example, the "Shortname" in the following screenshot is `my-hexo-blog-1`:
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/disqus-get-shortname.png 360 '"Shortname - Disqus" "Shortname - Disqus"' %}
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/disqus-get-shortname.png 360 '"Configure Disqus - Disqus" "Configure Disqus - Disqus"' %}
    <br>
 
    which maps to the following theme configuration:
@@ -120,7 +120,7 @@ Refer to <a href="http://changyan.kuaizhan.com/static/help/o-beian.html">ICP Lic
         shortname: my-hexo-blog-1
     {% endcodeblock %}
 
-7. (Optional) You can add `disqusId` in the front-matter of the post as the unique Disqus ID.
+9. (Optional) You can add `disqusId` in the front-matter of the post as the unique Disqus ID.
    Thereby, you can change the location of the post in the future without losing all your comments:
 
     {% codeblock source/_post/some-post.md lang:markdown %}
@@ -170,12 +170,12 @@ for the detailed configuration process of DisqusJS.
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/disqusjs-api-key.png 360 '"Application Details - Disqus" "Application Details - Disqus"' %}
    <br>
    
-   maps to the following configuration:
+   maps to the following theme configuration:
 
     {% codeblock themes/icarus/_config.yml lang:yaml %}
     comment:
         type: disqusjs
-        shortname: test-usildmkxo
+        shortname: my-hexo-blog-1
         api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         api: https://disqus.skk.moe/disqus/     # Optional
         admin: ppoffice                         # Optional
@@ -228,7 +228,7 @@ for the detailed configuration process of DisqusJS.
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/gitalk-application-settings.png 360 '"OAuth Application Settings - GitHub" "OAuth Application Settings - GitHub"' %}
    <br>
 
-   For example, the following Client ID and Client Secret
+   For example, the following "Client ID" and "Client Secret":
 
     {% codeblock GitHub OAuth Application %}
     Client ID
@@ -344,8 +344,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/livere-configure-service.png 360 '"Configure Service - LiveRe" "Configure Service - LiveRe"' %}
    <br>
 
-4. Copy the value inside the quotes of `data-uid="..."` to the corresponding setting in the theme's configuration
-   file.
+4. Copy the value inside the quotes of `data-uid="..."` to the corresponding setting in the theme configurations.
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/livere-get-code.png 360 '"Get Code - LiveRe" "Get Code - LiveRe"' %}
    <br>
@@ -409,7 +408,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
 5. You will be redirected to the [utterances official site](https://utteranc.es/) if the installation completes.
    You can review each configuration option and customize your utterances setup.
 
-6. When finished, move to the "Enable Utterances" and copy the attribute values from the utterances HTML code
+6. When finished, move to the "Enable utterances" and copy the attribute values from the utterances HTML code
    to the corresponding settings in your theme configurations.
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/utterances-get-code.png 360 '"Get Code - utterances" "Get Code - utterances"' %}
