@@ -95,5 +95,5 @@ githubEmojis:
 
 algolia:
   applicationID: T0CJF4ZB1O
-  apiKey: 84268949a677b7651a9f3db7da9f6952
+  apiKey: bcbeb94d417749ab5c65b082fce32333
   indexName: hexo-icarus

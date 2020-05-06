@@ -53,7 +53,7 @@ Change the following setting:
 {% endcodeblock %}
 
 You can find all available translations under the `themes/icarus/languages` directory.
-The `language_name` is the translation file name without the `.yml` extension.
+The `<language_name>` is the translation file name without the `.yml` extension.
 
 
 ## Layout
@@ -70,10 +70,10 @@ It defines the container width under different screen sizes.
 To change the width of the widgets or main content, edit `themes/icarus/layout/common/widgets.jsx` and 
 `themes/icarus/layout/layout.jsx`.
 Find the CSS class names like `is-12`, `is-8-tablet`, and `is-4-widescreen` in these files.
-The number in the class names marks the column size a column takes.
+The number in the class names marks the number of columns a widget or main content takes.
 The screen size after the number, such as `tablet` and `widescreen`, refers to the condition when the column
 sizes take effect.
-Change the number in the class names such that the column size of main column and widget column(s) add up to 
+Change the number in the class names such that the column count of main column and widget column(s) add up to 
 12 under the same screen size.
 
 For example, to have the main content column wider on `widescreen`, you can make the following changes:
@@ -164,7 +164,7 @@ My images are not showing up. / My images only show in index pages but not in po
 
 Make sure you use the absolute paths to your images.
 For example, your site is in a subdirectory of your domain name like 
-`https://ppoffice.github.io/hexo-theme-icarus` and you `image.jpg` under `source/gallery/`.
+`https://ppoffice.github.io/hexo-theme-icarus` and your image `image.jpg` under `source/gallery/`.
 You should include your image like this: `/hexo-theme-icarus/gallery/image.jpg`.
 
 You can also use Hexo's <code>{% raw %}{% img %}{% endraw %}</code> tag like the following to include an 
@@ -174,7 +174,7 @@ image automatically:
 {% img /gallery/image.jpg "Image title" %}
 ```
 
-In this case, you may omit the subdirectory of your domain name.
+In this case, you may omit the subdirectory from your image path.
 You can refer to [Hexo documentation](https://hexo.io/docs/tag-plugins#Image) for more details.
 
 <article class="message is-primary" style="font-size:inherit">
