@@ -81,6 +81,9 @@ $searchbox-bg-pagination-item-disabled ?= $searchbox-bg-container
         line-height: 1.5em
         font-weight: normal
         background-color: $searchbox-bg-input
+        // fix Chrome 71 height issue
+        // https://github.com/ppoffice/hexo-theme-icarus/issues/719
+        min-height: 3rem
 
     .searchbox-input-container
         display: flex
