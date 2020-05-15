@@ -53,7 +53,7 @@ plugins:
 
 Additionally, in order to use Justified Gallery, wrap your images with the `<div class="justified-gallery">`
 and `</div>` HTML tag pair.
-Also, if you are using Markdown syntax to include images, add additional empty lines between the HTMl tags and
+Also, if you are using Markdown syntax to include images, add additional empty lines between the HTML tags and
 Markdown tags.
 For example, the Markdown code of the gallery preview below is
 
@@ -154,7 +154,7 @@ $$
 $$
 {% endcodeblock %}
 
-or simply wrap the whole equation with an additional HTML tag:
+or simply wrap the whole equation with an additional pair of HTML tags:
 
 {% codeblock Some-Post.md lang:tex %}
 <div>
