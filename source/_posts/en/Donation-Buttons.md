@@ -122,7 +122,7 @@ Please refer to it for a complete list of supported buttons and their configurat
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/paypal-get-code.png 360 '"Get Code - Paypal" "Get Code - Paypal"' %}
    <br>
 
-   For example, the following Paypal donation button code
+   For example, the following Paypal donation button code:
 
     {% codeblock Paypal HTML code lang:html %}
     <form action="https://www.paypal.com/cgi-bin/webscr" ...>
