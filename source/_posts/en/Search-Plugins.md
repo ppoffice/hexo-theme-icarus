@@ -140,7 +140,7 @@ Please refer to it for a complete list of supported plugins and their configurat
    <br>
 
 2. Then, click the "Get code" button on the right side of "Add it to your site". Copy the value of `cx` to the 
-   search settings in your theme's configuration file.
+   search settings in your theme's configurations.
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-cse-code.png 360 '"Get Code - Google CSE" "Get Code - Google CSE"' %}
    <br>
