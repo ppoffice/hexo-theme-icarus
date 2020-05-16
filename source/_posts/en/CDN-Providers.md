@@ -67,13 +67,13 @@ https://some.cdn.domain.name/${package}/${version}/${filename}
 
 You need to replace the actual package name, version of the package, and relative file path with `${package}`, 
 `${version}`, and `${filename}` placeholders.
-For example, a JavaScript library with the following URL
+For example, a JavaScript library with the following URL:
 
 {% codeblock "UNPKG CDN URL Example" %}
 https://unpkg.com/d3@5.7.0/dist/d3.min.js
 {% endcodeblock %}
 
-can be generalized to this
+can be generalized to this:
 
 {% codeblock "UNPKG CDN URL Template" %}
 https://unpkg.com/${package}@${version}/${filename}
@@ -93,7 +93,7 @@ https://unpkg.com/moment@2.22.2/min/moment.min.js
 {% endcodeblock %}
 
 Therefore, you should be aware of the URL format of your custom CDN provider.
-By default, Icarus will try to pass in the parameter just like they would be for an npm repository 
+By default, Icarus will try to pass in the parameter using npm package name and relative file path 
 (e.g., `moment@2.22.2/min/moment.min.js`). 
 This npm scheme is used by jsDelivr and UNPKG. 
 Otherwise, if you are using a CDN.js like provider, please prepend `[cdnjs]` to its URL template:

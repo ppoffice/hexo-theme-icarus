@@ -113,7 +113,7 @@ Take the following steps if you want to customize the share buttons:
 
 4. Since the share buttons of Icarus is provided by 
    [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno),
-   You need to copy the layout file 
+   you need to copy the layout file 
    ([src/view/share/addtoany.jsx](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.2/src/view/share/addtoany.jsx)) 
    of AddToAny from this repository
    to `themes/icarus/layout/share/addtoany.jsx`.
@@ -133,7 +133,7 @@ Take the following steps if you want to customize the share buttons:
     <!-- AddToAny END -->
     {% endcodeblock %}
 
-    You should make the following changes to `addtoany.jsx`:
+    then you should make the following changes to `addtoany.jsx`:
 
     {% codeblock themes/icarus/layout/share/addtoany.jsx lang:diff >folded %}
     const { Component, Fragment } = require('inferno');
