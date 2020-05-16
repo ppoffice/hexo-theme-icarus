@@ -266,7 +266,6 @@ To enable this widget, take the following steps:
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-activate-email.png 360 '"Activate Email Subscription - Feedburner" "Activate Email Subscription - Feedburner"' %}
    <br>
 
-   
 6. Find the following information in the HTML code on the "Email Subscription"
    page:
 
@@ -277,7 +276,7 @@ To enable this widget, take the following steps:
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-get-code.png 360 '"Get Code - Feedburner" "Get Code - Feedburner"' %}
    <br>
 
-   Copy the ID after `uri=` (e.g., `feedforall/ABCD`) to the `feedburner_id` setting of the widget configuration.
+   Copy the ID after `uri=` (e.g., `feedforall/ABCD`) to the `feedburner_id` setting of the widget configuration:
 
     {% codeblock themes/icarus/_config.yml lang:yaml %}
     widgets:
@@ -294,7 +293,7 @@ To enable this widget, take the following steps:
 
 Create a new AD on [Google AdSense](https://www.google.com/adsense).
 Then, copy the values of `data-ad-client` and `data-ad-slot` from the AD HTML code to
-the `client_id` and `slot_id` setting of the widget, respectively.
+the `client_id` and `slot_id` setting of the widget configuration, respectively.
 Here is an example:
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}

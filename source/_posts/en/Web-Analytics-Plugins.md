@@ -144,7 +144,7 @@ Use them with caution.
 
 3. Find the value of "Tracking ID", e.g., "UA-12345678-0", on the "Tracking Code" page. 
    Set it to the `plugins` > 
-   `google_analytics` > `tracking_id` in the theme's configuration file to enable the Google Analytics plugin.
+   `google_analytics` > `tracking_id` in the theme configurations to enable the Google Analytics plugin.
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-analytics-get-code.png 360 '"Get Code - Google Analytics" "Get Code - Google Analytics"' %}
    <br>

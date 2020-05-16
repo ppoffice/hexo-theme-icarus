@@ -59,11 +59,11 @@ providers:
     iconcdn: loli
 ---
 
-<div class="notification is-success is-size-6">
-本文同时提供以下语言的翻译：<a href="{% post_path en/Widgets %}">English</a>。
-</div>
-
-本文介绍Icarus 3支持的一些页面挂件的安装配置。若需同时展示多个挂件，只需在主题配置的`widgets`数组中添加多个挂件配置，而他们的展示顺序以配置的定义顺序为准。而每项挂件均包含必填项`type`(挂件类型)与`position`(挂件展示位置：左边/右边)。例如
+本文介绍Icarus 3支持的页面挂件的安装配置。
+若要同时展示多个挂件，只需在主题配置的`widgets`数组中添加多个挂件配置。
+它们会按照定义的顺序出现。
+每个挂件必须包含`type`(挂件类型)与`position`(挂件展示位置)设置项。
+示例如下：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -77,20 +77,25 @@ widgets:
         ...
 {% endcodeblock %}
 
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-americas mr-2"></i>本文同时提供以下语言的翻译：<a href="{% post_path en/Widgets %}">English</a>。
+</div>
+</article>
+
 <!-- more -->
 
-
-<div class="notification is-link is-size-6">
-
-Icarus的绝大部分挂件由[ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno)
-提供，具体提供的挂件种类与配置以其为准。
-
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>下面的挂件由<a href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>提供，完整的支持挂件列表和配置详情以其为准。
 </div>
+</article>
 
 
 ## 作者资料卡
 
-你可以启用作者资料卡挂件来展示文章作者/网站站长的信息。资料卡的示例配置如下所示：
+你可以启用作者资料卡挂件来展示文章作者/网站站长的信息。
+资料卡的配置如下所示：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -121,15 +126,16 @@ widgets:
 
 需要注意的是：
 
-- 如果你希望使用[Gravatar](https://en.gravatar.com/)提供头像图片，请在`gravatar`项填入
-  你的Gravatar邮箱地址，而`avatar`一项请留空；
+- 如果你希望使用[Gravatar](https://en.gravatar.com/)而不是`avatar`配置项作为头像图片，请在`gravatar`项填入
+  你的Gravatar邮箱地址并在`avatar`一项中留空；
+
 - `social_links`可以采用如下两种格式：
 
     **图标形式**：
 
     {% codeblock social_links lang:yaml %}
     <链接名称>:
-        icon: <FontAwesome5图标的HTML class名称>
+        icon: <FontAwesome5_图标的_HTML_class名称>
         url: <链接的URL地址>
     {% endcodeblock %}
 
@@ -142,7 +148,7 @@ widgets:
 
 ## 文章目录
 
-若要展示文章目录，请首先在主题配置文件中添加如下挂件配置：
+若要展示文章目录，请在主题配置中添加如下挂件配置：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -163,7 +169,8 @@ toc: true
 
 ## 友站链接
 
-你可以展示友站链接挂件展示相关网站以及它们的链接。友站链接挂件的配置如下所示：
+你可以使用友站链接挂件来展示外部网站的列表。
+示例配置如下所示：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -179,7 +186,7 @@ widgets:
 
 ## 最新文章
 
-请通过如下挂件配置开启最新文章挂件：
+使用如下挂件配置来开启最新文章挂件：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -191,7 +198,7 @@ widgets:
 
 ## 文章归档
 
-请通过如下挂件配置开启文章归档挂件：
+使用如下挂件配置来开启文章归档挂件：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -203,7 +210,7 @@ widgets:
 
 ## 文章分类
 
-请通过如下挂件配置开启文章分类挂件：
+使用如下挂件配置来开启文章分类挂件：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -215,7 +222,7 @@ widgets:
 
 ## 文章标签
 
-请通过如下挂件配置开启文章标签挂件：
+使用如下挂件配置来开启文章标签挂件：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -228,21 +235,45 @@ widgets:
 ## 邮件订阅
 
 Icarus的邮件订阅功能由Google Feedburner提供。
+按照如下步骤即可启用此插件：
 
-1. 若要开启邮件订阅挂件，请首先使用诸如[hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)
-   的Hexo插件生成网站的RSS源。
+1. 首先，使用诸如[hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)此类的Hexo插件生成
+   你的Hexo网站的RSS源。
 
-2. 然后登录[Google Feedburner](https://feedburner.google.com)并添加你的RSS源。完成配置后，请点击网页顶部的”我的源“
-   (My Feeds)查看源列表，并点击新添加的源进入源的配置界面。
+2. 然后登录[Google Feedburner](https://feedburner.google.com)，在输入框内输入你的RSS地址并点击“下一步”(Next)
+   来添加你的RSS源。
 
-3. 点击”宣传“(Publicize)标签页，然后点击页面左侧的”邮件订阅“(Email Subscription)，然后在页面右侧找到并点击”激活“(Activate)
-   按钮。在打开的”邮件订阅“(Email Subscription)页面的HTML代码中找到
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-homepage.png 360 '"主页 - Feedburner" "主页 - Feedburner"' %}
+   <br>
+
+3. 然后，在下一页中填写“源标题”。
+   点击“下一步”(Next)来继续自定义你的源，或者点击“直接跳到源管理”(Skip directly to feed management)来完成配置。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-add-feed.png 360 '"添加源 - Feedburner" "添加源 - Feedburner"' %}
+   <br>
+
+4. 完成添加源后，点击网页顶部的”我的源“(My Feeds)链接。
+   点击“我的源”(My Feeds)页面上新添加的源。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-feed-list.png 360 '"源列表 - Feedburner" "源列表 - Feedburner"' %}
+   <br>
+
+5. 切换到”宣传“(Publicize)标签页并点击页面左侧的”邮件订阅“(Email Subscription)链接。
+   点击“激活”(Activate)按钮来开启“邮件订阅”(Email Subscription)功能。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-activate-email.png 360 '"激活邮件订阅 - Feedburner" "激活邮件订阅 - Feedburner"' %}
+   <br>
+   
+6. 在”邮件订阅“(Email Subscription)页面上从HTML代码中找到如下信息：
 
    {% codeblock Google Feedburner URL %}
    https://feedburner.google.com/fb/a/mailverify?uri=******
    {% endcodeblock %}
 
-   复制`uri=`后的ID，例如`feedforall/ABCD`并填入挂件配置的`feedburner_id`中。
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-get-code.png 360 '"获取代码 - Feedburner" "获取代码 - Feedburner"' %}
+   <br>
+
+   复制`uri=`后的ID(如`feedforall/ABCD`)到挂件配置的`feedburner_id`设置中：
 
     {% codeblock themes/icarus/_config.yml lang:yaml %}
     widgets:
@@ -257,8 +288,9 @@ Icarus的邮件订阅功能由Google Feedburner提供。
 
 ## Google AdSense
 
-请登录[Google AdSense](https://www.google.com/adsense)并新建广告，复制广告代码中的`data-ad-client`和`data-ad-slot`
-分别填入到挂件配置的`client_id`和`slot_id`项中。示例如下：
+在[Google AdSense](https://www.google.com/adsense)上新建广告。
+然后，复制广告HTML代码中的`data-ad-client`和`data-ad-slot`值分别填入到挂件配置的`client_id`和`slot_id`项中。
+示例如下：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 widgets:
@@ -270,6 +302,8 @@ widgets:
 {% endcodeblock %}
 
 
-<div class="notification is-warning is-size-6">
-文章内容有误？请点击<a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Widgets.md">此处</a>提交修改。
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-question-circle mr-2"></i>文章内容有误？请点击<a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Widgets.md">此处</a>提交修改。
 </div>
+</article>
