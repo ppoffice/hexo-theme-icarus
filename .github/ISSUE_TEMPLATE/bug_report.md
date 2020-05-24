@@ -1,5 +1,5 @@
 ---
-name: Bug report
+name: Bug Report
 about: Please follow this template if you are reporting a bug, or your issue may be closed without further notice.
 title: [Bug] Bug summary
 labels: ''

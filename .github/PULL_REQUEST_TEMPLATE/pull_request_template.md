@@ -1,6 +1,6 @@
 ---
-name: Pull request
-about: Suggest a code change to this project
+name: Pull Request
+about: Suggest a code change to this project.
 title: ''
 labels: ''
 assignees: ''

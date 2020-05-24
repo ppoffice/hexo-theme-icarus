@@ -1,5 +1,5 @@
 ---
-name: Feature request
+name: Feature Request
 about: Please follow this template if you are requesting a new feature, or your issue may be closed without further notice.
 title: [FEAT] Feature request summary
 labels: ''
