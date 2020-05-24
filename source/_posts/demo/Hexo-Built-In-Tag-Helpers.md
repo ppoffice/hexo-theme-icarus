@@ -194,7 +194,7 @@ To embed an iframe:
 {% iframe url [width] [height] %}
 ```
 
-{% iframe https://blog.zhangruipeng.me/hexo-theme-icarus 100% 400 %}
+{% iframe https://ppoffice.github.io/hexo-theme-icarus 100% 400 %}
 
 ## Image
 
