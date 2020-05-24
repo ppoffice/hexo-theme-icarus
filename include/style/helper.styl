@@ -150,12 +150,17 @@ for n in (0 .. 5)
 /* ---------------------------------
  *          Image helpers
  * --------------------------------- */
-.image.is-7by3
-    padding-top: 42.8%
+.image
+    &.is-7by3
+        padding-top: 42.8%
 
-    img
-        bottom: 0
-        left: 0
-        position: absolute
-        right: 0
-        top: 0
+        img
+            bottom: 0
+            left: 0
+            position: absolute
+            right: 0
+            top: 0
+
+    .avatar
+        height: 100%
+        object-fit: cover
