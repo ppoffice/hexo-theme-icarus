@@ -1,7 +1,7 @@
 ---
 name: Feature request
-about: Please follow this template if you are requesting a new feature, or your issue may be closed without further notice. And redirect your Icarus customization questions to Gitter (https://gitter.im/hexo-theme-icarus/community).
-title: ''
+about: Please follow this template if you are requesting a new feature, or your issue may be closed without further notice.
+title: [FEAT] Feature request summary
 labels: ''
 assignees: ''
 

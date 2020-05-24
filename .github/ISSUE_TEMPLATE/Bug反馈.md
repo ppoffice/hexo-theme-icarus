@@ -1,7 +1,7 @@
 ---
 name: Bug反馈
-about: 请按照模板填写Bug反馈，否则你的Issue可能会被直接关闭。与Icarus使用相关的问题请转至Gitter（https://gitter.im/hexo-theme-icarus/community）。
-title: ''
+about: 请按照模板填写Bug反馈，否则你的Issue可能会被直接关闭。
+title: [Bug] 问题概述
 labels: ''
 assignees: ''
 

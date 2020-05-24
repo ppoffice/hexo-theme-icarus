@@ -1,7 +1,7 @@
 ---
 name: Bug report
-about: Please follow this template if you are reporting a bug, or your issue may be closed without further notice. And redirect your Icarus customization questions to Gitter (https://gitter.im/hexo-theme-icarus/community).
-title: ''
+about: Please follow this template if you are reporting a bug, or your issue may be closed without further notice.
+title: [Bug] Bug summary
 labels: ''
 assignees: ''
 
