@@ -1,11 +1,13 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Please follow this template if you are reporting a bug, or your issue may be closed without further notice. And redirect your Icarus customization questions to Gitter (https://gitter.im/hexo-theme-icarus/community).
 title: ''
 labels: ''
 assignees: ''
 
 ---
+
+> Make sure you go through the [Hexo docs](https://hexo.io), [Icarus user manual](https://ppoffice.github.io/hexo-theme-icarus/tags/Icarus-User-Guide/), and [GitHub issues](https://github.com/ppoffice/hexo-theme-icarus/issues) to see if the bug you are reporting has been already addressed by others.
 
 **Describe the bug**
 A clear and concise description of what the bug is.
@@ -13,34 +15,25 @@ A clear and concise description of what the bug is.
 **System and Environment**
 The version and configuration of Hexo and Icarus.
 
-- Hexo, OS, and node version (use `hexo version` command)
+- Hexo, OS, and node version (use `hexo version` command to view these information)
 - Site configuration file `_config.yml`
 - Theme configuration file `themes/icarus/_config.yml`
 - Any additional theme configuration files (post front-matter, `_config.post.yml`, or `_config.page.yml`)
+- Browser and version (e.g., Firefox 70.0, Chrome Android 80.0)
 
 **To Reproduce**
-Steps to reproduce the behavior:
+Steps to reproduce the behavior, such as:
+
 1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+2. Click on '...'
+3. Scroll down to '...'
+4. '...' error appears
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information if applicable):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information if applicable):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
 
 **Additional context**
 Add any other context about the problem here.
