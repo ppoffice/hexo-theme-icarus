@@ -60,7 +60,16 @@ $colors = merge($colors, $custom-colors)
 @import bulma-stylus-root + '/layout/_all'
 
 html
+    height: 100%
     -webkit-text-size-adjust: 100%
     -moz-text-size-adjust: 100%
     -ms-text-size-adjust: 100%
     text-size-adjust: 100%
+
+body
+    min-height: 100%
+    display: flex
+    flex-direction: column
+
+body > .section
+    flex-grow: 1
