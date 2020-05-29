@@ -454,15 +454,19 @@ providers:
         app_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         app_key: xxxxxxxxxxxxxxxxxxxxxx
         placeholder: ""                 # 可选填
-        notify: false                   # 可选填
-        verify: false                   # 可选填
-        avatar:                         # 可选填
+        avatar: mm                      # 可选填
         avatar_force: false             # 可选填
         meta: ["nick", "mail", "link"]  # 可选填
         page_size: 10                   # 可选填
+        lang: zh-CN                     # 可选填
         visitor: false                  # 可选填
         highlight: true                 # 可选填
         record_ip: false                # 可选填
+        server_urls:                    # 可选填
+        emoji_cdn:                      # 可选填
+        emoji_maps:                     # 可选填
+        enable_qq: false                # 可选填
+        required_fields: []             # 可选填
     {% endcodeblock %}
 
 

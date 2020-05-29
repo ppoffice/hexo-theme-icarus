@@ -7,8 +7,6 @@ comment:
     app_id: QuQK82UpN8gNkXIaKIszbPUY-gzGzoHsz
     app_key: B0D5cYRcXrwNGnBoQdRoDTqw
     placeholder: ""
-    notify: false
-    verify: false
     avatar:
     avatar_force: false
     meta: ["nick", "mail", "link"]

@@ -459,15 +459,19 @@ However, unlike the other services, Isso requires a web host for running the Iss
         app_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         app_key: xxxxxxxxxxxxxxxxxxxxxx
         placeholder: ""                 # Optional
-        notify: false                   # Optional
-        verify: false                   # Optional
-        avatar:                         # Optional
+        avatar: mm                      # Optional
         avatar_force: false             # Optional
         meta: ["nick", "mail", "link"]  # Optional
         page_size: 10                   # Optional
+        lang: zh-CN                     # Optional
         visitor: false                  # Optional
         highlight: true                 # Optional
         record_ip: false                # Optional
+        server_urls:                    # Optional
+        emoji_cdn:                      # Optional
+        emoji_maps:                     # Optional
+        enable_qq: false                # Optional
+        required_fields: []             # Optional
     {% endcodeblock %}
 
 
