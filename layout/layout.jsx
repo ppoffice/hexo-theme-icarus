@@ -12,7 +12,7 @@ module.exports = class extends Component {
         const { env, site, config, page, helper, body } = this.props;
 
         const language = page.lang || page.language || config.language;
-        const columnCount = Widgets.getColumnCount(config.widgets);
+        const columnCount = Widgets.getColumnCount(config.widgets, page);
 
         return <html lang={language ? language.substr(0, 2) : ''}>
             <Head env={env} site={site} config={config} helper={helper} page={page} />

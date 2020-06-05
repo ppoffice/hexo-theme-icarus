@@ -3,10 +3,24 @@ const { Component } = require('inferno');
 const view = require('hexo-component-inferno/lib/core/view');
 const classname = require('hexo-component-inferno/lib/util/classname');
 
-function formatWidgets(widgets) {
+function formatWidgets(widgets, page) {
     const result = {};
     if (Array.isArray(widgets)) {
         widgets.filter(widget => typeof widget === 'object').forEach(widget => {
+            // Decide the widget should show in the page or not
+            if ('pages' in widget && typeof widget.pages === 'object') {
+                const pageName = getPageName(page);
+                var pageShow = false;
+                widget.pages.forEach(item => {
+                    if (item === pageName) {
+                      pageShow = true;
+                    }
+                });
+                if (!pageShow) {
+                    return;
+                }
+            }
+            // Just left or right should the widget show in
             if ('position' in widget && (widget.position === 'left' || widget.position === 'right')) {
                 if (!(widget.position in result)) {
                     result[widget.position] = [widget];
@@ -19,15 +33,49 @@ function formatWidgets(widgets) {
     return result;
 }
 
-function hasColumn(widgets, position) {
-    if (Array.isArray(widgets)) {
-        return typeof widgets.find(widget => widget.position === position) !== 'undefined';
+// eg: index, archive, category, tag, post
+function getPageName(page) {
+    if (page.__index === true ) {
+        return 'index';
+    } else if (page.archive === true) {
+        return 'archive';
+    } else if (page.__categories === true) {
+        return 'category';
+    } else if (page.__tags === true) {
+        return 'tag';
+    } else if (page.__post === true) {
+        return 'post';
     }
-    return false;
 }
 
-function getColumnCount(widgets) {
-    return [hasColumn(widgets, 'left'), hasColumn(widgets, 'right')].filter(v => !!v).length + 1;
+function hasColumn(widgets, page, position) {
+    var hasColumn = false;
+    if (Array.isArray(widgets)) {
+        const pageName = getPageName(page);
+        widgets.forEach(widget => {
+            var hasPos = widget.position === position;
+            var hasPage = false;
+            if (!('pages' in widget)) {
+                hasPage = true;
+            } else if (Array.isArray(widget.pages)) {
+                widget.pages.forEach(item => {
+                    if (item === pageName) {
+                        hasPage = true;
+                        return;
+                    }
+                });
+            }
+            if (hasPos && hasPage) {
+                hasColumn = true;
+                return;
+            }
+        });
+    }
+    return hasColumn;
+}
+
+function getColumnCount(widgets, page) {
+    return [hasColumn(widgets, page, 'left') , hasColumn(widgets, page, 'right')].filter(v => !!v).length + 1;
 }
 
 function getColumnSizeClass(columnCount) {
@@ -60,8 +108,8 @@ function isColumnSticky(config, position) {
 class Widgets extends Component {
     render() {
         const { site, config, helper, page, position } = this.props;
-        const widgets = formatWidgets(config.widgets)[position] || [];
-        const columnCount = getColumnCount(config.widgets);
+        const widgets = formatWidgets(config.widgets, page)[position] || [];
+        const columnCount = getColumnCount(config.widgets, page);
 
         if (!widgets.length) {
             return null;
@@ -89,7 +137,7 @@ class Widgets extends Component {
                 }
                 return null;
             })}
-            {position === 'left' && hasColumn(config.widgets, 'right') ? <div class={classname({
+            {position === 'left' && hasColumn(config.widgets, page, 'right') ? <div class={classname({
                 'column-right-shadow': true,
                 'is-hidden-widescreen': true,
                 'is-sticky': isColumnSticky(config, 'right')
