@@ -5,7 +5,7 @@ tags:
 comment:
     type: gitalk
     owner: ppoffice
-    repo: Public-Gitment-Repo
+    repo: hexo-theme-icarus
     client_id: 4828a94319a33c305063
     client_secret: 5ea20158d656eaf0141dbb4eb38dd91737e3ca7d
     admin:

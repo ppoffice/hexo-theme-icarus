@@ -4,8 +4,8 @@ tags:
 - Demo
 comment:
     type: utterances
-    repo: ppoffice/Public-Gitment-Repo
-    label: icarus-utterances
+    repo: ppoffice/hexo-theme-icarus
+    label: utterances
     theme: github-light
     issue_term: pathname
 ---
