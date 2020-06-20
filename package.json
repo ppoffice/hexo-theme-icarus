@@ -22,7 +22,7 @@
     "bulma-stylus": "0.8.0",
     "deepmerge": "^4.2.2",
     "hexo": "^4.2.0",
-    "hexo-component-inferno": "^0.3.0",
+    "hexo-component-inferno": "^0.4.0",
     "hexo-log": "^1.0.0",
     "hexo-pagination": "^1.0.0",
     "hexo-renderer-inferno": "^0.1.3",
