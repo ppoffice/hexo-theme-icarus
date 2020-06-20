@@ -15,7 +15,7 @@ Any changes to the code base should not be released using an existing version.
 The commit message should follow the [Bluejava commit message format](https://github.com/bluejava/git-commit-guide).
 The supported scopes are:
 
-- **core** for changes related to Hexo extensions and Icarus-specific functions
+- **core** for changes related to Hexo extensions and theme-specific functions
 - **comment** for comment plugin layout, schema, style, or script changes
 - **share** for share plugin layout, schema, style, or script changes
 - **donate** for donation plugin layout, schema, style, or script changes
