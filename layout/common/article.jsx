@@ -16,6 +16,48 @@ function getWordCount(content) {
     return content ? (content.match(/[\u00ff-\uffff]|[a-zA-Z]+/g) || []).length : 0;
 }
 
+/**
+ * get the content of article : full text or summary
+ */
+function getArticleContent(index,page,config){
+
+   if(index){
+	/* more tag */   
+	if(page.excerpt)
+		return page.excerpt;
+	/* auto generate excerpt */
+	if(typeof(config.auto_excerpt)!= 'undefined' && config.auto_excerpt.enable){
+		if(config.auto_excerpt.length <= 0)
+			return "";
+		else{
+			var position = page.content.indexOf('\n', 0);
+			while( position < page.content.length-1 && position <= config.auto_excerpt.length-1){
+				var newPosition = page.content.indexOf('\n', position + 1);
+				if(newPosition <= 0){
+					break;
+				}else{
+					position = newPosition;
+				}
+			}
+			return page.content.substring(0,position+1);
+		}	
+	}
+   }
+   
+	return page.content;
+}	
+
+/**
+ * determine if there is a summary
+ */
+function isEnableExcerpt(page,config){
+	
+	if(page.excerpt || (typeof(config.auto_excerpt)!= 'undefined' && config.auto_excerpt.enable && config.auto_excerpt.length > 0)){
+		return true
+	}
+	return false;
+}	
+
 module.exports = class extends Component {
     render() {
         const { config, helper, page, index } = this.props;
@@ -76,7 +118,7 @@ module.exports = class extends Component {
                         {index ? <a class="link-muted" href={url_for(page.link || page.path)}>{page.title}</a> : page.title}
                     </h1>
                     {/* Content/Excerpt */}
-                    <div class="content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
+                    <div class="content" dangerouslySetInnerHTML={{ __html: getArticleContent(index,page,config) }}></div>
                     {/* Tags */}
                     {!index && page.tags && page.tags.length ? <div class="article-tags size-small mb-4">
                         <span class="mr-2">#</span>
@@ -85,7 +127,7 @@ module.exports = class extends Component {
                         })}
                     </div> : null}
                     {/* "Read more" button */}
-                    {index && page.excerpt ? <a class="article-more button is-small size-small" href={`${url_for(page.path)}#more`}>{__('article.more')}</a> : null}
+                    {index && isEnableExcerpt(page,config)? <a class="article-more button is-small size-small" href={`${url_for(page.path)}#more`}>{__('article.more')}</a> : null}
                     {/* Share button */}
                     {!index ? <Share config={config} page={page} helper={helper} /> : null}
                 </article>
