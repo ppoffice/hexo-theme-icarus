@@ -13,6 +13,8 @@ exemptLabels:
   - tutorial:v1
   - tutorial:v2
   - tutorial:v3
+  - Gitalk
+  - utterances
 # Label to use when marking an issue as stale
 staleLabel: wontfix
 # Comment to post when marking an issue as stale. Set to `false` to disable
