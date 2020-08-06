@@ -1,6 +1,6 @@
 const moment = require('moment');
 const { Component, Fragment } = require('inferno');
-const Paginator = require('hexo-component-inferno/lib/view/misc/paginator');
+const Paginator = require('./misc/paginator');
 const ArticleMedia = require('hexo-component-inferno/lib/view/common/article_media');
 
 module.exports = class extends Component {
@@ -23,7 +23,7 @@ module.exports = class extends Component {
                                 name: category.name
                             }));
                             return <ArticleMedia
-                                thumbnail={has_thumbnail(post) ? get_thumbnail(post) : null}
+                                thumbnail={get_thumbnail(post)}
                                 url={url_for(post.link || post.path)}
                                 title={post.title}
                                 date={date(post.date)}

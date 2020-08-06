@@ -27,6 +27,7 @@ article:
     read: '閱讀文'
     about: '大約'
     words: '個字'
+    edited: '編輯于'
 donate:
     title: '喜歡這篇文章嗎? 贊助一下作者吧!'
     alipay: '支付寶'

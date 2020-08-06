@@ -1,0 +1,511 @@
+.waifu {
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    font-size: 0;
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px);
+}
+.waifu:hover {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+.waifu-tips {
+    opacity: 0;
+    margin: -20px 20px;
+    padding: 5px 10px;
+    border: 1px solid rgba(200, 200, 200, 0.8);
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 3px 15px 2px rgba(255, 255, 255, 0.2);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: absolute;
+    animation-delay: 5s;
+    animation-duration: 50s;
+    animation-iteration-count: infinite;
+    animation-name: shake;
+    animation-timing-function: ease-in-out;
+}
+.waifu-tool {
+    display: none;
+    color: #fff;
+    text-shadow:-1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    bottom: 20px;
+    right: 12px;
+    position: absolute;
+}
+.waifu:hover .waifu-tool {
+    display: block;
+}
+.waifu-tool span {
+    display: block;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s;
+}
+.waifu-tool span:hover {
+    color: #eee;
+}
+.waifu #live2d{
+    position: relative;
+}
+@keyframes shake {
+    2% {
+        transform: translate(0.5px, -1.5px) rotate(-0.5deg);
+    }
+    4% {
+        transform: translate(0.5px, 1.5px) rotate(1.5deg);
+    }
+    6% {
+        transform: translate(1.5px, 1.5px) rotate(1.5deg);
+    }
+    8% {
+        transform: translate(2.5px, 1.5px) rotate(0.5deg);
+    }
+    10% {
+        transform: translate(0.5px, 2.5px) rotate(0.5deg);
+    }
+    12% {
+        transform: translate(1.5px, 1.5px) rotate(0.5deg);
+    }
+    14% {
+        transform: translate(0.5px, 0.5px) rotate(0.5deg);
+    }
+    16% {
+        transform: translate(-1.5px, -0.5px) rotate(1.5deg);
+    }
+    18% {
+        transform: translate(0.5px, 0.5px) rotate(1.5deg);
+    }
+    20% {
+        transform: translate(2.5px, 2.5px) rotate(1.5deg);
+    }
+    22% {
+        transform: translate(0.5px, -1.5px) rotate(1.5deg);
+    }
+    24% {
+        transform: translate(-1.5px, 1.5px) rotate(-0.5deg);
+    }
+    26% {
+        transform: translate(1.5px, 0.5px) rotate(1.5deg);
+    }
+    28% {
+        transform: translate(-0.5px, -0.5px) rotate(-0.5deg);
+    }
+    30% {
+        transform: translate(1.5px, -0.5px) rotate(-0.5deg);
+    }
+    32% {
+        transform: translate(2.5px, -1.5px) rotate(1.5deg);
+    }
+    34% {
+        transform: translate(2.5px, 2.5px) rotate(-0.5deg);
+    }
+    36% {
+        transform: translate(0.5px, -1.5px) rotate(0.5deg);
+    }
+    38% {
+        transform: translate(2.5px, -0.5px) rotate(-0.5deg);
+    }
+    40% {
+        transform: translate(-0.5px, 2.5px) rotate(0.5deg);
+    }
+    42% {
+        transform: translate(-1.5px, 2.5px) rotate(0.5deg);
+    }
+    44% {
+        transform: translate(-1.5px, 1.5px) rotate(0.5deg);
+    }
+    46% {
+        transform: translate(1.5px, -0.5px) rotate(-0.5deg);
+    }
+    48% {
+        transform: translate(2.5px, -0.5px) rotate(0.5deg);
+    }
+    50% {
+        transform: translate(-1.5px, 1.5px) rotate(0.5deg);
+    }
+    52% {
+        transform: translate(-0.5px, 1.5px) rotate(0.5deg);
+    }
+    54% {
+        transform: translate(-1.5px, 1.5px) rotate(0.5deg);
+    }
+    56% {
+        transform: translate(0.5px, 2.5px) rotate(1.5deg);
+    }
+    58% {
+        transform: translate(2.5px, 2.5px) rotate(0.5deg);
+    }
+    60% {
+        transform: translate(2.5px, -1.5px) rotate(1.5deg);
+    }
+    62% {
+        transform: translate(-1.5px, 0.5px) rotate(1.5deg);
+    }
+    64% {
+        transform: translate(-1.5px, 1.5px) rotate(1.5deg);
+    }
+    66% {
+        transform: translate(0.5px, 2.5px) rotate(1.5deg);
+    }
+    68% {
+        transform: translate(2.5px, -1.5px) rotate(1.5deg);
+    }
+    70% {
+        transform: translate(2.5px, 2.5px) rotate(0.5deg);
+    }
+    72% {
+        transform: translate(-0.5px, -1.5px) rotate(1.5deg);
+    }
+    74% {
+        transform: translate(-1.5px, 2.5px) rotate(1.5deg);
+    }
+    76% {
+        transform: translate(-1.5px, 2.5px) rotate(1.5deg);
+    }
+    78% {
+        transform: translate(-1.5px, 2.5px) rotate(0.5deg);
+    }
+    80% {
+        transform: translate(-1.5px, 0.5px) rotate(-0.5deg);
+    }
+    82% {
+        transform: translate(-1.5px, 0.5px) rotate(-0.5deg);
+    }
+    84% {
+        transform: translate(-0.5px, 0.5px) rotate(1.5deg);
+    }
+    86% {
+        transform: translate(2.5px, 1.5px) rotate(0.5deg);
+    }
+    88% {
+        transform: translate(-1.5px, 0.5px) rotate(1.5deg);
+    }
+    90% {
+        transform: translate(-1.5px, -0.5px) rotate(-0.5deg);
+    }
+    92% {
+        transform: translate(-1.5px, -1.5px) rotate(1.5deg);
+    }
+    94% {
+        transform: translate(0.5px, 0.5px) rotate(-0.5deg);
+    }
+    96% {
+        transform: translate(2.5px, -0.5px) rotate(-0.5deg);
+    }
+    98% {
+        transform: translate(-1.5px, -1.5px) rotate(-0.5deg);
+    }
+    0%, 100% {
+        transform: translate(0, 0) rotate(0);
+    }
+}
+@font-face {
+  font-family: 'Flat-UI-Icons';
+  src: url('flat-ui-icons-regular.eot');
+  src: url('flat-ui-icons-regular.eot?#iefix') format('embedded-opentype'), url('flat-ui-icons-regular.woff') format('woff'), url('flat-ui-icons-regular.ttf') format('truetype'), url('flat-ui-icons-regular.svg#flat-ui-icons-regular') format('svg');
+}
+[class^="fui-"],
+[class*="fui-"] {
+  font-family: 'Flat-UI-Icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fui-triangle-up:before {
+  content: "\e600";
+}
+.fui-triangle-down:before {
+  content: "\e601";
+}
+.fui-triangle-up-small:before {
+  content: "\e602";
+}
+.fui-triangle-down-small:before {
+  content: "\e603";
+}
+.fui-triangle-left-large:before {
+  content: "\e604";
+}
+.fui-triangle-right-large:before {
+  content: "\e605";
+}
+.fui-arrow-left:before {
+  content: "\e606";
+}
+.fui-arrow-right:before {
+  content: "\e607";
+}
+.fui-plus:before {
+  content: "\e608";
+}
+.fui-cross:before {
+  content: "\e609";
+}
+.fui-check:before {
+  content: "\e60a";
+}
+.fui-radio-unchecked:before {
+  content: "\e60b";
+}
+.fui-radio-checked:before {
+  content: "\e60c";
+}
+.fui-checkbox-unchecked:before {
+  content: "\e60d";
+}
+.fui-checkbox-checked:before {
+  content: "\e60e";
+}
+.fui-info-circle:before {
+  content: "\e60f";
+}
+.fui-alert-circle:before {
+  content: "\e610";
+}
+.fui-question-circle:before {
+  content: "\e611";
+}
+.fui-check-circle:before {
+  content: "\e612";
+}
+.fui-cross-circle:before {
+  content: "\e613";
+}
+.fui-plus-circle:before {
+  content: "\e614";
+}
+.fui-pause:before {
+  content: "\e615";
+}
+.fui-play:before {
+  content: "\e616";
+}
+.fui-volume:before {
+  content: "\e617";
+}
+.fui-mute:before {
+  content: "\e618";
+}
+.fui-resize:before {
+  content: "\e619";
+}
+.fui-list:before {
+  content: "\e61a";
+}
+.fui-list-thumbnailed:before {
+  content: "\e61b";
+}
+.fui-list-small-thumbnails:before {
+  content: "\e61c";
+}
+.fui-list-large-thumbnails:before {
+  content: "\e61d";
+}
+.fui-list-numbered:before {
+  content: "\e61e";
+}
+.fui-list-columned:before {
+  content: "\e61f";
+}
+.fui-list-bulleted:before {
+  content: "\e620";
+}
+.fui-window:before {
+  content: "\e621";
+}
+.fui-windows:before {
+  content: "\e622";
+}
+.fui-loop:before {
+  content: "\e623";
+}
+.fui-cmd:before {
+  content: "\e624";
+}
+.fui-mic:before {
+  content: "\e625";
+}
+.fui-heart:before {
+  content: "\e626";
+}
+.fui-location:before {
+  content: "\e627";
+}
+.fui-new:before {
+  content: "\e628";
+}
+.fui-video:before {
+  content: "\e629";
+}
+.fui-photo:before {
+  content: "\e62a";
+}
+.fui-time:before {
+  content: "\e62b";
+}
+.fui-eye:before {
+  content: "\e62c";
+}
+.fui-chat:before {
+  content: "\e62d";
+}
+.fui-home:before {
+  content: "\e62e";
+}
+.fui-upload:before {
+  content: "\e62f";
+}
+.fui-search:before {
+  content: "\e630";
+}
+.fui-user:before {
+  content: "\e631";
+}
+.fui-mail:before {
+  content: "\e632";
+}
+.fui-lock:before {
+  content: "\e633";
+}
+.fui-power:before {
+  content: "\e634";
+}
+.fui-calendar:before {
+  content: "\e635";
+}
+.fui-gear:before {
+  content: "\e636";
+}
+.fui-bookmark:before {
+  content: "\e637";
+}
+.fui-exit:before {
+  content: "\e638";
+}
+.fui-trash:before {
+  content: "\e639";
+}
+.fui-folder:before {
+  content: "\e63a";
+}
+.fui-bubble:before {
+  content: "\e63b";
+}
+.fui-export:before {
+  content: "\e63c";
+}
+.fui-calendar-solid:before {
+  content: "\e63d";
+}
+.fui-star:before {
+  content: "\e63e";
+}
+.fui-star-2:before {
+  content: "\e63f";
+}
+.fui-credit-card:before {
+  content: "\e640";
+}
+.fui-clip:before {
+  content: "\e641";
+}
+.fui-link:before {
+  content: "\e642";
+}
+.fui-tag:before {
+  content: "\e643";
+}
+.fui-document:before {
+  content: "\e644";
+}
+.fui-image:before {
+  content: "\e645";
+}
+.fui-facebook:before {
+  content: "\e646";
+}
+.fui-youtube:before {
+  content: "\e647";
+}
+.fui-vimeo:before {
+  content: "\e648";
+}
+.fui-twitter:before {
+  content: "\e649";
+}
+.fui-spotify:before {
+  content: "\e64a";
+}
+.fui-skype:before {
+  content: "\e64b";
+}
+.fui-pinterest:before {
+  content: "\e64c";
+}
+.fui-path:before {
+  content: "\e64d";
+}
+.fui-linkedin:before {
+  content: "\e64e";
+}
+.fui-google-plus:before {
+  content: "\e64f";
+}
+.fui-dribbble:before {
+  content: "\e650";
+}
+.fui-behance:before {
+  content: "\e651";
+}
+.fui-stumbleupon:before {
+  content: "\e652";
+}
+.fui-yelp:before {
+  content: "\e653";
+}
+.fui-wordpress:before {
+  content: "\e654";
+}
+.fui-windows-8:before {
+  content: "\e655";
+}
+.fui-vine:before {
+  content: "\e656";
+}
+.fui-tumblr:before {
+  content: "\e657";
+}
+.fui-paypal:before {
+  content: "\e658";
+}
+.fui-lastfm:before {
+  content: "\e659";
+}
+.fui-instagram:before {
+  content: "\e65a";
+}
+.fui-html5:before {
+  content: "\e65b";
+}
+.fui-github:before {
+  content: "\e65c";
+}
+.fui-foursquare:before {
+  content: "\e65d";
+}
+.fui-dropbox:before {
+  content: "\e65e";
+}
+.fui-android:before {
+  content: "\e65f";
+}
+.fui-apple:before {
+  content: "\e660";
+}

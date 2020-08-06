@@ -1,0 +1,362 @@
+# Version of the configuration file
+version: 3.0.0
+# Icarus theme variant, can be "default" or "cyberpunk"
+variant: default
+# Path or URL to the website's logo
+logo:
+    light: /images/logo.png
+    dark: /images/logo-dark.png
+# Page metadata configurations
+head:
+    # URL or path to the website's icon
+    favicon: /favicon.ico
+    # Canonical URL of the current page
+    #canonical_url: 
+    # Open Graph metadata
+    # https://hexo.io/docs/helpers.html#open-graph
+    #open_graph:
+        # Page title (og:title) (optional)
+        # You should leave this blank for most of the time
+        #title: 
+        # Page type (og:type) (optional)
+        # You should leave this blank for most of the time
+        #type: blog
+        # Page URL (og:url) (optional)
+        # You should leave this blank for most of the time
+        #url: 
+        # Page cover (og:image) (optional) Default to the Open Graph image or thumbnail of the page
+        # You should leave this blank for most of the time
+        #image: 
+        # Site name (og:site_name) (optional)
+        # You should leave this blank for most of the time
+        #site_name: 
+        # Page author (article:author) (optional)
+        # You should leave this blank for most of the time
+        #author: 
+        # Page description (og:description) (optional)
+        # You should leave this blank for most of the time
+        #description: 
+        # Twitter card type (twitter:card)
+        #twitter_card: 
+        # Twitter ID (twitter:creator)
+        #twitter_id: 
+        # Twitter ID (twitter:creator)
+        #twitter_site: 
+        # Google+ profile link (deprecated)
+        #google_plus: 
+        # Facebook admin ID
+        #fb_admins: 
+        # Facebook App ID
+        #fb_app_id: 
+    # Structured data of the page
+    # https://developers.google.com/search/docs/guides/intro-structured-data
+    structured_data:
+        # Page title (optional)
+        # You should leave this blank for most of the time
+        title: 
+        # Page description (optional)
+        # You should leave this blank for most of the time
+        description: 
+        # Page URL (optional)
+        # You should leave this blank for most of the time
+        url: 
+        # Page author (article:author) (optional)
+        # You should leave this blank for most of the time
+        author: 
+        # Page images (optional) Default to the Open Graph image or thumbnail of the page
+        # You should leave this blank for most of the time
+        image: 
+    # Additional HTML meta tags in an array
+    meta:
+        # Meta tag specified in <attribute>=<value> style
+        # E.g., name=theme-color;content=#123456 => <meta name="theme-color" content="#123456">
+        - ''
+    # URL or path to the website's RSS atom.xml
+    rss: /atom.xml
+# Page top navigation bar configurations
+navbar:
+    # Naviagtion menu items
+    menu:
+        首页: /
+        时间轴: /archives/
+        分类: /categories/
+        标签: /tags/
+        网盘: 'https://imaegoo.azurewebsites.net'
+        留言板: /messages/
+        友情链接: /friends/
+        关于: /about/
+    # Links to be shown on the right of the navigation bar
+    links:
+        # Admin:
+        #     icon: fas fa-cog
+        #     url: 'https://admin.imaegoo.com'
+# Page footer configurations
+footer:
+    # Links to be shown on the right of the footer section
+    links:
+        GitHub:
+            icon: fab fa-github
+            url: 'https://github.com/imaegoo'
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: 'https://creativecommons.org/'
+        Attribution 4.0 International:
+            icon: fab fa-creative-commons-by
+            url: 'https://creativecommons.org/licenses/by/4.0/'
+# Article related configurations
+article:
+    # Code highlight settings
+    highlight:
+        # Code highlight themes
+        # https://github.com/highlightjs/highlight.js/tree/master/src/styles
+        theme: atom-one-light
+        # Show copy code button
+        clipboard: true
+        # Default folding status of the code blocks. Can be "", "folded", "unfolded"
+        fold: unfolded
+    # Whether to show thumbnail image for every article
+    thumbnail: true
+    # Whether to show estimated article reading time
+    readtime: true
+    # Whether to show article edit time
+    edittime: true
+    # og_image
+    og_image: '/images/og_image.png'
+# Search plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/
+search:
+    type: insight
+# Comment plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
+comment:
+    # Name of the comment plugin
+    type: valine
+    app_id: KXqnNiIP6eBni1P77oHLYWxs-9Nh9j0Va   # (required) LeanCloud application id
+    app_key: UYpzui8LMDUfgkyvizKxLwS7           # (required) LeanCloud application key
+    notify: false                               # (optional) receive email notification
+    verify: false                               # (optional) show verification code
+    placeholder: '说点什么吧！（提示：填写邮箱即可接收回复通知~）'
+    visitor: true
+    record_ip: true
+    emoji_cdn: //i0.hdslb.com/bfs/emote/
+    emoji_maps:
+        tv_doge: "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png"
+        tv_亲亲: "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png"
+        tv_偷笑: "bb690d4107620f1c15cff29509db529a73aee261.png"
+        tv_再见: "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png"
+        tv_冷漠: "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png"
+        tv_发怒: "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png"
+        tv_发财: "34db290afd2963723c6eb3c4560667db7253a21a.png"
+        tv_可爱: "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png"
+        tv_吐血: "09dd16a7aa59b77baa1155d47484409624470c77.png"
+        tv_呆: "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png"
+        tv_呕吐: "9f996894a39e282ccf5e66856af49483f81870f3.png"
+        tv_困: "241ee304e44c0af029adceb294399391e4737ef2.png"
+        tv_坏笑: "1f0b87f731a671079842116e0991c91c2c88645a.png"
+        tv_大佬: "093c1e2c490161aca397afc45573c877cdead616.png"
+        tv_大哭: "23269aeb35f99daee28dda129676f6e9ea87934f.png"
+        tv_委屈: "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png"
+        tv_害羞: "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png"
+        tv_尴尬: "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png"
+        tv_微笑: "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png"
+        tv_思考: "90cf159733e558137ed20aa04d09964436f618a1.png"
+        tv_惊吓: "0d15c7e2ee58e935adc6a7193ee042388adc22af.png"
+        tv_打脸: "56ab10b624063e966bfcb76ea5dc4794d87dfd47.png"
+        tv_抓狂: "fe31c08edad661d63762b04e17b8d5ae3c71a757.png"
+        tv_抠鼻: "c666f55e88d471e51bbd9fab9bb308110824a6eb.png"
+        tv_斜眼笑: "911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png"
+        tv_无奈: "ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png"
+        tv_晕: "5443c22b4d07fb1907ccc610c8e6db254f2461b7.png"
+        tv_流汗: "cead1c351ab8d79e9f369605beb90148db0fbed3.png"
+        tv_流泪: "7e71cde7858f0cd50d74b0264aa26db612a8a167.png"
+        tv_流鼻血: "c32d39db2737f89b904ca32700d140a9241b0767.png"
+        tv_点赞: "f85c354995bd99e28fc76c869bfe42ba6438eff4.png"
+        tv_生气: "26702dcafdab5e8225b43ffd23c94ac1ff932654.png"
+        tv_生病: "8b0ec90e6b86771092a498c54f09fc94621c1900.png"
+        tv_疑问: "0793d949b18d7be716078349c202c15ff166f314.png"
+        tv_白眼: "c1d59f439e379ee50eef488bcb5e5378e5044ea4.png"
+        tv_皱眉: "72ccad6679fea0d14cce648b4d818e09b8ffea2d.png"
+        tv_目瞪口呆: "0b8cb81a68de5d5365212c99375e7ace3e7891b7.png"
+        tv_睡着: "8b196675b53af58264f383c50ad0945048290b33.png"
+        tv_笑哭: "1abc628f6d4f4caf9d0e7800878f4697abbc8273.png"
+        tv_腼腆: "89712c0d4af73e67f89e35cbc518420380a7f6f4.png"
+        tv_色: "61822c7e9aae5da76475e7892534545336b23a6f.png"
+        tv_调侃: "4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png"
+        tv_调皮: "b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png"
+        tv_鄙视: "6e72339f346a692a495b123174b49e4e8e781303.png"
+        tv_闭嘴: "c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png"
+        tv_难过: "87f46748d3f142ebc6586ff58860d0e2fc8263ba.png"
+        tv_馋: "fc7e829b845c43c623c8b490ee3602b7f0e76a31.png"
+        tv_鬼脸: "0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png"
+        tv_黑人问号: "45821a01f51bc867da9edbaa2e070410819a95b2.png"
+        tv_鼓掌: "1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
+    enable_qq: true
+    required_fields: ['nick','mail']
+# Donate plugin configurations
+donates:
+    # Alipay donate button configurations
+    -
+        type: alipay
+        # Alipay qrcode image URL
+        qrcode: '/images/alipay.jpg'
+    # Wechat donate button configurations
+    -
+        type: wechat
+        # Wechat qrcode image URL
+        qrcode: '/images/wechat.png'
+# Share plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/
+# Sidebar configurations.
+# Please be noted that a sidebar is only visible when it has at least one widget
+sidebar:
+    # Left sidebar configurations
+    left:
+        # Whether the sidebar sticks to the top when page scrolls
+        sticky: true
+    # Right sidebar configurations
+    right:
+        # Whether the sidebar sticks to the top when page scrolls
+        sticky: true
+# Sidebar widget configurations
+# http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
+widgets:
+    # Profile widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: profile
+        # Author name
+        author: iMaeGoo
+        # Author title
+        author_title: 虹墨空间站
+        # Author's current location
+        location: Shanghai, China
+        # URL or path to the avatar image
+        avatar: /images/avatar.jpg
+        # Whether show the rounded avatar image
+        avatar_rounded: true
+        # Email address for the Gravatar
+        gravatar: 
+        # URL or path for the follow button
+        follow_link: 'https://weibo.com/534456689'
+        # Links to be shown on the bottom of the profile widget
+        social_links:
+            Twitter:
+                icon: fab fa-twitter
+                url: 'https://twitter.com/iMaeGoo'
+            QQ:
+                icon: fab fa-qq
+                url: 'tencent://message/?uin=29553407&Site=www.imaegoo.com&Menu=yes'
+            Mail:
+                icon: fas fa-envelope
+                url: 'mailto:hello@imaegoo.com'
+            RSS:
+                icon: fas fa-rss
+                url: '/atom.xml'
+    # Archives widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: archives
+    # Categories widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: categories
+    # Tags widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: tags
+    # Recommendation links widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: links
+        # Names and URLs of the sites
+        links:
+            maemoの風船が！: 'https://maemo.cc'
+            刘向洋的博客: 'https://liuxiangyang.space'
+            米米的博客: 'https://zhangshuqiao.org'
+            辣椒の酱: 'https://removeif.github.io'
+            Sakitami的集装箱: 'https://blog.skihome.xyz'
+            明月逐人归: 'https://mingshan.fun'
+            宇宙湾: 'https://yuzhouwan.com'
+            Ray’s Blog: 'https://raycoder.me'
+            一见倾心: 'https://bitcrush.top'
+            Flexiston: 'https://www.flexiston.com'
+    # Google AdSense unit configurations
+    #-
+    #    # Where should the widget be placed, left sidebar or right sidebar
+    #    position: left
+    #    type: adsense
+    #    # AdSense client ID
+    #    client_id: 'ca-pub-5716633754544549'
+    #    # AdSense AD unit ID
+    #    slot_id: '6035187824'
+    # Table of contents widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: right
+        type: toc
+    # Recent posts widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: right
+        type: recent_posts
+    # Google FeedBurner email subscription widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: right
+        type: subscribe_email
+        # Hint text under the email input
+        description: Powered by Google feedburner
+        # Feedburner ID
+        feedburner_id: 'imaegoo'
+# Plugin configurations
+plugins:
+    # Enable page startup animations
+    animejs: false
+    # Show the "back to top" button
+    back_to_top: true
+    # Baidu Analytics plugin settings
+    # https://tongji.baidu.com
+    baidu_analytics:
+        # Baidu Analytics tracking ID
+        tracking_id: 4d5b97d11341c6f57b58fc622dc1ac38
+    # BuSuanZi site/page view counter
+    # https://busuanzi.ibruce.info
+    busuanzi: true
+    # Enable the lightGallery and Justified Gallery plugins
+    # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
+    gallery: true
+    # Google Analytics plugin settings
+    # https://analytics.google.com
+    google_analytics:
+        # Google Analytics tracking ID
+        tracking_id: 
+    # Hotjar user feedback plugin
+    # https://www.hotjar.com/
+    hotjar:
+        # Hotjar site id
+        site_id: 
+    # Enable the KaTeX math typesetting supprot
+    # https://katex.org/
+    katex: false
+    # Enable the MathJax math typesetting support
+    # https://www.mathjax.org/
+    mathjax: false
+    # Enable the Outdated Browser plugin
+    # http://outdatedbrowser.com/
+    outdated_browser: false
+    # Show a progress bar at top of the page on page loading
+    progressbar: true
+# CDN provider settings
+# https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
+providers:
+    # Name or URL template of the JavaScript and/or stylesheet CDN provider
+    cdn: jsdelivr
+    # Name or URL template of the webfont CDN provider
+    fontcdn: host
+    # Name or URL of the fontawesome icon font CDN provider
+    iconcdn: host

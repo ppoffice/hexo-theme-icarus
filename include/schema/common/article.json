@@ -45,6 +45,12 @@
             "description": "Whether to show estimated article reading time",
             "default": true,
             "nullable": true
+        },
+        "edittime": {
+            "type": "boolean",
+            "description": "Whether to show article edit time",
+            "default": false,
+            "nullable": true
         }
     }
 }
