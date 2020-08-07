@@ -125,7 +125,7 @@ Valine.Cacheable = cacheComponent(Valine, 'comment.valine', props => {
         emojiMaps: comment.emoji_maps,
         enableQQ: comment.enable_qq,
         requiredFields: comment.required_fields,
-        jsUrl: helper.cdn('valine', '1.4.14', 'dist/Valine.min.js')
+        jsUrl: '/js/imaegoo/valine.js'
     };
 });
 
