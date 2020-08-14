@@ -12,15 +12,25 @@
 
 ### :cd: Installation
 
-Download & extract or `git clone` Icarus from GitHub to your blog's theme folder, and that's it!
+**Method 1: Direct download**
+
+Download & extract or `git clone` Icarus from GitHub to your blog's theme folder:
 
 ```shell
-$ git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
-$ hexo s // start a live server
+$ git clone https://github.com/ppoffice/hexo-theme-icarus.git -b <version> themes/icarus
 ```
 
-Once started, Icarus will remind you of any missing dependencies to install.
-And it will create a theme configuration file (`_config.yml`) if it is not there.
+**Method 2: Install via NPM (new in Hexo 5.0 and Icarus 4.0)**
+
+```shell
+$ npm install hexo-theme-icarus
+```
+
+Then, activate Icarus in Hexo's configuration file:
+
+```shell
+$ hexo config theme icarus
+```
 
 ### :gift: Features
 

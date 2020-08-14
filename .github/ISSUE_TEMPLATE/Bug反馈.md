@@ -17,7 +17,7 @@ assignees: ''
 
 - Hexo，操作系统，和Node.js的版本（使用`hexo version`命令来查看）
 - 站点配置文件`_config.yml`
-- 主题配置文件`themes/icarus/_config.yml`
+- 主题配置文件`_config.icarus.yml`或`themes/icarus/_config.yml`
 - 其他额外的配置文件（文章front-matter，`_config.post.yml`，或`_config.page.yml`）
 - 浏览器版本（如Firefox 70.0，Chrome Android 80.0）
 
