@@ -29,11 +29,10 @@ function getPageTitle(page, siteTitle, helper) {
 
 module.exports = class extends Component {
     render() {
-        const { env, site, config, helper, page } = this.props;
+        const { site, config, helper, page } = this.props;
         const { url_for, cdn, fontcdn, iconcdn, is_post } = helper;
         const {
             url,
-            meta_generator = true,
             head = {},
             article,
             highlight,
@@ -106,7 +105,6 @@ module.exports = class extends Component {
 
         return <head>
             <meta charset="utf-8" />
-            {meta_generator ? <meta name="generator" content={`Hexo ${env.version}`} /> : null}
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
             {meta && meta.length ? <MetaTags meta={meta} /> : null}
 
