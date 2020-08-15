@@ -30,7 +30,7 @@ jobs:
           restore-keys: npm-cache
       - run: npm install
       - run: >
-          npm install $(node -e "const deps=require('./package.json').peerDependencies;
+          npm install $(node -e "const deps=require('./themes/icarus/package.json').peerDependencies;
           console.log(Object.keys(deps).map(key=>key+'@'+deps[key]).join(' '));")
       - run: npx hexo config theme next
       - run: time npx hexo g
