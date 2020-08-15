@@ -1,13 +1,22 @@
 {
   "name": "hexo-theme-icarus",
   "version": "4.0.0-rc.1",
+  "author": "ppoffice <ppoffice@users.noreply.github.com>",
+  "license": "MIT",
+  "description": "A simple, delicate, and modern theme for Hexo",
+  "keywords": [
+    "hexo",
+    "theme",
+    "icarus"
+  ],
+  "homepage": "https://github.com/ppoffice/hexo-theme-icarus",
+  "repository": "https://github.com/ppoffice/hexo-theme-icarus.git",
+  "bugs": {
+    "url": "https://github.com/ppoffice/hexo-theme-icarus/issues"
+  },
   "engines": {
     "node": ">=10.13.0"
   },
-  "description": "A simple, delicate, and modern theme for Hexo",
-  "repository": "https://github.com/ppoffice/hexo-theme-icarus.git",
-  "author": "ppoffice <ppoffice@users.noreply.github.com>",
-  "license": "MIT",
   "scripts": {
     "lint": "eslint --ext .js --ext .jsx --ext .json ."
   },

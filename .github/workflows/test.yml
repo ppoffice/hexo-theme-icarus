@@ -1,0 +1,33 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10, latest]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: hexojs/hexo-starter
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-cache
+          restore-keys: npm-cache
+      - run: npm install
+      - uses: actions/checkout@v2
+        with:
+          path: themes/icarus
+      - uses: actions/checkout@v2
+        with:
+          repository: SukkaLab/hexo-many-posts
+          path: source/_posts/hexo-many-posts
+      - run: npx hexo config theme next
+      - run: time npx hexo g
