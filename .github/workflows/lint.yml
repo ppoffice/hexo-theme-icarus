@@ -10,6 +10,6 @@ jobs:
       - uses: actions/setup-node@v1
       - run: npm install
       - run: >
-        npm install $(node -e "const deps=require('./package.json').peerDependencies;
-        console.log(Object.keys(deps).map(key=>key+'@'+deps[key]).join(' '));")
+          npm install $(node -e "const deps=require('./package.json').peerDependencies;
+          console.log(Object.keys(deps).map(key=>key+'@'+deps[key]).join(' '));")
       - run: npm run lint
