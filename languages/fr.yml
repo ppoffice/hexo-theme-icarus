@@ -11,27 +11,42 @@ common:
     post:
         one: 'Article'
         other: 'Articles'
+    page:
+        one: 'Page'
+        other: 'Pages'
     prev: 'Préc'
     next: 'Suiv'
 widget:
-    follow: 'SUIVRE'
+    follow: 'Suivre'
     recents: 'Récents'
     links: 'Liens'
-    tag_cloud: 'Nuage de tags'
     catalogue: 'Catalogue'
+    subscribe_email: 'Abonnez-vous aux mises à jour'
+    subscribe: 'Abonnez-vous'
+    adsense: 'Annonce'
 article:
-    more: 'Read More'
+    created_at: 'Publié il y a&nbsp;%s'
+    updated_at: 'Mis à jour il y a&nbsp;%s'
+    more: 'Lire la suite'
     comments: 'Commentaires'
-    read: 'read'
-    about: 'About'
-    words: 'words'
+    read_time: '%s de lecture'
+    word_count:
+        one: 'Environ %d mot'
+        other: 'Environ %d mots'
+donate:
+    title: "Vous aimez cet article? Soutenez l'auteur avec"
+    alipay: 'Alipay'
+    wechat: 'Wechat'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
+    buymeacoffee: 'Achetez-moi un café'
+plugin:
+    backtotop: 'Retour au sommet'
+    visit_count: '%s&nbsp;visites'
+    visitor_count: 'Visité par %s utilisateurs'
 search:
     search: 'Search'
     hint: 'Type something...'
-insight:
-    hint: 'Type something...'
-    posts: 'Articles'
-    pages: 'Pages'
-    categories: 'Catégories'
-    tags: 'Tags'
-    untitled: '(Untitled)'
+    no_result: 'Aucun résultat pour'
+    untitled: '(Sans titre)'
+    empty_preview: '(Pas de prévisualisation)'

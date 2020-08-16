@@ -8,29 +8,31 @@ common:
     tag:
         one: 'Tag'
         other: 'Tags'
-    page:
-        one: 'Page'
-        other: 'Pages'
     post:
         one: 'Post'
         other: 'Posts'
+    page:
+        one: 'Page'
+        other: 'Pages'
     prev: 'Previous'
     next: 'Next'
 widget:
     follow: 'Follow'
-    recents: 'Recent'
+    recents: 'Recents'
     links: 'Links'
-    tag_cloud: 'Tag Cloud'
     catalogue: 'Catalogue'
-    subscribe_email: 'Subscribe to Updates'
+    subscribe_email: 'Subscribe for updates'
     subscribe: 'Subscribe'
     adsense: 'Advertisement'
 article:
-    more: 'Read More'
+    created_at: 'Posted&nbsp;%s'
+    updated_at: 'Updated&nbsp;%s'
+    more: 'Read more'
     comments: 'Comments'
-    read: 'read'
-    about: 'About'
-    words: 'words'
+    read_time: '%s read'
+    word_count:
+        one: 'About %d word'
+        other: 'About %d words'
 donate:
     title: 'Like this article? Support the author with'
     alipay: 'Alipay'
@@ -39,9 +41,9 @@ donate:
     patreon: 'Patreon'
     buymeacoffee: 'Buy me a coffee'
 plugin:
-    backtotop: 'Back to Top'
-    visit: '%s visits'
-    visitor: 'Visited by %s users'
+    backtotop: 'Back to top'
+    visit_count: '%s&nbsp;visits'
+    visitor_count: 'Visited by %s users'
 search:
     search: 'Search'
     hint: 'Type something...'

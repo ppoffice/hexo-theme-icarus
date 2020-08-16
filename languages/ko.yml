@@ -11,27 +11,42 @@ common:
     post:
         one: '포스트'
         other: '포스트'
+    page:
+        one: '페이지'
+        other: '페이지'
     prev: '이전'
     next: '다음'
 widget:
     follow: '팔로우'
     recents: '최근 글'
     links: '링크'
-    tag_cloud: '태그 클라우드'
     catalogue: '카탈로그'
+    subscribe_email: '업데이트 구독'
+    subscribe: '구독'
+    adsense: '광고'
 article:
+    created_at: '%s게시 됨'
+    updated_at: '%s업데이트 됨'
     more: '자세히 보기'
     comments: '댓글'
-    read: '읽기'
-    about: '대략'
-    words: '단어'
+    read_time: '%s안에 읽기'
+    word_count:
+        one: '약 %d 단어'
+        other: '약 %d 단어'
+donate:
+    title: '이 기사처럼? 저자 지원'
+    alipay: 'Alipay'
+    wechat: 'Wechat'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
+    buymeacoffee: '나에게 커피 사줘'
+plugin:
+    backtotop: '맨 위로'
+    visit_count: '%s회 방문'
+    visitor_count: '%s명의 사용자가 방문 함'
 search:
     search: '검색'
     hint: '입력 하세요...'
-insight:
-    hint: '입력 하세요...'
-    posts: '포스트'
-    pages: '페이지'
-    categories: '카테고리'
-    tags: '태그'
+    no_result: '에 대한 결과 없음'
     untitled: '(제목없음)'
+    empty_preview: '(미리보기 없음)'
