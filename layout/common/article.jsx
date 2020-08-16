@@ -85,7 +85,7 @@ module.exports = class extends Component {
                         })}
                     </div> : null}
                     {/* "Read more" button */}
-                    {index && page.excerpt ? <a class="article-more button is-small size-small" href={`${url_for(page.path)}#more`}>{__('article.more')}</a> : null}
+                    {index && page.excerpt ? <a class="article-more button is-small size-small" href={`${url_for(page.link || page.path)}#more`}>{__('article.more')}</a> : null}
                     {/* Share button */}
                     {!index ? <Share config={config} page={page} helper={helper} /> : null}
                 </article>
