@@ -9,6 +9,9 @@ language: zh-CN
 toc: true
 donates:
     -
+        type: afdian
+        url: https://afdian.net/
+    -
         type: alipay
         qrcode: /gallery/donate/alipay.png
     -
@@ -62,6 +65,23 @@ donates:
     list-style-type: simp-chinese-informal;
 }
 </style>
+
+## 爱发电
+
+**安装指南**
+
+1. 注册[爱发电](https://afdian.net/)并复制个人页面的地址。
+
+2. 将如下配置添加到主题配置中：
+
+    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    donates:
+        -
+            type: afdian
+            # 个人赞助页面的地址
+            url: /path/to/afdian/personal/page
+    {% endcodeblock %}
+
 
 ## 支付宝
 

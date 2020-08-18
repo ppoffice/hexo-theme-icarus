@@ -258,6 +258,7 @@ providers:
         proxy:                          # 可选填
         flip_move_options:              # 可选填
         enable_hotkey: true             # 可选填
+        language: zh-CN                 # 可选填
     {% endcodeblock %}
 
 3. 关于上述配置的含义和可选值，请参考[Gitalk文档](https://github.com/gitalk/gitalk)或

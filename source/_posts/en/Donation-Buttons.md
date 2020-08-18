@@ -9,6 +9,9 @@ language: en
 toc: true
 donates:
     -
+        type: afdian
+        url: https://afdian.net/
+    -
         type: alipay
         qrcode: /gallery/donate/alipay.png
     -
@@ -56,6 +59,22 @@ donates:
 Please refer to it for a complete list of supported buttons and their configuration details.
 </div>
 </article>
+
+## Afdian.net
+
+**Installation Guide**
+
+1. Register for [Afdian.net](https://afdian.net/) and copy the URL to your personal page.
+2. Add the following configuration to your theme configurations:
+
+    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    donates:
+        -
+            type: afdian
+            # Path to your afdian.net personal page
+            url: /path/to/afdian.net/personal/page
+    {% endcodeblock %}
+
 
 ## Alipay
 

@@ -255,6 +255,7 @@ for the detailed configuration process of DisqusJS.
         proxy:                          # Optional
         flip_move_options:              # Optional
         enable_hotkey: true             # Optional
+        language: zh-CN                 # Optional
     {% endcodeblock %}
 
 3. You can review the description and possible values of the above configuration at 
