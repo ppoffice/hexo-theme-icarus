@@ -35,6 +35,7 @@ article:
         other: '約%d語'
 donate:
     title: 'この記事は気に入りましたか？ 著者をサポートする'
+    afdian: 'Afdian.net'
     alipay: 'Alipay'
     wechat: 'Wechat'
     paypal: 'Paypal'

@@ -35,6 +35,7 @@ article:
         other: 'Environ %d mots'
 donate:
     title: "Vous aimez cet article? Soutenez l'auteur avec"
+    afdian: 'Afdian.net'
     alipay: 'Alipay'
     wechat: 'Wechat'
     paypal: 'Paypal'

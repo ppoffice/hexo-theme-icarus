@@ -35,6 +35,7 @@ article:
         other: '大约%d个字'
 donate:
     title: '喜欢这篇文章？打赏一下作者吧'
+    afdian: '爱发电'
     alipay: '支付宝'
     wechat: '微信'
     paypal: 'Paypal'

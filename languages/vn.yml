@@ -35,6 +35,7 @@ article:
         other: 'Khoảng %d từ'
 donate:
     title: 'Bạn đọc có thể ủng hộ blog qua'
+    afdian: 'Afdian.net'
     alipay: 'Alipay'
     wechat: 'Wechat'
     paypal: 'Paypal'

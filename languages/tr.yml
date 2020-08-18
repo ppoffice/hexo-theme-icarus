@@ -35,6 +35,7 @@ article:
         other: 'Yaklaşık %d kelime'
 donate:
     title: 'Bu makaleyi beğendiniz mi? Yazarı şununla destekleyin'
+    afdian: 'Afdian.net'
     alipay: 'Alipay'
     wechat: 'Wechat'
     paypal: 'Paypal'

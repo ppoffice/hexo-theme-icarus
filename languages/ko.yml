@@ -35,6 +35,7 @@ article:
         other: '약 %d 단어'
 donate:
     title: '이 기사처럼? 저자 지원'
+    afdian: 'Afdian.net'
     alipay: 'Alipay'
     wechat: 'Wechat'
     paypal: 'Paypal'

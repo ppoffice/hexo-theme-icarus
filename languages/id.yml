@@ -35,6 +35,7 @@ article:
         other: 'Sekitar %d kata'
 donate:
     title: 'Suka dengan artikel ini? Bantu penulis dengan donasi melalui'
+    afdian: 'Afdian.net'
     alipay: 'Alipay'
     wechat: 'Wechat'
     paypal: 'Paypal'

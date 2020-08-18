@@ -35,6 +35,7 @@ article:
         other: '大約%d個字'
 donate:
     title: '喜歡這篇文章嗎? 贊助一下作者吧!'
+    afdian: '愛發電'
     alipay: '支付寶'
     wechat: 'WeChat'
     paypal: 'PayPal'

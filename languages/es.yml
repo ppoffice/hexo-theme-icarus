@@ -36,6 +36,7 @@ article:
         other: 'Aproximadamente %d palabras'
 donate:
     title: '¿Te gusta este artículo? Apoya al autor con'
+    afdian: 'Afdian.net'
     alipay: 'Alipay'
     wechat: 'Wechat'
     paypal: 'Paypal'

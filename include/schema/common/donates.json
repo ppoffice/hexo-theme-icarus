@@ -7,6 +7,9 @@
         "type": "object",
         "oneOf": [
             {
+                "$ref": "/donate/afdian.json"
+            },
+            {
                 "$ref": "/donate/alipay.json"
             },
             {
