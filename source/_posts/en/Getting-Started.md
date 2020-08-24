@@ -70,7 +70,7 @@ To install Icarus, take one of the following approaches:
   To install Icarus as a node package via NPM, run the following command
   from the root of your Hexo site:
 
-  {% codeblock "Git Bash/Shell" %}
+  {% codeblock "Shell" %}
   npm install -S hexo-theme-icarus
   {% endcodeblock %}
 </div>

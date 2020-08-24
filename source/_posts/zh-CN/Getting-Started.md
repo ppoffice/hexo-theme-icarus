@@ -1,5 +1,5 @@
 title: Icarus快速上手
-date: 2016-01-04
+date: 2016-01-05
 tags:
 - Getting Started
 - Icarus用户指南
@@ -51,7 +51,7 @@ Icarus同时也提供了超多插件与挂件来满足你的多元的站点个�
   从GitHub的仓库中下载源码的压缩包并解压到你Hexo站点的主题目录中。
   或者，你可以使用Git来克隆Icarus的代码仓库到`themes`目录下：
 
-  {% codeblock "Git Bash命令行" %}
+  {% codeblock "Git Bash/命令行" %}
   git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
   {% endcodeblock %}
 
@@ -59,7 +59,7 @@ Icarus同时也提供了超多插件与挂件来满足你的多元的站点个�
   如果你想同时下载Git仓库的完整提交历史，请同时省略`--depth 1`。
   另外，你也可以使用下面的命令将Icarus安装为Git子模块(submodule)：
 
-  {% codeblock "Git Bash命令行" %}
+  {% codeblock "Git Bash/命令行" %}
   git submodule add https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
   {% endcodeblock %}
 </div>
@@ -69,7 +69,7 @@ Icarus同时也提供了超多插件与挂件来满足你的多元的站点个�
 
   若要使用NPM将Icarus安装为Node包，在你的Hexo站点根目录运行如下命令：
 
-  {% codeblock "Git Bash/Shell" %}
+  {% codeblock "命令行" %}
   npm install -S hexo-theme-icarus
   {% endcodeblock %}
 </div>
