@@ -1,6 +1,5 @@
 title: Icarus User Guide - Configuring the Theme
 date: 2020-03-01
-thumbnail: /gallery/thumbnails/vector_landscape_2.svg
 categories:
 - Configuration
 tags:
@@ -8,6 +7,8 @@ tags:
 - Icarus User Guide
 language: en
 toc: true
+cover: /gallery/covers/vector_landscape_2.svg
+thumbnail: /gallery/covers/vector_landscape_2.svg
 ---
 
 Icarus' default theme configuration file is `themes/icarus/_config.yml`.
@@ -251,30 +252,32 @@ Additionally, you can fold an individual code block in the Markdown file using t
 {% endcodeblock %}
 ```
 
-### Thumbnail
+### Cover & Thumbnail
 
-You can add a thumbnail image to your post in two steps:
+You can add a cover image to your post by adding the `cover` property in post's front-matter:
 
-1. Make sure the thumbnail is enabled in the theme configurations:
+{% codeblock post.md lang:yaml %}
+title: Getting Started with Icarus
+cover: /gallery/covers/cover.jpg
+---
+Post content...
+{% endcodeblock %}
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
-    article:
-        thumbnail: true
-    {% endcodeblock %}
+Similarly, you may set the thumbnail of your post in the front-matter as well:
 
-2. Provide a path or URL to the thumbnail image file in the front-matter of your post:
+{% codeblock post.md lang:yaml %}
+title: Getting Started with Icarus
+thumbnail: /gallery/thumbnails/thumbnail.jpg
+---
+Post content...
+{% endcodeblock %}
 
-    {% codeblock post.md lang:yaml %}
-    title: Getting Started with Icarus
-    thumbnail: /gallery/thumbnails/desert.jpg
-    ---
-    Post content...
-    {% endcodeblock %}
+The thumbnail will show in the archive page as well as in the recent post widget.
 
-    If you choose to use the image path in the front-matter, you need to ensure the path is absolute
-    or relative to the source directory of your site.
-    For example, to use `<your blog>/source/gallery/image.jpg` as a thumbnail image, you need to put
-    `thumbnail: /gallery/image.jpg` in the front-matter.
+If you choose to use the image path in the front-matter, you need to ensure the path is absolute
+or relative to the source directory of your site.
+For example, to use `<your blog>/source/gallery/image.jpg` as a thumbnail image, you need to put
+`thumbnail: /gallery/image.jpg` in the front-matter.
 
 ### Read Time
 

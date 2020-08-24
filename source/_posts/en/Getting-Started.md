@@ -1,11 +1,13 @@
 title: Getting Started with Icarus
 date: 2020-04-01
-thumbnail: /gallery/thumbnails/vector_landscape_1.svg
 tags:
 - Getting Started
 - Icarus User Guide
 language: en
+cover: /gallery/covers/vector_landscape_1.svg
+thumbnail: /gallery/covers/vector_landscape_1.svg
 ---
+
 Welcome to the Icarus documentation site!
 Icarus is a simple, delicate, and modern theme for the static site generator Hexo.
 It strives to be elegant in design while simple and straightforward to use.
@@ -26,21 +28,54 @@ open to a sea of improvement possibilities.
 
 Before you continue to the installation of Icarus, take some time to review the 
 [Hexo documentation](https://hexo.io).
-To install Icarus, download the source code tarball from the GitHub and extract it to your Hexo site's theme 
-directory.
-Alternatively, you can use Git to clone the Icarus repository to the `themes` directory:
+To install Icarus, take one of the following approaches:
 
-{% codeblock "Git Bash/Shell" %}
-git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
-{% endcodeblock %}
+<div class="tabs is-boxed my-3">
+  <ul class="mx-0 my-0">
+    <li class="is-active">
+      <a href="#install-source">
+        <span class="icon is-small"><i class="fas fa-file-code" aria-hidden="true"></i></span>
+        <span>Install from source</span>
+      </a>
+    </li>
+    <li>
+      <a href="#install-npm">
+        <span class="icon is-small"><i class="fas fa-cubes" aria-hidden="true"></i></span>
+        <span>Install via NPM</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="install-source" class="tab-content">
+  Download the source code tarball from the GitHub and extract it to your Hexo site's theme 
+  directory.
+  Alternatively, you can use Git to clone the Icarus repository to the `themes` directory:
 
-You can omit `-b <version number>` to get the latest development version of Icarus.
-Leave `--depth 1` out if you want to download full Git commit history of Icarus as well.
-Furthermore, you can install Icarus as a Git submodule with the following command:
+  {% codeblock "Git Bash/Shell" %}
+  git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
+  {% endcodeblock %}
 
-{% codeblock "Git Bash/Shell" %}
-git submodule add https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
-{% endcodeblock %}
+  You can omit `-b <version number>` to get the latest development version of Icarus.
+  Leave `--depth 1` out if you want to download full Git commit history of Icarus as well.
+  Furthermore, you can install Icarus as a Git submodule with the following command:
+
+  {% codeblock "Git Bash/Shell" %}
+  git submodule add https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
+  {% endcodeblock %}
+</div>
+
+<div id="install-npm" class="tab-content is-hidden">
+  <span class="tag is-primary mb-3">New in Hexo 5.0 and Icarus 4.0</span>
+
+  To install Icarus as a node package via NPM, run the following command
+  from the root of your Hexo site:
+
+  {% codeblock "Git Bash/Shell" %}
+  npm install -S hexo-theme-icarus
+  {% endcodeblock %}
+</div>
+
+<hr>
 
 Next, activate Icarus in your site's `_config.yml` file:
 

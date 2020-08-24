@@ -1,6 +1,5 @@
 title: Icarus快速上手
 date: 2016-01-04
-thumbnail: /gallery/thumbnails/chinese-painting.jpg
 tags:
 - Getting Started
 - Icarus用户指南
@@ -9,6 +8,8 @@ providers:
     cdn: loli
     fontcdn: loli
     iconcdn: loli
+cover: /gallery/covers/chinese-painting.jpg
+thumbnail: /gallery/covers/chinese-painting.jpg
 ---
 
 欢迎使用Icarus！
@@ -28,20 +29,52 @@ Icarus同时也提供了超多插件与挂件来满足你的多元的站点个�
 <!-- more -->
 
 在你继续安装Icarus之前，请先花些时间阅览[Hexo文档](https://hexo.io)。
-如要安装Icarus，从GitHub的仓库中下载源码的压缩包并解压到你Hexo站点的主题目录中。
-或者，你可以使用Git来克隆Icarus的代码仓库到`themes`目录下：
+如要安装Icarus，你可以选择如下两种方式中的任意一种：
 
-{% codeblock "Git Bash命令行" %}
-git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
-{% endcodeblock %}
+<div class="tabs is-boxed my-3">
+  <ul class="mx-0 my-0">
+    <li class="is-active">
+      <a href="#install-source">
+        <span class="icon is-small"><i class="fas fa-file-code" aria-hidden="true"></i></span>
+        <span>从源码安装</span>
+      </a>
+    </li>
+    <li>
+      <a href="#install-npm">
+        <span class="icon is-small"><i class="fas fa-cubes" aria-hidden="true"></i></span>
+        <span>使用NPM安装</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="install-source" class="tab-content">
+  从GitHub的仓库中下载源码的压缩包并解压到你Hexo站点的主题目录中。
+  或者，你可以使用Git来克隆Icarus的代码仓库到`themes`目录下：
 
-你可以省略`-b <version number>`来获取Icarus的最新开发版本。
-如果你想同时下载Git仓库的完整提交历史，请同时省略`--depth 1`。
-另外，你也可以使用下面的命令将Icarus安装为Git子模块(submodule)：
+  {% codeblock "Git Bash命令行" %}
+  git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
+  {% endcodeblock %}
 
-{% codeblock "Git Bash命令行" %}
-git submodule add https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
-{% endcodeblock %}
+  你可以省略`-b <version number>`来获取Icarus的最新开发版本。
+  如果你想同时下载Git仓库的完整提交历史，请同时省略`--depth 1`。
+  另外，你也可以使用下面的命令将Icarus安装为Git子模块(submodule)：
+
+  {% codeblock "Git Bash命令行" %}
+  git submodule add https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
+  {% endcodeblock %}
+</div>
+
+<div id="install-npm" class="tab-content is-hidden">
+  <span class="tag is-primary mb-3">Hexo 5.0和Icarus 4.0新增功能</span>
+
+  若要使用NPM将Icarus安装为Node包，在你的Hexo站点根目录运行如下命令：
+
+  {% codeblock "Git Bash/Shell" %}
+  npm install -S hexo-theme-icarus
+  {% endcodeblock %}
+</div>
+
+<hr>
 
 接下来，在你的站点的`_config.yml`文件中的开启Icarus：
 

@@ -1,6 +1,8 @@
 title: 常见问题
 date: 2016-01-03
 language: zh-CN
+tags:
+- Icarus用户指南
 toc: true
 providers:
     cdn: loli

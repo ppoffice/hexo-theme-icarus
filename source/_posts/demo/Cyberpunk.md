@@ -1,5 +1,5 @@
 title: Cyberpunk Theme Variant
-date: 2018-10-22 19:23:58
+date: 2020-02-01
 tags:
 - Demo
 variant: cyberpunk
@@ -53,7 +53,8 @@ widgets:
     -
         position: right
         type: tags
-thumbnail: /gallery/thumbnails/CP77-KV-en.jpg
+cover: /gallery/covers/CP77-KV-en.jpg
+thumbnail: /gallery/covers/CP77-KV-en.jpg
 ---
 
 Icarus includes a new variant called Cyberpunk starting from version 3.0.0.

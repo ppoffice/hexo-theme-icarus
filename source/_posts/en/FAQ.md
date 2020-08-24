@@ -1,7 +1,10 @@
 title: FAQ
-date: 2020-02-01
-thumbnail: /gallery/thumbnails/vector_landscape_3.svg
+date: 2020-02-02
+tags:
+- Icarus User Guide
 toc: true
+cover: /gallery/covers/vector_landscape_3.svg
+thumbnail: /gallery/covers/vector_landscape_3.svg
 ---
 
 The article answers some frequently asked questions about Icarus.

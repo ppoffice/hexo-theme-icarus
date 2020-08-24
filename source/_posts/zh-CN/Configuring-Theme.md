@@ -256,28 +256,30 @@ article:
 {% endcodeblock %}
 ```
 
-### 缩略图
+### 封面 & 缩略图
 
-你可以通过两步来为你的文章添加缩略图：
+若要为文章添加封面图，请在文章的front-matter中添加`cover`选项：
 
-1. 确保主题配置中缩略图功能已启用：
+{% codeblock post.md lang:yaml %}
+title: Icarus快速上手
+cover: /gallery/covers/cover.jpg
+---
+Post content...
+{% endcodeblock %}
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
-    article:
-        thumbnail: true
-    {% endcodeblock %}
+类似地，你也可以在文章的front-matter中为文章设置缩略图：
 
-2. 在你的文章的front-matter中提供缩略图的路径或URL地址：
+{% codeblock post.md lang:yaml %}
+title: Icarus快速上手
+thumbnail: /gallery/thumbnails/thumbnail.jpg
+---
+Post content...
+{% endcodeblock %}
 
-    {% codeblock post.md lang:yaml %}
-    title: Icarus快速上手
-    thumbnail: /gallery/thumbnails/desert.jpg
-    ---
-    文章内容...
-    {% endcodeblock %}
+文章的缩略图会显示在归档页面和最新文章挂件中。
 
-    如果你在front-matter中使用的是图片的路径，你需要确保它是绝对或者相对于你的source目录的路径。
-    例如，为使用`<your blog>/source/gallery/image.jpg`作为缩略图，你需要在front-matter中使用`/gallery/image.jpg`作为图片路径。
+如果你在front-matter中使用的是图片的路径，你需要确保它是绝对或者相对于你的source目录的路径。
+例如，为使用`<your blog>/source/gallery/image.jpg`作为缩略图，你需要在front-matter中使用`/gallery/image.jpg`作为图片路径。
 
 ### 文章阅读时间
 
