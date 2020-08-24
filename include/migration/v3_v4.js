@@ -6,6 +6,9 @@ module.exports = class extends Migration {
     }
 
     upgrade(config) {
+        if (typeof config.article === 'object') {
+            delete config.article.thumbnail;
+        }
         return config;
     }
 };

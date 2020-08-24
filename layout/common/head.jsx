@@ -64,8 +64,10 @@ module.exports = class extends Component {
 
         if (typeof page.og_image === 'string') {
             images = [page.og_image];
-        } else if (helper.has_thumbnail(page)) {
-            images = [helper.get_thumbnail(page)];
+        } else if (typeof page.cover === 'string') {
+            images = [url_for(page.cover)];
+        } else if (typeof page.thumbnail === 'string') {
+            images = [url_for(page.thumbnail)];
         } else if (article && typeof article.og_image === 'string') {
             images = [article.og_image];
         } else if (page.content && page.content.includes('<img')) {

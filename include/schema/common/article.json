@@ -34,12 +34,6 @@
             },
             "nullable": true
         },
-        "thumbnail": {
-            "type": "boolean",
-            "description": "Whether to show thumbnail image for every article",
-            "default": true,
-            "nullable": true
-        },
         "readtime": {
             "type": "boolean",
             "description": "Whether to show estimated article reading time",

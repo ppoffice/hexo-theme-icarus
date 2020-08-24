@@ -6,7 +6,7 @@ const ArticleMedia = require('hexo-component-inferno/lib/view/common/article_med
 module.exports = class extends Component {
     render() {
         const { config, page, helper } = this.props;
-        const { url_for, __, has_thumbnail, get_thumbnail, date_xml, date } = helper;
+        const { url_for, __, date_xml, date } = helper;
 
         const language = page.lang || page.language || config.language;
 
@@ -23,12 +23,12 @@ module.exports = class extends Component {
                                 name: category.name
                             }));
                             return <ArticleMedia
-                                thumbnail={has_thumbnail(post) ? get_thumbnail(post) : null}
                                 url={url_for(post.link || post.path)}
                                 title={post.title}
                                 date={date(post.date)}
                                 dateXml={date_xml(post.date)}
-                                categories={categories} />;
+                                categories={categories}
+                                thumbnail={post.thumbnail ? url_for(post.thumbnail) : null} />;
                         })}
                     </div>
                 </div>
