@@ -77,23 +77,20 @@ body
 body > .section
     flex-grow: 1
 
-// Modify the style of the scroll bar only for -webkit browsers
-::-webkit-scrollbar
-    width: 8px
-    height: 8px
++desktop()
+    ::-webkit-scrollbar
+        width: 8px
+        height: 8px
 
-// Modify the style of the scroll bar only for -webkit browsers
-::-webkit-scrollbar-track
-    border-radius: 3px
-    background: rgba(0,0,0,0.06)
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.1)
+    ::-webkit-scrollbar-track
+        border-radius: 3px
+        background: rgba(0,0,0,0.06)
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.1)
 
-// Modify the style of the scroll bar only for -webkit browsers
-::-webkit-scrollbar-thumb
-    border-radius: 3px
-    background: rgba(0,0,0,0.12)
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.2)
+    ::-webkit-scrollbar-thumb
+        border-radius: 3px
+        background: rgba(0,0,0,0.12)
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.2)
 
-// Modify the style of the scroll bar only for -webkit browsers
-::-webkit-scrollbar-thumb:hover
-    background: rgba(0,0,0,0.24)
+    ::-webkit-scrollbar-thumb:hover
+        background: rgba(0,0,0,0.24)
