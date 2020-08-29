@@ -106,7 +106,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 
 6. Finally, set the search engine to Algolia in your theme configurations:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: algolia
     {% endcodeblock %}
@@ -118,7 +118,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 
 1. Open theme configuration file and set search engine to Baidu:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: baidu
     {% endcodeblock %}
@@ -154,7 +154,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 
     maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: google_cse
         cx: 012345601234560123456:abcdefghijklmn
@@ -168,7 +168,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 1. Insight is the default search engine of this site.
    You can enable it using the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: insight
     {% endcodeblock %}

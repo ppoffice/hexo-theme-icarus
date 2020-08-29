@@ -68,7 +68,7 @@ providers:
 
     对应的主题配置为：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         baidu_analytics:
             tracking_id: 3f06f2b732a5b1034c989f74e28d0eea
@@ -81,7 +81,7 @@ providers:
 
 1. 将`plugins` > `busuanzi`设置为`true`来开启不蒜子访客计数器并在网页尾部和每篇博文的头部展示访问次数。
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         busuanzi: true
     {% endcodeblock %}
@@ -113,7 +113,7 @@ providers:
 
     对应的主题配置为：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         cnzz:
             id: 123456789000
@@ -146,7 +146,7 @@ providers:
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-analytics-get-code.png 360 '"获取代码 - Google Analytics" "获取代码 - Google Analytics"' %}
    <br>
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         google_analytics:
             tracking_id: UA-12345678-0
@@ -175,7 +175,7 @@ providers:
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/hotjar-get-code.png 360 '"获取代码 - Hotjar" "获取代码 - Hotjar"' %}
    <br>
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         hotjar:
             site_id: 1234567

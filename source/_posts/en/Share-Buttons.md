@@ -75,7 +75,7 @@ Use it with caution.
 
     maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: addthis
         install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-xxxxxxxxxxxxx
@@ -91,7 +91,7 @@ Use it with caution.
 1. You can activate AddToAny without user registration.
    Just put the following code to your theme configurations:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: addtoany
     {% endcodeblock %}
@@ -116,7 +116,7 @@ Take the following steps if you want to customize the share buttons:
    you need to copy the layout file 
    ([src/view/share/addtoany.jsx](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.2/src/view/share/addtoany.jsx)) 
    of AddToAny from this repository
-   to `themes/icarus/layout/share/addtoany.jsx`.
+   to `<icarus_directory>/layout/share/addtoany.jsx`.
    Then, replace the AddToAny code in `addtoany.jsx` and fix the package import in the file header.
 
    For example, assume the following code is what you get from the last step:
@@ -135,7 +135,7 @@ Take the following steps if you want to customize the share buttons:
 
     then you should make the following changes to `addtoany.jsx`:
 
-    {% codeblock themes/icarus/layout/share/addtoany.jsx lang:diff >folded %}
+    {% codeblock &lt;icarus_directory&gt;/layout/share/addtoany.jsx lang:diff >folded %}
     const { Component, Fragment } = require('inferno');
     - const { cacheComponent } = require('../../util/cache');
     + const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
@@ -193,7 +193,7 @@ Use other services as alternatives.
 1. You can activate Baidu Share without user registration.
    Just put the following code to your theme configurations:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: bdshare
     {% endcodeblock %}
@@ -215,7 +215,7 @@ Use other services as alternatives.
 1. You can activate Share.js without user registration.
    Just put the following code to your theme configurations:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: sharejs
     {% endcodeblock %}
@@ -261,7 +261,7 @@ Use other services as alternatives.
 
     maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: sharethis
         install_url: https://platform-api.sharethis.com/js/sharethis.js#property=xxxxxxxxxxxxx&product=inline-share-buttons

@@ -36,7 +36,7 @@ Icarus 3 runs on Node.js 8.3.0 or a newer version.
 It also requires Hexo 4.2.0 or a newer version.
 Apart from that, make sure you have all the Node.js dependencies installed.
 You can find them in the `peerDependencies` section of the 
-[`themes/icarus/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
+[`<icarus_directory>/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
 file.
 Also, remove all unused Node.js dependencies from your site, or they may cause strange problems to 
 Icarus.
@@ -55,7 +55,7 @@ Change the following setting:
 + language: <language_name>
 {% endcodeblock %}
 
-You can find all available translations under the `themes/icarus/languages` directory.
+You can find all available translations under the `<icarus_directory>/languages` directory.
 The `<language_name>` is the translation file name without the `.yml` extension.
 
 
@@ -67,11 +67,11 @@ How do I change the page width? How do I use the one/two/three-column layout?
 </div>
 </article>
 
-To change the page width, edit the style file `themes/icarus/include/style/responsive.styl`.
+To change the page width, edit the style file `<icarus_directory>/include/style/responsive.styl`.
 It defines the container width under different screen sizes.
 
-To change the width of the widgets or main content, edit `themes/icarus/layout/common/widgets.jsx` and 
-`themes/icarus/layout/layout.jsx`.
+To change the width of the widgets or main content, edit `<icarus_directory>/layout/common/widgets.jsx` and 
+`<icarus_directory>/layout/layout.jsx`.
 Find the CSS class names like `is-12`, `is-8-tablet`, and `is-4-widescreen` in these files.
 The number in the class names marks the number of columns a widget or main content takes.
 The screen size after the number, such as `tablet` and `widescreen`, refers to the condition when the column
@@ -81,7 +81,7 @@ Change the number in the class names such that the column count of main column a
 
 For example, to have the main content column wider on `widescreen`, you can make the following changes:
 
-{% codeblock themes/icarus/layout/layout.jsx lang:diff >folded %}
+{% codeblock &lt;icarus_directory&gt;/layout/layout.jsx lang:diff >folded %}
  <div class={classname({
      column: true,
      'order-2': true,
@@ -92,7 +92,7 @@ For example, to have the main content column wider on `widescreen`, you can make
      'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
 {% endcodeblock %}
 
-{% codeblock themes/icarus/layout/common/widgets.jsx lang:diff >folded %}
+{% codeblock &lt;icarus_directory&gt;/layout/common/widgets.jsx lang:diff >folded %}
  function getColumnSizeClass(columnCount) {
      switch (columnCount) {
          case 2:
@@ -126,13 +126,13 @@ This help theme developers better reuse common components across different theme
 components easy for average users.
 
 To customize these components, copy the layout files from the `hexo-component-inferno` repository and place
-them in the corresponding directories under `themes/icarus/layout`.
+them in the corresponding directories under `<icarus_directory>/layout`.
 For example, if you want to customize the Valine comment plugin, you can copy 
 [`src/view/comment/valine.jsx`](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/src/view/comment/valine.jsx) 
-from the `hexo-component-inferno` repository to `themes/icarus/layout/comment/valine.jsx`.
+from the `hexo-component-inferno` repository to `<icarus_directory>/layout/comment/valine.jsx`.
 Also, remember to fix Node.js imports like the following:
 
-{% codeblock themes/icarus/layout/comment/valine.jsx lang:diff %}
+{% codeblock &lt;icarus_directory&gt;/layout/comment/valine.jsx lang:diff %}
 - const { cacheComponent } = require('../../util/cache');
 + const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 {% endcodeblock %}
@@ -231,7 +231,7 @@ If you don't want to enable a certain plugin or widget, delete it or comment it 
 
 For example, you can disable the comment plugins by commenting out the following lines:
 
-{% codeblock themes/icarus/_config.yml lang:diff %}
+{% codeblock _config.icarus.yml lang:diff %}
 - comment:
 -     type: disqus
 -     shortname: 

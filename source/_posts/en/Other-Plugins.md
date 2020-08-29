@@ -46,7 +46,7 @@ The gallery plugin of Icarus contains both [lightGallery](https://sachinchoolur.
 [Justified Gallery](https://miromannino.github.io/Justified-Gallery/) extensions.
 To enable it, set `plugins` > `gallery` to `true` in your theme configurations.
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     gallery: true
 {% endcodeblock %}
@@ -115,7 +115,7 @@ You can also view the full image using lightGallery by clicking on any image.
 You can use the KaTeX plugin to render \\(\TeX\\) expressions.
 To enable KaTeX, please set `plugins` > `katex` to `true` in your theme configurations.
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     katex: true
 {% endcodeblock %}
@@ -171,7 +171,7 @@ $$
 You can use MathJax to render \\(\TeX\\), MathML, or AsciiMath expressions.
 To enable MathJax, please set `plugins` > `mathjax` to `true` in your theme configurations.
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     mathjax: true
 {% endcodeblock %}
@@ -356,7 +356,7 @@ your site's visitors and remind them to upgrade their browsers.
 To enable it, please set `plugins` > `outdated_browser` to `true` in your theme configurations.
 Click [here](https://bestvpn.org/outdatedbrowser/en) to see a live preview of this plugin.
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     outdated_browser: true
 {% endcodeblock %}
@@ -369,7 +369,7 @@ plugins:
 Page Loading Animations are enabled by Icarus by default.
 To disable it, please set `plugins` > `animejs` to `false` in your theme configurations.
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     animejs: false
 {% endcodeblock %}
@@ -377,7 +377,7 @@ plugins:
 Also, to disable the page loading progressbar, please set `plugins` > `progressbar` to `false` in 
 your theme configurations.
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     progressbar: false
 {% endcodeblock %}

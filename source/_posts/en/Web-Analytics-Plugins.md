@@ -69,7 +69,7 @@ Use them with caution.
 
     maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         baidu_analytics:
             tracking_id: 3f06f2b732a5b1034c989f74e28d0eea
@@ -83,7 +83,7 @@ Use them with caution.
 1. Set the `plugins` > `busuanzi` to `true` to enable [BuSuanZi web counter](https://busuanzi.ibruce.info/) 
    and display the number of visitors on the header of each blog post and the bottom of the page.
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         busuanzi: true
     {% endcodeblock %}
@@ -116,7 +116,7 @@ Use them with caution.
 
     maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         cnzz:
             id: 123456789000
@@ -149,7 +149,7 @@ Use them with caution.
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-analytics-get-code.png 360 '"Get Code - Google Analytics" "Get Code - Google Analytics"' %}
    <br>
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         google_analytics:
             tracking_id: UA-12345678-0
@@ -179,7 +179,7 @@ Use them with caution.
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/hotjar-get-code.png 360 '"Get Code - Hotjar" "Get Code - Hotjar"' %}
    <br>
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         hotjar:
             site_id: 1234567

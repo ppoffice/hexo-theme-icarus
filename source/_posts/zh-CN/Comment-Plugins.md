@@ -66,7 +66,7 @@ providers:
 
     对应到主题配置为：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: changyan
         app_id: ????appid????
@@ -122,7 +122,7 @@ providers:
 
    对应的主题配置为：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: disqus
         shortname: my-hexo-blog-1
@@ -177,7 +177,7 @@ providers:
 
    对应为下面的主题配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: disqusjs
         shortname: my-hexo-blog-1
@@ -206,7 +206,7 @@ providers:
 
 1. 如要开启Facebook评论服务，将`comment`的`type`设置为`facebook`即可。
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: facebook
     {% endcodeblock %}
@@ -242,7 +242,7 @@ providers:
 
    对应如下的Gitalk的配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: gitalk
         client_id: xxxxxxxxxxxxxxxxxxxx
@@ -281,7 +281,7 @@ providers:
 
    下面是Gitment的示例配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: gitment
         owner: you_github_name
@@ -309,7 +309,7 @@ providers:
 2. 将Isso服务器的HTTP URL填入到主题配置的相应配置项中。
    例如，如果你的Isso服务地址为`https://posativ.org/isso/api/`，你会有如下的评论配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: isso
         url: posativ.org/isso/api
@@ -373,7 +373,7 @@ providers:
 
    对应的主题配置为：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: livere
         uid: ABCD1234O0OxxxxXXXX000==
@@ -426,7 +426,7 @@ providers:
 
    对应下面的主题配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: utterances
         repo: Your-GitHub-Username/Your-Public-Repo-Name
@@ -449,7 +449,7 @@ providers:
    此外，你可以参考[配置项](https://valine.js.org/configuration.html)来了解可选配置项的详情和可能的配置值。
    下面是示例配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: valine
         app_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -46,7 +46,7 @@ Icarus的画廊插件同时包含了[lightGallery](https://sachinchoolur.github.
 [Justified Gallery](https://miromannino.github.io/Justified-Gallery/)两种插件。
 若要启用画廊插件，请将主题配置中`plugins` > `gallery`的值设置为`true`。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     gallery: true
 {% endcodeblock %}
@@ -113,7 +113,7 @@ plugins:
 你可以使用KaTeX插件来渲染\\(\TeX\\)数学公式。
 若要启用KaTeX插件，请将主题配置中`plugins` > `katex`的值设置为`true`。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     katex: true
 {% endcodeblock %}
@@ -168,7 +168,7 @@ $$
 你可以使用MathJax插件来渲染\\(\TeX\\)，MathML，或AsciiMath数学公式。
 若要启用MathJax插件，请将主题配置中`plugins` > `mathjax`的值设置为`true`。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     mathjax: true
 {% endcodeblock %}
@@ -349,7 +349,7 @@ A =
 若要启用此插件，请将主题配置中`plugins` > `outdated_browser`的值设置为`true`。
 点击[此处](https://bestvpn.org/outdatedbrowser/en)即可预览插件开启效果。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     outdated_browser: true
 {% endcodeblock %}
@@ -362,14 +362,14 @@ plugins:
 Icarus默认启用网页载入动画。
 若需禁止载入动画，请在你的主题配置中将`plugins` > `animejs`设置为`false`。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     animejs: false
 {% endcodeblock %}
 
 另外，若需禁用网页载入进度条，请在你的主题配置中将`plugins` > `progressbar`设置为`false`。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     progressbar: false
 {% endcodeblock %}

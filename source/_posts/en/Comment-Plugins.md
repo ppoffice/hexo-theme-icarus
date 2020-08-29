@@ -60,7 +60,7 @@ Refer to <a href="http://changyan.kuaizhan.com/static/help/o-beian.html">ICP Lic
     
     maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: changyan
         app_id: ????appid????
@@ -114,7 +114,7 @@ Refer to <a href="http://changyan.kuaizhan.com/static/help/o-beian.html">ICP Lic
 
    which maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: disqus
         shortname: my-hexo-blog-1
@@ -172,7 +172,7 @@ for the detailed configuration process of DisqusJS.
    
    maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: disqusjs
         shortname: my-hexo-blog-1
@@ -202,7 +202,7 @@ for the detailed configuration process of DisqusJS.
 
 1. To enable Facebook comment, set the `type` of `comment` to `facebook`:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: facebook
     {% endcodeblock %}
@@ -239,7 +239,7 @@ for the detailed configuration process of DisqusJS.
 
    maps the following Gitalk configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: gitalk
         client_id: xxxxxxxxxxxxxxxxxxxx
@@ -280,7 +280,7 @@ You can choose Gitalk or utterances as an alternative GitHub Issue-based comment
 
    Here is an example of the Gitment configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: gitment
         owner: you_github_name
@@ -311,7 +311,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
    For example, if your service URL is `https://posativ.org/isso/api/`, you will have the following 
    comment configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: isso
         url: posativ.org/isso/api
@@ -375,7 +375,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
 
    maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: livere
         uid: ABCD1234O0OxxxxXXXX000==
@@ -429,7 +429,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
 
    maps to the following theme configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: utterances
         repo: Your-GitHub-Username/Your-Public-Repo-Name
@@ -454,7 +454,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
    details and possible values of the optional settings.
    Here is an example configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: valine
         app_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -112,7 +112,7 @@ providers:
    
 6. 最后，在主题配置中设置搜索引擎为Algolia：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: algolia
     {% endcodeblock %}
@@ -124,7 +124,7 @@ providers:
 
 1. 打开主题配置文件并设置搜索为百度搜索：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: baidu
     {% endcodeblock %}
@@ -161,7 +161,7 @@ providers:
 
     对应下面的主题配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: google_cse
         cx: 012345601234560123456:abcdefghijklmn
@@ -175,7 +175,7 @@ providers:
 1. Insight为本站默认的站内搜索引擎。
    你可以通过下面的主题配置来启用它：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: insight
     {% endcodeblock %}

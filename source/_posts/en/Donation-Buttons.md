@@ -33,7 +33,7 @@ This article covers donation button configurations supported by Icarus 3.
 If you need to display multiple donation buttons at once, add individual button configuration
 to the `donates` array like the following:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 donates:
     -
         type: ... # Button 1
@@ -67,7 +67,7 @@ Please refer to it for a complete list of supported buttons and their configurat
 1. Register for [Afdian.net](https://afdian.net/) and copy the URL to your personal page.
 2. Add the following configuration to your theme configurations:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: afdian
@@ -84,7 +84,7 @@ Please refer to it for a complete list of supported buttons and their configurat
 2. Save the QR code picture to the asset directory of your Hexo website, or upload it to an image sharing service.
 3. Add the following configuration to your theme configurations:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: alipay
@@ -100,7 +100,7 @@ Please refer to it for a complete list of supported buttons and their configurat
 1. Register for [Buy me a Coffee](https://www.buymeacoffee.com/) and copy the URL to your personal page.
 2. Add the following configuration to your theme configurations:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: buymeacoffee
@@ -154,7 +154,7 @@ Please refer to it for a complete list of supported buttons and their configurat
 
     maps to the following configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: paypal
@@ -169,7 +169,7 @@ Please refer to it for a complete list of supported buttons and their configurat
 1. Register for [Patreon](https://www.patreon.com/) and copy the URL to your personal page.
 2. Add the following configuration to your theme configurations:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donate:
         -
             type: patreon
@@ -185,7 +185,7 @@ Please refer to it for a complete list of supported buttons and their configurat
 2. Save the QR code picture to the asset directory of your Hexo website, or upload it to an image sharing service.
 3. Add the following configuration to your theme configurations:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: wechat

@@ -82,7 +82,7 @@ providers:
 
     对应如下的主题配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: addthis
         install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-xxxxxxxxxxxxx
@@ -99,7 +99,7 @@ providers:
 1. 你可以启用AddToAny而无需注册用户。
    仅需将下面的代码放到你的主题配置中：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: addtoany
     {% endcodeblock %}
@@ -119,7 +119,7 @@ providers:
    <br>
 
 4. 由于分享按钮是由[ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno)
-   提供，你需要将AddToAny的布局文件[src/view/share/addtoany.jsx](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.2/src/view/share/addtoany.jsx)从这个仓库中复制到`themes/icarus/layout/share/addtoany.jsx`。
+   提供，你需要将AddToAny的布局文件[src/view/share/addtoany.jsx](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.2/src/view/share/addtoany.jsx)从这个仓库中复制到`<icarus_directory>/layout/share/addtoany.jsx`。
    然后，替换`addtoany.jsx`中AddToAny代码并修正文件头部的包引用。
    
    例如，假设下面的代码是你从上一步获得的代码：
@@ -138,7 +138,7 @@ providers:
 
     那么你需要对`addtoany.jsx`做出如下修改：
 
-    {% codeblock themes/icarus/layout/share/addtoany.jsx lang:diff >folded %}
+    {% codeblock &lt;icarus_directory&gt;/layout/share/addtoany.jsx lang:diff >folded %}
     const { Component, Fragment } = require('inferno');
     - const { cacheComponent } = require('../../util/cache');
     + const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
@@ -188,7 +188,7 @@ providers:
 1. 你可以启用百度分享按钮而无需注册用户。
    直接将下面的代码添加到你的主题配置中：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: bdshare
     {% endcodeblock %}
@@ -210,7 +210,7 @@ providers:
 1. 你可以启用百度分享按钮而无需用户注册。
    直接将下面代码添加到主题配置中：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: sharejs
     {% endcodeblock %}
@@ -256,7 +256,7 @@ providers:
 
     对应下面的主题配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     share:
         type: sharethis
         install_url: https://platform-api.sharethis.com/js/sharethis.js#property=xxxxxxxxxxxxx&product=inline-share-buttons

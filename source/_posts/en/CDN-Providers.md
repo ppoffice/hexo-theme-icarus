@@ -47,7 +47,7 @@ Currently, Icarus offers the following built-in CDN providers:
 
 The default CDN settings are:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 providers:
     cdn: jsdelivr
     fontcdn: google
@@ -124,7 +124,7 @@ https://custom.fontawesome.mirror/some.stylesheet.css
 
 All of the above should be put in the `providers` section of the theme configurations:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 providers:
     cdn: 'https://some.cdn.domain.name/${package}/${version}/${filename}'
     fontcdn: 'https://some.google.font.mirror/${type}?family=${fontname}'

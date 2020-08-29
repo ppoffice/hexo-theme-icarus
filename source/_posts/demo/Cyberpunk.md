@@ -67,9 +67,9 @@ in some legacy browsers, including Internet Explorer and legacy Microsoft Edge.
 
 <!-- more -->
 
-To enable the Cyberpunk theme, open your theme's `_config.yml` and make the following change:
+To enable the Cyberpunk theme, open `_config.icarus.yml` and make the following change:
 
-{% codeblock themes/icarus/_config.yml lang:diff %}
+{% codeblock _config.icarus.yml lang:diff %}
 - variant: default
 + variant: cyberpunk
 {% endcodeblock %}
@@ -78,10 +78,10 @@ You may also want to change the theme of highlighted code blocks.
 In that case, you can find some dark highlight.js themes 
 [here](https://github.com/highlightjs/highlight.js/tree/master/src/styles).
 Copy the file name, excluding the `.css` extension, and put it in the `article.highlight.theme`
-option in Icarus' `_config.yml`.
+option in `_config.icarus.yml`.
 For example, if you want to change the theme to `xt256`, make the following change:
 
-{% codeblock themes/icarus/_config.yml lang:diff %}
+{% codeblock _config.icarus.yml lang:diff %}
 # Article related configurations
 article:
     highlight:
@@ -92,4 +92,4 @@ article:
 Apart from the color palette, Icarus also used two image resources that are placed on the top 
 navigation bar and bottom page footer from the official Cyberpunk 2077 website.
 If you wish to make further modifications to this theme variant, you can take a look at
-`themes/icarus/source/css/cyberpunk.styl`.
+`<icarus_directory>/source/css/cyberpunk.styl`.

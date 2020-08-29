@@ -47,7 +47,7 @@ Icarus为你提供了几种内置的CDN提供商来承载Icaurs所用到的第�
 
 默认的CDN服务提供商配置为：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 providers:
     cdn: jsdelivr
     fontcdn: google
@@ -122,7 +122,7 @@ https://custom.fontawesome.mirror/some.stylesheet.css
 
 以上自定义配置需放到主题配置中的`providers`部分：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 providers:
     cdn: 'https://some.cdn.domain.name/${package}/${version}/${filename}'
     fontcdn: 'https://some.google.font.mirror/${type}?family=${fontname}'

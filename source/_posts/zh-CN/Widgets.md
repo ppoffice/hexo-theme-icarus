@@ -65,7 +65,7 @@ providers:
 每个挂件必须包含`type`(挂件类型)与`position`(挂件展示位置)设置项。
 示例如下：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         type: ... # 挂件1
@@ -97,7 +97,7 @@ widgets:
 你可以启用作者资料卡挂件来展示文章作者/网站站长的信息。
 资料卡的配置如下所示：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -150,7 +150,7 @@ widgets:
 
 若要展示文章目录，请在主题配置中添加如下挂件配置：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         type: toc
@@ -172,7 +172,7 @@ toc: true
 你可以使用友站链接挂件来展示外部网站的列表。
 示例配置如下所示：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: left
@@ -188,7 +188,7 @@ widgets:
 
 使用如下挂件配置来开启最新文章挂件：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -200,7 +200,7 @@ widgets:
 
 使用如下挂件配置来开启文章归档挂件：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -212,7 +212,7 @@ widgets:
 
 使用如下挂件配置来开启文章分类挂件：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -224,7 +224,7 @@ widgets:
 
 使用如下挂件配置来开启文章标签挂件：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -275,7 +275,7 @@ Icarus的邮件订阅功能由Google Feedburner提供。
 
    复制`uri=`后的ID(如`feedforall/ABCD`)到挂件配置的`feedburner_id`设置中：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     widgets:
         -
             position: left
@@ -292,7 +292,7 @@ Icarus的邮件订阅功能由Google Feedburner提供。
 然后，复制广告HTML代码中的`data-ad-client`和`data-ad-slot`值分别填入到挂件配置的`client_id`和`slot_id`项中。
 示例如下：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: left

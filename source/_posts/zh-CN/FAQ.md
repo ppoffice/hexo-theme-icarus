@@ -37,7 +37,7 @@ providers:
 Icarus运行在Node.js 8.3.0或更新的版本上。
 它同时依赖Hexo 4.2.0或更新版本。
 除此之外，请确保所有的Node.js依赖已安装。
-你可以在[`themes/icarus/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
+你可以在[`<icarus_directory>/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
 文件的`peerDependencies`部分下找到这些依赖。
 同时，从你的站点中移除所有无用的Node.js依赖，否则它们可能会导致Icarus出现奇怪的问题。
 
@@ -54,7 +54,7 @@ Icarus运行在Node.js 8.3.0或更新的版本上。
 + language: <语言名>
 {% endcodeblock %}
 
-你可以在`themes/icarus/languages`目录下找到所有可用的翻译。
+你可以在`<icarus_directory>/languages`目录下找到所有可用的翻译。
 `<语言名>`为不带后缀名的翻译文件名。
 
 
@@ -66,10 +66,10 @@ Icarus运行在Node.js 8.3.0或更新的版本上。
 </div>
 </article>
 
-如要改变页面的宽度，编辑`themes/icarus/include/style/responsive.styl`这个样式文件。
+如要改变页面的宽度，编辑`<icarus_directory>/include/style/responsive.styl`这个样式文件。
 此文件定义了不同屏幕尺寸下的页面容器宽度。
 
-如要改变挂件或主内容宽度，编辑`themes/icarus/layout/common/widgets.jsx`和`themes/icarus/layout/layout.jsx`。
+如要改变挂件或主内容宽度，编辑`<icarus_directory>/layout/common/widgets.jsx`和`<icarus_directory>/layout/layout.jsx`。
 在这些文件中找到诸如`is-12`，`is-8-tablet`，和`is-4-widescreen`这样的CSS类名。
 CSS类名中的数字标志着一个挂件或主内容所占据的栏数量。
 数字后的屏幕尺寸，如`tablet`和`widescreen`，指代着栏数量生效的屏幕尺寸条件。
@@ -77,7 +77,7 @@ CSS类名中的数字标志着一个挂件或主内容所占据的栏数量。
 
 例如，为使主内容栏在宽屏(`widescreen`)下更宽，你可以做出如下修改：
 
-{% codeblock themes/icarus/layout/layout.jsx lang:diff >folded %}
+{% codeblock &lt;icarus_directory&gt;/layout/layout.jsx lang:diff >folded %}
  <div class={classname({
      column: true,
      'order-2': true,
@@ -88,7 +88,7 @@ CSS类名中的数字标志着一个挂件或主内容所占据的栏数量。
      'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
 {% endcodeblock %}
 
-{% codeblock themes/icarus/layout/common/widgets.jsx lang:diff >folded %}
+{% codeblock &lt;icarus_directory&gt;/layout/common/widgets.jsx lang:diff >folded %}
  function getColumnSizeClass(columnCount) {
      switch (columnCount) {
          case 2:
@@ -117,13 +117,13 @@ CSS类名中的数字标志着一个挂件或主内容所占据的栏数量。
 插件和挂件的布局文件已被移至一个单独的Node.js库中——[`hexo-component-inferno`](https://github.com/ppoffice/hexo-component-inferno)。
 这样，主题开发者可以更好地在不同主题之间复用这些通用组件，并且普通用户可以更简便地覆盖这些内置组件。
 
-若要自定义这些组件，从`hexo-component-inferno`仓库中拷贝布局文件并把它们放入`themes/icarus/layout`下的的相应目录中。
+若要自定义这些组件，从`hexo-component-inferno`仓库中拷贝布局文件并把它们放入`<icarus_directory>/layout`下的的相应目录中。
 例如，如果你想要自定义Valine评论插件，你可以从`hexo-component-inferno`仓库中拷贝
 [`src/view/comment/valine.jsx`](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/src/view/comment/valine.jsx)
-到`themes/icarus/layout/comment/valine.jsx`。
+到`<icarus_directory>/layout/comment/valine.jsx`。
 同时像下面这样改正此文件头部的一些Node.js引用：
 
-{% codeblock themes/icarus/layout/comment/valine.jsx lang:diff %}
+{% codeblock &lt;icarus_directory&gt;/layout/comment/valine.jsx lang:diff %}
 - const { cacheComponent } = require('../../util/cache');
 + const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 {% endcodeblock %}
@@ -218,7 +218,7 @@ excerpt: 这是一篇关于...
 
 例如，注释掉这几行来禁用掉评论插件：
 
-{% codeblock themes/icarus/_config.yml lang:diff %}
+{% codeblock _config.icarus.yml lang:diff %}
 - comment:
 -     type: disqus
 -     shortname: 

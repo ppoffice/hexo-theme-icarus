@@ -13,7 +13,7 @@ providers:
     iconcdn: loli
 ---
 
-Icarus的默认主题配置文件为`themes/icarus/_config.yml`。
+Icarus的默认主题配置文件为`_config.icarus.yml`。
 此文件定义了站点全局的布局与样式设置，同时也控制了例如插件与挂件等外部功能的配置。
 本文详细介绍了本主题的一般配置，并且解释了Icarus使用哪些配置文件和它是如何生成并验证这些配置。
 
@@ -40,8 +40,8 @@ Icarus的默认主题配置文件为`themes/icarus/_config.yml`。
 Icarus使用此版本号来决定是否升级默认主题配置文件。
 请不要自己更改这个版本号。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
-version: 3.0.0
+{% codeblock _config.icarus.yml lang:yaml %}
+version: 4.0.0
 {% endcodeblock %}
 
 ### 主题变体
@@ -50,7 +50,7 @@ version: 3.0.0
 此设置目前支持”`default`“和”`cyberpunk`“两种值。
 你可以在{% post_link demo/Cyberpunk "此处" %}查看Cyberpunk变体的效果。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 variant: default
 {% endcodeblock %}
 
@@ -60,13 +60,13 @@ variant: default
 此logo会显示在导航栏和页脚。
 `logo`配置的值既可以是你的logo图片的路径或URL地址：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 logo: /img/logo.svg
 {% endcodeblock %}
 
 也可以像下面这样设置成文字：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 logo:
     text: My Beautiful Site
 {% endcodeblock %}
@@ -75,7 +75,7 @@ logo:
 
 你可以在`head`配置中指定你的网站favicon的路径或URL地址。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 head:
     favicon: /img/favicon.svg
 {% endcodeblock %}
@@ -87,7 +87,7 @@ head:
 仅在需要的时候在文章的front-matter中为这些设置赋值。
 请参考[Hexo文档](https://hexo.io/zh-cn/docs/helpers.html#open-graph)来详细了解每个配置项。
 
-{% codeblock themes/icarus/_config.yml lang:yaml >folded %}
+{% codeblock _config.icarus.yml lang:yaml >folded %}
 head:
     open_graph:
         # 页面标题 (og:title) (可选)
@@ -132,7 +132,7 @@ head:
 仅在需要的时候在文章的front-matter中为这些设置赋值。
 请参考[Search for Developers](https://developers.google.com/search/docs/guides/intro-structured-data)来详细了解每个配置项。
 
-{% codeblock themes/icarus/_config.yml lang:yaml >folded %}
+{% codeblock _config.icarus.yml lang:yaml >folded %}
 head:
     structured_data:
         # 页面标题 (可选)
@@ -159,7 +159,7 @@ head:
 `meta`设置每一个元素的值应为`<属性名>=<属性值>`的格式，其中`属性名`和`属性值`分别代表着`<meta>`标签的属性和值。
 如果`<meta>`标签有多个属性和值，请使用`;`来分隔`<属性名>=<属性值>`。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 head:
     meta:
         - 'name=theme-color;content=#123456'
@@ -170,7 +170,7 @@ head:
 
 你可以通过`head`部分的`rss`设置来添加RSS链接信息。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 head:
     rss: /path/to/atom.xml
 {% endcodeblock %}
@@ -181,7 +181,7 @@ head:
 你可以通过向`menu`设置项中添加`<链接名>: <链接URL>`的方式添加任意导航栏菜单链接。
 如要向导航栏右侧添加链接，请向`links`设置项中添加`<链接名>: <链接URL>`。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 navbar:
     # 导航栏菜单项
     menu:
@@ -211,7 +211,7 @@ navbar:
 `footer`部分定义了页脚右侧的链接。
 链接的配置格式与`navbar`中`links`的配置格式完全一致。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 footer:
     links:
         Creative Commons:
@@ -230,13 +230,13 @@ footer:
 如果你已在Hexo中启用了代码高亮功能，你可以通过`article`中的`highlight`设置来自定义代码块。
 请从[highlight.js/src/styles](https://github.com/highlightjs/highlight.js/tree/9.18.1/src/styles)下列出的所有主题中
 选择一个主题。
-然后，复制文件名（不带`.css`后缀）到`theme`设置项中。
+然后，复制文件名(不带`.css`后缀)到`theme`设置项中。
 
 如要隐藏复制代码按钮，将`clipboard`设置为`false`。
 如果你希望折叠或展开所有代码块，将`fold`设置为`"folded"`或`"unfolded"`。
 你也可以将`fold`设置为空来禁止代码块折叠。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 article:
     highlight:
         # 代码高亮主题
@@ -285,7 +285,7 @@ Post content...
 
 你可以将`article`部分的`readtime`设置为`true`来显示文章字数统计以及预计阅读时间。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 article:
     readtime: true
 {% endcodeblock %}
@@ -295,7 +295,7 @@ article:
 你可以在你的文章/页面的底部展示你的作品的使用许可，许可链接可以是文字或者图标。
 这里的配置与导航栏或者页脚的`links`配置一致：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 article:
     # 文章许可协议
     licenses:
@@ -309,7 +309,7 @@ article:
 
 设置`sidebar`中某个侧边栏的`sticky`为`true`来让它的位置固定而不跟随页面滚动。
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 sidebar:
     left:
         sticky: false
@@ -325,30 +325,23 @@ sidebar:
 
 ## 配置文件与优先级
 
-除了在`themes/icarus/_config.yml`的默认主题配置文件外，Icarus也会从如下位置获取替代配置：
+除了在`_config.icarus.yml`的默认主题配置文件外，Icarus也会从如下位置获取替代配置：
 
-- `themes/icarus/_config.post.yml`和`themes/icarus/_config.page.yml`
+- 位于`_config.yml`的站点配置文件
+- 位于`_config.post.yml`和`_config.page.yml`的布局配置文件
 - 文章/页面的[front-matter](https://hexo.io/docs/front-matter.html)
-- 根目录下的站点配置文件`_config.yml`
+- (已弃用) 位于`themes/icarus/_config.yml`的旧主题配置文件
+- (已弃用) 位于`themes/icarus/_config.post.yml`和`themes/icarus/_config.page.yml`的旧布局配置文件
 
-`_config.post.yml`和`_config.page.yml`与默认配置文件有着相同的格式和配置定义。
-你可以在`_config.post.yml`中设置仅对所有文章生效的配置，而这些配置将覆盖默认配置文件中的配置。
-例如，你可以在此配置文件中把所有的挂件放置在页面一侧来实现所有文章两栏布局，同时其他页面仍保持三栏布局：
+### 布局配置文件
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
-widgets:
-    -
-        type: recent_posts
-        position: left
-    -
-        type: categories
-        position: right
-    -
-        type: tags
-        position: right
-{% endcodeblock %}
+布局配置文件遵循着与主题配置文件相同的格式和定义。
+`_config.post.yml`中的配置对所有文章生效，而`_config.page.yml`中的配置对所有自定义页面生效。
+这两个文件将覆盖主题配置文件中的配置。
 
-{% codeblock themes/icarus/_config.post.yml lang:yaml %}
+例如，你可以在`_config.post.yml`中把所有文章变为两栏布局：
+
+{% codeblock _config.post.yml lang:yaml %}
 widgets:
     -
         type: recent_posts
@@ -361,9 +354,24 @@ widgets:
         position: left
 {% endcodeblock %}
 
-类似的，`_config.page.yml`中的配置仅对所有Hexo页面(Pages)生效并覆盖默认配置文件中的配置。
+同时所有其他页面仍保持三栏布局：
 
-如果你想要在某个文章/页面中覆盖默认配置，你可以把这些配置放在那个文章/页面的front-matter中。
+{% codeblock _config.icarus.yml lang:yaml %}
+widgets:
+    -
+        type: recent_posts
+        position: left
+    -
+        type: categories
+        position: right
+    -
+        type: tags
+        position: right
+{% endcodeblock %}
+
+### 文章/页面的Front-matter
+
+如果你只想要在某个文章/页面中覆盖主题配置，你可以在那个文章/页面的front-matter中写下配置。
 例如，你可以像下面这样在一篇文章的front-matter中更改某篇文章的代码高亮主题：
 
 {% codeblock source/_post/some-post.md lang:yaml %}
@@ -376,51 +384,54 @@ article:
 # 文章标题
 {% endcodeblock %}
 
-上面的配置总为那篇文章覆盖掉`_config.post.yml`和`_config.yml`中的`article.highlight`。
-这种层次化的配置系统对于在页面个性化与优化上差异化对待不同访客十分有效。
+上面的配置会为那篇文章覆盖掉`_config.post.yml`和`_config.icarus.yml`中的`article.highlight`。
+这种层次化的配置系统对于页面个性化和不同访客间的差异化优化十分有效。
 比如，你可以为根据你页面目标访客的国家和语言来开启更快的CDN或本地化的评论服务。
-然而需要注意的是，一些Hexo内定义的文章或页面属性不会覆盖掉其他配置源中的同名配置，例如：
 
-- `title`
-- `date`
-- `updated`
-- `comments` (not `comment`)
-- `layout`
-- `source`
-- `photos`
-- `excerpt`
+然而需要注意的是，一些Hexo定义的文章或页面属性不会覆盖掉其他配置源中的同名配置，如
+`title`, `date`, `updated`, `comments` (not `comment`), `layout`, `source`, `photos`, 和`excerpt`。
 
-最后，上面列出的所有配置源中Icarus用到的配置项都会覆盖站点配置文件`_config.yml`中的同名配置项。
-例如，`themes/icarus/_config.yml`中的`title`设置会覆盖掉`_config.yml`中的`title`，但`new_post_name`却不会，因为
+### 站点配置文件
+
+上面列出的所有配置源，包括主题配置文件，布局配置文件，和文章/页面的front-matter，会覆盖掉站点配置文件中Icarus使用到的配置。
+例如，`_config.icarus.yml`中的`title`设置会覆盖掉`_config.yml`中的`title`，但`new_post_name`却不会，因为
 Icarus没有用到这个配置项。
+
+另外，主题配置文件中的`theme_config`选项会与主题配置文件中的主题配置合并并覆盖掉同名配置。
+然而，我们非常不推荐使用这个配置选项。
+
+### 总结
 
 总而言之，配置源的作用范围和优先级如下：
 
 - 对于某个文章或页面
 
-    - front-matter覆盖所有下面的配置源。
-    - `themes/icarus/_config.post.yml`和`themes/icarus/_config.page.yml`覆盖所有下面的配置源。
-    - `themes/icarus/_config.yml`覆盖所有下面的配置源。
-    - `_config.yml`。
+    - 文章/页面的front-matter覆盖所有下面的配置源。
+    - 布局配置文件覆盖所有下面的配置源。
+    - 站点配置文件中的`theme_config`选项覆盖所有下面的配置源。
+    - 主题配置文件覆盖所有下面的配置源。
+    - 站点配置文件。
 
 - 对于所有的文章或页面
 
-    - `themes/icarus/_config.post.yml`或`themes/icarus/_config.page.yml`覆盖所有下面的配置源。
-    - `themes/icarus/_config.yml`覆盖所有下面的配置源。
-    - `_config.yml`。
+    - 布局配置文件覆盖所有下面的配置源。
+    - 站点配置文件中的`theme_config`选项覆盖所有下面的配置源。
+    - 主题配置文件覆盖所有下面的配置源。
+    - 站点配置文件。
 
 - 对于所有的文章，页面，和索引页
 
-    - `themes/icarus/_config.yml`覆盖所有下面的配置源。
-    - `_config.yml`。
+    - 站点配置文件中的`theme_config`选项覆盖所有下面的配置源。
+    - 主题配置文件覆盖所有下面的配置源。
+    - 站点配置文件。
 
 
 ## 配置生成与校验
 
-所有的Icarus主题配置均采用[YAML语言](https://yaml.org/)。
-当Hexo加载主题时，Icarus会通过一系列[JSON Schema](https://json-schema.org/)来自动生成默认的配置文件`themes/icarus/_config.yml`。
-这也是为什么你在主题目录下找不到示例配置文件(`_config.yml.example`)。
-大多数的JSON Schema存放在`themes/icarus/include/schema`目录下，而其他的则存放在
+所有的Icarus主题配置均使用[YAML语言](https://yaml.org/)编写。
+如果配置文件不存在，Icarus会通过一系列[JSON Schema](https://json-schema.org/)来自动生成默认的配置文件`_config.icarus.yml`。
+这也是为什么你在主题目录下找不到示例配置文件(如`_config.yml.example`)。
+大多数的JSON Schema存放在`<icarus_directory>/include/schema`目录下，而其他的则存放在
 [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno)仓库中。
 你可以在你的`hexo`命令后附上`--icarus-dont-generate-config`来避免配置文件的自动生成。
 
@@ -447,7 +458,7 @@ WARN  [
 {% endcodeblock %}
 
 此外，如果你的默认主题配置文件不是最新版本的话，Icarus会运行迁移脚本将它升级到最新版本。
-这些脚本存放在`themes/icarus/include/migration`目录。
+这些脚本存放在`<icarus_directory>/include/migration`目录。
 你可以在你的`hexo`命令后附上`--icarus-dont-upgrade-config`来禁止配置升级。
 最后，Icarus也会检查主题依赖的Node.js库是否安装并提醒你安装缺失的库。
 

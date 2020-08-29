@@ -62,7 +62,7 @@ They will appear in the order of their definitions.
 The `type` and `position` settings are required for every widget.
 Here is an example:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         type: ... # Widget 1
@@ -97,7 +97,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 You can showcase the post author/site admin information via the profile widget.
 Its configuration is listed below:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -151,7 +151,7 @@ Some notes on the configuration:
 To show the table of contents of the current post, add the following widget configuration to your theme
 configurations:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         type: toc
@@ -173,7 +173,7 @@ Post content...
 You can display a list of external sites with the external links widget.
 An example configuration is listed below:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: left
@@ -189,7 +189,7 @@ widgets:
 
 Use the following configuration to enable the recent posts widget:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -201,7 +201,7 @@ widgets:
 
 Use the following configuration to enable the archives widget:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -213,7 +213,7 @@ widgets:
 
 Use the following configuration to enable the categories widget:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -225,7 +225,7 @@ widgets:
 
 Use the following configuration to enable the tags widget:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: right
@@ -278,7 +278,7 @@ To enable this widget, take the following steps:
 
    Copy the ID after `uri=` (e.g., `feedforall/ABCD`) to the `feedburner_id` setting of the widget configuration:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     widgets:
         -
             position: left
@@ -296,7 +296,7 @@ Then, copy the values of `data-ad-client` and `data-ad-slot` from the AD HTML co
 the `client_id` and `slot_id` setting of the widget configuration, respectively.
 Here is an example:
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 widgets:
     -
         position: left

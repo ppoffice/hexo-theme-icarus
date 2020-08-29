@@ -36,7 +36,7 @@ providers:
 本文介绍Icarus 3支持的赞赏按钮的安装配置。
 若需同时展示多个按钮，只需像如下这样在主题配置的`donates`数组中添加多个按钮配置：
 
-{% codeblock themes/icarus/_config.yml lang:yaml %}
+{% codeblock _config.icarus.yml lang:yaml %}
 donates:
     -
         type: ... # 按钮1
@@ -74,7 +74,7 @@ donates:
 
 2. 将如下配置添加到主题配置中：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: afdian
@@ -93,7 +93,7 @@ donates:
 
 3. 向主题配置中添加如下配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: alipay
@@ -110,7 +110,7 @@ donates:
 
 2. 将如下配置添加到主题配置中：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: buymeacoffee
@@ -164,7 +164,7 @@ donates:
 
     对应的主题配置为:
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: paypal
@@ -180,7 +180,7 @@ donates:
 
 2. 将如下配置添加到主题配置中：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donate:
         -
             type: patreon
@@ -198,7 +198,7 @@ donates:
 
 3. 向主题配置中添加如下配置：
 
-    {% codeblock themes/icarus/_config.yml lang:yaml %}
+    {% codeblock _config.icarus.yml lang:yaml %}
     donates:
         -
             type: wechat
