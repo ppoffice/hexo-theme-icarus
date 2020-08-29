@@ -8,10 +8,14 @@ figure.highlight
     width: 100%
     position: relative
     margin: 1em 0 1em !important
+    border-radius: $radius
 
     &.folded
         .highlight-body
             height: 0
+    
+    .copy
+        opacity: .7
 
     pre, table tr:hover
         color: inherit
@@ -46,7 +50,7 @@ figure.highlight
         font-size: .8em
 
         *
-            color: $grey
+            color: inherit
 
         span
             font-weight: 500
