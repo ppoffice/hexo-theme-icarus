@@ -41,7 +41,7 @@
             "nullable": true
         },
         "licenses": {
-            "$ref": "/misc/article_licensing.json",
+            "$ref": "/misc/poly_links.json",
             "description": "Article licensing block",
             "examples": [
                 {
