@@ -33,6 +33,11 @@ article:
     word_count:
         one: '約%d語'
         other: '約%d語'
+    licensing:
+        author: 'Author'
+        created_at: 'Posted on'
+        updated_at: 'Updated on'
+        licensed_under: 'Licensed under'
 donate:
     title: 'この記事は気に入りましたか？ 著者をサポートする'
     afdian: 'Afdian.net'

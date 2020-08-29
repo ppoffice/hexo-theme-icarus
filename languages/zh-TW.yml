@@ -33,6 +33,11 @@ article:
     word_count:
         one: '大約%d個字'
         other: '大約%d個字'
+    licensing:
+        author: '作者'
+        created_at: '發表於'
+        updated_at: '更新於'
+        licensed_under: '許可協議'
 donate:
     title: '喜歡這篇文章嗎? 贊助一下作者吧!'
     afdian: '愛發電'

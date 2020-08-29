@@ -33,6 +33,11 @@ article:
     word_count:
         one: '大约%d个字'
         other: '大约%d个字'
+    licensing:
+        author: '作者'
+        created_at: '发布于'
+        updated_at: '更新于'
+        licensed_under: '许可协议'
 donate:
     title: '喜欢这篇文章？打赏一下作者吧'
     afdian: '爱发电'

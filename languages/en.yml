@@ -33,6 +33,11 @@ article:
     word_count:
         one: 'About %d word'
         other: 'About %d words'
+    licensing:
+        author: 'Author'
+        created_at: 'Posted on'
+        updated_at: 'Updated on'
+        licensed_under: 'Licensed under'
 donate:
     title: 'Like this article? Support the author with'
     afdian: 'Afdian.net'

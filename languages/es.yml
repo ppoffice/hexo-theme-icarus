@@ -34,6 +34,11 @@ article:
     word_count:
         one: 'Aproximadamente %d palabra'
         other: 'Aproximadamente %d palabras'
+    licensing:
+        author: 'Author'
+        created_at: 'Posted on'
+        updated_at: 'Updated on'
+        licensed_under: 'Licensed under'
 donate:
     title: '¿Te gusta este artículo? Apoya al autor con'
     afdian: 'Afdian.net'
