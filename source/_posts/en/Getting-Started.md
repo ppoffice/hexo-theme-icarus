@@ -65,8 +65,6 @@ To install Icarus, take one of the following approaches:
 </div>
 
 <div id="install-npm" class="tab-content is-hidden">
-  <span class="tag is-primary mb-3">New in Hexo 5.0 and Icarus 4.0</span>
-
   To install Icarus as a node package via NPM, run the following command
   from the root of your Hexo site:
 

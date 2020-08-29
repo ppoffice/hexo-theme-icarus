@@ -65,8 +65,6 @@ Icarus同时也提供了超多插件与挂件来满足你的多元的站点个�
 </div>
 
 <div id="install-npm" class="tab-content is-hidden">
-  <span class="tag is-primary mb-3">Hexo 5.0和Icarus 4.0新增功能</span>
-
   若要使用NPM将Icarus安装为Node包，在你的Hexo站点根目录运行如下命令：
 
   {% codeblock "命令行" %}
