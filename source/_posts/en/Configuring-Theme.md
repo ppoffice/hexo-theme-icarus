@@ -289,6 +289,22 @@ article:
     readtime: true
 {% endcodeblock %}
 
+### Article Licensing
+
+You can show a section at the end of your posts/pages describing the licensing of your work.
+Both text and icons are accepted as license links.
+This configuration is the same as `links` in the navigation bar or the footer:
+
+{% codeblock themes/icarus/_config.yml lang:yaml %}
+article:
+    # Article licensing block
+    licenses:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: 'https://creativecommons.org/'
+        'CC BY-NC-SA 4.0': 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
+{% endcodeblock %}
+
 ### Sidebar
 
 To make a sidebar fixed when you scroll the page, set the `sticky` setting of that sidebar to `true` in

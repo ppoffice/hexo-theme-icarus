@@ -57,7 +57,7 @@ variant: default
 ### Logo
 
 设置你站点的logo。
-此logo会显示在导航栏和页面尾部。
+此logo会显示在导航栏和页脚。
 `logo`配置的值既可以是你的logo图片的路径或URL地址：
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
@@ -206,9 +206,9 @@ navbar:
     url: <链接URL>
 {% endcodeblock %}
 
-### 页面尾部
+### 页脚
 
-`footer`部分定义了页面尾部右侧的链接。
+`footer`部分定义了页脚右侧的链接。
 链接的配置格式与`navbar`中`links`的配置格式完全一致。
 
 {% codeblock themes/icarus/_config.yml lang:yaml %}
@@ -288,6 +288,21 @@ Post content...
 {% codeblock themes/icarus/_config.yml lang:yaml %}
 article:
     readtime: true
+{% endcodeblock %}
+
+### 文章许可协议
+
+你可以在你的文章/页面的底部展示你的作品的使用许可，许可链接可以是文字或者图标。
+这里的配置与导航栏或者页脚的`links`配置一致：
+
+{% codeblock themes/icarus/_config.yml lang:yaml %}
+article:
+    # 文章许可协议
+    licenses:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: 'https://creativecommons.org/'
+        'CC BY-NC-SA 4.0': 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
 {% endcodeblock %}
 
 ### 侧边栏
