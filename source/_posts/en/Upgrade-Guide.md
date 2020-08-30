@@ -67,6 +67,6 @@ toc: true
    You can still set `thumbnail` in the front-matter to show a smaller thumbnail image for your posts 
    in the archive page and in the recent post widget.
 
-6. Check out the [release notes](https://github.com/ppoffice/hexo-theme-icarus/releases) and the 
+6. Check out the [release notes](https://github.com/ppoffice/hexo-theme-icarus/releases) and the
    [latest documentation](https://ppoffice.github.io/hexo-theme-icarus/categories/) for more information 
    of the new features.

@@ -68,5 +68,4 @@ toc: true
 
    你仍可以在front-matter中设置`thumbnail`来在文章归档页面以及最新文章挂件中显示小一点的缩略图。
 
-6. 阅读[更新说明](https://github.com/ppoffice/hexo-theme-icarus/releases)和
-   [最新文档](https://ppoffice.github.io/hexo-theme-icarus/categories/)来了解更多新功能的信息.
+6. 阅读[更新说明](https://github.com/ppoffice/hexo-theme-icarus/releases)和[最新文档](https://ppoffice.github.io/hexo-theme-icarus/categories/)来了解更多新功能的信息.

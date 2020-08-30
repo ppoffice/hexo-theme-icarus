@@ -79,6 +79,9 @@ navbar:
         About: /about
     # Links to be shown on the right of the navigation bar
     links:
+        Join Gitter:
+            icon: fab fa-gitter
+            url: 'https://gitter.im/hexo-theme-icarus/community'
         Download on GitHub:
             icon: fab fa-github
             url: 'https://github.com/ppoffice/hexo-theme-icarus'
@@ -89,9 +92,9 @@ footer:
         Creative Commons:
             icon: fab fa-creative-commons
             url: 'https://creativecommons.org/'
-        Attribution 4.0 International:
-            icon: fab fa-creative-commons-by
-            url: 'https://creativecommons.org/licenses/by/4.0/'
+        Join Gitter:
+            icon: fab fa-gitter
+            url: 'https://gitter.im/hexo-theme-icarus/community'
         Download on GitHub:
             icon: fab fa-github
             url: 'https://github.com/ppoffice/hexo-theme-icarus'
