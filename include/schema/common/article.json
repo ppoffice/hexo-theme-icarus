@@ -40,12 +40,6 @@
             "default": true,
             "nullable": true
         },
-        "edittime": {
-            "type": "boolean",
-            "description": "Whether to show article edit time",
-            "default": false,
-            "nullable": true
-        },
         "licenses": {
             "$ref": "/misc/poly_links.json",
             "description": "Article licensing block",

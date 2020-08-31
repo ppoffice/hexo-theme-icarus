@@ -74,11 +74,8 @@ module.exports = class extends Component {
                                 })()}
                             </span> : null}
                             {/* Visitor counter */}
-                            {!index && plugins && plugins.busuanzi === true ? <span class="level-item" id="busuanzi_container_page_pv" dangerouslySetInnerHTML={{
-                                __html: _p('plugin.visit_count', '<span id="busuanzi_value_page_pv">0</span>')
-                            }}></span> : null}
                             {!index ? <span id={url_for(page.link || page.path)} class="level-item leancloud_visitors" data-flag-title={page.title} dangerouslySetInnerHTML={{
-                                __html: '<i class="far fa-eye"></i>' + _p('plugin.visit', '&nbsp;&nbsp;<span class="leancloud-visitors-count"><i class="fa fa-spinner fa-spin"></i></span>')
+                                __html: '<i class="far fa-eye"></i>' + _p('plugin.visit_count', '&nbsp;&nbsp;<span class="leancloud-visitors-count"><i class="fa fa-spinner fa-spin"></i></span>')
                             }}></span> : null}
                         </div>
                     </div> : null}
@@ -100,16 +97,6 @@ module.exports = class extends Component {
                     </div> : null}
                     {/* "Read more" button */}
                     {index && page.excerpt ? <a class="article-more button is-small size-small" href={`${url_for(page.link || page.path)}#more`}>{__('article.more')}</a> : null}
-                    {/* Copyright */}
-                    {!index && page.layout === 'post' ?
-                    <ul class="post-copyright">
-                        <li><strong>本文标题：</strong><a href={url_for(page.permalink)}>{page.title}</a></li>
-                        <li><strong>本文作者：</strong><a href={url_for(config.url)}>{config.author}</a></li>
-                        <li><strong>发布时间：</strong>{date(page.date, 'YYYY-MM-DD HH:mm')}</li>
-                        {page.updated - page.date !== 0 ? <li><strong>最后更新：</strong>{date(page.updated, 'YYYY-MM-DD HH:mm')}</li> : null}
-                        <li><strong>本文链接：</strong><a href={url_for(page.permalink)}>{url_for(page.permalink)}</a></li>
-                        <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY 4.0</a> 许可协议。转载请注明出处！</li>
-                    </ul> : null}
                     {/* Share button */}
                     {!index ? <Share config={config} page={page} helper={helper} /> : null}
                 </article>
