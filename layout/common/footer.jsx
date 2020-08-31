@@ -83,6 +83,6 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
         author,
         links,
         showVisitorCounter: plugins && plugins.busuanzi === true,
-        visitorCounterTitle: _p('plugin.visitor', '<span id="busuanzi_value_site_uv">0</span>')
+        visitorCounterTitle: _p('plugin.visitor_count', '<span id="busuanzi_value_site_uv">0</span>')
     };
 });

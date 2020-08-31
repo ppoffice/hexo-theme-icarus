@@ -17,7 +17,7 @@ The version and configuration of Hexo and Icarus.
 
 - Hexo, OS, and node version (use `hexo version` command to view these information)
 - Site configuration file `_config.yml`
-- Theme configuration file `themes/icarus/_config.yml`
+- Theme configuration file `_config.icarus.yml` or `themes/icarus/_config.yml`
 - Any additional theme configuration files (post front-matter, `_config.post.yml`, or `_config.page.yml`)
 - Browser and version (e.g., Firefox 70.0, Chrome Android 80.0)
 

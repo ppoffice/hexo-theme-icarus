@@ -34,12 +34,6 @@
             },
             "nullable": true
         },
-        "thumbnail": {
-            "type": "boolean",
-            "description": "Whether to show thumbnail image for every article",
-            "default": true,
-            "nullable": true
-        },
         "readtime": {
             "type": "boolean",
             "description": "Whether to show estimated article reading time",
@@ -51,6 +45,26 @@
             "description": "Whether to show article edit time",
             "default": false,
             "nullable": true
+        },
+        "licenses": {
+            "$ref": "/misc/poly_links.json",
+            "description": "Article licensing block",
+            "examples": [
+                {
+                    "Creative Commons": {
+                      "icon": "fab fa-creative-commons",
+                      "url": "https://creativecommons.org/"
+                    },
+                    "Attribution": {
+                      "icon": "fab fa-creative-commons-by",
+                      "url": "https://creativecommons.org/licenses/by/4.0/"
+                    },
+                    "Noncommercial": {
+                      "icon": "fab fa-creative-commons-nc",
+                      "url": "https://creativecommons.org/licenses/by-nc/4.0/"
+                    }
+                }
+            ]
         }
     }
 }

@@ -11,27 +11,48 @@ common:
     post:
         one: 'Gönderi'
         other: 'Gönderiler'
+    page:
+        one: 'Sayfa'
+        other: 'Sayfalar'
     prev: 'Önceki'
     next: 'Sonraki'
 widget:
     follow: 'TAKİP ET'
     recents: 'Son'
     links: 'Linkler'
-    tag_cloud: 'Etiket bulutu'
     catalogue: 'Katalog'
+    subscribe_email: 'Güncellemeler için abone olun'
+    subscribe: 'Abone ol'
+    adsense: 'İlan'
 article:
+    created_at: '%s&nbsp;yayınlandı'
+    updated_at: '%s&nbsp;güncellendi'
     more: 'Daha fazla oku'
     comments: 'Yorumlar'
-    read: 'read'
-    about: 'About'
-    words: 'words'
+    read_time: '%s okundu'
+    word_count:
+        one: 'Yaklaşık %d kelime'
+        other: 'Yaklaşık %d kelime'
+    licensing:
+        author: 'Author'
+        created_at: 'Posted on'
+        updated_at: 'Updated on'
+        licensed_under: 'Licensed under'
+donate:
+    title: 'Bu makaleyi beğendiniz mi? Yazarı şununla destekleyin'
+    afdian: 'Afdian.net'
+    alipay: 'Alipay'
+    wechat: 'Wechat'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
+    buymeacoffee: 'Bana bir kahve al'
+plugin:
+    backtotop: 'Başa dönüş'
+    visit_count: '%s&nbsp;ziyaret'
+    visitor_count: '%s kullanıcı tarafından ziyaret edildi'
 search:
     search: 'Search'
     hint: 'Bir şeyler yaz...'
-insight:
-    hint: 'Bir şeyler yaz...'
-    posts: 'Gönderiler'
-    pages: 'Sayfalar'
-    categories: 'Kategoriler'
-    tags: 'Etiketler'
+    no_result: 'İçin sonuç yok'
     untitled: '(Başlıksız)'
+    empty_preview: '(Önizleme yok)'

@@ -57,6 +57,8 @@ $card-background-color ?= transparent
 $menu-label-color ?= $blue
 $menu-item-hover-color ?= $black
 $menu-item-hover-background-color ?= $yellow
+$menu-item-active-color ?= $black
+$menu-item-active-background-color ?= $yellow
 $menu-list-border-left ?= 1px solid $text
 $tag-color ?= $black
 $tag-background-color ?= $blue
@@ -252,6 +254,13 @@ article.article, article.media
 article.article
     .article-more
         clip-button($info, $info-invert)
+
+.article-licensing
+    background: $black-ter
+
+    .licensing-title
+        a
+            @extend .size-small, .has-text-grey
 
 .content
     blockquote

@@ -3,6 +3,7 @@ const { Component, Fragment } = require('inferno');
 const Share = require('./share');
 const Donates = require('./donates');
 const Comment = require('./comment');
+const ArticleLicensing = require('hexo-component-inferno/lib/view/misc/article_licensing');
 
 /**
  * Get the word count of text.
@@ -20,33 +21,35 @@ module.exports = class extends Component {
     render() {
         const { config, helper, page, index } = this.props;
         const { article, plugins } = config;
-        const { has_thumbnail, get_thumbnail, url_for, date, date_xml, __, _p } = helper;
+        const { url_for, date, date_xml, __, _p } = helper;
 
         const indexLaunguage = config.language || 'en';
         const language = page.lang || page.language || config.language || 'en';
+        const cover = page.cover ? url_for(page.cover) : null;
 
         return <Fragment>
             {/* Main content */}
             <div class="card">
                 {/* Thumbnail */}
-                {has_thumbnail(page) ? <div class="card-image">
+                {cover ? <div class="card-image">
                     {index ? <a href={url_for(page.link || page.path)} class="image is-7by3">
-                        <img class="thumbnail" src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
+                        <img class="fill" src={cover} alt={page.title || cover} />
                     </a> : <span class="image is-7by3">
-                        <img class="thumbnail" src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
+                        <img class="fill" src={cover} alt={page.title || cover} />
                     </span>}
                 </div> : null}
                 {/* Metadata */}
                 <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
                     {page.layout !== 'page' ? <div class="article-meta size-small is-uppercase level is-mobile">
                         <div class="level-left">
-                            {/* Date */}
-                            <time class="level-item" dateTime={date_xml(page.date)} title={date_xml(page.date)}>{date(page.date)}</time>
-                            {/* Edit time */}
-                            {article && article.edittime && article.edittime === true && page.updated - page.date !== 0 ? <span class="level-item has-text-grey" title={page.updated}>
-                                {__('article.edited')}&nbsp;
-                                <time datetime={date_xml(page.updated)} title={date_xml(page.updated)}>{date(page.updated)}</time>
-                            </span> : null}
+                            {/* Creation Date */}
+                            {page.date && <span class="level-item" dangerouslySetInnerHTML={{
+                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">${date(page.date)}</time>`)
+                            }}></span>}
+                            {/* Last Update Date */}
+                            {page.updated && page.updated - page.date !== 0 && <span class="level-item" dangerouslySetInnerHTML={{
+                                __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">${date(page.updated)}</time>`)
+                            }}></span>}
                             {/* author */}
                             {page.author ? <span class="level-item"> {page.author} </span> : null}
                             {/* Categories */}
@@ -67,12 +70,12 @@ module.exports = class extends Component {
                                 {(() => {
                                     const words = getWordCount(page._content);
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
-                                    return `${time.locale(index ? indexLaunguage : language).humanize()} ${__('article.read')} (${__('article.about')} ${words} ${__('article.words')})`;
+                                    return `${_p('article.read_time', time.locale(index ? indexLaunguage : language).humanize())} (${_p('article.word_count', words)})`;
                                 })()}
                             </span> : null}
                             {/* Visitor counter */}
                             {!index && plugins && plugins.busuanzi === true ? <span class="level-item" id="busuanzi_container_page_pv" dangerouslySetInnerHTML={{
-                                __html: '<i class="far fa-eye"></i>' + _p('plugin.visit', '&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>')
+                                __html: _p('plugin.visit_count', '<span id="busuanzi_value_page_pv">0</span>')
                             }}></span> : null}
                             {!index ? <span id={url_for(page.link || page.path)} class="level-item leancloud_visitors" data-flag-title={page.title} dangerouslySetInnerHTML={{
                                 __html: '<i class="far fa-eye"></i>' + _p('plugin.visit', '&nbsp;&nbsp;<span class="leancloud-visitors-count"><i class="fa fa-spinner fa-spin"></i></span>')
@@ -85,6 +88,9 @@ module.exports = class extends Component {
                     </h1>
                     {/* Content/Excerpt */}
                     <div class="content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
+                    {/* Licensing block */}
+                    {!index && article && article.licenses && Object.keys(article.licenses)
+                        ? <ArticleLicensing.Cacheable page={page} config={config} helper={helper} /> : null}
                     {/* Tags */}
                     {!index && page.tags && page.tags.length ? <div class="article-tags size-small mb-4">
                         <span class="mr-2">#</span>
@@ -93,7 +99,7 @@ module.exports = class extends Component {
                         })}
                     </div> : null}
                     {/* "Read more" button */}
-                    {index && page.excerpt ? <a class="article-more button is-small size-small" href={`${url_for(page.path)}#more`}>{__('article.more')}</a> : null}
+                    {index && page.excerpt ? <a class="article-more button is-small size-small" href={`${url_for(page.link || page.path)}#more`}>{__('article.more')}</a> : null}
                     {/* Copyright */}
                     {!index && page.layout === 'post' ?
                     <ul class="post-copyright">

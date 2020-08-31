@@ -9,13 +9,13 @@ const Search = require('./common/search');
 
 module.exports = class extends Component {
     render() {
-        const { env, site, config, page, helper, body } = this.props;
+        const { site, config, page, helper, body } = this.props;
 
         const language = page.lang || page.language || config.language;
         const columnCount = Widgets.getColumnCount(config.widgets);
 
         return <html lang={language ? language.substr(0, 2) : ''}>
-            <Head env={env} site={site} config={config} helper={helper} page={page} />
+            <Head site={site} config={config} helper={helper} page={page} />
             <body class={`is-${columnCount}-column`}>
                 <script type="text/javascript" src="/js/imaegoo/night.js"></script>
                 <canvas id="universe"></canvas>

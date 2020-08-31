@@ -20,20 +20,28 @@ widget:
     follow: '微博 Weibo'
     recents: '最新文章'
     links: '链接'
-    tag_cloud: '标签云'
     catalogue: '目录'
     subscribe_email: '订阅更新'
     subscribe: '订阅'
     adsense: '广告'
 article:
+    created_at: '%s发表'
+    updated_at: '%s更新'
     more: '阅读更多'
     comments: '评论'
-    read: '读完'
-    about: '大约'
-    words: '个字'
+    read_time: '%s读完'
     edited: '编辑于'
+    word_count:
+        one: '大约%d个字'
+        other: '大约%d个字'
+    licensing:
+        author: '作者'
+        created_at: '发布于'
+        updated_at: '更新于'
+        licensed_under: '许可协议'
 donate:
     title: '喜欢这篇文章？打赏一下作者吧'
+    afdian: '爱发电'
     alipay: '支付宝'
     wechat: '微信'
     paypal: 'Paypal'
@@ -41,8 +49,8 @@ donate:
     buymeacoffee: '送我杯咖啡'
 plugin:
     backtotop: '回到顶端'
-    visit: '%s次访问'
-    visitor: '共%s个访客'
+    visit_count: '%s次访问'
+    visitor_count: '共%s个访客'
 search:
     search: '搜索'
     hint: '想要查找什么...'

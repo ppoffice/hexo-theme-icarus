@@ -12,27 +12,48 @@ common:
     post:
         one: 'Entrada'
         other: 'Entradas'
+    page:
+        one: 'Página'
+        other: 'Páginas'
     prev: 'Anterior'
     next: 'Siguiente'
 widget:
     follow: 'SEGUIR'
     recents: 'Recientes'
     links: 'Enlaces'
-    tag_cloud: 'Nube de etiquetas'
     catalogue: 'Catálogo'
+    subscribe_email: 'Suscríbete para recibir actualizaciones'
+    subscribe: 'Suscribir'
+    adsense: 'Anuncio'
 article:
+    created_at: 'Publicado hace&nbsp;%s'
+    updated_at: 'Actualizado hace&nbsp;%s'
     more: 'Leer más'
     comments: 'Comentarios'
-    read: 'leer'
-    about: 'Acerca de'
-    words: 'palabras'
+    read_time: '%s de lectura'
+    word_count:
+        one: 'Aproximadamente %d palabra'
+        other: 'Aproximadamente %d palabras'
+    licensing:
+        author: 'Author'
+        created_at: 'Posted on'
+        updated_at: 'Updated on'
+        licensed_under: 'Licensed under'
+donate:
+    title: '¿Te gusta este artículo? Apoya al autor con'
+    afdian: 'Afdian.net'
+    alipay: 'Alipay'
+    wechat: 'Wechat'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
+    buymeacoffee: 'Cómprame un café'
+plugin:
+    backtotop: 'Volver arriba'
+    visit_count: '%s&nbsp;visitas'
+    visitor_count: 'Visitado por %s usuarios'
 search:
     search: 'Buscar'
     hint: 'Teclea algo...'
-insight:
-    hint: 'Teclea algo...'
-    posts: 'Entradas'
-    pages: 'Páginas'
-    categories: 'Categorías'
-    tags: 'Etiquetas'
+    no_result: 'No hay resultados para'
     untitled: '(Sin título)'
+    empty_preview: '(Sin vista previa)'
