@@ -5,18 +5,8 @@ module.exports = class extends Component {
     render() {
         const { site, config, helper, page } = this.props;
         const { url_for, cdn } = helper;
-        const { external_link, article } = config;
+        const { article } = config;
         const language = page.lang || page.language || config.language || 'en';
-
-        let externalLink;
-        if (typeof external_link === 'boolean') {
-            externalLink = { enable: external_link, exclude: [] };
-        } else {
-            externalLink = {
-                enable: typeof external_link.enable === 'boolean' ? external_link.enable : true,
-                exclude: external_link.exclude || []
-            };
-        }
 
         let fold = 'unfolded';
         let clipboard = true;
@@ -30,10 +20,6 @@ module.exports = class extends Component {
         }
 
         const embeddedConfig = `var IcarusThemeSettings = {
-            site: {
-                url: '${config.url}',
-                external_link: ${JSON.stringify(externalLink)}
-            },
             article: {
                 highlight: {
                     clipboard: ${clipboard},
