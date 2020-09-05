@@ -28,11 +28,22 @@ module.exports = class extends Component {
             }
         };`;
 
+        let mermaidScript = '';
+        let mermaidInit = '';
+        if (config.mermaid.enable) {
+            mermaidScript = <script src={cdn('mermaid', config.mermaid.version, 'mermaid.min.js')}></script>;
+            mermaidInit = `if (window.mermaid) {
+                mermaid.initialize({theme: 'forest'});
+            }`;
+        }
+
         return <Fragment>
             <script src={cdn('jquery', '3.3.1', 'dist/jquery.min.js')}></script>
             <script src={cdn('moment', '2.22.2', 'min/moment-with-locales.min.js')}></script>
+            {mermaidScript}
             <script dangerouslySetInnerHTML={{ __html: `moment.locale("${language}");` }}></script>
             <script dangerouslySetInnerHTML={{ __html: embeddedConfig }}></script>
+            <script dangerouslySetInnerHTML={{ __html: mermaidInit }}></script>
             {clipboard ? <script src={cdn('clipboard', '2.0.4', 'dist/clipboard.min.js')} defer={true}></script> : null}
             <Plugins site={site} config={config} page={page} helper={helper} head={false} />
             <script src={url_for('/js/main.js')} defer={true}></script>
