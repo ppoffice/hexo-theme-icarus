@@ -75,7 +75,7 @@ module.exports = class extends Component {
                             </span> : null}
                             {/* Visitor counter */}
                             {!index ? <span id={url_for(page.link || page.path)} class="level-item leancloud_visitors" data-flag-title={page.title} dangerouslySetInnerHTML={{
-                                __html: '<i class="far fa-eye"></i>' + _p('plugin.visit_count', '&nbsp;&nbsp;<span class="leancloud-visitors-count"><i class="fa fa-spinner fa-spin"></i></span>')
+                                __html: '<i class="far fa-eye"></i>' + _p('plugin.visit_count', '&nbsp;&nbsp;<span id="twikoo_visitors"><i class="fa fa-spinner fa-spin"></i></span>')
                             }}></span> : null}
                         </div>
                     </div> : null}
