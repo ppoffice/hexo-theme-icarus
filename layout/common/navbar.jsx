@@ -29,14 +29,25 @@ class Navbar extends Component {
             searchTitle
         } = this.props;
 
+        let navbarLogo = '';
+        if (logo) {
+            if (logo.text) {
+                navbarLogo = logo.text;
+            } else {
+                navbarLogo = [
+                    <img class="logo-img" src={logoLightUrl} alt={siteTitle} height="28" />,
+                    <img class="logo-img-dark" src={logoDarkUrl} alt={siteTitle} height="28" />
+                ];
+            }
+        } else {
+            navbarLogo = siteTitle;
+        }
+
         return <nav class="navbar navbar-main">
             <div class="container">
                 <div class="navbar-brand justify-content-center">
                     <a class="navbar-item navbar-logo" href={siteUrl}>
-                        {logo && logo.text ? logo.text : [
-                            <img class="logo-img" src={logoLightUrl} alt={siteTitle} height="28" />,
-                            <img class="logo-img-dark" src={logoDarkUrl} alt={siteTitle} height="28" />
-                        ]}
+                        {navbarLogo}
                     </a>
                 </div>
                 <div class="navbar-menu">

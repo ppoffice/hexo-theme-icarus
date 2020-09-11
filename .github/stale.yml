@@ -13,6 +13,12 @@ exemptLabels:
   - tutorial:v1
   - tutorial:v2
   - tutorial:v3
+  - tutorial:v4
+  - tutorial:v5
+  - tutorial:v6
+  - tutorial:v7
+  - tutorial:v8
+  - tutorial:v9
   - Gitalk
   - utterances
 # Label to use when marking an issue as stale

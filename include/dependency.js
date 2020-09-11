@@ -21,13 +21,14 @@ module.exports = hexo => {
     }
 
     logger.info('=== Checking package dependencies ===');
-    const missingDeps = Object.keys(packageInfo.peerDependencies)
-        .filter(name => !checkDependency(name, packageInfo.peerDependencies[name]));
+    const dependencies = Object.assign({}, packageInfo.peerDependencies, packageInfo.dependencies);
+    const missingDeps = Object.keys(dependencies)
+        .filter(name => !checkDependency(name, dependencies[name]));
     if (missingDeps && missingDeps.length) {
         logger.error('Please install the missing dependencies your Hexo site root directory:');
-        logger.error(green('npm install --save ' + missingDeps.map(name => `${name}@${packageInfo.peerDependencies[name]}`).join(' ')));
+        logger.error(green('npm install --save ' + missingDeps.map(name => `${name}@${dependencies[name]}`).join(' ')));
         logger.error('or:');
-        logger.error(green('yarn add ' + missingDeps.map(name => `${name}@${packageInfo.peerDependencies[name]}`).join(' ')));
+        logger.error(green('yarn add ' + missingDeps.map(name => `${name}@${dependencies[name]}`).join(' ')));
         process.exit(-1);
     }
 };
