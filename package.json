@@ -18,6 +18,6 @@
     "hexo-renderer-marked": "^3.0.0",
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^2.0.0",
-    "hexo-theme-icarus": "https://github.com/ppoffice/hexo-theme-icarus"
+    "hexo-theme-icarus": "^4.0.0"
   }
 }
