@@ -443,6 +443,16 @@ providers:
 <strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Valine %}">在线预览</a>
 </div>
 
+<br>
+
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>有用户发现一个存在于Valine评论插件的漏洞会导致此评论服务暴露所有评论者的
+IP地址 (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" rel="noopener">xCss/Valine#336</a>)。
+请在此漏洞修复之前换用其他评论服务。
+</div>
+</article>
+
 1. 按照[快速开始文档](https://valine.js.org/quickstart.html)创建LeanCloud应用。
 
 2. 将你LeanCloud应用的”App ID“和”App Key“复制到主题配置的对应配置项中。

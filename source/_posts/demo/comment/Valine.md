@@ -23,3 +23,11 @@ Please report your issues with this plugin to
 <a href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
 </div>
 </article>
+
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>A vulnerability has been found in Valine that the
+comment service exposes IP addresses of all commenters (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" rel="noopener">xCss/Valine#336</a>). Please use alternative comment
+services until this issue has been fixed.
+</div>
+</article>

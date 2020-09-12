@@ -446,6 +446,16 @@ However, unlike the other services, Isso requires a web host for running the Iss
 <strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Valine %}">Preview</a>
 </div>
 
+<br>
+
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>A vulnerability has been found in Valine that the
+comment service exposes IP addresses of all commenters (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" rel="noopener">xCss/Valine#336</a>). Please use alternative comment
+services until this issue has been fixed.
+</div>
+</article>
+
 1. Create a LeanCloud application following the [Quickstart guide](https://valine.js.org/quickstart.html).
 
 2. Copy the "App ID" and "App Key" of your LeanCloud application to the corresponding settings in the theme 
