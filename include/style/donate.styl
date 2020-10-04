@@ -5,6 +5,15 @@ $donate-qrcode-max-width ?= 280px
 $donate-qrcode-shadow ?= $card-shadow
 $donate-qrcode-box-radius ?= $card-radius
 
+$donate-button-colors ?= {
+    'afdian': rgb(136, 95, 217),
+    'alipay': rgb(0, 160, 232),
+    'buymeacoffee': rgb(255, 221, 0),
+    'paypal': rgb(254, 183, 0),
+    'patreon': rgb(255, 66, 77),
+    'wechat': rgb(26, 173, 25),
+}
+
 .donate
     position: relative
 
@@ -32,3 +41,18 @@ $donate-qrcode-box-radius ?= $card-radius
     &:last-child:not(:first-child)
         .qrcode
             right: -.75rem
+
+    for $name, $color in $donate-button-colors
+        &[data-type={'"' + $name + '"'}]
+            color: findColorInvert($color)
+            background-color: $color
+            border-color: transparent
+
+            &:active
+                background-color: darken($color, 5%)
+
+            &:hover
+                background-color: darken($color, 2.5%)
+
+            &:focus:not(:active)
+                box-shadow: 0 0 0 .125em rgba($color, .25)
