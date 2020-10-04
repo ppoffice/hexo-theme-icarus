@@ -60,13 +60,13 @@ Recent Posts &middot; Google Feedburner &middot; Tags &middot; Table of Contents
 
 **[Analytics](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/)**
 
-Baidu Statistics &middot; BuSuanZi Web Counter &middot; CNZZ Statistics &middot; Google Analytics &middot; 
-Hotjar
+Baidu Statistics &middot; Bing Webmaster &middot; BuSuanZi Web Counter &middot; CNZZ Statistics &middot;
+Google Analytics &middot; Hotjar &middot; StatCounter &middot; Twitter Conversion Tracking
 
 **[Other Plugins](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/)**
 
-LightGallery &middot; Justified Gallery &middot; KaTeX &middot; MathJax &middot; Oudated Browser &middot;
-Page Loading Animations
+Cookie Consent &middot; LightGallery &middot; Justified Gallery &middot; KaTeX &middot; MathJax &middot;
+Oudated Browser &middot; Page Loading Animations
 
 ### Colorful Code Highlight
 

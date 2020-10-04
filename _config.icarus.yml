@@ -8,6 +8,25 @@ logo: /img/logo.svg
 head:
     # URL or path to the website's icon
     favicon: /img/favicon.svg
+    # Web application manifests configuration
+    # https://developer.mozilla.org/en-US/docs/Web/Manifest
+    manifest:
+        # Name of the web application (default to the site title)
+        name: Icaurs - Hexo Theme
+        # The displayed name of the web application
+        # when there is not enough space to display full name
+        short_name: Icarus
+        # The start URL of the web application
+        start_url: 
+        # The default theme color for the application
+        theme_color: "#f7f7f7"
+        # A placeholder background color for the application page to display
+        # before its stylesheet is loaded
+        background_color: "#f7f7f7"
+        # The preferred display mode for the website
+        display: standalone
+        # Image files that can serve as application icons for different contexts
+        icons:
     # Open Graph metadata
     # https://hexo.io/docs/helpers.html#open-graph
     open_graph:
@@ -20,7 +39,7 @@ head:
         # Page URL (og:url) (optional)
         # You should leave this blank for most of the time
         url: 
-        # Page cover (og:image) (optional) Default to the Open Graph image or thumbnail of the page
+        # Page cover (og:image) (optional)
         # You should leave this blank for most of the time
         image: 
         # Site name (og:site_name) (optional)
@@ -36,7 +55,7 @@ head:
         twitter_card: 
         # Twitter ID (twitter:creator)
         twitter_id: 
-        # Twitter ID (twitter:creator)
+        # Twitter Site (twitter:site)
         twitter_site: 
         # Google+ profile link (deprecated)
         google_plus: 
@@ -59,7 +78,7 @@ head:
         # Page author (article:author) (optional)
         # You should leave this blank for most of the time
         author: 
-        # Page images (optional) Default to the Open Graph image or thumbnail of the page
+        # Page images (optional)
         # You should leave this blank for most of the time
         image: 
     # Additional HTML meta tags in an array
@@ -215,6 +234,8 @@ widgets:
         # Where should the widget be placed, left sidebar or right sidebar
         position: left
         type: toc
+        # Whether to show the index of each heading
+        index: true
     # Recommendation links widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
@@ -274,6 +295,11 @@ plugins:
     baidu_analytics:
         # Baidu Analytics tracking ID
         tracking_id: 
+    # Bing Webmaster Tools plugin settings
+    # https://www.bing.com/toolbox/webmaster/
+    bing_webmaster:
+        # Bing Webmaster Tools tracking ID in the <meta> tag
+        tracking_id: 
     # BuSuanZi site/page view counter
     # https://busuanzi.ibruce.info
     busuanzi: false
@@ -284,8 +310,20 @@ plugins:
         id: 
         # CNZZ website id
         web_id: 
+    # Alerting users about the use of cookies
+    # https://www.osano.com/cookieconsent/
+    cookie_consent:
+        # The compliance type. Can be "info", "opt-in", or "opt-out"
+        type: info
+        # Theme of the popup. Can be "block", "edgeless", or "classic"
+        theme: edgeless
+        # Whether the popup should stay static regardless of the page scrolls
+        static: false
+        # Where on the screen the consent popup should display
+        position: bottom-left
+        # URL to your site's cookie policy
+        policyLink: 'https://www.cookiesandyou.com/'
     # Enable the lightGallery and Justified Gallery plugins
-    # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
     gallery: true
     # Google Analytics plugin settings
     # https://analytics.google.com
@@ -308,6 +346,18 @@ plugins:
     outdated_browser: true
     # Show a progress bar at top of the page on page loading
     progressbar: true
+    # Statcounter statistics
+    # https://statcounter.com/
+    statcounter:
+        # Statcounter project id
+        project: 
+        # Statcounter project security code
+        security: 
+    # Twitter conversion tracking plugin settings
+    # https://business.twitter.com/en/help/campaign-measurement-and-analytics/conversion-tracking-for-websites.html
+    twitter_conversion_tracking:
+        # Twitter Pixel ID
+        pixel_id: 
 # CDN provider settings
 # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
