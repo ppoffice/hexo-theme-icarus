@@ -11,7 +11,7 @@
             "nullable": true
         },
         "manifest": {
-          "$ref": "/misc/manifest.json"
+            "$ref": "/misc/manifest.json"
         },
         "open_graph": {
             "$ref": "/misc/open_graph.json"

@@ -13,6 +13,9 @@
         "baidu_analytics": {
             "$ref": "/plugin/baidu_analytics.json"
         },
+        "bing_webmaster": {
+            "$ref": "/plugin/bing_webmaster.json"
+        },
         "busuanzi": {
             "$ref": "/plugin/busuanzi.json"
         },
