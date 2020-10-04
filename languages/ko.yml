@@ -21,12 +21,12 @@ widget:
     recents: '최근 글'
     links: '링크'
     catalogue: '카탈로그'
-    subscribe_email: '업데이트 구독'
+    subscribe_email: '업데이트 소식 받기'
     subscribe: '구독'
     adsense: '광고'
 article:
-    created_at: '%s게시 됨'
-    updated_at: '%s업데이트 됨'
+    created_at: '%s&nbsp;게시 됨'
+    updated_at: '%s&nbsp;업데이트 됨'
     more: '자세히 보기'
     comments: '댓글'
     read_time: '%s안에 읽기'
@@ -39,27 +39,27 @@ article:
         updated_at: 'Updated on'
         licensed_under: 'Licensed under'
 donate:
-    title: '이 기사처럼? 저자 지원'
+    title: '이 글이 마음에 드시나요? 다음을 통해 후원하실 수 있습니다: '
     afdian: 'Afdian.net'
     alipay: 'Alipay'
     wechat: 'Wechat'
     paypal: 'Paypal'
     patreon: 'Patreon'
-    buymeacoffee: '나에게 커피 사줘'
+    buymeacoffee: '커피 한 잔 사주기'
 plugin:
     backtotop: '맨 위로'
     visit_count: '%s회 방문'
     visitor_count: '%s명의 사용자가 방문 함'
     cookie_consent:
-      message: 이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.
-      dismiss: 알았다!
-      allow: Cookie 허용
-      deny: 거부
-      link: 더 알아보기
-      policy: Cookie 정책
+        message: 이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.
+        dismiss: 무시
+        allow: 허용
+        deny: 거부
+        link: 더 알아보기
+        policy: Cookie 정책
 search:
     search: '검색'
     hint: '입력 하세요...'
     no_result: '에 대한 결과 없음'
-    untitled: '(제목없음)'
+    untitled: '(제목 없음)'
     empty_preview: '(미리보기 없음)'
