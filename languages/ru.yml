@@ -50,6 +50,13 @@ plugin:
     backtotop: 'Вернуться наверх'
     visit_count: '%s&nbsp;посещения'
     visitor_count: 'Посетили %s пользователя'
+    cookie_consent:
+      message: Этот веб-сайт использует файлы cookie для улучшения вашего опыта.
+      dismiss: Понял!
+      allow: Разрешить cookies
+      deny: Отказаться
+      link: Учить больше
+      policy: Политика Cookie
 search:
     search: 'Поиск'
     hint: 'Введите что-нибудь...'

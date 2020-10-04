@@ -50,6 +50,13 @@ plugin:
     backtotop: 'Back to top'
     visit_count: '%s&nbsp;visits'
     visitor_count: 'Visited by %s users'
+    cookie_consent:
+      message: This website uses cookies to improve your experience.
+      dismiss: Got it!
+      allow: Allow cookies
+      deny: Decline
+      link: Learn more
+      policy: Cookie Policy
 search:
     search: 'Search'
     hint: 'Type something...'

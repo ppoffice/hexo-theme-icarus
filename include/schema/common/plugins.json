@@ -22,6 +22,9 @@
         "cnzz": {
             "$ref": "/plugin/cnzz.json"
         },
+        "cookie_consent": {
+            "$ref": "/plugin/cookie_consent.json"
+        },
         "gallery": {
             "$ref": "/plugin/gallery.json"
         },

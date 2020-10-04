@@ -50,6 +50,13 @@ plugin:
     backtotop: 'トップに戻る'
     visit_count: '%s回の訪問'
     visitor_count: '%s人のユーザーがアクセス'
+    cookie_consent:
+      message: このウェブサイトはあなたの経験を改善するためにCookieを使用しています。
+      dismiss: 了解しました
+      allow: Cookiesを許可する
+      deny: 拒否する
+      link: もっと詳しく知る
+      policy: Cookieポリシー
 search:
     search: '検索'
     hint: '何かを入力してください...'

@@ -50,6 +50,13 @@ plugin:
     backtotop: 'Kembali ke atas'
     visit_count: '%s&nbsp;kunjungan'
     visitor_count: 'Dikunjungi oleh %s pengguna'
+    cookie_consent:
+      message: Situs web ini menggunakan cookie untuk meningkatkan pengalaman Anda.
+      dismiss: Mengerti!
+      allow: Izinkan cookie
+      deny: Menolak
+      link: Belajarlah lagi
+      policy: Kebijakan Cookie
 search:
     search: 'Pencarian'
     hint: 'Tulis Sesuatu..'

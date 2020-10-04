@@ -50,6 +50,13 @@ plugin:
     backtotop: 'Başa dönüş'
     visit_count: '%s&nbsp;ziyaret'
     visitor_count: '%s kullanıcı tarafından ziyaret edildi'
+    cookie_consent:
+      message: Bu web sitesi, deneyiminizi geliştirmek için çerezler kullanır.
+      dismiss: Anladım!
+      allow: Çerezlere izin ver
+      deny: Reddet
+      link: Daha fazla bilgi edin
+      policy: Çerez politikası
 search:
     search: 'Search'
     hint: 'Bir şeyler yaz...'

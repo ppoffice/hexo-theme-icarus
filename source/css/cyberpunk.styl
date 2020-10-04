@@ -305,3 +305,21 @@ article.article
     background: $blue
     margin-top: 45px
     cut-corner(8px)
+
+.cc-window, .cc-revoke
+    border-radius: 0 !important
+
+.cc-window
+    &:not(.cc-banner)
+        border: 1px solid $blue
+
+    &.cc-theme-classic, &.cc-theme-block
+        .cc-compliance > .cc-btn
+            border-radius: 0
+
+    &.cc-banner
+        .cc-compliance > .cc-btn
+            background-color: $blue
+
+            &:hover, &:focus
+                background-color: darken($blue, 2.5%)
