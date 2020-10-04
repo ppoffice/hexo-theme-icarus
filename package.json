@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-icarus",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "author": "ppoffice <ppoffice@users.noreply.github.com>",
   "license": "MIT",
   "description": "A simple, delicate, and modern theme for Hexo",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "hexo-component-inferno": "^0.10.0",
+    "hexo-component-inferno": "^0.10.1",
     "inferno": "^7.3.3",
     "inferno-create-element": "^7.3.3",
     "moment": "^2.22.2",
