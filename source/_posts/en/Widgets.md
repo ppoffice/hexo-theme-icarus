@@ -53,6 +53,7 @@ widgets:
     -
         position: right
         type: toc
+        index: false
 ---
 
 This article covers widgets supported by Icarus 3.
@@ -156,6 +157,8 @@ widgets:
     -
         type: toc
         position: left
+        # Whether to number each table of contents item
+        index: true
 {% endcodeblock %}
 
 Then, add `toc: true` to the front-matter of your post:

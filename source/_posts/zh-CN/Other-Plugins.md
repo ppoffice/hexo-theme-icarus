@@ -10,6 +10,12 @@ toc: true
 plugins:
     animejs: true
     back_to_top: true
+    cookie_consent:
+        type: info
+        theme: classic
+        static: false
+        position: bottom
+        policyLink: 'https://www.cookiesandyou.com/'
     gallery: true
     google_analytics:
         tracking_id: UA-72437521-5
@@ -339,6 +345,30 @@ A =
 **效果预览(AsciiMath)**
 
 当\`a != 0\`，方程\`ax^2 + bx + c = 0\`有两个解，它们是<p style="text-align:center">\`x = (-b +- sqrt(b^2-4ac))/(2a)\`.</p>
+
+
+## Cookie同意提示
+
+**安装指南**
+
+你可以通过启用Cookie同意提示插件来向你的访客展示Cookie同意对话框。
+请参考[下载Cookie Consent](https://www.osano.com/cookieconsent/download/)和[Cookie Consent插件文档](https://www.osano.com/cookieconsent/documentation/about-cookie-consent/)来了解每个配置项的细节。
+你也可以通过注释掉配置的方式来禁用Cookie同意对话框。
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    cookie_consent:
+        # 同意对话框类型。可以为"info"，"opt-in"，或"opt-out"
+        type: info
+        # 弹出框主题。可以为"block"，"edgeless"，或"classic"
+        theme: edgeless
+        # 是否使弹出框固定，不随页面滚动而滚动
+        static: false
+        # 弹出框在屏幕上的位置
+        position: bottom-left
+        # 你网站的Cookie协议的URL
+        policyLink: 'https://www.cookiesandyou.com/'
+{% endcodeblock %}
 
 
 ## 浏览器升级提醒 (Outdated Browser)

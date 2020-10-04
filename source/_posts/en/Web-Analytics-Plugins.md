@@ -76,6 +76,31 @@ Use them with caution.
     {% endcodeblock %}
 
 
+## Bing Webmaster Tools
+
+**Installation Guide**
+
+1. Log into [Bing - Webmaster Tools](https://www.bing.com/toolbox/webmaster/).
+   Then, choose "Add your site manually" and enter the URL to your site.
+   Click "Add" button to continue.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/bing-webmaster-add-site.png 360 '"Add Site - Bing Webmaster Tools" "Add Site - Bing Webmaster Tools"' %}
+   <br>
+
+2. In the "Add & verify site" panel, select "HTML Meta Tag" method.
+   Copy value of the `content` attribute in the HTML meta tag to the `plugins` > `bing_webmaster` > `tracking_id`
+   in the theme configurations.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/bing-webmaster-verify-site.png 360 '"Verify Site - Bing Webmaster Tools" "Verify Site - Bing Webmaster Tools"' %}
+   <br>
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    plugins:
+        bing_webmaster:
+            tracking_id: ABCDEFABCDEFABCDEFABCDEFABCDEFABCDEF
+    {% endcodeblock %}
+
+
 ## BuSuanZi Web Counter
 
 **Installation Guide**
@@ -184,6 +209,93 @@ Use them with caution.
         hotjar:
             site_id: 1234567
     {% endcodeblock %}
+
+
+## Statcounter
+
+**Installation Guide**
+
+1. Log into [Statcounter](https://statcounter.com/).
+   Click "Add New Project" button in the "Projects" page.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/statcounter-projects.png 360 '"Projects - Statcounter" "Projects - Statcounter"' %}
+   <br>
+
+2. Fill in the website URL and project title in the "Add Project" page.
+   Tweak rest of the project settings if you need to.
+   Then, click the "Add Project" button.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/statcounter-add-project.png 360 '"Add Project - Statcounter" "Add Project - Statcounter"' %}
+   <br>
+
+3. Click "Continue to Default Installation" in the "Platform Check Complete" page.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/statcounter-platform-check.png 360 '"Platform Check Complete - Statcounter" "Platform Check Complete - Statcounter"' %}
+   <br>
+
+4. Finally, in the "Insert the Code on Your Website" page, copy the value of `sc_project` and `sc_security` variable in the HTML snippet
+   to `plugins` > `statcounter` > `project` and `plugins` > `statcounter` > `security` in the theme configurations, respectively.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/statcounter-insert-code.png 360 '"Insert Code - Statcounter" "Insert Code - Statcounter"' %}
+   <br>
+
+   For example, the following Statcounter code:
+
+   {% codeblock "Statcounter code" lang:html %}
+   <script type="text/javascript">
+   var sc_project=12345678; 
+   var sc_invisible=1; 
+   var sc_security="abcdef12"; 
+   var sc_https=1; 
+   </script>
+   <script type="text/javascript"
+   src="https://www.statcounter.com/counter/counter.js"
+   async></script>
+   ...
+   {% endcodeblock %}
+
+   maps to the following theme configuration:
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   plugins:
+      statcounter:
+         project: 12345678
+         security: abcdef12
+   {% endcodeblock %}
+
+
+## Twitter Conversion Tracking
+
+**Installation Guide**
+
+1. Follow [How to set up conversion tracking](https://business.twitter.com/en/help/campaign-measurement-and-analytics/conversion-tracking-for-websites.html) to enable universal website tag of Twitter conversion tracking.
+
+2. Find the `init` (Pixel ID) in your conversion tracking code. Copy its value to `plugins` > `twitter_conversion_tracking` > `pixel_id`
+   in the theme configurations.
+
+   For example, the following Twitter conversion tracking code:
+
+   {% codeblock "Twitter conversion tracking code" lang:html %}
+   <!-- Twitter universal website tag code -->
+   <script>
+   !function(e,n,u,a){e.twq||(a=e.twq=function(){a.exe?a.exe.apply(a,arguments):
+   a.queue.push(arguments);},a.version='1',a.queue=[],t=n.createElement(u),
+   t.async=!0,t.src='//static.ads-twitter.com/uwt.js',s=n.getElementsByTagName(u)[0],
+   s.parentNode.insertBefore(t,s))}(window,document,'script');
+   // Insert Twitter Pixel ID and Standard Event data below
+   twq('init','abcdef');
+   twq('track','PageView');
+   </script>
+   <!-- End Twitter universal website tag code -->
+   {% endcodeblock %}
+
+   maps to the following theme configuration:
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   plugins:
+      twitter_conversion_tracking:
+         pixel_id: abcdef
+   {% endcodeblock %}
 
 
 <article class="message message-immersive is-warning">

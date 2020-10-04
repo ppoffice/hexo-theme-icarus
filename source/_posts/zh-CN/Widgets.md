@@ -53,6 +53,7 @@ widgets:
     -
         position: right
         type: toc
+        index: false
 providers:
     cdn: loli
     fontcdn: loli
@@ -155,6 +156,8 @@ widgets:
     -
         type: toc
         position: left
+        # 是否显示目录项目的序号
+        index: true
 {% endcodeblock %}
 
 然后，在需要开启目录的文章头部加入`toc: true`：

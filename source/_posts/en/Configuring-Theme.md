@@ -73,6 +73,46 @@ head:
     favicon: /img/favicon.svg
 {% endcodeblock %}
 
+### Web App Manifest
+
+Icarus supports basic PWA `manifest.json` generation and meta tags.
+To enable web app manifest, use the following configuration in your theme configuration file.
+You can also refer to [MDN](https://developer.mozilla.org/en-US/docs/Web/Manifest) for details
+on each manifest configuration setting.
+
+{% codeblock _config.icarus.yml lang:yaml >folded %}
+manifest:
+    # Name of the web application (default to the site title)
+    name: Icaurs - Hexo Theme
+    # The displayed name of the web application
+    # when there is not enough space to display full name
+    short_name: Icarus
+    # The start URL of the web application
+    start_url: https://ppoffice.github.io/
+    # The default theme color for the application
+    theme_color: "#3273dc"
+    # A placeholder background color for the application page to display
+    # before its stylesheet is loaded
+    background_color: "#3273dc"
+    # The preferred display mode for the website
+    display: standalone
+    # Image files that can serve as application icons for different contexts
+    icons:
+        -
+            # The path to the image file
+            src: icons/touch-icon-iphone.png
+            # A string containing space-separated image dimensions
+            sizes: 144x144
+            # A hint as to the media type of the image (optional)
+            type: image/png
+        -
+            src: icons/touch-icon-ipad.png
+            sizes: 152x152
+        -
+            src: icon/logo.ico
+            sizes: 72x72 96x96 128x128 256x256
+{% endcodeblock %}
+
 ### Open Graph
 
 You can set up Open Graph in the `head` section.

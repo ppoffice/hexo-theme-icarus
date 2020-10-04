@@ -10,6 +10,12 @@ toc: true
 plugins:
     animejs: true
     back_to_top: true
+    cookie_consent:
+        type: info
+        theme: classic
+        static: false
+        position: bottom
+        policyLink: 'https://www.cookiesandyou.com/'
     gallery: true
     google_analytics:
         tracking_id: UA-72437521-5
@@ -345,6 +351,32 @@ and they are
 **Preview(AsciiMath)**
 
 When \`a != 0\`, there are two solutions to \`ax^2 + bx + c = 0\` and they are <p style="text-align:center">\`x = (-b +- sqrt(b^2-4ac))/(2a)\`.</p>
+
+
+## Cookie Consent
+
+**Installation Guide**
+
+You can show a cookie consent dialog to your visitor by enabling the Cookie Consent plugin.
+Please refer to [Download Cookie Consent](https://www.osano.com/cookieconsent/download/) and 
+[Documentation for the Cookie Consent plugin](https://www.osano.com/cookieconsent/documentation/about-cookie-consent/)
+for details on each configuration setting.
+You can also disable the cookie consent dialog by commenting out the configurations.
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    cookie_consent:
+        # The compliance type. Can be "info", "opt-in", or "opt-out"
+        type: info
+        # Theme of the popup. Can be "block", "edgeless", or "classic"
+        theme: edgeless
+        # Whether the popup should stay static regardless of the page scrolls
+        static: false
+        # Where on the screen the consent popup should display
+        position: bottom-left
+        # URL to your site's cookie policy
+        policyLink: 'https://www.cookiesandyou.com/'
+{% endcodeblock %}
 
 
 ## Outdated Browser
