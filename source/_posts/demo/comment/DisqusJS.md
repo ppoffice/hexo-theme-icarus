@@ -6,10 +6,8 @@ comment:
     type: disqusjs
     shortname: hexo-theme-icarus
     api_key: 4BrFFpTF5UKSlRMxETS07XhA621NZxoyBUsNiIW441dyUngS7QuPnXJnadMmzkdY
-    api: https://disqus.skk.moe/disqus/
     admin: ppoffice
     admin_label: Admin
-    nesting: 4
 ---
 
 <article class="message message-immersive is-warning">
