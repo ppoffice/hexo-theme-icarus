@@ -6,7 +6,7 @@
     "properties": {
         "menu": {
             "type": "object",
-            "description": "Naviagtion menu items",
+            "description": "Navigation menu items",
             "patternProperties": {
                 ".+": {
                     "type": "string",
