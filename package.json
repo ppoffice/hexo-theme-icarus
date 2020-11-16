@@ -21,7 +21,7 @@
     "lint": "eslint --ext .js --ext .jsx --ext .json ."
   },
   "devDependencies": {
-    "bulma-stylus": "0.8.0",
+    "bulma-stylus": "0.9.1",
     "eslint": "^7.6.0",
     "eslint-config-hexo": "^4.1.0",
     "eslint-plugin-json": "^2.0.1",
@@ -42,7 +42,7 @@
     "semver": ">=5.0.0"
   },
   "peerDependencies": {
-    "bulma-stylus": "0.8.0",
+    "bulma-stylus": "0.9.1",
     "hexo": "^5.0.2",
     "hexo-log": "^2.0.0",
     "hexo-pagination": "^1.0.0",
