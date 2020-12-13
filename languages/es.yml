@@ -51,6 +51,13 @@ plugin:
     backtotop: 'Volver arriba'
     visit_count: '%s&nbsp;visitas'
     visitor_count: 'Visitado por %s usuarios'
+    cookie_consent:
+      message: Este sitio web utiliza cookies para mejorar su experiencia.
+      dismiss: ¡Entendido!
+      allow: Permitir cookies
+      deny: Descenso
+      link: Aprende más
+      policy: Política de cookies
 search:
     search: 'Buscar'
     hint: 'Teclea algo...'

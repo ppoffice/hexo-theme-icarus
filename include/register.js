@@ -7,6 +7,7 @@ module.exports = hexo => {
     require('hexo-component-inferno/lib/hexo/generator/insight')(hexo);
     require('hexo-component-inferno/lib/hexo/generator/categories')(hexo);
     require('hexo-component-inferno/lib/hexo/generator/category')(hexo);
+    require('hexo-component-inferno/lib/hexo/generator/manifest')(hexo);
     require('hexo-component-inferno/lib/hexo/generator/tags')(hexo);
     require('./hexo/helper/cdn')(hexo);
     require('hexo-component-inferno/lib/hexo/helper/page')(hexo);

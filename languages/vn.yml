@@ -50,6 +50,13 @@ plugin:
     backtotop: 'Trở lai đầu trang'
     visit_count: '%s&nbsp;Bạn đọc'
     visitor_count: 'Thăm bởi %s bạn đọc'
+    cookie_consent:
+      message: Trang web này sử dụng cookie để cải thiện trải nghiệm của bạn.
+      dismiss: Hiểu rồi!
+      allow: Cho phép cookie
+      deny: Từ chối
+      link: Tìm hiểu thêm
+      policy: Chính sách Cookie
 search:
     search: 'Tìm kiếm'
     hint: 'Gõ gì đó...'

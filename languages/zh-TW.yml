@@ -51,6 +51,13 @@ plugin:
     backtotop: '回到頁首'
     visit_count: '%s次訪問'
     visitor_count: '共%s個訪客'
+    cookie_consent:
+      message: 此網站使用Cookie來改善您的體驗。
+      dismiss: 知道了！
+      allow: 允許使用Cookie
+      deny: 拒絕
+      link: 了解更多
+      policy: Cookie政策
 search:
     search: '搜尋'
     hint: '請輸入關鍵字...'

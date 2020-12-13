@@ -13,11 +13,17 @@
         "baidu_analytics": {
             "$ref": "/plugin/baidu_analytics.json"
         },
+        "bing_webmaster": {
+            "$ref": "/plugin/bing_webmaster.json"
+        },
         "busuanzi": {
             "$ref": "/plugin/busuanzi.json"
         },
         "cnzz": {
             "$ref": "/plugin/cnzz.json"
+        },
+        "cookie_consent": {
+            "$ref": "/plugin/cookie_consent.json"
         },
         "gallery": {
             "$ref": "/plugin/gallery.json"
@@ -39,6 +45,12 @@
         },
         "progressbar": {
             "$ref": "/plugin/progressbar.json"
+        },
+        "statcounter": {
+            "$ref": "/plugin/statcounter.json"
+        },
+        "twitter_conversion_tracking": {
+            "$ref": "/plugin/twitter_conversion_tracking.json"
         }
     }
 }

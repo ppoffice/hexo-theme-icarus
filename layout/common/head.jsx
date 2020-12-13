@@ -1,5 +1,6 @@
 const { Component } = require('inferno');
 const MetaTags = require('hexo-component-inferno/lib/view/misc/meta');
+const WebApp = require('hexo-component-inferno/lib/view/misc/web_app');
 const OpenGraph = require('hexo-component-inferno/lib/view/misc/open_graph');
 const StructuredData = require('hexo-component-inferno/lib/view/misc/structured_data');
 const Plugins = require('./plugins');
@@ -40,6 +41,7 @@ module.exports = class extends Component {
         } = config;
         const {
             meta = [],
+            manifest = {},
             open_graph = {},
             structured_data = {},
             canonical_url = page.permalink,
@@ -111,6 +113,13 @@ module.exports = class extends Component {
             {meta && meta.length ? <MetaTags meta={meta} /> : null}
 
             <title>{getPageTitle(page, config.title, helper)}</title>
+
+            <WebApp.Cacheable
+                helper={helper}
+                favicon={favicon}
+                icons={manifest.icons}
+                themeColor={manifest.theme_color}
+                name={manifest.name || config.title} />
 
             {typeof open_graph === 'object' && open_graph !== null ? <OpenGraph
                 type={open_graph.type || (is_post(page) ? 'article' : 'website')}

@@ -96,6 +96,7 @@
 
 .katex-html
     padding-top: 1em
+
     .tag
         align-items: unset
         background-color: unset
@@ -109,3 +110,48 @@
         padding-left: unset
         padding-right: unset
         white-space: unset
+
+/* ---------------------------------
+ *         Cookie Consent
+ * --------------------------------- */
+.cc-window, .cc-revoke
+    font-size: 1.1rem !important
+    font-family: $family-sans-serif !important
+
+.cc-window
+    color: $text !important
+    background-color: $scheme-main !important
+
+    &.cc-floating
+        border-radius: $card-radius
+        box-shadow: $card-shadow
+
+    &.cc-banner
+        background-color: darken($scheme-main, 2.5%) !important
+
+    &.cc-theme-block, &.cc-theme-classic
+        .cc-compliance > .cc-btn
+            border-radius: $radius-rounded
+
+    .cc-compliance > .cc-btn
+        font-weight: 400
+        border: none
+        color: $primary-invert
+        background-color: $primary
+
+        &:hover, &:focus
+            background-color: darken($primary, 2.5%)
+
+        &.cc-deny
+            &:hover
+                color: $primary
+                text-decoration: none
+
+.cc-revoke
+    padding: .5rem 1rem !important
+    color: $primary-invert !important
+    background-color: $primary !important
+
+    &:hover
+        text-decoration: none !important
+        background-color: darken($primary, 2.5%)
