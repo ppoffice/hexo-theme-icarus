@@ -168,6 +168,11 @@ night()
         color: rgb(82, 153, 224)
         &:hover
             color: #ffffff
+    .timeline a,
+    [data-type="recent-posts"] a
+        color: dark-font-color
+        &:hover
+            color: #ffffff
 
     // quote
     .content blockquote,
@@ -197,6 +202,7 @@ night()
     .tag:not(body)
         color: dark-font-color
         background-color: dark-primary-color
+    .widget .tags .tag:first-child,
     .tag.is-grey
         background-color: dark-primary-color-hover
     .menu-list a:hover
