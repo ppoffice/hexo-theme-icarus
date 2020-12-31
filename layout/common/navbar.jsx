@@ -17,7 +17,8 @@ class Navbar extends Component {
     render() {
         const {
             logo,
-            logoUrl,
+            logoLightUrl,
+            logoDarkUrl,
             siteUrl,
             siteTitle,
             menu,
@@ -33,7 +34,10 @@ class Navbar extends Component {
             if (logo.text) {
                 navbarLogo = logo.text;
             } else {
-                navbarLogo = <img src={logoUrl} alt={siteTitle} height="28" />;
+                navbarLogo = [
+                    <img class="logo-img" src={logoLightUrl} alt={siteTitle} height="28" />,
+                    <img class="logo-img-dark" src={logoDarkUrl} alt={siteTitle} height="28" />
+                ];
             }
         } else {
             navbarLogo = siteTitle;
@@ -65,6 +69,9 @@ class Navbar extends Component {
                         {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
                             <i class="fas fa-list-ul"></i>
                         </a> : null}
+                        <a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;">
+                            <i class="fas fa-moon" id="night-icon"></i>
+                        </a>
                         {showSearch ? <a class="navbar-item search" title={searchTitle} href="javascript:;">
                             <i class="fas fa-search"></i>
                         </a> : null}
@@ -79,6 +86,9 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
     const { config, helper, page } = props;
     const { url_for, _p, __ } = helper;
     const { logo, title, navbar, widgets, search } = config;
+
+    const logoLight = logo instanceof String ? logo : logo.light
+    const logoDark = logo instanceof String ? logo : logo.dark
 
     const hasTocWidget = Array.isArray(widgets) && widgets.find(widget => widget.type === 'toc');
     const showToc = (config.toc === true || page.toc) && hasTocWidget && ['page', 'post'].includes(page.layout);
@@ -106,7 +116,8 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
 
     return {
         logo,
-        logoUrl: url_for(logo),
+        logoLightUrl: url_for(logoLight),
+        logoDarkUrl: url_for(logoDark),
         siteUrl: url_for('/'),
         siteTitle: title,
         menu,

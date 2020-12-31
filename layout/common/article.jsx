@@ -104,7 +104,7 @@ module.exports = class extends Component {
             {/* Donate button */}
             {!index ? <Donates config={config} helper={helper} /> : null}
             {/* Post navigation */}
-            {!index && (page.prev || page.next) ? <nav class="post-navigation mt-4 level is-mobile">
+            {!index && (page.prev || page.next) ? <div class="card"><nav class="post-navigation mt-4 level is-mobile card-content">
                 {page.prev ? <div class="level-start">
                     <a class={`article-nav-prev level level-item${!page.prev ? ' is-hidden-mobile' : ''} link-muted`} href={url_for(page.prev.path)}>
                         <i class="level-item fas fa-chevron-left"></i>
@@ -117,7 +117,7 @@ module.exports = class extends Component {
                         <i class="level-item fas fa-chevron-right"></i>
                     </a>
                 </div> : null}
-            </nav> : null}
+            </nav></div> : null}
             {/* Comment */}
             {!index ? <Comment config={config} page={page} helper={helper} /> : null}
         </Fragment>;
