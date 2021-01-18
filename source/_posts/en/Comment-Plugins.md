@@ -30,14 +30,6 @@ Please refer to it for a complete list of supported plugins and their configurat
 
 ## Changyan
 
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>You are required to obtain an ICP license from the Chinese 
-government if you are going to use Changyan. 
-Refer to <a href="http://changyan.kuaizhan.com/static/help/o-beian.html">ICP Licensing</a> for more information.
-</div>
-</article>
-
 **Installation Guide**
 
 1. First, log into [Changyan](http://changyan.kuaizhan.com). Get the comment HTML code by following

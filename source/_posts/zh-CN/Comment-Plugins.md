@@ -37,13 +37,6 @@ providers:
 
 ## 畅言
 
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>畅言云评要求站长对使用其评论服务的网站进行备案，详情请参阅
-<a href="http://changyan.kuaizhan.com/static/help/o-beian.html">ICP备案</a>。
-</div>
-</article>
-
 **安装指南**
 
 1. 首先，登录[畅言云评](http://changyan.kuaizhan.com)，
