@@ -87,7 +87,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 
     {% codeblock "Windows Command Prompt (CMD)" lang:cmd %}
     C:\Users\you> cd path/to/your/hexo/site
-    C:\Users\you> set HEXO_ALGOLIA_INDEXING_KEY="727fbd8c998fe419318fa350db6793ca"
+    C:\Users\you> set HEXO_ALGOLIA_INDEXING_KEY=727fbd8c998fe419318fa350db6793ca
     {% endcodeblock %}
 
    On Linux/macOS:
