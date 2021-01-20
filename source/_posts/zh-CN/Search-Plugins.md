@@ -93,7 +93,7 @@ providers:
 
     {% codeblock "Windows命令行(CMD)" lang:cmd %}
     C:\Users\you> cd path/to/your/hexo/site
-    C:\Users\you> set HEXO_ALGOLIA_INDEXING_KEY="727fbd8c998fe419318fa350db6793ca"
+    C:\Users\you> set HEXO_ALGOLIA_INDEXING_KEY=727fbd8c998fe419318fa350db6793ca
     {% endcodeblock %}
 
    Linux/macOS下：
