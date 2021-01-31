@@ -207,7 +207,7 @@ providers:
 <a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/share/Sharejs %}">在线预览</a>
 </div>
 
-1. 你可以启用百度分享按钮而无需用户注册。
+1. 你可以启用Share.js分享按钮而无需用户注册。
    直接将下面代码添加到主题配置中：
 
     {% codeblock _config.icarus.yml lang:yaml %}
