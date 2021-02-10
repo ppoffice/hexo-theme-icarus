@@ -38,6 +38,9 @@
                 "$ref": "/widget/subscribe_email.json"
             },
             {
+                "$ref": "/widget/twikoo_new.json"
+            },
+            {
                 "$ref": "/widget/adsense.json"
             }
         ],
