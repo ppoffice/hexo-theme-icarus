@@ -1,0 +1,65 @@
+common:
+    archive:
+        one: 'Arhiw'
+        other: 'Arhiwler'
+    category:
+        one: 'Bölüm'
+        other: 'Bölümler'
+    tag:
+        one: 'Teg'
+        other: 'Tegler'
+    post:
+        one: 'Post'
+        other: 'Postlar'
+    page:
+        one: 'Sahypa'
+        other: 'Sahypalar'
+    prev: 'Öňki'
+    next: 'Indiki'
+widget:
+    follow: 'Abuna bol'
+    recents: 'Täze habarlar'
+    links: 'Linkler'
+    catalogue: 'Katalog'
+    subscribe_email: 'Täzelikler üçin ýazyl'
+    subscribe: 'Ýazyl'
+    adsense: 'Mahabat'
+article:
+    created_at: 'Paýlaşyldy&nbsp;%s'
+    updated_at: 'Üýtgedildi&nbsp;%s'
+    more: 'Dowamy...'
+    comments: 'Kommentariýa'
+    read_time: '%s okaldy'
+    word_count:
+        one: 'Ortaça %d söz'
+        other: 'Ortaça %d söz'
+    licensing:
+        author: 'Awtor'
+        created_at: 'Paýlaşdy'
+        updated_at: 'Üýtgetdi'
+        licensed_under: 'Resmileşdirilen'
+donate:
+    title: 'Haladynmy? Awtory gollaň'
+    afdian: 'Afdian.net'
+    alipay: 'Alipay'
+    wechat: 'Wechat'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
+    buymeacoffee: 'Buy me a coffee'
+plugin:
+    backtotop: 'Ýokaryk'
+    visit_count: '%s&nbsp;görüldi'
+    visitor_count: '%s adam gördi'
+    cookie_consent:
+      message: Bu web saýt siziň üçin kuki ulanýar.
+      dismiss: Düşündim!
+      allow: Kukini kabul et!
+      deny: Närazylyk bildir
+      link: Dowamy...
+      policy: Kuki syýasaty
+search:
+    search: 'Gözle'
+    hint: 'Birzatlar ýazyň...'
+    no_result: 'Tapylmady'
+    untitled: 'Atlandyrylmadyk'
+    empty_preview: 'Boş'
