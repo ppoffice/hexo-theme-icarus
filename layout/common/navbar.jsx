@@ -26,7 +26,8 @@ class Navbar extends Component {
             showToc,
             tocTitle,
             showSearch,
-            searchTitle
+            searchTitle,
+            fixedTop
         } = this.props;
 
         let navbarLogo = '';
@@ -43,7 +44,7 @@ class Navbar extends Component {
             navbarLogo = siteTitle;
         }
 
-        return <nav class="navbar navbar-main">
+        return <nav class={`navbar navbar-main` + fixedTop}>
             <div class="container">
                 <div class="navbar-brand justify-content-center">
                     <a class="navbar-item navbar-logo" href={siteUrl}>
@@ -93,6 +94,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
 
     const hasTocWidget = Array.isArray(widgets) && widgets.find(widget => widget.type === 'toc');
     const showToc = (config.toc === true || page.toc) && hasTocWidget && ['page', 'post'].includes(page.layout);
+    const fixedTop = navbar.fixed ? ' is-fixed-top' : '';
 
     const menu = {};
     if (navbar && navbar.menu) {
@@ -126,6 +128,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         showToc,
         tocTitle: _p('widget.catalogue', Infinity),
         showSearch: search && search.type,
-        searchTitle: __('search.search')
+        searchTitle: __('search.search'),
+        fixedTop
     };
 });

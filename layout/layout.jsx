@@ -13,10 +13,11 @@ module.exports = class extends Component {
 
         const language = page.lang || page.language || config.language;
         const columnCount = Widgets.getColumnCount(config.widgets);
+        const fixedTop = config.navbar.fixed ? ` has-navbar-fixed-top` : ``;
 
         return <html lang={language ? language.substr(0, 2) : ''}>
             <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-${columnCount}-column`}>
+            <body class={`is-${columnCount}-column` + fixedTop}>
                 <script type="text/javascript" src="/js/imaegoo/night.js"></script>
                 <canvas id="universe"></canvas>
 

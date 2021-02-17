@@ -35,6 +35,11 @@
                     }
                 }
             ]
+        },
+        "fixed": {
+            "type": "boolean",
+            "description": "Navbar is stick to top, not scroll with pages",
+            "default": true
         }
     }
 }
