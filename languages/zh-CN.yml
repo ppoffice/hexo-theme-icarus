@@ -17,7 +17,7 @@ common:
     prev: '上一页'
     next: '下一页'
 widget:
-    follow: '关注我'
+    follow: '微博 Weibo'
     recents: '最新文章'
     links: '链接'
     catalogue: '目录'
@@ -30,6 +30,7 @@ article:
     more: '阅读更多'
     comments: '评论'
     read_time: '%s读完'
+    edited: '编辑于'
     word_count:
         one: '大约%d个字'
         other: '大约%d个字'

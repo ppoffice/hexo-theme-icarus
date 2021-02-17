@@ -1,0 +1,209 @@
+screen-tablet = 769px
+screen-desktop = 1088px
+screen-widescreen = 1280px
+screen-fullhd = 1472px
+screen-onek = 1700px
+primary-color = #5d93db
+primary-color-hover = #71a1e0
+primary-color-active = #4382d6
+primary-color-light = rgba(93, 147, 219, 0.8)
+link-color = rgb(68,155,255)
+
+@media screen and (min-width: screen-onek)
+    .container
+        max-width: 1600px
+        width: 1600px
+        .column.is-3-widescreen
+            width: 22%
+        .column.is-6-widescreen
+            width: 56%
+
+// Background image
+body
+    background-color: transparent
+body:before
+    content: ''
+    position: fixed
+    z-index: -1
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    opacity: 0.01
+    transition: opacity 1s
+    background: url("https://api.btstu.cn/sjbz/?lx=dongman&format=images&method=pc") center 0 no-repeat
+    background-size: cover
+    @media screen and (max-width: screen-tablet - 1)
+        background-image: url("https://api.btstu.cn/sjbz/?lx=dongman&format=images&method=mobile")
+body.ready:before
+    opacity: 1
+
+// Nav bar fixes
+.navbar
+    background-color: rgba(255,255,255,0.8)
+    backdrop-filter: blur(10px)
+    -webkit-backdrop-filter: blur(10px)
+.navbar-main
+    .navbar-menu
+        background-color: transparent
+    .navbar-item
+        &.is-active
+            color: inherit
+            font-weight: bold
+        &:hover
+            color: white
+            background-color: primary-color
+    @media screen and (min-width: screen-desktop)
+        .navbar-menu
+            .navbar-start
+                margin-left: 2em
+    @media screen and (max-width: screen-tablet - 1)
+        .navbar-menu
+            flex-direction: column
+            .navbar-start
+            .navbar-end
+                justify-content: center
+                overflow-x: auto
+                .navbar-item
+                    padding: .5rem
+            .navbar-end
+                padding-bottom: .5rem
+
+// Card fixes
+.card
+    overflow: visible
+    transition: background-color 0.5s ease
+    background-color: rgba(255,255,255,0.95)
+    &:hover
+        background-color: rgba(255,255,255,1)
+    &.card-transparent
+        background-color: transparent !important
+        .level-start,
+        .level-end
+            overflow: hidden
+@media screen and (min-width: screen-tablet)
+    .column-main,
+    .column-left,
+    .column-right,
+    .column-right-shadow
+        &.is-sticky
+            top: 10px
+
+// Article horizontal scroll bar
+.article
+    .content
+        overflow: auto
+
+// Footer fixes
+footer.footer
+    background-color: transparent
+
+.footer
+    backdrop-filter: blur(10px)
+    -webkit-backdrop-filter: blur(10px)
+    position: relative
+    &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-color: rgba(255,255,255,0.8)
+
+.footer-logo
+    img
+        max-height: 2rem
+.footer a:not(.button)
+    color: inherit
+    &:hover
+        text-decoration: underline
+
+// Section fixes
+.section .container .columns
+    -webkit-justify-content: center
+    justify-content: center
+
+// Selection
+::selection
+    color: white
+    background-color: primary-color-light
+::-moz-selection
+    color: white
+    background-color: primary-color-light
+
+// Colors
+a
+    color: link-color
+
+.button.is-link
+    background-color: primary-color
+
+article.article
+    .article-meta
+        overflow-y: hidden
+    .title
+        width: fit-content
+    img
+        max-height: 800px
+
+article
+    .title a
+        background-image: linear-gradient(transparent calc(100% - 1px), primary-color 1px)
+        background-repeat: no-repeat
+        background-size: 0 100%
+        transition: all .25s ease-in-out
+    .title:hover a
+        // override another !important
+        color: primary-color !important
+        background-size: 100% 100%
+
+.button.is-link:hover, .button.is-link.is-hovered
+    background-color: primary-color-hover
+
+.button.is-link:active, .button.is-link.is-active
+    background-color: primary-color-active
+
+.pagination-link.is-current
+    background-color: primary-color
+    border-color: primary-color-active
+
+// Fix fontawsome icon 不等宽
+.navbar-main .navbar-menu .navbar-end .navbar-item
+    min-width 35px
+    justify-content: center
+    -webkit-justify-content: center
+
+// 版权声明
+.article-licensing
+    z-index: 0
+
+#busuanzi_container_page_pv
+    display: none !important
+
+.card .v .vlist .vcard .vcontent
+    text-align: inherit
+
+.searchbox
+    .searchbox-pinyin
+        display: flex
+        align-items: center
+        user-select: none
+        input
+            vertical-align: middle
+        span
+            position: relative
+            top: 1px
+
+.button.link-more
+    margin-top 0.75rem
+
+.post-navigation
+    .level-item
+        flex-shrink: 1
+
+.twikoo-new-content
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
