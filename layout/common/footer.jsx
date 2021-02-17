@@ -13,7 +13,8 @@ class Footer extends Component {
             author,
             links,
             showVisitorCounter,
-            visitorCounterTitle
+            visitorCounterTitle,
+            content
         } = this.props;
 
         let footerLogo = '';
@@ -40,11 +41,11 @@ class Footer extends Component {
                         <p class="is-size-7">
                             <span dangerouslySetInnerHTML={{ __html: `&copy; ${siteYear} ${author || siteTitle}` }}></span>
                             &nbsp;&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>&nbsp;&&nbsp;
-                            <a href="https://github.com/imaegoo/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                            <a href="https://github.com/YukiNoUta/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>&nbsp;&&nbsp;
                             {showVisitorCounter ? <br /> : null}
-                            <a href="http://www.miitbeian.gov.cn" target="_blank">豫ICP备18017229号</a>&nbsp;-&nbsp;
                             {showVisitorCounter ? <span id="busuanzi_container_site_uv"
                                 dangerouslySetInnerHTML={{ __html: visitorCounterTitle }}></span> : null}
+                            {content}  
                         </p>
                     </div>
                     <div class="level-end">
@@ -73,6 +74,14 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
     const logoLight = logo instanceof String ? logo : logo.light
     const logoDark = logo instanceof String ? logo : logo.dark
 
+    const content = footer.content.map(value => {
+        return <><br />
+        {typeof value === 'string' ?
+        <span dangerouslySetInnerHTML={{__html: value}}></span> :
+        <a href={value.href} target="_blank" dangerouslySetInnerHTML={{__html: value.html}}></a>}
+        </>
+    });
+
     const links = {};
     if (footer && footer.links) {
         Object.keys(footer.links).forEach(name => {
@@ -94,6 +103,7 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
         author,
         links,
         showVisitorCounter: plugins && plugins.busuanzi === true,
-        visitorCounterTitle: _p('plugin.visitor_count', '<span id="busuanzi_value_site_uv">0</span>')
+        visitorCounterTitle: _p('plugin.visitor_count', '<span id="busuanzi_value_site_uv">0</span>'),
+        content
     };
 });

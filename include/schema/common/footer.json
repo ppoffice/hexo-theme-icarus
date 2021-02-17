@@ -23,6 +23,17 @@
                     }
                 }
             ]
+        },
+        "content": {
+            "type": "array",
+            "description": "text and link to show at your site's buttom-left",
+            "examples": [
+                {
+                    "href": "http://www.miitbeian.gov.cn",
+                    "html": "萌ICP备1145141919810号"
+                },
+                "Nanami 酱满怀爱意而制作♥~"
+            ]
         }
     }
 }
