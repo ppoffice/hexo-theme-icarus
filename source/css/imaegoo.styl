@@ -72,7 +72,10 @@ body:before
 .card
     overflow: visible
     transition: background-color 0.5s ease
-    background-color: rgba(255,255,255,0.95)
+    background-color: rgba(255,255,255,0.85)
+    backdrop-filter: blur(10px)
+    transition: 0.4s all ease !important
+    -webkit-backdrop-filter: blur(10px)
     &:hover
         background-color: rgba(255,255,255,1)
     &.card-transparent
