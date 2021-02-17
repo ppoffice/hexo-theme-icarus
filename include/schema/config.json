@@ -19,16 +19,24 @@
             "default": "default"
         },
         "logo": {
-            "type": [
-                "string",
-                "object"
-            ],
+            "type": "object",
             "description": "Path or URL to the website's logo",
-            "default": "/img/logo.svg",
+            "default": {
+                "light": "/img/logo.svg",
+                "dark": "/img/logo.svg"
+            },
             "properties": {
                 "text": {
                     "type": "string",
                     "description": "Text to be shown in place of the logo image"
+                },
+                "light": {
+                    "type": "string",
+                    "description": "Image to be used as logo in light mode"
+                },
+                "dark": {
+                    "type": "string",
+                    "description": "Image to be used as logo in dark mode"
                 }
             }
         },
