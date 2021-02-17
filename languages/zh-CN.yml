@@ -17,7 +17,7 @@ common:
     prev: '上一页'
     next: '下一页'
 widget:
-    follow: '微博 Weibo'
+    follow: '关注我'
     recents: '最新文章'
     links: '链接'
     catalogue: '目录'
