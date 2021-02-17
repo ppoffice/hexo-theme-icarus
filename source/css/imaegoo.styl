@@ -31,11 +31,10 @@ body:before
     left: 0
     opacity: 0.01
     transition: opacity 1s
-    background: url("https://api.btstu.cn/sjbz/?lx=dongman&format=images&method=pc") center 0 no-repeat
+    background: convert(hexo-config("stylus.backgroundImage")) convert(hexo-config("stylus.backgroundAttrib"))
     background-size: cover
     @media screen and (max-width: screen-tablet - 1)
-        background-image: url("https://api.btstu.cn/sjbz/?lx=dongman&format=images&method=mobile")
-body.ready:before
+        background-image: convert(hexo-config("stylus.backgroundImageMobile"))
     opacity: 1
 
 // Nav bar fixes

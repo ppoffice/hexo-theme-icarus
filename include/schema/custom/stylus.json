@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/custom/stylus.json",
+    "description": "The user-defined variables for CSS generate",
+    "type": "object",
+    "properties": {
+        "backgroundImage": {
+            "type": "string",
+            "description": "background image of main site, will attach to CSS 'background'",
+            "default": "url(\"https://api.btstu.cn/sjbz/?lx=dongman&format=images&method=pc\")"
+        },
+        "backgroundAttrib": {
+            "type": "string",
+            "description": "description of image align: will attach to CSS 'background'",
+            "default": "center 0 no-repeat"
+        },
+        "backgroundImageMobile": {
+            "type": "string",
+            "description": "background image on tablet/mobile viewport",
+            "default": "url(\"https://api.btstu.cn/sjbz/?lx=dongman&format=images&method=mobile\")"
+        }
+    }
+}

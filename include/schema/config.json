@@ -75,6 +75,9 @@
         },
         "providers": {
             "$ref": "/common/providers.json"
+        },
+        "stylus": {
+            "$ref": "/custom/stylus.json"
         }
     },
     "required": [
