@@ -78,6 +78,9 @@
         },
         "stylus": {
             "$ref": "/custom/stylus.json"
+        },
+        "addons": {
+            "$ref": "/custom/addons.json"
         }
     },
     "required": [

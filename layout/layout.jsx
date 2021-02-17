@@ -14,6 +14,7 @@ module.exports = class extends Component {
         const language = page.lang || page.language || config.language;
         const columnCount = Widgets.getColumnCount(config.widgets);
         const fixedTop = config.navbar.fixed ? ` has-navbar-fixed-top` : ``;
+        const waifu =  config.addons.waifuLive2D;
 
         return <html lang={language ? language.substr(0, 2) : ''}>
             <Head site={site} config={config} helper={helper} page={page} />
@@ -44,7 +45,7 @@ module.exports = class extends Component {
 
                 <script type="text/javascript" src="/js/imaegoo/imaegoo.js"></script>
                 <script type="text/javascript" src="/js/imaegoo/universe.js"></script>
-                <script type="text/javascript" src="/js/live2d/autoload.js"></script>
+                {waifu && <script type="text/javascript" src="/js/live2d/autoload.js"></script>}
             </body>
         </html>;
     }

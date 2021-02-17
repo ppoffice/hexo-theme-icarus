@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/custom/addons.json",
+    "description": "add-on that used to be hard-coded in layout files",
+    "type": "object",
+    "properties": {
+        "waifuLive2D": {
+            "type": "boolean",
+            "description": "import live 2D waifu at your page's right-buttom",
+            "default": false
+        }
+    }
+}
