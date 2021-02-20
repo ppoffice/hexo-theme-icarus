@@ -141,10 +141,12 @@ module.exports = class extends Component {
                 facebookAppId={open_graph.fb_app_id} /> : null}
 
             {typeof structured_data === 'object' && structured_data !== null ? <StructuredData
-                title={structured_data.title || config.title}
+                title={structured_data.title || page.title || config.title}
                 description={structured_data.description || page.description || page.excerpt || page.content || config.description}
                 url={structured_data.url || page.permalink || url}
                 author={structured_data.author || config.author}
+                publisher={structured_data.publisher || config.title}
+                publisher_logo={structured_data.publisher_logo || config.logo}
                 date={page.date}
                 updated={page.updated}
                 images={structuredImages} /> : null}
