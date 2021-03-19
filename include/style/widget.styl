@@ -28,3 +28,38 @@
 
 .level.is-multiline
     flex-wrap: wrap
+
+/* ---------------------------------
+ *      Table of Content Widget
+ * --------------------------------- */
++mobile()
+    .widget.card#toc
+        display: none
+        position: fixed
+        margin: 1rem
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: 100
+
+        .card-content
+            padding: 0
+
+        .menu
+            padding: 1.5rem
+            max-height: calc(100vh - 2rem)
+            overflow-y: auto
+
+    #toc-mask
+        display: none
+        position: fixed
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: 99
+        background: rgba(0, 0, 0, .7)
+
+    .widget.card#toc, #toc-mask
+        &.is-active
+            display: block
