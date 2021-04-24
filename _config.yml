@@ -1,0 +1,413 @@
+# Version of the configuration file
+version: 4.0.0
+# Icarus theme variant, can be "default" or "cyberpunk"
+variant: cyberpunk
+# Path or URL to the website's logo
+logo: /img/logofrancis.png
+# Page metadata configurations
+head:
+    # URL or path to the website's icon
+    favicon: /img/francis.ico
+    # Web application manifests configuration
+    # https://developer.mozilla.org/en-US/docs/Web/Manifest
+    manifest:
+        # Name of the web application (default to the site title)
+        name: 
+        # The displayed name of the web application
+        # when there is not enough space to display full name
+        short_name: 
+        # The start URL of the web application
+        start_url: 
+        # The default theme color for the application
+        theme_color: 
+        # A placeholder background color for the application page to display
+        # before its stylesheet is loaded
+        background_color: 
+        # The preferred display mode for the website
+        display: standalone
+        # Image files that can serve as application icons for different contexts
+        icons:
+            -
+                # The path to the image file
+                src: ''
+                # A string containing space-separated image dimensions
+                sizes: ''
+                # A hint as to the media type of the image
+                type: 
+    # Open Graph metadata
+    # https://hexo.io/docs/helpers.html#open-graph
+    open_graph:
+        # Page title (og:title) (optional)
+        # You should leave this blank for most of the time
+        title: 
+        # Page type (og:type) (optional)
+        # You should leave this blank for most of the time
+        type: blog
+        # Page URL (og:url) (optional)
+        # You should leave this blank for most of the time
+        url: 
+        # Page cover (og:image) (optional)
+        # You should leave this blank for most of the time
+        image: 
+        # Site name (og:site_name) (optional)
+        # You should leave this blank for most of the time
+        site_name: 
+        # Page author (article:author) (optional)
+        # You should leave this blank for most of the time
+        author: 
+        # Page description (og:description) (optional)
+        # You should leave this blank for most of the time
+        description: 
+        # Twitter card type (twitter:card)
+        twitter_card: 
+        # Twitter ID (twitter:creator)
+        twitter_id: 
+        # Twitter Site (twitter:site)
+        twitter_site: 
+        # Google+ profile link (deprecated)
+        google_plus: 
+        # Facebook admin ID
+        fb_admins: 
+        # Facebook App ID
+        fb_app_id: 
+    # Structured data of the page
+    # https://developers.google.com/search/docs/guides/intro-structured-data
+    structured_data:
+        # Page title (optional)
+        # You should leave this blank for most of the time
+        title: 
+        # Page description (optional)
+        # You should leave this blank for most of the time
+        description: 
+        # Page URL (optional)
+        # You should leave this blank for most of the time
+        url: 
+        # Page author (article:author) (optional)
+        # You should leave this blank for most of the time
+        author: 
+        # Page images (optional)
+        # You should leave this blank for most of the time
+        image: 
+    # Additional HTML meta tags in an array
+    meta:
+        # Meta tag specified in <attribute>=<value> style
+        # E.g., name=theme-color;content=#123456 => <meta name="theme-color" content="#123456">
+        - ''
+    # URL or path to the website's RSS atom.xml
+    rss: 
+# Page top navigation bar configurations
+navbar:
+    # Navigation menu items
+    menu:
+        Home: /
+        Archives: /archives
+        Categories: /categories
+        Tags: /tags
+        About: /about
+    # Links to be shown on the right of the navigation bar
+    links:
+        Chat on Gitter:
+            icon: fab fa-gitter
+            url: 'https://gitter.im/IdealDestructor/community'
+        Download on GitHub:
+            icon: fab fa-github
+            url: 'https://github.com/idealdestructor'
+            
+# Page footer configurations
+footer:
+    # Links to be shown on the right of the footer section
+    links:
+        Leetcode:
+            icon: fas fa-terminal
+            url: 'https://leetcode-cn.com/u/idealdestructor/'
+        SatckOverflow:
+            icon: fa fa-trophy
+            url: 'https://www.kaggle.com/idealdestructor'
+        Scholar:
+            icon: fas fa-graduation-cap
+            url: 'https://scholar.google.com/citations?hl=zh-CN&view_op=list_works&gmla=AJsN-F5BJwq0y_k5LvIAnx2w8-J7gQF5XRICqZuNECnwqg8hFisRyGzQ-iCt0Uw0Xbt9hCGedhwcIc_r4BElnmfIs-HBrrA5mzXJblpTXOVNeNsJtzencFk&user=Ykem_e8AAAAJ'
+        Zhihu:
+            icon: fab fa-zhihu
+            url: 'https://www.zhihu.com/people/idealdestructor'
+# Article related configurations
+article:
+    # Code highlight settings
+    highlight:
+        # Code highlight themes
+        # https://github.com/highlightjs/highlight.js/tree/master/src/styles
+        # theme: atom-one-light
+        theme: Monokai
+        # Show copy code button
+        clipboard: true
+        # Default folding status of the code blocks. Can be "", "folded", "unfolded"
+        fold: unfolded
+    thumbnail: true
+    # Whether to show estimated article reading time
+    readtime: true
+    # Article licensing block
+    licenses:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: 'https://creativecommons.org/'
+        Attribution:
+            icon: fab fa-creative-commons-by
+            url: 'https://creativecommons.org/licenses/by/4.0/'
+        Noncommercial:
+            icon: fab fa-creative-commons-nc
+            url: 'https://creativecommons.org/licenses/by-nc/4.0/'
+# Search plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/
+search:
+    type: insight
+# Comment plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
+comment:
+    # type: disqus
+    ## Disqus shortname
+    # shortname: ''
+    type: valine
+    app_id: Df8zpeaXIjXp13rliBbmXmbi-gzGzoHsz
+    app_key: pnd6tjS2MVYnYeacKIhQFINI
+    placeholder: ""                 # 可选填
+    notify: false                   # 可选填
+    verify: false                   # 可选填
+    avatar: robohash                       # 可选填
+    avatar_force: false             # 可选填
+    meta: ["nick", "mail", "link"]  # 可选填
+    page_size: 10                   # 可选填
+    visitor: false                  # 可选填
+    highlight: true                 # 可选填
+    record_ip: false                # 可选填
+    emojiCDN: 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/'
+    emojiMaps: {
+        "smile":"e3/2018new_weixioa02_org.png",
+        "lovely":"09/2018new_keai_org.png",
+    }
+# Donate plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/
+donates:
+    # "Afdian.net" donate button configurations
+    -
+        type: alipay
+        # Alipay qrcode image URL
+        qrcode: /img/alipay.png
+    # "Buy me a coffee" donate button configurations
+    -
+        type: buymeacoffee
+        # URL to the "Buy me a coffee" page
+        url: 'https://www.buymeacoffee.com/NRy52OH'
+    # Patreon donate button configurations
+    # -
+    #     type: patreon
+    #     # URL to the Patreon page
+    #     url: ''
+    # # Paypal donate button configurations
+    -
+        type: paypal
+        # Paypal business ID or email address
+        business: 'idealdestructor@gmail.com'
+        # Currency code
+        currency_code: USD
+    # Wechat donate button configurations
+    -
+        type: wechat
+        # Wechat qrcode image URL
+        qrcode: /img/weixinpay.png
+# Share plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/
+share:
+    type: sharethis
+    # URL to the ShareThis share plugin script
+    install_url: 'https://platform-api.sharethis.com/js/sharethis.js#property=5e7cd1515b1431001927bbd8&product=inline-share-buttons'
+# Sidebar configurations.
+# Please be noted that a sidebar is only visible when it has at least one widget
+sidebar:
+    # Left sidebar configurations
+    left:
+        # Whether the sidebar sticks to the top when page scrolls
+        sticky: true
+    # Right sidebar configurations
+    right:
+        # Whether the sidebar sticks to the top when page scrolls
+        sticky: true
+# Sidebar widget configurations
+# http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
+widgets:
+    # Profile widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: profile
+        # Author name
+        author: Francis
+        # Author title
+        author_title: '在这个世界上，最让人畏惧的恰恰是通向自己的道路。'
+        # Author's current location
+        location: 'Beijing,China'
+        # URL or path to the avatar image
+        avatar: https://s1.ax1x.com/2020/03/26/GS2hk9.jpg
+        # Whether show the rounded avatar image
+        avatar_rounded: true
+        # Email address for the Gravatar
+        gravatar: 
+        # URL or path for the follow button
+        follow_link: 'https://github.com/idealdestructor'
+        # Links to be shown on the bottom of the profile widget
+        social_links:
+            Facebook:
+                icon: fab fa-facebook
+                url: 'https://facebook.com/idealdestructor'
+            Twitter:
+                icon: fab fa-twitter
+                url: 'https://twitter.com/idealdestructor'
+            Instagram:
+                icon: fab fa-instagram
+                url: 'https://Instagram.com/idealdestructor'
+            Weibo:
+                icon: fab fa-weibo
+                url: 'https://weibo.com/6019347563/profile'
+            RSS:
+                icon: fas fa-rss
+                url: /
+    # Table of contents widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: toc
+        # Whether to show the index of each heading
+        index: true
+        # Whether to collapse sub-headings when they are out-of-view
+        collapsed: true
+        # Maximum level of headings to show (1-6)
+        depth: 3
+    # Recommendation links widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: links
+        # Names and URLs of the sites
+        links:
+            主站: 'http://idealdestructor.com'
+            备案号: '津ICP备16009041号-4'
+    # Categories widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: categories
+    # Recent posts widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: right
+        type: recent_posts
+    # Archives widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: right
+        type: archives
+    # Tags widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: right
+        type: tags
+    # Google FeedBurner email subscription widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: subscribe_email
+        # Hint text under the email input
+        description: 
+        # Feedburner ID
+        feedburner_id: ''
+    # Google AdSense unit configurations
+#    -
+#        # Where should the widget be placed, left sidebar or right sidebar
+#        position: left
+#        type: adsense
+#        # AdSense client ID
+#        client_id: ''
+#        # AdSense AD unit ID
+#        slot_id: ''
+# Plugin configurations
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/
+plugins:
+    # Enable page startup animations
+    animejs: true
+    # Show the "back to top" button
+    back_to_top: true
+    # Baidu Analytics plugin settings
+    # https://tongji.baidu.com
+    baidu_analytics:
+        # Baidu Analytics tracking ID
+        tracking_id: '330fdb4750eb9751bd56abdec3e28579'
+    # Bing Webmaster Tools plugin settings
+    # https://www.bing.com/toolbox/webmaster/
+    bing_webmaster:
+        # Bing Webmaster Tools tracking ID in the <meta> tag
+        tracking_id: 
+    # BuSuanZi site/page view counter
+    # https://busuanzi.ibruce.info
+    busuanzi: false
+    # CNZZ statistics
+    # https://www.umeng.com/web
+    cnzz:
+        # CNZZ tracker id
+        id: 
+        # CNZZ website id
+        web_id: 
+    # Alerting users about the use of cookies
+    # https://www.osano.com/cookieconsent/
+    cookie_consent:
+        # The compliance type. Can be "info", "opt-in", or "opt-out"
+        type: info
+        # Theme of the popup. Can be "block", "edgeless", or "classic"
+        theme: edgeless
+        # Whether the popup should stay static regardless of the page scrolls
+        static: false
+        # Where on the screen the consent popup should display
+        position: bottom-left
+        # URL to your site's cookie policy
+        policyLink: 'https://www.cookiesandyou.com/'
+    # Enable the lightGallery and Justified Gallery plugins
+    gallery: true
+    # Google Analytics plugin settings
+    # https://analytics.google.com
+    google_analytics:
+        # Google Analytics tracking ID
+        tracking_id: UA-161981280-1
+    # Hotjar user feedback plugin
+    # https://www.hotjar.com/
+    hotjar:
+        # Hotjar site id
+        site_id: 
+    # Enable the KaTeX math typesetting support
+    # https://katex.org/
+    katex: true
+    # Enable the MathJax math typesetting support
+    # https://www.mathjax.org/
+    mathjax: false
+    # Enable the Outdated Browser plugin
+    # http://outdatedbrowser.com/
+    outdated_browser: false
+    # Show a progress bar at top of the page on page loading
+    progressbar: true
+    # Statcounter statistics
+    # https://statcounter.com/
+    statcounter:
+        # Statcounter project id
+        project: 
+        # Statcounter project security code
+        security: 
+    # Twitter conversion tracking plugin settings
+    # https://business.twitter.com/en/help/campaign-measurement-and-analytics/conversion-tracking-for-websites.html
+    twitter_conversion_tracking:
+        # Twitter Pixel ID
+        pixel_id: 
+# CDN provider settings
+# https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
+providers:
+    # Name or URL template of the JavaScript and/or stylesheet CDN provider
+    cdn: jsdelivr
+    # Name or URL template of the webfont CDN provider
+    fontcdn: loli
+    # Name or URL of the fontawesome icon font CDN provider
+    iconcdn: loli
