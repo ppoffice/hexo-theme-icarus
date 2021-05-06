@@ -15,7 +15,7 @@
     "url": "https://github.com/ppoffice/hexo-theme-icarus/issues"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=12.4.0"
   },
   "scripts": {
     "lint": "eslint --ext .js --ext .jsx --ext .json ."
