@@ -124,25 +124,18 @@ Please refer to [Hexo documentation](https://hexo.io/docs/helpers.html#open-grap
 head:
     open_graph:
         # Page title (og:title) (optional)
-        # You should leave this blank for most of the time
         title: 
         # Page type (og:type) (optional)
-        # You should leave this blank for most of the time
         type: blog
         # Page URL (og:url) (optional)
-        # You should leave this blank for most of the time
         url: 
         # Page cover (og:image) (optional)
-        # You should leave this blank for most of the time
         image: 
         # Site name (og:site_name) (optional)
-        # You should leave this blank for most of the time
         site_name: 
         # Page author (article:author) (optional)
-        # You should leave this blank for most of the time
         author: 
         # Page description (og:description) (optional)
-        # You should leave this blank for most of the time
         description: 
         # Twitter card type (twitter:card)
         twitter_card: 
@@ -170,20 +163,19 @@ for details on each setting.
 head:
     structured_data:
         # Page title (optional)
-        # You should leave this blank for most of the time
         title: 
         # Page description (optional)
-        # You should leave this blank for most of the time
         description: 
         # Page URL (optional)
-        # You should leave this blank for most of the time
         url: 
         # Page author (article:author) (optional)
-        # You should leave this blank for most of the time
         author: 
         # Page images (optional)
-        # You should leave this blank for most of the time
         image: 
+        # The publisher of the article (optional)
+        publisher:
+        # The logo of the publisher (optional)
+        publisher_logo:
 {% endcodeblock %}
 
 ### Page Metadata

@@ -129,25 +129,18 @@ manifest:
 head:
     open_graph:
         # 页面标题 (og:title) (可选)
-        # 大部分情况下请留空
         title: 
         # 页面类型 (og:type) (可选)
-        # 大部分情况下请留空
         type: blog
         # 页面URL地址 (og:url) (可选)
-        # 大部分情况下请留空
         url: 
         # 页面封面图 (og:image) (可选)
-        # 大部分情况下请留空
         image: 
         # 站点名称 (og:site_name) (可选)
-        # 大部分情况下请留空
         site_name: 
         # 页面作者 (article:author) (可选)
-        # 大部分情况下请留空
         author: 
         # 页面描述 (og:description) (可选)
-        # 大部分情况下请留空
         description: 
         # Twitter卡片类型 (twitter:card)
         twitter_card: 
@@ -174,20 +167,19 @@ head:
 head:
     structured_data:
         # 页面标题 (可选)
-        # 大部分情况下请留空
         title: 
         # 页面描述 (可选)
-        # 大部分情况下请留空
         description: 
         # 页面URL地址 (可选)
-        # 大部分情况下请留空
         url: 
         # 页面作者 (article:author) (可选)
-        # 大部分情况下请留空
         author: 
         # 页面图片 (可选)
-        # 大部分情况下请留空
         image: 
+        # 文章发布者 (可选)
+        publisher:
+        # 发布者Logo (可选)
+        publisher_logo:
 {% endcodeblock %}
 
 ### 页面元信息
