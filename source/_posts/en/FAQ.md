@@ -32,8 +32,8 @@ I can't generate my site. / I met some errors when I generate my site.
 </div>
 </article>
 
-Icarus 3 runs on Node.js 8.3.0 or a newer version.
-It also requires Hexo 4.2.0 or a newer version.
+Icarus 4 runs on Node.js 12.4.0 or a newer version.
+It also requires Hexo 5.0.2 or a newer version.
 Apart from that, make sure you have all the Node.js dependencies installed.
 You can find them in the `peerDependencies` section of the 
 [`<icarus_directory>/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)

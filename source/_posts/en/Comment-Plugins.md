@@ -9,7 +9,7 @@ language: en
 toc: true
 ---
 
-This article covers comment plugins supported by Icarus 3.
+This article covers comment plugins supported by Icarus 4.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -318,9 +318,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
 </div>
 </article>
 
-<div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/LiveRe %}">Preview</a>
-</div>
+**Installation Guide**
 
 1. First, log into [LiveRe](https://livere.com/).
    Click "Install" on the navigation bar to go to the installation page.

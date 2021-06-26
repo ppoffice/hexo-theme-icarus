@@ -16,7 +16,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 3支持的分享按钮的安装配置。
+本文介绍Icarus 4支持的分享按钮的安装配置。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -180,10 +180,7 @@ providers:
 </div>
 </article>
 
-<div>
-<strong>安装指南</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/share/BaiduShare %}">在线预览</a>
-</div>
+**安装指南**
 
 1. 你可以启用百度分享按钮而无需注册用户。
    直接将下面的代码添加到你的主题配置中：

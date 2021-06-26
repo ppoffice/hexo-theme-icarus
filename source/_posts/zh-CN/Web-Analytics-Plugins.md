@@ -13,7 +13,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 3支持的网站统计与分析插件的安装配置。
+本文介绍Icarus 4支持的网站统计与分析插件的安装配置。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">

@@ -15,11 +15,11 @@ toc: true
 
 <!-- more -->
 
-### Upgrading from 3.x to 4.0
+### Upgrading from 3.x to 4.x
 
 1. Upgrade Node.js to 10.13.0 or a newer version.
 
-2. Install Icarus 4.0 either via source code dowload or NPM install.
+2. Install Icarus 4.x either via source code dowload or NPM install.
    You can find instructions in {% post_link en/Getting-Started %}.
    If you plan to customize the theme by altering its source code, you are required to install
    the theme from source code.

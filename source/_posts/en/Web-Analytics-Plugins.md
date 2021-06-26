@@ -9,7 +9,7 @@ language: en
 toc: true
 ---
 
-This article covers web analytics plugins supported by Icarus 3.
+This article covers web analytics plugins supported by Icarus 4.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">

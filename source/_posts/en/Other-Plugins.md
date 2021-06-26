@@ -24,7 +24,7 @@ plugins:
     progressbar: true
 ---
 
-This article covers other plugins supported by Icarus 3.
+This article covers other plugins supported by Icarus 4.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">

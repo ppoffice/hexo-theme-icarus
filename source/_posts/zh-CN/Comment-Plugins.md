@@ -13,7 +13,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 3支持的用户评论插件的安装配置。
+本文介绍Icarus 4支持的用户评论插件的安装配置。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -317,9 +317,7 @@ providers:
 </div>
 </article>
 
-<div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/LiveRe %}">在线预览</a>
-</div>
+**安装指南**
 
 1. 首先，登录[LiveRe](https://livere.com/)。
    点击导航栏上的“安装”(Install)链接，进入安装界面。

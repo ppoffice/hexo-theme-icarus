@@ -4,8 +4,8 @@ tags:
 - Demo
 comment:
     type: valine
-    app_id: QuQK82UpN8gNkXIaKIszbPUY-gzGzoHsz
-    app_key: B0D5cYRcXrwNGnBoQdRoDTqw
+    app_id: sLMlQ21EdIaShsDQVH34Rqo4-MdYXbMMI
+    app_key: 0FTrsBsfsjE2SyMOzXFWEfkl
     placeholder: ""
     avatar:
     avatar_force: false
@@ -14,6 +14,7 @@ comment:
     visitor: false
     highlight: true
     record_ip: false
+    server_urls: https://slmlq21e.api.lncldglobal.com
 ---
 
 <article class="message message-immersive is-warning">

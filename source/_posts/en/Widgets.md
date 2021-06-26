@@ -56,7 +56,7 @@ widgets:
         index: false
 ---
 
-This article covers widgets supported by Icarus 3.
+This article covers widgets supported by Icarus 4.
 To display multiple widgets at once, simply add individual widget configuration
 to the `widgets` array.
 They will appear in the order of their definitions.

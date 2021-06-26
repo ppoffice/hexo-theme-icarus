@@ -12,7 +12,7 @@ share:
     install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8fc96750876c7d
 ---
 
-This article covers share buttons supported by Icarus 3.
+This article covers share buttons supported by Icarus 4.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -186,9 +186,7 @@ Use other services as alternatives.
 </div>
 </article>
 
-<div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/share/BaiduShare %}">Preview</a>
-</div>
+**Installation Guide**
 
 1. You can activate Baidu Share without user registration.
    Just put the following code to your theme configurations:
