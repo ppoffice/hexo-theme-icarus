@@ -506,7 +506,7 @@ IP地址 (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" re
         math_tag_support: false                       # 可选填
         copyright: true                               # 可选填
         locale:                                       # 可选填
-          - placeholder: 'Comment here...'
+          placeholder: 'Comment here...'
     {% endcodeblock %}
 
 
