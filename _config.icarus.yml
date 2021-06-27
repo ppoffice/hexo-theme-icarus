@@ -98,7 +98,7 @@ navbar:
         About: /about
     # Links to be shown on the right of the navigation bar
     links:
-        Discussion on GitHub:
+        Discuss on GitHub:
             icon: fas fa-comments
             url: 'https://github.com/ppoffice/hexo-theme-icarus/discussions'
         Download on GitHub:
@@ -111,7 +111,7 @@ footer:
         Creative Commons:
             icon: fab fa-creative-commons
             url: 'https://creativecommons.org/'
-        Discussion on GitHub:
+        Discuss on GitHub:
             icon: fas fa-comments
             url: 'https://github.com/ppoffice/hexo-theme-icarus/discussions'
         Download on GitHub:
