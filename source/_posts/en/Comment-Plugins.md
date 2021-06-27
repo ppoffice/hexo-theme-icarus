@@ -511,7 +511,7 @@ services until this issue has been fixed.
         math_tag_support: false                       # Optional
         copyright: true                               # Optional
         locale:                                       # Optional
-          - placeholder: 'Comment here...'
+          placeholder: 'Comment here...'
     {% endcodeblock %}
 
 
