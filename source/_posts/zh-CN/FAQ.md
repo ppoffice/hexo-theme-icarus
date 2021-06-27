@@ -15,7 +15,7 @@ providers:
 [Icarus用户指南](/hexo-theme-icarus/tags/Icarus用户指南/)，
 [Hexo中文文档](https://hexo.io/zh-cn/docs/index.html)，
 以及[GitHub Issues](https://github.com/ppoffice/hexo-theme-icarus/issues?q=)。
-此外，你也可以在[Gitter](https://gitter.im/hexo-theme-icarus/)上向其他Icarus用户请求帮助。
+此外，你也可以在[GitHub讨论组](https://github.com/ppoffice/hexo-theme-icarus/discussions)上向其他Icarus用户请求帮助。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">

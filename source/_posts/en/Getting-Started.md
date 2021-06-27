@@ -98,7 +98,7 @@ To learn more about the theme, widgets, and plugins, check out the
 You can also refer to the source code of this site for more examples.
 It is in the [`site` branch](https://github.com/ppoffice/hexo-theme-icarus/tree/site) of the Icarus repository 
 on GitHub.
-Additionally, you may find help from other Icarus users on [Gitter](https://gitter.im/hexo-theme-icarus/).
+Additionally, you may find help from other Icarus users on [GitHub Discussions](https://github.com/ppoffice/hexo-theme-icarus/discussions).
 
 **Additional Resources**
 

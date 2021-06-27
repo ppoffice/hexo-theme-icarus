@@ -97,7 +97,7 @@ hexo server
 [Icarus用户指南](/hexo-theme-icarus/tags/Icarus用户指南/)。
 你也可以参考本站的源代码来获取更多的使用示例。
 本站源代码位于GitHub上Icarus代码仓库的[`site`分支](https://github.com/ppoffice/hexo-theme-icarus/tree/site)。
-此外，你也可能在[Gitter](https://gitter.im/hexo-theme-icarus/)上获得其他Icarus用户的帮助。
+此外，你也可能在[GitHub讨论组](https://github.com/ppoffice/hexo-theme-icarus/discussions)上获得其他Icarus用户的帮助。
 
 **额外资源**
 

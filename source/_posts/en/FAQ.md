@@ -12,7 +12,7 @@ If your question is not answered here, you can also refer to
 [Icarus User Guide](/hexo-theme-icarus/tags/Icarus-User-Guide/), 
 [Hexo documentation](https://hexo.io/docs/index.html), and 
 [GitHub Issues](https://github.com/ppoffice/hexo-theme-icarus/issues?q=).
-Additionally, you may find help from other Icarus users on [Gitter](https://gitter.im/hexo-theme-icarus/).
+Additionally, you may find help from other Icarus users on [GitHub Discussions](https://github.com/ppoffice/hexo-theme-icarus/discussions).
 
 <!-- more -->
 
