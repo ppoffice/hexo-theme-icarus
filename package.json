@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "hexo-component-inferno": "^0.11.0",
+    "hexo-component-inferno": "^0.12.0",
     "inferno": "^7.3.3",
     "inferno-create-element": "^7.3.3",
     "moment": "^2.22.2",
