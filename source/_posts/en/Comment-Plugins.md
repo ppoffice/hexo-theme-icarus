@@ -476,6 +476,45 @@ services until this issue has been fixed.
     {% endcodeblock %}
 
 
+## Waline
+
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Waline %}">Preview</a>
+</div>
+
+1. Create a LeanCloud application and a Vercel project following the [Get Started](https://waline.js.org/en/guide/get-started.html) guide.
+
+2. Copy the "Server URL" of your Vercel project to the corresponding setting in the theme configurations.
+   It is usually something like `https://your-domain.vercel.app`.
+   In addition, you can refer to the [Client Configuration](https://waline.js.org/en/reference/client.html) to find out more
+   details and possible values of the optional settings.
+   Here is an example configuration:
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: waline
+        server_url: https://your-domain.vercel.app
+        lang: zh-CN                                   # Optional
+        visitor: false                                # Optional
+        emoji:                                        # Optional
+          - 'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'
+        dark: auto                                    # Optional
+        meta: ["nick", "mail", "link"]                # Optional
+        required_meta: []                             # Optional
+        login: enable                                 # Optional
+        avatar: mp                                    # Optional
+        word_limit: 0                                 # Optional
+        page_size: 10                                 # Optional
+        avatar_cdn: 'https://sdn.geekzu.org/avatar/'  # Optional
+        avatar_force: false                           # Optional
+        highlight: true                               # Optional
+        math_tag_support: false                       # Optional
+        copyright: true                               # Optional
+        locale:                                       # Optional
+          - placeholder: 'Comment here...'
+    {% endcodeblock %}
+
+
 <article class="message message-immersive is-warning">
 <div class="message-body">
 <i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 

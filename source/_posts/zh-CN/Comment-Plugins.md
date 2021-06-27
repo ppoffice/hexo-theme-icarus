@@ -472,6 +472,44 @@ IP地址 (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" re
     {% endcodeblock %}
 
 
+## Waline
+
+<div>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Waline %}">在线预览</a>
+</div>
+
+1. 按照[快速上手](https://waline.js.org/guide/get-started.html)创建LeanCloud应用和Vercel项目。
+
+2. 将你Vercel项目的”服务器地址“(Server URL)复制到主题配置的对应配置项中。
+   通常它类似于`https://your-domain.vercel.app`。
+   此外，你可以参考[前端配置](https://waline.js.org/reference/client.html)来了解可选配置项的详情和可能的配置值。
+   下面是示例配置：
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: waline
+        server_url: https://your-domain.vercel.app
+        lang: zh-CN                                   # 可选填
+        visitor: false                                # 可选填
+        emoji:                                        # 可选填
+          - 'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'
+        dark: auto                                    # 可选填
+        meta: ["nick", "mail", "link"]                # 可选填
+        required_meta: []                             # 可选填
+        login: enable                                 # 可选填
+        avatar: mp                                    # 可选填
+        word_limit: 0                                 # 可选填
+        page_size: 10                                 # 可选填
+        avatar_cdn: 'https://sdn.geekzu.org/avatar/'  # 可选填
+        avatar_force: false                           # 可选填
+        highlight: true                               # 可选填
+        math_tag_support: false                       # 可选填
+        copyright: true                               # 可选填
+        locale:                                       # 可选填
+          - placeholder: 'Comment here...'
+    {% endcodeblock %}
+
+
 <article class="message message-immersive is-warning">
 <div class="message-body">
 <i class="fas fa-question-circle mr-2"></i>文章内容有误？请点击<a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Comment-Plugins.md">此处</a>提交修改。
