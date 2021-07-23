@@ -109,6 +109,7 @@ hexo server
 <a href="https://removeif.github.io/theme/%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81%E5%88%86%E4%BA%AB.html"><i class="fas fa-bookmark mr-2"></i> 博客源码分享 by 辣椒の酱</a>
 <a href="https://www.imaegoo.com/2020/icarus-3-guide/"><i class="fas fa-bookmark mr-2"></i> hexo-theme-icarus 3 食用经验分享 by iMaeGoo</a>
 <a href="https://www.imaegoo.com/2020/icarus-with-bulma/"><i class="fas fa-bookmark mr-2"></i> 活用 Bulma 美化 Icarus 文章 by iMaeGoo</a>
+<a href="https://blog.mchook.cn/2021/07/22/icarus%E4%B8%BB%E9%A2%98%E8%87%AA%E5%AE%9A%E4%B9%89/"><i class="fas fa-bookmark mr-2"></i> icarus主题自定义 by kuzen</a>
 </div>
 
 <br>
