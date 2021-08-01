@@ -34,8 +34,8 @@ widgets:
         position: left
         type: followit
         description: Subscribe to get the lastest update!
-        action_url: https://api.follow.it/subscription-form/ajQrZUVYeDgrSHY3R1FiQjVQSno2OWpFRjQwT2tzWkQyRURmNEVpVm9WSUVJY2U1RVNQNldPTzYwdFRZK0YzNFZVakRhMVJqZXRsdHlZKzNXd05pelhPQ0haMFdiVFpiTFB6ZzcwM0lQbTZmVExyL1BDTHJETE42M1BWZGR0blh8enN6Mjgrc1RQSFVpZm8wRC9HQVFmWURESkNONmlWUzF2azlYRkpFaTA2dz0=/8
-        verification_code: KdjLnnKMYJEQSXnzvGXM
+        action_url: ''
+        verification_code: ''
     -
         position: right
         type: profile

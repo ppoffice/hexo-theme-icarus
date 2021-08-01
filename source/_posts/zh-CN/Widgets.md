@@ -32,9 +32,10 @@ widgets:
         type: tags
     -
         position: left
-        type: subscribe_email
+        type: followit
         description: 邮件订阅，更新早知道
-        feedburner_id: ''
+        action_url: ''
+        verification_code: ''
     -
         position: right
         type: profile
