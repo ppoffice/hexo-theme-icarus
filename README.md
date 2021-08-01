@@ -150,7 +150,7 @@ If you feel like to help us build a better Icarus, you can
 
 :black_nib: [Submit a tutorial](https://github.com/ppoffice/hexo-theme-icarus/new/site/source/_posts) |
 :earth_asia: [Add a translation](https://github.com/ppoffice/hexo-theme-icarus/tree/master/languages) |
-:triangular_flag_on_post: [Report a bug](https://github.com/ppoffice/hexo-theme-icarus/issues/new) |
+:triangular_flag_on_post: [Report a bug](https://github.com/ppoffice/hexo-theme-icarus/issues) |
 :electric_plug: [Suggest a new feature](https://github.com/ppoffice/hexo-theme-icarus/pulls)
 
 ## :memo: License
