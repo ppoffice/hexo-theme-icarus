@@ -375,9 +375,11 @@ widgets:
            verification_code: ******
    {% endcodeblock %}
 
-8. 回到follow.it并用你的邮箱地址注册一个账户。
+8. 生成你的站点并将其上传到你的服务器。
 
-9. 回到你收到的第一封邮件并点击”点击这里来认领“(Click here to claim it)链接来认领你的订阅源。
+9. 回到follow.it并用你的邮箱地址注册一个账户。
+
+10. 回到你收到的第一封邮件并点击”点击这里来认领“(Click here to claim it)链接来认领你的订阅源。
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-verify-claim.png 360 '"验证认领 - follow.it" "验证认领 - follow.it"' %}
    <br>

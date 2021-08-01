@@ -379,9 +379,11 @@ To enable [follow.it](https://follow.it) email subscription widget, take the fol
            verification_code: ******
    {% endcodeblock %}
 
-8. Go back to follow.it and register an account using your email.
+8. Generate and push your site to your server.
 
-9. Go back to the first email you receive and click on the "Click here to claim it" link to claim your feed.
+9. Go back to follow.it and register an account using your email.
+
+10. Go back to the first email you receive and click on the "Click here to claim it" link to claim your feed.
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-verify-claim.png 360 '"Verify Claim - follow.it" "Verify Claim - follow.it"' %}
    <br>
