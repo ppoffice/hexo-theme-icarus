@@ -24,6 +24,7 @@ widget:
     subscribe_email: '업데이트 소식 받기'
     subscribe: '구독'
     adsense: '광고'
+    followit: 'follow.it'
 article:
     created_at: '%s&nbsp;게시 됨'
     updated_at: '%s&nbsp;업데이트 됨'

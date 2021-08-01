@@ -24,6 +24,7 @@ widget:
     subscribe_email: '订阅更新'
     subscribe: '订阅'
     adsense: '广告'
+    followit: 'follow.it'
 article:
     created_at: '%s发表'
     updated_at: '%s更新'

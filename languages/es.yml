@@ -25,6 +25,7 @@ widget:
     subscribe_email: 'Suscríbete para recibir actualizaciones'
     subscribe: 'Suscribir'
     adsense: 'Anuncio'
+    followit: 'follow.it'
 article:
     created_at: 'Publicado hace&nbsp;%s'
     updated_at: 'Actualizado hace&nbsp;%s'

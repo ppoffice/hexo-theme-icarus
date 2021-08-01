@@ -24,6 +24,7 @@ widget:
     subscribe_email: 'Berlangganan untuk pembaruan'
     subscribe: 'Berlangganan'
     adsense: 'Iklan'
+    followit: 'follow.it'
 article:
     created_at: 'Diposting&nbsp;%s'
     updated_at: 'Diperbarui&nbsp;%s'

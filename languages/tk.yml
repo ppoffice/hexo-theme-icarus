@@ -24,6 +24,7 @@ widget:
     subscribe_email: 'Täzelikler üçin ýazyl'
     subscribe: 'Ýazyl'
     adsense: 'Mahabat'
+    followit: 'follow.it'
 article:
     created_at: 'Paýlaşyldy&nbsp;%s'
     updated_at: 'Üýtgedildi&nbsp;%s'
