@@ -32,9 +32,10 @@ widgets:
         type: tags
     -
         position: left
-        type: subscribe_email
+        type: followit
         description: Subscribe to get the lastest update!
-        feedburner_id: ''
+        action_url: https://api.follow.it/subscription-form/ajQrZUVYeDgrSHY3R1FiQjVQSno2OWpFRjQwT2tzWkQyRURmNEVpVm9WSUVJY2U1RVNQNldPTzYwdFRZK0YzNFZVakRhMVJqZXRsdHlZKzNXd05pelhPQ0haMFdiVFpiTFB6ZzcwM0lQbTZmVExyL1BDTHJETE42M1BWZGR0blh8enN6Mjgrc1RQSFVpZm8wRC9HQVFmWURESkNONmlWUzF2azlYRkpFaTA2dz0=/8
+        verification_code: KdjLnnKMYJEQSXnzvGXM
     -
         position: right
         type: profile
@@ -236,10 +237,15 @@ widgets:
 {% endcodeblock %}
 
 
-## Subscribe Email
+## Google Feedburner
 
-The email subscription feature of Icarus is provided by Google Feedburner.
-To enable this widget, take the following steps:
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i><a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google is shutting down the email subscription feature of Feedburner.</a> You can switch to <a href="#follow-it">the follow.it widget</a> or other email subscription services.
+</div>
+</article>
+
+To enable Google Feedburner email subscription widget, take the following steps:
 
 1. First, you need to generate the RSS feed of your Hexo site using a Hexo plugin like
    [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed).
@@ -308,6 +314,77 @@ widgets:
         slot_id: xxxxxxx
 {% endcodeblock %}
 
+
+## follow.it
+
+To enable [follow.it](https://follow.it) email subscription widget, take the following steps:
+
+1. First, you need to generate the RSS feed of your Hexo site using a Hexo plugin like
+   [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed).
+
+2. Go to [follow.it](https://follow.it/ni) and enter the URL to your RSS feed file in the text input under
+   "Add the follow feature to your site", e.g., `http://example.com/atom.xml`.
+   Then, click "Next".
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-enter-feed-url.png 360 '"Enter Feed URL - follow.it" "Enter Feed URL - follow.it"' %}
+   <br>
+
+3. Click the "Continue" button on the "Define the follow form’s design" page.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-create-form.png 360 '"Create Form - follow.it" "Create Form - follow.it"' %}
+   <br>
+
+4. Search for `action=` and copy the link between double quotes after `action=`.
+   Paste the action link you copied to the `action_url` setting of the widget configuration.
+   After that, click "Done".
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-copy-code.png 360 '"Copy Action URL - follow.it" "Copy Action URL - follow.it"' %}
+   <br>
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   widgets:
+       -
+           position: left
+           type: followit
+           description: 
+           action_url: https://api.follow.it/******
+           verification_code: ''
+   {% endcodeblock %}
+
+5. Click the "Continue" button or the "Skip this" link to skip the "Pick the Follow icons you want" page and 
+   "Show a pop-up for maximum conversion" page.
+
+6. At the "Connect your feed to a follow.it account" page, enter your email address that you will use to create a follow.it
+   account and manage followers in the text input.
+   Then, click "Start".
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-connect-account.png 360 '"Connect Account - follow.it" "Connect Account - follow.it"' %}
+   <br>
+
+7. You will then receive an email from follow.it.
+   In that email, search for `<meta name="follow_it-verification-code" content="******"/>` and copy the `content` value
+   between double quotes after `content=`.
+   Paste the content value you copied to the `verification_code` setting of the widget configuration.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-copy-verification-code.png 360 '"Copy Verification Code - follow.it" "Copy Verification Code - follow.it"' %}
+   <br>
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   widgets:
+       -
+           position: left
+           type: followit
+           description: 
+           action_url: https://api.follow.it/******
+           verification_code: ******
+   {% endcodeblock %}
+
+8. Go back to follow.it and register an account using your email.
+
+9. Go back to the first email you receive and click on the "Click here to claim it" link to claim your feed.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-verify-claim.png 360 '"Verify Claim - follow.it" "Verify Claim - follow.it"' %}
+   <br>
 
 <article class="message message-immersive is-warning">
 <div class="message-body">

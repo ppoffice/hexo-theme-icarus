@@ -235,10 +235,15 @@ widgets:
 {% endcodeblock %}
 
 
-## 邮件订阅
+## Google Feedburner
 
-Icarus的邮件订阅功能由Google Feedburner提供。
-按照如下步骤即可启用此插件：
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i><a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google即将关闭Feedburner的邮件订阅功能。</a> 你可以切换到<a href="#follow-it">follow.it挂件</a>或者其他邮件订阅服务。
+</div>
+</article>
+
+按照如下步骤即可启用Google Feedburner插件：
 
 1. 首先，使用诸如[hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)此类的Hexo插件生成
    你的Hexo网站的RSS源。
@@ -303,6 +308,78 @@ widgets:
         client_id: ca-pub-xxxxxxxx
         slot_id: xxxxxxx
 {% endcodeblock %}
+
+
+## follow.it
+
+
+按照如下步骤即可启用[follow.it](https://follow.it)邮件订阅插件：
+
+1. 首先，使用诸如[hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)此类的Hexo插件生成
+   你的Hexo网站的RSS源。
+
+2. 访问[follow.it](https://follow.it/ni)并在“向你的站点添加关注功能”(Add the follow feature to your site)下方的
+   输入框中填写RSS源的文件地址，例如`http://example.com/atom.xml`。
+   然后，点击“下一步”(Next)。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-enter-feed-url.png 360 '"输入订阅源URL - follow.it" "输入订阅源URL - follow.it"' %}
+   <br>
+
+3. 点击“定义关注表单设计”(Define the follow form’s design)页面上的“继续”(Continue)按钮。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-create-form.png 360 '"创建表单 - follow.it" "创建表单 - follow.it"' %}
+   <br>
+
+4. 搜索`action=`并复制`action=`后双引号中的链接。
+   把你复制的action链接粘贴到挂件配置中的`action_url`设置项。
+   在那之后，点击“完成”(Done)。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-copy-code.png 360 '"复制Action链接 - follow.it" "复制Action链接 - follow.it"' %}
+   <br>
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   widgets:
+       -
+           position: left
+           type: followit
+           description: 
+           action_url: https://api.follow.it/******
+           verification_code: ''
+   {% endcodeblock %}
+
+5. 点击“继续”(Continue)按钮或者“跳过此步”(Skip this)链接来跳过“选择你想要的关注按钮”(Pick the Follow icons you want)和
+   ”显示弹窗来最大化交流“(Show a pop-up for maximum conversion)页面。
+
+6. 在”连接你的源到follow.it账户“(Connect your feed to a follow.it account)页面上，在输入框中填入你将要用来注册follow.it账户
+   和管理订阅者的邮箱地址。
+   然后，点击”开始“(Start)。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-connect-account.png 360 '"连接账户 - follow.it" "连接账户 - follow.it"' %}
+   <br>
+
+7. 你会收到一封来自follow.it的邮件。
+   在那封邮件中搜索`<meta name="follow_it-verification-code" content="******"/>`并复制`content=`后双引号中的`content`的值。
+   将你复制的值粘贴到挂件设置中的`verification_code`设置项。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-copy-verification-code.png 360 '"复制验证码 - follow.it" "复制验证码 - follow.it"' %}
+   <br>
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   widgets:
+       -
+           position: left
+           type: followit
+           description: 
+           action_url: https://api.follow.it/******
+           verification_code: ******
+   {% endcodeblock %}
+
+8. 回到follow.it并用你的邮箱地址注册一个账户。
+
+9. 回到你收到的第一封邮件并点击”点击这里来认领“(Click here to claim it)链接来认领你的订阅源。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-verify-claim.png 360 '"验证认领 - follow.it" "验证认领 - follow.it"' %}
+   <br>
 
 
 <article class="message message-immersive is-warning">

@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.zhangruipeng.me/hexo-theme-icarus/
+url: http://ppoffice.github.io/hexo-theme-icarus/
 root: /hexo-theme-icarus/
 permalink: :category/:post_title/
 permalink_defaults:

@@ -283,6 +283,16 @@ widgets:
     #     client_id: ''
     #     # AdSense AD unit ID
     #     slot_id: ''
+    # Follow.it email subscription widget configurations
+    # -
+    #     # Where should the widget be placed, left sidebar or right sidebar
+    #     position: left
+    #     type: followit
+    #     # Hint text under the email input
+    #     description: 
+    #     action_url: ''
+    #     # Feed claiming verification code
+    #     verification_code: ''
 # Plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/
 plugins:

@@ -12,6 +12,7 @@
     "hexo-deployer-git": "^2.0.0",
     "hexo-filter-github-emojis": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^2.0.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-renderer-inferno": "^0.1.3",
