@@ -320,6 +320,27 @@ article:
     readtime: true
 {% endcodeblock %}
 
+### 文章更新时间
+
+若要显示文章的更新时间，请在文章的front_matter中设置`updated`时间：
+
+{% codeblock post.md lang:yaml %}
+title: Icarus快速上手
+updated: 2020-04-01 00:00:00
+---
+Post content...
+{% endcodeblock %}
+
+然后，将主题配置文件的`article`部分的`update_time`设置为`true`：
+
+{% codeblock _config.icarus.yml lang:yaml %}
+article:
+    update_time: true
+{% endcodeblock %}
+
+你也可以将`update_time`设置为`false`来隐藏所有文章的更新时间，或设置为`auto`而在文章的更新时间
+与发布时间相同时隐藏更新时间。
+
 ### 文章许可协议
 
 你可以在你的文章/页面的底部展示你的作品的使用许可，许可链接可以是文字或者图标。

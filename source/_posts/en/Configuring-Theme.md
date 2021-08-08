@@ -321,6 +321,27 @@ article:
     readtime: true
 {% endcodeblock %}
 
+### Update Time
+
+To show an update time of an article, set `updated` time in the article's front-matter:
+
+{% codeblock post.md lang:yaml %}
+title: Getting Started with Icarus
+updated: 2020-04-01 00:00:00
+---
+Post content...
+{% endcodeblock %}
+
+Then, set `update_time` to `true` in the `article` section of your theme configuration file:
+
+{% codeblock _config.icarus.yml lang:yaml %}
+article:
+    update_time: true
+{% endcodeblock %}
+
+You may also set `update_time` to `false` to hide update time for all articles, or `auto`
+to hide update time when it is the same as the article publication time.
+
 ### Article Licensing
 
 You can show a section at the end of your posts/pages describing the licensing of your work.
