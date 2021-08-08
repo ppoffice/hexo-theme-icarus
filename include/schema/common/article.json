@@ -40,6 +40,13 @@
             "default": true,
             "nullable": true
         },
+        "update_time": {
+            "type": ["boolean", "string"],
+            "description": "Whether to show updated time. For \"auto\", shows article update time only when page.updated is set and it is different from page.date",
+            "default": true,
+            "enum": [true, false, "auto"],
+            "nullable": true
+        },
         "licenses": {
             "$ref": "/misc/poly_links.json",
             "description": "Article licensing block",
