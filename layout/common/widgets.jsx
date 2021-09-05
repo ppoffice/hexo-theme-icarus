@@ -19,15 +19,19 @@ function formatWidgets(widgets) {
     return result;
 }
 
-function hasColumn(widgets, position) {
+function hasColumn(widgets, position, config, page) {
+    const showToc = (config.toc === true || page.toc) && ['page', 'post'].includes(page.layout);
     if (Array.isArray(widgets)) {
-        return typeof widgets.find(widget => widget.position === position) !== 'undefined';
+        return typeof widgets.find(widget => {
+            if(widget.type === 'toc' && !showToc)return false;
+            return widget.position === position
+        }) !== 'undefined';
     }
     return false;
 }
 
-function getColumnCount(widgets) {
-    return [hasColumn(widgets, 'left'), hasColumn(widgets, 'right')].filter(v => !!v).length + 1;
+function getColumnCount(widgets, config, page) {
+    return [hasColumn(widgets, 'left', config, page), hasColumn(widgets, 'right', config, page)].filter(v => !!v).length + 1;
 }
 
 function getColumnSizeClass(columnCount) {
@@ -61,7 +65,7 @@ class Widgets extends Component {
     render() {
         const { site, config, helper, page, position } = this.props;
         const widgets = formatWidgets(config.widgets)[position] || [];
-        const columnCount = getColumnCount(config.widgets);
+        const columnCount = getColumnCount(config.widgets, config, page);
 
         if (!widgets.length) {
             return null;
@@ -89,7 +93,7 @@ class Widgets extends Component {
                 }
                 return null;
             })}
-            {position === 'left' && hasColumn(config.widgets, 'right') ? <div class={classname({
+            {position === 'left' && hasColumn(config.widgets, 'right', config, page) ? <div class={classname({
                 'column-right-shadow': true,
                 'is-hidden-widescreen': true,
                 'is-sticky': isColumnSticky(config, 'right')
