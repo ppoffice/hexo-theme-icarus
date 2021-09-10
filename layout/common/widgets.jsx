@@ -20,11 +20,13 @@ function formatWidgets(widgets) {
 }
 
 function hasColumn(widgets, position, config, page) {
-    const showToc = (config.toc === true || page.toc) && ['page', 'post'].includes(page.layout);
+    const showToc = (config.toc === true) && ['page', 'post'].includes(page.layout);
     if (Array.isArray(widgets)) {
         return typeof widgets.find(widget => {
-            if(widget.type === 'toc' && !showToc)return false;
-            return widget.position === position
+            if (widget.type === 'toc' && !showToc) {
+                return false;
+            }
+            return widget.position === position;
         }) !== 'undefined';
     }
     return false;
