@@ -30,7 +30,7 @@ article:
     updated_at: '%s&nbsp;güncellendi'
     more: 'Daha fazla oku'
     comments: 'Yorumlar'
-    read_time: '%s okundu'
+    read_time: '%s okuma süresi'
     word_count:
         one: 'Yaklaşık %d kelime'
         other: 'Yaklaşık %d kelime'
@@ -59,7 +59,7 @@ plugin:
       link: Daha fazla bilgi edin
       policy: Çerez politikası
 search:
-    search: 'Search'
+    search: 'Ara'
     hint: 'Bir şeyler yaz...'
     no_result: 'İçin sonuç yok'
     untitled: '(Başlıksız)'
