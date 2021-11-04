@@ -40,12 +40,15 @@ article
                 line-height: inherit
 
     &.article
+        .title
+            margin-left: -.1rem
+
         .article-meta, .article-tags
             color: $text-light
 
         .article-meta
             overflow-x: auto
-            margin-bottom: .5rem
+            margin: -1rem 0 .75rem
 
         .article-more
             @extend .button.is-light
@@ -170,11 +173,11 @@ article
 
         .icons
             .icon
-                @extend .ml-1
                 width: 1.2em
                 height: 1.2em
                 font-size: 1.2em
                 vertical-align: bottom
+                justify-content: flex-start
 
         h6
             @extend .is-size-7

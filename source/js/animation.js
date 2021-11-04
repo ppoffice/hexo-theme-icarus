@@ -10,7 +10,7 @@
     document.querySelector('body > .navbar').style.transform = 'translateY(-100px)';
     [
         '.column-main > .card, .column-main > .pagination, .column-main > .post-navigation',
-        '.column-left > .card, .column-right-shadow > .card',
+        '.column-left > .card, .column-right-shadow > .card, .column-sticky > .card',
         '.column-right > .card'
     ].forEach(selector => {
         $(selector).forEach(element => {
@@ -28,7 +28,7 @@
         document.querySelector('body > .navbar').style.transform = 'translateY(0)';
         [
             '.column-main > .card, .column-main > .pagination, .column-main > .post-navigation',
-            '.column-left > .card, .column-right-shadow > .card',
+            '.column-left > .card, .column-right-shadow > .card, .column-sticky > .card',
             '.column-right > .card'
         ].forEach(selector => {
             let i = 1;

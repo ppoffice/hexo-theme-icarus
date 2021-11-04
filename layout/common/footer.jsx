@@ -35,8 +35,8 @@ class Footer extends Component {
                         </a>
                         <p class="is-size-7">
                             <span dangerouslySetInnerHTML={{ __html: `&copy; ${siteYear} ${author || siteTitle}` }}></span>
-                            &nbsp;&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>&nbsp;&&nbsp;
-                            <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                            &nbsp;|&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>,&nbsp;
+                            <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>&nbsp;&&nbsp;❤️
                             {showVisitorCounter ? <br /> : null}
                             {showVisitorCounter ? <span id="busuanzi_container_site_uv"
                                 dangerouslySetInnerHTML={{ __html: visitorCounterTitle }}></span> : null}
@@ -48,7 +48,11 @@ class Footer extends Component {
                                 const link = links[name];
                                 return <p class="control">
                                     <a class={`button is-transparent ${link.icon ? 'is-large' : ''}`} target="_blank" rel="noopener" title={name} href={link.url}>
-                                        {link.icon ? <i class={link.icon}></i> : name}
+                                        {link.icon ?
+                                            (Array.isArray(link.icon) ?
+                                                link.icon.map(i => [<i className={i}></i>, '\u00A0']) :
+                                                <i className={link.icon}></i>
+                                        ) : name}
                                     </a>
                                 </p>;
                             })}

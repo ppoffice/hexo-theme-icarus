@@ -49,5 +49,7 @@ $navbar-item-margin-h ?= 0
             margin-left: 0
 
 .navbar-logo
+    +until($navbar-breakpoint)
+        padding-bottom: 0 !important
     img
         max-height: $logo-height

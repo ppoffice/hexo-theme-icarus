@@ -73,8 +73,8 @@ class Profile extends Component {
                     </div>
                 </nav>
                 {followLink ? <div class="level">
-                    <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener">{followTitle}</a>
-                </div> : null}
+                    <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener"><i class="fab fa-github"></i>&nbsp;&nbsp;{followTitle}</a>
+                </div> : <hr style="margin: -.25rem 0 1rem"/>}
                 {socialLinks ? this.renderSocialLinks(socialLinks) : null}
             </div>
         </div>;
@@ -134,17 +134,17 @@ Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
             post: {
                 count: postCount,
                 title: _p('common.post', postCount),
-                url: url_for('/archives')
+                url: url_for('/archives/')
             },
             category: {
                 count: categoryCount,
                 title: _p('common.category', categoryCount),
-                url: url_for('/categories')
+                url: url_for('/categories/')
             },
             tag: {
                 count: tagCount,
                 title: _p('common.tag', tagCount),
-                url: url_for('/tags')
+                url: url_for('/tags/')
             }
         },
         followLink: follow_link ? url_for(follow_link) : undefined,
