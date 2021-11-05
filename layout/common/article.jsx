@@ -23,8 +23,9 @@ module.exports = class extends Component {
         const { article, plugins } = config;
         const { url_for, date, date_xml, __, _p } = helper;
 
-        const indexLaunguage = config.language || 'en';
+        const indexLanguage = config.language || 'en';
         const language = page.lang || page.language || config.language || 'en';
+        const timeLang = index ? indexLanguage : language;
         const cover = page.cover ? url_for(page.cover) : null;
         const updateTime = article && article.update_time !== undefined ? article.update_time : true;
         const isUpdated = page.updated && !moment(page.date).isSame(moment(page.updated));
@@ -52,12 +53,12 @@ module.exports = class extends Component {
                             {/* Creation Date */}
                             {page.date && <span class="level-item">
                                 <i className="far fa-calendar-alt"></i>&nbsp;
-                                <time dateTime={date_xml(page.date)} title={new Date(page.date).toLocaleString()}>{date(page.date)}</time>
+                                <time dateTime={date_xml(page.date)} title={new Date(page.date).toLocaleString(timeLang)}>{date(page.date)}</time>
                             </span>}
                             {/* Last Update Date */}
                             {shouldShowUpdated && <span class="level-item is-hidden-mobile">
                                 <i class="fas fa-history"></i>&nbsp;
-                                <time dateTime={date_xml(page.updated)} title={new Date(page.updated).toLocaleString()}>{date(page.updated)}</time>
+                                <time dateTime={date_xml(page.updated)} title={new Date(page.updated).toLocaleString(timeLang)}>{date(page.updated)}</time>
                             </span>}
                             {/* Author */}
                             {page.author ? <span class="level-item"> {page.author} </span> : null}
@@ -81,7 +82,7 @@ module.exports = class extends Component {
                                 {(() => {
                                     const words = getWordCount(page._content);
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
-                                    return `${_p('article.read_time', time.locale(index ? indexLaunguage : language).humanize())} (${_p('article.word_count', words)})`;
+                                    return `${_p('article.read_time', time.locale(timeLang).humanize())} (${_p('article.word_count', words)})`;
                                 })()}
                             </span> : null}
                             {/* Visitor counter */}
