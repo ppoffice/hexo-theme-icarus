@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "bulma-stylus": "0.8.0",
-    "eslint": "^7.6.0",
+    "eslint": "^8.4.1",
     "eslint-config-hexo": "^4.1.0",
     "eslint-plugin-json": "^3.0.0",
     "eslint-plugin-react": "^7.17.0",
