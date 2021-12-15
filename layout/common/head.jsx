@@ -174,7 +174,7 @@ module.exports = class extends Component {
             {adsenseClientId ? <script data-ad-client={adsenseClientId}
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script> : null}
 
-            {followItVerificationCode ? <meta name="follow_it-verification-code" content={followItVerificationCode} /> : null}
+            {followItVerificationCode ? <meta name="follow.it-verification-code" content={followItVerificationCode} /> : null}
         </head>;
     }
 };
