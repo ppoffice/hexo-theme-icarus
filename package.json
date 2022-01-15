@@ -19,7 +19,7 @@
     "hexo-renderer-marked": "^4.0.0",
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^3.0.0",
-    "hexo-theme-icarus": "^4.3.0"
+    "hexo-theme-icarus": "^5.0.0-rc.1"
   },
   "resolutions": {
     "stylus": "^0.54.8"

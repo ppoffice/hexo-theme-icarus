@@ -2,7 +2,7 @@ title:
 toc: true
 ---
 <p align="center" class="mb-2">
-<img class="not-gallery-item" style="height:48px" src="https://ppoffice.github.io/hexo-theme-icarus/img/logo.svg">
+<img class="not-gallery-item" style="width:auto;height:48px" src="https://ppoffice.github.io/hexo-theme-icarus/img/logo.svg">
 <br> A simple, delicate, and modern theme for the static site generator Hexo.
 <br>
 <a href="https://ppoffice.github.io/hexo-theme-icarus/">Preview</a> |
