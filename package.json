@@ -3,22 +3,25 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "5.4.0"
+    "version": "6.0.0"
   },
   "dependencies": {
     "bulma-stylus": "0.8.0",
-    "hexo": "^5.0.2",
+    "hexo": "^6.0.0",
     "hexo-algolia": "^1.3.1",
-    "hexo-deployer-git": "^2.0.0",
-    "hexo-filter-github-emojis": "^2.1.0",
+    "hexo-deployer-git": "^3.0.0",
+    "hexo-filter-github-emojis": "^3.0.4",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^2.0.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-renderer-inferno": "^0.1.3",
-    "hexo-renderer-marked": "^3.0.0",
+    "hexo-renderer-marked": "^4.0.0",
     "hexo-renderer-stylus": "^2.0.0",
-    "hexo-server": "^2.0.0",
+    "hexo-server": "^3.0.0",
     "hexo-theme-icarus": "^4.3.0"
+  },
+  "resolutions": {
+    "stylus": "^0.54.8"
   }
 }

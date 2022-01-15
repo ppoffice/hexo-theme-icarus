@@ -1,5 +1,5 @@
 # Version of the configuration file
-version: 4.0.0
+version: 5.0.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
 # Path or URL to the website's logo
