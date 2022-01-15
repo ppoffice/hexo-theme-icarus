@@ -7,7 +7,7 @@
         "version": {
             "type": "string",
             "description": "Version of the configuration file",
-            "default": "4.0.0"
+            "default": "5.0.0"
         },
         "variant": {
             "type": "string",
