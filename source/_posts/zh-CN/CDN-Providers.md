@@ -97,7 +97,7 @@ jsDelivr和UNPKG就采用这种npm形式。
 否则，如果你采用如CDN.js这样的CDN提供商，请在URL模板前加上`[cdnjs]`：
 
 {% codeblock "CDN.js-style URL模板" %}
-[cdnjs]https://some.cdn.domain.name/${package}/${version}/${filename}
+'[cdnjs]https://some.cdn.domain.name/${package}/${version}/${filename}'
 {% endcodeblock %}
 
 ### Web字体CDN
