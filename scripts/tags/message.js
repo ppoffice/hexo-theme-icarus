@@ -15,10 +15,9 @@
  */
 module.exports = function(hexo) {
     hexo.extend.tag.register('message', (args, content) => {
-        let color = 'dark';
         let icon = '';
         let title = '';
-        let size = '';
+        let classes = '';
         let header = '';
 
         args.forEach(element => {
@@ -27,7 +26,7 @@ module.exports = function(hexo) {
             if (value !== null && value !== undefined && value !== '') {
                 switch (key) {
                     case 'color':
-                        color = value;
+                        classes += ` is-${value}`;
                         break;
                     case 'icon':
                         icon = `<i class="fas fa-${value} mr-2"></i>`;
@@ -36,7 +35,7 @@ module.exports = function(hexo) {
                         title = value;
                         break;
                     case 'size':
-                        size = ` is-${value}`;
+                        classes += ` is-${value}`;
                         break;
                 }
             }
@@ -50,7 +49,7 @@ module.exports = function(hexo) {
         }
 
         return `
-        <article class="message is-${color}${size}">
+        <article class="message${classes}">
             ${header}
             <div class="message-body">
             ${hexo.render.renderSync({text: content, engine: 'md'})}

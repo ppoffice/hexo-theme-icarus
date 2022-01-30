@@ -18,9 +18,7 @@
  */
 module.exports = function(hexo) {
     hexo.extend.tag.register('tabs', (args, content) => {
-        let behavior = '';
-        let size = '';
-        let style = '';
+        let classes = '';
 
         args.forEach(element => {
             const key = element.split(':')[0].trim();
@@ -28,16 +26,16 @@ module.exports = function(hexo) {
             if (value !== null && value !== undefined && value !== '') {
                 switch (key) {
                     case 'behavior':
-                        behavior = ` is-${value}`;
+                        classes += ` is-${value}`;
                         break;
                     case 'size':
-                        size = ` is-${value}`;
+                        classes += ` is-${value}`;
                         break;
                     case 'style':
                         if (value === 'toggle-rounded') {
-                            style = ' is-toggle is-toggle-rounded';
+                            classes += ' is-toggle is-toggle-rounded';
                         } else {
-                            style = ` is-${value}`;
+                            classes += ` is-${value}`;
                         }
                         break;
                 }
@@ -77,7 +75,7 @@ module.exports = function(hexo) {
 
         return `
         <div>
-            <div class="tabs my-3${behavior}${size}${style}">
+            <div class="tabs my-3${classes}">
                 <ul class="mx-0 my-0">
                     ${tabsEl}
                 </ul>
