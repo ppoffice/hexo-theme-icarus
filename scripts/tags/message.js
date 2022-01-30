@@ -14,7 +14,7 @@
  * {% endmessage %}
  */
 module.exports = function(hexo) {
-    hexo.extend.tag.register('message', function(args, content) {
+    hexo.extend.tag.register('message', (args, content) => {
         let color = 'dark';
         let icon = '';
         let title = '';

@@ -4,7 +4,6 @@
  * The format of each item is: <!-- <active>item [id] [<icon>] '[title]' --> [content] <!-- enditem -->.
  * If each item's content is indented with four spaces or one tab, these indents will be ignored.
  *
- * @param {string} id           The unique id of this tab, should match: /\w/.
  * @param {string} behavior     The behavior of this tab, can not be set. Usable: centered, right, fullwidth. The
  *                              default behavior is to display on the left.
  * @param {string} size         The size of this tab, can not be set. Usable: small, medium, large. The default
@@ -18,8 +17,7 @@
  * {% endmessage %}
  */
 module.exports = function(hexo) {
-    hexo.extend.tag.register('tabs', function(args, content) {
-        let id = '';
+    hexo.extend.tag.register('tabs', (args, content) => {
         let behavior = '';
         let size = '';
         let style = '';
@@ -29,9 +27,6 @@ module.exports = function(hexo) {
             const value = element.split(':')[1].trim();
             if (value !== null && value !== undefined && value !== '') {
                 switch (key) {
-                    case 'id':
-                        id = value;
-                        break;
                     case 'behavior':
                         behavior = ` is-${value}`;
                         break;
@@ -54,11 +49,11 @@ module.exports = function(hexo) {
         let tabsEl = '';
         let contentEl = '';
 
-        while((match = blockRegExp.exec(content)) !== null) {
+        while ((match = blockRegExp.exec(content)) !== null) {
             let active = '';
             let hidden = ' is-hidden';
             let icon = '';
-            var contentString = match[5].replace(/^\n?|[ \n\t]*$/g, '');
+            let contentString = match[5].replace(/^\n?|[ \n\t]*$/g, '');
 
             if (match[1] === 'active') {
                 active = ' class="is-active"';
@@ -95,7 +90,7 @@ module.exports = function(hexo) {
     }, { ends: true });
 
     hexo.extend.injector.register(
-        "head_end",
+        'head_end',
         `
         <script>
             function switchTab(element) {
