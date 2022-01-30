@@ -13,45 +13,47 @@
  *     **You are in danger.**
  * {% endmessage %}
  */
- hexo.extend.tag.register('message', function(args, content) {
-    var color = 'dark';
-    var icon = '';
-    var title = '';
-    var size = '';
-    var header = '';
-    args.forEach(element => {
-        var key = element.split(':')[0].trim();
-        var value = element.split(':')[1].trim();
-        if (value != null && value != undefined && value != '') {
-            switch (key) {
-                case 'color':
-                    color = value;
-                    break;
-                case 'icon':
-                    icon = `<i class="fas fa-${value} mr-2"></i>`;
-                    break;
-                case 'title':
-                    title = value;
-                    break;
-                case 'size':
-                    size = ` is-${value}`;
-                    break;
+ module.exports = function (hexo) {
+    hexo.extend.tag.register('message', function(args, content) {
+        let color = 'dark';
+        let icon = '';
+        let title = '';
+        let size = '';
+        let header = '';
+        args.forEach(element => {
+            const key = element.split(':')[0].trim();
+            const value = element.split(':')[1].trim();
+            if (value !== null && value !== undefined && value !== '') {
+                switch (key) {
+                    case 'color':
+                        color = value;
+                        break;
+                    case 'icon':
+                        icon = `<i class="fas fa-${value} mr-2"></i>`;
+                        break;
+                    case 'title':
+                        title = value;
+                        break;
+                    case 'size':
+                        size = ` is-${value}`;
+                        break;
+                }
             }
+        });
+        if (icon !== '' || title !== '') {
+            header = `
+            <div class="message-header">
+                ${hexo.render.renderSync({text: icon + title, engine: 'markdown'})}
+            </div>
+            `
         }
-    });
-    if (icon != '' || title != '') {
-        header = `
-        <div class="message-header">
-            ${hexo.render.renderSync({text: icon + title, engine: 'markdown'})}
-        </div>
-        `
-    }
-    return `
-    <article class="message is-${color}${size}">
-        ${header}
-        <div class="message-body">
-        ${hexo.render.renderSync({text: content, engine: 'md'})}
-        </div>
-    </article>
-    `;
-}, { ends: true });
+        return `
+        <article class="message is-${color}${size}">
+            ${header}
+            <div class="message-body">
+            ${hexo.render.renderSync({text: content, engine: 'md'})}
+            </div>
+        </article>
+        `;
+    }, { ends: true });
+}

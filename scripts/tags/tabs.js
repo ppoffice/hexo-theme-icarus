@@ -18,15 +18,15 @@
  * {% endmessage %}
  */
  hexo.extend.tag.register('tabs', function(args, content) {
-    var id = '';
-    var behavior = '';
-    var size = '';
-    var style = '';
-    var contentEl = content;
+    let id = '';
+    let behavior = '';
+    let size = '';
+    let style = '';
+    let contentEl = content;
     args.forEach(element => {
-        var key = element.split(':')[0].trim();
-        var value = element.split(':')[1].trim();
-        if (value != null && value != undefined && value != '') {
+        const key = element.split(':')[0].trim();
+        const value = element.split(':')[1].trim();
+        if (value !== null && value !== undefined && value !== '') {
             switch (key) {
                 case 'id':
                     id = value;
@@ -38,7 +38,7 @@
                     size = ` is-${value}`;
                     break;
                 case 'style':
-                    if (value == 'toggle-rounded') {
+                    if (value === 'toggle-rounded') {
                         style = ' is-toggle is-toggle-rounded';
                     } else {
                         style = ` is-${value}`;
@@ -48,22 +48,22 @@
         }
     });
 
-    var blockRegExp = /<!--\s*(active)?item( \w+)( \w+)?( '.*?')\s*-->([\s\S]*?)<!--\s*enditem\s*-->/g;
-    var match;
-    var tabsEl = '';
-    var contentEl = '';
+    const blockRegExp = /<!--\s*(active)?item( \w+)( \w+)?( '.*?')\s*-->([\s\S]*?)<!--\s*enditem\s*-->/g;
+    let match;
+    let tabsEl = '';
+    let contentEl = '';
 
     while((match = blockRegExp.exec(content)) !== null) {
-        var active = '';
-        var hidden = ' is-hidden';
-        if (match[1] != undefined) {
+        let active = '';
+        let hidden = ' is-hidden';
+        let icon = '';
+        var contentString = match[5].replace(/^\n?|[ \n\t]*$/g, '');
+        if (match[1] === 'active') {
             active = ' class="is-active"';
             hidden = '';
         }
-        var icon = '';
-        if (match[3] != undefined && match[3].substring(1) != '') icon = `<span class="icon is-small"><i class="fas fa-${match[3].substring(1)}" aria-hidden="true"></i></span>`;
-        var contentString = match[5].replace(/^\n?|[ \n\t]*$/g, '');
-        if (contentString.match(/^ {4}|^\t{1}/gm) != null && contentString.match(/^ {4}|^\t{1}/gm).length == contentString.split('\n').length) contentString = contentString.replace(/^ {4}|^\t{1}/g, '').replace(/\n {4}|\n\t{1}/g, '\n');
+        if (match[3] === 'active' && match[3].substring(1) !== '') icon = `<span class="icon is-small"><i class="fas fa-${match[3].substring(1)}" aria-hidden="true"></i></span>`;
+        if (contentString.match(/^ {4}|^\t{1}/gm) !== null && contentString.match(/^ {4}|^\t{1}/gm).length === contentString.split('\n').length) contentString = contentString.replace(/^ {4}|^\t{1}/g, '').replace(/\n {4}|\n\t{1}/g, '\n');
         tabsEl += `
         <li id="${match[2].substring(1)}"${active}">
             <a onclick="switchTab(this)">${hexo.render.renderSync({text: icon + match[4].substring(2, match[4].length - 1), engine: 'markdown'})}</a>
@@ -95,18 +95,18 @@ hexo.extend.injector.register(
     `
     <script>
         function switchTab(element) {
-            var id = element.parentElement.id;
-            var tabElements = element.parentElement.parentElement.children;
-            var contentElements = element.parentElement.parentElement.parentElement.parentElement.children[1].children;
-            for (var i = 0; i < tabElements.length; i++) {
-                var $tab = tabElements[i];
-                var $content = contentElements[i];
-                if ($tab.id == id) {
+            const id = element.parentElement.id;
+            const tabElements = element.parentElement.parentElement.children;
+            const contentElements = element.parentElement.parentElement.parentElement.parentElement.children[1].children;
+            for (let i = 0; i < tabElements.length; i++) {
+                const $tab = tabElements[i];
+                const $content = contentElements[i];
+                if ($tab.id === id) {
                     $tab.classList.add('is-active');
                 } else {
                     $tab.classList.remove('is-active');
                 }
-                if ($content.id == id) {
+                if ($content.id === id) {
                     $content.classList.remove('is-hidden');
                 } else {
                     $content.classList.add('is-hidden');

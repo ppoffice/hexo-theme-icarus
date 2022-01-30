@@ -12,4 +12,6 @@ module.exports = hexo => {
     require('hexo-component-inferno/lib/hexo/helper/cdn')(hexo);
     require('hexo-component-inferno/lib/hexo/helper/page')(hexo);
     require('hexo-component-inferno/lib/core/view').init(hexo);
+    require('./../scripts/tags/message')(hexo);
+    require('./../scripts/tags/tabs')(hexo);
 };
