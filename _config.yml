@@ -85,7 +85,7 @@ theme: icarus
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/ppoffice/hexo-theme-icarus.git
+  repository: https://github.com/fangaso/hexo-theme-icarus.git
   branch: gh-pages
 
 marked:
