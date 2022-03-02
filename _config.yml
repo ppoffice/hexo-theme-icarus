@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Icarus
+title: 我的博客
 subtitle:
 description: Hexo theme - Icarus
 author: PPOffice
@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://ppoffice.github.io/hexo-theme-icarus/
+url: https://fangaso.github.io/hexo-theme-icarus/
 root: /hexo-theme-icarus/
 permalink: :category/:post_title/
 permalink_defaults:
