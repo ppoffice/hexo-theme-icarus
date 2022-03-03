@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 我的博客
-subtitle:
-description: 这是我的博客
-author: PPOffice
+title: 这是我的博客
+subtitle: 我的博客
+description: 这是我的一个博客
+author: Fangaso
 language: zh-CN
 timezone:
 
