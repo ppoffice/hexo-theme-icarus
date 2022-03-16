@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-icarus",
-  "version": "4.5.0",
+  "version": "5.0.0-rc.1",
   "author": "ppoffice <ppoffice@users.noreply.github.com>",
   "license": "MIT",
   "description": "A simple, delicate, and modern theme for Hexo",
@@ -22,20 +22,20 @@
   },
   "devDependencies": {
     "bulma-stylus": "0.8.0",
-    "eslint": "^7.6.0",
-    "eslint-config-hexo": "^4.1.0",
+    "eslint": "^8.6.0",
+    "eslint-config-hexo": "^5.0.0",
     "eslint-plugin-json": "^3.0.0",
     "eslint-plugin-react": "^7.17.0",
-    "hexo": "^5.0.2",
-    "hexo-log": "^2.0.0",
-    "hexo-pagination": "^1.0.0",
+    "hexo": "^6.0.0",
+    "hexo-log": "^3.0.0",
+    "hexo-pagination": "^2.0.0",
     "hexo-renderer-inferno": "^0.1.3",
     "hexo-renderer-stylus": "^2.0.0",
-    "hexo-util": "^2.2.0"
+    "hexo-util": "^2.4.0"
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "hexo-component-inferno": "^0.14.0",
+    "hexo-component-inferno": "^1.1.0",
     "inferno": "^7.3.3",
     "inferno-create-element": "^7.3.3",
     "moment": "^2.22.2",
@@ -43,11 +43,11 @@
   },
   "peerDependencies": {
     "bulma-stylus": "0.8.0",
-    "hexo": "^5.0.2",
-    "hexo-log": "^2.0.0",
-    "hexo-pagination": "^1.0.0",
+    "hexo": "^6.0.0",
+    "hexo-log": "^3.0.0",
+    "hexo-pagination": "^2.0.0",
     "hexo-renderer-inferno": "^0.1.3",
     "hexo-renderer-stylus": "^2.0.0",
-    "hexo-util": "^2.2.0"
+    "hexo-util": "^2.4.0"
   }
 }
