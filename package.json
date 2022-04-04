@@ -21,33 +21,24 @@
     "lint": "eslint --ext .js --ext .jsx --ext .json ."
   },
   "devDependencies": {
-    "bulma-stylus": "0.8.0",
     "eslint": "^8.6.0",
     "eslint-config-hexo": "^5.0.0",
     "eslint-plugin-json": "^3.0.0",
-    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react": "^7.17.0"
+  },
+  "dependencies": {
+    "bulma-stylus": "0.8.0",
+    "deepmerge": "^4.2.2",
     "hexo": "^6.0.0",
+    "hexo-component-inferno": "^1.1.0",
     "hexo-log": "^3.0.0",
     "hexo-pagination": "^2.0.0",
     "hexo-renderer-inferno": "^0.1.3",
     "hexo-renderer-stylus": "^2.0.0",
-    "hexo-util": "^2.4.0"
-  },
-  "dependencies": {
-    "deepmerge": "^4.2.2",
-    "hexo-component-inferno": "^1.1.0",
+    "hexo-util": "^2.4.0",
     "inferno": "^7.3.3",
     "inferno-create-element": "^7.3.3",
     "moment": "^2.22.2",
     "semver": ">=5.0.0"
-  },
-  "peerDependencies": {
-    "bulma-stylus": "0.8.0",
-    "hexo": "^6.0.0",
-    "hexo-log": "^3.0.0",
-    "hexo-pagination": "^2.0.0",
-    "hexo-renderer-inferno": "^0.1.3",
-    "hexo-renderer-stylus": "^2.0.0",
-    "hexo-util": "^2.4.0"
   }
 }

@@ -21,7 +21,7 @@ module.exports = hexo => {
     }
 
     logger.info('=== Checking package dependencies ===');
-    const dependencies = Object.assign({}, packageInfo.peerDependencies, packageInfo.dependencies);
+    const dependencies = Object.assign({}, packageInfo.dependencies);
     const missingDeps = Object.keys(dependencies)
         .filter(name => !checkDependency(name, dependencies[name]));
     if (missingDeps && missingDeps.length) {
