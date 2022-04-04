@@ -9,6 +9,9 @@ $navbar-item-margin-h ?= 0
 .navbar-main
     box-shadow: $shadow
 
+    .navbar-container
+        overflow-x: auto
+
     .navbar-menu, .navbar-start, .navbar-end
         align-items: stretch
         display: flex
@@ -51,3 +54,7 @@ $navbar-item-margin-h ?= 0
 .navbar-logo
     img
         max-height: $logo-height
+
+@media screen and (min-width: $desktop)
+    .navbar > .container .navbar-menu, .container > .navbar .navbar-menu
+        margin-right: 0rem
