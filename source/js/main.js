@@ -45,7 +45,7 @@
 
     function toggleFold(codeBlock, isFolded) {
         const $toggle = $(codeBlock).find('.fold i');
-        !isFolded ? $(codeBlock).removeClass('folded') : $(codeBlock).addClass('folded');
+        !isFolded ? $(codeBlock).removeClass('folded').addClass('unfolded') : $(codeBlock).addClass('folded').removeClass('unfolded');
         !isFolded ? $toggle.removeClass('fa-angle-right') : $toggle.removeClass('fa-angle-down');
         !isFolded ? $toggle.addClass('fa-angle-down') : $toggle.addClass('fa-angle-right');
     }
