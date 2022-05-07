@@ -111,7 +111,7 @@
                 toggleFold(this, fold === 'folded');
             });
 
-            $('figure.highlight figcaption').click(function() {
+            $('figure.highlight figcaption .level-left').click(function() {
                 const $code = $(this).closest('figure.highlight');
                 toggleFold($code.eq(0), !$code.hasClass('folded'));
             });
