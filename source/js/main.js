@@ -45,7 +45,7 @@
 
     function toggleFold(codeBlock, isFolded) {
         const $toggle = $(codeBlock).find('.fold i');
-        !isFolded ? $(codeBlock).removeClass('folded').addClass('unfolded') : $(codeBlock).addClass('folded').removeClass('unfolded');
+        !isFolded ? $(codeBlock).removeClass('folded') : $(codeBlock).addClass('folded');
         !isFolded ? $toggle.removeClass('fa-angle-right') : $toggle.removeClass('fa-angle-down');
         !isFolded ? $toggle.addClass('fa-angle-down') : $toggle.addClass('fa-angle-right');
     }
@@ -98,6 +98,8 @@
 
         if (fold) {
             $('figure.highlight').each(function() {
+                $(this).addClass('foldable'); // add 'foldable' class as long as fold is enabled
+
                 if ($(this).find('figcaption').find('span').length > 0) {
                     const span = $(this).find('figcaption').find('span');
                     if (span[0].innerText.indexOf('>folded') > -1) {
