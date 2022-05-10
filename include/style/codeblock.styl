@@ -13,7 +13,7 @@ figure.highlight
     &.folded
         .highlight-body
             height: 0
-    
+
     .copy
         opacity: .7
 
@@ -89,6 +89,10 @@ figure.highlight
         vertical-align: inherit
         min-width: inherit
         border-radius: inherit
+
+figure.highlight.foldable
+  div.level-left
+    cursor: pointer  // clicking the codeblock filename can toggle folding 
 
 /* ---------------------------------
  *        Fix Gist Snippet

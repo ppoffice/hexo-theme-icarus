@@ -11,7 +11,4 @@ jobs:
         with:
           node-version: 12
       - run: npm install
-      - run: >
-          npm install $(node -e "const deps=require('./package.json').peerDependencies;
-          console.log(Object.keys(deps).map(key=>key+'@'+deps[key]).join(' '));")
       - run: npm run lint
