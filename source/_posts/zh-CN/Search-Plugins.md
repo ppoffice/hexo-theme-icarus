@@ -178,6 +178,7 @@ providers:
     {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: insight
+        include_pages: true     # 可选项。设置为false时从搜索结果中排除所有page
     {% endcodeblock %}
 
 

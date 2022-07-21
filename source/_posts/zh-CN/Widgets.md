@@ -233,6 +233,9 @@ widgets:
     -
         position: right
         type: tags
+        order_by: name      # 可选项。按名称(name)或长度(length)来排序。加上`-`前缀来倒序排列。
+        amount: 20          # 可选项。最多显示的标签数量。留空以显示所有标签。
+        show_count: true    # 可选项。是否显示标签名称右侧的文章数量。
 {% endcodeblock %}
 
 

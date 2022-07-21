@@ -38,12 +38,18 @@ Icarus为你提供了几种内置的CDN提供商来承载Icaurs所用到的第�
     - jsDelivr (`jsdelivr`)
     - UNPKG (`unpkg`)
     - loli.net (`loli`)
+    - BootCDN (`bootcdn`)
+    - 75CDN (`75cdn`)
 - **Web字体CDN**
     - Google Fonts (`google`)
     - loli.net (`loli`)
+    - font.im (`fontim`)
+    - 中国科学技术大学 (`ustc`)
 - **FontAwesome图标CDN**
     - FontAwesome 5 (`fontawesome`)
     - loli.net (`loli`)
+    - BootCDN (`bootcdn`)
+    - 75CDN (`75cdn`)
 
 默认的CDN服务提供商配置为：
 

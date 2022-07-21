@@ -34,7 +34,7 @@ Icarus uses it to determine whether to upgrade the default theme configuration f
 You should not change it by yourself.
 
 {% codeblock _config.icarus.yml lang:yaml %}
-version: 4.0.0
+version: 5.0.0
 {% endcodeblock %}
 
 ### Theme Variant

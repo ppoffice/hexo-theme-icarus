@@ -41,7 +41,7 @@ Icarus使用此版本号来决定是否升级默认主题配置文件。
 请不要自己更改这个版本号。
 
 {% codeblock _config.icarus.yml lang:yaml %}
-version: 4.0.0
+version: 5.0.0
 {% endcodeblock %}
 
 ### 主题变体

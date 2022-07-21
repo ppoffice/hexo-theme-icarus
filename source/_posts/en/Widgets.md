@@ -30,6 +30,9 @@ widgets:
     -
         position: left
         type: tags
+        order_by: -name
+        amount:
+        show_count: false
     -
         position: left
         type: followit
@@ -234,6 +237,9 @@ widgets:
     -
         position: right
         type: tags
+        order_by: name      # Optional. Order by tag name or length. Prefix with `-` to sort in descending order.
+        amount: 20          # Optional. The maximum number of tags to show. Leave empty to show all.
+        show_count: true    # Optional. Whether to show post count right to tag name.
 {% endcodeblock %}
 
 

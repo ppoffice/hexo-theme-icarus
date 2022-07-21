@@ -89,7 +89,8 @@ deploy:
   branch: gh-pages
 
 marked:
-  gfm: false
+  gfm: true
+  breaks: false
 
 githubEmojis:
   className: not-gallery-item

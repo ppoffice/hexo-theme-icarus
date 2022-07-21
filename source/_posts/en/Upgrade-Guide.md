@@ -15,6 +15,22 @@ toc: true
 
 <!-- more -->
 
+### Upgrading from 4.x to 5.0
+
+1. Upgrade Node.js to 12.4.0 or a newer version.
+
+2. Install Icarus 5.x either via source code dowload or NPM install.
+   You can find instructions in {% post_link en/Getting-Started %}.
+   If you plan to customize the theme by altering its source code, you are required to install
+   the theme from source code.
+
+3. Run `hexo clean` to clear cache files and let Icarus upgrade your theme configuration file for
+   you.
+
+4. Check out the [release notes](https://github.com/ppoffice/hexo-theme-icarus/releases) and the
+   [latest documentation](https://ppoffice.github.io/hexo-theme-icarus/categories/) for more
+   information of the new features.
+
 ### Upgrading from 3.x to 4.x
 
 1. Upgrade Node.js to 10.13.0 or a newer version.

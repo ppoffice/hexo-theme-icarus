@@ -171,6 +171,7 @@ Please refer to it for a complete list of supported plugins and their configurat
     {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: insight
+        include_pages: true     # Optional. Set to `false` to exclude pages from search results.
     {% endcodeblock %}
 
 

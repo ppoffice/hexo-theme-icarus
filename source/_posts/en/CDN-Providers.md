@@ -38,12 +38,18 @@ Currently, Icarus offers the following built-in CDN providers:
     - jsDelivr (`jsdelivr`)
     - UNPKG (`unpkg`)
     - loli.net (`loli`)
+    - BootCDN (`bootcdn`)
+    - 75CDN (`75cdn`)
 - **CDNs for Web Fonts**
     - Google Fonts (`google`)
     - loli.net (`loli`)
+    - font.im (`fontim`)
+    - ustc.edu.cn (`ustc`)
 - **FontAwesome Font Icon CDNs**
     - FontAwesome 5 (`fontawesome`)
     - loli.net (`loli`)
+    - BootCDN (`bootcdn`)
+    - 75CDN (`75cdn`)
 
 The default CDN settings are:
 

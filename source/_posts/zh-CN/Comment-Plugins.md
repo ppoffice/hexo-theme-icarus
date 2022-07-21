@@ -371,6 +371,24 @@ providers:
     {% endcodeblock %}
 
 
+## Twikoo
+
+Twikoo是一个基于云函数的自建评论系统。
+不同于其他第三方评论服务，在Icarus中设置和使用Twikoo之前，你需要将它的后端部署到云环境上。
+
+**安装指南**
+
+1. 按照[Twikoo文档](https://twikoo.js.org/)，将Twikoo云函数部署到你指定的云服务商之上。
+
+2. 将你部署的`env_id`填入主题设置中的对应设置项之中。
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: twikoo
+        env_id: xxxxxxxx
+    {% endcodeblock %}
+
+
 ## utterances
 
 <div>
@@ -489,24 +507,23 @@ IP地址 (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" re
     comment:
         type: waline
         server_url: https://your-domain.vercel.app
+        path: window.location.pathname                # 可选填
         lang: zh-CN                                   # 可选填
         visitor: false                                # 可选填
         emoji:                                        # 可选填
-          - 'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'
+            - 'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'
         dark: auto                                    # 可选填
         meta: ["nick", "mail", "link"]                # 可选填
         required_meta: []                             # 可选填
         login: enable                                 # 可选填
-        avatar: mp                                    # 可选填
         word_limit: 0                                 # 可选填
         page_size: 10                                 # 可选填
-        avatar_cdn: 'https://sdn.geekzu.org/avatar/'  # 可选填
-        avatar_force: false                           # 可选填
+        upload_image: false                           # 可选填
         highlight: true                               # 可选填
-        math_tag_support: false                       # 可选填
+        math: false                                   # 可选填
         copyright: true                               # 可选填
         locale:                                       # 可选填
-          placeholder: 'Comment here...'
+            placeholder: 'Comment here...'
     {% endcodeblock %}
 
 

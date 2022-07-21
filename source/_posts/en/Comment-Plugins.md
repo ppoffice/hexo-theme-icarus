@@ -372,6 +372,26 @@ However, unlike the other services, Isso requires a web host for running the Iss
     {% endcodeblock %}
 
 
+## Twikoo
+
+Twikoo is a self-hosted comment system based on cloud functions.
+Unlike other third-party comment services, the Twikoo backend needs to be deployed to a cloud
+environment before being configured and used by Icarus.
+
+**Installation Guide**
+
+1. Follow the [Twikoo documentation](https://twikoo.js.org/en/) to deploy the Twikoo cloud function
+   to a cloud service provider of your choice.
+
+2. Fill in the `env_id` of your deployment to the corresponding setting in the theme configurations.
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: twikoo
+        env_id: xxxxxxxx
+    {% endcodeblock %}
+
+
 ## utterances
 
 <div>
@@ -494,24 +514,23 @@ services until this issue has been fixed.
     comment:
         type: waline
         server_url: https://your-domain.vercel.app
-        lang: zh-CN                                   # Optional
+        path: window.location.pathname                # Optional
+        lang: en-US                                   # Optional
         visitor: false                                # Optional
         emoji:                                        # Optional
-          - 'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'
+            - 'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'
         dark: auto                                    # Optional
         meta: ["nick", "mail", "link"]                # Optional
         required_meta: []                             # Optional
         login: enable                                 # Optional
-        avatar: mp                                    # Optional
         word_limit: 0                                 # Optional
         page_size: 10                                 # Optional
-        avatar_cdn: 'https://sdn.geekzu.org/avatar/'  # Optional
-        avatar_force: false                           # Optional
+        upload_image: false                           # Optional
         highlight: true                               # Optional
-        math_tag_support: false                       # Optional
+        math: false                                   # Optional
         copyright: true                               # Optional
         locale:                                       # Optional
-          placeholder: 'Comment here...'
+            placeholder: 'Comment here...'
     {% endcodeblock %}
 
 

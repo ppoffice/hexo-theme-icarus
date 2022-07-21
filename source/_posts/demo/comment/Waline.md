@@ -5,6 +5,7 @@ tags:
 comment:
     type: waline
     server_url: https://icarus-waline-comment.vercel.app
+    path: window.location.pathname
     lang: en-US
     visitor: false
     emoji:
@@ -15,14 +16,12 @@ comment:
         - mail
         - link
     required_meta:
-    login: enable
-    avatar: mp
+    login: 'enable'
     word_limit: 0
     page_size: 10
-    avatar_cdn: 'https://sdn.geekzu.org/avatar/'
-    avatar_force: false
+    upload_image: false
     highlight: true
-    math_tag_support: false
+    math: false
     copyright: true
     locale:
         placeholder: 'Comment here...'
