@@ -34,11 +34,11 @@ providers:
 </div>
 </article>
 
-Icarus运行在Node.js 8.3.0或更新的版本上。
-它同时依赖Hexo 4.2.0或更新版本。
+Icarus 5运行在Node.js 12.4.0或更新的版本上。
+它同时依赖Hexo 6.0.0或更高版本。
 除此之外，请确保所有的Node.js依赖已安装。
 你可以在[`<icarus_directory>/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
-文件的`peerDependencies`部分下找到这些依赖。
+文件的`dependencies`部分下找到这些依赖。
 同时，从你的站点中移除所有无用的Node.js依赖，否则它们可能会导致Icarus出现奇怪的问题。
 
 <article class="message is-primary" style="font-size:1em">

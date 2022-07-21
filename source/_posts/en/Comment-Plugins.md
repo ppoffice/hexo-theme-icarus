@@ -9,7 +9,7 @@ language: en
 toc: true
 ---
 
-This article covers comment plugins supported by Icarus 4.
+This article covers comment plugins supported by Icarus 5.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">

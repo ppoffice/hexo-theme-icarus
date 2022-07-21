@@ -29,7 +29,7 @@ donates:
         qrcode: /gallery/donate/wechat.jpg
 ---
 
-This article covers donation button configurations supported by Icarus 4.
+This article covers donation button configurations supported by Icarus 5.
 If you need to display multiple donation buttons at once, add individual button configuration
 to the `donates` array like the following:
 

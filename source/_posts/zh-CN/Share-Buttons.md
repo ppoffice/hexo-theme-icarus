@@ -16,7 +16,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 4支持的分享按钮的安装配置。
+本文介绍Icarus 5支持的分享按钮的安装配置。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">

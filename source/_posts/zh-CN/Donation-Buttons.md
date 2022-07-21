@@ -33,7 +33,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 4支持的赞赏按钮的安装配置。
+本文介绍Icarus 5支持的赞赏按钮的安装配置。
 若需同时展示多个按钮，只需像如下这样在主题配置的`donates`数组中添加多个按钮配置：
 
 {% codeblock _config.icarus.yml lang:yaml %}
