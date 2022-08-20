@@ -389,6 +389,8 @@ environment before being configured and used by Icarus.
     comment:
         type: twikoo
         env_id: xxxxxxxx
+        region: ap-guangzhou     # Optional
+        lang: zh-CN              # Optional
     {% endcodeblock %}
 
 
@@ -516,21 +518,23 @@ services until this issue has been fixed.
         server_url: https://your-domain.vercel.app
         path: window.location.pathname                # Optional
         lang: en-US                                   # Optional
-        visitor: false                                # Optional
+        locale:                                       # Optional
+            placeholder: 'Comment here...'
         emoji:                                        # Optional
-            - 'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'
+            - '//unpkg.com/@waline/emojis@1.0.1/weibo'
         dark: auto                                    # Optional
         meta: ["nick", "mail", "link"]                # Optional
         required_meta: []                             # Optional
         login: enable                                 # Optional
         word_limit: 0                                 # Optional
         page_size: 10                                 # Optional
-        upload_image: false                           # Optional
-        highlight: true                               # Optional
-        math: false                                   # Optional
+        image_uploader: false                         # Optional
+        highlighter: true                             # Optional
+        tex_renderer: false                           # Optional
+        search: false                                 # Optional
+        pageview: false                               # Optional
+        comment: false                                # Optional
         copyright: true                               # Optional
-        locale:                                       # Optional
-            placeholder: 'Comment here...'
     {% endcodeblock %}
 
 

@@ -7,24 +7,26 @@ comment:
     server_url: https://icarus-waline-comment.vercel.app
     path: window.location.pathname
     lang: en-US
-    visitor: false
+    locale:
+        placeholder: Comment here...
     emoji:
-        - 'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'
+        - https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo
     dark: auto
     meta:
         - nick
         - mail
         - link
     required_meta:
-    login: 'enable'
+    login: enable
     word_limit: 0
     page_size: 10
-    upload_image: false
-    highlight: true
-    math: false
+    image_uploader: true
+    highlighter: true
+    tex_renderer:
+    search:
+    pageview:
+    comment:
     copyright: true
-    locale:
-        placeholder: 'Comment here...'
 ---
 
 <article class="message message-immersive is-warning">

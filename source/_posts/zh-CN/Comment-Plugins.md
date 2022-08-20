@@ -386,6 +386,8 @@ Twikoo是一个基于云函数的自建评论系统。
     comment:
         type: twikoo
         env_id: xxxxxxxx
+        region: ap-guangzhou     # 可选填
+        lang: zh-CN              # 可选填
     {% endcodeblock %}
 
 
@@ -509,21 +511,23 @@ IP地址 (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" re
         server_url: https://your-domain.vercel.app
         path: window.location.pathname                # 可选填
         lang: zh-CN                                   # 可选填
-        visitor: false                                # 可选填
+        locale:                                       # 可选填
+            placeholder: 'Comment here...'
         emoji:                                        # 可选填
-            - 'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'
+            - '//unpkg.com/@waline/emojis@1.0.1/weibo'
         dark: auto                                    # 可选填
         meta: ["nick", "mail", "link"]                # 可选填
         required_meta: []                             # 可选填
         login: enable                                 # 可选填
         word_limit: 0                                 # 可选填
         page_size: 10                                 # 可选填
-        upload_image: false                           # 可选填
-        highlight: true                               # 可选填
-        math: false                                   # 可选填
+        image_uploader: false                         # 可选填
+        highlighter: true                             # 可选填
+        tex_renderer: false                           # 可选填
+        search: false                                 # 可选填
+        pageview: false                               # 可选填
+        comment: false                                # 可选填
         copyright: true                               # 可选填
-        locale:                                       # 可选填
-            placeholder: 'Comment here...'
     {% endcodeblock %}
 
 

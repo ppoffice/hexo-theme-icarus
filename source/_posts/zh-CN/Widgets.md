@@ -30,6 +30,9 @@ widgets:
     -
         position: left
         type: tags
+        order_by: -name
+        amount:
+        show_count: false
     -
         position: left
         type: followit
