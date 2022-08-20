@@ -376,7 +376,9 @@ providers:
 Twikoo是一个基于云函数的自建评论系统。
 不同于其他第三方评论服务，在Icarus中设置和使用Twikoo之前，你需要将它的后端部署到云环境上。
 
-**安装指南**
+<div>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Twikoo %}">在线预览</a>
+</div>
 
 1. 按照[Twikoo文档](https://twikoo.js.org/)，将Twikoo云函数部署到你指定的云服务商之上。
 

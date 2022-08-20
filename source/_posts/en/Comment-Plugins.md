@@ -378,7 +378,9 @@ Twikoo is a self-hosted comment system based on cloud functions.
 Unlike other third-party comment services, the Twikoo backend needs to be deployed to a cloud
 environment before being configured and used by Icarus.
 
-**Installation Guide**
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Twikoo %}">Preview</a>
+</div>
 
 1. Follow the [Twikoo documentation](https://twikoo.js.org/en/) to deploy the Twikoo cloud function
    to a cloud service provider of your choice.
