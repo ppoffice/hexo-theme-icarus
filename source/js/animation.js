@@ -52,7 +52,8 @@
         // jump to location.hash
         if (window.location.hash) {
             setTimeout(() => {
-                document.querySelector(window.location.hash).scrollIntoView({ behavior: 'smooth' });
+                // Use getElementById because querySelector does not support ids that start with numbers
+                document.getElementById(window.location.hash.substring(1)).scrollIntoView({ behavior: 'smooth' });
             }, i * 100);
         }
     });
