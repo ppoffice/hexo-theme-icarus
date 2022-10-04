@@ -1,0 +1,31 @@
+$copyright-color-1 ?= #74cf59
+$copyright-color-2 ?= #ca0c16
+$copyright-background-color-1 ?= #eaf9e3
+$copyright-background-color-2 ?= #f9ecec
+
+.copyright
+    &.article-title
+        padding: 2px 5px
+        border-radius: 3px
+        &.type-1
+            color: $copyright-color-1
+            background-color: $copyright-background-color-1
+        &.type-2
+            color: $copyright-color-2
+            background-color: $copyright-background-color-2
+    &.article-block
+        padding: 0.4em 0.8em
+        margin-bottom: 1em
+        border-radius: 0.3rem
+        border-left: 5px solid #ca0c16
+        P
+            word-wrap: break-word
+            word-break: break-all
+            overflow: hidden
+        &.type-1
+            border-left: 5px solid $copyright-color-1
+            background-color: $copyright-background-color-1
+        &.type-2
+            border-left: 5px solid $copyright-color-2
+            background-color: $copyright-background-color-2
+            
