@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-icarus",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "author": "ppoffice <ppoffice@users.noreply.github.com>",
   "license": "MIT",
   "description": "A simple, delicate, and modern theme for Hexo",
@@ -30,7 +30,7 @@
     "bulma-stylus": "0.8.0",
     "deepmerge": "^4.2.2",
     "hexo": "^6.0.0",
-    "hexo-component-inferno": "^1.2.0",
+    "hexo-component-inferno": "^2.0.0",
     "hexo-log": "^3.0.0",
     "hexo-pagination": "^2.0.0",
     "hexo-renderer-inferno": "^0.1.3",
