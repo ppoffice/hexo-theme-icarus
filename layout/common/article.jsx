@@ -1,5 +1,6 @@
 const moment = require('moment');
 const { Component, Fragment } = require('inferno');
+const { toMomentLocale } = require('hexo/lib/plugins/helper/date');
 const Share = require('./share');
 const Donates = require('./donates');
 const Comment = require('./comment');
@@ -23,8 +24,8 @@ module.exports = class extends Component {
         const { article, plugins } = config;
         const { url_for, date, date_xml, __, _p } = helper;
 
-        const indexLaunguage = config.language || 'en';
-        const language = page.lang || page.language || config.language || 'en';
+        const indexLaunguage = toMomentLocale(config.language || 'en');
+        const language = toMomentLocale(page.lang || page.language || config.language || 'en');
         const cover = page.cover ? url_for(page.cover) : null;
         const updateTime = article && article.update_time !== undefined ? article.update_time : true;
         const isUpdated = page.updated && !moment(page.date).isSame(moment(page.updated));
