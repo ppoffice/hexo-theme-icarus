@@ -86,7 +86,7 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
         siteYear: date(new Date(), 'YYYY'),
         author,
         links,
-        copyright: footer.copyright,
+        copyright: footer?.copyright ?? '',
         showVisitorCounter: plugins && plugins.busuanzi === true,
         visitorCounterTitle: _p('plugin.visitor_count', '<span id="busuanzi_value_site_uv">0</span>')
     };
