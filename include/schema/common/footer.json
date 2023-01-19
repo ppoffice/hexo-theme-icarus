@@ -4,16 +4,6 @@
     "description": "Page footer configurations",
     "type": "object",
     "properties": {
-        "copyright": {
-            "$ref": "/misc/copyright.json",
-            "description": "Copyright text",
-            "type": "string",
-            "examples": [
-                "© 2019",
-                "© 2019 - 2020",
-                "<a href=\"https://beian.miit.gov.cn/\" target=\"_blank\">粤ICP备1234567号</a>"
-            ]
-        },
         "links": {
             "$ref": "/misc/poly_links.json",
             "description": "Links to be shown on the right of the footer section",
