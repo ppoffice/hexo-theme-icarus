@@ -168,7 +168,7 @@ module.exports = class extends Component {
             <link rel="preload" as="style" href={iconcdn()} />
             {hlTheme ? <link rel="preload" as="style" href={cdn('highlight.js', '9.12.0', 'styles/' + hlTheme + '.css')} /> : null}
             <link rel="preload" as="style" href={fontCssUrl[variant]} />
-            <link rel="preload" as="style" href={url_for('/css/' + variant + '.css')} />
+            <link rel="stylesheet" href={url_for('/css/' + variant + '.css')} />
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />
 
             {adsenseClientId ? <script data-ad-client={adsenseClientId}
