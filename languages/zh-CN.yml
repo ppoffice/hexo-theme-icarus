@@ -26,18 +26,18 @@ widget:
     adsense: '广告'
     followit: 'follow.it'
 article:
-    created_at: '%s发表'
-    updated_at: '%s更新'
+    created_at: '%s 发表'
+    updated_at: '%s 更新'
     more: '阅读更多'
     comments: '评论'
-    read_time: '%s读完'
+    read_time: '%s 读完'
     word_count:
-        one: '大约%d个字'
-        other: '大约%d个字'
+        one: '大约 %d 个字'
+        other: '大约 %d 个字'
     licensing:
         author: '作者'
-        created_at: '发布于'
-        updated_at: '更新于'
+        created_at: '发布于 '
+        updated_at: '更新于 '
         licensed_under: '许可协议'
 donate:
     title: '喜欢这篇文章？打赏一下作者吧'
@@ -49,15 +49,15 @@ donate:
     buymeacoffee: '送我杯咖啡'
 plugin:
     backtotop: '回到顶端'
-    visit_count: '%s次访问'
-    visitor_count: '共%s个访客'
+    visit_count: '%s 次访问'
+    visitor_count: '共 %s 个访客'
     cookie_consent:
-      message: 此网站使用Cookie来改善您的体验。
+      message: 此网站使用 Cookie 来改善您的体验。
       dismiss: 知道了！
-      allow: 允许使用Cookie
+      allow: 允许使用 Cookie
       deny: 拒绝
       link: 了解更多
-      policy: Cookie政策
+      policy: Cookie 政策
 search:
     search: '搜索'
     hint: '想要查找什么...'
