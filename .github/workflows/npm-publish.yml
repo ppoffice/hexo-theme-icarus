@@ -1,8 +1,6 @@
 name: Node.js Package
 
-on:
-  release:
-    types: [published]
+on: workflow_dispatch
 
 jobs:
   publish:
