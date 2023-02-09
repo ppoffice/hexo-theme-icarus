@@ -10,11 +10,14 @@
 
 ![](https://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png?1 "Icarus Preview")
 
+# Amane
+###### hexo-theme-amane is a edited version of icarus. Including lazyload and give you a better performance.
+
 ## :cd: Installation
 
 ```shell
-$ npm install hexo-theme-icarus
-$ hexo config theme icarus
+$ npm install hexo-theme-amane
+$ hexo config theme amane
 ```
 
 Please refer to [Getting Started with Icarus](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/getting-started-with-icarus/) 
