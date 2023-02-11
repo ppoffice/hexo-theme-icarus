@@ -12,7 +12,7 @@ function lazyProcess(htmlContent)  {
             })
             return str.replace(p3, `${p3} srcset="${loadingImage}" data-srcset="${p2}"`);
         }
-        return str.replace(p3, `${p3} class="lazyload" rcset="${loadingImage}" data-srcset="${p2}"`);
+        return str.replace(p3, `${p3} class="lazyload" srcset="${loadingImage}" data-srcset="${p2}"`);
     });
 }
 
