@@ -43,10 +43,10 @@ module.exports = class extends Component {
             <script src={url_for('/js/lazy-css.js')} defer={true}></script>
             <script>
                var lazyLoadInstance = new LazyLoad({
-  elements_selector: 'img',
-  threshold: 0,
-})
-</script>
+                   elements_selector: 'img',
+                   threshold: 0,
+               });
+            </script>
         </Fragment>;
     }
 };
