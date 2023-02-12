@@ -41,6 +41,12 @@ module.exports = class extends Component {
             <script src={url_for('/js/main.js')} defer></script>
             <script src={url_for('/js/flying-pages.min.js')} defer={true}></script>
             <script src={url_for('/js/lazy-css.js')} defer={true}></script>
+            <script>
+               var lazyLoadInstance = new LazyLoad({
+  elements_selector: 'img',
+  threshold: 0,
+})
+</script>
         </Fragment>;
     }
 };
