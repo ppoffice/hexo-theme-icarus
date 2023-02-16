@@ -263,10 +263,10 @@ providers:
 <div class="example-tab-container">
 {% tabs align:right %}
 <!-- tab id:tab_align_right_1 "title:第一页" active -->
-这是一个右对齐的(`centered`)标签页容器的第一页。
+这是一个右对齐的(`right`)标签页容器的第一页。
 <!-- endtab -->
 <!-- tab id:tab_align_right_2 "title:第二页" -->
-这是一个右对齐的(`centered`)标签页容器的第二页。
+这是一个右对齐的(`right`)标签页容器的第二页。
 <!-- endtab -->
 {% endtabs %}
 </div>
