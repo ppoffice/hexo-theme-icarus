@@ -252,6 +252,13 @@ footer:
             url: 'https://github.com/ppoffice/hexo-theme-icarus'
 {% endcodeblock %}
 
+You can also display custom copyright text at the footer section:
+
+{% codeblock _config.icarus.yml lang:yaml %}
+footer:
+    copyright: Made with 💖
+{% endcodeblock %}
+
 ### Code Highlight
 
 If you have enabled code highlighting in Hexo, you can customize the code blocks with `highlight` settings 

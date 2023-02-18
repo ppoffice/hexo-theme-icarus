@@ -255,6 +255,13 @@ footer:
             url: 'https://github.com/ppoffice/hexo-theme-icarus'
 {% endcodeblock %}
 
+你也可以在页脚展示自定义版权文字：
+
+{% codeblock _config.icarus.yml lang:yaml %}
+footer:
+    copyright: 用💖发电
+{% endcodeblock %}
+
 ### 代码高亮
 
 如果你已在Hexo中启用了代码高亮功能，你可以通过`article`中的`highlight`设置来自定义代码块。
