@@ -42,11 +42,11 @@ module.exports = class extends Component {
             <script src={url_for('/js/flying-pages.min.js')} defer={true}></script>
             <script src={url_for('/js/lazy-css.js')} defer={true}></script>
             <script>
-      (function () {
-        function logElementEvent(eventName, element) {
-          console.log(Date.now(), eventName, element.getAttribute("data-src"));
-        }
-                </script>
+              (function () {
+                function logElementEvent(eventName, element) {
+                  console.log(Date.now(), eventName, element.getAttribute("data-src"));
+                }
+            </script>
         </Fragment>;
     }
 };
