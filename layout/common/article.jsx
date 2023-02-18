@@ -76,6 +76,84 @@ module.exports = class extends Component {
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
                                     return `${_p('article.read_time', time.locale(index ? indexLaunguage : language).humanize())} (${_p('article.word_count', words)})`;
                                 })()}
+const moment = require('moment');
+const { Component, Fragment } = require('inferno');
+const { toMomentLocale } = require('hexo/lib/plugins/helper/date');
+const Share = require('./share');
+const Donates = require('./donates');
+const Comment = require('./comment');
+const ArticleLicensing = require('hexo-component-inferno/lib/view/misc/article_licensing');
+
+/**
+ * Get the word count of text.
+ */
+function getWordCount(content) {
+    if (typeof content === 'undefined') {
+        return 0;
+    }
+    content = content.replace(/<\/?[a-z][^>]*>/gi, '');
+    content = content.trim();
+    return content ? (content.match(/[\u00ff-\uffff]|[a-zA-Z]+/g) || []).length : 0;
+}
+
+module.exports = class extends Component {
+    render() {
+        const { config, helper, page, index } = this.props;
+        const { article, plugins } = config;
+        const { url_for, date, date_xml, __, _p } = helper;
+
+        const indexLaunguage = toMomentLocale(config.language || 'en');
+        const language = toMomentLocale(page.lang || page.language || config.language || 'en');
+        const cover = page.cover ? url_for(page.cover) : null;
+        const updateTime = article && article.update_time !== undefined ? article.update_time : true;
+        const isUpdated = page.updated && !moment(page.date).isSame(moment(page.updated));
+        const shouldShowUpdated = page.updated && ((updateTime === 'auto' && isUpdated) || updateTime === true);
+
+        return <Fragment>
+            {/* Main content */}
+            <div class="card">
+                {/* Thumbnail */}
+                {cover ? <div class="card-image">
+                    {index ? <a href={url_for(page.link || page.path)} class="image is-7by3">
+                        <img class="fill" src={cover} alt={page.title || cover} />
+                    </a> : <span class="image is-7by3">
+                        <img class="fill" src={cover} alt={page.title || cover} />
+                    </span>}
+                </div> : null}
+                <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
+                    {/* Metadata */}
+                    {page.layout !== 'page' ? <div class="article-meta is-size-7 is-uppercase level is-mobile">
+                        <div class="level-left">
+                            {/* Creation Date */}
+                            {page.date && <span class="level-item" dangerouslySetInnerHTML={{
+                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}">${date(page.date)}</time>`)
+                            }}></span>}
+                            {/* Last Update Date */}
+                            {shouldShowUpdated && <span class="level-item" dangerouslySetInnerHTML={{
+                                __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${new Date(page.updated).toLocaleString()}">${date(page.updated)}</time>`)
+                            }}></span>}
+                            {/* author */}
+                            {page.author ? <span class="level-item"> {page.author} </span> : null}
+                            {/* Categories */}
+                            {page.categories && page.categories.length ? <span class="level-item">
+                                {(() => {
+                                    const categories = [];
+                                    page.categories.forEach((category, i) => {
+                                        categories.push(<a class="link-muted" href={url_for(category.path)}>{category.name}</a>);
+                                        if (i < page.categories.length - 1) {
+                                            categories.push(<span>&nbsp;/&nbsp;</span>);
+                                        }
+                                    });
+                                    return categories;
+                                })()}
+                            </span> : null}
+                            {/* Read time */}
+                            {article && article.readtime && article.readtime === true ? <span class="level-item">
+                                {(() => {
+                                    const words = getWordCount(page._content);
+                                    const time = moment.duration((words / 150.0) * 60, 'seconds');
+                                    return `${_p('article.read_time', time.locale(index ? indexLaunguage : language).humanize())} (${_p('article.word_count', words)})`;
+                                })()}
                             </span> : null}
                             {/* Visitor counter */}
                             {!index && plugins && plugins.busuanzi === true ? <span class="level-item" id="busuanzi_container_page_pv" dangerouslySetInnerHTML={{
