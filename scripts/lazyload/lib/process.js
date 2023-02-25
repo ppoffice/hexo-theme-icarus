@@ -8,11 +8,11 @@ function lazyProcess(htmlContent)  {
         }
         if (/class="(.*?)"/gi.test(str)){
             str = str.replace(/class="(.*?)"/gi, (classStr, p1) => {
-                return classStr.replace(p1, `${p1} lazyload`);
+                return classStr.replace(p1, `${p1} lazy`);
             })
             return str.replace(p3, `${p3} srcset="${loadingImage}" data-srcset="${p2}"`);
         }
-        return str.replace(p3, `${p3} class="lazyload" srcset="${loadingImage}" data-srcset="${p2}"`);
+        return str.replace(p3, `${p3} class="lazy" srcset="${loadingImage}" data-srcset="${p2}"`);
     });
 }
 
