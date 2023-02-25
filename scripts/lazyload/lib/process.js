@@ -1,18 +1,19 @@
 'use strict';
 const fs = require('hexo-fs');
 function lazyProcess(htmlContent) {
-    const loadingImage = this.config.lazyload.loadingImg || 'https://img-blog.csdnimg.cn/2022010612032074818.gif';
-    return htmlContent.replace(/<img(\s+)(?!.*alt=)"([^"]*)"([^>]*)>/gi, (match, p1, p2, p3) => {
-        const classAttr = (/class="(.*?)"/gi).exec(match);
-        if (classAttr) {
-            const classStr = classAttr[1];
-            const lazyClass = classStr.includes('lazy) ? classStr : `${classStr} lazy`;
-            return match.replace(classAttr[0], `class="${lazyClass}"`)
-                        .replace(p3, `${p3} srcset="${loadingImage}" data-srcset="${p2}"`);
-        } else {
-            return match.replace(p3, `${p3} class="lazy" srcset="${loadingImage}" data-srcset="${p2}"`);
-        }
-    });
+  let loadingImage = this.config.lazyload.loadingImg || 'https://img-blog.csdnimg.cn/2022010612032074818.gif';
+  return htmlContent.replace(/<img(\s*?)src="(.*?)"(.*?)((\s*)alt="(.*?)")?>/gi, (str, p1, p2, p3, p4, p5, p6) => {
+    if (/data-src/gi.test(str)) {
+      return str;
+    }
+    if (/class="(.*?)"/gi.test(str)) {
+      str = str.replace(/class="(.*?)"/gi, (classStr, p1) => {
+        return classStr.replace(p1, `${p1} lazyload`);
+      })
+      return str.replace(p3, `${p3} srcset="${loadingImage}" data-srcset="${p2}"`);
+    }
+    return str.replace(p3, `${p3} class="lazy" srcset="${loadingImage}" data-srcset="${p2}"`);
+  });
 }
 
 module.exports.processPost = function(data) {
