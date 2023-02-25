@@ -41,10 +41,14 @@ module.exports = class extends Component {
             <script src={url_for('/js/main.js')} defer></script>
             <script src={url_for('/js/flying-pages.min.js')} defer={true}></script>
             <script src={url_for('/js/lazy-css.js')} defer={true}></script>
+            <link rel="preconnect" href="https://xgjalbum.oss-cn-hangzhou.aliyuncs.com" />
+            <link rel="preconnect" href="https://cdn.staticfile.org" />
+            <link rel="preconnect" href="https://fonts.sourcegcdn.com" />
             <script>
               var lazyLoadInstance = new LazyLoad({
               });
             </script>
+            
         </Fragment>;
     }
 };
