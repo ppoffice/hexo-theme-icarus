@@ -2,7 +2,7 @@
 const fs = require('hexo-fs');
 function lazyProcess(htmlContent)  {
     let loadingImage = this.config.lazyload.loadingImg || 'https://img-blog.csdnimg.cn/2022010612032074818.gif';
-    return htmlContent.replace(/<img(\s*?)src="(.*?)"(.*?)>/gi, (str, p1, p2, p3)  =>  {
+    return htmlContent.replace(/<img(.*?)src="(.*?)"(.*?)>/gi, (str, p1, p2)  =>  {
         if (/data-src/gi.test(str)) {
             return str;
         }
@@ -10,9 +10,9 @@ function lazyProcess(htmlContent)  {
             str = str.replace(/class="(.*?)"/gi, (classStr, p1) => {
                 return classStr.replace(p1, `${p1} lazy`);
             })
-            return str.replace(p3, `${p3} srcset="${loadingImage}" data-srcset="${p2}"`);
+            return str.replace(`src="${p2}"`, `src="${p2}" class="lazy" data-srcset="${p2}" srcset="${loadingImage}"`);
         }
-        return str.replace(p3, `${p3} class="lazy" srcset="${loadingImage}" data-srcset="${p2}"`);
+        return str.replace(`src="${p2}"`, `src="${p2}" class="lazy" data-srcset="${p2}" srcset="${loadingImage}"`);
     });
 }
 
