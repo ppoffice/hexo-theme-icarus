@@ -9,7 +9,7 @@ class Profile extends Component {
         }
         return <div class="level is-mobile is-multiline">
             {links.filter(link => typeof link === 'object').map(link => {
-                return <a class="level-item button is-transparent is-marginless"
+                return <a class="level-item button is-transparent is-marginless u-url"
                     target="_blank" rel="noopener me" title={link.name} href={link.url}>
                     {'icon' in link ? <i class={link.icon}></i> : link.name}
                 </a>;
@@ -29,7 +29,7 @@ class Profile extends Component {
             followTitle,
             socialLinks
         } = this.props;
-        return <div class="card widget" data-type="profile">
+        return <div class="card widget h-card h-entry" data-type="profile">
             <div class="card-content">
                 <nav class="level">
                     <div class="level-item has-text-centered flex-shrink-1">

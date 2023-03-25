@@ -43,20 +43,20 @@ module.exports = class extends Component {
                         <img class="fill" src={cover} alt={page.title || cover} />
                     </span>}
                 </div> : null}
-                <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
+                <article class={`card-content h-entry article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
                     {/* Metadata */}
                     {page.layout !== 'page' ? <div class="article-meta is-size-7 is-uppercase level is-mobile">
                         <div class="level-left">
                             {/* Creation Date */}
                             {page.date && <span class="level-item" dangerouslySetInnerHTML={{
-                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}">${date(page.date)}</time>`)
+                                __html: _p('article.created_at', `<time class="dt-published" dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}">${date(page.date)}</time>`)
                             }}></span>}
                             {/* Last Update Date */}
                             {shouldShowUpdated && <span class="level-item" dangerouslySetInnerHTML={{
                                 __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${new Date(page.updated).toLocaleString()}">${date(page.updated)}</time>`)
                             }}></span>}
                             {/* author */}
-                            {page.author ? <span class="level-item"> {page.author} </span> : null}
+                            {config.author ? <a rel="author" class="level-item p-author h-card" href="/about"> {config.author} </a> : null}
                             {/* Categories */}
                             {page.categories && page.categories.length ? <span class="level-item">
                                 {(() => {
@@ -86,9 +86,9 @@ module.exports = class extends Component {
                     </div> : null}
                     {/* Title */}
                     {page.title !== '' && index ? <p class="title is-3 is-size-4-mobile"><a class="link-muted" href={url_for(page.link || page.path)}>{page.title}</a></p> : null}
-                    {page.title !== '' && !index ? <h1 class="title is-3 is-size-4-mobile">{page.title}</h1> : null}
+                    {page.title !== '' && !index ? <h1 class="p-name title is-3 is-size-4-mobile">{page.title}</h1> : null}
                     {/* Content/Excerpt */}
-                    <div class="content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
+                    <div class="content  e-content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
                     {/* Licensing block */}
                     {!index && article && article.licenses && Object.keys(article.licenses)
                         ? <ArticleLicensing.Cacheable page={page} config={config} helper={helper} /> : null}
@@ -98,7 +98,7 @@ module.exports = class extends Component {
                     {page.tags && page.tags.length ? <div class="article-tags is-size-7 is-uppercase">
                         <i class="fas fa-tags has-text-grey"></i>&nbsp;
                         {page.tags.map((tag, index) => {
-                            return <a class="link-muted" rel="tag" href={url_for(tag.path)}>{tag.name}{index !== page.tags.length-1? ', ':''}</a>;
+                            return <a class="link-muted p-category" rel="tag" href={url_for(tag.path)}>{tag.name}{index !== page.tags.length-1? ', ':''}</a>;
                         })}
                     </div> : null}
                     {/* "Read more" button */}
