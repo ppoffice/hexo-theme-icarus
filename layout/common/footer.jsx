@@ -44,7 +44,6 @@ class Footer extends Component {
                         </p>
                         {copyright ? <p class="is-size-7" dangerouslySetInnerHTML={{ __html: copyright }}></p> : null}
                     </div>
-                    <script async defer data-website-id="7e782528-455f-4f0a-acc5-01ec7ed759ff" src="https://analytics.umami.is/script.js"></script>
                     <div class="level-end">
                         {Object.keys(links).length ? <div class="field has-addons">
                             {Object.keys(links).map(name => {

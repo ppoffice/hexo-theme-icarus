@@ -4,3 +4,7 @@ hexo.extend.filter.register('theme_inject', function (injects) {
 })
 
 hexo.extend.injector.register('head_begin', '<link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css">', 'default');
+
+hexo.extend.injector.register('head_begin', '<script async defer data-website-id="7e782528-455f-4f0a-acc5-01ec7ed759ff" src="https://analytics.umami.is/script.js"></script>', 'default');
+
+hexo.extend.injector.register('head_begin', '<link rel="webmention" href="https://webmention.io/blog.xiang578.com/webmention" /> <link rel="pingback" href="https://webmention.io/blog.xiang578.com/xmlrpc" />', 'default');
