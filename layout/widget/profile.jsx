@@ -10,7 +10,7 @@ class Profile extends Component {
         return <div class="level is-mobile is-multiline">
             {links.filter(link => typeof link === 'object').map(link => {
                 return <a class="level-item button is-transparent is-marginless"
-                    target="_blank" rel="noopener" title={link.name} href={link.url}>
+                    target="_blank" rel="noopener me" title={link.name} href={link.url}>
                     {'icon' in link ? <i class={link.icon}></i> : link.name}
                 </a>;
             })}
@@ -37,7 +37,7 @@ class Profile extends Component {
                             <figure class="image is-128x128 mx-auto mb-2">
                                 <img class={'u-photo avatar' + (avatarRounded ? ' is-rounded' : '')} src={avatar} alt={author} />
                             </figure>
-                            {author ? <p class="title is-size-4 is-block" style={{'line-height': 'inherit'}}>{author}</p> : null}
+                            {author ? <p class="title is-size-4 is-block p-name" style={{'line-height': 'inherit'}}>{author}</p> : null}
                             {authorTitle ? <p class="is-size-6 is-block">{authorTitle}</p> : null}
                             {location ? <p class="is-size-6 is-flex justify-content-center">
                                 <i class="fas fa-map-marker-alt mr-1"></i>
