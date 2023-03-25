@@ -8,3 +8,4 @@ hexo.extend.injector.register('head_begin', '<link rel="stylesheet" href="https:
 hexo.extend.injector.register('head_begin', '<script async defer data-website-id="7e782528-455f-4f0a-acc5-01ec7ed759ff" src="https://analytics.umami.is/script.js"></script>', 'default');
 
 hexo.extend.injector.register('head_begin', '<link rel="webmention" href="https://webmention.io/blog.xiang578.com/webmention" /> <link rel="pingback" href="https://webmention.io/blog.xiang578.com/xmlrpc" />', 'default');
+hexo.extend.injector.register('head_begin', '<link title="Follow me on Twitter" rel="me" href="https://twitter.com/xiang578"/>', 'default');
