@@ -5,6 +5,7 @@ const Share = require('./share');
 const Donates = require('./donates');
 const Comment = require('./comment');
 const Related = require('./related');
+const Webmention = require('../comment/webmention')
 const ArticleLicensing = require('hexo-component-inferno/lib/view/misc/article_licensing');
 
 /**
@@ -129,6 +130,8 @@ module.exports = class extends Component {
             </nav> : null}
             {/* Comment */}
             {!index ? <Comment config={config} page={page} helper={helper} /> : null}
+            {/* Webmention */}
+            {!index ? <Webmention config={config} page={page} helper={helper}/> :null}
         </Fragment>;
     }
 };
