@@ -6,6 +6,7 @@ const Donates = require('./donates');
 const Comment = require('./comment');
 const Related = require('./related');
 const Webmention = require('../comment/webmention')
+const WebmentionTimeline = require('../comment/webmention-timeline')
 const ArticleLicensing = require('hexo-component-inferno/lib/view/misc/article_licensing');
 
 /**
@@ -132,6 +133,7 @@ module.exports = class extends Component {
             {!index ? <Comment config={config} page={page} helper={helper} /> : null}
             {/* Webmention */}
             {!index ? <Webmention config={config} page={page} helper={helper}/> :null}
+            {!index ? <WebmentionTimeline config={config} page={page} helper={helper}/> :null}
         </Fragment>;
     }
 };
