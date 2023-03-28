@@ -45,7 +45,7 @@ module.exports = class extends Component {
                         <img class="fill" src={cover} alt={page.title || cover} />
                     </span>}
                 </div> : null}
-                <article class={`card-content h-entry article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
+                <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
                     {/* Metadata */}
                     {page.layout !== 'page' ? <div class="article-meta is-size-7 is-uppercase level is-mobile">
                         <div class="level-left">

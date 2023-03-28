@@ -1,34 +1,51 @@
 window.addEventListener('load', function () {
     const webmentionsPromise = window.webmentionContext.webmentionsPromise;
-    const mastodonContext = window.mastodonContext;
-    const webmentionTimelineMessages = window.webmentionTimelineMessages;
-
+    const webmentionCountPromise = window.webmentionContext.webmentionCountPromise;
+    
+    // console.log(JSON.stringify(webmentionsPromise, null, "\t"))
     webmentionsPromise && webmentionsPromise
         .then(function (data) {
             let html = '';
-            data.children.forEach(function (item) {
-                if (!(mastodonContext && item.url.startsWith(mastodonContext.mastodonBaseUrl))) {
-                    html += `<article class="media"><div class="media-content"><p class="article-meta level-left">`;
+            // if(webmentionCountPromise && webmentionCountPromise.hasOwnProperty("count")) {
+                // html += `<p>${webmentionCountPromise.count}</p>`
+            // }
+            // html += `<p>${webmentionCountPromise.type}</p>`
+            const distinctMentions = [
+                ...new Map(data.children.map((item) => [item.author.url, item])).values()].sort((a, b) => new Date(a['wm-received']) - new Date(b['wm-received']));
+            const replies = distinctMentions.filter(
+                (mention) => 'in-reply-to' in mention && 'content' in mention
+            );
+            html += `<div><p>`;
 
-                    if (item.author && item.author.name) {
-                        html += `<i class="level-item author" >`;
-                        if (item.author.url) {
-                            html += `<a target="_blank" href="${item.author.url}" rel="noopener">${item.author.name}</a>`;
-                        }
-                        else {
-                            html += item.author.name;
-                        }
-                        html += `</i>`;
-                    }
-                    let publishTime = (item.published && item.published.indexOf('T') > 0) ? item.published : item['wm-received'];
-
-                    html += `<time class="level-item" datetime="${publishTime}">${publishTime.split('T')[0]}</time></p><p class="title level-left"><i class="level-item">🔗</i><a target="_blank" href="${item.url}" rel="noopener" class="level-item">${item.url}</a></p></div></article>`;
-                }
-                else {
-                    html += `<article class="media"><div class="media-content"><p class="title level-right"><span class="level-item">🐘</span><span class="level-item"><a target="_blank" href="${item.url}" rel="noopener">${webmentionTimelineMessages['into_the_fediverse']}</a></span></p></article></div>`;
-                }
-
+            if (distinctMentions.length > 0) {
+                html += `Already ${distinctMentions.length} awesome people liked, shared or talked about this article:</p>`;
+            } else {
+                html += `Be the first one to share this article!`;
+            }
+            html += `<div className="webmention-avatars">`;
+            distinctMentions.forEach(function (reply) {
+                html += `<a class="avatar-wrapper" href=${reply.author.url} key=${reply.author.name}><image class="wm-avatar" loading="lazy" src=${reply.author.photo} alt=${reply.author.name} data-nimg="fill" sizes="(max-width: 768px) 100vw,(max-width: 1200px) 50vw, 33vw"/></a>`;
             });
+            html += `</div>`;
+            if (replies && replies.length) {
+                html +=  `<div class="webmention-replies">`;
+                html += `<h4>Replies</h4>`;
+                html += `<ul class="replies">`;
+                replies.forEach(function (reply){
+                    html += `<li class="reply" key=${reply.content.text}>`;
+                    html += `<div>`;
+                    html += `<a class="avatar-wrapper" href=${reply.author.url} key=${reply.author.name}><image class="wm-avatar" loading="lazy" src=${reply.author.photo} alt=${reply.author.name} data-nimg="fill" sizes="(max-width: 768px) 100vw,(max-width: 1200px) 50vw, 33vw"/></a>`;
+                    html += `</div>`;
+                    html += `<div class="text">`;
+                    html += `<p class="reply-author-name">${reply.author.name}</p>`;
+                    html += `<p class="reply-content">${reply.content.text}</p>`;
+                    html += `</div>`;
+                    html += `</li>`;
+
+                });
+                html += `</ul>`;
+                html += `</div>`;
+            }
             document.querySelector('div.webmention-timeline').innerHTML = html;
 
         })

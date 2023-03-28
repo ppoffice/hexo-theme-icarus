@@ -35,9 +35,11 @@ class Footer extends Component {
                             {footerLogo}
                         </a>
                         <p class="is-size-7">
-                            <span dangerouslySetInnerHTML={{ __html: `&copy; ${siteYear} ${author || siteTitle}` }}></span>
+                            <span dangerouslySetInnerHTML={{ __html: `&copy; 2015-${siteYear} ${author || siteTitle}` }}></span>
                             &nbsp;&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>&nbsp;&&nbsp;
                             <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                            <br/>
+                            <a href="https://xn--sr8hvo.ws/%F0%9F%9B%90%E2%9A%A1%EF%B8%8F%E2%80%BC%EF%B8%8F/previous">←</a> <a href="https://xn--sr8hvo.ws">IndieWeb Webring</a> 🕸💍<a href="https://xn--sr8hvo.ws/%F0%9F%9B%90%E2%9A%A1%EF%B8%8F%E2%80%BC%EF%B8%8F/next">→</a>
                             {showVisitorCounter ? <br /> : null}
                             {showVisitorCounter ? <span id="busuanzi_container_site_uv"
                                 dangerouslySetInnerHTML={{ __html: visitorCounterTitle }}></span> : null}

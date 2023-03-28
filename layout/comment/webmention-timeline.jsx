@@ -15,9 +15,9 @@ class WebmentionTimeline extends Component {
             <div class="card">
                 <div class="card-content">
                     <h2 class="title is-5">长短波</h2>    
-                    <div class="timeline webmention-timeline">
-                        <script src={helper.url_for('/js/webmention-timeline.js')}></script>
+                    <div class="webmention-timeline">
                     </div>
+                    <script src={helper.url_for('/js/webmention-timeline.js')}></script>
                 </div>
             </div>
 
