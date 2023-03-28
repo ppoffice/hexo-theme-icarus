@@ -29,7 +29,7 @@ class Profile extends Component {
             followTitle,
             socialLinks
         } = this.props;
-        return <div class="card widget h-card h-entry" data-type="profile">
+        return <div class="card widget h-card p-author" data-type="profile">
             <div class="card-content">
                 <nav class="level">
                     <div class="level-item has-text-centered flex-shrink-1">

@@ -58,7 +58,7 @@ module.exports = class extends Component {
                                 __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${new Date(page.updated).toLocaleString()}">${date(page.updated)}</time>`)
                             }}></span>}
                             {/* author */}
-                            {config.author ? <a rel="author" class="level-item p-author h-card" href="/about"> {config.author} </a> : null}
+                            {config.author ? <a class="level-item" href="/about"> {config.author} </a> : null}
                             {/* Categories */}
                             {page.categories && page.categories.length ? <span class="level-item">
                                 {(() => {
