@@ -29,7 +29,7 @@ class Profile extends Component {
             followTitle,
             socialLinks
         } = this.props;
-        return <div class="card widget h-card" data-type="profile">
+        return <div class="card widget h-card p-author" data-type="profile">
             <div class="card-content">
                 <nav class="level">
                     <div class="level-item has-text-centered flex-shrink-1">
@@ -37,7 +37,7 @@ class Profile extends Component {
                             <figure class="image is-128x128 mx-auto mb-2">
                                 <img class={'u-photo avatar' + (avatarRounded ? ' is-rounded' : '')} src={avatar} alt={author} />
                             </figure>
-                            {author ? <p class="title is-size-4 is-block p-name" style={{'line-height': 'inherit'}}>{author}</p> : null}
+                            {author ? <p class="title is-size-4 is-block p-name" rel="author" style={{'line-height': 'inherit'}}>{author}</p> : null}
                             {authorTitle ? <p class="is-size-6 is-block">{authorTitle}</p> : null}
                             {location ? <p class="is-size-6 is-flex justify-content-center">
                                 <i class="fas fa-map-marker-alt mr-1"></i>
