@@ -14,17 +14,13 @@ class WebmentionTimeline extends Component {
         return <Fragment>
             <div class="card">
                 <div class="card-content">
-                    <h2 class="title is-5">长短波</h2>    
+                    <h2 class="title is-5">网络回响</h2>    
                     <div class="webmention-timeline">
                     </div>
                     <script src={helper.url_for('/js/webmention-timeline.js')}></script>
                 </div>
             </div>
-
-
         </Fragment>
-
-
     }
 }
 

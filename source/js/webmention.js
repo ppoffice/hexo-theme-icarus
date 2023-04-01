@@ -12,14 +12,4 @@
         .catch(function (ex) {
             console.error('fetch webmention error' + ex);
         });
-    
-    webmentionContext.webmentionCountPromise = fetch(webmentionBaseUrl + "/api/count.json?target=" + encodeURIComponent(url))
-    .then(function (response) {
-        console.log('sucess '  + webmentionBaseUrl + "/api/count.json?target=" + url);
-        return response.json();
-    })
-    .catch(function (ex) {
-        console.error('fetch webmention count error' + ex);
-    });
-    
 })(window.webmentionContext);

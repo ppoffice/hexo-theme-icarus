@@ -50,17 +50,20 @@ module.exports = class extends Component {
                     {page.layout !== 'page' ? <div class="article-meta is-size-7 is-uppercase level is-mobile">
                         <div class="level-left">
                             {/* Creation Date */}
-                            {page.date && <span class="level-item" dangerouslySetInnerHTML={{
-                                __html: _p('article.created_at', `<time class="dt-published" dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}">${date(page.date)}</time>`)
-                            }}></span>}
+                            {page.date && <span class="level-item">
+                                <i className="far fa-calendar-alt">&nbsp;</i>
+                                <time dateTime={date_xml(page.date)} title={date_xml(page.date)}>{date(page.date)}</time>
+                            </span>}
                             {/* Last Update Date */}
-                            {shouldShowUpdated && <span class="level-item" dangerouslySetInnerHTML={{
-                                __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${new Date(page.updated).toLocaleString()}">${date(page.updated)}</time>`)
-                            }}></span>}
+                            {shouldShowUpdated && <span class="level-item is-hidden-mobile">
+                                <i class="far fa-calendar-check">&nbsp;</i>
+                                <time dateTime={date_xml(page.updated)} title={date_xml(page.updated)}>{date(page.updated)}</time>
+                            </span>}
                             {/* author */}
-                            {config.author ? <a class="level-item" href="/about"> {config.author} </a> : null}
+                            {page.author ? <span class="level-item"> {page.author} </span> : null}
                             {/* Categories */}
                             {page.categories && page.categories.length ? <span class="level-item">
+                                <i class="far fa-folder-open has-text-grey"></i>&nbsp;
                                 {(() => {
                                     const categories = [];
                                     page.categories.forEach((category, i) => {
@@ -74,6 +77,7 @@ module.exports = class extends Component {
                             </span> : null}
                             {/* Read time */}
                             {article && article.readtime && article.readtime === true ? <span class="level-item">
+                                <i class="far fa-clock"></i>&nbsp;
                                 {(() => {
                                     const words = getWordCount(page._content);
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
@@ -82,7 +86,7 @@ module.exports = class extends Component {
                             </span> : null}
                             {/* Visitor counter */}
                             {!index && plugins && plugins.busuanzi === true ? <span class="level-item" id="busuanzi_container_page_pv" dangerouslySetInnerHTML={{
-                                __html: _p('plugin.visit_count', '<span id="busuanzi_value_page_pv">0</span>')
+                                __html: _p('plugin.visit_count', '<i class="far fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv">0</span>')
                             }}></span> : null}
                         </div>
                     </div> : null}
@@ -129,11 +133,11 @@ module.exports = class extends Component {
                     </a>
                 </div> : null}
             </nav> : null}
-            {/* Comment */}
-            {!index ? <Comment config={config} page={page} helper={helper} /> : null}
             {/* Webmention */}
             {!index ? <Webmention config={config} page={page} helper={helper}/> :null}
-            {!index ? <WebmentionTimeline config={config} page={page} helper={helper}/> :null}
+            {!index ? <WebmentionTimeline config={config} page={page} helper={helper}/>:null}
+            {/* Comment */}
+            {!index ? <Comment config={config} page={page} helper={helper} /> : null}
         </Fragment>;
     }
 };
