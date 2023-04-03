@@ -6,7 +6,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: writes
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - uses: ncipollo/release-action@v1
