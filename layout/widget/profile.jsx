@@ -81,8 +81,8 @@ class Profile extends Component {
                     <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener">
                         <i class="fab fa-github" style="padding-right: 4px"></i>{followTitle}
                     </a> : null}
-                    <a class="level-item button is-primary is-rounded" href="https://github.com/sponsor/brightprogrammer" target="_blank" rel="noopener">
-                        <i class="fab fa-heart" style="padding-right: 4px"></i>Sponsor Me
+                    <a class="level-item button is-primary is-rounded" href="https://github.com/sponsors/brightprogrammer" target="_blank" rel="noopener">
+                        <i class="fas fa-heart" style="padding-right: 4px"></i>Sponsor Me
                     </a>
                 </nav>
                 {socialLinks ? this.renderSocialLinks(socialLinks) : null}
