@@ -26,12 +26,13 @@ class Profile extends Component {
             location,
             counter,
             followLink,
+            sponsorLink,
             followTitle,
             socialLinks
         } = this.props;
         return <div class="card widget" data-type="profile">
             <div class="card-content">
-                <nav class="level">
+                 <nav class="level">
                     <div class="level-item has-text-centered flex-shrink-1">
                         <div>
                             <figure class="image is-128x128 mx-auto mb-2">
@@ -39,13 +40,16 @@ class Profile extends Component {
                             </figure>
                             {author ? <p class="title is-size-4 is-block" style={{'line-height': 'inherit'}}>{author}</p> : null}
                             {authorTitle ? <p class="is-size-6 is-block">{authorTitle}</p> : null}
-                            {location ? <p class="is-size-6 is-flex justify-content-center">
-                                <i class="fas fa-map-marker-alt mr-1"></i>
-                                <span>{location}</span>
-                            </p> : null}
+                            <p class="title is-size-7 is-blog">Reverse Engineer, Software Developer, Modern Mathematics Enthusiast</p>
                         </div>
                     </div>
                 </nav>
+                <div class="has-text-centered flex-shrink-1">
+                    {location ? <p class="is-flex justify-content-center">
+                                    <i class="fas fa-map-marker-alt"></i>{location}
+                                </p> : null}
+                </div>
+                <br/>
                 <nav class="level is-mobile">
                     <div class="level-item has-text-centered is-marginless">
                         <div>
@@ -72,9 +76,15 @@ class Profile extends Component {
                         </div>
                     </div>
                 </nav>
-                {followLink ? <div class="level">
-                    <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener">{followTitle}</a>
-                </div> : null}
+                <nav class="level is-mobile">
+                {followLink ?
+                    <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener">
+                        <i class="fab fa-github" style="padding-right: 4px"></i>{followTitle}
+                    </a> : null}
+                    <a class="level-item button is-primary is-rounded" href="https://github.com/sponsor/brightprogrammer" target="_blank" rel="noopener">
+                        <i class="fab fa-heart" style="padding-right: 4px"></i>Sponsor Me
+                    </a>
+                </nav>
                 {socialLinks ? this.renderSocialLinks(socialLinks) : null}
             </div>
         </div>;
