@@ -16,7 +16,11 @@ module.exports = class extends Component {
 
         return <html lang={language ? language.substr(0, 2) : ''}>
             <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-2-column`}>
+
+                <body class={`is-2-column`}>
+                <script type="text/javascript" src="/js/imaegoo/night.js"></script>
+                <canvas id="universe"></canvas>
+
                 <Navbar config={config} helper={helper} page={page} />
                 <section class="section">
                     <div class="container">
@@ -37,6 +41,8 @@ module.exports = class extends Component {
                 <Footer config={config} helper={helper} />
                 <Scripts site={site} config={config} helper={helper} page={page} />
                 <Search config={config} helper={helper} />
+
+                <script type="text/javascript" src="/js/imaegoo/universe.js"></script>
             </body>
         </html>;
     }
