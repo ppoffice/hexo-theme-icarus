@@ -37,7 +37,7 @@
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-util": "^2.4.0",
     "inferno": "^7.3.3",
-    "inferno-create-element": "^7.3.3",
+    "inferno-create-element": "^8.2.1",
     "moment": "^2.22.2",
     "semver": ">=5.0.0"
   }
