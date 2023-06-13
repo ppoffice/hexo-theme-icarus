@@ -16,21 +16,21 @@
             ]
         },
         "ICPRecord":{
-            "description": "ICP备案",
+            "description": "ICP Record",
             "type":"string",
             "examples": [
                 "粤ICP备12345678号"
             ]
         },
         "policeregion":{
-            "description": "公安备案区域",
+            "description": "Public security filing area",
             "type":"string",
             "examples": [
                 "粤"
             ]
         },
         "policerecord":{
-            "description": "公安备案号码",
+            "description": "Public security filing number",
             "type":"string",
             "examples": [
                 "12345678912345"
