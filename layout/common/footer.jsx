@@ -12,6 +12,10 @@ class Footer extends Component {
             author,
             links,
             copyright,
+            ICPRecord,
+            policerecord,
+            policelink,
+            policeregion,
             showVisitorCounter,
             visitorCounterTitle
         } = this.props;
@@ -43,6 +47,8 @@ class Footer extends Component {
                                 dangerouslySetInnerHTML={{ __html: visitorCounterTitle }}></span> : null}
                         </p>
                         {copyright ? <p class="is-size-7" dangerouslySetInnerHTML={{ __html: copyright }}></p> : null}
+                        {ICPRecord ? <p class="is-size-7"><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">{ICPRecord}</a></p> : null}
+                        {policerecord ? <p class="is-size-6.5"><img src="img/police.png" alt="police icon" height="20px" style="margin-right: 5px;" /><a href={policelink+policerecord} target="_blank" rel="noopener noreferrer">{policeregion}公网安备 {policerecord} 号</a></p> : null}
                     </div>
                     <div class="level-end">
                         {Object.keys(links).length ? <div class="field has-addons">
@@ -87,6 +93,10 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
         author,
         links,
         copyright: footer?.copyright ?? '',
+        ICPRecord: footer?.ICPRecord ?? '',
+        policeregion: footer?.policeregion ?? '',
+        policelink: "https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=",
+        policerecord: footer?.policerecord ?? '',
         showVisitorCounter: plugins && plugins.busuanzi === true,
         visitorCounterTitle: _p('plugin.visitor_count', '<span id="busuanzi_value_site_uv">0</span>')
     };

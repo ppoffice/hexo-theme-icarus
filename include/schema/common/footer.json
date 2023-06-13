@@ -15,6 +15,27 @@
                 "粤ICP备12345678号"
             ]
         },
+        "ICPRecord":{
+            "description": "ICP备案",
+            "type":"string",
+            "examples": [
+                "粤ICP备12345678号"
+            ]
+        },
+        "policeregion":{
+            "description": "公安备案区域",
+            "type":"string",
+            "examples": [
+                "粤"
+            ]
+        },
+        "policerecord":{
+            "description": "公安备案号码",
+            "type":"string",
+            "examples": [
+                "12345678912345"
+            ]
+        },
         "links": {
             "$ref": "/misc/poly_links.json",
             "description": "Links to be shown on the right of the footer section",
