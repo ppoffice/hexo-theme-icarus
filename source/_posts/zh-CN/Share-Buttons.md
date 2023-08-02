@@ -47,6 +47,12 @@ providers:
 </div>
 </article>
 
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>AddThis分享按钮服务已下线，建议使用其他分享按钮服务作为替代。
+</div>
+</article>
+
 <div>
 <strong>安装指南</strong>
 <a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/share/AddThis %}">在线预览</a>

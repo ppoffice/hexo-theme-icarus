@@ -41,6 +41,13 @@ Use it with caution.
 </div>
 </article>
 
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>The Baidu share button service is no longer available.
+Use other services as alternatives.
+</div>
+</article>
+
 <div>
 <strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/share/AddThis %}">Preview</a>
 </div>
