@@ -1,5 +1,6 @@
 const moment = require('moment');
 const { Component, Fragment } = require('inferno');
+const { toMomentLocale } = require('hexo/lib/plugins/helper/date');
 const Share = require('./share');
 const Donates = require('./donates');
 const Comment = require('./comment');
@@ -23,8 +24,8 @@ module.exports = class extends Component {
         const { article, plugins } = config;
         const { url_for, date, date_xml, __, _p } = helper;
 
-        const indexLanguage = config.language || 'en';
-        const language = page.lang || page.language || config.language || 'en';
+        const indexLanguage = toMomentLocale(config.language || 'en');
+        const language = toMomentLocale(page.lang || page.language || config.language || 'en');
         const timeLang = index ? indexLanguage : language;
         const cover = page.cover ? url_for(page.cover) : null;
         const updateTime = article && article.update_time !== undefined ? article.update_time : true;
@@ -44,9 +45,8 @@ module.exports = class extends Component {
                 </div> : null}
                 <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
                     {/* Title */}
-                    {page.title !== '' ? <h1 class="title is-3 is-size-4-mobile">
-                        {index ? <a class="link-muted" href={url_for(page.link || page.path)}>{page.title}</a> : page.title}
-                    </h1> : null}
+                    {page.title !== '' && index ? <p class="title is-3 is-size-4-mobile"><a class="link-muted" href={url_for(page.link || page.path)}>{page.title}</a></p> : null}
+                    {page.title !== '' && !index ? <h1 class="title is-3 is-size-4-mobile">{page.title}</h1> : null}
                     {/* Metadata */}
                     {page.layout !== 'page' ? <div class="article-meta is-size-7 is-uppercase level is-mobile">
                         <div class="level-left">

@@ -4,6 +4,17 @@
     "description": "Page footer configurations",
     "type": "object",
     "properties": {
+        "copyright": {
+            "description": "Copyright text",
+            "type": "string",
+            "examples": [
+                "© 2019",
+                "© 2019 - 2020",
+                "© 2019 - 2020, Company Name",
+                "© 2019 - 2020, Company Name. All rights reserved.",
+                "粤ICP备12345678号"
+            ]
+        },
         "links": {
             "$ref": "/misc/poly_links.json",
             "description": "Links to be shown on the right of the footer section",

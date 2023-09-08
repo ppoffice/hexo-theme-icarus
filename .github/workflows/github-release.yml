@@ -3,18 +3,18 @@ name: GitHub Release
 on:
   push:
     tags:
-      - "*"
+      - '*'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+      - uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          tag: ${{ github.ref }}
+          name: ${{ github.ref }}
           draft: true
           prerelease: false
