@@ -1,0 +1,66 @@
+common:
+    archive:
+        one: 'Arkiv'
+        other: 'Arkiv'
+    category:
+        one: 'Kategori'
+        other: 'Kategorier'
+    tag:
+        one: 'Etikett'
+        other: 'Etiketter'
+    post:
+        one: 'Inlägg'
+        other: 'Inlägg'
+    page:
+        one: 'Sida'
+        other: 'Sidor'
+    prev: 'Föregående'
+    next: 'Nästa'
+widget:
+    follow: 'Följ'
+    recents: 'Senaste'
+    links: 'Länkar'
+    catalogue: 'Katalog'
+    subscribe_email: 'Prenumerera för uppdateringar'
+    subscribe: 'Prenumerera'
+    adsense: 'Marknadsföring'
+    followit: 'follow.it'
+article:
+    created_at: 'Publicerad&nbsp;%s'
+    updated_at: 'Uppdaterad&nbsp;%s'
+    more: 'Läs mer'
+    comments: 'Kommentarer'
+    read_time: '%s lästid'
+    word_count:
+        one: 'Cirka %d ord'
+        other: 'Cirka %d ord'
+    licensing:
+        author: 'Författare'
+        created_at: 'Publicerad'
+        updated_at: 'Uppdaterad'
+        licensed_under: 'Licensierad under'
+donate:
+    title: 'Tycker du om den här artikeln? Stöd författaren genom'
+    afdian: 'Afdian.net'
+    alipay: 'Alipay'
+    wechat: 'Wechat'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
+    buymeacoffee: 'Köp mig en kaffe'
+plugin:
+    backtotop: 'Tillbaka till början'
+    visit_count: '%s&nbsp;besök'
+    visitor_count: 'Besökt av %s användare'
+    cookie_consent:
+      message: Den här hemsidan använder kakor för att förbättra funktionen.
+      dismiss: Jag förstår!
+      allow: Tillåt kakor
+      deny: Avböj kakor
+      link: Lär mer
+      policy: Kakpolicy
+search:
+    search: 'Sök'
+    hint: 'Skriv någonting...'
+    no_result: 'Inga sökresultat för'
+    untitled: '(Utan titel)'
+    empty_preview: '(Ingen förhandsvisning)'

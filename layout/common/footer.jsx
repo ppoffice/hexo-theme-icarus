@@ -11,6 +11,7 @@ class Footer extends Component {
             siteYear,
             author,
             links,
+            copyright,
             showVisitorCounter,
             visitorCounterTitle
         } = this.props;
@@ -42,6 +43,7 @@ class Footer extends Component {
                             {showVisitorCounter ? <span id="busuanzi_container_site_uv"
                                 dangerouslySetInnerHTML={{ __html: visitorCounterTitle }}></span> : null}
                         </p>
+                        {copyright ? <p class="is-size-7" dangerouslySetInnerHTML={{ __html: copyright }}></p> : null}
                     </div>
                     <div class="level-end">
                         {Object.keys(links).length ? <div class="field has-addons">
@@ -89,6 +91,7 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
         siteYear: date(new Date(), 'YYYY'),
         author,
         links,
+        copyright: footer?.copyright ?? '',
         showVisitorCounter: plugins && plugins.busuanzi === true,
         visitorCounterTitle: _p('plugin.visitor_count', '<span id="busuanzi_value_site_uv">0</span>')
     };
