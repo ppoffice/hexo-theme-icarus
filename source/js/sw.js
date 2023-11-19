@@ -1,7 +1,7 @@
 importScripts('https://cdn.staticfile.org/workbox-sw/5.1.4/workbox-sw.min.js');
 
 workbox.setConfig({
-    modulePathPrefix: 'https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/'
+    modulePathPrefix: 'https://cdn.staticfile.org/workbox-sw/5.1.4/'
 });
 
 const { core, precaching, routing, strategies, expiration, cacheableResponse, backgroundSync } = workbox;
