@@ -42,10 +42,30 @@ module.exports = class extends Component {
             <script src={url_for('/js/flying-pages.min.js')} defer={true}></script>
             <script src={url_for('/js/sw.js')} defer={true}></script>
             <script>
-              var lazyLoadInstance = new LazyLoad({
-              });
+                 window.addEventListener('load', () => {
+                    const version = '{{ now.Unix }}';
+                    if ('serviceWorker' in navigator && localStorage.getItem("sw.js-version") != version) {
+                        navigator.serviceWorker.register('{{ $swJS.RelPermalink }}', {
+                            scope: '/'
+                        }).then(function (registration) {
+                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                            localStorage.setItem("sw.js-version", version);
+                        }).catch(function (err) {
+                            console.warn('ServiceWorker registration failed: ', err);
+                        });
+                            navigator.serviceWorker.addEventListener('controllerchange', function () {
+                            var d = document.querySelector("title");
+                            d.innerText = "Need update Service Worker - " + d.innerText
+                        });
+                    } else console.log("ServiceWorker already the latest version.")
+                    quicklink.listen();
+                });
             </script>
-            
+            <script>
+                var lazyLoadInstance = new LazyLoad({
+                });
+            </script>
+
         </Fragment>;
     }
 };

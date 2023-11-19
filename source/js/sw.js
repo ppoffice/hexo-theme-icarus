@@ -1,4 +1,4 @@
-importScripts('https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/workbox-sw/5.1.4/workbox-sw.min.js');
+importScripts('https://cdn.staticfile.org/workbox-sw/5.1.4/workbox-sw.min.js');
 
 workbox.setConfig({
     modulePathPrefix: 'https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/'
@@ -9,7 +9,7 @@ const { CacheFirst, NetworkFirst, NetworkOnly,StaleWhileRevalidate } = strategie
 const { ExpirationPlugin } = expiration;
 const { CacheableResponsePlugin } = cacheableResponse;
 
-const cacheSuffixVersion = '-210929a',
+const cacheSuffixVersion = '-231119a',
     // precacheCacheName = core.cacheNames.precache,
     // runtimeCacheName = core.cacheNames.runtime,
     maxEntries = 100;
@@ -28,7 +28,7 @@ self.addEventListener('activate', (event) => {
 
 
 core.setCacheNameDetails({
-    prefix: '186blog',
+    prefix: 'amane',
     suffix: cacheSuffixVersion
 });
 
@@ -98,40 +98,6 @@ routing.registerRoute(
 );
 
 routing.registerRoute(
-    /.*littleskin\.cn/,
-    new CacheFirst({
-        cacheName: 'static-immutable' + cacheSuffixVersion,
-        fetchOptions: {
-            mode: 'cors',
-            credentials: 'omit'
-        },
-        plugins: [
-            new ExpirationPlugin({
-                maxAgeSeconds: 30 * 24 * 60 * 60,
-                purgeOnQuotaError: true
-            })
-        ]
-    })
-);
-
-routing.registerRoute(
-    /.*www\.bing\.com/,
-    new CacheFirst({
-        cacheName: 'static-immutable' + cacheSuffixVersion,
-        fetchOptions: {
-            mode: 'cors',
-            credentials: 'omit'
-        },
-        plugins: [
-            new ExpirationPlugin({
-                maxAgeSeconds: 30 * 24 * 60 * 60,
-                purgeOnQuotaError: true
-            })
-        ]
-    })
-);
-
-routing.registerRoute(
     /.*cdn\.nofated\.win/,
     new CacheFirst({
         cacheName: 'static-immutable' + cacheSuffixVersion,
@@ -149,7 +115,7 @@ routing.registerRoute(
 );
 
 routing.registerRoute(
-    /.*fonts\.googleapis\.com/,
+    /.*fonts\.googleapis\.cn/,
     new CacheFirst({
         cacheName: 'static-immutable' + cacheSuffixVersion,
         fetchOptions: {
@@ -293,7 +259,7 @@ routing.registerRoute(
  * staleWhileRevalidate
  */
 routing.registerRoute(
-    '/sw.js',
+    '/js/sw.js',
     StaleWhileRevalidateInstance
 );
 
@@ -305,13 +271,6 @@ routing.registerRoute(
 );
 
 routing.registerRoute(
-    /.*blog\.nof\.moe/,
-    StaleWhileRevalidateInstance
-);
-
-
-
-routing.registerRoute(
     /.*localhost/,
     StaleWhileRevalidateInstance
 );
@@ -319,11 +278,6 @@ routing.registerRoute(
 
 routing.registerRoute(
     /.*\.(?:svg)/,
-    new NetworkOnly()
-);
-
-routing.registerRoute(
-    /.*img-shields-io\.186526\.xyz/,
     new NetworkOnly()
 );
 
