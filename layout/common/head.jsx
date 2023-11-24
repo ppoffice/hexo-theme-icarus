@@ -172,25 +172,16 @@ module.exports = class extends Component {
             <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href={fontCssUrl[variant]} />
             <link rel="stylesheet" href={url_for('/css/' + variant + '.css')} />
             <script>
-                window.addEventListener('load', () => {
-                    const version = '{{ now.Unix }}';
-                    if ('serviceWorker' in navigator && localStorage.getItem("sw.js-version") != version) {
-                        navigator.serviceWorker.register('/js/sw.js', {
-                            scope: '/'
-                        }).then(function (registration) {
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', function () {
+                        navigator.serviceWorker.register('/js/sw.js').then(function (registration) {
                             console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                            localStorage.setItem("sw.js-version", version);
                         }).catch(function (err) {
-                            console.warn('ServiceWorker registration failed: ', err);
+                            console.log('ServiceWorker registration failed: ', err);
                         });
-                        navigator.serviceWorker.addEventListener('controllerchange', function () {
-                            var d = document.querySelector("title");
-                            d.innerText = "Need update Service Worker - " + d.innerText
-                        });
-                    } else console.log("ServiceWorker already the latest version.")
-                    quicklink.listen();
-                });
-            </script>            
+                    })
+                }
+            </script>
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />
 
             {adsenseClientId ? <script data-ad-client={adsenseClientId}
