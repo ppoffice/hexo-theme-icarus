@@ -164,7 +164,6 @@ module.exports = class extends Component {
 
             <link rel="preconnect" href="https://xgjalbum.oss-cn-hangzhou.aliyuncs.com" />
             <link rel="preconnect" href="https://cdn.staticfile.org" />
-            <link rel="preconnect" href="https://fonts.sourcegcdn.com" />
             {canonical_url ? <link rel="canonical" href={canonical_url} /> : null}
             {rss ? <link rel="alternate" href={url_for(rss)} title={config.title} type="application/atom+xml" /> : null}
             {favicon ? <link rel="icon" href={url_for(favicon)} /> : null}
@@ -172,6 +171,26 @@ module.exports = class extends Component {
             {hlTheme ? <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href={cdn('highlight.js', '11.7.0', 'styles/' + hlTheme + '.css')} /> : null}
             <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href={fontCssUrl[variant]} />
             <link rel="stylesheet" href={url_for('/css/' + variant + '.css')} />
+            <script>
+                window.addEventListener('load', () => {
+                    const version = '{{ now.Unix }}';
+                    if ('serviceWorker' in navigator && localStorage.getItem("sw.js-version") != version) {
+                        navigator.serviceWorker.register('/js/sw.js', {
+                            scope: '/'
+                        }).then(function (registration) {
+                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                            localStorage.setItem("sw.js-version", version);
+                        }).catch(function (err) {
+                            console.warn('ServiceWorker registration failed: ', err);
+                        });
+                        navigator.serviceWorker.addEventListener('controllerchange', function () {
+                            var d = document.querySelector("title");
+                            d.innerText = "Need update Service Worker - " + d.innerText
+                        });
+                    } else console.log("ServiceWorker already the latest version.")
+                    quicklink.listen();
+                });
+            </script>            
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />
 
             {adsenseClientId ? <script data-ad-client={adsenseClientId}
