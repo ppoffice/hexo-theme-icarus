@@ -171,17 +171,6 @@ module.exports = class extends Component {
             {hlTheme ? <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href={cdn('highlight.js', '11.7.0', 'styles/' + hlTheme + '.css')} /> : null}
             <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href={fontCssUrl[variant]} />
             <link rel="stylesheet" href={url_for('/css/' + variant + '.css')} />
-            <script>
-                if ('serviceWorker' in navigator) {
-                    window.addEventListener('load', function () {
-                        navigator.serviceWorker.register('/js/sw.js').then(function (registration) {
-                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                        }).catch(function (err) {
-                            console.log('ServiceWorker registration failed: ', err);
-                        });
-                    })
-                }
-            </script>
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />
 
             {adsenseClientId ? <script data-ad-client={adsenseClientId}
