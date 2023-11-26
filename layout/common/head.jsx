@@ -172,8 +172,6 @@ module.exports = class extends Component {
             <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href={fontCssUrl[variant]} />
             <link rel="stylesheet" href={url_for('/css/' + variant + '.css')} />
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />
-            <script>if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/js/sw.js').then(function(registration){console.log('ServiceWorker registration successful with scope: ',registration.scope)}).catch(function(err){console.log('ServiceWorker registration failed: ',err)})})}</script>
-
             {adsenseClientId ? <script data-ad-client={adsenseClientId}
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script> : null}
 
