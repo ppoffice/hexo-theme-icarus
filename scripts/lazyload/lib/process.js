@@ -1,7 +1,7 @@
 'use strict';
 const fs = require('hexo-fs');
 function lazyProcess(htmlContent)  {
-    let loadingImage = this.config.lazyload.loadingImg || 'https://img-blog.csdnimg.cn/2022010612032074818.gif';
+    let loadingImage = this.config.lazyload.loadingImg || 'https://blog.amane.icu/lazy.gif';
     return htmlContent.replace(/<img(.*?)src="(.*?)"(.*?)>/gi, (str, p1, p2)  =>  {
         if (/data-src/gi.test(str)) {
             return str;
