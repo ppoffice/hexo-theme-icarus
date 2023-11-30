@@ -39,7 +39,7 @@ class Footer extends Component {
                             &nbsp;&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>&nbsp;&&nbsp;
                             <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                             <br />
-                            Made with 💖 by <a href="https://nof.moe" target="_blank" rel="noopener">Nofated</a>
+                            Made with 💖 by <a href="https://nof.moe" target="_blank" rel="noopener">Amane</a>
                             {showVisitorCounter ? <br /> : null}
                             {showVisitorCounter ? <span id="busuanzi_container_site_uv"
                                 dangerouslySetInnerHTML={{ __html: visitorCounterTitle }}></span> : null}
