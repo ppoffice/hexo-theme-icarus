@@ -1,0 +1,66 @@
+common:
+    archive:
+        one: 'Archivio'
+        other: 'Archivi'
+    category:
+        one: 'Categoria'
+        other: 'Categorie'
+    tag:
+        one: 'Tag'
+        other: 'Tag'
+    post:
+        one: 'Articolo'
+        other: 'Articoli'
+    page:
+        one: 'Pagina'
+        other: 'Pagine'
+    prev: 'Precedente'
+    next: 'Successivo'
+widget:
+    follow: 'Segui'
+    recents: 'Recenti'
+    links: 'Collegamenti'
+    catalogue: 'Catalogo'
+    subscribe_email: 'Iscriviti per aggiornamenti'
+    subscribe: 'Iscriviti'
+    adsense: 'Pubblicità'
+    followit: 'follow.it'
+article:
+    created_at: 'Pubblicato il&nbsp;%s'
+    updated_at: 'Aggiornato il&nbsp;%s'
+    more: 'Di più'
+    comments: 'Commenti'
+    read_time: '%s di lettura'
+    word_count:
+        one: 'Circa %d parola'
+        other: 'Circa %d parole'
+    licensing:
+        author: 'Autore'
+        created_at: 'Pubblicato il'
+        updated_at: 'Aggiornato il'
+        licensed_under: 'Licenza'
+donate:
+    title: "Ti è piaciuto questo articolo? Supporta l'autore con"
+    afdian: 'Afdian.net'
+    alipay: 'Alipay'
+    wechat: 'Wechat'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
+    buymeacoffee: 'Buy me a coffee'
+plugin:
+    backtotop: 'Torna su'
+    visit_count: '%s&nbsp;visite'
+    visitor_count: 'Visto da %s usenti'
+    cookie_consent:
+      message: Questo sito usa i cookie per migliorare la tua esperienza.
+      dismiss: "D'accordo!"
+      allow: Accetta i cookie
+      deny: Rifiuta
+      link: Più informazioni
+      policy: Politica dei cookie
+search:
+    search: 'Cerca'
+    hint: 'Digita qualcosa...'
+    no_result: 'Nessun risultato per'
+    untitled: '(Senza titolo)'
+    empty_preview: '(Senza anteprima)'
