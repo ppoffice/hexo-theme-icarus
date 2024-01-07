@@ -23,7 +23,7 @@ widget:
     catalogue: 'Catalogue'
     subscribe_email: 'Abonnez-vous aux mises à jour'
     subscribe: 'Abonnez-vous'
-    adsense: 'Annonce'
+    adsense: 'Publicités'
     followit: 'follow.it'
 article:
     created_at: 'Publié il y a&nbsp;%s'
@@ -35,10 +35,10 @@ article:
         one: 'Environ %d mot'
         other: 'Environ %d mots'
     licensing:
-        author: 'Author'
-        created_at: 'Posted on'
-        updated_at: 'Updated on'
-        licensed_under: 'Licensed under'
+        author: 'Auteur'
+        created_at: 'Posté le'
+        updated_at: 'Mis à jour le'
+        licensed_under: 'Licencié sous'
 donate:
     title: "Vous aimez cet article? Soutenez l'auteur avec"
     afdian: 'Afdian.net'
@@ -48,19 +48,19 @@ donate:
     patreon: 'Patreon'
     buymeacoffee: 'Achetez-moi un café'
 plugin:
-    backtotop: 'Retour au sommet'
+    backtotop: 'Retour en haut'
     visit_count: '%s&nbsp;visites'
     visitor_count: 'Visité par %s utilisateurs'
     cookie_consent:
-      message: Ce site Web utilise des cookies pour améliorer votre expérience.
-      dismiss: Je l'ai!
-      allow: Autorise les cookies
-      deny: Déclin
-      link: Apprendre encore plus
-      policy: Politique relative aux cookies
+      message: 'Ce site Web utilise des cookies pour améliorer votre expérience.'
+      dismiss: "C'est bon"
+      allow: 'Autoriser les cookies'
+      deny: 'Refuser'
+      link: 'En savoir plus'
+      policy: 'Politique relative aux cookies'
 search:
-    search: 'Search'
-    hint: 'Type something...'
+    search: 'Rechercher'
+    hint: 'Ecrivez quelque chose...'
     no_result: 'Aucun résultat pour'
     untitled: '(Sans titre)'
     empty_preview: '(Pas de prévisualisation)'
