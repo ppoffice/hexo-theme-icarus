@@ -29,7 +29,7 @@
   "dependencies": {
     "bulma-stylus": "0.8.0",
     "deepmerge": "^4.2.2",
-    "hexo": "^6.0.0",
+    "hexo": "^7.1.1",
     "hexo-component-inferno": "^2.0.2",
     "hexo-log": "^3.0.0",
     "hexo-pagination": "^2.0.0",
