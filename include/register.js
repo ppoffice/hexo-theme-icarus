@@ -1,6 +1,6 @@
 const createLogger = require('hexo-log');
 
-const logger = typeof createLogger === "function" ? createLogger() : createLogger.default();
+const logger = typeof createLogger === 'function' ? createLogger() : createLogger.default();
 
 module.exports = hexo => {
     logger.info('=== Registering Hexo extensions ===');

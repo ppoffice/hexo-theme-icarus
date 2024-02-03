@@ -3,7 +3,7 @@ const { Component } = require('inferno');
 const view = require('hexo-component-inferno/lib/core/view');
 const classname = require('hexo-component-inferno/lib/util/classname');
 
-const logger = typeof createLogger === "function" ? createLogger() : createLogger.default();
+const logger = typeof createLogger === 'function' ? createLogger() : createLogger.default();
 
 function formatWidgets(widgets) {
     const result = {};
