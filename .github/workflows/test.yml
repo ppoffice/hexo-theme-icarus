@@ -32,5 +32,6 @@ jobs:
       - run: >
           npm install $(node -e "const deps=require('./themes/icarus/package.json').dependencies;
           console.log(Object.keys(deps).map(key=>key+'@'+deps[key]).join(' '));")
+      - run: npm install hexo-tag-embed
       - run: npx hexo config theme icarus
       - run: time NODE_ENV=production npx hexo g -b
