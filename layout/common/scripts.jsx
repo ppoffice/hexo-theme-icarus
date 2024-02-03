@@ -1,5 +1,5 @@
 const { Component, Fragment } = require('inferno');
-const { toMomentLocale } = require('hexo/lib/plugins/helper/date');
+const { toMomentLocale } = require('hexo/dist/plugins/helper/date');
 const Plugins = require('./plugins');
 
 module.exports = class extends Component {

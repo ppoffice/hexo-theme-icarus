@@ -9,7 +9,7 @@ const { Migrator } = require('hexo-component-inferno/lib/core/migrate');
 const { SchemaLoader } = require('hexo-component-inferno/lib/core/schema');
 const { yellow } = require('./util/console');
 
-const logger = typeof createLogger === 'function' ? createLogger() : createLogger.default();
+const logger = createLogger.default();
 
 function loadThemeConfig(hexo, cfgPaths) {
     const configs = cfgPaths.map(cfgPath => fs.readFileSync(cfgPath))
