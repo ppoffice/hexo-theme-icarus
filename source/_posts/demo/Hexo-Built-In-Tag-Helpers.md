@@ -204,7 +204,7 @@ Inserts an image with specified size.
 {% img [class names] /path/to/image [width] [height] [title text [alt text]] %}
 ```
 
-{% img /gallery/thumbnails/vector_landscape_1.svg 100% 100% '"Vector Landscape" "Vector Landscape"' %}
+{% img /gallery/covers/vector_landscape_1.svg 100% 100% '"Vector Landscape" "Vector Landscape"' %}
 
 ## Link
 

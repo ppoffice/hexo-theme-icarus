@@ -308,7 +308,7 @@ Post content...
 
 {% codeblock post.md lang:yaml %}
 title: Icarus快速上手
-thumbnail: /gallery/thumbnails/thumbnail.jpg
+thumbnail: /gallery/covers/thumbnail.jpg
 ---
 Post content...
 {% endcodeblock %}

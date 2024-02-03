@@ -306,7 +306,7 @@ Similarly, you may set the thumbnail of your post in the front-matter as well:
 
 {% codeblock post.md lang:yaml %}
 title: Getting Started with Icarus
-thumbnail: /gallery/thumbnails/thumbnail.jpg
+thumbnail: /gallery/covers/thumbnail.jpg
 ---
 Post content...
 {% endcodeblock %}
