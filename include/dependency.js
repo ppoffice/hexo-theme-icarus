@@ -1,8 +1,10 @@
 /* eslint no-process-exit: "off" */
 const semver = require('semver');
-const logger = require('hexo-log')();
+const createLogger = require('hexo-log');
 const packageInfo = require('../package.json');
 const { yellow, red, green } = require('./util/console');
+
+const logger = typeof createLogger === "function" ? createLogger() : createLogger.default();
 
 module.exports = hexo => {
     function checkDependency(name, reqVer) {

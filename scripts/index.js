@@ -1,5 +1,7 @@
 /* global hexo */
-const logger = require('hexo-log')();
+const createLogger = require('hexo-log');
+
+const logger = typeof createLogger === "function" ? createLogger() : createLogger.default();
 
 /**
  * Print welcome message
