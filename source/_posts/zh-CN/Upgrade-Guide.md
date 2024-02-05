@@ -19,6 +19,18 @@ toc: true
 
 <!-- more -->
 
+### 从5.x升级至6.x
+
+1. 将Node.js升级到14.0或者更新的版本。
+
+2. 下载源代码或者从NPM安装Icarus 6.x。
+   你可以在{% post_link zh-CN/Getting-Started %}中找到安装指导。
+   如果你打算通过修改源代码的方式自定义主题，你必须从源代码安装主题。
+
+3. 运行`hexo clean`来清理缓存并让Icarus为你升级主题配置文件。
+
+4. 阅读[更新说明](https://github.com/ppoffice/hexo-theme-icarus/releases)和[最新文档](https://ppoffice.github.io/hexo-theme-icarus/categories/)来了解更多新功能的信息。
+
 ### 从4.x升级至5.x
 
 1. 将Node.js升级到12.4.0或者更新的版本。
