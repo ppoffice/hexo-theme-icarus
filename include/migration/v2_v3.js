@@ -1,4 +1,4 @@
-const logger = require('hexo-log')();
+const createLogger = require('hexo-log');const logger = typeof createLogger === "function" ? createLogger() : createLogger.default();
 const deepmerge = require('deepmerge');
 const Migration = require('hexo-component-inferno/lib/core/migrate').Migration;
 
