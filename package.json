@@ -21,7 +21,7 @@
     "lint": "eslint --ext .js --ext .jsx --ext .json ."
   },
   "devDependencies": {
-    "eslint": "^8.56.0",
+    "eslint": "^9.1.1",
     "eslint-config-hexo": "^5.0.0",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-react": "^7.33.2"
