@@ -43,6 +43,9 @@
         "outdated_browser": {
             "$ref": "/plugin/outdated_browser.json"
         },
+        "pjax": {
+            "$ref": "/plugin/pjax.json"
+        },
         "progressbar": {
             "$ref": "/plugin/progressbar.json"
         },

@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/plugin/pjax.json",
+    "description": "Enable PJAX",
+    "type": "boolean",
+    "default": true
+}
