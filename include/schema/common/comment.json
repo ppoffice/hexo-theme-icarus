@@ -17,6 +17,9 @@
             "$ref": "/comment/facebook.json"
         },
         {
+            "$ref": "/comment/giscus.json"
+        },
+        {
             "$ref": "/comment/gitalk.json"
         },
         {
