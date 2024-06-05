@@ -70,7 +70,7 @@ providers:
 ## Disqus
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Disqus %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Disqus %}">在线预览</a>
 </div>
 
 1. 首先，登录[Disqus](https://disqus.com/)。
@@ -139,7 +139,7 @@ providers:
 关于DisqusJS的配置过程可参考[https://github.com/SukkaW/DisqusJS](https://github.com/SukkaW/DisqusJS)。
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/DisqusJS %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/DisqusJS %}">在线预览</a>
 </div>
 
 1. 登录Disqus并访问[此链接](https://disqus.com/api/applications/)。
@@ -194,7 +194,7 @@ providers:
 </article>
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Facebook %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Facebook %}">在线预览</a>
 </div>
 
 1. 如要开启Facebook评论服务，将`comment`的`type`设置为`facebook`即可。
@@ -208,7 +208,7 @@ providers:
 ## Gitalk
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Gitalk %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Gitalk %}">在线预览</a>
 </div>
 
 1. 登录GitHub并[点此注册](https://github.com/settings/applications/new)一个新的OAuth应用。
@@ -377,7 +377,7 @@ Twikoo是一个基于云函数的自建评论系统。
 不同于其他第三方评论服务，在Icarus中设置和使用Twikoo之前，你需要将它的后端部署到云环境上。
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Twikoo %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Twikoo %}">在线预览</a>
 </div>
 
 1. 按照[Twikoo文档](https://twikoo.js.org/)，将Twikoo云函数部署到你指定的云服务商之上。
@@ -396,7 +396,7 @@ Twikoo是一个基于云函数的自建评论系统。
 ## utterances
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Utterances %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Utterances %}">在线预览</a>
 </div>
 
 1. 准备一个公开的GitHub仓库(Repository)。
@@ -453,7 +453,7 @@ Twikoo是一个基于云函数的自建评论系统。
 ## Valine
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Valine %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Valine %}">在线预览</a>
 </div>
 
 <br>
@@ -497,7 +497,7 @@ IP地址 (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" re
 ## Waline
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Waline %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Waline %}">在线预览</a>
 </div>
 
 1. 按照[快速上手](https://waline.js.org/guide/get-started.html)创建LeanCloud应用和Vercel项目。

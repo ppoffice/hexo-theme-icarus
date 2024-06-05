@@ -63,7 +63,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 ## Disqus
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Disqus %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Disqus %}">Preview</a>
 </div>
 
 1. First, log into [Disqus](https://disqus.com/). Click the "GET STARTED" button on the 
@@ -131,7 +131,7 @@ You can refer to [https://github.com/SukkaW/DisqusJS](https://github.com/SukkaW/
 for the detailed configuration process of DisqusJS.
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/DisqusJS %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/DisqusJS %}">Preview</a>
 </div>
 
 1. Log into Disqus and visit [here](https://disqus.com/api/applications/).
@@ -189,7 +189,7 @@ for the detailed configuration process of DisqusJS.
 </article>
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Facebook %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Facebook %}">Preview</a>
 </div>
 
 1. To enable Facebook comment, set the `type` of `comment` to `facebook`:
@@ -203,7 +203,7 @@ for the detailed configuration process of DisqusJS.
 ## Gitalk
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Gitalk %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Gitalk %}">Preview</a>
 </div>
 
 1. Log into GitHub and [click here](https://github.com/settings/applications/new) to register a new OAuth
@@ -379,7 +379,7 @@ Unlike other third-party comment services, the Twikoo backend needs to be deploy
 environment before being configured and used by Icarus.
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Twikoo %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Twikoo %}">Preview</a>
 </div>
 
 1. Follow the [Twikoo documentation](https://twikoo.js.org/en/) to deploy the Twikoo cloud function
@@ -399,7 +399,7 @@ environment before being configured and used by Icarus.
 ## utterances
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Utterances %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Utterances %}">Preview</a>
 </div>
 
 1. Prepare a public GitHub repository.
@@ -457,7 +457,7 @@ environment before being configured and used by Icarus.
 ## Valine
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Valine %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Valine %}">Preview</a>
 </div>
 
 <br>
@@ -503,7 +503,7 @@ services until this issue has been fixed.
 ## Waline
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Waline %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Waline %}">Preview</a>
 </div>
 
 1. Create a LeanCloud application and a Vercel project following the [Get Started](https://waline.js.org/en/guide/get-started.html) guide.
