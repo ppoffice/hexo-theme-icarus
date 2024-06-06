@@ -205,6 +205,82 @@ providers:
     {% endcodeblock %}
 
 
+## Giscus
+
+利用 [GitHub Discussions](https://docs.github.com/en/discussions) 实现的评论系统。
+
+<div>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Giscus %}">在线预览</a>
+</div>
+
+1. 准备一个公开的 GitHub 仓库（Repository）。
+
+2. 访问[GitHub Apps - giscus](https://github.com/apps/giscus)并点击”安装“(Install)。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-github-app.png 360 '"GitHub应用页 - giscus" "GitHub应用页 - giscus"' %}
+   <br>
+
+3. (可选)如果你的账号下有组织账号，在下一页中选择需要安装 giscus 的用户。
+
+   <!-- {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-select-user.png 360 '"选择用户 - giscus" "选择用户 - giscus"' %} -->
+   <br>
+
+4. 在下一页面选择将 giscus 安装到”所有仓库“(All repositories)或是”选定的仓库“(Only select repositories)。
+   然后点击“安装”(Install)按钮。
+
+   <!-- {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-select-repo.png 360 '"选择仓库 - giscus" "选择仓库 - giscus"' %} -->
+   <br>
+
+5. 若安装成功，网页将跳转到 [giscus 官网](https://giscus.app)。
+   你可以阅读每个的配置项的说明，并按照配置你的 giscus 安装。
+   
+6. 完成配置后，转到页面上的”启用 giscus “(Enable giscus)并从 giscus 的 HTML 代码中复制属性值到主题配置的对应配置项中。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-get-code.png 360 '"获取代码 - giscus" "获取代码 - giscus"' %}
+   <br>
+   
+   例如下面的 giscus 代码：
+
+   {% codeblock "giscus 安装代码" lang:html >folded %}
+   <script src="https://giscus.app/client.js"
+         data-repo="usr/repo"
+         data-repo-id="X_xxxxxxxxxx"
+         data-category="Announcements"
+         data-category-id="XXX_xxxxxxxxxxxxxxxx"
+         data-mapping="pathname"
+         data-strict="0"
+         data-reactions-enabled="0"
+         data-emit-metadata="0"
+         data-input-position="top"
+         data-theme="noborder_light"
+         data-lang="zh-CN"
+         data-loading="lazy"
+         crossorigin="anonymous"
+         async>
+   </script>
+   {% endcodeblock %}
+
+   对应下面的主题配置：
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: giscus
+        repo: usr/repo                   # 必填项
+        repoId: X_xxxxxxxxxx             # 必填项
+        category: Announcements          # 可选填，默认为 Announcements
+        categoryId: XXX_xxxxxxxxxxxxxxxx # 必填项
+        mapping: pathname                # 可选填，默认为 pathname
+        strict: false                    # 可选填
+        reactionsEnabled: false          # 可选填
+        emitMetadata: false              # 可选填
+        inputPosition: top               # 可选填，默认为 top
+        theme: noborder_light            # 可选填
+        lang: zh-CN                      # 可选填，默认为 en
+        lazy: true                       # 可选填，默认为 false
+    {% endcodeblock %}
+
+
+
 ## Gitalk
 
 <div>

@@ -200,6 +200,89 @@ for the detailed configuration process of DisqusJS.
     {% endcodeblock %}
 
 
+## Giscus
+
+A comments system powered by [GitHub Discussions](https://docs.github.com/en/discussions).
+
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Giscus %}">Preview</a>
+</div>
+
+1. Prepare a public GitHub repository.
+
+2. Go to [GitHub Apps - giscus](https://github.com/apps/giscus) and click "Install".
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-github-app.png 360 '"GitHub App Page - giscus" "GitHub App Page - giscus"' %}
+   <br>
+
+3. (Optional) Select the user to install giscus to on the next page if you also have organizations under your account.
+
+   <!-- {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-select-user.png 360 '"Select User - giscus" "Select User - giscus"' %} -->
+   <br>
+
+4. On the next page, you can choose to install giscus to "All repositories" or "Only select repositories".
+   Then, click the "Install" button.
+
+   <!-- {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-select-repo.png 360 '"Select Repository - giscus" "Select Repository - giscus"' %} -->
+   <br>
+
+5. You will be redirected to the [giscus official site](https://giscus.app) if the installation completes.
+   You can review each configuration option and customize your giscus setup.
+
+6. When finished, move to the "Enable giscus" and copy the attribute values from the giscus HTML code
+   to the corresponding settings in your theme configurations.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-get-code.png 360 '"Get Code - giscus" "Get Code - giscus"' %}
+   <br>
+
+   For example, the giscus code below:
+
+   {% codeblock "giscus Installation Code" lang:html >folded %}
+   <script src="https://giscus.app/client.js"
+         data-repo="usr/repo"
+         data-repo-id="X_xxxxxxxxxx"
+         data-category="Announcements"
+         data-category-id="XXX_xxxxxxxxxxxxxxxx"
+         data-mapping="pathname"
+         data-strict="0"
+         data-reactions-enabled="0"
+         data-emit-metadata="0"
+         data-input-position="top"
+         data-theme="noborder_light"
+         data-lang="en"
+         data-loading="lazy"
+         crossorigin="anonymous"
+         async>
+   </script>
+   {% endcodeblock %}
+
+   maps to the following theme configuration:
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: giscus
+        repo: Your-GitHub-Username/Your-Public-Repo-Name
+        issue_term: pathname        # Required if issue_number is not set
+        issue_number: 100           # Required if issue_term is not set. Every post can be mapped to a separate, manually-created GitHub issue.
+        label: some-issue-label     # Optional
+        theme: github-light         # Optional
+    comment:
+        type: giscus
+        repo: usr/repo                   # Required
+        repoId: X_xxxxxxxxxx             # Required
+        category: Announcements          # Optional, default: Announcements
+        categoryId: XXX_xxxxxxxxxxxxxxxx # Required
+        mapping: pathname                # Optional, default: pathname
+        strict: false                    # Optional
+        reactionsEnabled: false          # Optional
+        emitMetadata: false              # Optional
+        inputPosition: top               # Optional, default: top
+        theme: noborder_light            # Optional
+        lang: en                         # Optional, default: en
+        lazy: true                       # Optional, default: false
+    {% endcodeblock %}
+
+
 ## Gitalk
 
 <div>
