@@ -1,10 +1,10 @@
 title: Giscus Comment Plugin
-date: 2024-06-05
+date: 2015-01-01
 tags:
 - Demo
 comment:
     type: giscus
-    repo: ppoffice/hexo-theme-icarus
+    repo: ppoffice/icarus-giscus-comment
     repoId: R_kgDOMFXZew
     category: Q&A
     categoryId: DIC_kwDOMFXZe84Cf4ta
