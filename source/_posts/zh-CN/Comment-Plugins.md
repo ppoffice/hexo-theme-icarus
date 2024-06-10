@@ -70,7 +70,7 @@ providers:
 ## Disqus
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Disqus %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Disqus %}">在线预览</a>
 </div>
 
 1. 首先，登录[Disqus](https://disqus.com/)。
@@ -139,7 +139,7 @@ providers:
 关于DisqusJS的配置过程可参考[https://github.com/SukkaW/DisqusJS](https://github.com/SukkaW/DisqusJS)。
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/DisqusJS %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/DisqusJS %}">在线预览</a>
 </div>
 
 1. 登录Disqus并访问[此链接](https://disqus.com/api/applications/)。
@@ -194,7 +194,7 @@ providers:
 </article>
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Facebook %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Facebook %}">在线预览</a>
 </div>
 
 1. 如要开启Facebook评论服务，将`comment`的`type`设置为`facebook`即可。
@@ -205,10 +205,86 @@ providers:
     {% endcodeblock %}
 
 
+## Giscus
+
+利用 [GitHub Discussions](https://docs.github.com/en/discussions) 实现的评论系统。
+
+<div>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Giscus %}">在线预览</a>
+</div>
+
+1. 准备一个公开的 GitHub 仓库（Repository）。
+
+2. 访问[GitHub Apps - giscus](https://github.com/apps/giscus)并点击”安装“(Install)。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-github-app.png 360 '"GitHub应用页 - giscus" "GitHub应用页 - giscus"' %}
+   <br>
+
+3. (可选)如果你的账号下有组织账号，在下一页中选择需要安装 giscus 的用户。
+
+   <!-- {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-select-user.png 360 '"选择用户 - giscus" "选择用户 - giscus"' %} -->
+   <br>
+
+4. 在下一页面选择将 giscus 安装到”所有仓库“(All repositories)或是”选定的仓库“(Only select repositories)。
+   然后点击“安装”(Install)按钮。
+
+   <!-- {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-select-repo.png 360 '"选择仓库 - giscus" "选择仓库 - giscus"' %} -->
+   <br>
+
+5. 若安装成功，网页将跳转到 [giscus 官网](https://giscus.app)。
+   你可以阅读每个的配置项的说明，并按照配置你的 giscus 安装。
+   
+6. 完成配置后，转到页面上的”启用 giscus “(Enable giscus)并从 giscus 的 HTML 代码中复制属性值到主题配置的对应配置项中。
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-get-code.png 360 '"获取代码 - giscus" "获取代码 - giscus"' %}
+   <br>
+   
+   例如下面的 giscus 代码：
+
+   {% codeblock "giscus 安装代码" lang:html >folded %}
+   <script src="https://giscus.app/client.js"
+         data-repo="usr/repo"
+         data-repo-id="X_xxxxxxxxxx"
+         data-category="Announcements"
+         data-category-id="XXX_xxxxxxxxxxxxxxxx"
+         data-mapping="pathname"
+         data-strict="0"
+         data-reactions-enabled="0"
+         data-emit-metadata="0"
+         data-input-position="top"
+         data-theme="noborder_light"
+         data-lang="zh-CN"
+         data-loading="lazy"
+         crossorigin="anonymous"
+         async>
+   </script>
+   {% endcodeblock %}
+
+   对应下面的主题配置：
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: giscus
+        repo: usr/repo                   # 必填项
+        repoId: X_xxxxxxxxxx             # 必填项
+        category: Announcements          # 可选填，默认为 Announcements
+        categoryId: XXX_xxxxxxxxxxxxxxxx # 必填项
+        mapping: pathname                # 可选填，默认为 pathname
+        strict: false                    # 可选填
+        reactionsEnabled: false          # 可选填
+        emitMetadata: false              # 可选填
+        inputPosition: top               # 可选填，默认为 top
+        theme: noborder_light            # 可选填
+        lang: zh-CN                      # 可选填，默认为 en
+        lazy: true                       # 可选填，默认为 false
+    {% endcodeblock %}
+
+
+
 ## Gitalk
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Gitalk %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Gitalk %}">在线预览</a>
 </div>
 
 1. 登录GitHub并[点此注册](https://github.com/settings/applications/new)一个新的OAuth应用。
@@ -377,7 +453,7 @@ Twikoo是一个基于云函数的自建评论系统。
 不同于其他第三方评论服务，在Icarus中设置和使用Twikoo之前，你需要将它的后端部署到云环境上。
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Twikoo %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Twikoo %}">在线预览</a>
 </div>
 
 1. 按照[Twikoo文档](https://twikoo.js.org/)，将Twikoo云函数部署到你指定的云服务商之上。
@@ -396,7 +472,7 @@ Twikoo是一个基于云函数的自建评论系统。
 ## utterances
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Utterances %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Utterances %}">在线预览</a>
 </div>
 
 1. 准备一个公开的GitHub仓库(Repository)。
@@ -453,7 +529,7 @@ Twikoo是一个基于云函数的自建评论系统。
 ## Valine
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Valine %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Valine %}">在线预览</a>
 </div>
 
 <br>
@@ -497,7 +573,7 @@ IP地址 (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" re
 ## Waline
 
 <div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Waline %}">在线预览</a>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Waline %}">在线预览</a>
 </div>
 
 1. 按照[快速上手](https://waline.js.org/guide/get-started.html)创建LeanCloud应用和Vercel项目。

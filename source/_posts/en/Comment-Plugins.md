@@ -63,7 +63,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 ## Disqus
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Disqus %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Disqus %}">Preview</a>
 </div>
 
 1. First, log into [Disqus](https://disqus.com/). Click the "GET STARTED" button on the 
@@ -131,7 +131,7 @@ You can refer to [https://github.com/SukkaW/DisqusJS](https://github.com/SukkaW/
 for the detailed configuration process of DisqusJS.
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/DisqusJS %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/DisqusJS %}">Preview</a>
 </div>
 
 1. Log into Disqus and visit [here](https://disqus.com/api/applications/).
@@ -189,7 +189,7 @@ for the detailed configuration process of DisqusJS.
 </article>
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Facebook %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Facebook %}">Preview</a>
 </div>
 
 1. To enable Facebook comment, set the `type` of `comment` to `facebook`:
@@ -200,10 +200,93 @@ for the detailed configuration process of DisqusJS.
     {% endcodeblock %}
 
 
+## Giscus
+
+A comments system powered by [GitHub Discussions](https://docs.github.com/en/discussions).
+
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Giscus %}">Preview</a>
+</div>
+
+1. Prepare a public GitHub repository.
+
+2. Go to [GitHub Apps - giscus](https://github.com/apps/giscus) and click "Install".
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-github-app.png 360 '"GitHub App Page - giscus" "GitHub App Page - giscus"' %}
+   <br>
+
+3. (Optional) Select the user to install giscus to on the next page if you also have organizations under your account.
+
+   <!-- {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-select-user.png 360 '"Select User - giscus" "Select User - giscus"' %} -->
+   <br>
+
+4. On the next page, you can choose to install giscus to "All repositories" or "Only select repositories".
+   Then, click the "Install" button.
+
+   <!-- {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-select-repo.png 360 '"Select Repository - giscus" "Select Repository - giscus"' %} -->
+   <br>
+
+5. You will be redirected to the [giscus official site](https://giscus.app) if the installation completes.
+   You can review each configuration option and customize your giscus setup.
+
+6. When finished, move to the "Enable giscus" and copy the attribute values from the giscus HTML code
+   to the corresponding settings in your theme configurations.
+
+   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/giscus-get-code.png 360 '"Get Code - giscus" "Get Code - giscus"' %}
+   <br>
+
+   For example, the giscus code below:
+
+   {% codeblock "giscus Installation Code" lang:html >folded %}
+   <script src="https://giscus.app/client.js"
+         data-repo="usr/repo"
+         data-repo-id="X_xxxxxxxxxx"
+         data-category="Announcements"
+         data-category-id="XXX_xxxxxxxxxxxxxxxx"
+         data-mapping="pathname"
+         data-strict="0"
+         data-reactions-enabled="0"
+         data-emit-metadata="0"
+         data-input-position="top"
+         data-theme="noborder_light"
+         data-lang="en"
+         data-loading="lazy"
+         crossorigin="anonymous"
+         async>
+   </script>
+   {% endcodeblock %}
+
+   maps to the following theme configuration:
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: giscus
+        repo: Your-GitHub-Username/Your-Public-Repo-Name
+        issue_term: pathname        # Required if issue_number is not set
+        issue_number: 100           # Required if issue_term is not set. Every post can be mapped to a separate, manually-created GitHub issue.
+        label: some-issue-label     # Optional
+        theme: github-light         # Optional
+    comment:
+        type: giscus
+        repo: usr/repo                   # Required
+        repoId: X_xxxxxxxxxx             # Required
+        category: Announcements          # Optional, default: Announcements
+        categoryId: XXX_xxxxxxxxxxxxxxxx # Required
+        mapping: pathname                # Optional, default: pathname
+        strict: false                    # Optional
+        reactionsEnabled: false          # Optional
+        emitMetadata: false              # Optional
+        inputPosition: top               # Optional, default: top
+        theme: noborder_light            # Optional
+        lang: en                         # Optional, default: en
+        lazy: true                       # Optional, default: false
+    {% endcodeblock %}
+
+
 ## Gitalk
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Gitalk %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Gitalk %}">Preview</a>
 </div>
 
 1. Log into GitHub and [click here](https://github.com/settings/applications/new) to register a new OAuth
@@ -379,7 +462,7 @@ Unlike other third-party comment services, the Twikoo backend needs to be deploy
 environment before being configured and used by Icarus.
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Twikoo %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Twikoo %}">Preview</a>
 </div>
 
 1. Follow the [Twikoo documentation](https://twikoo.js.org/en/) to deploy the Twikoo cloud function
@@ -399,7 +482,7 @@ environment before being configured and used by Icarus.
 ## utterances
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Utterances %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Utterances %}">Preview</a>
 </div>
 
 1. Prepare a public GitHub repository.
@@ -457,7 +540,7 @@ environment before being configured and used by Icarus.
 ## Valine
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Valine %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Valine %}">Preview</a>
 </div>
 
 <br>
@@ -503,7 +586,7 @@ services until this issue has been fixed.
 ## Waline
 
 <div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Waline %}">Preview</a>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path hexo-theme-icarus/demo/comment/Waline %}">Preview</a>
 </div>
 
 1. Create a LeanCloud application and a Vercel project following the [Get Started](https://waline.js.org/en/guide/get-started.html) guide.
