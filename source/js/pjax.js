@@ -8,12 +8,13 @@
             pjax = new Pjax({
                 selectors: [
                     '[data-pjax]',
+                    '.pjax-reload',
                     'head title',
                     '.columns',
                     '.navbar-start',
                     '.navbar-end',
-                    '.searchbox',
-                    '.pjax-reload',
+                    '.searchbox link',
+                    '.searchbox script',
                     '#back-to-top',
                     '#comments link',
                     '#comments script',
