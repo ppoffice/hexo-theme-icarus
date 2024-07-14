@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>自定义Hexo标签插件 - Icarus</title><link rel="manifest" href="/hexo-theme-icarus/manifest.json"><meta name="theme-color" content="#f7f7f7"><meta name="application-name" content="Icaurs - Hexo Theme"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="msapplication-TileColor" content="#f7f7f7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Icaurs - Hexo Theme"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="除了Hexo Built-in Tag Helpers中描述的Hexo原生支持的标签插件以外，Icarus也提供其他 几个用来定制内容显示的有用的标签插件。   本文同时提供以下语言的翻译：English。"><meta property="og:type" content="blog"><meta property="og:title" content="自定义Hexo标签插件"><meta property="og:url" content="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/%E8%87%AA%E5%AE%9A%E4%B9%89hexo%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/"><meta property="og:site_name" content="Icarus"><meta property="og:description" content="除了Hexo Built-in Tag Helpers中描述的Hexo原生支持的标签插件以外，Icarus也提供其他 几个用来定制内容显示的有用的标签插件。   本文同时提供以下语言的翻译：English。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/img/og_image.png"><meta property="article:published_time" content="2018-01-02T00:00:00.000Z"><meta property="article:author" content="PPOffice"><meta property="article:tag" content="Demo"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://ppoffice.github.io/hexo-theme-icarus/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ppoffice.github.io/hexo-theme-icarus/uncategorized/%E8%87%AA%E5%AE%9A%E4%B9%89hexo%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/"},"headline":"自定义Hexo标签插件","image":["http://ppoffice.github.io/hexo-theme-icarus/img/og_image.png"],"datePublished":"2018-01-02T00:00:00.000Z","author":{"@type":"Person","name":"PPOffice"},"publisher":{"@type":"Organization","name":"Icarus","logo":{"@type":"ImageObject","url":"http://ppoffice.github.io/img/logo.svg"}},"description":"除了Hexo Built-in Tag Helpers中描述的Hexo原生支持的标签插件以外，Icarus也提供其他 几个用来定制内容显示的有用的标签插件。   本文同时提供以下语言的翻译：English。"}</script><link rel="canonical" href="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/%E8%87%AA%E5%AE%9A%E4%B9%89hexo%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/"><link rel="icon" href="/hexo-theme-icarus/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link data-pjax rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/hexo-theme-icarus/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-72437521-5" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-72437521-5');</script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.loli.net/ajax/libs/pace/1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.not-gallery-item { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .not-gallery-item > span { position: relative; z-index: 10; }  .not-gallery-item img, .not-gallery-item .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .not-gallery-item img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .not-gallery-item-fallback { color: inherit; } .not-gallery-item-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/hexo-theme-icarus/atom.xml" title="Icarus" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/hexo-theme-icarus/">Home</a><a class="navbar-item" href="/hexo-theme-icarus/archives">Archives</a><a class="navbar-item" href="/hexo-theme-icarus/categories">Categories</a><a class="navbar-item" href="/hexo-theme-icarus/tags">Tags</a><a class="navbar-item" href="/hexo-theme-icarus/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-01-02T00:00:00.000Z" title="1/2/2018, 12:00:00 AM">2018-01-02</time>发表</span><span class="level-item">16 分钟读完 (大约2392个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">自定义Hexo标签插件</h1><div class="content"><p>除了<a href="/hexo-theme-icarus/uncategorized/hexo-built-in-tag-helpers/" title="Hexo Built-in Tag Helpers">Hexo Built-in Tag Helpers</a>中描述的Hexo原生支持的标签插件以外，Icarus也提供其他
+几个用来定制内容显示的有用的标签插件。</p>
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-americas mr-2"></i>本文同时提供以下语言的翻译：<a href="/hexo-theme-icarus/uncategorized/custom-hexo-tag-helpers/">English</a>。
+</div>
+</article>
+
+<span id="more"></span>
+
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>下面的标签插件由<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>提供，完整的支持插件列表和配置详情以其为准。
+</div>
+</article>
+
+<style>
+.example-tab-container {
+  margin: 0 0 20px 0;
+  padding: 10px 20px 20px 20px;
+  border-radius: 6px;
+  box-shadow: 0 0.5em 0.75em -0.125em rgba(10,10,10,0.1), 0 0px 0 1px rgba(10,10,10,0.02);
+}
+</style>
+
+<h2 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h2><p>五颜六色的消息块可以用来强调你文章中的部分文本。
+它的语法定义如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% message color:&lt;颜色&gt; size:&lt;大小&gt; icon:&lt;图标&gt; title:&lt;标题&gt; %}</span><br><span class="line">    &lt;内容&gt;</span><br><span class="line">{% endmessage %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="color"><a href="#color" class="headerlink" title="color"></a>color</h3><p>此选项定义消息块的颜色。
+其为可选项。
+它可用的配置值与示例如下：</p>
+<article class="message">
+        <div class="message-header"><p>default</p>
+</div>
+        <div class="message-body">
+            <p>一个没有设置颜色的代码块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-dark">
+        <div class="message-header"><p>dark</p>
+</div>
+        <div class="message-body">
+            <p>一个深色(<code>dark</code>)的代码块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-primary">
+        <div class="message-header"><p>primary</p>
+</div>
+        <div class="message-body">
+            <p>一个主题色(<code>primary</code>)的代码块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-info">
+        <div class="message-header"><p>info</p>
+</div>
+        <div class="message-body">
+            <p>一个提示色(<code>info</code>)的代码块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-success">
+        <div class="message-header"><p>success</p>
+</div>
+        <div class="message-body">
+            <p>一个成功色(<code>success</code>)的代码块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-warning">
+        <div class="message-header"><p>warning</p>
+</div>
+        <div class="message-body">
+            <p>一个警示色(<code>warning</code>)的代码块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-danger">
+        <div class="message-header"><p>danger</p>
+</div>
+        <div class="message-body">
+            <p>一个危险色(<code>danger</code>)的代码块。</p>
+
+        </div>
+    </article>
+
+<h3 id="size"><a href="#size" class="headerlink" title="size"></a>size</h3><p>此选项定义消息块的大小。
+其为可选项。
+它可用的配置值与示例如下：</p>
+<article class="message is-small">
+        <div class="message-header"><p>small</p>
+</div>
+        <div class="message-body">
+            <p>一个小(<code>small</code>)的代码块。</p>
+
+        </div>
+    </article>
+
+<article class="message">
+        <div class="message-header"><p>default</p>
+</div>
+        <div class="message-body">
+            <p>一个没有设置大小的代码块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-medium">
+        <div class="message-header"><p>medium</p>
+</div>
+        <div class="message-body">
+            <p>一个中等大小(<code>small</code>)的代码块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-large">
+        <div class="message-header"><p>large</p>
+</div>
+        <div class="message-body">
+            <p>一个大(<code>small</code>)的代码块。</p>
+
+        </div>
+    </article>
+
+<h3 id="icon"><a href="#icon" class="headerlink" title="icon"></a>icon</h3><p>此选项定义显示在消息块头部的图标。
+其为可选项。
+它的值应为FontAwesome的图标class name。
+如果图标的class name含有空格，则配置名与配置值需要用引号包裹住。</p>
+<article class="message">
+        <div class="message-header"><p><i class="fa-brands fa-github mr-2"></i>一个有着GitHub图标的消息块</p>
+</div>
+        <div class="message-body">
+            <p>一个有着GitHub图标(<code>"icon:fa-brands fa-github"</code>)的消息块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-success">
+        <div class="message-header"><p><i class="fa-brands fa-node-js mr-2"></i>一个有着Node.js图标的消息块</p>
+</div>
+        <div class="message-body">
+            <p>一个有着Node.js图标(<code>"icon:fa-brands fa-node-js"</code>)的消息块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-danger">
+        <div class="message-header"><p><i class="fa-brands fa-npm mr-2"></i>一个有着NPM图标的消息块</p>
+</div>
+        <div class="message-body">
+            <p>一个有着NPM图标(<code>"icon:fa-brands fa-npm"</code>)的消息块。</p>
+
+        </div>
+    </article>
+
+<h3 id="title"><a href="#title" class="headerlink" title="title"></a>title</h3><p>此选项定义消息块的标题。
+其为可选项。
+如果标题含有空格，则配置名与配置值需要用引号包裹住。</p>
+<article class="message">
+        <div class="message-header"><p>有标题的消息块</p>
+</div>
+        <div class="message-body">
+            <p>有标题的消息块(<code>"title:有标题的消息块"</code>)。</p>
+
+        </div>
+    </article>
+
+<article class="message">
+        
+        <div class="message-body">
+            <p>没有标题的消息块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-dark">
+        
+        <div class="message-body">
+            <p>没有标题的消息块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-primary">
+        
+        <div class="message-body">
+            <p>没有标题的消息块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-info">
+        
+        <div class="message-body">
+            <p>没有标题的消息块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-success">
+        
+        <div class="message-body">
+            <p>没有标题的消息块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-warning">
+        
+        <div class="message-body">
+            <p>没有标题的消息块。</p>
+
+        </div>
+    </article>
+
+<article class="message is-danger">
+        
+        <div class="message-body">
+            <p>没有标题的消息块。</p>
+
+        </div>
+    </article>
+
+<h2 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h2><p>标签页是一个功能强大的用于展示平行内容的标签插件。
+同一时间内，只有活动的标签页内容才能展示给用户。
+它的语法定义如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">{% tabs size:&lt;大小&gt; align:&lt;对齐&gt; style:&lt;样式&gt; %}</span><br><span class="line">&lt;!-- tab id:&lt;标签ID&gt; icon:&lt;图标&gt; title:&lt;标签标题&gt; active --&gt;</span><br><span class="line">&lt;标签内容&gt;</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab id:&lt;标签ID&gt; icon:&lt;图标&gt; title:&lt;标签标题&gt; --&gt;</span><br><span class="line">&lt;标签内容&gt;</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">...</span><br><span class="line">{% endtabs %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="标签容器"><a href="#标签容器" class="headerlink" title="标签容器"></a>标签容器</h3><p>一个标签容器有着以下选项：</p>
+<h4 id="size-1"><a href="#size-1" class="headerlink" title="size"></a>size</h4><p>此选项定义标签页的大小。
+其为可选项。
+它可用的配置值与示例如下：</p>
+<div class="example-tab-container">
+<div class="tabs my-3 is-small">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_size_small_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_size_small_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_size_small_1" class="tab-content">
+          <p>这是一个小(<code>small</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_size_small_2" class="tab-content is-hidden">
+          <p>这是一个小(<code>small</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_size_default_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_size_default_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_size_default_1" class="tab-content">
+          <p>这是一个没有指定大小的标签页容器的第一页。</p>
+
+      </div><div id="tab_size_default_2" class="tab-content is-hidden">
+          <p>这是一个没有指定大小的标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-medium">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_size_medium_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_size_medium_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_size_medium_1" class="tab-content">
+          <p>这是一个中等大小(<code>medium</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_size_medium_2" class="tab-content is-hidden">
+          <p>这是一个中等大小(<code>medium</code>)标签页容器的第一页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-large">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_size_large_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_size_large_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_size_large_1" class="tab-content">
+          <p>这是一个大(<code>large</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_size_large_2" class="tab-content is-hidden">
+          <p>这是一个大(<code>large</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<h4 id="align"><a href="#align" class="headerlink" title="align"></a>align</h4><p>此选项定义标签页按钮的对齐方式。
+其为可选项。
+它可用的配置值与示例如下：</p>
+<div class="example-tab-container">
+<div class="tabs my-3">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_align_default_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_align_default_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_align_default_1" class="tab-content">
+          <p>这是一个没有指定对齐方式的标签页容器的第一页。</p>
+
+      </div><div id="tab_align_default_2" class="tab-content is-hidden">
+          <p>这是一个没有指定对齐方式的标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-centered">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_align_centered_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_align_centered_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_align_centered_1" class="tab-content">
+          <p>这是一个居中对齐的(<code>centered</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_align_centered_2" class="tab-content is-hidden">
+          <p>这是一个居中对齐的(<code>centered</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-right">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_align_right_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_align_right_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_align_right_1" class="tab-content">
+          <p>这是一个右对齐的(<code>right</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_align_right_2" class="tab-content is-hidden">
+          <p>这是一个右对齐的(<code>right</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_align_fullwidth_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_align_fullwidth_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_align_fullwidth_1" class="tab-content">
+          <p>这是一个全宽的(<code>fullwidth</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_align_fullwidth_2" class="tab-content is-hidden">
+          <p>这是一个全宽的(<code>fullwidth</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<h4 id="style"><a href="#style" class="headerlink" title="style"></a>style</h4><p>此选项定义标签页按钮的样式。
+其为可选项。
+此外你可以将样式与全宽(<code>fullwidth</code>)对齐方式结合。
+它可用的配置值与示例如下：</p>
+<div class="example-tab-container">
+<div class="tabs my-3 is-boxed">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_boxed_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_boxed_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_boxed_1" class="tab-content">
+          <p>这是一个盒状(<code>boxed</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_style_boxed_2" class="tab-content is-hidden">
+          <p>这是一个盒状(<code>boxed</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-toggle">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_toggle_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_toggle_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_toggle_1" class="tab-content">
+          <p>这是一个拨动开关状(<code>toggle</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_style_toggle_2" class="tab-content is-hidden">
+          <p>这是一个拨动开关状(<code>toggle</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-toggle is-toggle-rounded">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_toggle_rounded_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_toggle_rounded_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_toggle_rounded_1" class="tab-content">
+          <p>这是一个圆角拨动开关状(<code>toggle-rounded</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_style_toggle_rounded_2" class="tab-content is-hidden">
+          <p>这是一个圆角拨动开关状(<code>toggle-rounded</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth is-boxed">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_boxed_fullwidth_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_boxed_fullwidth_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_boxed_fullwidth_1" class="tab-content">
+          <p>这是一个全宽(<code>fullwidth</code>)盒状(<code>boxed</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_style_boxed_fullwidth_2" class="tab-content is-hidden">
+          <p>这是一个全宽(<code>fullwidth</code>)盒状(<code>boxed</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth is-toggle">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_toggle_fullwidth_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_toggle_fullwidth_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_toggle_fullwidth_1" class="tab-content">
+          <p>这是一个全宽(<code>fullwidth</code>)拨动开关状(<code>toggle</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_style_toggle_fullwidth_2" class="tab-content is-hidden">
+          <p>这是一个全宽(<code>fullwidth</code>)拨动开关状(<code>toggle</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth is-toggle is-toggle-rounded">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_toggle_rounded_fullwidth_1">
+              <p>第一页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_toggle_rounded_fullwidth_2">
+              <p>第二页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_toggle_rounded_fullwidth_1" class="tab-content">
+          <p>这是一个全宽(<code>fullwidth</code>)圆角拨动开关状(<code>toggle-rounded</code>)标签页容器的第一页。</p>
+
+      </div><div id="tab_style_toggle_rounded_fullwidth_2" class="tab-content is-hidden">
+          <p>这是一个全宽(<code>fullwidth</code>)圆角拨动开关状(<code>toggle-rounded</code>)标签页容器的第二页。</p>
+
+      </div>
+</div>
+
+<h3 id="Tab"><a href="#Tab" class="headerlink" title="Tab"></a>Tab</h3><p>一个标签页有如下选项：</p>
+<h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>此选项为标签页元素的独特标识符(ID)。
+此项为必填项。
+一个标签页ID应当在整个页面内为独一无二的，这样Icarus才能定位、显示、和隐藏正确的标签页内容。</p>
+<h4 id="active"><a href="#active" class="headerlink" title="active"></a>active</h4><p>此选项标记当前的标签页是否默认显示。
+此项为选填项。
+同一时刻一个标签组中只有一个标签页可以标记为活动(<code>active</code>)标签页。</p>
+<h4 id="icon-1"><a href="#icon-1" class="headerlink" title="icon"></a>icon</h4><p>此选项定义标签按钮中显示的图标。
+此项为选填项。
+它的值应为FontAwesome图标的class name。
+如果图标的class name含有空格，则配置名与配置值需要用引号包裹住。</p>
+<div class="example-tab-container">
+<div class="tabs my-3">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_icon_1">
+              <span class="icon is-small ml-0">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </span>GitHub
+          </a>
+      </li><li>
+          <a href="#tab_icon_2">
+              <span class="icon is-small ml-0">
+                <i class="fa-brands fa-node-js" aria-hidden="true"></i>
+            </span>Node.js
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_icon_1" class="tab-content">
+          <p>这个标签页的图标(<code>icon</code>)为<code>"icon:fa-brands fa-github"</code>。</p>
+
+      </div><div id="tab_icon_2" class="tab-content is-hidden">
+          <p>这个标签页的图标(<code>icon</code>)为<code>"icon:fa-brands fa-node-js"</code>。</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth is-toggle is-toggle-rounded">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_boxed_icon_1">
+              <span class="icon is-small ml-0">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </span>GitHub
+          </a>
+      </li><li>
+          <a href="#tab_boxed_icon_2">
+              <span class="icon is-small ml-0">
+                <i class="fa-brands fa-node-js" aria-hidden="true"></i>
+            </span>Node.js
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_boxed_icon_1" class="tab-content">
+          <p>这个标签页的图标(<code>icon</code>)为<code>"icon:fa-brands fa-github"</code>。</p>
+
+      </div><div id="tab_boxed_icon_2" class="tab-content is-hidden">
+          <p>这个标签页的图标(<code>icon</code>)为<code>"icon:fa-brands fa-node-js"</code>。</p>
+
+      </div>
+</div>
+
+<h4 id="title-1"><a href="#title-1" class="headerlink" title="title"></a>title</h4><p>此选项定义标签按钮的标题。
+其为可选项。
+如果标题含有空格，则配置名与配置值需要用引号包裹住。</p>
+<div class="example-tab-container">
+<div class="tabs my-3 is-toggle">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_title_boxed_1">
+              <p>有标题的标签页</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_title_boxed_2">
+              <p>另一个有标题的标签页</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_title_boxed_1" class="tab-content">
+          <p>这个标签页的标题(<code>title</code>)为(<code>"title:有标题的标签页"</code>)。</p>
+
+      </div><div id="tab_title_boxed_2" class="tab-content is-hidden">
+          <p>这个标签页的标题(<code>title</code>)为(<code>"title:另一个有标题的标签页"</code>)。</p>
+
+      </div>
+</div>
+</div><div class="article-licensing box"><div class="licensing-title"><p>自定义Hexo标签插件</p><p><a href="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/自定义hexo标签插件/">http://ppoffice.github.io/hexo-theme-icarus/uncategorized/自定义hexo标签插件/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>PPOffice</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2018-01-02</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/hexo-theme-icarus/tags/Demo/">Demo</a></div><div class="sharethis-inline-share-buttons"></div><script src="//platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/hexo-theme-icarus/uncategorized/custom-hexo-tag-helpers/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Custom Hexo Tag Helpers</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/hexo-theme-icarus/uncategorized/hexo-built-in-tag-helpers/"><span class="level-item">Hexo Built-in Tag Helpers</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/hexo-theme-icarus/img/avatar.png" alt="PPOffice"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">PPOffice</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Solar System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/hexo-theme-icarus/archives"><p class="title">43</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/hexo-theme-icarus/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/hexo-theme-icarus/tags"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/hexo-theme-icarus/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#消息"><span class="level-left"><span class="level-item">1</span><span class="level-item">消息</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#color"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">color</span></span></a></li><li><a class="level is-mobile" href="#size"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">size</span></span></a></li><li><a class="level is-mobile" href="#icon"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">icon</span></span></a></li><li><a class="level is-mobile" href="#title"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">title</span></span></a></li></ul></li><li><a class="level is-mobile" href="#标签页"><span class="level-left"><span class="level-item">2</span><span class="level-item">标签页</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#标签容器"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">标签容器</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#size-1"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">size</span></span></a></li><li><a class="level is-mobile" href="#align"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">align</span></span></a></li><li><a class="level is-mobile" href="#style"><span class="level-left"><span class="level-item">2.1.3</span><span class="level-item">style</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Tab"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">Tab</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#id"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">id</span></span></a></li><li><a class="level is-mobile" href="#active"><span class="level-left"><span class="level-item">2.2.2</span><span class="level-item">active</span></span></a></li><li><a class="level is-mobile" href="#icon-1"><span class="level-left"><span class="level-item">2.2.3</span><span class="level-item">icon</span></span></a></li><li><a class="level is-mobile" href="#title-1"><span class="level-left"><span class="level-item">2.2.4</span><span class="level-item">title</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/hexo-theme-icarus/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Configuration/"><span class="level-start"><span class="level-item">Configuration</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/"><span class="level-start"><span class="level-item">Plugins</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Analytics/"><span class="level-start"><span class="level-item">Analytics</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Comment/"><span class="level-start"><span class="level-item">Comment</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Donation/"><span class="level-start"><span class="level-item">Donation</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Other/"><span class="level-start"><span class="level-item">Other</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Search/"><span class="level-start"><span class="level-item">Search</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Share/"><span class="level-start"><span class="level-item">Share</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Widgets/"><span class="level-start"><span class="level-item">Widgets</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Demo/"><span class="tag">Demo</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Getting-Started/"><span class="tag">Getting Started</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus-User-Guide/"><span class="tag">Icarus User Guide</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/"><span class="tag">Icarus用户指南</span><span class="tag">12</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a><p class="is-size-7"><span>&copy; 2024 PPOffice</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/hexo-theme-icarus/js/column.js"></script><script src="/hexo-theme-icarus/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/hexo-theme-icarus/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><!--!--><!--!--><script data-pjax src="/hexo-theme-icarus/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/hexo-theme-icarus/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/hexo-theme-icarus/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

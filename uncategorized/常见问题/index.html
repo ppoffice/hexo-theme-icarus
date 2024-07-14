@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>常见问题 - Icarus</title><link rel="manifest" href="/hexo-theme-icarus/manifest.json"><meta name="theme-color" content="#f7f7f7"><meta name="application-name" content="Icaurs - Hexo Theme"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="msapplication-TileColor" content="#f7f7f7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Icaurs - Hexo Theme"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="本文解答了一些Icarus常见问题。 如果你的问题没有在这里得到解答，也请阅读 Icarus用户指南， Hexo中文文档， 以及GitHub Issues。 此外，你也可以在GitHub讨论组上向其他Icarus用户请求帮助。   本文同时提供以下语言的翻译：English。"><meta property="og:type" content="blog"><meta property="og:title" content="常见问题"><meta property="og:url" content="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"><meta property="og:site_name" content="Icarus"><meta property="og:description" content="本文解答了一些Icarus常见问题。 如果你的问题没有在这里得到解答，也请阅读 Icarus用户指南， Hexo中文文档， 以及GitHub Issues。 此外，你也可以在GitHub讨论组上向其他Icarus用户请求帮助。   本文同时提供以下语言的翻译：English。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/img/og_image.png"><meta property="article:published_time" content="2016-01-03T00:00:00.000Z"><meta property="article:author" content="PPOffice"><meta property="article:tag" content="Icarus用户指南"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://ppoffice.github.io/hexo-theme-icarus/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ppoffice.github.io/hexo-theme-icarus/uncategorized/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"},"headline":"常见问题","image":["http://ppoffice.github.io/hexo-theme-icarus/img/og_image.png"],"datePublished":"2016-01-03T00:00:00.000Z","author":{"@type":"Person","name":"PPOffice"},"publisher":{"@type":"Organization","name":"Icarus","logo":{"@type":"ImageObject","url":"http://ppoffice.github.io/img/logo.svg"}},"description":"本文解答了一些Icarus常见问题。 如果你的问题没有在这里得到解答，也请阅读 Icarus用户指南， Hexo中文文档， 以及GitHub Issues。 此外，你也可以在GitHub讨论组上向其他Icarus用户请求帮助。   本文同时提供以下语言的翻译：English。"}</script><link rel="canonical" href="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"><link rel="icon" href="/hexo-theme-icarus/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link data-pjax rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/hexo-theme-icarus/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-72437521-5" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-72437521-5');</script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.loli.net/ajax/libs/pace/1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.not-gallery-item { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .not-gallery-item > span { position: relative; z-index: 10; }  .not-gallery-item img, .not-gallery-item .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .not-gallery-item img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .not-gallery-item-fallback { color: inherit; } .not-gallery-item-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/hexo-theme-icarus/atom.xml" title="Icarus" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/hexo-theme-icarus/">Home</a><a class="navbar-item" href="/hexo-theme-icarus/archives">Archives</a><a class="navbar-item" href="/hexo-theme-icarus/categories">Categories</a><a class="navbar-item" href="/hexo-theme-icarus/tags">Tags</a><a class="navbar-item" href="/hexo-theme-icarus/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2016-01-03T00:00:00.000Z" title="1/3/2016, 12:00:00 AM">2016-01-03</time>发表</span><span class="level-item">12 分钟读完 (大约1810个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">常见问题</h1><div class="content"><p>本文解答了一些Icarus常见问题。
+如果你的问题没有在这里得到解答，也请阅读
+<a href="/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/">Icarus用户指南</a>，
+<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/index.html">Hexo中文文档</a>，
+以及<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus/issues?q=">GitHub Issues</a>。
+此外，你也可以在<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus/discussions">GitHub讨论组</a>上向其他Icarus用户请求帮助。</p>
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-americas mr-2"></i>本文同时提供以下语言的翻译：<a href="/hexo-theme-icarus/uncategorized/faq/">English</a>。
+</div>
+</article>
+
+<span id="more"></span>
+
+
+<h2 id="站点"><a href="#站点" class="headerlink" title="站点"></a>站点</h2><article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+我无法生成我的站点。 / 我在生成站点时遇到错误。
+</div>
+</article>
+
+<p>Icarus 5运行在Node.js 12.4.0或更新的版本上。
+它同时依赖Hexo 6.0.0或更高版本。
+除此之外，请确保所有的Node.js依赖已安装。
+你可以在<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json"><code>&lt;icarus_directory&gt;/package.json</code></a>
+文件的<code>dependencies</code>部分下找到这些依赖。
+同时，从你的站点中移除所有无用的Node.js依赖，否则它们可能会导致Icarus出现奇怪的问题。</p>
+<article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+如何更改我的站点的语言？
+</div>
+</article>
+
+<p>打开站点根目录下的站点配置文件<code>_config.yml</code>，修改如下设置：</p>
+<figure class="highlight diff"><figcaption><span>_config.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- language: en</span></span><br><span class="line"><span class="addition">+ language: &lt;语言名&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>你可以在<code>&lt;icarus_directory&gt;/languages</code>目录下找到所有可用的翻译。
+<code>&lt;语言名&gt;</code>为不带后缀名的翻译文件名。</p>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+我如何改变页面的宽度？我如何使用单栏/双栏/三栏布局？
+</div>
+</article>
+
+<p>如要改变页面的宽度，编辑<code>&lt;icarus_directory&gt;/include/style/responsive.styl</code>这个样式文件。
+此文件定义了不同屏幕尺寸下的页面容器宽度。</p>
+<p>如要改变挂件或主内容宽度，编辑<code>&lt;icarus_directory&gt;/layout/common/widgets.jsx</code>和<code>&lt;icarus_directory&gt;/layout/layout.jsx</code>。
+在这些文件中找到诸如<code>is-12</code>，<code>is-8-tablet</code>，和<code>is-4-widescreen</code>这样的CSS类名。
+CSS类名中的数字标志着一个挂件或主内容所占据的栏数量。
+数字后的屏幕尺寸，如<code>tablet</code>和<code>widescreen</code>，指代着栏数量生效的屏幕尺寸条件。
+修改类名中的数字使主内容栏的栏数量和所有挂件栏的栏数量在相同屏幕尺寸下相加等于12。</p>
+<p>例如，为使主内容栏在宽屏(<code>widescreen</code>)下更宽，你可以做出如下修改：</p>
+<figure class="highlight diff"><figcaption><span>&lt;icarus_directory&gt;/layout/layout.jsx &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> &lt;div class={classname({</span><br><span class="line">     column: true,</span><br><span class="line">     'order-2': true,</span><br><span class="line">     'column-main': true,</span><br><span class="line">     'is-12': columnCount <span class="comment">=== 1,</span></span><br><span class="line"><span class="deletion">-    'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,</span></span><br><span class="line"><span class="addition">+    'is-8-tablet is-8-desktop is-9-widescreen': columnCount === 2,</span></span><br><span class="line">     'is-8-tablet is-8-desktop is-6-widescreen': columnCount <span class="comment">=== 3</span></span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight diff"><figcaption><span>&lt;icarus_directory&gt;/layout/common/widgets.jsx &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> function getColumnSizeClass(columnCount) {</span><br><span class="line">     switch (columnCount) {</span><br><span class="line">         case 2:</span><br><span class="line"><span class="deletion">-            return 'is-4-tablet is-4-desktop is-4-widescreen';</span></span><br><span class="line"><span class="addition">+            return 'is-4-tablet is-4-desktop is-3-widescreen';</span></span><br><span class="line">         case 3:</span><br><span class="line">             return 'is-4-tablet is-4-desktop is-3-widescreen';</span><br></pre></td></tr></tbody></table></figure>
+
+<p>你可以参考<a target="_blank" rel="noopener" href="https://bulma.io/documentation/columns/sizes/">Bulma文档</a>来获取更多关于布局系统的细节。</p>
+<p>下面时一些创建单栏/双栏/三栏布局的提示：</p>
+<ul>
+<li>你可以从主题配置中移除所有的挂件来创建单栏布局。</li>
+<li>你可以将所有的挂件移动到页面的一侧来创建双栏布局。</li>
+<li>你可以将挂件放在页面两边来创建三栏布局。</li>
+</ul>
+<p>若要更改单个文章或页面的布局，请参考<a href="/hexo-theme-icarus/Configuration/icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7">配置文件与优先级</a>。</p>
+<article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+挂件/评论插件/分享按钮...的布局文件在哪里？我如何个性化内置的挂件/评论插件/分享按钮...？
+</div>
+</article>
+
+<p>插件和挂件的布局文件已被移至一个单独的Node.js库中——<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno"><code>hexo-component-inferno</code></a>。
+这样，主题开发者可以更好地在不同主题之间复用这些通用组件，并且普通用户可以更简便地覆盖这些内置组件。</p>
+<p>若要自定义这些组件，从<code>hexo-component-inferno</code>仓库中拷贝布局文件并把它们放入<code>&lt;icarus_directory&gt;/layout</code>下的的相应目录中。
+例如，如果你想要自定义Valine评论插件，你可以从<code>hexo-component-inferno</code>仓库中拷贝
+<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/src/view/comment/valine.jsx"><code>src/view/comment/valine.jsx</code></a>
+到<code>&lt;icarus_directory&gt;/layout/comment/valine.jsx</code>。
+同时像下面这样改正此文件头部的一些Node.js引用：</p>
+<figure class="highlight diff"><figcaption><span>&lt;icarus_directory&gt;/layout/comment/valine.jsx</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- const { cacheComponent } = require('../../util/cache');</span></span><br><span class="line"><span class="addition">+ const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>最后，用<code>hexo clean</code>清理你的站点并重新生成HTML文件。</p>
+<p>类似的，你可以用同样的方式覆盖主题内置的静态文件，如
+<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/asset/js/insight.js"><code>asset/js/insight.js</code></a> 。</p>
+<article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+为什么我的改变的布局文件在我刷新页面时没有生效（假设我正在使用<code>hexo server</code>）？
+</div>
+</article>
+
+<p>当你使用<code>hexo server</code>启动本地Hexo服务器时，Icarus会缓存布局文件。
+如要使布局文件的修改生效，请重启本地服务器。</p>
+<p>其他情况下临时生成的数据会被Hexo缓存在内存或者<code>db.json</code>数据库中。
+在运行<code>hexo server</code>或<code>hexo generate</code>之前执行<code>hexo clean</code>应该可以解决此问题。</p>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+我的图片没有正确显示。 / 我的图片仅在首页显示，却无法在文章页面显示。
+</div>
+</article>
+
+<p>请确保你使用了图片的绝对路径。
+例如，你的站点位于你域名的子目录下，如<code>https://ppoffice.github.io/hexo-theme-icarus</code>，
+并且你的图片<code>image.jpg</code>放在了<code>source/gallery/</code>目录下。
+那么你应该用<code>/hexo-theme-icarus/gallery/image.jpg</code>来引用你的图片。</p>
+<p>你也可以像下面这样使用<code>{% img %}</code>这个Hexo标签来自动引用图片：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% img /gallery/image.jpg "Image title" %}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这种情况下，你可以从图片路径中省略网站子目录。
+你可以参考<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/index.html">Hexo文档</a>来了解更多详情。</p>
+<article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+如何为文章添加摘要？如何显示“阅读更多”按钮？
+</div>
+</article>
+
+<p>在你的文章中添加<code>&lt;!-- more --&gt;</code>标签。
+标签前面的文章内容会被标记为摘要，而其后的内容不会显示在文章列表上。</p>
+<p>你也可以在文章的front-matter中设置自定义摘要。</p>
+<figure class="highlight yaml"><figcaption><span>some-post.md</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">一篇文章</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2020-01-01</span></span><br><span class="line"><span class="attr">excerpt:</span> <span class="string">这是一篇关于...</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 文章内容...</span></span><br></pre></td></tr></tbody></table></figure>
+
+<article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+我如何加密文章？
+</div>
+</article>
+
+<p>使用如<a target="_blank" rel="noopener" href="https://github.com/MikeCoder/hexo-blog-encrypt">hexo-blog-encrypt</a>这样的第三方的Hexo插件。</p>
+<article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+我如何像这篇文章一样使用炫酷的页面元素？
+</div>
+</article>
+
+<p>请参考<a target="_blank" rel="noopener" href="https://bulma.io/documentation/">Bulma文档</a>来了解所有可选的元素和样式。
+复制其中的HTML代码段并直接放入你的Markdown文件中。</p>
+<h2 id="挂件与插件"><a href="#挂件与插件" class="headerlink" title="挂件与插件"></a>挂件与插件</h2><article class="message is-primary" style="font-size:1em">
+<div class="message-body">
+我如何才能移除页面上警告我一些配置值没有设置的红色警示信息？
+</div>
+</article>
+
+<p>这些警示信息通常在你遗漏一些插件或挂件的配置设置时出现。
+如果你不想开启某个插件或挂件，把它们从你的主题配置中删掉或注释掉。</p>
+<p>例如，注释掉这几行来禁用掉评论插件：</p>
+<figure class="highlight diff"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- comment:</span></span><br><span class="line"><span class="deletion">-     type: disqus</span></span><br><span class="line"><span class="deletion">-     shortname: </span></span><br><span class="line"><span class="addition">+ # comment:</span></span><br><span class="line"><span class="addition">+ #     type: disqus</span></span><br><span class="line"><span class="addition">+ #     shortname: </span></span><br></pre></td></tr></tbody></table></figure>
+
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-question-circle mr-2"></i>文章内容有误？请点击<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/FAQ.md">此处</a>提交修改。
+</div>
+</article>
+</div><div class="article-licensing box"><div class="licensing-title"><p>常见问题</p><p><a href="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/常见问题/">http://ppoffice.github.io/hexo-theme-icarus/uncategorized/常见问题/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>PPOffice</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2016-01-03</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/">Icarus用户指南</a></div><div class="sharethis-inline-share-buttons"></div><script src="//platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/hexo-theme-icarus/Configuration/icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Icarus用户指南 - 主题配置</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/hexo-theme-icarus/uncategorized/%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97/"><span class="level-item">升级指南</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/hexo-theme-icarus/img/avatar.png" alt="PPOffice"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">PPOffice</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Solar System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/hexo-theme-icarus/archives"><p class="title">43</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/hexo-theme-icarus/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/hexo-theme-icarus/tags"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/hexo-theme-icarus/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#站点"><span class="level-left"><span class="level-item">1</span><span class="level-item">站点</span></span></a></li><li><a class="level is-mobile" href="#布局"><span class="level-left"><span class="level-item">2</span><span class="level-item">布局</span></span></a></li><li><a class="level is-mobile" href="#内容"><span class="level-left"><span class="level-item">3</span><span class="level-item">内容</span></span></a></li><li><a class="level is-mobile" href="#挂件与插件"><span class="level-left"><span class="level-item">4</span><span class="level-item">挂件与插件</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/hexo-theme-icarus/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Configuration/"><span class="level-start"><span class="level-item">Configuration</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/"><span class="level-start"><span class="level-item">Plugins</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Analytics/"><span class="level-start"><span class="level-item">Analytics</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Comment/"><span class="level-start"><span class="level-item">Comment</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Donation/"><span class="level-start"><span class="level-item">Donation</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Other/"><span class="level-start"><span class="level-item">Other</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Search/"><span class="level-start"><span class="level-item">Search</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Share/"><span class="level-start"><span class="level-item">Share</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Widgets/"><span class="level-start"><span class="level-item">Widgets</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Demo/"><span class="tag">Demo</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Getting-Started/"><span class="tag">Getting Started</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus-User-Guide/"><span class="tag">Icarus User Guide</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/"><span class="tag">Icarus用户指南</span><span class="tag">12</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a><p class="is-size-7"><span>&copy; 2024 PPOffice</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/hexo-theme-icarus/js/column.js"></script><script src="/hexo-theme-icarus/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/hexo-theme-icarus/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><!--!--><!--!--><script data-pjax src="/hexo-theme-icarus/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/hexo-theme-icarus/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/hexo-theme-icarus/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Hexo Built-in Tag Helpers - Icarus</title><link rel="manifest" href="/hexo-theme-icarus/manifest.json"><meta name="theme-color" content="#f7f7f7"><meta name="application-name" content="Icaurs - Hexo Theme"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="msapplication-TileColor" content="#f7f7f7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Icaurs - Hexo Theme"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="The following content is taken from  Hexo documentation with minor revisions.    Tag plugins are different from post tags. They are ported from Octopress and provide a useful way for you to quickly"><meta property="og:type" content="blog"><meta property="og:title" content="Hexo Built-in Tag Helpers"><meta property="og:url" content="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/hexo-built-in-tag-helpers/"><meta property="og:site_name" content="Icarus"><meta property="og:description" content="The following content is taken from  Hexo documentation with minor revisions.    Tag plugins are different from post tags. They are ported from Octopress and provide a useful way for you to quickly"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/covers/vector_landscape_1.svg"><meta property="article:published_time" content="2018-01-01T00:00:00.000Z"><meta property="article:author" content="PPOffice"><meta property="article:tag" content="Demo"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/covers/vector_landscape_1.svg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ppoffice.github.io/hexo-theme-icarus/uncategorized/hexo-built-in-tag-helpers/"},"headline":"Hexo Built-in Tag Helpers","image":[],"datePublished":"2018-01-01T00:00:00.000Z","author":{"@type":"Person","name":"PPOffice"},"publisher":{"@type":"Organization","name":"Icarus","logo":{"@type":"ImageObject","url":"http://ppoffice.github.io/img/logo.svg"}},"description":"The following content is taken from  Hexo documentation with minor revisions.    Tag plugins are different from post tags. They are ported from Octopress and provide a useful way for you to quickly"}</script><link rel="canonical" href="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/hexo-built-in-tag-helpers/"><link rel="icon" href="/hexo-theme-icarus/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/hexo-theme-icarus/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-72437521-5" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-72437521-5');</script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.not-gallery-item { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .not-gallery-item > span { position: relative; z-index: 10; }  .not-gallery-item img, .not-gallery-item .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .not-gallery-item img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .not-gallery-item-fallback { color: inherit; } .not-gallery-item-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/hexo-theme-icarus/atom.xml" title="Icarus" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/hexo-theme-icarus/">Home</a><a class="navbar-item" href="/hexo-theme-icarus/archives">Archives</a><a class="navbar-item" href="/hexo-theme-icarus/categories">Categories</a><a class="navbar-item" href="/hexo-theme-icarus/tags">Tags</a><a class="navbar-item" href="/hexo-theme-icarus/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-01-01T00:00:00.000Z" title="1/1/2018, 12:00:00 AM">2018-01-01</time></span><span class="level-item">5 minutes read (About 756 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Hexo Built-in Tag Helpers</h1><div class="content"><article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-lightbulb mr-2"></i>The following content is taken from 
+<a target="_blank" rel="noopener" href="https://hexo.io/docs/tag-plugins.html">Hexo documentation</a>
+with minor revisions.
+</div>
+</article>
+
+<p>Tag plugins are different from post tags. They are ported from Octopress and provide a useful way for you to quickly add specific content to your posts.</p>
+<span id="more"></span>
+<h2 id="Block-Quote"><a href="#Block-Quote" class="headerlink" title="Block Quote"></a>Block Quote</h2><p>Perfect for adding quotes to your post, with optional author, source and title information.</p>
+<p><strong>Alias:</strong> quote</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% blockquote [author[, source]] [link] [source_link_title] %}</span><br><span class="line">content</span><br><span class="line">{% endblockquote %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p><strong>No arguments. Plain blockquote.</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% blockquote %}</span><br><span class="line">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</span><br><span class="line">{% endblockquote %}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
+</blockquote>
+
+<p><strong>Quote from a book</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% blockquote David Levithan, Wide Awake %}</span><br><span class="line">Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</span><br><span class="line">{% endblockquote %}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
+<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
+
+<p><strong>Quote from Twitter</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% blockquote @DevDocs https://twitter.com/devdocs/status/356095192085962752 %}</span><br><span class="line">NEW: DevDocs now comes with syntax highlighting. http://devdocs.io</span><br><span class="line">{% endblockquote %}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a target="_blank" rel="noopener" href="http://devdocs.io/">http://devdocs.io</a></p>
+<footer><strong>@DevDocs</strong><cite><a target="_blank" rel="noopener" href="https://twitter.com/devdocs/status/356095192085962752">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
+
+<p><strong>Quote from an article on the web</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% blockquote Seth Godin http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html Welcome to Island Marketing %}</span><br><span class="line">Every interaction is both precious and an opportunity to delight.</span><br><span class="line">{% endblockquote %}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
+<footer><strong>Seth Godin</strong><cite><a target="_blank" rel="noopener" href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html">Welcome to Island Marketing</a></cite></footer></blockquote>
+
+<h2 id="Code-Block"><a href="#Code-Block" class="headerlink" title="Code Block"></a>Code Block</h2><p>Useful feature for adding code snippets to your post.</p>
+<p><strong>Alias:</strong> code</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% codeblock [title] [lang:language] [url] [link text] %}</span><br><span class="line">code snippet</span><br><span class="line">{% endcodeblock %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h3><p><strong>A plain code block</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% codeblock %}</span><br><span class="line">alert('Hello World!');</span><br><span class="line">{% endcodeblock %}</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert('Hello World!');</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Specifying the language</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% codeblock lang:objc %}</span><br><span class="line">[rectangle setX: 10 y: 10 width: 20 height: 20];</span><br><span class="line">{% endcodeblock %}</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight objc"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[rectangle setX: <span class="number">10</span> y: <span class="number">10</span> width: <span class="number">20</span> height: <span class="number">20</span>];</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Adding a caption to the code block</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% codeblock Array.map %}</span><br><span class="line">array.map(callback[, thisArg])</span><br><span class="line">{% endcodeblock %}</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>Array.map</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.map(callback[, thisArg])</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Adding a caption and a URL</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">{% codeblock _.compact http://underscorejs.org/#compact Underscore.js %}</span><br><span class="line">_.compact([0, 1, false, 2, '', 3]);</span><br><span class="line">=&gt; [1, 2, 3]</span><br><span class="line">{% endcodeblock %}</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>_.compact</span><a target="_blank" rel="noopener" href="http://underscorejs.org/#compact">Underscore.js</a></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([0, 1, false, 2, '', 3]);</span><br><span class="line">=&gt; [1, 2, 3]</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Backtick-Code-Block"><a href="#Backtick-Code-Block" class="headerlink" title="Backtick Code Block"></a>Backtick Code Block</h2><p>This is identical to using a code block, but instead uses three backticks to delimit the block.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">``` [language] [title] [url] [link text]</span><br><span class="line">code snippet</span><br><span class="line">```</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Pull-Quote"><a href="#Pull-Quote" class="headerlink" title="Pull Quote"></a>Pull Quote</h2><blockquote class="pullquote"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper auctor nulla, a mollis nibh congue luctus. Mauris
+sagittis dui sit amet scelerisque gravida. Proin porttitor convallis libero.</p>
+</blockquote>
+
+<p>To add pull quotes to your posts:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% pullquote [CSS class] %}</span><br><span class="line">content</span><br><span class="line">{% endpullquote %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="jsFiddle"><a href="#jsFiddle" class="headerlink" title="jsFiddle"></a>jsFiddle</h2><p>To embed a jsFiddle snippet:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% jsfiddle shorttag [tabs] [skin] [width] [height] %}</span><br></pre></td></tr></tbody></table></figure>
+
+<iframe scrolling="no" width="100%" height="400" src="https://jsfiddle.net/zx2xyzea/embedded/js,html,css,result/light" frameborder="0" loading="lazy" allowfullscreen=""></iframe>
+
+<h2 id="Gist"><a href="#Gist" class="headerlink" title="Gist"></a>Gist</h2><p>To embed a Gist snippet:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% gist gist_id [filename] %}</span><br></pre></td></tr></tbody></table></figure>
+
+<script src="//gist.github.com/defunkt/2059.js"></script>
+
+<h2 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h2><p>To embed an iframe:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% iframe url [width] [height] %}</span><br></pre></td></tr></tbody></table></figure>
+
+<iframe src="https://ppoffice.github.io/hexo-theme-icarus" width="100%" height="400" frameborder="0" loading="lazy" allowfullscreen=""></iframe>
+
+<h2 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h2><p>Inserts an image with specified size.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% img [class names] /path/to/image [width] [height] [title text [alt text]] %}</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="/hexo-theme-icarus/gallery/covers/vector_landscape_1.svg" class="" title="100% 100% &quot;Vector Landscape&quot; &quot;Vector Landscape&quot;">
+
+<h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p>Inserts a link with <code>target="_blank"</code> attribute.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% link text url [external] [title] %}</span><br></pre></td></tr></tbody></table></figure>
+
+<a href="https://hexo.io/" title="Hexo.io" target="_blank">Hexo.io</a>
+
+<h2 id="Include-Code"><a href="#Include-Code" class="headerlink" title="Include Code"></a>Include Code</h2><p>Inserts code snippets in <code>source/downloads/code</code> folder.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% include_code [title] [lang:language] path/to/file %}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="YouTube"><a href="#YouTube" class="headerlink" title="YouTube"></a>YouTube</h2><p>Inserts a YouTube video.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% youtube video_id %}</span><br></pre></td></tr></tbody></table></figure>
+
+<div class="video-container"><iframe src="https://www.youtube.com/embed/yaqe1qesQ8c" frameborder="0" loading="lazy" allowfullscreen=""></iframe></div>
+
+<h2 id="Vimeo"><a href="#Vimeo" class="headerlink" title="Vimeo"></a>Vimeo</h2><p>Inserts a Vimeo video.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% vimeo video_id %}</span><br></pre></td></tr></tbody></table></figure>
+
+<div class="video-container"><iframe src="https://player.vimeo.com/video/191822120" frameborder="0" loading="lazy" allowfullscreen=""></iframe></div>
+
+<h2 id="Include-Posts"><a href="#Include-Posts" class="headerlink" title="Include Posts"></a>Include Posts</h2><p>Include links to other posts.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">{% post_path slug %}</span><br><span class="line">{% post_link slug [title] %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Include-Assets"><a href="#Include-Assets" class="headerlink" title="Include Assets"></a>Include Assets</h2><p>Include post assets.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% asset_path slug %}</span><br><span class="line">{% asset_img slug [title] %}</span><br><span class="line">{% asset_link slug [title] %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Raw"><a href="#Raw" class="headerlink" title="Raw"></a>Raw</h2><p>If certain content is causing processing issues in your posts, wrap it with the <code>raw</code> tag to avoid rendering errors.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% raw %}</span><br><span class="line">content</span><br><span class="line">{% endraw %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Post-Excerpt"><a href="#Post-Excerpt" class="headerlink" title="Post Excerpt"></a>Post Excerpt</h2><p>Use text placed before the <code>&lt;!-- more --&gt;</code> tag as an excerpt for the post.</p>
+<p><strong>Examples:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span><br></pre></td></tr></tbody></table></figure>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Hexo Built-in Tag Helpers</p><p><a href="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/hexo-built-in-tag-helpers/">http://ppoffice.github.io/hexo-theme-icarus/uncategorized/hexo-built-in-tag-helpers/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>PPOffice</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-01-01</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/hexo-theme-icarus/tags/Demo/">Demo</a></div><div class="sharethis-inline-share-buttons"></div><script src="//platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/hexo-theme-icarus/uncategorized/%E8%87%AA%E5%AE%9A%E4%B9%89hexo%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">自定义Hexo标签插件</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/hexo-theme-icarus/Configuration/icarus-user-guide-cdn-providers/"><span class="level-item">Icarus User Guide - CDN Providers</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/hexo-theme-icarus/img/avatar.png" alt="PPOffice"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">PPOffice</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Solar System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/hexo-theme-icarus/archives"><p class="title">43</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/hexo-theme-icarus/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/hexo-theme-icarus/tags"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/hexo-theme-icarus/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Block-Quote"><span class="level-left"><span class="level-item">1</span><span class="level-item">Block Quote</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Examples"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">Examples</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Code-Block"><span class="level-left"><span class="level-item">2</span><span class="level-item">Code Block</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Examples-1"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">Examples</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Backtick-Code-Block"><span class="level-left"><span class="level-item">3</span><span class="level-item">Backtick Code Block</span></span></a></li><li><a class="level is-mobile" href="#Pull-Quote"><span class="level-left"><span class="level-item">4</span><span class="level-item">Pull Quote</span></span></a></li><li><a class="level is-mobile" href="#jsFiddle"><span class="level-left"><span class="level-item">5</span><span class="level-item">jsFiddle</span></span></a></li><li><a class="level is-mobile" href="#Gist"><span class="level-left"><span class="level-item">6</span><span class="level-item">Gist</span></span></a></li><li><a class="level is-mobile" href="#iframe"><span class="level-left"><span class="level-item">7</span><span class="level-item">iframe</span></span></a></li><li><a class="level is-mobile" href="#Image"><span class="level-left"><span class="level-item">8</span><span class="level-item">Image</span></span></a></li><li><a class="level is-mobile" href="#Link"><span class="level-left"><span class="level-item">9</span><span class="level-item">Link</span></span></a></li><li><a class="level is-mobile" href="#Include-Code"><span class="level-left"><span class="level-item">10</span><span class="level-item">Include Code</span></span></a></li><li><a class="level is-mobile" href="#YouTube"><span class="level-left"><span class="level-item">11</span><span class="level-item">YouTube</span></span></a></li><li><a class="level is-mobile" href="#Vimeo"><span class="level-left"><span class="level-item">12</span><span class="level-item">Vimeo</span></span></a></li><li><a class="level is-mobile" href="#Include-Posts"><span class="level-left"><span class="level-item">13</span><span class="level-item">Include Posts</span></span></a></li><li><a class="level is-mobile" href="#Include-Assets"><span class="level-left"><span class="level-item">14</span><span class="level-item">Include Assets</span></span></a></li><li><a class="level is-mobile" href="#Raw"><span class="level-left"><span class="level-item">15</span><span class="level-item">Raw</span></span></a></li><li><a class="level is-mobile" href="#Post-Excerpt"><span class="level-left"><span class="level-item">16</span><span class="level-item">Post Excerpt</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/hexo-theme-icarus/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Configuration/"><span class="level-start"><span class="level-item">Configuration</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/"><span class="level-start"><span class="level-item">Plugins</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Analytics/"><span class="level-start"><span class="level-item">Analytics</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Comment/"><span class="level-start"><span class="level-item">Comment</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Donation/"><span class="level-start"><span class="level-item">Donation</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Other/"><span class="level-start"><span class="level-item">Other</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Search/"><span class="level-start"><span class="level-item">Search</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Share/"><span class="level-start"><span class="level-item">Share</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Widgets/"><span class="level-start"><span class="level-item">Widgets</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Demo/"><span class="tag">Demo</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Getting-Started/"><span class="tag">Getting Started</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus-User-Guide/"><span class="tag">Icarus User Guide</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/"><span class="tag">Icarus用户指南</span><span class="tag">12</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a><p class="is-size-7"><span>&copy; 2024 PPOffice</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/hexo-theme-icarus/js/column.js"></script><script src="/hexo-theme-icarus/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/hexo-theme-icarus/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><!--!--><!--!--><script data-pjax src="/hexo-theme-icarus/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/hexo-theme-icarus/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/hexo-theme-icarus/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

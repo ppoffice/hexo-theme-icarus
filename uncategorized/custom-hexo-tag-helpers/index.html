@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Custom Hexo Tag Helpers - Icarus</title><link rel="manifest" href="/hexo-theme-icarus/manifest.json"><meta name="theme-color" content="#f7f7f7"><meta name="application-name" content="Icaurs - Hexo Theme"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="msapplication-TileColor" content="#f7f7f7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Icaurs - Hexo Theme"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Apart from the tag helpers supported by Hexo natively, as described in Hexo Built-in Tag Helpers, Icarus also offers several other useful tag helpers to customize the display of your content.   This a"><meta property="og:type" content="blog"><meta property="og:title" content="Custom Hexo Tag Helpers"><meta property="og:url" content="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/custom-hexo-tag-helpers/"><meta property="og:site_name" content="Icarus"><meta property="og:description" content="Apart from the tag helpers supported by Hexo natively, as described in Hexo Built-in Tag Helpers, Icarus also offers several other useful tag helpers to customize the display of your content.   This a"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/img/og_image.png"><meta property="article:published_time" content="2018-01-02T00:00:00.000Z"><meta property="article:author" content="PPOffice"><meta property="article:tag" content="Demo"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://ppoffice.github.io/hexo-theme-icarus/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ppoffice.github.io/hexo-theme-icarus/uncategorized/custom-hexo-tag-helpers/"},"headline":"Custom Hexo Tag Helpers","image":["http://ppoffice.github.io/hexo-theme-icarus/img/og_image.png"],"datePublished":"2018-01-02T00:00:00.000Z","author":{"@type":"Person","name":"PPOffice"},"publisher":{"@type":"Organization","name":"Icarus","logo":{"@type":"ImageObject","url":"http://ppoffice.github.io/img/logo.svg"}},"description":"Apart from the tag helpers supported by Hexo natively, as described in Hexo Built-in Tag Helpers, Icarus also offers several other useful tag helpers to customize the display of your content.   This a"}</script><link rel="canonical" href="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/custom-hexo-tag-helpers/"><link rel="icon" href="/hexo-theme-icarus/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/hexo-theme-icarus/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-72437521-5" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-72437521-5');</script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.not-gallery-item { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .not-gallery-item > span { position: relative; z-index: 10; }  .not-gallery-item img, .not-gallery-item .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .not-gallery-item img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .not-gallery-item-fallback { color: inherit; } .not-gallery-item-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/hexo-theme-icarus/atom.xml" title="Icarus" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/hexo-theme-icarus/">Home</a><a class="navbar-item" href="/hexo-theme-icarus/archives">Archives</a><a class="navbar-item" href="/hexo-theme-icarus/categories">Categories</a><a class="navbar-item" href="/hexo-theme-icarus/tags">Tags</a><a class="navbar-item" href="/hexo-theme-icarus/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-01-02T00:00:00.000Z" title="1/2/2018, 12:00:00 AM">2018-01-02</time></span><span class="level-item">10 minutes read (About 1451 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Custom Hexo Tag Helpers</h1><div class="content"><p>Apart from the tag helpers supported by Hexo natively, as described in <a href="/hexo-theme-icarus/uncategorized/hexo-built-in-tag-helpers/" title="Hexo Built-in Tag Helpers">Hexo Built-in Tag Helpers</a>,
+Icarus also offers several other useful tag helpers to customize the display of your content.</p>
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-asia mr-2"></i>This article is also available in 
+<a href="/hexo-theme-icarus/uncategorized/%E8%87%AA%E5%AE%9A%E4%B9%89hexo%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/">简体中文</a>.
+</div>
+</article>
+
+<span id="more"></span>
+
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>The following tag helpers are provided by
+<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
+Please refer to it for a complete list of supported helpers and their configuration details.
+</div>
+</article>
+
+<style>
+.example-tab-container {
+  margin: 0 0 20px 0;
+  padding: 10px 20px 20px 20px;
+  border-radius: 6px;
+  box-shadow: 0 0.5em 0.75em -0.125em rgba(10,10,10,0.1), 0 0px 0 1px rgba(10,10,10,0.02);
+}
+</style>
+
+<h2 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h2><p>Message blocks are a colorful way to emphasize part of text in your post.
+Its syntax is defined as follows:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% message color:&lt;color&gt; size:&lt;size&gt; icon:&lt;icon&gt; title:&lt;title&gt; %}</span><br><span class="line">    &lt;content&gt;</span><br><span class="line">{% endmessage %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="color"><a href="#color" class="headerlink" title="color"></a>color</h3><p>The color of message block.
+It is optional.
+Available values and their examples are:</p>
+<article class="message">
+        <div class="message-header"><p>default</p>
+</div>
+        <div class="message-body">
+            <p>A message block when <code>color</code> is not specified.</p>
+
+        </div>
+    </article>
+
+<article class="message is-dark">
+        <div class="message-header"><p>dark</p>
+</div>
+        <div class="message-body">
+            <p>A <code>dark</code> message block.</p>
+
+        </div>
+    </article>
+
+<article class="message is-primary">
+        <div class="message-header"><p>primary</p>
+</div>
+        <div class="message-body">
+            <p>A <code>primary</code> message block.</p>
+
+        </div>
+    </article>
+
+<article class="message is-info">
+        <div class="message-header"><p>info</p>
+</div>
+        <div class="message-body">
+            <p>A <code>info</code> message block.</p>
+
+        </div>
+    </article>
+
+<article class="message is-success">
+        <div class="message-header"><p>success</p>
+</div>
+        <div class="message-body">
+            <p>A <code>success</code> message block.</p>
+
+        </div>
+    </article>
+
+<article class="message is-warning">
+        <div class="message-header"><p>warning</p>
+</div>
+        <div class="message-body">
+            <p>A <code>warning</code> message block.</p>
+
+        </div>
+    </article>
+
+<article class="message is-danger">
+        <div class="message-header"><p>danger</p>
+</div>
+        <div class="message-body">
+            <p>A <code>danger</code> message block.</p>
+
+        </div>
+    </article>
+
+<h3 id="size"><a href="#size" class="headerlink" title="size"></a>size</h3><p>The size of message block.
+It is optional.
+Available values and their examples are:</p>
+<article class="message is-small">
+        <div class="message-header"><p>small</p>
+</div>
+        <div class="message-body">
+            <p>A <code>small</code> message block.</p>
+
+        </div>
+    </article>
+
+<article class="message">
+        <div class="message-header"><p>default</p>
+</div>
+        <div class="message-body">
+            <p>A message block when <code>size</code> is not specified.</p>
+
+        </div>
+    </article>
+
+<article class="message is-medium">
+        <div class="message-header"><p>medium</p>
+</div>
+        <div class="message-body">
+            <p>A <code>medium</code> message block.</p>
+
+        </div>
+    </article>
+
+<article class="message is-large">
+        <div class="message-header"><p>large</p>
+</div>
+        <div class="message-body">
+            <p>A <code>large</code> message block.</p>
+
+        </div>
+    </article>
+
+<h3 id="icon"><a href="#icon" class="headerlink" title="icon"></a>icon</h3><p>The icon shown in the message block header.
+It is optional.
+The value should be valid FontAwesome icon class name.
+If the icon class name contains space(s), this option and its value should be wrapped with quotes.</p>
+<article class="message">
+        <div class="message-header"><p><i class="fa-brands fa-github mr-2"></i>Message block with a GitHub icon</p>
+</div>
+        <div class="message-body">
+            <p>A message with <code>"icon:fa-brands fa-github"</code> as icon.</p>
+
+        </div>
+    </article>
+
+<article class="message is-success">
+        <div class="message-header"><p><i class="fa-brands fa-node-js mr-2"></i>Message block with a Node.js icon</p>
+</div>
+        <div class="message-body">
+            <p>A message with <code>"icon:fa-brands fa-node-js"</code> as icon.</p>
+
+        </div>
+    </article>
+
+<article class="message is-danger">
+        <div class="message-header"><p><i class="fa-brands fa-npm mr-2"></i>Message block with an NPM icon</p>
+</div>
+        <div class="message-body">
+            <p>A message with <code>"icon:fa-brands fa-npm"</code> as icon.</p>
+
+        </div>
+    </article>
+
+<h3 id="title"><a href="#title" class="headerlink" title="title"></a>title</h3><p>Title of the message block.
+It is optional.
+If the title contains space(s), this option and its value should be wrapped with quotes.</p>
+<article class="message">
+        <div class="message-header"><p>Message block with title</p>
+</div>
+        <div class="message-body">
+            <p>A message block with a title (<code>"title:Message block with title"</code>).</p>
+
+        </div>
+    </article>
+
+<article class="message">
+        
+        <div class="message-body">
+            <p>A message block without a title.</p>
+
+        </div>
+    </article>
+
+<article class="message is-dark">
+        
+        <div class="message-body">
+            <p>A message block without a title.</p>
+
+        </div>
+    </article>
+
+<article class="message is-primary">
+        
+        <div class="message-body">
+            <p>A message block without a title.</p>
+
+        </div>
+    </article>
+
+<article class="message is-info">
+        
+        <div class="message-body">
+            <p>A message block without a title.</p>
+
+        </div>
+    </article>
+
+<article class="message is-success">
+        
+        <div class="message-body">
+            <p>A message block without a title.</p>
+
+        </div>
+    </article>
+
+<article class="message is-warning">
+        
+        <div class="message-body">
+            <p>A message block without a title.</p>
+
+        </div>
+    </article>
+
+<article class="message is-danger">
+        
+        <div class="message-body">
+            <p>A message block without a title.</p>
+
+        </div>
+    </article>
+
+<h2 id="Tabs"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</h2><p>The tabs tag helper is a powerful tool to display parallel content.
+Only content in the active tab can be displayed to the user at a time.
+Its syntax is defined as follows:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">{% tabs size:&lt;size&gt; align:&lt;align&gt; style:&lt;style&gt; %}</span><br><span class="line">&lt;!-- tab id:&lt;tab_id&gt; icon:&lt;icon&gt; title:&lt;tab_title&gt; active --&gt;</span><br><span class="line">&lt;content&gt;</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab id:&lt;tab_id&gt; icon:&lt;icon&gt; title:&lt;tab_title&gt; --&gt;</span><br><span class="line">&lt;content&gt;</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">...</span><br><span class="line">{% endtabs %}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Tab-Container"><a href="#Tab-Container" class="headerlink" title="Tab Container"></a>Tab Container</h3><p>A tab container has the following options:</p>
+<h4 id="size-1"><a href="#size-1" class="headerlink" title="size"></a>size</h4><p>Size of the tabs.
+It is optional.
+Available values and their examples are:</p>
+<div class="example-tab-container">
+<div class="tabs my-3 is-small">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_size_small_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_size_small_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_size_small_1" class="tab-content">
+          <p>This is tab 1 of a <code>small</code> tab container.</p>
+
+      </div><div id="tab_size_small_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>small</code> tab container.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_size_default_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_size_default_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_size_default_1" class="tab-content">
+          <p>This is tab 1 of a tab container when <code>size</code> is not specified.</p>
+
+      </div><div id="tab_size_default_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a tab container when <code>size</code> is not specified.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-medium">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_size_medium_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_size_medium_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_size_medium_1" class="tab-content">
+          <p>This is tab 1 of a <code>medium</code> tab container.</p>
+
+      </div><div id="tab_size_medium_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>medium</code> tab container.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-large">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_size_large_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_size_large_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_size_large_1" class="tab-content">
+          <p>This is tab 1 of a <code>large</code> tab container.</p>
+
+      </div><div id="tab_size_large_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>large</code> tab container.</p>
+
+      </div>
+</div>
+
+<h4 id="align"><a href="#align" class="headerlink" title="align"></a>align</h4><p>Alignment of the tab buttons.
+It is optional.
+Available values and their examples are:</p>
+<div class="example-tab-container">
+<div class="tabs my-3">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_align_default_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_align_default_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_align_default_1" class="tab-content">
+          <p>This is tab 1 of a tab container when <code>align</code> is not specified.</p>
+
+      </div><div id="tab_align_default_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a tab container when <code>align</code> is not specified.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-centered">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_align_centered_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_align_centered_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_align_centered_1" class="tab-content">
+          <p>This is tab 1 of a <code>centered</code> tab container.</p>
+
+      </div><div id="tab_align_centered_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>centered</code> tab container.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-right">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_align_right_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_align_right_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_align_right_1" class="tab-content">
+          <p>This is tab 1 of a <code>right</code> tab container.</p>
+
+      </div><div id="tab_align_right_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>right</code> tab container.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_align_fullwidth_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_align_fullwidth_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_align_fullwidth_1" class="tab-content">
+          <p>This is tab 1 of a <code>fullwidth</code> tab container.</p>
+
+      </div><div id="tab_align_fullwidth_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>fullwidth</code> tab container.</p>
+
+      </div>
+</div>
+
+<h4 id="style"><a href="#style" class="headerlink" title="style"></a>style</h4><p>Style of the tab buttons.
+It is optional.
+Additionally, you can combine the style with <code>fullwidth</code> alignment.
+Available values and their examples are:</p>
+<div class="example-tab-container">
+<div class="tabs my-3 is-boxed">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_boxed_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_boxed_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_boxed_1" class="tab-content">
+          <p>This is tab 1 of a <code>boxed</code> tab container.</p>
+
+      </div><div id="tab_style_boxed_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>boxed</code> tab container.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-toggle">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_toggle_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_toggle_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_toggle_1" class="tab-content">
+          <p>This is tab 1 of a <code>toggle</code> tab container.</p>
+
+      </div><div id="tab_style_toggle_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>toggle</code> tab container.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-toggle is-toggle-rounded">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_toggle_rounded_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_toggle_rounded_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_toggle_rounded_1" class="tab-content">
+          <p>This is tab 1 of a <code>toggle-rounded</code> tab container.</p>
+
+      </div><div id="tab_style_toggle_rounded_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>toggle-rounded</code> tab container.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth is-boxed">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_boxed_fullwidth_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_boxed_fullwidth_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_boxed_fullwidth_1" class="tab-content">
+          <p>This is tab 1 of a <code>fullwidth</code> <code>boxed</code> tab container.</p>
+
+      </div><div id="tab_style_boxed_fullwidth_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>fullwidth</code> <code>boxed</code> tab container.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth is-toggle">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_toggle_fullwidth_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_toggle_fullwidth_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_toggle_fullwidth_1" class="tab-content">
+          <p>This is tab 1 of a <code>fullwidth</code> <code>toggle</code> tab container.</p>
+
+      </div><div id="tab_style_toggle_fullwidth_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>fullwidth</code> <code>toggle</code> tab container.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth is-toggle is-toggle-rounded">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_style_toggle_rounded_fullwidth_1">
+              <p>Tab 1</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_style_toggle_rounded_fullwidth_2">
+              <p>Tab 2</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_style_toggle_rounded_fullwidth_1" class="tab-content">
+          <p>This is tab 1 of a <code>fullwidth</code> <code>toggle-rounded</code> tab container.</p>
+
+      </div><div id="tab_style_toggle_rounded_fullwidth_2" class="tab-content is-hidden">
+          <p>This is tab 2 of a <code>fullwidth</code> <code>toggle-rounded</code> tab container.</p>
+
+      </div>
+</div>
+
+<h3 id="Tab"><a href="#Tab" class="headerlink" title="Tab"></a>Tab</h3><p>A tab has the following options:</p>
+<h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>The unique identifier of the tab element.
+It is required.
+An ID of a tab should be unique across the entire page so that Icarus can location the right tab
+content to show or hide.</p>
+<h4 id="active"><a href="#active" class="headerlink" title="active"></a>active</h4><p>Whether the current tab element is shown.
+It is optional.
+Only one tab can be active at a time for a tab group.</p>
+<h4 id="icon-1"><a href="#icon-1" class="headerlink" title="icon"></a>icon</h4><p>The icon shown in the tab button.
+It is optional.
+The value should be valid FontAwesome icon class name.
+If the icon class name contains space(s), this option and its value should be wrapped with quotes.</p>
+<div class="example-tab-container">
+<div class="tabs my-3">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_icon_1">
+              <span class="icon is-small ml-0">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </span>GitHub
+          </a>
+      </li><li>
+          <a href="#tab_icon_2">
+              <span class="icon is-small ml-0">
+                <i class="fa-brands fa-node-js" aria-hidden="true"></i>
+            </span>Node.js
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_icon_1" class="tab-content">
+          <p>This tab has an icon of <code>"icon:fa-brands fa-github"</code>.</p>
+
+      </div><div id="tab_icon_2" class="tab-content is-hidden">
+          <p>This tab has an icon of <code>"icon:fa-brands fa-node-js"</code>.</p>
+
+      </div>
+</div>
+
+<div class="example-tab-container">
+<div class="tabs my-3 is-fullwidth is-toggle is-toggle-rounded">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_boxed_icon_1">
+              <span class="icon is-small ml-0">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </span>GitHub
+          </a>
+      </li><li>
+          <a href="#tab_boxed_icon_2">
+              <span class="icon is-small ml-0">
+                <i class="fa-brands fa-node-js" aria-hidden="true"></i>
+            </span>Node.js
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_boxed_icon_1" class="tab-content">
+          <p>This tab has an icon of <code>"icon:fa-brands fa-github"</code>.</p>
+
+      </div><div id="tab_boxed_icon_2" class="tab-content is-hidden">
+          <p>This tab has an icon of <code>"icon:fa-brands fa-node-js"</code>.</p>
+
+      </div>
+</div>
+
+<h4 id="title-1"><a href="#title-1" class="headerlink" title="title"></a>title</h4><p>Title of the tab button.
+It is required.
+If the title contains space(s), this option and its value should be wrapped with quotes.</p>
+<div class="example-tab-container">
+<div class="tabs my-3 is-toggle">
+        <ul class="mx-0 my-0">
+            <li class="is-active">
+          <a href="#tab_title_boxed_1">
+              <p>Tab with title</p>
+
+          </a>
+      </li><li>
+          <a href="#tab_title_boxed_2">
+              <p>Tab also with title</p>
+
+          </a>
+      </li>
+        </ul>
+    </div>
+    <div id="tab_title_boxed_1" class="tab-content">
+          <p>This tab has a title (<code>"title:Tab with title"</code>).</p>
+
+      </div><div id="tab_title_boxed_2" class="tab-content is-hidden">
+          <p>This tab also has a title (<code>"title:Tab also with title"</code>).</p>
+
+      </div>
+</div>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Custom Hexo Tag Helpers</p><p><a href="http://ppoffice.github.io/hexo-theme-icarus/uncategorized/custom-hexo-tag-helpers/">http://ppoffice.github.io/hexo-theme-icarus/uncategorized/custom-hexo-tag-helpers/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>PPOffice</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-01-02</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/hexo-theme-icarus/tags/Demo/">Demo</a></div><div class="sharethis-inline-share-buttons"></div><script src="//platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/hexo-theme-icarus/uncategorized/upgrade-guide/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Upgrade Guide</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/hexo-theme-icarus/uncategorized/%E8%87%AA%E5%AE%9A%E4%B9%89hexo%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/"><span class="level-item">自定义Hexo标签插件</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/hexo-theme-icarus/img/avatar.png" alt="PPOffice"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">PPOffice</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Solar System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/hexo-theme-icarus/archives"><p class="title">43</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/hexo-theme-icarus/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/hexo-theme-icarus/tags"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/hexo-theme-icarus/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Message"><span class="level-left"><span class="level-item">1</span><span class="level-item">Message</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#color"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">color</span></span></a></li><li><a class="level is-mobile" href="#size"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">size</span></span></a></li><li><a class="level is-mobile" href="#icon"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">icon</span></span></a></li><li><a class="level is-mobile" href="#title"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">title</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Tabs"><span class="level-left"><span class="level-item">2</span><span class="level-item">Tabs</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Tab-Container"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">Tab Container</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#size-1"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">size</span></span></a></li><li><a class="level is-mobile" href="#align"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">align</span></span></a></li><li><a class="level is-mobile" href="#style"><span class="level-left"><span class="level-item">2.1.3</span><span class="level-item">style</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Tab"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">Tab</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#id"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">id</span></span></a></li><li><a class="level is-mobile" href="#active"><span class="level-left"><span class="level-item">2.2.2</span><span class="level-item">active</span></span></a></li><li><a class="level is-mobile" href="#icon-1"><span class="level-left"><span class="level-item">2.2.3</span><span class="level-item">icon</span></span></a></li><li><a class="level is-mobile" href="#title-1"><span class="level-left"><span class="level-item">2.2.4</span><span class="level-item">title</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/hexo-theme-icarus/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Configuration/"><span class="level-start"><span class="level-item">Configuration</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/"><span class="level-start"><span class="level-item">Plugins</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Analytics/"><span class="level-start"><span class="level-item">Analytics</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Comment/"><span class="level-start"><span class="level-item">Comment</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Donation/"><span class="level-start"><span class="level-item">Donation</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Other/"><span class="level-start"><span class="level-item">Other</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Search/"><span class="level-start"><span class="level-item">Search</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Share/"><span class="level-start"><span class="level-item">Share</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Widgets/"><span class="level-start"><span class="level-item">Widgets</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Demo/"><span class="tag">Demo</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Getting-Started/"><span class="tag">Getting Started</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus-User-Guide/"><span class="tag">Icarus User Guide</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/"><span class="tag">Icarus用户指南</span><span class="tag">12</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a><p class="is-size-7"><span>&copy; 2024 PPOffice</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/hexo-theme-icarus/js/column.js"></script><script src="/hexo-theme-icarus/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/hexo-theme-icarus/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><!--!--><!--!--><script data-pjax src="/hexo-theme-icarus/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/hexo-theme-icarus/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/hexo-theme-icarus/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

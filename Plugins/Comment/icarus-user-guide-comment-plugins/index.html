@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Icarus User Guide - Comment Plugins - Icarus</title><link rel="manifest" href="/hexo-theme-icarus/manifest.json"><meta name="theme-color" content="#f7f7f7"><meta name="application-name" content="Icaurs - Hexo Theme"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="msapplication-TileColor" content="#f7f7f7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Icaurs - Hexo Theme"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="This article covers comment plugins supported by Icarus 5.   This article is also available in  简体中文."><meta property="og:type" content="blog"><meta property="og:title" content="Icarus User Guide - Comment Plugins"><meta property="og:url" content="http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/icarus-user-guide-comment-plugins/"><meta property="og:site_name" content="Icarus"><meta property="og:description" content="This article covers comment plugins supported by Icarus 5.   This article is also available in  简体中文."><meta property="og:locale" content="en_US"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-get-started.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-create-site.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-select-platform.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-service-homepage.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-get-shortname.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqusjs-api-applications.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqusjs-register-application.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqusjs-application-settings.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqusjs-api-key.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/giscus-github-app.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/giscus-select-user.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/giscus-select-repo.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/giscus-get-code.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/gitalk-register-application.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/gitalk-application-settings.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/livere-select-plan.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/livere-configure-service.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/livere-get-code.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/utterances-github-app.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/utterances-select-user.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/utterances-select-repo.png"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/utterances-get-code.png"><meta property="article:published_time" content="2017-01-31T00:00:00.000Z"><meta property="article:author" content="PPOffice"><meta property="article:tag" content="Icarus User Guide"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-get-started.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/icarus-user-guide-comment-plugins/"},"headline":"Icarus User Guide - Comment Plugins","image":["http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-get-started.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-create-site.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-select-platform.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-service-homepage.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqus-get-shortname.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqusjs-api-applications.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqusjs-register-application.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqusjs-application-settings.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/disqusjs-api-key.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/giscus-github-app.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/giscus-select-user.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/giscus-select-repo.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/giscus-get-code.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/gitalk-register-application.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/gitalk-application-settings.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/livere-select-plan.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/livere-configure-service.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/livere-get-code.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/utterances-github-app.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/utterances-select-user.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/utterances-select-repo.png","http://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/utterances-get-code.png"],"datePublished":"2017-01-31T00:00:00.000Z","author":{"@type":"Person","name":"PPOffice"},"publisher":{"@type":"Organization","name":"Icarus","logo":{"@type":"ImageObject","url":"http://ppoffice.github.io/img/logo.svg"}},"description":"This article covers comment plugins supported by Icarus 5.   This article is also available in  简体中文."}</script><link rel="canonical" href="http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/icarus-user-guide-comment-plugins/"><link rel="icon" href="/hexo-theme-icarus/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/hexo-theme-icarus/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-72437521-5" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-72437521-5');</script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.not-gallery-item { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .not-gallery-item > span { position: relative; z-index: 10; }  .not-gallery-item img, .not-gallery-item .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .not-gallery-item img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .not-gallery-item-fallback { color: inherit; } .not-gallery-item-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/hexo-theme-icarus/atom.xml" title="Icarus" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/hexo-theme-icarus/">Home</a><a class="navbar-item" href="/hexo-theme-icarus/archives">Archives</a><a class="navbar-item" href="/hexo-theme-icarus/categories">Categories</a><a class="navbar-item" href="/hexo-theme-icarus/tags">Tags</a><a class="navbar-item" href="/hexo-theme-icarus/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2017-01-31T00:00:00.000Z" title="1/31/2017, 12:00:00 AM">2017-01-31</time></span><span class="level-item"><a class="link-muted" href="/hexo-theme-icarus/categories/Plugins/">Plugins</a><span> / </span><a class="link-muted" href="/hexo-theme-icarus/categories/Plugins/Comment/">Comment</a></span><span class="level-item">18 minutes read (About 2666 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Icarus User Guide - Comment Plugins</h1><div class="content"><p>This article covers comment plugins supported by Icarus 5.</p>
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-asia mr-2"></i>This article is also available in 
+<a href="/hexo-theme-icarus/Plugins/Comment/icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-%E7%94%A8%E6%88%B7%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/">简体中文</a>.
+</div>
+</article>
+
+<span id="more"></span>
+
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>The following comment plugins are provided by
+<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
+Please refer to it for a complete list of supported plugins and their configuration details.
+</div>
+</article>
+
+<h2 id="Changyan"><a href="#Changyan" class="headerlink" title="Changyan"></a>Changyan</h2><p><strong>Installation Guide</strong></p>
+<ol>
+<li><p>First, log into <a target="_blank" rel="noopener" href="http://changyan.kuaizhan.com/">Changyan</a>. Get the comment HTML code by following
+<a target="_blank" rel="noopener" href="http://changyan.kuaizhan.com/static/help/index.html">this article</a>.</p>
+</li>
+<li><p>Copy the value of <code>appid</code> and <code>conf</code> to the corresponding settings in the theme configurations.
+For example, the following HTML code</p>
+ <figure class="highlight html"><figcaption><span>Changyan Installation Code &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--PC版--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"SOHUCS"</span> <span class="attr">sid</span>=<span class="string">"..."</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"https://cy-cdn.kuaizhan.com/upload/changyan.js"</span> &gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">window</span>.<span class="property">changyan</span>.<span class="property">api</span>.<span class="title function_">config</span>({</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">appid</span>: <span class="string">'????appid????'</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">conf</span>: <span class="string">'prod_xxxxxxxxxxxxxxxxxxxxxxx'</span></span></span><br><span class="line"><span class="language-javascript">});</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p> maps to the following theme configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">changyan</span></span><br><span class="line">    <span class="attr">app_id:</span> <span class="string">????appid????</span></span><br><span class="line">    <span class="attr">conf:</span> <span class="string">prod_xxxxxxxxxxxxxxxxxxxxxxx</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="Disqus"><a href="#Disqus" class="headerlink" title="Disqus"></a>Disqus</h2><div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="">Preview</a>
+</div>
+
+<ol>
+<li><p>First, log into <a target="_blank" rel="noopener" href="https://disqus.com/">Disqus</a>. Click the “GET STARTED” button on the 
+front page or visit <a target="_blank" rel="noopener" href="https://disqus.com/profile/signup/intent/">here</a> and click “I want to install Disqus 
+on my site” to create a new Disqus comment service.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/disqus-get-started.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Get Started - Disqus" alt="Get Started - Disqus">
+<br>
+</li>
+<li><p>On the create new site page, fill in the “Website Name” and “Category”, then click the “Create Site” button.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/disqus-create-site.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Create Site - Disqus" alt="Create Site - Disqus">
+<br>
+</li>
+<li><p>Select a subscription plan if you want to.
+You can also skip this by clicking “Install Disqus” on the left.</p>
+</li>
+<li><p>Next, choose the platform where Disqus is to be installed.
+Select the “I don’t see my platform listed, install manually with Universal Code” on the bottom of the page.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/disqus-select-platform.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Select Platform - Disqus" alt="Select Platform - Disqus">
+<br>
+</li>
+<li><p>Click the “Configuration” button on the bottom of the page to skip the “Universal Code install instructions”.</p>
+</li>
+<li><p>Make customizations to your Disqus service on the “Configure Disqus” page.
+Then, click the “Complete Setup” and “Dismiss Setup” buttons to finish the setup.</p>
+</li>
+<li><p>Next, click the “Edit Settings” button on the top right corner of the comment service home page.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/disqus-service-homepage.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Comment Service Homepage - Disqus" alt="Comment Service Homepage - Disqus">
+<br>
+</li>
+<li><p>Find the value of “Shortname” on the “Configure Disqus for Your Site” page, and copy it to the comment 
+settings in the theme configurations.
+For example, the “Shortname” in the following screenshot is <code>my-hexo-blog-1</code>:</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/disqus-get-shortname.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Configure Disqus - Disqus" alt="Configure Disqus - Disqus">
+<br>
+
+<p>which maps to the following theme configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">disqus</span></span><br><span class="line">    <span class="attr">shortname:</span> <span class="string">my-hexo-blog-1</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>(Optional) You can add <code>disqusId</code> in the front-matter of the post as the unique Disqus ID.
+Thereby, you can change the location of the post in the future without losing all your comments:</p>
+ <figure class="highlight markdown"><figcaption><span>source/_post/some-post.md</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: My first post</span><br><span class="line">date: 2015-01-01 00:00:01</span><br><span class="line"><span class="section">disqusId: some-disqus-id</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"><span class="section"># Hello world</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="DisqusJS"><a href="#DisqusJS" class="headerlink" title="DisqusJS"></a>DisqusJS</h2><p>DisqusJS is an alternative for Disqus in areas where Disqus is restricted.
+You can refer to <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">https://github.com/SukkaW/DisqusJS</a>
+for the detailed configuration process of DisqusJS.</p>
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="">Preview</a>
+</div>
+
+<ol>
+<li><p>Log into Disqus and visit <a target="_blank" rel="noopener" href="https://disqus.com/api/applications/">here</a>.
+Click the “Register new application” button or “registering an application” to create a new Disqus application.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/disqusjs-api-applications.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Applications - Disqus" alt="Applications - Disqus">
+<br>
+</li>
+<li><p>Fill in the “Label”, “Description”, and “Website” on the next page.
+Then, click “Register my application”.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/disqusjs-register-application.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Register Application - Disqus" alt="Register Application - Disqus">
+<br>
+</li>
+<li><p>After creating the application, go to the “Settings” tab of the application, fill in the domain name 
+of your Hexo site, e.g., ppoffice.github.io, in the “Domains” field.
+Then, click the “Save Changes” button on the bottom of the page.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/disqusjs-application-settings.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Application Settings - Disqus" alt="Application Settings - Disqus">
+<br>
+</li>
+<li><p>Click the “Details” link on the current page to go to the home page of the current application.
+Copy the “API Key” in the “OAuth Settings” section to the corresponding setting in the theme
+configurations.</p>
+<p>For example, the “API Key” in the following screenshot:</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/disqusjs-api-key.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Application Details - Disqus" alt="Application Details - Disqus">
+<br>
+
+<p>maps to the following theme configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">disqusjs</span></span><br><span class="line">    <span class="attr">shortname:</span> <span class="string">my-hexo-blog-1</span></span><br><span class="line">    <span class="attr">api_key:</span> <span class="string">xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></span><br><span class="line">    <span class="attr">api:</span> <span class="string">https://disqus.skk.moe/disqus/</span>     <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">admin:</span> <span class="string">ppoffice</span>                         <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">admin_label:</span> <span class="string">Admin</span>                      <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">nesting:</span> <span class="number">4</span>                              <span class="comment"># Optional</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>To learn more about DisqusJS and its configuration, visit 
+<a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">SukkaW/DisqusJS documentation</a> or 
+<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno/blob/0.2.1/src/schema/comment/disqusjs.json">hexo-component-inferno</a>.</p>
+</li>
+</ol>
+<h2 id="Facebook"><a href="#Facebook" class="headerlink" title="Facebook"></a>Facebook</h2><article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>Some AD blockers may block this comment plugin. Use it with caution. 
+</div>
+</article>
+
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="">Preview</a>
+</div>
+
+<ol>
+<li><p>To enable Facebook comment, set the <code>type</code> of <code>comment</code> to <code>facebook</code>:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">facebook</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="Giscus"><a href="#Giscus" class="headerlink" title="Giscus"></a>Giscus</h2><p>A comments system powered by <a target="_blank" rel="noopener" href="https://docs.github.com/en/discussions">GitHub Discussions</a>.</p>
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="">Preview</a>
+</div>
+
+<ol>
+<li><p>Prepare a public GitHub repository.</p>
+</li>
+<li><p>Go to <a target="_blank" rel="noopener" href="https://github.com/apps/giscus">GitHub Apps - giscus</a> and click “Install”.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/giscus-github-app.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="GitHub App Page - giscus" alt="GitHub App Page - giscus">
+<br>
+</li>
+<li><p>(Optional) Select the user to install giscus to on the next page if you also have organizations under your account.</p>
+<!-- <img src="/hexo-theme-icarus/gallery/screenshots/giscus-select-user.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Select User - giscus" alt="Select User - giscus"> -->
+<br>
+</li>
+<li><p>On the next page, you can choose to install giscus to “All repositories” or “Only select repositories”.
+Then, click the “Install” button.</p>
+<!-- <img src="/hexo-theme-icarus/gallery/screenshots/giscus-select-repo.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Select Repository - giscus" alt="Select Repository - giscus"> -->
+<br>
+</li>
+<li><p>You will be redirected to the <a target="_blank" rel="noopener" href="https://giscus.app/">giscus official site</a> if the installation completes.
+You can review each configuration option and customize your giscus setup.</p>
+</li>
+<li><p>When finished, move to the “Enable giscus” and copy the attribute values from the giscus HTML code
+to the corresponding settings in your theme configurations.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/giscus-get-code.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Get Code - giscus" alt="Get Code - giscus">
+<br>
+
+<p>For example, the giscus code below:</p>
+<figure class="highlight html"><figcaption><span>giscus Installation Code &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://giscus.app/client.js"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-repo</span>=<span class="string">"usr/repo"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-repo-id</span>=<span class="string">"X_xxxxxxxxxx"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-category</span>=<span class="string">"Announcements"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-category-id</span>=<span class="string">"XXX_xxxxxxxxxxxxxxxx"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-mapping</span>=<span class="string">"pathname"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-strict</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-reactions-enabled</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-emit-metadata</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-input-position</span>=<span class="string">"top"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-theme</span>=<span class="string">"noborder_light"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-lang</span>=<span class="string">"en"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-loading</span>=<span class="string">"lazy"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">async</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>maps to the following theme configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">giscus</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">Your-GitHub-Username/Your-Public-Repo-Name</span></span><br><span class="line">    <span class="attr">issue_term:</span> <span class="string">pathname</span>        <span class="comment"># Required if issue_number is not set</span></span><br><span class="line">    <span class="attr">issue_number:</span> <span class="number">100</span>           <span class="comment"># Required if issue_term is not set. Every post can be mapped to a separate, manually-created GitHub issue.</span></span><br><span class="line">    <span class="attr">label:</span> <span class="string">some-issue-label</span>     <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">theme:</span> <span class="string">github-light</span>         <span class="comment"># Optional</span></span><br><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">giscus</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">usr/repo</span>                   <span class="comment"># Required</span></span><br><span class="line">    <span class="attr">repoId:</span> <span class="string">X_xxxxxxxxxx</span>             <span class="comment"># Required</span></span><br><span class="line">    <span class="attr">category:</span> <span class="string">Announcements</span>          <span class="comment"># Optional, default: Announcements</span></span><br><span class="line">    <span class="attr">categoryId:</span> <span class="string">XXX_xxxxxxxxxxxxxxxx</span> <span class="comment"># Required</span></span><br><span class="line">    <span class="attr">mapping:</span> <span class="string">pathname</span>                <span class="comment"># Optional, default: pathname</span></span><br><span class="line">    <span class="attr">strict:</span> <span class="literal">false</span>                    <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">reactionsEnabled:</span> <span class="literal">false</span>          <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">emitMetadata:</span> <span class="literal">false</span>              <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">inputPosition:</span> <span class="string">top</span>               <span class="comment"># Optional, default: top</span></span><br><span class="line">    <span class="attr">theme:</span> <span class="string">noborder_light</span>            <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">lang:</span> <span class="string">en</span>                         <span class="comment"># Optional, default: en</span></span><br><span class="line">    <span class="attr">lazy:</span> <span class="literal">true</span>                       <span class="comment"># Optional, default: false</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="Gitalk"><a href="#Gitalk" class="headerlink" title="Gitalk"></a>Gitalk</h2><div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="">Preview</a>
+</div>
+
+<ol>
+<li><p>Log into GitHub and <a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">click here</a> to register a new OAuth
+application.
+Fill in the “Application name”, “Homepage URL”, and “Application description”.
+Then, type in the root URL of your Hexo site in the “Authorization callback URL” field.
+Click the “Register application” button to go to the application details page.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/gitalk-register-application.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Register OAuth Application - GitHub" alt="Register OAuth Application - GitHub">
+<br>
+</li>
+<li><p>Copy the values of “Client ID” and “Client Secret” to the corresponding settings in the theme configurations.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/gitalk-application-settings.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="OAuth Application Settings - GitHub" alt="OAuth Application Settings - GitHub">
+<br>
+
+<p>For example, the following “Client ID” and “Client Secret”:</p>
+ <figure class="highlight plaintext"><figcaption><span>GitHub OAuth Application</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Client ID</span><br><span class="line">xxxxxxxxxxxxxxxxxxxx</span><br><span class="line">Client Secret</span><br><span class="line">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><br></pre></td></tr></tbody></table></figure>
+
+<p>maps the following Gitalk configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">gitalk</span></span><br><span class="line">    <span class="attr">client_id:</span> <span class="string">xxxxxxxxxxxxxxxxxxxx</span></span><br><span class="line">    <span class="attr">client_secret:</span> <span class="string">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">Some-of-Your-GitHub-Repo</span></span><br><span class="line">    <span class="attr">owner:</span> <span class="string">you_github_name</span></span><br><span class="line">    <span class="attr">admin:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">you_github_name</span></span><br><span class="line">    <span class="attr">per_page:</span> <span class="number">20</span>                    <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">distraction_free_mode:</span> <span class="literal">false</span>    <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">pager_direction:</span> <span class="string">last</span>           <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">create_issue_manually:</span> <span class="literal">false</span>    <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">proxy:</span>                          <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">flip_move_options:</span>              <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">enable_hotkey:</span> <span class="literal">true</span>             <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">language:</span> <span class="string">zh-CN</span>                 <span class="comment"># Optional</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>You can review the description and possible values of the above configuration at 
+<a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk">Gitalk documentation</a> or 
+<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno/blob/0.2.1/src/schema/comment/disqusjs.json">hexo-component-inferno</a>.</p>
+</li>
+</ol>
+<h2 id="Gitment"><a href="#Gitment" class="headerlink" title="Gitment"></a>Gitment</h2><article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>The maintenance of Gitment seems to be discontinued.
+You can choose Gitalk or utterances as an alternative GitHub Issue-based comment system.
+</div>
+</article>
+
+<p><strong>Installation Guide</strong></p>
+<ol>
+<li><p>Follow the steps in the Gitalk section to register a GitHub OAuth application.</p>
+</li>
+<li><p>Copy the values of “Client ID” and “Client Secret” to the corresponding settings in the theme configurations.</p>
+<p>Here is an example of the Gitment configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">gitment</span></span><br><span class="line">    <span class="attr">owner:</span> <span class="string">you_github_name</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">Some-of-Your-GitHub-Repo</span></span><br><span class="line">    <span class="attr">client_id:</span> <span class="string">xxxxxxxxxxxxxxxxxxxx</span></span><br><span class="line">    <span class="attr">client_secret:</span> <span class="string">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></span><br><span class="line">    <span class="attr">theme:</span> <span class="string">gitment.defaultTheme</span>     <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">per_page:</span> <span class="number">20</span>                    <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">max_comment_height:</span> <span class="number">250</span>         <span class="comment"># Optional</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>For more details on the above configuration, refer to 
+<a target="_blank" rel="noopener" href="https://github.com/imsun/gitment">Gitment documentation</a> or
+<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno/blob/0.2.1/src/schema/comment/gitment.json">hexo-component-inferno</a>.</p>
+</li>
+</ol>
+<h2 id="Isso"><a href="#Isso" class="headerlink" title="Isso"></a>Isso</h2><p>Isso is a valid choice if you wish to set up a self-hosted social comment system
+instead of relying on third-party ones.
+However, unlike the other services, Isso requires a web host for running the Isso server.</p>
+<p><strong>Installation Guide</strong></p>
+<ol>
+<li><p>Follow the <a target="_blank" rel="noopener" href="https://posativ.org/isso/docs/install/">Isso documentation</a> to install and run the Isso server.</p>
+</li>
+<li><p>Fill in the HTTP URL of Isso server to the corresponding setting in the theme configurations.
+For example, if your service URL is <code>https://posativ.org/isso/api/</code>, you will have the following 
+comment configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">isso</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">posativ.org/isso/api</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="LiveRe"><a href="#LiveRe" class="headerlink" title="LiveRe"></a>LiveRe</h2><article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>Some AD blockers may block this comment plugin. Use it with caution. 
+</div>
+</article>
+
+<p><strong>Installation Guide</strong></p>
+<ol>
+<li><p>First, log into <a target="_blank" rel="noopener" href="https://livere.com/">LiveRe</a>.
+Click “Install” on the navigation bar to go to the installation page.</p>
+</li>
+<li><p>Select the free “City” tier on the installation page and click the “Install Now” button.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/livere-select-plan.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Select Plan - LiveRe" alt="Select Plan - LiveRe">
+<br>
+</li>
+<li><p>Fill in the “Site URL”, “Name of website”, and “Choose site category” on the “Get LiveRe City code”
+page. Check “I have check the advertising terms…” and click the “Get code” button to be redirected to
+the LiveRe HTML code page.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/livere-configure-service.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Configure Service - LiveRe" alt="Configure Service - LiveRe">
+<br>
+</li>
+<li><p>Copy the value inside the quotes of <code>data-uid="..."</code> to the corresponding setting in the theme configurations.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/livere-get-code.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Get Code - LiveRe" alt="Get Code - LiveRe">
+<br>
+
+<p>For example, the LiveRe code below:</p>
+<figure class="highlight html"><figcaption><span>LiveRe Installation Code &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- LiveRe City install code --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"lv-container"</span> <span class="attr">data-id</span>=<span class="string">"city"</span> <span class="attr">data-uid</span>=<span class="string">"ABCD1234O0OxxxxXXXX000=="</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">   (<span class="keyword">function</span>(<span class="params">d, s</span>) {</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> j, e = d.<span class="title function_">getElementsByTagName</span>(s)[<span class="number">0</span>];</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="title class_">LivereTower</span> === <span class="string">'function'</span>) { <span class="keyword">return</span>; }</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      j = d.<span class="title function_">createElement</span>(s);</span></span><br><span class="line"><span class="language-javascript">      j.<span class="property">src</span> = <span class="string">'https://cdn-city.livere.com/js/embed.dist.js'</span>;</span></span><br><span class="line"><span class="language-javascript">      j.<span class="property">async</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      e.<span class="property">parentNode</span>.<span class="title function_">insertBefore</span>(j, e);</span></span><br><span class="line"><span class="language-javascript">   })(<span class="variable language_">document</span>, <span class="string">'script'</span>);</span></span><br><span class="line"><span class="language-javascript">   </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">noscript</span>&gt;</span> Please activate JavaScript for write a comment in LiveRe<span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- completed City install code --&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>maps to the following theme configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">livere</span></span><br><span class="line">    <span class="attr">uid:</span> <span class="string">ABCD1234O0OxxxxXXXX000==</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="Twikoo"><a href="#Twikoo" class="headerlink" title="Twikoo"></a>Twikoo</h2><p>Twikoo is a self-hosted comment system based on cloud functions.
+Unlike other third-party comment services, the Twikoo backend needs to be deployed to a cloud
+environment before being configured and used by Icarus.</p>
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="">Preview</a>
+</div>
+
+<ol>
+<li><p>Follow the <a target="_blank" rel="noopener" href="https://twikoo.js.org/en/">Twikoo documentation</a> to deploy the Twikoo cloud function
+to a cloud service provider of your choice.</p>
+</li>
+<li><p>Fill in the <code>env_id</code> of your deployment to the corresponding setting in the theme configurations.</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">twikoo</span></span><br><span class="line">    <span class="attr">env_id:</span> <span class="string">xxxxxxxx</span></span><br><span class="line">    <span class="attr">region:</span> <span class="string">ap-guangzhou</span>     <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">lang:</span> <span class="string">zh-CN</span>              <span class="comment"># Optional</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="utterances"><a href="#utterances" class="headerlink" title="utterances"></a>utterances</h2><div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="">Preview</a>
+</div>
+
+<ol>
+<li><p>Prepare a public GitHub repository.</p>
+</li>
+<li><p>Go to <a target="_blank" rel="noopener" href="https://github.com/apps/utterances">GitHub Apps - utterances</a> and click “Install”.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/utterances-github-app.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="GitHub App Page - utterances" alt="GitHub App Page - utterances">
+<br>
+</li>
+<li><p>(Optional) Select the user to install utterances to on the next page if you also have organizations under your account.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/utterances-select-user.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Select User - utterances" alt="Select User - utterances">
+<br>
+</li>
+<li><p>On the next page, you can choose to install utterances to “All repositories” or “Only select repositories”.
+Then, click the “Install” button.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/utterances-select-repo.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Select Repository - utterances" alt="Select Repository - utterances">
+<br>
+</li>
+<li><p>You will be redirected to the <a target="_blank" rel="noopener" href="https://utteranc.es/">utterances official site</a> if the installation completes.
+You can review each configuration option and customize your utterances setup.</p>
+</li>
+<li><p>When finished, move to the “Enable utterances” and copy the attribute values from the utterances HTML code
+to the corresponding settings in your theme configurations.</p>
+<img src="/hexo-theme-icarus/gallery/screenshots/utterances-get-code.png" class="box px-0 py-0 ml-auto mr-auto" width="360" title="Get Code - utterances" alt="Get Code - utterances">
+<br>
+
+<p>For example, the utterances code below:</p>
+<figure class="highlight html"><figcaption><span>utterances Installation Code &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://utteranc.es/client.js"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">repo</span>=<span class="string">"Your-GitHub-Username/Your-Public-Repo-Name"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">issue-term</span>=<span class="string">"pathname"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">theme</span>=<span class="string">"github-light"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">async</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>maps to the following theme configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">utterances</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">Your-GitHub-Username/Your-Public-Repo-Name</span></span><br><span class="line">    <span class="attr">issue_term:</span> <span class="string">pathname</span>        <span class="comment"># Required if issue_number is not set</span></span><br><span class="line">    <span class="attr">issue_number:</span> <span class="number">100</span>           <span class="comment"># Required if issue_term is not set. Every post can be mapped to a separate, manually-created GitHub issue.</span></span><br><span class="line">    <span class="attr">label:</span> <span class="string">some-issue-label</span>     <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">theme:</span> <span class="string">github-light</span>         <span class="comment"># Optional</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="Valine"><a href="#Valine" class="headerlink" title="Valine"></a>Valine</h2><div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="">Preview</a>
+</div>
+
+<br>
+
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>A vulnerability has been found in Valine that the
+comment service exposes IP addresses of all commenters (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" rel="noopener">xCss/Valine#336</a>). Please use alternative comment
+services until this issue has been fixed.
+</div>
+</article>
+
+<ol>
+<li><p>Create a LeanCloud application following the <a target="_blank" rel="noopener" href="https://valine.js.org/quickstart.html">Quickstart guide</a>.</p>
+</li>
+<li><p>Copy the “App ID” and “App Key” of your LeanCloud application to the corresponding settings in the theme 
+configurations.
+In addition, you can refer to the <a target="_blank" rel="noopener" href="https://valine.js.org/configuration.html">Config Reference</a> to find out the 
+details and possible values of the optional settings.
+Here is an example configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">valine</span></span><br><span class="line">    <span class="attr">app_id:</span> <span class="string">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></span><br><span class="line">    <span class="attr">app_key:</span> <span class="string">xxxxxxxxxxxxxxxxxxxxxx</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">""</span>                 <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">avatar:</span> <span class="string">mm</span>                      <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">avatar_force:</span> <span class="literal">false</span>             <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">meta:</span> [<span class="string">"nick"</span>, <span class="string">"mail"</span>, <span class="string">"link"</span>]  <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">page_size:</span> <span class="number">10</span>                   <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">lang:</span> <span class="string">zh-CN</span>                     <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">visitor:</span> <span class="literal">false</span>                  <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">highlight:</span> <span class="literal">true</span>                 <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">record_ip:</span> <span class="literal">false</span>                <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">server_urls:</span>                    <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">emoji_cdn:</span>                      <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">emoji_maps:</span>                     <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">enable_qq:</span> <span class="literal">false</span>                <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">required_fields:</span> []             <span class="comment"># Optional</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="Waline"><a href="#Waline" class="headerlink" title="Waline"></a>Waline</h2><div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="">Preview</a>
+</div>
+
+<ol>
+<li><p>Create a LeanCloud application and a Vercel project following the <a target="_blank" rel="noopener" href="https://waline.js.org/en/guide/get-started.html">Get Started</a> guide.</p>
+</li>
+<li><p>Copy the “Server URL” of your Vercel project to the corresponding setting in the theme configurations.
+It is usually something like <code>https://your-domain.vercel.app</code>.
+In addition, you can refer to the <a target="_blank" rel="noopener" href="https://waline.js.org/en/reference/client.html">Client Configuration</a> to find out more
+details and possible values of the optional settings.
+Here is an example configuration:</p>
+ <figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">waline</span></span><br><span class="line">    <span class="attr">server_url:</span> <span class="string">https://your-domain.vercel.app</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">window.location.pathname</span>                <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">lang:</span> <span class="string">en-US</span>                                   <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">locale:</span>                                       <span class="comment"># Optional</span></span><br><span class="line">        <span class="attr">placeholder:</span> <span class="string">'Comment here...'</span></span><br><span class="line">    <span class="attr">emoji:</span>                                        <span class="comment"># Optional</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">'//unpkg.com/@waline/emojis@1.0.1/weibo'</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">auto</span>                                    <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">meta:</span> [<span class="string">"nick"</span>, <span class="string">"mail"</span>, <span class="string">"link"</span>]                <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">required_meta:</span> []                             <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">login:</span> <span class="string">enable</span>                                 <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">word_limit:</span> <span class="number">0</span>                                 <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">page_size:</span> <span class="number">10</span>                                 <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">image_uploader:</span> <span class="literal">false</span>                         <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">highlighter:</span> <span class="literal">true</span>                             <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">tex_renderer:</span> <span class="literal">false</span>                           <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">search:</span> <span class="literal">false</span>                                 <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">pageview:</span> <span class="literal">false</span>                               <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">comment:</span> <span class="literal">false</span>                                <span class="comment"># Optional</span></span><br><span class="line">    <span class="attr">copyright:</span> <span class="literal">true</span>                               <span class="comment"># Optional</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
+Click <a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Comment-Plugins.md">here</a> 
+to submit your revision.
+</div>
+</article>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Icarus User Guide - Comment Plugins</p><p><a href="http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/icarus-user-guide-comment-plugins/">http://ppoffice.github.io/hexo-theme-icarus/Plugins/Comment/icarus-user-guide-comment-plugins/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>PPOffice</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2017-01-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/hexo-theme-icarus/tags/Icarus-User-Guide/">Icarus User Guide</a></div><div class="sharethis-inline-share-buttons"></div><script src="//platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/hexo-theme-icarus/Configuration/icarus-user-guide-cdn-providers/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Icarus User Guide - CDN Providers</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/hexo-theme-icarus/Plugins/Donation/icarus-user-guide-donation-buttons/"><span class="level-item">Icarus User Guide - Donation Buttons</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/hexo-theme-icarus/img/avatar.png" alt="PPOffice"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">PPOffice</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Solar System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/hexo-theme-icarus/archives"><p class="title">43</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/hexo-theme-icarus/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/hexo-theme-icarus/tags"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/hexo-theme-icarus/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Changyan"><span class="level-left"><span class="level-item">1</span><span class="level-item">Changyan</span></span></a></li><li><a class="level is-mobile" href="#Disqus"><span class="level-left"><span class="level-item">2</span><span class="level-item">Disqus</span></span></a></li><li><a class="level is-mobile" href="#DisqusJS"><span class="level-left"><span class="level-item">3</span><span class="level-item">DisqusJS</span></span></a></li><li><a class="level is-mobile" href="#Facebook"><span class="level-left"><span class="level-item">4</span><span class="level-item">Facebook</span></span></a></li><li><a class="level is-mobile" href="#Giscus"><span class="level-left"><span class="level-item">5</span><span class="level-item">Giscus</span></span></a></li><li><a class="level is-mobile" href="#Gitalk"><span class="level-left"><span class="level-item">6</span><span class="level-item">Gitalk</span></span></a></li><li><a class="level is-mobile" href="#Gitment"><span class="level-left"><span class="level-item">7</span><span class="level-item">Gitment</span></span></a></li><li><a class="level is-mobile" href="#Isso"><span class="level-left"><span class="level-item">8</span><span class="level-item">Isso</span></span></a></li><li><a class="level is-mobile" href="#LiveRe"><span class="level-left"><span class="level-item">9</span><span class="level-item">LiveRe</span></span></a></li><li><a class="level is-mobile" href="#Twikoo"><span class="level-left"><span class="level-item">10</span><span class="level-item">Twikoo</span></span></a></li><li><a class="level is-mobile" href="#utterances"><span class="level-left"><span class="level-item">11</span><span class="level-item">utterances</span></span></a></li><li><a class="level is-mobile" href="#Valine"><span class="level-left"><span class="level-item">12</span><span class="level-item">Valine</span></span></a></li><li><a class="level is-mobile" href="#Waline"><span class="level-left"><span class="level-item">13</span><span class="level-item">Waline</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/hexo-theme-icarus/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Configuration/"><span class="level-start"><span class="level-item">Configuration</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/"><span class="level-start"><span class="level-item">Plugins</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Analytics/"><span class="level-start"><span class="level-item">Analytics</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Comment/"><span class="level-start"><span class="level-item">Comment</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Donation/"><span class="level-start"><span class="level-item">Donation</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Other/"><span class="level-start"><span class="level-item">Other</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Search/"><span class="level-start"><span class="level-item">Search</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Share/"><span class="level-start"><span class="level-item">Share</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Widgets/"><span class="level-start"><span class="level-item">Widgets</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Demo/"><span class="tag">Demo</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Getting-Started/"><span class="tag">Getting Started</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus-User-Guide/"><span class="tag">Icarus User Guide</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/"><span class="tag">Icarus用户指南</span><span class="tag">12</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a><p class="is-size-7"><span>&copy; 2024 PPOffice</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/hexo-theme-icarus/js/column.js"></script><script src="/hexo-theme-icarus/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/hexo-theme-icarus/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><!--!--><!--!--><script data-pjax src="/hexo-theme-icarus/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/hexo-theme-icarus/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/hexo-theme-icarus/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

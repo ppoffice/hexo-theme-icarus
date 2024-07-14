@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Icarus User Guide - Other Plugins - Icarus</title><link rel="manifest" href="/hexo-theme-icarus/manifest.json"><meta name="theme-color" content="#f7f7f7"><meta name="application-name" content="Icaurs - Hexo Theme"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="msapplication-TileColor" content="#f7f7f7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Icaurs - Hexo Theme"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="This article covers other plugins supported by Icarus 5.   This article is also available in  简体中文."><meta property="og:type" content="blog"><meta property="og:title" content="Icarus User Guide - Other Plugins"><meta property="og:url" content="http://ppoffice.github.io/hexo-theme-icarus/Plugins/Other/icarus-user-guide-other-plugins/"><meta property="og:site_name" content="Icarus"><meta property="og:description" content="This article covers other plugins supported by Icarus 5.   This article is also available in  简体中文."><meta property="og:locale" content="en_US"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/elephant.jpeg"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/dog.jpeg"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/birds.jpeg"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/fox.jpeg"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/horse.jpeg"><meta property="og:image" content="http://ppoffice.github.io/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/leopard.jpeg"><meta property="article:published_time" content="2017-01-31T00:00:00.000Z"><meta property="article:author" content="PPOffice"><meta property="article:tag" content="Icarus User Guide"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://ppoffice.github.io/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/elephant.jpeg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ppoffice.github.io/hexo-theme-icarus/Plugins/Other/icarus-user-guide-other-plugins/"},"headline":"Icarus User Guide - Other Plugins","image":[],"datePublished":"2017-01-31T00:00:00.000Z","author":{"@type":"Person","name":"PPOffice"},"publisher":{"@type":"Organization","name":"Icarus","logo":{"@type":"ImageObject","url":"http://ppoffice.github.io/img/logo.svg"}},"description":"This article covers other plugins supported by Icarus 5.   This article is also available in  简体中文."}</script><link rel="canonical" href="http://ppoffice.github.io/hexo-theme-icarus/Plugins/Other/icarus-user-guide-other-plugins/"><link rel="icon" href="/hexo-theme-icarus/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/hexo-theme-icarus/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-72437521-5" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-72437521-5');</script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.not-gallery-item { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .not-gallery-item > span { position: relative; z-index: 10; }  .not-gallery-item img, .not-gallery-item .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .not-gallery-item img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .not-gallery-item-fallback { color: inherit; } .not-gallery-item-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/hexo-theme-icarus/atom.xml" title="Icarus" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/hexo-theme-icarus/">Home</a><a class="navbar-item" href="/hexo-theme-icarus/archives">Archives</a><a class="navbar-item" href="/hexo-theme-icarus/categories">Categories</a><a class="navbar-item" href="/hexo-theme-icarus/tags">Tags</a><a class="navbar-item" href="/hexo-theme-icarus/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2017-01-31T00:00:00.000Z" title="1/31/2017, 12:00:00 AM">2017-01-31</time></span><span class="level-item"><a class="link-muted" href="/hexo-theme-icarus/categories/Plugins/">Plugins</a><span> / </span><a class="link-muted" href="/hexo-theme-icarus/categories/Plugins/Other/">Other</a></span><span class="level-item">8 minutes read (About 1237 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Icarus User Guide - Other Plugins</h1><div class="content"><p>This article covers other plugins supported by Icarus 5.</p>
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-globe-asia mr-2"></i>This article is also available in 
+<a href="/hexo-theme-icarus/Plugins/Other/icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-%E5%85%B6%E4%BB%96%E6%8F%92%E4%BB%B6/">简体中文</a>.
+</div>
+</article>
+
+<span id="more"></span>
+
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>The following plugins are provided by
+<a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
+Please refer to it for a complete list of supported plugins and their configuration details.
+</div>
+</article>
+
+
+<h2 id="Gallery"><a href="#Gallery" class="headerlink" title="Gallery"></a>Gallery</h2><p><strong>Installation Guide</strong></p>
+<p>The gallery plugin of Icarus contains both <a target="_blank" rel="noopener" href="https://sachinchoolur.github.io/lightGallery/">lightGallery</a> and
+<a target="_blank" rel="noopener" href="https://miromannino.github.io/Justified-Gallery/">Justified Gallery</a> extensions.
+To enable it, set <code>plugins</code> &gt; <code>gallery</code> to <code>true</code> in your theme configurations.</p>
+<figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">    <span class="attr">gallery:</span> <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Additionally, in order to use Justified Gallery, wrap your images with the <code>&lt;div class="justified-gallery"&gt;</code>
+and <code>&lt;/div&gt;</code> HTML tag pair.
+Also, if you are using Markdown syntax to include images, add additional empty lines between the HTML tags and
+Markdown tags.
+For example, the Markdown code of the gallery preview below is</p>
+<figure class="highlight markdown"><figcaption><span>Justified-Gallery-Markdown.md &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"justified-gallery"</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">![<span class="string">Elephant</span>](<span class="link">/hexo-theme-icarus/gallery/animals/elephant.jpeg</span>)</span><br><span class="line">![<span class="string">Dog</span>](<span class="link">/hexo-theme-icarus/gallery/animals/dog.jpeg</span>)</span><br><span class="line">![<span class="string">Birds</span>](<span class="link">/hexo-theme-icarus/gallery/animals/birds.jpeg</span>)</span><br><span class="line">![<span class="string">Fox</span>](<span class="link">/hexo-theme-icarus/gallery/animals/fox.jpeg</span>)</span><br><span class="line">![<span class="string">Horse</span>](<span class="link">/hexo-theme-icarus/gallery/animals/horse.jpeg</span>)</span><br><span class="line">![<span class="string">Leopard</span>](<span class="link">/hexo-theme-icarus/gallery/animals/leopard.jpeg</span>)</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Meanwhile, we can use pure HTML to create Justified Galleries as well.
+In this case, we will not need the empty lines between HTML tags.</p>
+<figure class="highlight html"><figcaption><span>Justified-Gallery-HTML.md &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"justified-gallery"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/hexo-theme-icarus/gallery/animals/elephant.jpeg"</span> <span class="attr">alt</span>=<span class="string">"Elephant"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/hexo-theme-icarus/gallery/animals/dog.jpeg"</span> <span class="attr">alt</span>=<span class="string">"Dog"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/hexo-theme-icarus/gallery/animals/birds.jpeg"</span> <span class="attr">alt</span>=<span class="string">"Birds"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/hexo-theme-icarus/gallery/animals/fox.jpeg"</span> <span class="attr">alt</span>=<span class="string">"Fox"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/hexo-theme-icarus/gallery/animals/horse.jpeg"</span> <span class="attr">alt</span>=<span class="string">"Horse"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/hexo-theme-icarus/gallery/animals/leopard.jpeg"</span> <span class="attr">alt</span>=<span class="string">"Leopard"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+<p><strong>Preview</strong></p>
+<p>Here is an image grid created by Justified Gallery.
+You can also view the full image using lightGallery by clicking on any image.</p>
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>The following photos come from <a target="_blank" rel="noopener" href="https://www.pexels.com">pexel.com</a>
+</div>
+</article>
+
+<div class="justified-gallery">
+
+<p><img src="/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/elephant.jpeg" alt="Elephant">
+<img src="/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/dog.jpeg" alt="Dog">
+<img src="/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/birds.jpeg" alt="Birds">
+<img src="/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/fox.jpeg" alt="Fox">
+<img src="/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/horse.jpeg" alt="Horse">
+<img src="/hexo-theme-icarus/hexo-theme-icarus/gallery/animals/leopard.jpeg" alt="Leopard"></p>
+</div>
+
+
+<h2 id="KaTeX"><a href="#KaTeX" class="headerlink" title="KaTeX"></a>KaTeX</h2><p><strong>Installation Guide</strong></p>
+<p>You can use the KaTeX plugin to render \(\TeX\) expressions.
+To enable KaTeX, please set <code>plugins</code> &gt; <code>katex</code> to <code>true</code> in your theme configurations.</p>
+<figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">    <span class="attr">katex:</span> <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Please also use <code>\\(</code> and <code>\\)</code> to wrap your inline expressions and <code>$$</code> or <code>\\[</code> and <code>\\]</code> pair to wrap 
+block expressions.
+For example,</p>
+<figure class="highlight markdown"><figcaption><span>Some-Post.md &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">This is an inline expression: \\(ax^2+bx+c=0\\).</span><br><span class="line"></span><br><span class="line">This is a block expression:</span><br><span class="line">$$\displaystyle \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} = </span><br><span class="line">1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} </span><br><span class="line">{1+\frac{e^{-8\pi}} {1+\cdots} } } }$$</span><br><span class="line"></span><br><span class="line">This is another block expression:</span><br><span class="line">\\[f(x) = \int<span class="emphasis">_{-\infty}^\infty\hat f(\xi)e^{2 \pi i \xi x}d\xi\\]</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Sometimes your \(\TeX\) syntax will be mistaken as Markdown syntax, which will result in rendering error.
+For instance, the following equation will not work since it contains more than one <code>_</code> (underscores), 
+which are mistaken for the italic text when processed by the Markdown renderer:</p>
+<figure class="highlight tex"><figcaption><span>Some-Post.md</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\hat</span>{x}<span class="built_in">_</span>{k}=<span class="keyword">\hat</span>{x}<span class="built_in">_</span>{k}<span class="built_in">^</span>{-}+K<span class="built_in">_</span>{t}<span class="keyword">\left</span>(y<span class="built_in">_</span>{k}<span class="keyword">\right</span>)</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>In this case, you can either escape every character that may cause confusion:</p>
+<figure class="highlight tex"><figcaption><span>Some-Post.md</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\hat</span>{x}<span class="keyword">\_</span>{k}=<span class="keyword">\hat</span>{x}<span class="keyword">\_</span>{k}<span class="built_in">^</span>{-}+K<span class="keyword">\_</span>{t}<span class="keyword">\left</span>(y<span class="keyword">\_</span>{k}<span class="keyword">\right</span>)</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>or simply wrap the whole equation with an additional pair of HTML tags:</p>
+<figure class="highlight tex"><figcaption><span>Some-Post.md</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\hat</span>{x}<span class="built_in">_</span>{k}=<span class="keyword">\hat</span>{x}<span class="built_in">_</span>{k}<span class="built_in">^</span>{-}+K<span class="built_in">_</span>{t}<span class="keyword">\left</span>(y<span class="built_in">_</span>{k}<span class="keyword">\right</span>)</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="MathJax"><a href="#MathJax" class="headerlink" title="MathJax"></a>MathJax</h2><p><strong>Installation Guide</strong></p>
+<p>You can use MathJax to render \(\TeX\), MathML, or AsciiMath expressions.
+To enable MathJax, please set <code>plugins</code> &gt; <code>mathjax</code> to <code>true</code> in your theme configurations.</p>
+<figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">    <span class="attr">mathjax:</span> <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>When using the \(\TeX\) syntax, please use <code>$</code> or <code>\\(</code> and <code>\\)</code> to wrap your inline expressions and
+and <code>$$</code> or <code>\\[</code> and <code>\\]</code> pair to wrap block expressions.
+You can also use \(\LaTeX\) environments directly.
+For example,</p>
+<figure class="highlight markdown"><figcaption><span>Tex-Example.md &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">This is an inline expression: \\(ax^2+bx+c=0\\). This is another inline expression: $ax^2+bx+c&gt;0$.</span><br><span class="line"></span><br><span class="line">This is a block expression:</span><br><span class="line">$$\displaystyle \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} = </span><br><span class="line">1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} </span><br><span class="line">{1+\frac{e^{-8\pi}} {1+\cdots} } } }$$</span><br><span class="line"></span><br><span class="line">This is another block expression:</span><br><span class="line">\\[f(x) = \int<span class="emphasis">_{-\infty}^\infty\hat f(\xi)e^{2 \pi i \xi x}d\xi\\]</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">Or use \\(\LaTeX\\) environment:</span></span><br><span class="line"><span class="emphasis">\\begin{equation}</span></span><br><span class="line"><span class="emphasis">A =</span></span><br><span class="line"><span class="emphasis">\\begin{bmatrix}</span></span><br><span class="line"><span class="emphasis">  a &amp; b \\\\</span></span><br><span class="line"><span class="emphasis">  c &amp; c</span></span><br><span class="line"><span class="emphasis">\\end{bmatrix}</span></span><br><span class="line"><span class="emphasis">\\end{equation}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Or you can use MathML syntax.
+For example, </p>
+<figure class="highlight html"><figcaption><span>MathML-Example.md &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">When </span><br><span class="line"><span class="tag">&lt;<span class="name">math</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1998/Math/MathML"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mi</span>&gt;</span>a<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mo</span>&gt;</span>≠<span class="tag">&lt;/<span class="name">mo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mn</span>&gt;</span>0<span class="tag">&lt;/<span class="name">mn</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">math</span>&gt;</span>, </span><br><span class="line">there are two solutions to </span><br><span class="line"><span class="tag">&lt;<span class="name">math</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1998/Math/MathML"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mi</span>&gt;</span>a<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">msup</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mi</span>&gt;</span>x<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mn</span>&gt;</span>2<span class="tag">&lt;/<span class="name">mn</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">msup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mo</span>&gt;</span>+<span class="tag">&lt;/<span class="name">mo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mi</span>&gt;</span>b<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mi</span>&gt;</span>x<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mo</span>&gt;</span>+<span class="tag">&lt;/<span class="name">mo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mi</span>&gt;</span>c<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mo</span>&gt;</span>=<span class="tag">&lt;/<span class="name">mo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mn</span>&gt;</span>0<span class="tag">&lt;/<span class="name">mn</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">math</span>&gt;</span> </span><br><span class="line">and they are</span><br><span class="line"><span class="tag">&lt;<span class="name">math</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1998/Math/MathML"</span> <span class="attr">display</span>=<span class="string">"block"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mi</span>&gt;</span>x<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mo</span>&gt;</span>=<span class="tag">&lt;/<span class="name">mo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mrow</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mfrac</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mrow</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">mo</span>&gt;</span>-<span class="tag">&lt;/<span class="name">mo</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">mi</span>&gt;</span>b<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">mo</span>&gt;</span>±<span class="tag">&lt;/<span class="name">mo</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">msqrt</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">msup</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">mi</span>&gt;</span>b<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">mn</span>&gt;</span>2<span class="tag">&lt;/<span class="name">mn</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">msup</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mo</span>&gt;</span>-<span class="tag">&lt;/<span class="name">mo</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mn</span>&gt;</span>4<span class="tag">&lt;/<span class="name">mn</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mi</span>&gt;</span>a<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mi</span>&gt;</span>c<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">msqrt</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">mrow</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mrow</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">mn</span>&gt;</span>2<span class="tag">&lt;/<span class="name">mn</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">mi</span>&gt;</span>a<span class="tag">&lt;/<span class="name">mi</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">mrow</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mfrac</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mrow</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mtext</span>&gt;</span>.<span class="tag">&lt;/<span class="name">mtext</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">math</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Similarly, you can also use AsciiMath supported by MathJax.
+Expressions should be wrapped in <code>\`</code> in this case.</p>
+<figure class="highlight markdown"><figcaption><span>AsciiMath-Example.md &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">When \<span class="code">`a != 0\`</span>, there are two solutions to \<span class="code">`ax^2 + bx + c = 0\`</span> and they are <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"text-align:center"</span>&gt;</span></span>\<span class="code">`x = (-b +- sqrt(b^2-4ac))/(2a)\`</span>.<span class="language-xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Sometimes your latex syntax will be mistaken as Markdown syntax, which will result in rendering error.
+Please refer to the <a href="#KaTeX">KaTeX</a> section for solutions to this.</p>
+<p><strong>Preview(\(\TeX\) &amp; \(\LaTeX\))</strong></p>
+<p>This is an inline expression: \(ax^2+bx+c=0\). This is another inline expression: $ax^2+bx+c&gt;0$.</p>
+<p>This is a block expression:
+$$\displaystyle \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} = 
+1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} 
+{1+\frac{e^{-8\pi}} {1+\cdots} } } }$$</p>
+<p>This is another block expression:
+\[f(x) = \int_{-\infty}^\infty\hat f(\xi)e^{2 \pi i \xi x}d\xi\]</p>
+<p>Or use \(\LaTeX\) environment:
+\begin{equation}
+A =
+\begin{bmatrix}
+  a &amp; b \\
+  c &amp; c
+\end{bmatrix}
+\end{equation}</p>
+<p><strong>Preview(MathML)</strong></p>
+<p>When 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mi>a</mi>
+    <mo>≠</mo>
+    <mn>0</mn>
+</math>, 
+there are two solutions to 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mi>a</mi>
+    <msup>
+        <mi>x</mi>
+        <mn>2</mn>
+    </msup>
+    <mo>+</mo>
+    <mi>b</mi>
+    <mi>x</mi>
+    <mo>+</mo>
+    <mi>c</mi>
+    <mo>=</mo>
+    <mn>0</mn>
+</math> 
+and they are
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mi>x</mi>
+    <mo>=</mo>
+    <mrow>
+        <mfrac>
+            <mrow>
+                <mo>-</mo>
+                <mi>b</mi>
+                <mo>±</mo>
+                <msqrt>
+                    <msup>
+                        <mi>b</mi>
+                        <mn>2</mn>
+                    </msup>
+                    <mo>-</mo>
+                    <mn>4</mn>
+                    <mi>a</mi>
+                    <mi>c</mi>
+                </msqrt>
+            </mrow>
+            <mrow>
+                <mn>2</mn>
+                <mi>a</mi>
+            </mrow>
+        </mfrac>
+    </mrow>
+    <mtext>.</mtext>
+</math></p>
+<p><strong>Preview(AsciiMath)</strong></p>
+<p>When `a != 0`, there are two solutions to `ax^2 + bx + c = 0` and they are </p><p style="text-align:center">`x = (-b +- sqrt(b^2-4ac))/(2a)`.</p><p></p>
+<h2 id="Cookie-Consent"><a href="#Cookie-Consent" class="headerlink" title="Cookie Consent"></a>Cookie Consent</h2><p><strong>Installation Guide</strong></p>
+<p>You can show a cookie consent dialog to your visitor by enabling the Cookie Consent plugin.
+Please refer to <a target="_blank" rel="noopener" href="https://www.osano.com/cookieconsent/download/">Download Cookie Consent</a> and 
+<a target="_blank" rel="noopener" href="https://www.osano.com/cookieconsent/documentation/about-cookie-consent/">Documentation for the Cookie Consent plugin</a>
+for details on each configuration setting.
+You can also disable the cookie consent dialog by commenting out the configurations.</p>
+<figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">    <span class="attr">cookie_consent:</span></span><br><span class="line">        <span class="comment"># The compliance type. Can be "info", "opt-in", or "opt-out"</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">info</span></span><br><span class="line">        <span class="comment"># Theme of the popup. Can be "block", "edgeless", or "classic"</span></span><br><span class="line">        <span class="attr">theme:</span> <span class="string">edgeless</span></span><br><span class="line">        <span class="comment"># Whether the popup should stay static regardless of the page scrolls</span></span><br><span class="line">        <span class="attr">static:</span> <span class="literal">false</span></span><br><span class="line">        <span class="comment"># Where on the screen the consent popup should display</span></span><br><span class="line">        <span class="attr">position:</span> <span class="string">bottom-left</span></span><br><span class="line">        <span class="comment"># URL to your site's cookie policy</span></span><br><span class="line">        <span class="attr">policyLink:</span> <span class="string">'https://www.cookiesandyou.com/'</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+<h2 id="Outdated-Browser"><a href="#Outdated-Browser" class="headerlink" title="Outdated Browser"></a>Outdated Browser</h2><p><strong>Installation Guide</strong></p>
+<p>You can use the Outdated Browser plugin to detect outdated browsers used by
+your site’s visitors and remind them to upgrade their browsers.
+To enable it, please set <code>plugins</code> &gt; <code>outdated_browser</code> to <code>true</code> in your theme configurations.
+Click <a target="_blank" rel="noopener" href="https://bestvpn.org/outdatedbrowser/en">here</a> to see a live preview of this plugin.</p>
+<figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">    <span class="attr">outdated_browser:</span> <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+<h2 id="Page-Loading-Animations"><a href="#Page-Loading-Animations" class="headerlink" title="Page Loading Animations"></a>Page Loading Animations</h2><p><strong>Installation Guide</strong></p>
+<p>Page Loading Animations are enabled by Icarus by default.
+To disable it, please set <code>plugins</code> &gt; <code>animejs</code> to <code>false</code> in your theme configurations.</p>
+<figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">    <span class="attr">animejs:</span> <span class="literal">false</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Also, to disable the page loading progressbar, please set <code>plugins</code> &gt; <code>progressbar</code> to <code>false</code> in 
+your theme configurations.</p>
+<figure class="highlight yaml"><figcaption><span>_config.icarus.yml</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins:</span></span><br><span class="line">    <span class="attr">progressbar:</span> <span class="literal">false</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
+Click <a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Other-Plugins.md">here</a> 
+to submit your revision.
+</div>
+</article>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Icarus User Guide - Other Plugins</p><p><a href="http://ppoffice.github.io/hexo-theme-icarus/Plugins/Other/icarus-user-guide-other-plugins/">http://ppoffice.github.io/hexo-theme-icarus/Plugins/Other/icarus-user-guide-other-plugins/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>PPOffice</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2017-01-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/hexo-theme-icarus/tags/Icarus-User-Guide/">Icarus User Guide</a></div><div class="sharethis-inline-share-buttons"></div><script src="//platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/hexo-theme-icarus/Plugins/Search/icarus-user-guide-search-plugin/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Icarus User Guide - Search Plugin</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/hexo-theme-icarus/Plugins/Share/icarus-user-guide-share-buttons/"><span class="level-item">Icarus User Guide - Share Buttons</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/hexo-theme-icarus/img/avatar.png" alt="PPOffice"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">PPOffice</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Solar System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/hexo-theme-icarus/archives"><p class="title">43</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/hexo-theme-icarus/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/hexo-theme-icarus/tags"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/hexo-theme-icarus/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Gallery"><span class="level-left"><span class="level-item">1</span><span class="level-item">Gallery</span></span></a></li><li><a class="level is-mobile" href="#KaTeX"><span class="level-left"><span class="level-item">2</span><span class="level-item">KaTeX</span></span></a></li><li><a class="level is-mobile" href="#MathJax"><span class="level-left"><span class="level-item">3</span><span class="level-item">MathJax</span></span></a></li><li><a class="level is-mobile" href="#Cookie-Consent"><span class="level-left"><span class="level-item">4</span><span class="level-item">Cookie Consent</span></span></a></li><li><a class="level is-mobile" href="#Outdated-Browser"><span class="level-left"><span class="level-item">5</span><span class="level-item">Outdated Browser</span></span></a></li><li><a class="level is-mobile" href="#Page-Loading-Animations"><span class="level-left"><span class="level-item">6</span><span class="level-item">Page Loading Animations</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/hexo-theme-icarus/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Configuration/"><span class="level-start"><span class="level-item">Configuration</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/"><span class="level-start"><span class="level-item">Plugins</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Analytics/"><span class="level-start"><span class="level-item">Analytics</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Comment/"><span class="level-start"><span class="level-item">Comment</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Donation/"><span class="level-start"><span class="level-item">Donation</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Other/"><span class="level-start"><span class="level-item">Other</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Search/"><span class="level-start"><span class="level-item">Search</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Plugins/Share/"><span class="level-start"><span class="level-item">Share</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/hexo-theme-icarus/categories/Widgets/"><span class="level-start"><span class="level-item">Widgets</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Demo/"><span class="tag">Demo</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Getting-Started/"><span class="tag">Getting Started</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus-User-Guide/"><span class="tag">Icarus User Guide</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/"><span class="tag">Icarus用户指南</span><span class="tag">12</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/hexo-theme-icarus/"><img src="/hexo-theme-icarus/img/logo.svg" alt="Icarus" height="28"></a><p class="is-size-7"><span>&copy; 2024 PPOffice</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus/discussions"><i class="fas fa-comments"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/hexo-theme-icarus/js/column.js"></script><script src="/hexo-theme-icarus/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/hexo-theme-icarus/js/back_to_top.js" defer></script><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "classic",
+        static: false,
+        position: "bottom",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script data-pjax src="/hexo-theme-icarus/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/hexo-theme-icarus/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/hexo-theme-icarus/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
