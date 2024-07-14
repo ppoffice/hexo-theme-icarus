@@ -17,7 +17,7 @@
                     '.searchbox script',
                     '#back-to-top',
                     '#comments link',
-                    '#comments script',
+                    '#comments script'
                 ]
             });
         } catch (e) {
