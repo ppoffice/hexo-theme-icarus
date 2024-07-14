@@ -13,7 +13,7 @@ module.exports = class extends Component {
             return null;
         }
 
-        return <div class="card">
+        return <div class="card" id="comments">
             <div class="card-content">
                 <h3 class="title is-5">{__('article.comments')}</h3>
                 {(() => {

@@ -7,14 +7,16 @@
             const Pjax = window.Pjax || function() {};
             pjax = new Pjax({
                 selectors: [
+                    '[data-pjax]',
                     'head title',
                     '.columns',
                     '.navbar-start',
                     '.navbar-end',
                     '.searchbox',
+                    '.pjax-reload',
                     '#back-to-top',
-                    '[data-pjax]',
-                    '.pjax-reload'
+                    '#comments link',
+                    '#comments script',
                 ]
             });
         } catch (e) {
