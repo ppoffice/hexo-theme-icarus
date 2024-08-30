@@ -18,7 +18,8 @@
                     '#back-to-top',
                     '#comments link',
                     '#comments script'
-                ]
+                ],
+                cacheBust: false
             });
         } catch (e) {
             console.warn('PJAX error: ' + e);
