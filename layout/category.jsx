@@ -11,7 +11,7 @@ module.exports = class extends Component {
                 <div class="card-content">
                     <nav class="breadcrumb" aria-label="breadcrumbs">
                         <ul>
-                            <li><a href={url_for('/categories')}>{_p('common.category', Infinity)}</a></li>
+                            <li><a href={url_for('/categories/')}>{_p('common.category', Infinity)}</a></li>
                             {page.parents.map(category => {
                                 return <li><a href={url_for(category.path)}>{category.name}</a></li>;
                             })}
