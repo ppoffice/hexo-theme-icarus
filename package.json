@@ -32,7 +32,7 @@
     "hexo": "^7.1.1",
     "hexo-component-inferno": "^3.1.2",
     "hexo-log": "^4.1.0",
-    "hexo-pagination": "^3.0.0",
+    "hexo-pagination": "^4.0.0",
     "hexo-renderer-inferno": "^1.0.2",
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-util": "^3.2.0",
