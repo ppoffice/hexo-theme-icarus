@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: hexojs/hexo-starter
-          tag: dcd18588de8f5c1bcc689c101e2f21726c11c4d6  # pin blog dependencies to support node.js 14
+          ref: dcd18588de8f5c1bcc689c101e2f21726c11c4d6  # pin blog dependencies to support node.js 14
       - uses: actions/checkout@v3
         with:
           path: themes/icarus
