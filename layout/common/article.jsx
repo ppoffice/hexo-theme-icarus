@@ -49,7 +49,7 @@ module.exports = class extends Component {
                     {page.layout !== 'page' ? <div class="article-meta is-size-7 is-uppercase level is-mobile">
                         <div class="level-left">
                             {/* PIN Icon */}
-                            {page.top ? (<i class="fas fa-thumbtack level-item" title="Pinned"></i>) : null}
+                            {page.top ? <i class="fas fa-thumbtack level-item" title="Pinned"></i> : null}
                             {/* Creation Date */}
                             {page.date && <span class="level-item" dangerouslySetInnerHTML={{
                                 __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}">${date(page.date)}</time>`)
