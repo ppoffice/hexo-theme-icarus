@@ -144,13 +144,13 @@ widgets:
             #     url: 'https://facebook.com'
             Twitter:
                 icon: fab fa-twitter
-                url: 'https://twitter.com/techbookfest'
+                url: 'https://x.com/techbookfest'
             # Dribbble:
             #     icon: fab fa-dribbble
             #     url: 'https://dribbble.com'
             RSS:
                 icon: fas fa-rss
-                url: /
+                url: /atom.xml
     -
         # Widget name
         type: toc
