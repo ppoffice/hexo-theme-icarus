@@ -35,7 +35,7 @@
     "hexo-pagination": "^3.0.0",
     "hexo-renderer-inferno": "^1.0.2",
     "hexo-renderer-stylus": "^3.0.1",
-    "hexo-util": "^3.2.0",
+    "hexo-util": "^4.0.0",
     "inferno": "^8.2.3",
     "inferno-create-element": "^8.2.3",
     "moment": "^2.30.1",
