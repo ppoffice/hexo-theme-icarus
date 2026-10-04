@@ -107,6 +107,9 @@ dist
 .vscode-test
 
 _config*.yml*
+# ...except the configuration of the test fixture site
+!test/fixtures/site/_config.yml
+!test/fixtures/site/_config.icarus.yml
 yarn.lock
 
 # Intellij Idea config file
