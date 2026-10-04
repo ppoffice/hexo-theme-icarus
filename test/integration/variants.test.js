@@ -66,8 +66,9 @@ describe('fixture site variants', function() {
             assert.equal(site.$('/')('.article-more').first().text(), strings('zh-CN').article.more);
         });
 
-        it('sets the moment locale for relative dates', () => {
-            assert.match(site.$('/')('script:not([src])').text(), /moment\.locale\("zh-cn"\)/);
+        it('localizes server-rendered dates', () => {
+            const $ = site.$('/archives/2024/03/');
+            assert.equal($('.column-main h3.tag').first().text(), '三月 2024');
         });
 
         it('declares <html lang="zh-CN">', () => {

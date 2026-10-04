@@ -55,13 +55,17 @@ describe('layout/layout (page skeleton)', () => {
     }
 
     describe('scripts', () => {
-        it('loads jQuery and moment before main.js and sets the moment locale', async () => {
+        it('loads jQuery before main.js', async () => {
             const { $ } = await renderLayout({ lang: 'zh-CN' });
             const sources = $('script[src]').map((i, el) => el.attribs.src).get();
             const indexOf = re => sources.findIndex(src => re.test(src));
             assert.ok(indexOf(/jquery/) > -1 && indexOf(/jquery/) < indexOf(/\/js\/main\.js$/), sources.join('\n'));
-            assert.ok(indexOf(/moment/) > -1 && indexOf(/moment/) < indexOf(/\/js\/main\.js$/), sources.join('\n'));
-            assert.match($('script:not([src])').text(), /moment\.locale\("zh-cn"\)/);
+        });
+
+        it('does not load moment in the browser (relative dates use Intl)', async () => {
+            const { $ } = await renderLayout({ lang: 'zh-CN' });
+            assert.equal($('script[src*="moment"]').length, 0);
+            assert.doesNotMatch($('script:not([src])').text(), /moment/);
         });
 
         it('embeds the code block settings for main.js', async () => {

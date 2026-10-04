@@ -1,5 +1,5 @@
 /* eslint-disable node/no-unsupported-features/node-builtins */
-(function($, moment, ClipboardJS, config) {
+(function($, ClipboardJS, config) {
     $('.article img:not(".not-gallery-item")').each(function() {
         // wrap images with link and add caption if possible
         if ($(this).parent('a').length === 0) {
@@ -20,9 +20,41 @@
         $('.justified-gallery').justifiedGallery();
     }
 
-    if (typeof moment === 'function') {
+    // Locale for relative dates: the page language when the browser supports it, else English.
+    function getRelativeTimeLocale() {
+        const lang = document.documentElement.lang === 'vn' ? 'vi' : document.documentElement.lang;
+        try {
+            return lang && Intl.RelativeTimeFormat.supportedLocalesOf(lang).length ? lang : 'en';
+        } catch (e) {
+            return 'en';
+        }
+    }
+
+    // "3 days ago", using the same rounding thresholds as moment's fromNow().
+    function formatRelativeTime(date, format) {
+        const seconds = (date.getTime() - Date.now()) / 1000;
+        const abs = Math.abs(seconds);
+        if (abs < 45) {
+            return format.format(Math.round(seconds), 'second');
+        } else if (abs < 45 * 60) {
+            return format.format(Math.round(seconds / 60), 'minute');
+        } else if (abs < 22 * 3600) {
+            return format.format(Math.round(seconds / 3600), 'hour');
+        } else if (abs < 26 * 86400) {
+            return format.format(Math.round(seconds / 86400), 'day');
+        } else if (abs < 320 * 86400) {
+            return format.format(Math.round(seconds / (30.436875 * 86400)), 'month');
+        }
+        return format.format(Math.round(seconds / (365.2425 * 86400)), 'year');
+    }
+
+    if (typeof Intl !== 'undefined' && typeof Intl.RelativeTimeFormat === 'function') {
+        const format = new Intl.RelativeTimeFormat(getRelativeTimeLocale(), { numeric: 'auto' });
         $('.article-meta time').each(function() {
-            $(this).text(moment($(this).attr('datetime')).fromNow());
+            const date = new Date($(this).attr('datetime'));
+            if (!isNaN(date.getTime())) {
+                $(this).text(formatRelativeTime(date, format));
+            }
         });
     }
 
@@ -145,4 +177,4 @@
     } else {
         $('#toc-mask').remove();
     }
-}(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings));
+}(jQuery, window.ClipboardJS, window.IcarusThemeSettings));

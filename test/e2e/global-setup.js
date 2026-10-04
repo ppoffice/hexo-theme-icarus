@@ -8,7 +8,7 @@ const path = require('path');
 const { buildSite } = require('../support/site');
 const { contentType } = require('./cdn');
 
-const VARIANTS = ['default', 'pjax', 'animejs'];
+const VARIANTS = ['default', 'pjax', 'animejs', 'zh-CN'];
 
 function serve(root) {
     const server = http.createServer((req, res) => {

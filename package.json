@@ -41,7 +41,6 @@
     "inferno-server": "^8.2.3",
     "jquery": "3.7.1",
     "mocha": "^10.8.2",
-    "moment-cdn": "npm:moment@2.22.2",
     "pjax": "0.2.8"
   },
   "dependencies": {

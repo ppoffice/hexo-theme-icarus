@@ -14,7 +14,6 @@ const { REPO_ROOT } = require('../support/paths');
 const VENDORED = {
     'highlight.js': 'highlight.js',
     jquery: 'jquery',
-    moment: 'moment-cdn',
     clipboard: 'clipboard',
     pjax: 'pjax'
 };

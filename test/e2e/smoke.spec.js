@@ -30,10 +30,35 @@ test.describe('every page loads cleanly', () => {
     }
 });
 
-test('replaces article dates with relative times', async ({ page, visit }) => {
-    await visit('/2024/03/01/hello-world/');
-    const times = page.locator('.article-meta time');
-    await expect(times).toHaveCount(2);
-    await expect(times.first()).toHaveText(/ ago$/);
-    await expect(times.first()).toHaveAttribute('datetime', /^2024-03-01T10:00:00/);
+test.describe('relative article dates', () => {
+    // Posted 2024-03-01T10:00Z, updated 2024-03-05T12:00Z
+    const url = '/2024/03/01/hello-world/';
+
+    for (const [now, posted, updated] of [
+        ['2024-03-08T10:00:00Z', '7 days ago', '3 days ago'],
+        ['2024-03-01T10:00:30Z', '30 seconds ago', 'in 4 days'],
+        ['2024-03-01T12:00:00Z', '2 hours ago', 'in 4 days'],
+        ['2024-05-01T10:00:00Z', '2 months ago', '2 months ago'],
+        ['2026-10-04T10:00:00Z', '3 years ago', '3 years ago']
+    ]) {
+        test(`at ${now}: "${posted}" / "${updated}"`, async ({ page, visit }) => {
+            await page.clock.setFixedTime(new Date(now));
+            await visit(url);
+            const times = page.locator('.article-meta time');
+            await expect(times).toHaveText([posted, updated]);
+            await expect(times.first()).toHaveAttribute('datetime', /^2024-03-01T10:00:00/);
+        });
+    }
+
+    test('are written in the page language', async ({ page, visit }) => {
+        await page.clock.setFixedTime(new Date('2024-03-08T10:00:00Z'));
+        await visit(url, { variant: 'zh-CN' });
+        await expect(page.locator('.article-meta time')).toHaveText(['7天前', '3天前']);
+    });
+
+    test('keep the server-rendered date when Intl.RelativeTimeFormat is unavailable', async ({ page, visit }) => {
+        await page.addInitScript(() => { delete Intl.RelativeTimeFormat; });
+        await visit(url);
+        await expect(page.locator('.article-meta time').first()).toHaveText('2024-03-01');
+    });
 });
