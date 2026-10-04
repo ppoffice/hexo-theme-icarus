@@ -10,25 +10,25 @@ jobs:
         node-version: [14, latest]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: hexojs/hexo-starter
           ref: dcd18588de8f5c1bcc689c101e2f21726c11c4d6  # pin blog dependencies to support node.js 14
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           path: themes/icarus
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: SukkaLab/hexo-many-posts
           path: source/_posts/hexo-many-posts
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: node_modules
-          key: npm-cache
-          restore-keys: npm-cache
+          key: npm-${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('package.json', 'themes/icarus/package.json') }}
+          restore-keys: npm-${{ runner.os }}-node${{ matrix.node-version }}-
       - run: npm install
       # The starter site brings its own Hexo; install the theme's other dependencies.
       - run: >
