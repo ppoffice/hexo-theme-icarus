@@ -30,3 +30,9 @@
 +mobile()
     .section
         padding: 1.5rem 1rem
+
++touch()
+    // iOS Safari zooms into form fields with a font size below 16px when they get focus.
+    // Pinch-zoom is allowed, so keep fields at 16px on touch screens instead of disabling zoom.
+    input, select, textarea, .input, .textarea, .select select, .searchbox input
+        font-size: 16px

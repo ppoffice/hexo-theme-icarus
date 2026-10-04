@@ -81,6 +81,21 @@ test.describe('back to top button', () => {
     });
 });
 
+test.describe('form fields', () => {
+    const fontSize = page => page.locator('.searchbox-input').evaluate(el => parseFloat(getComputedStyle(el).fontSize));
+
+    test('use at least 16px on touch screens so iOS does not zoom on focus', async ({ page, visit }) => {
+        await page.setViewportSize({ width: 375, height: 800 });
+        await visit('/');
+        expect(await fontSize(page)).toBeGreaterThanOrEqual(16);
+    });
+
+    test('keep the theme font size on desktop', async ({ page, visit }) => {
+        await visit('/');
+        expect(await fontSize(page)).toBe(14);
+    });
+});
+
 test.describe('search', () => {
     test('opens the search box and finds posts by title', async ({ page, visit }) => {
         await visit('/');

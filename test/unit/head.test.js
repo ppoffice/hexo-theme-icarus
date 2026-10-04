@@ -1,6 +1,5 @@
 const assert = require('assert').strict;
 const { render, fixtureConfig, makePage } = require('../support/render');
-const { knownBug } = require('../support/known-bug');
 
 const renderHead = (page, config) => render('common/head', { config: fixtureConfig(config), page: makePage(page), site: {} });
 
@@ -122,8 +121,10 @@ describe('layout/common/head', () => {
         assert.match($('style').text(), /opacity:\s*0/);
     });
 
-    knownBug('allows users to zoom (no maximum-scale=1 in the viewport meta)', async () => {
+    it('allows users to zoom (no maximum-scale or user-scalable=no in the viewport meta)', async () => {
         const { $ } = await renderHead({});
-        assert.doesNotMatch($('meta[name="viewport"]').attr('content'), /maximum-scale=1/);
+        const viewport = $('meta[name="viewport"]').attr('content');
+        assert.match(viewport, /width=device-width/);
+        assert.doesNotMatch(viewport, /maximum-scale|user-scalable/);
     });
 });
