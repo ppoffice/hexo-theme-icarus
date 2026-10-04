@@ -30,6 +30,8 @@ article:
     updated_at: 'Diperbarui&nbsp;%s'
     more: 'Selengkapnya'
     comments: 'Komentar'
+    copy: 'Salin'
+    copied: 'Disalin!'
     read_time: '%s membaca'
     word_count:
         one: 'Sekitar %d kata'

@@ -120,15 +120,32 @@
         });
 
         if (typeof ClipboardJS !== 'undefined' && clipboard) {
+            const i18n = config.i18n || {};
+            const copyTitle = i18n.copy || 'Copy';
+            const copiedTitle = i18n.copied || 'Copied!';
+
             $('figure.highlight').each(function() {
-                const id = 'code-' + Date.now() + (Math.random() * 1000 | 0);
-                const button = '<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#' + id + ' .code"><i class="fas fa-copy"></i></a>';
-                $(this).attr('id', id);
-                $(this).find('figcaption div.level-right').append(button);
+                const $button = $('<button type="button" class="copy"></button>')
+                    .attr({ title: copyTitle, 'aria-label': copyTitle })
+                    .append('<i class="fas fa-copy" aria-hidden="true"></i>');
+                $(this).find('figcaption div.level-right').append($button);
             });
             // ClipboardJS listens on the document, so one instance serves every (PJAX) page.
             if (!window.IcarusClipboard) {
-                window.IcarusClipboard = new ClipboardJS('.highlight .copy');
+                window.IcarusClipboard = new ClipboardJS('.highlight .copy', {
+                    target: trigger => $(trigger).closest('figure.highlight').find('.code')[0]
+                });
+                window.IcarusClipboard.on('success', event => {
+                    event.clearSelection();
+                    const $button = $(event.trigger);
+                    clearTimeout($button.data('icarus-copied'));
+                    $button.addClass('is-copied').attr({ title: copiedTitle, 'aria-label': copiedTitle })
+                        .find('i').removeClass('fa-copy').addClass('fa-check');
+                    $button.data('icarus-copied', setTimeout(() => {
+                        $button.removeClass('is-copied').attr({ title: copyTitle, 'aria-label': copyTitle })
+                            .find('i').removeClass('fa-check').addClass('fa-copy');
+                    }, 2000));
+                });
             }
         }
 

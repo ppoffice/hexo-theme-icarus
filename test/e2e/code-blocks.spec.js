@@ -22,12 +22,30 @@ test.describe('code blocks', () => {
 
     test('each block gets a copy button that copies the code', async ({ page, context }) => {
         await context.grantPermissions(['clipboard-read', 'clipboard-write']);
-        const buttons = page.locator('figure.highlight figcaption .copy');
+        const buttons = page.locator('figure.highlight figcaption button.copy');
         await expect(buttons).toHaveCount(3);
         await buttons.first().click();
         const copied = await page.evaluate(() => navigator.clipboard.readText());
-        expect(copied).toContain('const answer = 42;');
-        expect(copied).toContain('console.log(answer);');
+        expect(copied.trim()).toBe('const answer = 42;\nconsole.log(answer);');
+        expect(await page.evaluate(() => String(window.getSelection())), 'selection is cleared').toBe('');
+    });
+
+    test('copy buttons are labelled and confirm a copy', async ({ page, context }) => {
+        await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+        const button = page.locator('figure.highlight button.copy').nth(2);
+        await expect(button).toHaveAttribute('aria-label', 'Copy');
+        await expect(button).toHaveAttribute('type', 'button');
+        await button.focus();
+        await page.keyboard.press('Enter');
+        await expect(button).toHaveAttribute('aria-label', 'Copied!');
+        await expect(button.locator('i')).toHaveClass(/fa-check/);
+        expect((await page.evaluate(() => navigator.clipboard.readText())).trim()).toBe('let x = 1;');
+        await expect(button).toHaveAttribute('aria-label', 'Copy', { timeout: 5000 });
+        await expect(button.locator('i')).toHaveClass(/fa-copy/);
+    });
+
+    test('code blocks keep their own ids', async ({ page }) => {
+        await expect(page.locator('figure.highlight[id^="code-"]')).toHaveCount(0);
     });
 
     test('a block marked >folded starts folded and toggles on click', async ({ page }) => {
@@ -61,4 +79,9 @@ test('a highlight span without a class does not break the page script', async ({
     const plain = page.locator('figure.highlight').first().locator('.code .line > span');
     await expect(plain).toHaveText('no class here');
     expect(await plain.getAttribute('class')).toBeFalsy();
+});
+
+test('copy buttons are translated', async ({ page, visit }) => {
+    await visit('/2024/02/20/code-blocks/', { variant: 'zh-CN' });
+    await expect(page.locator('figure.highlight button.copy').first()).toHaveAttribute('title', '复制');
 });

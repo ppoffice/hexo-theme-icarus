@@ -68,12 +68,24 @@ describe('layout/layout (page skeleton)', () => {
             assert.doesNotMatch($('script:not([src])').text(), /moment/);
         });
 
-        it('embeds the code block settings for main.js', async () => {
-            const { $ } = await renderLayout({}, { article: { highlight: { clipboard: false, fold: 'folded' } } });
-            const settings = $('script:not([src])').text();
-            assert.match(settings, /clipboard: false/);
-            assert.match(settings, /fold: 'folded'/);
+        const embeddedSettings = $ => {
+            const script = $('script:not([src])').filter((i, el) => /IcarusThemeSettings/.test($(el).html())).html();
+            return JSON.parse(script.replace(/^var IcarusThemeSettings = /, '').replace(/;$/, ''));
+        };
+
+        it('embeds the code block settings and translations for main.js', async () => {
+            const { $ } = await renderLayout({ lang: 'zh-CN' }, { article: { highlight: { clipboard: false, fold: 'folded' } } });
+            assert.deepEqual(embeddedSettings($), {
+                article: { highlight: { clipboard: false, fold: 'folded' } },
+                i18n: { copy: '复制', copied: '已复制！' }
+            });
             assert.equal($('script[src*="clipboard"]').length, 0, 'clipboard.js is not loaded when disabled');
+        });
+
+        it('cannot break out of the settings <script> through configured values', async () => {
+            const { $, html } = await renderLayout({}, { article: { highlight: { fold: '</script><script>alert(1)</script>' } } });
+            assert.doesNotMatch(html, /<script>alert\(1\)/);
+            assert.equal(embeddedSettings($).article.highlight.fold, '</script><script>alert(1)</script>');
         });
 
         it('loads PJAX and back-to-top scripts when those plugins are enabled', async () => {
