@@ -34,7 +34,10 @@ module.exports = class extends Component {
     render() {
         const { config, helper, page, index } = this.props;
         const { article, plugins } = config;
-        const { url_for, date, date_xml, full_date, __, _p } = helper;
+        const { url_for, date, date_xml, __, _p } = helper;
+        // Full date and time in the site's format, language and time zone (helper.full_date cannot
+        // be used here: it calls this.date(), which is not available in the bound context).
+        const fullDateFormat = `${config.date_format || 'YYYY-MM-DD'} ${config.time_format || 'HH:mm:ss'}`;
 
         const defaultLanguage = Array.isArray(config.language) && config.language.length ? config.language[0] : config.language;
 
@@ -64,11 +67,11 @@ module.exports = class extends Component {
                             {page.top ? <i class="fas fa-thumbtack level-item" title="Pinned"></i> : null}
                             {/* Creation Date */}
                             {page.date && <span class="level-item" dangerouslySetInnerHTML={{
-                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${escapeHTML(full_date(page.date))}">${date(page.date)}</time>`)
+                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${escapeHTML(date(page.date, fullDateFormat))}">${date(page.date)}</time>`)
                             }}></span>}
                             {/* Last Update Date */}
                             {shouldShowUpdated && <span class="level-item" dangerouslySetInnerHTML={{
-                                __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${escapeHTML(full_date(page.updated))}">${date(page.updated)}</time>`)
+                                __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${escapeHTML(date(page.updated, fullDateFormat))}">${date(page.updated)}</time>`)
                             }}></span>}
                             {/* author */}
                             {page.author ? <span class="level-item"> {page.author} </span> : null}
