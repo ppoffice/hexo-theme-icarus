@@ -38,7 +38,7 @@
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-marked": "^7.0.1",
     "inferno-server": "^8.2.3",
-    "jquery": "3.3.1",
+    "jquery": "3.7.1",
     "mocha": "^10.8.2",
     "moment-cdn": "npm:moment@2.22.2",
     "pjax": "0.2.8"
