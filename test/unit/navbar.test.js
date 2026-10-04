@@ -48,6 +48,18 @@ describe('layout/common/navbar', () => {
         assert.equal($('.navbar-end a[title="Example"]').text(), 'Example');
     });
 
+    it('renders the toc and search controls as labelled buttons', async () => {
+        const { $ } = await renderNavbar({ toc: true });
+        for (const [selector, label] of [['.catalogue', 'Catalogue'], ['.search', 'Search']]) {
+            const button = $(`.navbar-end ${selector}`);
+            assert.equal(button.prop('tagName'), 'BUTTON', selector);
+            assert.equal(button.attr('type'), 'button');
+            assert.equal(button.attr('aria-label'), label);
+            assert.equal(button.find('i').attr('aria-hidden'), 'true');
+        }
+        assert.equal($('a[href^="javascript:"]').length, 0);
+    });
+
     it('shows the search button only when search is configured', async () => {
         assert.equal((await renderNavbar()).$('.navbar-item.search').length, 1);
         assert.equal((await renderNavbar({}, { search: { type: null } })).$('.navbar-item.search').length, 0);

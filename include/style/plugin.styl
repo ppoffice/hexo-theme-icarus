@@ -4,7 +4,9 @@
 #back-to-top
     position: fixed
     opacity: 0
-    outline: none
+    border: none
+    font: inherit
+    cursor: pointer
     padding: 8px 0
     line-height: 24px
     border-radius: $card-radius
@@ -19,6 +21,10 @@
 
     &.rise-up
         transform: translateY(0)
+
+    &:focus-visible
+        outline: 2px solid $link
+        outline-offset: 2px
 
 /* ---------------------------------
  *          Gallery Plugin

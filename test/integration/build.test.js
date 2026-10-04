@@ -56,6 +56,14 @@ describe('fixture site build (default variant)', function() {
         assert.deepEqual(site.files('.css'), ['css/cyberpunk.css', 'css/default.css']);
     });
 
+    it('keeps a visible keyboard focus indicator on the back-to-top button', () => {
+        for (const file of ['css/default.css', 'css/cyberpunk.css']) {
+            const css = site.read(file);
+            assert.match(css, /#back-to-top:focus-visible\s*\{[^}]*outline:\s*2px solid/, file);
+            assert.doesNotMatch(css, /#back-to-top\s*\{[^}]*outline:\s*none/, file);
+        }
+    });
+
     it('writes a valid web app manifest', () => {
         const manifest = JSON.parse(site.read('manifest.json'));
         assert.equal(manifest.name, 'Icarus Fixture');
