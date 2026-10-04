@@ -137,6 +137,15 @@ describe('include/config (theme configuration check, generation and migration)',
             assert.ok(fs.existsSync(original + '.example'), 'an example config should be generated');
         });
 
+        it('upgrades a 3.x configuration through every intermediate migration', () => {
+            env = setup({ themeSiteConfig: { version: '3.0.0', article: { thumbnail: true, readtime: true } } });
+            const { exitCode, output } = capture(() => checkConfig(env.hexo));
+            assert.equal(exitCode, null, output);
+            const migrated = env.readYaml(env.sitePath('_config.icarus.yml'));
+            assert.equal(migrated.version, '5.1.0');
+            assert.deepEqual(migrated.article, { readtime: true });
+        });
+
         it('leaves an outdated configuration untouched with --icarus-dont-upgrade-config', () => {
             env = setup({ themeSiteConfig: outdated });
             const before = fs.readFileSync(env.sitePath('_config.icarus.yml'), 'utf8');

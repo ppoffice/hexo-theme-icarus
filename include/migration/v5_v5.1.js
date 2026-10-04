@@ -2,7 +2,7 @@ const Migration = require('hexo-component-inferno/lib/core/migrate').Migration;
 
 module.exports = class extends Migration {
     constructor() {
-        super('5.1.0', null);
+        super('5.1.0', require('./v4_v5'));
     }
 
     upgrade(config) {

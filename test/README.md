@@ -67,8 +67,6 @@ Current list:
 | Area | Bug | Test |
 | --- | --- | --- |
 | Config | Upgrading with both theme-dir and site config loses nested settings | `unit/config.test.js` |
-| Migration | Migrations are not chained; 3.x/4.x configs skip intermediate migrations | `unit/migration.test.js` |
-| Migration | v2→v3 does not rewrite `/images/favicon.svg` | `unit/migration.test.js` |
 | i18n | `vn.yml` should be `vi.yml` | `unit/languages.test.js` |
 | i18n | Untranslated languages fall back to whichever file loaded first (e.g. German) | `unit/languages.test.js` |
 | Layout | `<html lang>` drops the region (`zh-CN` → `zh`) | `unit/layout.test.js`, `integration/variants.test.js` |

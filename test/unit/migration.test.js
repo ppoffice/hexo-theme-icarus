@@ -7,7 +7,6 @@ const V4toV5 = require('../../include/migration/v4_v5');
 const V5toV51 = require('../../include/migration/v5_v5.1');
 const schemaConfig = require('../../include/schema/config.json');
 const { capture } = require('../support/capture');
-const { knownBug } = require('../support/known-bug');
 
 describe('include/migration', () => {
     it('targets the same latest version as the schema default', () => {
@@ -22,16 +21,54 @@ describe('include/migration', () => {
         assert.ok(!migrator.isOudated('5.1.0'));
     });
 
-    knownBug('chains every migration so old configurations are fully upgraded', () => {
+    it('chains every migration so old configurations are fully upgraded', () => {
         const migrator = new Migrator(head);
-        // Every migration passes `null` as its predecessor, so only the head is ever loaded.
         assert.deepEqual(migrator.versions, ['3.0.0', '4.0.0', '5.0.0', '5.1.0']);
     });
 
-    knownBug('upgrading a 3.x configuration applies the 3.x -> 4.0 migration', () => {
+    it('links each migration to its predecessor', () => {
+        assert.equal(new V5toV51().head, V4toV5);
+        assert.equal(new V4toV5().head, V3toV4);
+        assert.equal(new V3toV4().head, V2toV3);
+        assert.equal(new V2toV3().head, null);
+    });
+
+    for (const [from, expected] of [
+        ['2.0.0', ['3.0.0', '4.0.0', '5.0.0', '5.1.0']],
+        ['3.0.0', ['4.0.0', '5.0.0', '5.1.0']],
+        ['4.4.0', ['5.0.0', '5.1.0']],
+        ['5.0.0', ['5.1.0']],
+        ['5.1.0', []]
+    ]) {
+        it(`runs exactly the migrations newer than ${from}`, () => {
+            const ran = [];
+            capture(() => new Migrator(head).migrate({ version: from }, null, (fromVersion, toVersion) => ran.push(toVersion)));
+            assert.deepEqual(ran, expected);
+        });
+    }
+
+    it('upgrading a 3.x configuration applies the 3.x -> 4.0 migration', () => {
         const migrated = new Migrator(head).migrate({ version: '3.0.0', article: { thumbnail: true, readtime: true } });
         assert.equal(migrated.version, '5.1.0');
         assert.equal('thumbnail' in migrated.article, false);
+    });
+
+    it('upgrades a 2.x configuration all the way to the latest version', () => {
+        const migrated = capture(() => new Migrator(head).migrate({
+            version: '2.0.0',
+            favicon: '/images/favicon.svg',
+            rss: '/atom.xml',
+            article: { thumbnail: true },
+            comment: { type: 'waline', visitor: true },
+            widgets: [{ position: 'left', type: 'archive' }]
+        })).result;
+        assert.equal(migrated.version, '5.1.0');
+        assert.equal(migrated.head.favicon, '/img/favicon.svg');
+        assert.equal(migrated.head.rss, '/atom.xml');
+        assert.equal('favicon' in migrated, false);
+        assert.equal('thumbnail' in migrated.article, false);
+        assert.equal(migrated.comment.pageview, true);
+        assert.equal(migrated.widgets[0].type, 'archives');
     });
 
     describe('v5 -> v5.1 (Waline v2 option names)', () => {
@@ -109,7 +146,13 @@ describe('include/migration', () => {
             assert.equal(migrate({ version: '2.0.0', logo: '/images/logo.svg' }).logo, '/img/logo.svg');
         });
 
-        knownBug('rewrites the default favicon path from /images to /img', () => {
+        it('leaves custom logo and favicon paths alone', () => {
+            const result = migrate({ version: '2.0.0', logo: '/images/mine.png', favicon: '/images/mine.ico' });
+            assert.equal(result.logo, '/images/mine.png');
+            assert.equal(result.head.favicon, '/images/mine.ico');
+        });
+
+        it('rewrites the default favicon path from /images to /img', () => {
             assert.equal(migrate({ version: '2.0.0', favicon: '/images/favicon.svg' }).head.favicon, '/img/favicon.svg');
         });
 
