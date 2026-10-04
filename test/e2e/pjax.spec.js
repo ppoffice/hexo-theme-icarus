@@ -1,4 +1,4 @@
-const { test, expect, jqueryHandlerCounts, knownBug } = require('./fixtures');
+const { test, expect, jqueryHandlerCounts } = require('./fixtures');
 
 /** Click a link and wait until PJAX has swapped the page in. */
 async function pjaxClick(page, locator) {
@@ -40,8 +40,7 @@ test.describe('PJAX navigation', () => {
         await expect(page.locator('.column-main article').first()).toBeVisible();
     });
 
-    test('[known bug] does not accumulate window event handlers across navigations', async ({ page }) => {
-        knownBug('main.js and back_to_top.js bind resize/scroll handlers again on every PJAX navigation');
+    test('does not accumulate window event handlers across navigations', async ({ page }) => {
         const before = await jqueryHandlerCounts(page);
         for (let i = 0; i < 3; i++) {
             await pjaxClick(page, page.locator('.navbar-start a', { hasText: 'Archives' }));
@@ -50,13 +49,50 @@ test.describe('PJAX navigation', () => {
         expect(await jqueryHandlerCounts(page)).toEqual(before);
     });
 
-    test('[known bug] keeps a single toc mask across navigations', async ({ page }) => {
-        knownBug('main.js appends a new #toc-mask to <body> on every PJAX navigation');
+    test('keeps a single toc mask across navigations', async ({ page }) => {
         for (let i = 0; i < 2; i++) {
             await pjaxClick(page, page.locator('.column-main a[href="/2024/03/01/hello-world/"]').first());
             await pjaxClick(page, page.locator('.navbar-start a', { hasText: 'Home' }));
         }
         await pjaxClick(page, page.locator('.column-main a[href="/2024/03/01/hello-world/"]').first());
         await expect(page.locator('#toc-mask')).toHaveCount(1);
+    });
+
+    test('removes the toc mask on pages without a toc', async ({ page }) => {
+        await pjaxClick(page, page.locator('.column-main a[href="/2024/03/01/hello-world/"]').first());
+        await expect(page.locator('#toc-mask')).toHaveCount(1);
+        await pjaxClick(page, page.locator('.navbar-start a', { hasText: 'Home' }));
+        await expect(page.locator('#toc-mask')).toHaveCount(0);
+    });
+
+    test('the mobile toc still opens and closes after navigating', async ({ page }) => {
+        await page.setViewportSize({ width: 375, height: 800 });
+        for (let i = 0; i < 2; i++) {
+            await pjaxClick(page, page.locator('.column-main a[href="/2024/03/01/hello-world/"]').first());
+            await pjaxClick(page, page.locator('.navbar-logo'));
+        }
+        await pjaxClick(page, page.locator('.column-main a[href="/2024/03/01/hello-world/"]').first());
+        await page.locator('.navbar-main .catalogue').click();
+        await expect(page.locator('#toc')).toHaveClass(/is-active/);
+        await expect(page.locator('#toc-mask')).toHaveClass(/is-active/);
+        await page.locator('#toc-mask').click({ position: { x: 5, y: 5 } });
+        await expect(page.locator('#toc')).not.toHaveClass(/is-active/);
+        await expect(page.locator('#toc-mask')).not.toHaveClass(/is-active/);
+    });
+
+    test('copies code once per click after navigating', async ({ page, context }) => {
+        await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+        for (let i = 0; i < 2; i++) {
+            await pjaxClick(page, page.locator('.column-main a[href="/2024/02/20/code-blocks/"]').first());
+            await pjaxClick(page, page.locator('.navbar-start a', { hasText: 'Home' }));
+        }
+        await pjaxClick(page, page.locator('.column-main a[href="/2024/02/20/code-blocks/"]').first());
+        await page.evaluate(() => {
+            window.__copies = 0;
+            document.addEventListener('copy', () => { window.__copies++; });
+        });
+        await page.locator('figure.highlight .copy').first().click();
+        expect(await page.evaluate(() => navigator.clipboard.readText())).toContain('const answer = 42;');
+        expect(await page.evaluate(() => window.__copies)).toBe(1);
     });
 });

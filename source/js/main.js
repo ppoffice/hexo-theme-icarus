@@ -41,7 +41,8 @@
         }
     }
     adjustNavbar();
-    $(window).resize(adjustNavbar);
+    // main.js runs again after every PJAX navigation: replace, do not add, window handlers.
+    $(window).off('resize.icarus-navbar').on('resize.icarus-navbar', adjustNavbar);
 
     function toggleFold(codeBlock, isFolded) {
         const $toggle = $(codeBlock).find('.fold i');
@@ -93,7 +94,10 @@
                 $(this).attr('id', id);
                 $(this).find('figcaption div.level-right').append(button);
             });
-            new ClipboardJS('.highlight .copy'); // eslint-disable-line no-new
+            // ClipboardJS listens on the document, so one instance serves every (PJAX) page.
+            if (!window.IcarusClipboard) {
+                window.IcarusClipboard = new ClipboardJS('.highlight .copy');
+            }
         }
 
         if (fold) {
@@ -122,10 +126,13 @@
 
     const $toc = $('#toc');
     if ($toc.length > 0) {
-        const $mask = $('<div>');
-        $mask.attr('id', 'toc-mask');
-
-        $('body').append($mask);
+        // Reuse the mask left by a previous PJAX page instead of adding another one.
+        let $mask = $('#toc-mask');
+        if (!$mask.length) {
+            $mask = $('<div>').attr('id', 'toc-mask');
+            $('body').append($mask);
+        }
+        $mask.removeClass('is-active');
 
         function toggleToc() { // eslint-disable-line no-inner-declarations
             $toc.toggleClass('is-active');
@@ -133,7 +140,9 @@
         }
 
         $toc.on('click', toggleToc);
-        $mask.on('click', toggleToc);
+        $mask.off('click.icarus-toc').on('click.icarus-toc', toggleToc);
         $('.navbar-main .catalogue').on('click', toggleToc);
+    } else {
+        $('#toc-mask').remove();
     }
 }(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings));
