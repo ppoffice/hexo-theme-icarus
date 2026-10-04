@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { unescapeHTML } = require('hexo-util');
+const { escapeHTML, unescapeHTML } = require('hexo-util');
 const { Component, Fragment } = require('inferno');
 const { toMomentLocale } = require('hexo/dist/plugins/helper/date');
 const Share = require('./share');
@@ -34,7 +34,7 @@ module.exports = class extends Component {
     render() {
         const { config, helper, page, index } = this.props;
         const { article, plugins } = config;
-        const { url_for, date, date_xml, __, _p } = helper;
+        const { url_for, date, date_xml, full_date, __, _p } = helper;
 
         const defaultLanguage = Array.isArray(config.language) && config.language.length ? config.language[0] : config.language;
 
@@ -64,11 +64,11 @@ module.exports = class extends Component {
                             {page.top ? <i class="fas fa-thumbtack level-item" title="Pinned"></i> : null}
                             {/* Creation Date */}
                             {page.date && <span class="level-item" dangerouslySetInnerHTML={{
-                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}">${date(page.date)}</time>`)
+                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${escapeHTML(full_date(page.date))}">${date(page.date)}</time>`)
                             }}></span>}
                             {/* Last Update Date */}
                             {shouldShowUpdated && <span class="level-item" dangerouslySetInnerHTML={{
-                                __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${new Date(page.updated).toLocaleString()}">${date(page.updated)}</time>`)
+                                __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${escapeHTML(full_date(page.updated))}">${date(page.updated)}</time>`)
                             }}></span>}
                             {/* author */}
                             {page.author ? <span class="level-item"> {page.author} </span> : null}

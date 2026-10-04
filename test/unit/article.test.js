@@ -90,6 +90,21 @@ describe('layout/common/article', () => {
             assert.equal(time.attr('datetime'), '2024-01-01T10:00:00.000Z');
         });
 
+        it('shows the full date in the site format and time zone, independent of the build machine', async () => {
+            const originalTz = process.env.TZ;
+            try {
+                for (const tz of ['UTC', 'America/New_York', 'Asia/Shanghai']) {
+                    process.env.TZ = tz;
+                    const { $ } = await renderArticle({ updated: moment.utc('2024-02-01T10:00:00Z') });
+                    assert.deepEqual($('.article-meta time').map((i, el) => el.attribs.title).get(), ['2024-01-01 10:00:00', '2024-02-01 10:00:00'], tz);
+                }
+                const { $ } = await renderArticle({}, { config: { timezone: 'Asia/Tokyo' } });
+                assert.equal($('.article-meta time').attr('title'), '2024-01-01 19:00:00');
+            } finally {
+                process.env.TZ = originalTz;
+            }
+        });
+
         it('update_time: auto shows the update date only when it differs', async () => {
             const auto = { article: { update_time: 'auto' } };
             assert.equal((await renderArticle({}, { config: auto })).$('.article-meta time').length, 1);
