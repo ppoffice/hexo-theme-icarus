@@ -1,7 +1,7 @@
 # Test suite
 
 Tests for the theme's Node.js code (configuration, migrations, layouts) and for the
-generated sites in a real browser. Requires Node.js 20.18 or later.
+generated sites in a real browser. Requires Node.js 20.19 or later.
 
 | Command | What it runs | Time |
 | --- | --- | --- |
