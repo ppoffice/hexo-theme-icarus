@@ -47,6 +47,14 @@ test.describe('table of contents', () => {
         await expect(page.locator('#toc a[data-href="#Second-Section"]')).toHaveClass(/is-active/);
     });
 
+    test('opens from the keyboard on mobile', async ({ page, visit }) => {
+        await page.setViewportSize({ width: 375, height: 800 });
+        await visit('/2024/03/01/hello-world/');
+        await page.locator('.navbar-main .catalogue').focus();
+        await page.keyboard.press('Enter');
+        await expect(page.locator('#toc')).toHaveClass(/is-active/);
+    });
+
     test('opens as an overlay from the navbar on mobile and closes from the mask', async ({ page, visit }) => {
         await page.setViewportSize({ width: 375, height: 800 });
         await visit('/2024/03/01/hello-world/');
@@ -67,6 +75,17 @@ test.describe('back to top button', () => {
         await page.mouse.wheel(0, 2500);
         await expect(button).toHaveClass(/fade-in/);
         await button.click();
+        await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    });
+
+    test('can be used from the keyboard', async ({ page, visit }) => {
+        await page.setViewportSize({ width: 1440, height: 600 });
+        await visit('/');
+        await page.mouse.wheel(0, 2500);
+        const button = page.locator('#back-to-top');
+        await expect(button).toHaveClass(/fade-in/);
+        await button.focus();
+        await page.keyboard.press('Enter');
         await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
     });
 

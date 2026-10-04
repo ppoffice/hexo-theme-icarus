@@ -92,7 +92,8 @@ describe('layout/layout (page skeleton)', () => {
             const { $ } = await renderLayout({}, { plugins: { pjax: true, back_to_top: true } });
             assert.equal($('script[src*="pjax.min.js"]').length, 1);
             assert.equal($('script[src="/js/pjax.js"]').length, 1);
-            assert.equal($('#back-to-top').length, 1);
+            assert.equal($('#back-to-top').prop('tagName'), 'BUTTON');
+            assert.equal($('#back-to-top').attr('aria-label'), 'Back to top');
             assert.equal($('script[src="/js/back_to_top.js"]').length, 1);
         });
 

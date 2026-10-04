@@ -62,12 +62,12 @@ class Navbar extends Component {
                                 </a>;
                             })}
                         </Fragment> : null}
-                        {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
-                            <i class="fas fa-list-ul"></i>
-                        </a> : null}
-                        {showSearch ? <a class="navbar-item search" title={searchTitle} href="javascript:;">
-                            <i class="fas fa-search"></i>
-                        </a> : null}
+                        {showToc ? <button type="button" class="navbar-item is-hidden-tablet catalogue" title={tocTitle} aria-label={tocTitle}>
+                            <i class="fas fa-list-ul" aria-hidden="true"></i>
+                        </button> : null}
+                        {showSearch ? <button type="button" class="navbar-item search" title={searchTitle} aria-label={searchTitle}>
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </button> : null}
                     </div>
                 </div>
             </div>
