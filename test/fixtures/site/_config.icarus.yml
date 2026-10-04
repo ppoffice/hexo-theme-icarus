@@ -1,0 +1,94 @@
+# Theme configuration for the test fixture. Variants in ../variants.js are merged on top.
+version: 5.1.0
+variant: default
+logo: /img/logo.svg
+head:
+  favicon: /img/favicon.svg
+  open_graph:
+    twitter_card: summary
+  structured_data: {}
+navbar:
+  menu:
+    Home: /
+    Archives: /archives
+    Categories: /categories
+    Tags: /tags
+    About: /about
+  links:
+    GitHub:
+      icon: fab fa-github
+      url: https://github.com/ppoffice/hexo-theme-icarus
+    Example: https://example.com/
+footer:
+  copyright: Fixture copyright <b>notice</b>
+  links:
+    Creative Commons:
+      icon: fab fa-creative-commons
+      url: https://creativecommons.org/
+article:
+  highlight:
+    theme: atom-one-light
+    clipboard: true
+    fold: unfolded
+  readtime: true
+  update_time: auto
+  licenses:
+    Creative Commons:
+      icon: fab fa-creative-commons
+      url: https://creativecommons.org/
+search:
+  type: insight
+  index_pages: true
+donates:
+  - type: paypal
+    business: fixture@example.com
+    currency_code: USD
+sidebar:
+  left:
+    sticky: false
+  right:
+    sticky: true
+widgets:
+  - position: left
+    type: profile
+    author: Fixture Author
+    author_title: Theme Tester
+    location: Test Lab
+    avatar: /img/avatar.png
+    follow_link: https://github.com/ppoffice
+    social_links:
+      Github:
+        icon: fab fa-github
+        url: https://github.com/ppoffice
+      Homepage: /about/
+  - position: left
+    type: toc
+    index: true
+    collapsed: false
+    depth: 3
+  - position: left
+    type: categories
+  - position: left
+    type: tags
+  - position: right
+    type: recent_posts
+  - position: right
+    type: archives
+  - position: right
+    type: links
+    links:
+      Hexo: https://hexo.io
+plugins:
+  animejs: false
+  back_to_top: true
+  gallery: false
+  pjax: false
+  progressbar: false
+  busuanzi: false
+  katex: false
+  mathjax: false
+  outdated_browser: false
+providers:
+  cdn: jsdelivr
+  fontcdn: google
+  iconcdn: fontawesome

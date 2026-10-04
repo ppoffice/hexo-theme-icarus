@@ -1,0 +1,59 @@
+# Hexo site configuration for the theme test fixture.
+title: Icarus Fixture
+subtitle: ''
+description: Fixture site used by the hexo-theme-icarus test suite
+keywords:
+  - hexo
+  - icarus
+author: Fixture Author
+language: en
+timezone: UTC
+
+url: http://localhost:4000
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+syntax_highlighter: highlight.js
+highlight:
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+
+index_generator:
+  path: ''
+  per_page: 4
+  order_by: -date
+
+default_category: uncategorized
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+updated_option: date
+
+per_page: 4
+pagination_dir: page
+
+theme: icarus
