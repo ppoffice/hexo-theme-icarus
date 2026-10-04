@@ -24,6 +24,8 @@ describe('layout/common/footer', () => {
         const link = $('footer a[title="Creative Commons"]');
         assert.equal(link.attr('href'), 'https://creativecommons.org/');
         assert.ok(link.find('i').hasClass('fa-creative-commons'));
+        assert.equal(link.attr('aria-label'), 'Creative Commons');
+        assert.equal(link.find('i').attr('aria-hidden'), 'true');
     });
 
     it('shows the busuanzi visitor counter only when enabled', async () => {
