@@ -7,7 +7,6 @@ const yaml = require('hexo-component-inferno/lib/util/yaml');
 const { SchemaLoader } = require('hexo-component-inferno/lib/core/schema');
 const checkConfig = require('../../include/config');
 const { capture, withArgv } = require('../support/capture');
-const { knownBug } = require('../support/known-bug');
 const { REPO_ROOT } = require('../support/paths');
 
 function loadSchema() {
@@ -97,6 +96,33 @@ describe('include/config (theme configuration check, generation and migration)',
             assert.match(output, /failed one or more checks/);
         });
 
+        it('validates the theme-directory and site configurations deep-merged, like Hexo', () => {
+            env = setup({
+                themeDirConfig: { version: '5.1.0', comment: { type: 'disqus', shortname: 'fixture' } },
+                themeSiteConfig: { comment: { type: 'disqus' } }
+            });
+            const { exitCode, output } = capture(() => checkConfig(env.hexo));
+            assert.equal(exitCode, null);
+            assert.doesNotMatch(output, /failed one or more checks/, output);
+        });
+
+        it('also merges theme_config from the site _config.yml', () => {
+            env = setup({
+                siteConfig: { title: 'Test', theme_config: { comment: { shortname: 'fixture' } } },
+                themeSiteConfig: { version: '5.1.0', comment: { type: 'disqus' } }
+            });
+            env.hexo.config.theme_config = { comment: { shortname: 'fixture' } };
+            const { output } = capture(() => checkConfig(env.hexo));
+            assert.doesNotMatch(output, /failed one or more checks/, output);
+        });
+
+        it('accepts an empty theme configuration file', () => {
+            env = setup({ themeDirConfig: { version: '5.1.0' }, themeSiteConfig: '' });
+            const { exitCode, output } = capture(() => checkConfig(env.hexo));
+            assert.equal(exitCode, null, output);
+            assert.doesNotMatch(output, /failed one or more checks/, output);
+        });
+
         it('warns when theme settings are placed in the site _config.yml as theme_config', () => {
             env = setup({ siteConfig: { title: 'Test', theme_config: { variant: 'cyberpunk' } }, themeSiteConfig: { version: '5.1.0' } });
             const { output } = capture(() => checkConfig(env.hexo));
@@ -161,7 +187,7 @@ describe('include/config (theme configuration check, generation and migration)',
             assert.match(output, /failed one or more checks/, 'version is required by the schema');
         });
 
-        knownBug('keeps nested settings from the theme-directory _config.yml when upgrading both files', () => {
+        it('keeps nested settings from the theme-directory _config.yml when upgrading both files', () => {
             env = setup({
                 themeDirConfig: { version: '5.0.0', article: { highlight: { theme: 'monokai' }, readtime: true } },
                 themeSiteConfig: { version: '5.0.0', article: { readtime: false } }

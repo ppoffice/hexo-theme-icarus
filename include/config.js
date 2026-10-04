@@ -4,6 +4,7 @@ const path = require('path');
 const util = require('util');
 const crypto = require('crypto');
 const createLogger = require('hexo-log');
+const { deepMerge } = require('hexo-util');
 const yaml = require('hexo-component-inferno/lib/util/yaml');
 const { Migrator } = require('hexo-component-inferno/lib/core/migrate');
 const { SchemaLoader } = require('hexo-component-inferno/lib/core/schema');
@@ -12,9 +13,12 @@ const { yellow } = require('./util/console');
 const logger = createLogger.default();
 
 function loadThemeConfig(hexo, cfgPaths) {
-    const configs = cfgPaths.map(cfgPath => fs.readFileSync(cfgPath))
-        .map(cfgPath => yaml.parse(cfgPath));
-    return Object.assign({}, ...configs, hexo.config.theme_config);
+    // Merge the configuration files the same way Hexo does when rendering, so that what is
+    // validated and migrated here is exactly the configuration the theme will receive.
+    const configs = cfgPaths.map(cfgPath => yaml.parse(fs.readFileSync(cfgPath)));
+    return configs.concat(hexo.config.theme_config)
+        .filter(cfg => cfg && typeof cfg === 'object')
+        .reduce((result, cfg) => deepMerge(result, cfg), {});
 }
 
 function generateThemeConfigFile(schema, cfgPath) {
