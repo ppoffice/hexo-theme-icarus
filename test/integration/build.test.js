@@ -3,7 +3,6 @@
  */
 const assert = require('assert').strict;
 const { getSite } = require('../support/site');
-const { knownBug } = require('../support/known-bug');
 
 describe('fixture site build (default variant)', function() {
     this.timeout(120000);
@@ -116,13 +115,7 @@ describe('fixture site build (default variant)', function() {
         }
 
         it('only links to local files that exist', () => {
-            // Hidden paginator placeholders are covered by the known bug below.
-            assert.deepEqual(brokenLocalLinks('a[href]:not(.is-invisible a), link[href], script[src], img[src]'), []);
-        });
-
-        // The paginator component lives in hexo-component-inferno (lib/view/misc/paginator).
-        knownBug('does not emit paginator links to pages that do not exist (/page/0/, /page/N+1/)', () => {
-            assert.deepEqual(brokenLocalLinks('.pagination a[href]'), []);
+            assert.deepEqual(brokenLocalLinks('a[href], link[href], script[src], img[src]'), []);
         });
 
         it('opens external links in a new tab with rel="noopener"', () => {
