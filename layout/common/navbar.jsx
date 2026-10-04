@@ -57,8 +57,8 @@ class Navbar extends Component {
                         {Object.keys(links).length ? <Fragment>
                             {Object.keys(links).map(name => {
                                 const link = links[name];
-                                return <a class="navbar-item" target="_blank" rel="noopener" title={name} href={link.url}>
-                                    {link.icon ? <i class={link.icon}></i> : name}
+                                return <a class="navbar-item" target="_blank" rel="noopener" title={name} href={link.url} aria-label={link.icon ? name : null}>
+                                    {link.icon ? <i class={link.icon} aria-hidden="true"></i> : name}
                                 </a>;
                             })}
                         </Fragment> : null}

@@ -45,6 +45,9 @@ describe('layout/common/navbar', () => {
         assert.equal(github.attr('target'), '_blank');
         assert.match(github.attr('rel'), /noopener/);
         assert.ok(github.find('i').hasClass('fa-github'));
+        assert.equal(github.attr('aria-label'), 'GitHub');
+        assert.equal(github.find('i').attr('aria-hidden'), 'true');
+        assert.equal($('.navbar-end a[title="Example"]').attr('aria-label'), undefined, 'text links need no aria-label');
         assert.equal($('.navbar-end a[title="Example"]').text(), 'Example');
     });
 

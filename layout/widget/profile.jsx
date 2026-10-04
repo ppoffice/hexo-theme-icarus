@@ -10,8 +10,8 @@ class Profile extends Component {
         return <div class="level is-mobile is-multiline">
             {links.filter(link => typeof link === 'object').map(link => {
                 return <a class="level-item button is-transparent is-marginless"
-                    target="_blank" rel="me noopener" title={link.name} href={link.url}>
-                    {'icon' in link ? <i class={link.icon}></i> : link.name}
+                    target="_blank" rel="me noopener" title={link.name} href={link.url} aria-label={'icon' in link ? link.name : null}>
+                    {'icon' in link ? <i class={link.icon} aria-hidden="true"></i> : link.name}
                 </a>;
             })}
         </div>;
