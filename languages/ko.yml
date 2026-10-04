@@ -30,6 +30,8 @@ article:
     updated_at: '%s&nbsp;업데이트 됨'
     more: '자세히 보기'
     comments: '댓글'
+    copy: '복사'
+    copied: '복사됨!'
     read_time: '%s안에 읽기'
     word_count:
         one: '약 %d 단어'

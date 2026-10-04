@@ -30,6 +30,8 @@ article:
     updated_at: '%s更新'
     more: '阅读更多'
     comments: '评论'
+    copy: '复制'
+    copied: '已复制！'
     read_time: '%s读完'
     word_count:
         one: '大约%d个字'

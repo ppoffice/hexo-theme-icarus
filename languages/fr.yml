@@ -30,6 +30,8 @@ article:
     updated_at: 'Mis à jour il y a&nbsp;%s'
     more: 'Lire la suite'
     comments: 'Commentaires'
+    copy: 'Copier'
+    copied: 'Copié !'
     read_time: '%s de lecture'
     word_count:
         one: 'Environ %d mot'

@@ -30,6 +30,8 @@ article:
     updated_at: 'Đã cập nhật&nbsp;%s'
     more: 'Đọc thêm'
     comments: 'Bình luận'
+    copy: 'Sao chép'
+    copied: 'Đã sao chép!'
     read_time: '%s đọc'
     word_count:
         one: 'Khoảng %d từ'

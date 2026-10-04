@@ -30,6 +30,8 @@ article:
     updated_at: 'Atualizado&nbsp;%s'
     more: 'Ler Mais'
     comments: 'Comentarios'
+    copy: 'Copiar'
+    copied: 'Copiado!'
     read_time: '%s lidos'
     word_count:
         one: 'Cerca de %d palavra'

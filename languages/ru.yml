@@ -30,6 +30,8 @@ article:
     updated_at: 'Обновлено&nbsp;%s'
     more: 'Читать дальше'
     comments: 'Комментарии'
+    copy: 'Копировать'
+    copied: 'Скопировано!'
     read_time: '%s на чтение'
     word_count:
         one: 'Около %d слова'

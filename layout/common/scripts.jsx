@@ -5,7 +5,7 @@ const { sri } = require('../../include/util/sri');
 module.exports = class extends Component {
     render() {
         const { site, config, helper, page } = this.props;
-        const { url_for, cdn } = helper;
+        const { url_for, cdn, __ } = helper;
         const { article } = config;
 
         let fold = 'unfolded';
@@ -19,14 +19,20 @@ module.exports = class extends Component {
             }
         }
 
-        const embeddedConfig = `var IcarusThemeSettings = {
+        const settings = {
             article: {
                 highlight: {
-                    clipboard: ${clipboard},
-                    fold: '${fold}'
+                    clipboard,
+                    fold
                 }
+            },
+            i18n: {
+                copy: __('article.copy'),
+                copied: __('article.copied')
             }
-        };`;
+        };
+        // Escape "<" so that no configured or translated string can close the <script> element.
+        const embeddedConfig = `var IcarusThemeSettings = ${JSON.stringify(settings).replace(/</g, '\\u003c')};`;
 
         return <Fragment>
             <script src={cdn('jquery', '3.7.1', 'dist/jquery.min.js')} {...sri(config, 'jquery', '3.7.1', 'dist/jquery.min.js')}></script>

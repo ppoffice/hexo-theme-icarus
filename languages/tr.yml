@@ -30,6 +30,8 @@ article:
     updated_at: '%s&nbsp;güncellendi'
     more: 'Daha fazla oku'
     comments: 'Yorumlar'
+    copy: 'Kopyala'
+    copied: 'Kopyalandı!'
     read_time: '%s okuma süresi'
     word_count:
         one: 'Yaklaşık %d kelime'
