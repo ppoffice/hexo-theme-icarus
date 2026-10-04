@@ -66,7 +66,6 @@ Current list:
 
 | Area | Bug | Test |
 | --- | --- | --- |
-| i18n | `vn.yml` should be `vi.yml` | `unit/languages.test.js` |
 | i18n | Untranslated languages fall back to whichever file loaded first (e.g. German) | `unit/languages.test.js` |
 | Layout | `<html lang>` drops the region (`zh-CN` → `zh`) | `unit/layout.test.js`, `integration/variants.test.js` |
 | Layout | Empty right column when its only widget is a hidden toc | `unit/widgets.test.js`, `integration/variants.test.js` |

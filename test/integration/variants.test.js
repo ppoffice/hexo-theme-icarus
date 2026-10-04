@@ -76,6 +76,14 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('vi (Vietnamese)', () => {
+        it('uses the Vietnamese translations', () => {
+            const $ = getSite('vi').$('/');
+            assert.equal($('.article-more').first().text(), strings('vi').article.more);
+            assert.equal($('html').attr('lang'), 'vi');
+        });
+    });
+
     describe('plugins', () => {
         it('loads PJAX when enabled', () => {
             const $ = getSite('pjax').$('/');

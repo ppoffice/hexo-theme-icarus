@@ -30,6 +30,10 @@ module.exports = {
         site: { language: 'zh-CN' }
     },
 
+    'vi': {
+        site: { language: 'vi' }
+    },
+
     // The table of contents is the only widget of the right column.
     'toc-only-right': {
         theme: {

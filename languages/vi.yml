@@ -1,0 +1,66 @@
+common:
+    archive:
+        one: 'Lưu trữ'
+        other: 'Lưu trữ'
+    category:
+        one: 'Thể loại'
+        other: 'Thể loại'
+    tag:
+        one: 'Nhãn'
+        other: 'Nhãn'
+    post:
+        one: 'Bài viết'
+        other: 'Bài viết'
+    page:
+        one: 'Trang'
+        other: 'Trang'
+    prev: 'Trước'
+    next: 'Sau'
+widget:
+    follow: 'Theo dõi'
+    recents: 'Gần đây'
+    links: 'Link'
+    catalogue: 'Mục lục'
+    subscribe_email: 'Theo dõi các bản cập nhật'
+    subscribe: 'Theo dõi'
+    adsense: 'Quảng cáo'
+    followit: 'follow.it'
+article:
+    created_at: 'Đã đăng&nbsp;%s'
+    updated_at: 'Đã cập nhật&nbsp;%s'
+    more: 'Đọc thêm'
+    comments: 'Bình luận'
+    read_time: '%s đọc'
+    word_count:
+        one: 'Khoảng %d từ'
+        other: 'Khoảng %d từ'
+    licensing:
+        author: 'Author'
+        created_at: 'Posted on'
+        updated_at: 'Updated on'
+        licensed_under: 'Licensed under'
+donate:
+    title: 'Bạn đọc có thể ủng hộ blog qua'
+    afdian: 'Afdian.net'
+    alipay: 'Alipay'
+    wechat: 'Wechat'
+    paypal: 'Paypal'
+    patreon: 'Patreon'
+    buymeacoffee: 'Mua cho tôi một ly cà phê'
+plugin:
+    backtotop: 'Trở lai đầu trang'
+    visit_count: '%s&nbsp;Bạn đọc'
+    visitor_count: 'Thăm bởi %s bạn đọc'
+    cookie_consent:
+      message: Trang web này sử dụng cookie để cải thiện trải nghiệm của bạn.
+      dismiss: Hiểu rồi!
+      allow: Cho phép cookie
+      deny: Từ chối
+      link: Tìm hiểu thêm
+      policy: Chính sách Cookie
+search:
+    search: 'Tìm kiếm'
+    hint: 'Gõ gì đó...'
+    no_result: 'Không có kết quả cho'
+    untitled: '(Không có tiêu đề)'
+    empty_preview: '(Không có xem trước)'

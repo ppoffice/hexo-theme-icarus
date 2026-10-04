@@ -85,7 +85,15 @@ describe('languages/', () => {
         }
     });
 
-    knownBug('names files with the language codes Hexo users configure (vi for Vietnamese)', () => {
+    it('names files with the language codes Hexo users configure (vi for Vietnamese)', () => {
         assert.ok(files.includes('vi.yml'), 'Vietnamese is "vi" in ISO 639-1; "vn" is a country code');
+    });
+
+    it('keeps vn.yml as an identical alias of vi.yml for existing sites', () => {
+        assert.deepEqual(load('vn.yml'), load('vi.yml'));
+    });
+
+    it('translates language: vi into Vietnamese', () => {
+        assert.equal(translate('vi', 'article.more', files), 'Đọc thêm');
     });
 });
