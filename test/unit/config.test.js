@@ -18,7 +18,7 @@ function loadSchema() {
  * Create a throwaway Hexo site + theme directory pair.
  * The theme directory links include/ from this repository so schemas and migrations are real.
  */
-function setup({ siteConfig = { title: 'Test' }, themeSiteConfig, themeDirConfig } = {}) {
+function createEnv({ siteConfig = { title: 'Test' }, themeSiteConfig, themeDirConfig } = {}) {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'icarus-config-'));
     const baseDir = path.join(root, 'site');
     const themeDir = path.join(root, 'theme');
@@ -53,7 +53,7 @@ describe('include/config (theme configuration check, generation and migration)',
 
     describe('generation', () => {
         it('generates _config.icarus.yml from the schema when no theme config exists', () => {
-            env = setup();
+            env = createEnv();
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null, output);
             const generated = env.sitePath('_config.icarus.yml');
@@ -65,14 +65,14 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('does not generate a config file with --icarus-dont-generate-config', () => {
-            env = setup();
+            env = createEnv();
             const { exitCode } = withArgv(['--icarus-dont-generate-config'], () => capture(() => checkConfig(env.hexo)));
             assert.equal(exitCode, null);
             assert.equal(fs.existsSync(env.sitePath('_config.icarus.yml')), false);
         });
 
         it('skips all checks with --icarus-dont-check-config', () => {
-            env = setup();
+            env = createEnv();
             const { output } = withArgv(['--icarus-dont-check-config'], () => capture(() => checkConfig(env.hexo)));
             assert.equal(fs.existsSync(env.sitePath('_config.icarus.yml')), false);
             assert.doesNotMatch(output, /Checking theme configurations/);
@@ -81,7 +81,7 @@ describe('include/config (theme configuration check, generation and migration)',
 
     describe('validation', () => {
         it('accepts a valid, up-to-date configuration silently', () => {
-            env = setup({ themeSiteConfig: { version: '5.1.0', variant: 'default' } });
+            env = createEnv({ themeSiteConfig: { version: '5.1.0', variant: 'default' } });
             const before = fs.readFileSync(env.sitePath('_config.icarus.yml'), 'utf8');
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null);
@@ -90,14 +90,14 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('warns (without exiting) when the configuration violates the schema', () => {
-            env = setup({ themeSiteConfig: { version: '5.1.0', variant: 'no-such-variant' } });
+            env = createEnv({ themeSiteConfig: { version: '5.1.0', variant: 'no-such-variant' } });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null);
             assert.match(output, /failed one or more checks/);
         });
 
         it('validates the theme-directory and site configurations deep-merged, like Hexo', () => {
-            env = setup({
+            env = createEnv({
                 themeDirConfig: { version: '5.1.0', comment: { type: 'disqus', shortname: 'fixture' } },
                 themeSiteConfig: { comment: { type: 'disqus' } }
             });
@@ -107,7 +107,7 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('also merges theme_config from the site _config.yml', () => {
-            env = setup({
+            env = createEnv({
                 siteConfig: { title: 'Test', theme_config: { comment: { shortname: 'fixture' } } },
                 themeSiteConfig: { version: '5.1.0', comment: { type: 'disqus' } }
             });
@@ -117,20 +117,20 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('accepts an empty theme configuration file', () => {
-            env = setup({ themeDirConfig: { version: '5.1.0' }, themeSiteConfig: '' });
+            env = createEnv({ themeDirConfig: { version: '5.1.0' }, themeSiteConfig: '' });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null, output);
             assert.doesNotMatch(output, /failed one or more checks/, output);
         });
 
         it('warns when theme settings are placed in the site _config.yml as theme_config', () => {
-            env = setup({ siteConfig: { title: 'Test', theme_config: { variant: 'cyberpunk' } }, themeSiteConfig: { version: '5.1.0' } });
+            env = createEnv({ siteConfig: { title: 'Test', theme_config: { variant: 'cyberpunk' } }, themeSiteConfig: { version: '5.1.0' } });
             const { output } = capture(() => checkConfig(env.hexo));
             assert.match(output, /"theme_config" found in/);
         });
 
         it('exits with an error when the theme config is not valid YAML', () => {
-            env = setup({ themeSiteConfig: 'version: 5.1.0\nvariant: [unclosed\n' });
+            env = createEnv({ themeSiteConfig: 'version: 5.1.0\nvariant: [unclosed\n' });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, -1);
             assert.match(output, /Theme configuration checking failed/);
@@ -144,7 +144,7 @@ describe('include/config (theme configuration check, generation and migration)',
         };
 
         it('backs up, migrates and rewrites an outdated configuration', () => {
-            env = setup({ themeSiteConfig: outdated });
+            env = createEnv({ themeSiteConfig: outdated });
             const original = env.sitePath('_config.icarus.yml');
             const backup = original + '.' + md5(original);
             const originalContent = fs.readFileSync(original, 'utf8');
@@ -164,7 +164,7 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('upgrades a 3.x configuration through every intermediate migration', () => {
-            env = setup({ themeSiteConfig: { version: '3.0.0', article: { thumbnail: true, readtime: true } } });
+            env = createEnv({ themeSiteConfig: { version: '3.0.0', article: { thumbnail: true, readtime: true } } });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null, output);
             const migrated = env.readYaml(env.sitePath('_config.icarus.yml'));
@@ -173,14 +173,14 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('leaves an outdated configuration untouched with --icarus-dont-upgrade-config', () => {
-            env = setup({ themeSiteConfig: outdated });
+            env = createEnv({ themeSiteConfig: outdated });
             const before = fs.readFileSync(env.sitePath('_config.icarus.yml'), 'utf8');
             withArgv(['--icarus-dont-upgrade-config'], () => capture(() => checkConfig(env.hexo)));
             assert.equal(fs.readFileSync(env.sitePath('_config.icarus.yml'), 'utf8'), before);
         });
 
         it('does not try to migrate a configuration without a version', () => {
-            env = setup({ themeSiteConfig: { variant: 'default' } });
+            env = createEnv({ themeSiteConfig: { variant: 'default' } });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null);
             assert.doesNotMatch(output, /outdated/);
@@ -188,7 +188,7 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('keeps nested settings from the theme-directory _config.yml when upgrading both files', () => {
-            env = setup({
+            env = createEnv({
                 themeDirConfig: { version: '5.0.0', article: { highlight: { theme: 'monokai' }, readtime: true } },
                 themeSiteConfig: { version: '5.0.0', article: { readtime: false } }
             });

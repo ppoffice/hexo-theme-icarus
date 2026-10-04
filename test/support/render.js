@@ -21,7 +21,7 @@ const { REPO_ROOT, FIXTURE_SITE } = require('./paths');
 require('hexo-renderer-inferno/lib/compile');
 
 // Use the hexo-i18n instance that ships with the installed Hexo, so translations resolve exactly as in a build.
-// eslint-disable-next-line node/no-extraneous-require
+// eslint-disable-next-line n/no-extraneous-require
 const I18n = require(require.resolve('hexo-i18n', { paths: [require.resolve('hexo')] }));
 
 view.init({ theme_dir: REPO_ROOT });

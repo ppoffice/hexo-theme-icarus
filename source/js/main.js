@@ -1,4 +1,3 @@
-/* eslint-disable node/no-unsupported-features/node-builtins */
 (function($, ClipboardJS, config) {
     $('.article img:not(".not-gallery-item")').each(function() {
         // wrap images with link and add caption if possible
@@ -183,7 +182,7 @@
         }
         $mask.removeClass('is-active');
 
-        function toggleToc() { // eslint-disable-line no-inner-declarations
+        function toggleToc() {
             $toc.toggleClass('is-active');
             $mask.toggleClass('is-active');
         }

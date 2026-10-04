@@ -1,4 +1,4 @@
-/* eslint no-process-exit: "off" */
+/* eslint n/no-process-exit: "off" */
 const fs = require('fs');
 const path = require('path');
 const util = require('util');

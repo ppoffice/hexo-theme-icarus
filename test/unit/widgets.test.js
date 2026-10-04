@@ -3,16 +3,17 @@ const { render, fixtureConfig, makePage } = require('../support/render');
 
 // Loaded through the render harness so that @babel/register handles the JSX.
 let Widgets;
-before(async () => {
-    await render(() => null);
-    Widgets = require('../../layout/common/widgets');
-});
 
 const profile = position => ({ position, type: 'profile', author: 'A' });
 const toc = position => ({ position, type: 'toc' });
 const recent = position => ({ position, type: 'recent_posts' });
 
 describe('layout/common/widgets', () => {
+    before(async () => {
+        await render(() => null);
+        Widgets = require('../../layout/common/widgets');
+    });
+
     describe('getColumnCount', () => {
         const count = (widgets, { toc: tocEnabled = false, layout = 'post' } = {}) =>
             Widgets.getColumnCount(widgets, { toc: tocEnabled }, { layout });
