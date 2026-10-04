@@ -57,7 +57,13 @@ async function routeExternal(context) {
                 throw new Error(`The page requested ${name}@${version} but ${VENDORED[name]}@${vendoredVersion} is vendored. Update package.json.`);
             }
             const file = path.join(dir, filename);
-            return route.fulfill({ status: 200, contentType: contentType(file), body: fs.readFileSync(file) });
+            // Like jsDelivr/unpkg: CORS is required for <script crossorigin integrity=...>.
+            return route.fulfill({
+                status: 200,
+                contentType: contentType(file),
+                headers: { 'Access-Control-Allow-Origin': '*' },
+                body: fs.readFileSync(file)
+            });
         }
         stats.external.push(url.href);
         const body = url.hostname === 'use.fontawesome.com' ? ICON_FONT_STUB : '';

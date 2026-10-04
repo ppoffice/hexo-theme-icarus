@@ -1,5 +1,6 @@
 const { Component, Fragment } = require('inferno');
 const Plugins = require('./plugins');
+const { sri } = require('../../include/util/sri');
 
 module.exports = class extends Component {
     render() {
@@ -28,8 +29,8 @@ module.exports = class extends Component {
         };`;
 
         return <Fragment>
-            <script src={cdn('jquery', '3.7.1', 'dist/jquery.min.js')}></script>
-            {clipboard && <script src={cdn('clipboard', '2.0.11', 'dist/clipboard.min.js')} defer></script>}
+            <script src={cdn('jquery', '3.7.1', 'dist/jquery.min.js')} {...sri(config, 'jquery', '3.7.1', 'dist/jquery.min.js')}></script>
+            {clipboard && <script src={cdn('clipboard', '2.0.11', 'dist/clipboard.min.js')} {...sri(config, 'clipboard', '2.0.11', 'dist/clipboard.min.js')} defer></script>}
             <script dangerouslySetInnerHTML={{ __html: embeddedConfig }}></script>
             <script data-pjax src={url_for('/js/column.js')}></script>
             <Plugins site={site} config={config} page={page} helper={helper} head={false} />

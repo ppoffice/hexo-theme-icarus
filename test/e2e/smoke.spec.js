@@ -62,3 +62,15 @@ test.describe('relative article dates', () => {
         await expect(page.locator('.article-meta time').first()).toHaveText('2024-03-01');
     });
 });
+
+test('refuses a tampered CDN script (Subresource Integrity)', async ({ page, visit, diagnostics }) => {
+    await page.route('https://cdn.jsdelivr.net/npm/jquery@*/**', route => route.fulfill({
+        status: 200,
+        contentType: 'application/javascript',
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: 'window.__tampered = true;'
+    }));
+    await visit('/');
+    expect(await page.evaluate(() => window.__tampered)).toBeUndefined();
+    expect(diagnostics.consoleErrors.join('\n')).toMatch(/integrity/i);
+});
