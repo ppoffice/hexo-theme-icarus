@@ -66,4 +66,3 @@ Current list:
 
 | Area | Bug | Test |
 | --- | --- | --- |
-| Browser | animejs: page stays invisible if animation.js does not run | `e2e/animejs.spec.js` |

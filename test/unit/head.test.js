@@ -118,7 +118,13 @@ describe('layout/common/head', () => {
 
     it('renders head parts of enabled plugins (animejs hides content until animated)', async () => {
         const { $ } = await renderHead({}, { plugins: { animejs: true } });
-        assert.match($('style').text(), /opacity:\s*0/);
+        const css = $('style').text();
+        assert.match(css, /opacity:\s*0/);
+        // Only hidden once a script has opted in, so the page never stays blank without JS.
+        for (const rule of css.split(',')) {
+            assert.match(rule, /^html\.is-animating /, rule);
+        }
+        assert.match($('script:not([src])').text(), /prefers-reduced-motion/);
     });
 
     it('allows users to zoom (no maximum-scale or user-scalable=no in the viewport meta)', async () => {

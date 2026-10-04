@@ -43,6 +43,7 @@
           "onclick",
           "onload",
           "onsubmit",
+          "onerror",
           "crossorigin"
         ]
       }

@@ -1,4 +1,4 @@
-const { test, expect, knownBug } = require('./fixtures');
+const { test, expect } = require('./fixtures');
 
 const opacity = (page, selector) => page.locator(selector).first().evaluate(el => getComputedStyle(el).opacity);
 
@@ -19,11 +19,33 @@ test.describe('animejs plugin', () => {
             .toBeLessThan(100);
     });
 
-    test('[known bug] content stays visible when animation.js cannot run', async ({ page, visit }) => {
-        knownBug('a <style> in <head> hides the page until animation.js reveals it');
+    test('content stays visible when animation.js cannot be loaded', async ({ page, visit }) => {
         await page.route('**/js/animation.js', route => route.abort());
         await visit('/', { variant: 'animejs' });
-        await page.waitForTimeout(500);
+        await expect.poll(() => opacity(page, 'body > .section')).toBe('1');
+        expect(await opacity(page, 'body > .navbar')).toBe('1');
+    });
+
+    test('does not animate for visitors who prefer reduced motion', async ({ page, visit }) => {
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await visit('/', { variant: 'animejs' });
+        expect(await page.evaluate(() => document.documentElement.classList.contains('is-animating'))).toBe(false);
         expect(await opacity(page, 'body > .section')).toBe('1');
+        expect(await page.locator('.column-main > .card').first().evaluate(el => el.style.transform)).toBe('');
+    });
+
+    test('removes the hiding class once the page is revealed', async ({ page, visit }) => {
+        await visit('/', { variant: 'animejs' });
+        await expect.poll(() => page.evaluate(() => document.documentElement.classList.contains('is-animating'))).toBe(false);
+    });
+});
+
+test.describe('animejs plugin without JavaScript', () => {
+    test.use({ javaScriptEnabled: false });
+
+    test('shows the page', async ({ page, visit }) => {
+        await visit('/', { variant: 'animejs' });
+        expect(await opacity(page, 'body > .section')).toBe('1');
+        expect(await opacity(page, 'body > .navbar')).toBe('1');
     });
 });
