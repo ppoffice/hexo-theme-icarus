@@ -5,6 +5,18 @@
 Please refer to the [.eslintrc.json](https://github.com/ppoffice/hexo-theme-icarus/blob/master/.eslintrc.json).
 You can also use `npm run lint` or `yarn lint` to fix code style issues.
 
+## Tests
+
+The test suite needs Node.js 20.18 or later. See [test/README.md](test/README.md) for details.
+
+```bash
+npm test            # unit + integration tests (mocha)
+npm run test:e2e    # browser tests (Playwright + Chromium)
+```
+
+Install the browser once with `npx playwright install chromium` before running the browser tests.
+Bug fixes should come with a test; if a test is marked as a known bug, remove the marker once it is fixed.
+
 ## Project versioning
 
 We use [SemVer](http://semver.org/) for versioning.
@@ -31,7 +43,8 @@ The supported scopes are:
 
 1. Fork this repository, make changes to it, and run it against some actual Hexo sites to see if 
 anything is broken.
-You should also run `npm run lint` or `yarn lint` to find and fix any code formatting issue.
+You should also run `npm run lint` or `yarn lint` to find and fix any code formatting issue,
+and `npm test` / `npm run test:e2e` to catch regressions.
 2. Submit a pull request to our repository. Please make sure you followed the instructions
 above.
 3. We will review the pull request regularly and inform you of our questions and any changes 

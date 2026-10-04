@@ -3,3 +3,5 @@
 .eslintrc.json
 .travis.yml
 yarn.lock
+.mocharc.yml
+test/

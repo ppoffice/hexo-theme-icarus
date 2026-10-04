@@ -36,3 +36,38 @@ jobs:
       - run: npm install hexo-tag-embed
       - run: npx hexo config theme icarus
       - run: time NODE_ENV=production npx hexo g -b
+
+  unit-integration:
+    name: Unit & integration tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm test
+
+  e2e:
+    name: Browser tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            test/.tmp/playwright-report
+            test/.tmp/playwright-results
+          retention-days: 7

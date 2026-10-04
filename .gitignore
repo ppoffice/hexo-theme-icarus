@@ -114,3 +114,6 @@ yarn.lock
 *.ipr
 *.iws
 *.iml
+
+# Test suite output (built fixture sites, Playwright reports)
+test/.tmp/

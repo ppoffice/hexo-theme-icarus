@@ -1,0 +1,16 @@
+{
+    "env": {
+        "mocha": true
+    },
+    "rules": {
+        "node/no-unpublished-require": "off"
+    },
+    "overrides": [
+        {
+            "files": ["e2e/**/*.js"],
+            "env": {
+                "browser": true
+            }
+        }
+    ]
+}
