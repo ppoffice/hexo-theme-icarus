@@ -4,7 +4,7 @@ const path = require('path');
 const yaml = require('hexo-component-inferno/lib/util/yaml');
 // eslint-disable-next-line node/no-extraneous-require
 const I18n = require(require.resolve('hexo-i18n', { paths: [require.resolve('hexo')] }));
-const { knownBug } = require('../support/known-bug');
+const { applyDefaultLanguage } = require('../../include/i18n');
 const { REPO_ROOT } = require('../support/paths');
 
 const languageDir = path.join(REPO_ROOT, 'languages');
@@ -65,11 +65,12 @@ describe('languages/', () => {
      * [page language, ...config languages, 'default', ...every loaded language file],
      * and the loaded files come in whatever order Hexo happened to process them.
      */
-    function translate(siteLanguage, key, fileOrder) {
+    function translate(siteLanguage, key, fileOrder, themeDir = REPO_ROOT) {
         const i18n = new I18n({ languages: [siteLanguage, 'default'] });
         for (const file of fileOrder) {
             i18n.set(path.basename(file, '.yml'), yaml.parse(fs.readFileSync(path.join(languageDir, file), 'utf8')));
         }
+        applyDefaultLanguage(i18n, themeDir);
         const languages = [...new Set([siteLanguage, siteLanguage, 'default', ...i18n.list()])];
         return i18n.__(languages)(key);
     }
@@ -79,10 +80,33 @@ describe('languages/', () => {
         assert.equal(translate('en', 'article.more', [...files].reverse()), 'Read more');
     });
 
-    knownBug('falls back to English for a language without translation, whatever the file load order', () => {
+    it('falls back to English for a language without translation, whatever the file load order', () => {
         for (const order of [files, [...files].reverse()]) {
             assert.equal(translate('nl', 'article.more', order), 'Read more');
+            assert.equal(translate('pt', 'article.comments', order), 'Comments');
         }
+    });
+
+    describe('include/i18n applyDefaultLanguage', () => {
+        const os = require('os');
+
+        it('does not override a languages/default.yml shipped with the theme', () => {
+            const themeDir = fs.mkdtempSync(path.join(os.tmpdir(), 'icarus-i18n-'));
+            fs.mkdirSync(path.join(themeDir, 'languages'));
+            fs.writeFileSync(path.join(themeDir, 'languages', 'default.yml'), 'article:\n    more: Custom\n');
+            const i18n = new I18n({ languages: ['nl', 'default'] });
+            i18n.set('default', { article: { more: 'Custom' } });
+            i18n.set('en', load('en.yml'));
+            applyDefaultLanguage(i18n, themeDir);
+            assert.equal(i18n.__(['nl', 'default', 'en'])('article.more'), 'Custom');
+            fs.rmSync(themeDir, { recursive: true, force: true });
+        });
+
+        it('does nothing when English is not loaded', () => {
+            const i18n = new I18n({ languages: ['nl', 'default'] });
+            applyDefaultLanguage(i18n, REPO_ROOT);
+            assert.deepEqual(i18n.list(), []);
+        });
     });
 
     it('names files with the language codes Hexo users configure (vi for Vietnamese)', () => {

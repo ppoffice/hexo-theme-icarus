@@ -84,6 +84,14 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('a language without a translation file', () => {
+        it('falls back to English', () => {
+            const $ = getSite('unsupported-language').$('/');
+            assert.equal($('.article-more').first().text(), strings('en').article.more);
+            assert.equal($('.navbar-item.search').attr('title'), strings('en').search.search);
+        });
+    });
+
     describe('plugins', () => {
         it('loads PJAX when enabled', () => {
             const $ = getSite('pjax').$('/');

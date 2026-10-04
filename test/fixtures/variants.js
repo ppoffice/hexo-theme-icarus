@@ -34,6 +34,11 @@ module.exports = {
         site: { language: 'vi' }
     },
 
+    // A language the theme has no translation for.
+    'unsupported-language': {
+        site: { language: 'nl' }
+    },
+
     // The table of contents is the only widget of the right column.
     'toc-only-right': {
         theme: {
