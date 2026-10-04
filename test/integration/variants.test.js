@@ -15,6 +15,7 @@ describe('fixture site variants', function() {
 
     describe('without a theme configuration file', () => {
         let site;
+
         before(() => { site = getSite('generated-config'); });
 
         it('generates _config.icarus.yml and builds with it', () => {
@@ -60,6 +61,7 @@ describe('fixture site variants', function() {
 
     describe('zh-CN', () => {
         let site;
+
         before(() => { site = getSite('zh-CN'); });
 
         it('uses the Chinese translations', () => {

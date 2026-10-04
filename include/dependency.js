@@ -1,4 +1,4 @@
-/* eslint no-process-exit: "off" */
+/* eslint n/no-process-exit: "off" */
 const semver = require('semver');
 const createLogger = require('hexo-log');
 const packageInfo = require('../package.json');

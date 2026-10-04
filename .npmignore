@@ -1,6 +1,5 @@
 .github/
-.eslintignore
-.eslintrc.json
+eslint.config.js
 yarn.lock
 .mocharc.yml
 test/

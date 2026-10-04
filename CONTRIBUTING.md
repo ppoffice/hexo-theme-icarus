@@ -2,7 +2,7 @@
 
 ## Code styles
 
-Please refer to the [.eslintrc.json](https://github.com/ppoffice/hexo-theme-icarus/blob/master/.eslintrc.json).
+Please refer to the [eslint.config.js](https://github.com/ppoffice/hexo-theme-icarus/blob/master/eslint.config.js).
 You can also use `npm run lint` or `yarn lint` to fix code style issues.
 
 ## Tests

@@ -5,7 +5,7 @@ const path = require('path');
 const registerStylus = require('../../include/stylus');
 const { REPO_ROOT } = require('../support/paths');
 
-// eslint-disable-next-line node/no-extraneous-require
+// eslint-disable-next-line n/no-extraneous-require
 const stylus = require(require.resolve('stylus', { paths: [require.resolve('hexo-renderer-stylus')] }));
 
 function stylusFilter() {
@@ -45,6 +45,7 @@ describe('include/stylus (locating bulma-stylus)', function() {
     let env;
 
     beforeEach(() => { env = isolatedTheme(); });
+
     afterEach(() => fs.rmSync(env.root, { recursive: true, force: true }));
 
     it('cannot compile with only the relative fallback path when node_modules is elsewhere', async () => {

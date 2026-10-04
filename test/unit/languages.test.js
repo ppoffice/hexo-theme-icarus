@@ -2,7 +2,7 @@ const assert = require('assert').strict;
 const fs = require('fs');
 const path = require('path');
 const yaml = require('hexo-component-inferno/lib/util/yaml');
-// eslint-disable-next-line node/no-extraneous-require
+// eslint-disable-next-line n/no-extraneous-require
 const I18n = require(require.resolve('hexo-i18n', { paths: [require.resolve('hexo')] }));
 const { applyDefaultLanguage } = require('../../include/i18n');
 const { REPO_ROOT } = require('../support/paths');
