@@ -38,7 +38,7 @@ module.exports = hexo => {
     const missingDeps = Object.keys(dependencies)
         .filter(name => !checkDependency(name, dependencies[name]));
     if (missingDeps && missingDeps.length) {
-        logger.error('Please install the missing dependencies your Hexo site root directory:');
+        logger.error('Please install the missing dependencies in your Hexo site root directory:');
         logger.error(green('npm install --save ' + missingDeps.map(installSpec).join(' ')));
         logger.error('or:');
         logger.error(green('yarn add ' + missingDeps.map(installSpec).join(' ')));

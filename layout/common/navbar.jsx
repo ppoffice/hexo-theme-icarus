@@ -3,14 +3,14 @@ const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 const classname = require('hexo-component-inferno/lib/util/classname');
 
 function isSameLink(a, b) {
-    function santize(url) {
+    function sanitize(url) {
         let paths = url.replace(/(^\w+:|^)\/\//, '').split('#')[0].split('/').filter(p => p.trim() !== '');
         if (paths.length > 0 && paths[paths.length - 1].trim() === 'index.html') {
             paths = paths.slice(0, paths.length - 1);
         }
         return paths.join('/');
     }
-    return santize(a) === santize(b);
+    return sanitize(a) === sanitize(b);
 }
 
 class Navbar extends Component {
