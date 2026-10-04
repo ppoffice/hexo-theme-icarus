@@ -34,6 +34,12 @@ describe('layout/layout (page skeleton)', () => {
         });
     }
 
+    it('renders with empty widget entries (a bare "-" in YAML)', async () => {
+        const { $ } = await renderLayout({ toc: true }, { widgets: [null, ...onlyProfile('left'), null] });
+        assert.ok($('body').hasClass('is-2-column'));
+        assert.equal($('.column-left .widget').length, 1);
+    });
+
     it('sets <html lang> from the site language', async () => {
         assert.equal((await renderLayout()).$('html').attr('lang'), 'en');
     });

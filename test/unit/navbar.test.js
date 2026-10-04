@@ -53,6 +53,11 @@ describe('layout/common/navbar', () => {
         assert.equal((await renderNavbar({}, { search: { type: null } })).$('.navbar-item.search').length, 0);
     });
 
+    it('ignores empty widget entries', async () => {
+        const { $ } = await renderNavbar({ toc: true }, { widgets: [null, { position: 'left', type: 'toc' }] });
+        assert.equal($('.catalogue').length, 1);
+    });
+
     it('shows the mobile catalogue button only on posts/pages with a toc', async () => {
         assert.equal((await renderNavbar({ toc: true })).$('.catalogue').length, 1);
         assert.equal((await renderNavbar({ toc: false })).$('.catalogue').length, 0);

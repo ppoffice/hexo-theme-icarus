@@ -8,7 +8,7 @@ const logger = createLogger.default();
 function formatWidgets(widgets) {
     const result = {};
     if (Array.isArray(widgets)) {
-        widgets.filter(widget => typeof widget === 'object').forEach(widget => {
+        widgets.filter(widget => widget && typeof widget === 'object').forEach(widget => {
             if ('position' in widget && (widget.position === 'left' || widget.position === 'right')) {
                 if (!(widget.position in result)) {
                     result[widget.position] = [widget];

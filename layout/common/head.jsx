@@ -87,7 +87,7 @@ module.exports = class extends Component {
 
         let adsenseClientId = null;
         if (Array.isArray(config.widgets)) {
-            const widget = config.widgets.find(widget => widget.type === 'adsense');
+            const widget = config.widgets.find(widget => widget && widget.type === 'adsense');
             if (widget) {
                 adsenseClientId = widget.client_id;
             }
@@ -111,7 +111,7 @@ module.exports = class extends Component {
 
         let followItVerificationCode = null;
         if (Array.isArray(config.widgets)) {
-            const widget = config.widgets.find(widget => widget.type === 'followit');
+            const widget = config.widgets.find(widget => widget && widget.type === 'followit');
             if (widget) {
                 followItVerificationCode = widget.verification_code;
             }

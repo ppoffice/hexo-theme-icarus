@@ -57,6 +57,11 @@ describe('layout/common/widgets', () => {
             assert.equal($('.column-right-shadow').length, 0);
         });
 
+        it('ignores empty widget entries (a bare "-" in YAML)', async () => {
+            const { $ } = await renderSide([null, profile('left')], 'left');
+            assert.equal($('.widget').length, 1);
+        });
+
         it('applies size, order and sticky classes to a column', async () => {
             const { $ } = await renderSide([profile('left'), recent('right')], 'right', {}, { sidebar: { right: { sticky: true } } });
             const column = $('.column-right');

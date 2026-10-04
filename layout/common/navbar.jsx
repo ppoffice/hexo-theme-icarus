@@ -80,7 +80,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
     const { url_for, _p, __ } = helper;
     const { logo, title, navbar, widgets, search } = config;
 
-    const hasTocWidget = Array.isArray(widgets) && widgets.find(widget => widget.type === 'toc');
+    const hasTocWidget = Array.isArray(widgets) && widgets.find(widget => widget && widget.type === 'toc');
     const showToc = (config.toc === true || page.toc) && hasTocWidget && ['page', 'post'].includes(page.layout);
 
     const menu = {};
