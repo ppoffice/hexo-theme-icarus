@@ -6,7 +6,6 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('hexo-component-inferno/lib/util/yaml');
 const { getSite } = require('../support/site');
-const { knownBug } = require('../support/known-bug');
 const { REPO_ROOT } = require('../support/paths');
 
 const strings = lang => yaml.parse(fs.readFileSync(path.join(REPO_ROOT, 'languages', lang + '.yml'), 'utf8'));
@@ -52,7 +51,7 @@ describe('fixture site variants', function() {
             assert.equal($('.column-right #toc').length, 1);
         });
 
-        knownBug('does not render an empty right column on pages without a toc', () => {
+        it('does not render an empty right column on pages without a toc', () => {
             const $ = getSite('toc-only-right').$('/');
             assert.ok($('body').hasClass('is-2-column'));
             assert.equal($('.column-right').length, 0, $('.column-right').toString());

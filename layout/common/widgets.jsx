@@ -21,15 +21,20 @@ function formatWidgets(widgets) {
     return result;
 }
 
+/**
+ * Whether a widget is shown on the page. The toc widget only renders on posts and pages
+ * with the table of contents enabled.
+ */
+function isWidgetShown(widget, config, page) {
+    if (widget.type === 'toc') {
+        return config.toc === true && ['page', 'post'].includes(page.layout);
+    }
+    return true;
+}
+
 function hasColumn(widgets, position, config, page) {
-    const showToc = (config.toc === true) && ['page', 'post'].includes(page.layout);
     if (Array.isArray(widgets)) {
-        return typeof widgets.find(widget => {
-            if (widget.type === 'toc' && !showToc) {
-                return false;
-            }
-            return widget.position === position;
-        }) !== 'undefined';
+        return widgets.some(widget => widget && widget.position === position && isWidgetShown(widget, config, page));
     }
     return false;
 }
@@ -68,7 +73,7 @@ function isColumnSticky(config, position) {
 class Widgets extends Component {
     render() {
         const { site, config, helper, page, position } = this.props;
-        const widgets = formatWidgets(config.widgets)[position] || [];
+        const widgets = (formatWidgets(config.widgets)[position] || []).filter(widget => isWidgetShown(widget, config, page));
         const columnCount = getColumnCount(config.widgets, config, page);
 
         if (!widgets.length) {

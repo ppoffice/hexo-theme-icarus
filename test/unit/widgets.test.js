@@ -1,6 +1,5 @@
 const assert = require('assert').strict;
 const { render, fixtureConfig, makePage } = require('../support/render');
-const { knownBug } = require('../support/known-bug');
 
 // Loaded through the render harness so that @babel/register handles the JSX.
 let Widgets;
@@ -48,6 +47,16 @@ describe('layout/common/widgets', () => {
             assert.equal($('.column').length, 0);
         });
 
+        it('renders the toc column on posts with the toc enabled', async () => {
+            const { $ } = await renderSide([profile('left'), toc('right')], 'right', { layout: 'post', content: '<h2 id="a">A</h2>' }, { toc: true });
+            assert.equal($('.column-right #toc').length, 1);
+        });
+
+        it('does not add the right-column shadow when the right column is hidden', async () => {
+            const { $ } = await renderSide([profile('left'), toc('right')], 'left', { layout: 'index' });
+            assert.equal($('.column-right-shadow').length, 0);
+        });
+
         it('applies size, order and sticky classes to a column', async () => {
             const { $ } = await renderSide([profile('left'), recent('right')], 'right', {}, { sidebar: { right: { sticky: true } } });
             const column = $('.column-right');
@@ -67,7 +76,7 @@ describe('layout/common/widgets', () => {
             assert.equal($('.widget').length, 1);
         });
 
-        knownBug('does not render an empty column when its only widget is a hidden toc', async () => {
+        it('does not render an empty column when its only widget is a hidden toc', async () => {
             const { $ } = await renderSide([profile('left'), toc('right')], 'right', { layout: 'index' });
             assert.equal($('.column-right').length, 0, 'the column count says 2 columns, so the right column must not be rendered');
         });
