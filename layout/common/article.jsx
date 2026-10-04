@@ -89,7 +89,7 @@ module.exports = class extends Component {
                                 })()}
                             </span> : null}
                             {/* Read time */}
-                            {article && article.readtime && article.readtime === true ? <span class="level-item">
+                            {article && article.readtime === true ? <span class="level-item">
                                 {(() => {
                                     const words = getWordCount(page.encrypt ? page.origin : page.content);
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
@@ -128,13 +128,13 @@ module.exports = class extends Component {
             {/* Post navigation */}
             {!index && (page.prev || page.next) ? <nav class="post-navigation mt-4 level is-mobile">
                 {page.prev ? <div class="level-start">
-                    <a class={`article-nav-prev level level-item${!page.prev ? ' is-hidden-mobile' : ''} link-muted`} href={url_for(page.prev.path)}>
+                    <a class="article-nav-prev level level-item link-muted" href={url_for(page.prev.path)}>
                         <i class="level-item fas fa-chevron-left" aria-hidden="true"></i>
                         <span class="level-item">{page.prev.title}</span>
                     </a>
                 </div> : null}
                 {page.next ? <div class="level-end">
-                    <a class={`article-nav-next level level-item${!page.next ? ' is-hidden-mobile' : ''} link-muted`} href={url_for(page.next.path)}>
+                    <a class="article-nav-next level level-item link-muted" href={url_for(page.next.path)}>
                         <span class="level-item">{page.next.title}</span>
                         <i class="level-item fas fa-chevron-right" aria-hidden="true"></i>
                     </a>

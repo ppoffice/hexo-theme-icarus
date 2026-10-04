@@ -81,14 +81,14 @@ function checkConfig(hexo) {
                 logger.info(`Theme configurations are written to ${yellow(themeSiteCfg)}.`);
 
                 generateThemeConfigFile(schema, themeSiteCfgExample);
-                logger.info(`Example configurations is at ${yellow(themeSiteCfgExample)}.`);
+                logger.info(`An example configuration is at ${yellow(themeSiteCfgExample)}.`);
             }
         }
 
         const validation = schema.validate(cfg);
         if (validation !== true) {
             logger.warn('Theme configurations failed one or more checks.');
-            logger.warn('Icarus may still run, but you will encounter unexcepted results.');
+            logger.warn('Icarus may still run, but you will encounter unexpected results.');
             logger.warn('Here is some information for you to correct the configuration file.');
             logger.warn(util.inspect(validation));
         }

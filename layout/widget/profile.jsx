@@ -1,5 +1,5 @@
 const { Component } = require('inferno');
-const gravatrHelper = require('hexo-util').gravatar;
+const gravatarHelper = require('hexo-util').gravatar;
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 
 class Profile extends Component {
@@ -97,7 +97,7 @@ Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
 
     function getAvatar() {
         if (gravatar) {
-            return gravatrHelper(gravatar, 128);
+            return gravatarHelper(gravatar, 128);
         }
         if (avatar) {
             return url_for(avatar);
