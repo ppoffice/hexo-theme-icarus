@@ -1,6 +1,5 @@
 const assert = require('assert').strict;
 const { render, fixtureConfig, makePage } = require('../support/render');
-const { knownBug } = require('../support/known-bug');
 
 const site = { posts: { length: 0 }, categories: [], tags: [] };
 const onlyProfile = position => [{ position, type: 'profile', author: 'A' }];
@@ -43,9 +42,11 @@ describe('layout/layout (page skeleton)', () => {
         assert.equal((await renderLayout({ lang: 'fr' })).$('html').attr('lang'), 'fr');
     });
 
-    knownBug('keeps the region subtag in <html lang> (zh-CN, pt-BR)', async () => {
-        assert.equal((await renderLayout({ lang: 'zh-CN' })).$('html').attr('lang'), 'zh-CN');
-    });
+    for (const [lang, expected] of [['zh-CN', 'zh-CN'], ['pt-BR', 'pt-BR'], ['zh_TW', 'zh-TW'], ['ja', 'ja']]) {
+        it(`keeps the region subtag in <html lang> (${lang} -> ${expected})`, async () => {
+            assert.equal((await renderLayout({ lang })).$('html').attr('lang'), expected);
+        });
+    }
 
     describe('scripts', () => {
         it('loads jQuery and moment before main.js and sets the moment locale', async () => {

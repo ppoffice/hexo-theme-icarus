@@ -7,6 +7,14 @@ const Footer = require('./common/footer');
 const Scripts = require('./common/scripts');
 const Search = require('./common/search');
 
+/**
+ * BCP 47 language tag for <html lang>, keeping the region (zh-CN, pt-BR).
+ */
+function getLanguageTag(language) {
+    const lang = Array.isArray(language) ? language[0] : language;
+    return typeof lang === 'string' ? lang.replace(/_/g, '-') : '';
+}
+
 module.exports = class extends Component {
     render() {
         const { site, config, page, helper, body } = this.props;
@@ -14,7 +22,7 @@ module.exports = class extends Component {
         const language = page.lang || page.language || config.language;
         const columnCount = Widgets.getColumnCount(config.widgets, config, page);
 
-        return <html lang={language ? language.substr(0, 2) : ''}>
+        return <html lang={getLanguageTag(language)}>
             <Head site={site} config={config} helper={helper} page={page} />
             <body class={`is-${columnCount}-column`}>
                 <Navbar config={config} helper={helper} page={page} />

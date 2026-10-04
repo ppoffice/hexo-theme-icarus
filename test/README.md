@@ -66,7 +66,6 @@ Current list:
 
 | Area | Bug | Test |
 | --- | --- | --- |
-| Layout | `<html lang>` drops the region (`zh-CN` → `zh`) | `unit/layout.test.js`, `integration/variants.test.js` |
 | Layout | Empty right column when its only widget is a hidden toc | `unit/widgets.test.js`, `integration/variants.test.js` |
 | Layout | Viewport disables zooming (`maximum-scale=1`) | `unit/head.test.js` |
 | Build | `css/style.css` is emitted as a duplicate of `css/default.css` | `integration/build.test.js` |

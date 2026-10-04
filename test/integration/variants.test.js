@@ -71,7 +71,7 @@ describe('fixture site variants', function() {
             assert.match(site.$('/')('script:not([src])').text(), /moment\.locale\("zh-cn"\)/);
         });
 
-        knownBug('declares <html lang="zh-CN">', () => {
+        it('declares <html lang="zh-CN">', () => {
             assert.equal(site.$('/')('html').attr('lang'), 'zh-CN');
         });
     });
