@@ -53,8 +53,8 @@ describe('fixture site build (default variant)', function() {
         }
     });
 
-    knownBug('does not emit an extra copy of the default stylesheet as css/style.css', () => {
-        assert.equal(site.exists('css/style.css'), false);
+    it('only emits the variant stylesheets (no css/style.css or partials)', () => {
+        assert.deepEqual(site.files('.css'), ['css/cyberpunk.css', 'css/default.css']);
     });
 
     it('writes a valid web app manifest', () => {

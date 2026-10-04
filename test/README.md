@@ -66,7 +66,6 @@ Current list:
 
 | Area | Bug | Test |
 | --- | --- | --- |
-| Build | `css/style.css` is emitted as a duplicate of `css/default.css` | `integration/build.test.js` |
 | Build | Paginator links to `/page/0/` and past the last page (hexo-component-inferno) | `integration/build.test.js` |
 | Browser | A highlight `<span>` without a class aborts main.js | `e2e/code-blocks.spec.js` |
 | Browser | PJAX navigation piles up window handlers and `#toc-mask` elements | `e2e/pjax.spec.js` |
