@@ -1,7 +1,6 @@
 const assert = require('assert').strict;
 const moment = require('moment');
 const { render, fixtureConfig, makePage } = require('../support/render');
-const { knownBug } = require('../support/known-bug');
 
 function post(overrides = {}) {
     return makePage(Object.assign({
@@ -17,8 +16,8 @@ function post(overrides = {}) {
 const renderArticle = (page, { index = false, config } = {}) =>
     render('common/article', { config: fixtureConfig(config), page: post(page), index });
 
-async function wordCountText(_content) {
-    const { $ } = await renderArticle({ _content });
+async function wordCountText(content, page = {}) {
+    const { $ } = await renderArticle(Object.assign({ content }, page));
     return $('.article-meta').text();
 }
 
@@ -26,41 +25,58 @@ const words = (n, word = 'word') => Array.from({ length: n }, () => word).join('
 
 describe('layout/common/article', () => {
     describe('reading time and word count', () => {
+        const count = async (html, page) => {
+            const match = (await wordCountText(html, page)).match(/\(About (\d+) words?\)/);
+            assert.ok(match, 'word count not rendered');
+            return Number(match[1]);
+        };
+
         it('counts English words', async () => {
-            assert.match(await wordCountText(words(300)), /2 minutes read \(About 300 words\)/);
+            assert.match(await wordCountText(`<p>${words(300)}</p>`), /2 minutes read \(About 300 words\)/);
         });
 
         it('uses the singular form for one word', async () => {
-            assert.match(await wordCountText('hello'), /\(About 1 word\)/);
+            assert.match(await wordCountText('<p>hello</p>'), /\(About 1 word\)/);
         });
 
-        it('counts each CJK character as a word', async () => {
-            assert.match(await wordCountText('天地玄黄宇宙洪荒'), /\(About 8 words\)/);
-        });
+        for (const [description, html, expected] of [
+            ['each Chinese character as a word', '<p>天地玄黄宇宙洪荒</p>', 8],
+            ['each Japanese kana and kanji as a word', '<p>日本語のテキスト</p>', 8],
+            ['Korean words separated by spaces', '<p>안녕하세요 세계</p>', 2],
+            ['Cyrillic words, not letters', '<p>один два три четыре пять</p>', 5],
+            ['Greek words', '<p>καλημέρα κόσμε</p>', 2],
+            ['accented Latin words as single words', '<p>naïve façade jalapeño</p>', 3],
+            ['Vietnamese words', '<p>Tiếng Việt rất đẹp</p>', 4],
+            ['contractions as one word', '<p>don\'t stop, it\u2019s fine</p>', 4],
+            ['mixed CJK and Latin text', '<p>使用Hexo写博客</p>', 6]
+        ]) {
+            it(`counts ${description}`, async () => {
+                assert.equal(await count(html), expected);
+            });
+        }
 
-        it('ignores HTML tags', async () => {
-            assert.match(await wordCountText('<span class="x">one</span> <b>two</b>'), /\(About 2 words\)/);
+        for (const [description, html, expected] of [
+            ['punctuation, including CJK punctuation', '<p>你好，世界。 Hello, world! — “quoted” …</p>', 7],
+            ['markup and link targets', '<p><span class="x">one</span> <a href="https://example.com/some/path">two</a></p>', 2],
+            ['HTML entities', '<p>Tom &amp; Jerry&nbsp;&mdash;&nbsp;cartoon</p>', 3],
+            ['numbers without letters', '<p>in 2024 we shipped v8</p>', 4],
+            ['code line numbers', '<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x;</span><br><span class="line">y();</span></pre></td></tr></table></figure>', 3],
+            ['scripts, styles and comments', '<p>visible</p><script>var hidden = 1;</script><style>.hidden{}</style><!-- hidden comment -->', 1]
+        ]) {
+            it(`ignores ${description}`, async () => {
+                assert.equal(await count(html), expected);
+            });
+        }
+
+        it('counts the original content of encrypted posts', async () => {
+            assert.equal(await count('<div id="encrypted">abcdef0123456789</div><p>Enter password</p>', {
+                encrypt: true, origin: '<p>one two three</p>'
+            }), 3);
         });
 
         it('is hidden when article.readtime is off', async () => {
             const { $ } = await renderArticle({}, { config: { article: { readtime: false } } });
             assert.doesNotMatch($('.article-meta').text(), /read/);
-        });
-
-        knownBug('counts Cyrillic words, not letters', async () => {
-            assert.match(await wordCountText('один два три четыре пять'), /\(About 5 words\)/);
-        });
-
-        knownBug('counts accented Latin words as single words', async () => {
-            assert.match(await wordCountText('naïve façade jalapeño'), /\(About 3 words\)/);
-        });
-
-        knownBug('does not count CJK punctuation as words', async () => {
-            assert.match(await wordCountText('你好，世界。'), /\(About 4 words\)/);
-        });
-
-        knownBug('does not count Markdown link URLs as words', async () => {
-            assert.match(await wordCountText('[link](https://example.com/some/path)'), /\(About 1 word\)/);
         });
     });
 

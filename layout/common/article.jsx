@@ -1,4 +1,5 @@
 const moment = require('moment');
+const { unescapeHTML } = require('hexo-util');
 const { Component, Fragment } = require('inferno');
 const { toMomentLocale } = require('hexo/dist/plugins/helper/date');
 const Share = require('./share');
@@ -6,16 +7,27 @@ const Donates = require('./donates');
 const Comment = require('./comment');
 const ArticleLicensing = require('hexo-component-inferno/lib/view/misc/article_licensing');
 
+// Scripts written without spaces between words: every character counts as a word.
+const CJK = '\\p{Script=Han}\\p{Script=Hiragana}\\p{Script=Katakana}';
+const WORD_PATTERN = new RegExp(`[${CJK}]|(?:(?![${CJK}])[\\p{L}\\p{M}\\p{N}])+(?:['\u2019](?:(?![${CJK}])[\\p{L}\\p{M}\\p{N}])+)*`, 'gu');
+const LETTER_PATTERN = /\p{L}/u;
+
 /**
- * Get the word count of text.
+ * Get the number of words in rendered HTML: CJK characters count one each, other words are
+ * runs of letters, marks and digits that contain at least one letter. Markup, code line
+ * numbers, scripts, styles, comments and punctuation are not counted.
  */
-function getWordCount(content) {
-    if (typeof content === 'undefined') {
+function getWordCount(html) {
+    if (typeof html !== 'string' || !html) {
         return 0;
     }
-    content = content.replace(/<\/?[a-z][^>]*>/gi, '');
-    content = content.trim();
-    return content ? (content.match(/[\u00ff-\uffff]|[a-zA-Z]+/g) || []).length : 0;
+    const text = unescapeHTML(html
+        .replace(/<!--[\s\S]*?-->/g, ' ')
+        .replace(/<(script|style)\b[\s\S]*?<\/\1>/gi, ' ')
+        .replace(/<td class="gutter">[\s\S]*?<\/td>/gi, ' ')
+        .replace(/<[^>]+>/g, ' '))
+        .replace(/&[#\w]+;/g, ' ');
+    return (text.match(WORD_PATTERN) || []).filter(word => LETTER_PATTERN.test(word)).length;
 }
 
 module.exports = class extends Component {
@@ -76,7 +88,7 @@ module.exports = class extends Component {
                             {/* Read time */}
                             {article && article.readtime && article.readtime === true ? <span class="level-item">
                                 {(() => {
-                                    const words = getWordCount(page._content);
+                                    const words = getWordCount(page.encrypt ? page.origin : page.content);
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
                                     return `${_p('article.read_time', time.locale(index ? indexLanguage : language).humanize())} (${_p('article.word_count', words)})`;
                                 })()}

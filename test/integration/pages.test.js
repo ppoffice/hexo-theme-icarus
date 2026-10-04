@@ -6,7 +6,6 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('hexo-component-inferno/lib/util/yaml');
 const { getSite } = require('../support/site');
-const { knownBug } = require('../support/known-bug');
 const { FIXTURE_SITE } = require('../support/paths');
 
 const POST_COUNT = fs.readdirSync(path.join(FIXTURE_SITE, 'source/_posts')).length;
@@ -119,11 +118,11 @@ describe('generated pages (default variant)', function() {
             assert.match(metaText('/2024/01/20/word-count-zh/'), /\(About 150 words\)/);
         });
 
-        knownBug('counts Russian words', () => {
+        it('counts Russian words', () => {
             assert.match(metaText('/2024/01/10/word-count-ru/'), /\(About 10 words\)/);
         });
 
-        knownBug('ignores Chinese punctuation', () => {
+        it('ignores Chinese punctuation', () => {
             assert.match(metaText('/2024/01/05/word-count-zh-punctuation/'), /\(About 4 words\)/);
         });
     });
