@@ -57,7 +57,8 @@ describe('generated pages (default variant)', function() {
             assert.equal($('title').text(), 'Hello World - Icarus Fixture');
             assert.equal($('.article-meta time').length, 2, 'created and updated dates');
             assert.deepEqual($('.article-meta a').map((i, el) => el.attribs.href).get(), ['/categories/Guides/', '/categories/Guides/Hexo/']);
-            assert.deepEqual($('.article-tags a').map((i, el) => $(el).text()).get(), ['hexo', 'testing']);
+            // Hexo processes posts in parallel, so the order of tags shared with other posts varies.
+            assert.deepEqual($('.article-tags a').map((i, el) => $(el).text()).get().sort(), ['hexo', 'testing']);
         });
 
         it('renders a table of contents pointing at the headings', () => {
