@@ -22,14 +22,15 @@ module.exports = hexo => {
         return false;
     }
 
+    logger.info('=== Checking package dependencies ===');
+    const dependencies = Object.assign({}, packageInfo.dependencies);
+
     // Quote specs such as "hexo@^7.1.1 || ^8.0.0" so the printed commands can be pasted into a shell.
     function installSpec(name) {
         const spec = `${name}@${dependencies[name]}`;
         return /[\s|<>]/.test(spec) ? `"${spec}"` : spec;
     }
 
-    logger.info('=== Checking package dependencies ===');
-    const dependencies = Object.assign({}, packageInfo.dependencies);
     const missingDeps = Object.keys(dependencies)
         .filter(name => !checkDependency(name, dependencies[name]));
     if (missingDeps && missingDeps.length) {
