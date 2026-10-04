@@ -22,6 +22,10 @@ module.exports = hexo => {
         return false;
     }
 
+    if (process.argv.includes('--icarus-dont-check-deps')) {
+        return;
+    }
+
     logger.info('=== Checking package dependencies ===');
     const dependencies = Object.assign({}, packageInfo.dependencies);
 
@@ -38,6 +42,7 @@ module.exports = hexo => {
         logger.error(green('npm install --save ' + missingDeps.map(installSpec).join(' ')));
         logger.error('or:');
         logger.error(green('yarn add ' + missingDeps.map(installSpec).join(' ')));
+        logger.info('To skip the dependency check, use "--icarus-dont-check-deps".');
         process.exit(-1);
     }
 };

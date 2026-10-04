@@ -2,7 +2,7 @@ const assert = require('assert').strict;
 const path = require('path');
 const checkDependencies = require('../../include/dependency');
 const packageInfo = require('../../package.json');
-const { capture } = require('../support/capture');
+const { capture, withArgv } = require('../support/capture');
 const { REPO_ROOT } = require('../support/paths');
 
 describe('include/dependency (package dependency check)', () => {
@@ -32,6 +32,19 @@ describe('include/dependency (package dependency check)', () => {
         const { exitCode, output } = capture(() => checkDependencies({}));
         assert.equal(exitCode, -1);
         assert.match(output, /semver.*does not satisfy the required version/);
+    });
+
+    it('mentions how to skip the check when it fails', () => {
+        packageInfo.dependencies['icarus-test-missing-package'] = '^1.0.0';
+        const { output } = capture(() => checkDependencies({}));
+        assert.match(output, /--icarus-dont-check-deps/);
+    });
+
+    it('can be skipped with --icarus-dont-check-deps', () => {
+        packageInfo.dependencies['icarus-test-missing-package'] = '^1.0.0';
+        const { exitCode, output } = withArgv(['--icarus-dont-check-deps'], () => capture(() => checkDependencies({})));
+        assert.equal(exitCode, null);
+        assert.doesNotMatch(output, /Checking package dependencies/);
     });
 
     it('quotes version ranges containing spaces in the printed install commands', () => {
