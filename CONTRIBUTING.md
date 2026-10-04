@@ -7,7 +7,7 @@ You can also use `npm run lint` or `yarn lint` to fix code style issues.
 
 ## Tests
 
-The test suite needs Node.js 20.18 or later. See [test/README.md](test/README.md) for details.
+The test suite needs Node.js 20.19 or later. See [test/README.md](test/README.md) for details.
 
 ```bash
 npm test            # unit + integration tests (mocha)
