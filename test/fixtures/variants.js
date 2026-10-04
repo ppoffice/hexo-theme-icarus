@@ -51,5 +51,30 @@ module.exports = {
 
     'one-column': {
         theme: { widgets: [] }
+    },
+
+    // Every plugin enabled, with placeholder IDs.
+    'all-plugins': {
+        theme: {
+            plugins: {
+                animejs: true,
+                back_to_top: true,
+                baidu_analytics: { tracking_id: 'fixture' },
+                bing_webmaster: { tracking_id: 'fixture' },
+                busuanzi: true,
+                cnzz: { id: 'fixture', web_id: 'fixture' },
+                cookie_consent: { type: 'info', theme: 'edgeless', static: false, position: 'bottom-left', policyLink: 'https://example.com/' },
+                gallery: true,
+                google_analytics: { tracking_id: 'G-FIXTURE' },
+                hotjar: { site_id: 'fixture' },
+                katex: true,
+                mathjax: true,
+                outdated_browser: true,
+                pjax: true,
+                progressbar: true,
+                statcounter: { project: 'fixture', security: 'fixture' },
+                twitter_conversion_tracking: { pixel_id: 'fixture' }
+            }
+        }
     }
 };

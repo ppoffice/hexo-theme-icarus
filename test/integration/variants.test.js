@@ -94,6 +94,51 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('with every plugin enabled', () => {
+        let site;
+
+        before(() => { site = getSite('all-plugins'); });
+
+        it('builds without errors or configuration warnings', () => {
+            assert.equal(site.status, 0);
+            assert.doesNotMatch(site.output, /^ERROR/m, site.output);
+            assert.doesNotMatch(site.output, /failed one or more checks|Icarus cannot load/, site.output);
+        });
+
+        it('includes the markup of every plugin on a post page', () => {
+            const html = site.read('2024/03/01/hello-world/index.html');
+            for (const [plugin, marker] of [
+                ['animejs', '/js/animation.js'],
+                ['back_to_top', 'id="back-to-top"'],
+                ['baidu_analytics', 'hm.baidu.com'],
+                ['bing_webmaster', 'msvalidate.01'],
+                ['busuanzi', 'busuanzi'],
+                ['cnzz', 'cnzz.com'],
+                ['cookie_consent', 'cookieconsent'],
+                ['gallery', 'lightgallery'],
+                ['google_analytics', 'G-FIXTURE'],
+                ['hotjar', 'hotjar'],
+                ['katex', 'katex'],
+                ['mathjax', 'mathjax'],
+                ['outdated_browser', 'outdated'],
+                ['pjax', '/js/pjax.js'],
+                ['progressbar', 'pace'],
+                ['statcounter', 'statcounter'],
+                ['twitter_conversion_tracking', 'twq']
+            ]) {
+                assert.ok(html.toLowerCase().includes(marker.toLowerCase()), `${plugin}: "${marker}" not found`);
+            }
+        });
+
+        it('keeps every page a valid document with one <title>', () => {
+            for (const file of site.htmlFiles()) {
+                const $ = site.$(file);
+                assert.equal($('title').length, 1, file);
+                assert.equal($('head').length, 1, file);
+            }
+        });
+    });
+
     describe('plugins', () => {
         it('loads PJAX when enabled', () => {
             const $ = getSite('pjax').$('/');
