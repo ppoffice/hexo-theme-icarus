@@ -1,4 +1,4 @@
-const { test, expect, knownBug } = require('./fixtures');
+const { test, expect } = require('./fixtures');
 
 test.describe('code blocks', () => {
     test.beforeEach(async ({ visit }) => {
@@ -49,9 +49,11 @@ test.describe('code blocks', () => {
     });
 });
 
-test('[known bug] a highlight span without a class does not break the page script', async ({ page, visit, diagnostics }) => {
-    knownBug('main.js calls .attr("class").split() on spans without a class and aborts');
+test('a highlight span without a class does not break the page script', async ({ page, visit, diagnostics }) => {
     await visit('/2023/09/01/classless-span/');
     expect(diagnostics.pageErrors).toEqual([]);
     await expect(page.locator('figure.highlight .copy')).toHaveCount(2);
+    const plain = page.locator('figure.highlight').first().locator('.code .line > span');
+    await expect(plain).toHaveText('no class here');
+    expect(await plain.getAttribute('class')).toBeFalsy();
 });

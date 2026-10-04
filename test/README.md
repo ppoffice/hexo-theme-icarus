@@ -66,6 +66,5 @@ Current list:
 
 | Area | Bug | Test |
 | --- | --- | --- |
-| Browser | A highlight `<span>` without a class aborts main.js | `e2e/code-blocks.spec.js` |
 | Browser | PJAX navigation piles up window handlers and `#toc-mask` elements | `e2e/pjax.spec.js` |
 | Browser | animejs: page stays invisible if animation.js does not run | `e2e/animejs.spec.js` |
