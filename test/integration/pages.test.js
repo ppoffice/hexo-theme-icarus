@@ -52,6 +52,7 @@ describe('generated pages (default variant)', function() {
 
         it('renders title, dates, categories and tags', () => {
             const $ = site.$(url);
+            assert.deepEqual($('.article-meta time').map((i, el) => el.attribs.title).get(), ['2024-03-01 10:00:00', '2024-03-05 12:00:00']);
             assert.equal($('h1.title').text(), 'Hello World');
             assert.equal($('title').text(), 'Hello World - Icarus Fixture');
             assert.equal($('.article-meta time').length, 2, 'created and updated dates');

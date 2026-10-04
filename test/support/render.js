@@ -87,8 +87,8 @@ async function createHelper(config, page) {
     for (const name of Object.keys(helpers)) {
         helper[name] = helpers[name].bind(ctx);
     }
-    // Like Hexo's template locals, helpers can call each other through `this`.
-    Object.assign(ctx, helper);
+    // Like hexo-component-inferno's template_locals filter, `this` holds the locals but not
+    // the other helpers, so helpers calling helpers through `this` (e.g. full_date) fail here too.
     const lang = page.lang || page.language || (Array.isArray(config.language) ? config.language[0] : config.language) || 'en';
     Object.assign(helper, createI18n(lang));
     return helper;
