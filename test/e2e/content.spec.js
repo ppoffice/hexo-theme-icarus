@@ -1,4 +1,4 @@
-const { test, expect, knownBug } = require('./fixtures');
+const { test, expect } = require('./fixtures');
 
 test.describe('images and tables', () => {
     test.beforeEach(async ({ visit }) => {
@@ -30,12 +30,22 @@ test.describe('images and tables', () => {
     });
 });
 
-test.describe('[known bug] image alt text', () => {
-    test('is shown as text in captions, never parsed as HTML', async ({ page, visit }) => {
-        knownBug('main.js concatenates this.alt into an HTML string');
+test.describe('image alt text', () => {
+    test('is shown as text in captions, never parsed as HTML', async ({ page, visit, diagnostics }) => {
         await visit('/2023/10/01/image-alt-html/');
         const captions = page.locator('.article p.caption');
         await expect(captions).toHaveText(['<img src=x onerror=window.__icarusInjected=1>', 'a < b & "c"']);
+        await expect(page.locator('.article p.caption img')).toHaveCount(0);
         expect(await page.evaluate(() => window.__icarusInjected)).toBeUndefined();
+        expect(diagnostics.failedRequests).toEqual([]);
+    });
+
+    test('keeps the image URL intact in the gallery link', async ({ page, visit }) => {
+        await visit('/2023/10/01/image-alt-html/');
+        const links = page.locator('.article a.gallery-item');
+        await expect(links).toHaveCount(2);
+        for (const link of await links.all()) {
+            await expect(link).toHaveAttribute('href', '/img/avatar.png');
+        }
     });
 });
