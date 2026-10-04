@@ -66,7 +66,6 @@ Current list:
 
 | Area | Bug | Test |
 | --- | --- | --- |
-| Startup | Hexo 8 sites are rejected by the dependency check | `unit/dependency.test.js` |
 | Config | Upgrading with both theme-dir and site config loses nested settings | `unit/config.test.js` |
 | Migration | Migrations are not chained; 3.x/4.x configs skip intermediate migrations | `unit/migration.test.js` |
 | Migration | v2→v3 does not rewrite `/images/favicon.svg` | `unit/migration.test.js` |

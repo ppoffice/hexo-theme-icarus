@@ -30,19 +30,25 @@ jobs:
           key: npm-cache
           restore-keys: npm-cache
       - run: npm install
+      # The starter site brings its own Hexo; install the theme's other dependencies.
       - run: >
-          npm install $(node -e "const deps=require('./themes/icarus/package.json').dependencies;
-          console.log(Object.keys(deps).map(key=>key+'@'+deps[key]).join(' '));")
+          node -e "const deps=require('./themes/icarus/package.json').dependencies;
+          console.log(Object.keys(deps).filter(key=>key!=='hexo').map(key=>JSON.stringify(key+'@'+deps[key])).join(' '));"
+          | xargs npm install
       - run: npm install hexo-tag-embed
       - run: npx hexo config theme icarus
       - run: time NODE_ENV=production npx hexo g -b
 
   unit-integration:
-    name: Unit & integration tests
+    name: Unit & integration tests (Node ${{ matrix.node-version }}, Hexo ${{ matrix.hexo-version }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20, 22, 24]
+        hexo-version: [8]
+        include:
+          - node-version: 20
+            hexo-version: 7
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
@@ -50,6 +56,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
+      - run: npm install --no-save hexo@${{ matrix.hexo-version }}
       - run: npm test
 
   e2e:

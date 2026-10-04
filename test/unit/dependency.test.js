@@ -3,7 +3,6 @@ const path = require('path');
 const checkDependencies = require('../../include/dependency');
 const packageInfo = require('../../package.json');
 const { capture } = require('../support/capture');
-const { knownBug } = require('../support/known-bug');
 const { REPO_ROOT } = require('../support/paths');
 
 describe('include/dependency (package dependency check)', () => {
@@ -35,23 +34,42 @@ describe('include/dependency (package dependency check)', () => {
         assert.match(output, /semver.*does not satisfy the required version/);
     });
 
-    describe('with Hexo 8 installed in the site', () => {
+    it('quotes version ranges containing spaces in the printed install commands', () => {
+        packageInfo.dependencies['icarus-test-missing-package'] = '^1.0.0 || ^2.0.0';
+        const { output } = capture(() => checkDependencies({}));
+        assert.match(output, /npm install --save "icarus-test-missing-package@\^1\.0\.0 \|\| \^2\.0\.0"/);
+        assert.match(output, /yarn add "icarus-test-missing-package@\^1\.0\.0 \|\| \^2\.0\.0"/);
+    });
+
+    describe('installed Hexo version', () => {
         const hexoPackagePath = require.resolve('hexo/package.json', { paths: [path.join(REPO_ROOT, 'include')] });
         let original;
 
         beforeEach(() => {
             require(hexoPackagePath);
             original = require.cache[hexoPackagePath].exports;
-            require.cache[hexoPackagePath].exports = Object.assign({}, original, { version: '8.1.2' });
         });
 
         afterEach(() => {
             require.cache[hexoPackagePath].exports = original;
         });
 
-        knownBug('does not abort the build for Hexo 8 (the theme renders fine on Hexo 8)', () => {
-            const { exitCode, output } = capture(() => checkDependencies({}));
-            assert.equal(exitCode, null, output);
-        });
+        const withHexo = version => {
+            require.cache[hexoPackagePath].exports = Object.assign({}, original, { version });
+            return capture(() => checkDependencies({}));
+        };
+
+        for (const version of ['7.1.1', '7.3.0', '8.0.0', '8.1.2']) {
+            it(`accepts Hexo ${version}`, () => {
+                const { exitCode, output } = withHexo(version);
+                assert.equal(exitCode, null, output);
+            });
+        }
+
+        for (const version of ['6.3.0', '7.0.0', '9.0.0']) {
+            it(`rejects Hexo ${version}`, () => {
+                assert.equal(withHexo(version).exitCode, -1);
+            });
+        }
     });
 });

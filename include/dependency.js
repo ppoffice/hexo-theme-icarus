@@ -22,15 +22,21 @@ module.exports = hexo => {
         return false;
     }
 
+    // Quote specs such as "hexo@^7.1.1 || ^8.0.0" so the printed commands can be pasted into a shell.
+    function installSpec(name) {
+        const spec = `${name}@${dependencies[name]}`;
+        return /[\s|<>]/.test(spec) ? `"${spec}"` : spec;
+    }
+
     logger.info('=== Checking package dependencies ===');
     const dependencies = Object.assign({}, packageInfo.dependencies);
     const missingDeps = Object.keys(dependencies)
         .filter(name => !checkDependency(name, dependencies[name]));
     if (missingDeps && missingDeps.length) {
         logger.error('Please install the missing dependencies your Hexo site root directory:');
-        logger.error(green('npm install --save ' + missingDeps.map(name => `${name}@${dependencies[name]}`).join(' ')));
+        logger.error(green('npm install --save ' + missingDeps.map(installSpec).join(' ')));
         logger.error('or:');
-        logger.error(green('yarn add ' + missingDeps.map(name => `${name}@${dependencies[name]}`).join(' ')));
+        logger.error(green('yarn add ' + missingDeps.map(installSpec).join(' ')));
         process.exit(-1);
     }
 };
