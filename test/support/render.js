@@ -87,6 +87,8 @@ async function createHelper(config, page) {
     for (const name of Object.keys(helpers)) {
         helper[name] = helpers[name].bind(ctx);
     }
+    // Like Hexo's template locals, helpers can call each other through `this`.
+    Object.assign(ctx, helper);
     const lang = page.lang || page.language || (Array.isArray(config.language) ? config.language[0] : config.language) || 'en';
     Object.assign(helper, createI18n(lang));
     return helper;
