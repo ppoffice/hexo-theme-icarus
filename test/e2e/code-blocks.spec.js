@@ -15,6 +15,11 @@ test.describe('code blocks', () => {
         await expect(page.locator('figure.highlight .code .line span.keyword')).toHaveCount(0);
     });
 
+    test('are colored by the configured highlight.js theme (atom-one-light)', async ({ page }) => {
+        const keyword = page.locator('figure.highlight .code .line span.hljs-keyword').first();
+        await expect(keyword).toHaveCSS('color', 'rgb(166, 38, 164)');
+    });
+
     test('each block gets a copy button that copies the code', async ({ page, context }) => {
         await context.grantPermissions(['clipboard-read', 'clipboard-write']);
         const buttons = page.locator('figure.highlight figcaption .copy');

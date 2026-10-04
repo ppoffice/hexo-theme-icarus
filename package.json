@@ -37,6 +37,7 @@
     "hexo-generator-index": "^4.0.0",
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-marked": "^7.0.1",
+    "highlight.js": "11.11.1",
     "inferno-server": "^8.2.3",
     "jquery": "3.7.1",
     "mocha": "^10.8.2",

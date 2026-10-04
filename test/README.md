@@ -34,7 +34,8 @@ test/
   `themes/icarus`, and runs `hexo generate` in a child process. Each variant is built once per
   test run.
 - **Browser tests** build the variants listed in `test/e2e/global-setup.js` and serve each on a
-  local port. They never touch the network: jQuery, moment, clipboard.js and PJAX are served from
+  local port. They never touch the network: jQuery, moment, clipboard.js, PJAX and the highlight.js
+  themes are served from
   devDependencies pinned to the exact versions the layouts reference (`test/e2e/cdn.js`, checked
   by `test/unit/vendor.test.js`), and every other external request gets an empty response.
   Failure traces and screenshots are written to `test/.tmp/playwright-results/`.

@@ -12,6 +12,7 @@ const { REPO_ROOT } = require('../support/paths');
 
 // CDN package name -> node_modules directory holding that exact version.
 const VENDORED = {
+    'highlight.js': 'highlight.js',
     jquery: 'jquery',
     moment: 'moment-cdn',
     clipboard: 'clipboard',
