@@ -62,7 +62,5 @@ SHOW_KNOWN_BUGS=1 npm test
 SHOW_KNOWN_BUGS=1 npm run test:e2e
 ```
 
-Current list:
-
-| Area | Bug | Test |
-| --- | --- | --- |
+There are currently no known-bug tests. When a bug is confirmed but not fixed yet, add a
+test for it this way and list it here (area, bug, test file).
