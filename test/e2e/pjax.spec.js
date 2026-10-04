@@ -5,8 +5,9 @@ async function pjaxClick(page, locator) {
     const done = page.evaluate(() => new Promise(resolve => document.addEventListener('pjax:complete', resolve, { once: true })));
     await locator.click();
     await done;
-    // main.js and other data-pjax scripts are re-executed after the swap
-    await page.waitForLoadState('load');
+    // pjax:complete fires when the content is swapped; the data-pjax scripts (main.js, ...) are
+    // then downloaded and executed again. Wait for those requests to settle before interacting.
+    await page.waitForLoadState('networkidle');
 }
 
 test.describe('PJAX navigation', () => {
