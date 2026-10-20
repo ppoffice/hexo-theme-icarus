@@ -18,18 +18,37 @@
     "node": ">=14"
   },
   "scripts": {
-    "lint": "eslint --ext .js --ext .jsx --ext .json ."
+    "lint": "eslint .",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "mocha \"test/unit/**/*.test.js\"",
+    "test:integration": "mocha \"test/integration/**/*.test.js\"",
+    "test:e2e": "playwright test --config test/e2e/playwright.config.js",
+    "test:all": "npm run test && npm run test:e2e"
   },
   "devDependencies": {
-    "eslint": "^8.56.0",
-    "eslint-config-hexo": "^5.0.0",
-    "eslint-plugin-json": "^3.1.0",
-    "eslint-plugin-react": "^7.33.2"
+    "@playwright/test": "1.56.1",
+    "cheerio": "^1.2.0",
+    "clipboard": "2.0.11",
+    "eslint": "^9.39.5",
+    "eslint-config-hexo": "^6.0.0",
+    "eslint-plugin-json": "^4.0.1",
+    "eslint-plugin-mocha": "^10.5.0",
+    "eslint-plugin-react": "^7.33.2",
+    "globals": "^15.15.0",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-index": "^4.0.0",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-marked": "^7.0.1",
+    "highlight.js": "11.11.1",
+    "inferno-server": "^8.2.3",
+    "jquery": "3.7.1",
+    "mocha": "^12.0.3",
+    "pjax": "0.2.8"
   },
   "dependencies": {
     "bulma-stylus": "0.8.0",
     "deepmerge": "^4.3.1",
-    "hexo": "^7.1.1",
+    "hexo": "^7.1.1 || ^8.0.0",
     "hexo-component-inferno": "^3.1.2",
     "hexo-log": "^4.1.0",
     "hexo-pagination": "^3.0.0",

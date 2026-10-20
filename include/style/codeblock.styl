@@ -16,6 +16,16 @@ figure.highlight
 
     .copy
         opacity: .7
+        // the copy control is a <button>: reset the native button look
+        padding: 0 .75em
+        border: none
+        background: none
+        font: inherit
+        color: inherit
+        cursor: pointer
+
+        &:hover, &:focus-visible, &.is-copied
+            opacity: 1
 
     pre, table tr:hover
         color: inherit

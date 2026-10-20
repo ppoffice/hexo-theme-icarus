@@ -40,6 +40,18 @@ $navbar-item-margin-h ?= 0
         &.is-active
             background-color: transparent
 
+    // Icon buttons (table of contents, search) look and behave like the navbar links
+    button.navbar-item
+        border: none
+        background: none
+        font: inherit
+        color: $navbar-item-color
+        cursor: pointer
+
+        &:focus, &:hover
+            background-color: $navbar-item-hover-background-color
+            color: $navbar-item-hover-color
+
     +until($navbar-breakpoint)
         .navbar-menu
             justify-content: center

@@ -1,6 +1,6 @@
 let chalk;
 try {
-    chalk = require('chalk'); // eslint-disable-line node/no-extraneous-require
+    chalk = require('chalk'); // eslint-disable-line n/no-extraneous-require
 } catch (e) { }
 
 module.exports = new Proxy({}, {

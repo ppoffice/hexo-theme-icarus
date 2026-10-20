@@ -1,11 +1,10 @@
-/* eslint-disable node/no-unsupported-features/node-builtins */
-(function($, moment, ClipboardJS, config) {
+(function($, ClipboardJS, config) {
     $('.article img:not(".not-gallery-item")').each(function() {
         // wrap images with link and add caption if possible
         if ($(this).parent('a').length === 0) {
-            $(this).wrap('<a class="gallery-item" href="' + $(this).attr('src') + '"></a>');
+            $(this).wrap($('<a class="gallery-item"></a>').attr('href', $(this).attr('src')));
             if (this.alt) {
-                $(this).after('<p class="has-text-centered is-size-6 caption">' + this.alt + '</p>');
+                $(this).after($('<p class="has-text-centered is-size-6 caption"></p>').text(this.alt));
             }
         }
     });
@@ -20,9 +19,41 @@
         $('.justified-gallery').justifiedGallery();
     }
 
-    if (typeof moment === 'function') {
+    // Locale for relative dates: the page language when the browser supports it, else English.
+    function getRelativeTimeLocale() {
+        const lang = document.documentElement.lang === 'vn' ? 'vi' : document.documentElement.lang;
+        try {
+            return lang && Intl.RelativeTimeFormat.supportedLocalesOf(lang).length ? lang : 'en';
+        } catch (e) {
+            return 'en';
+        }
+    }
+
+    // "3 days ago", using the same rounding thresholds as moment's fromNow().
+    function formatRelativeTime(date, format) {
+        const seconds = (date.getTime() - Date.now()) / 1000;
+        const abs = Math.abs(seconds);
+        if (abs < 45) {
+            return format.format(Math.round(seconds), 'second');
+        } else if (abs < 45 * 60) {
+            return format.format(Math.round(seconds / 60), 'minute');
+        } else if (abs < 22 * 3600) {
+            return format.format(Math.round(seconds / 3600), 'hour');
+        } else if (abs < 26 * 86400) {
+            return format.format(Math.round(seconds / 86400), 'day');
+        } else if (abs < 320 * 86400) {
+            return format.format(Math.round(seconds / (30.436875 * 86400)), 'month');
+        }
+        return format.format(Math.round(seconds / (365.2425 * 86400)), 'year');
+    }
+
+    if (typeof Intl !== 'undefined' && typeof Intl.RelativeTimeFormat === 'function') {
+        const format = new Intl.RelativeTimeFormat(getRelativeTimeLocale(), { numeric: 'auto' });
         $('.article-meta time').each(function() {
-            $(this).text(moment($(this).attr('datetime')).fromNow());
+            const date = new Date($(this).attr('datetime'));
+            if (!isNaN(date.getTime())) {
+                $(this).text(formatRelativeTime(date, format));
+            }
         });
     }
 
@@ -41,7 +72,8 @@
         }
     }
     adjustNavbar();
-    $(window).resize(adjustNavbar);
+    // main.js runs again after every PJAX navigation: replace, do not add, window handlers.
+    $(window).off('resize.icarus-navbar').on('resize.icarus-navbar', adjustNavbar);
 
     function toggleFold(codeBlock, isFolded) {
         const $toggle = $(codeBlock).find('.fold i');
@@ -61,7 +93,7 @@
 
         $('figure.highlight').addClass('hljs');
         $('figure.highlight .code .line span').each(function() {
-            const classes = $(this).attr('class').split(/\s+/);
+            const classes = ($(this).attr('class') || '').split(/\s+/).filter(Boolean);
             for (const cls of classes) {
                 $(this).addClass('hljs-' + cls);
                 $(this).removeClass(cls);
@@ -87,13 +119,33 @@
         });
 
         if (typeof ClipboardJS !== 'undefined' && clipboard) {
+            const i18n = config.i18n || {};
+            const copyTitle = i18n.copy || 'Copy';
+            const copiedTitle = i18n.copied || 'Copied!';
+
             $('figure.highlight').each(function() {
-                const id = 'code-' + Date.now() + (Math.random() * 1000 | 0);
-                const button = '<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#' + id + ' .code"><i class="fas fa-copy"></i></a>';
-                $(this).attr('id', id);
-                $(this).find('figcaption div.level-right').append(button);
+                const $button = $('<button type="button" class="copy"></button>')
+                    .attr({ title: copyTitle, 'aria-label': copyTitle })
+                    .append('<i class="fas fa-copy" aria-hidden="true"></i>');
+                $(this).find('figcaption div.level-right').append($button);
             });
-            new ClipboardJS('.highlight .copy'); // eslint-disable-line no-new
+            // ClipboardJS listens on the document, so one instance serves every (PJAX) page.
+            if (!window.IcarusClipboard) {
+                window.IcarusClipboard = new ClipboardJS('.highlight .copy', {
+                    target: trigger => $(trigger).closest('figure.highlight').find('.code')[0]
+                });
+                window.IcarusClipboard.on('success', event => {
+                    event.clearSelection();
+                    const $button = $(event.trigger);
+                    clearTimeout($button.data('icarus-copied'));
+                    $button.addClass('is-copied').attr({ title: copiedTitle, 'aria-label': copiedTitle })
+                        .find('i').removeClass('fa-copy').addClass('fa-check');
+                    $button.data('icarus-copied', setTimeout(() => {
+                        $button.removeClass('is-copied').attr({ title: copyTitle, 'aria-label': copyTitle })
+                            .find('i').removeClass('fa-check').addClass('fa-copy');
+                    }, 2000));
+                });
+            }
         }
 
         if (fold) {
@@ -122,18 +174,23 @@
 
     const $toc = $('#toc');
     if ($toc.length > 0) {
-        const $mask = $('<div>');
-        $mask.attr('id', 'toc-mask');
+        // Reuse the mask left by a previous PJAX page instead of adding another one.
+        let $mask = $('#toc-mask');
+        if (!$mask.length) {
+            $mask = $('<div>').attr('id', 'toc-mask');
+            $('body').append($mask);
+        }
+        $mask.removeClass('is-active');
 
-        $('body').append($mask);
-
-        function toggleToc() { // eslint-disable-line no-inner-declarations
+        function toggleToc() {
             $toc.toggleClass('is-active');
             $mask.toggleClass('is-active');
         }
 
         $toc.on('click', toggleToc);
-        $mask.on('click', toggleToc);
+        $mask.off('click.icarus-toc').on('click.icarus-toc', toggleToc);
         $('.navbar-main .catalogue').on('click', toggleToc);
+    } else {
+        $('#toc-mask').remove();
     }
-}(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings));
+}(jQuery, window.ClipboardJS, window.IcarusThemeSettings));

@@ -87,7 +87,7 @@ module.exports = class extends Component {
 
         let adsenseClientId = null;
         if (Array.isArray(config.widgets)) {
-            const widget = config.widgets.find(widget => widget.type === 'adsense');
+            const widget = config.widgets.find(widget => widget && widget.type === 'adsense');
             if (widget) {
                 adsenseClientId = widget.client_id;
             }
@@ -111,7 +111,7 @@ module.exports = class extends Component {
 
         let followItVerificationCode = null;
         if (Array.isArray(config.widgets)) {
-            const widget = config.widgets.find(widget => widget.type === 'followit');
+            const widget = config.widgets.find(widget => widget && widget.type === 'followit');
             if (widget) {
                 followItVerificationCode = widget.verification_code;
             }
@@ -119,7 +119,7 @@ module.exports = class extends Component {
 
         return <head>
             <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
             {noIndex ? <meta name="robots" content="noindex" /> : null}
             {meta && meta.length ? <MetaTags meta={meta} /> : null}
 
@@ -166,7 +166,7 @@ module.exports = class extends Component {
             {rss ? <link rel="alternate" href={url_for(rss)} title={config.title} type="application/atom+xml" /> : null}
             {favicon ? <link rel="icon" href={url_for(favicon)} /> : null}
             <link rel="stylesheet" href={iconcdn()} />
-            {hlTheme ? <link data-pjax rel="stylesheet" href={cdn('highlight.js', '11.7.0', 'styles/' + hlTheme + '.css')} /> : null}
+            {hlTheme ? <link data-pjax rel="stylesheet" href={cdn('highlight.js', '11.11.1', 'styles/' + hlTheme + '.css')} /> : null}
             <link rel="stylesheet" href={fontCssUrl[variant]} />
             <link rel="stylesheet" href={url_for('/css/' + variant + '.css')} />
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />

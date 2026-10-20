@@ -10,29 +10,73 @@ jobs:
         node-version: [14, latest]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: hexojs/hexo-starter
           ref: dcd18588de8f5c1bcc689c101e2f21726c11c4d6  # pin blog dependencies to support node.js 14
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           path: themes/icarus
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: SukkaLab/hexo-many-posts
           path: source/_posts/hexo-many-posts
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: node_modules
-          key: npm-cache
-          restore-keys: npm-cache
+          key: npm-${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('package.json', 'themes/icarus/package.json') }}
+          restore-keys: npm-${{ runner.os }}-node${{ matrix.node-version }}-
       - run: npm install
+      # The starter site brings its own Hexo; install the theme's other dependencies.
       - run: >
-          npm install $(node -e "const deps=require('./themes/icarus/package.json').dependencies;
-          console.log(Object.keys(deps).map(key=>key+'@'+deps[key]).join(' '));")
+          node -e "const deps=require('./themes/icarus/package.json').dependencies;
+          console.log(Object.keys(deps).filter(key=>key!=='hexo').map(key=>JSON.stringify(key+'@'+deps[key])).join(' '));"
+          | xargs npm install
       - run: npm install hexo-tag-embed
       - run: npx hexo config theme icarus
       - run: time NODE_ENV=production npx hexo g -b
+
+  unit-integration:
+    name: Unit & integration tests (Node ${{ matrix.node-version }}, Hexo ${{ matrix.hexo-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
+        hexo-version: [8]
+        include:
+          - node-version: 20
+            hexo-version: 7
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci
+      - run: npm install --no-save hexo@${{ matrix.hexo-version }}
+      - run: npm test
+
+  e2e:
+    name: Browser tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            test/.tmp/playwright-report
+            test/.tmp/playwright-results
+          retention-days: 7

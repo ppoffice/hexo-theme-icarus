@@ -3,14 +3,14 @@ const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 const classname = require('hexo-component-inferno/lib/util/classname');
 
 function isSameLink(a, b) {
-    function santize(url) {
+    function sanitize(url) {
         let paths = url.replace(/(^\w+:|^)\/\//, '').split('#')[0].split('/').filter(p => p.trim() !== '');
         if (paths.length > 0 && paths[paths.length - 1].trim() === 'index.html') {
             paths = paths.slice(0, paths.length - 1);
         }
         return paths.join('/');
     }
-    return santize(a) === santize(b);
+    return sanitize(a) === sanitize(b);
 }
 
 class Navbar extends Component {
@@ -57,17 +57,17 @@ class Navbar extends Component {
                         {Object.keys(links).length ? <Fragment>
                             {Object.keys(links).map(name => {
                                 const link = links[name];
-                                return <a class="navbar-item" target="_blank" rel="noopener" title={name} href={link.url}>
-                                    {link.icon ? <i class={link.icon}></i> : name}
+                                return <a class="navbar-item" target="_blank" rel="noopener" title={name} href={link.url} aria-label={link.icon ? name : null}>
+                                    {link.icon ? <i class={link.icon} aria-hidden="true"></i> : name}
                                 </a>;
                             })}
                         </Fragment> : null}
-                        {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
-                            <i class="fas fa-list-ul"></i>
-                        </a> : null}
-                        {showSearch ? <a class="navbar-item search" title={searchTitle} href="javascript:;">
-                            <i class="fas fa-search"></i>
-                        </a> : null}
+                        {showToc ? <button type="button" class="navbar-item is-hidden-tablet catalogue" title={tocTitle} aria-label={tocTitle}>
+                            <i class="fas fa-list-ul" aria-hidden="true"></i>
+                        </button> : null}
+                        {showSearch ? <button type="button" class="navbar-item search" title={searchTitle} aria-label={searchTitle}>
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </button> : null}
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
     const { url_for, _p, __ } = helper;
     const { logo, title, navbar, widgets, search } = config;
 
-    const hasTocWidget = Array.isArray(widgets) && widgets.find(widget => widget.type === 'toc');
+    const hasTocWidget = Array.isArray(widgets) && widgets.find(widget => widget && widget.type === 'toc');
     const showToc = (config.toc === true || page.toc) && hasTocWidget && ['page', 'post'].includes(page.layout);
 
     const menu = {};

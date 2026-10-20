@@ -30,6 +30,8 @@ article:
     updated_at: 'Üýtgedildi&nbsp;%s'
     more: 'Dowamy...'
     comments: 'Kommentariýa'
+    copy: 'Göçür'
+    copied: 'Göçürildi!'
     read_time: '%s okaldy'
     word_count:
         one: 'Ortaça %d söz'

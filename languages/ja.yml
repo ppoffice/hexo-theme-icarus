@@ -30,6 +30,8 @@ article:
     updated_at: '%sに更新'
     more: '続きを読む'
     comments: 'コメント'
+    copy: 'コピー'
+    copied: 'コピーしました'
     read_time: '%sで読む'
     word_count:
         one: '約%d語'

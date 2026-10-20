@@ -1,5 +1,5 @@
 const { Component, Fragment } = require('inferno');
-const Paginator = require('hexo-component-inferno/lib/view/misc/paginator');
+const Paginator = require('./misc/paginator');
 const Article = require('./common/article');
 
 module.exports = class extends Component {

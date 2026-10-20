@@ -1,0 +1,17 @@
+{
+  "name": "icarus-test-fixture-site",
+  "version": "0.0.0",
+  "private": true,
+  "hexo": {
+    "version": ""
+  },
+  "dependencies": {
+    "hexo": "*",
+    "hexo-generator-archive": "*",
+    "hexo-generator-index": "*",
+    "hexo-generator-tag": "*",
+    "hexo-renderer-inferno": "*",
+    "hexo-renderer-marked": "*",
+    "hexo-renderer-stylus": "*"
+  }
+}

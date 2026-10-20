@@ -107,6 +107,9 @@ dist
 .vscode-test
 
 _config*.yml*
+# ...except the configuration of the test fixture site
+!test/fixtures/site/_config.yml
+!test/fixtures/site/_config.icarus.yml
 yarn.lock
 
 # Intellij Idea config file
@@ -114,3 +117,6 @@ yarn.lock
 *.ipr
 *.iws
 *.iml
+
+# Test suite output (built fixture sites, Playwright reports)
+test/.tmp/

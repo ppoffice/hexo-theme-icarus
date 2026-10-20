@@ -1,5 +1,5 @@
 const { Component } = require('inferno');
-const gravatrHelper = require('hexo-util').gravatar;
+const gravatarHelper = require('hexo-util').gravatar;
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 
 class Profile extends Component {
@@ -10,8 +10,8 @@ class Profile extends Component {
         return <div class="level is-mobile is-multiline">
             {links.filter(link => typeof link === 'object').map(link => {
                 return <a class="level-item button is-transparent is-marginless"
-                    target="_blank" rel="me noopener" title={link.name} href={link.url}>
-                    {'icon' in link ? <i class={link.icon}></i> : link.name}
+                    target="_blank" rel="me noopener" title={link.name} href={link.url} aria-label={link.icon ? link.name : null}>
+                    {link.icon ? <i class={link.icon} aria-hidden="true"></i> : link.name}
                 </a>;
             })}
         </div>;
@@ -97,7 +97,7 @@ Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
 
     function getAvatar() {
         if (gravatar) {
-            return gravatrHelper(gravatar, 128);
+            return gravatarHelper(gravatar, 128);
         }
         if (avatar) {
             return url_for(avatar);

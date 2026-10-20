@@ -1,25 +1,37 @@
 (function() {
+    const root = document.documentElement;
+
     function $() {
         return Array.prototype.slice.call(document.querySelectorAll.apply(document, arguments));
     }
 
-    $('body > .navbar, body > .section, body > .footer').forEach(element => {
-        element.style.transition = '0s';
-        element.style.opacity = '0';
-    });
-    document.querySelector('body > .navbar').style.transform = 'translateY(-100px)';
-    [
-        '.column-main > .card, .column-main > .pagination, .column-main > .post-navigation',
-        '.column-left > .card, .column-right-shadow > .card',
-        '.column-right > .card'
-    ].forEach(selector => {
-        $(selector).forEach(element => {
+    // The <head> only hides the page when it adds this class (see layout/plugin/animejs.jsx).
+    if (!root.classList.contains('is-animating')) {
+        return;
+    }
+
+    try {
+        $('body > .navbar, body > .section, body > .footer').forEach(element => {
             element.style.transition = '0s';
             element.style.opacity = '0';
-            element.style.transform = 'scale(0.8)';
-            element.style.transformOrigin = 'center top';
         });
-    });
+        document.querySelector('body > .navbar').style.transform = 'translateY(-100px)';
+        [
+            '.column-main > .card, .column-main > .pagination, .column-main > .post-navigation',
+            '.column-left > .card, .column-right-shadow > .card',
+            '.column-right > .card'
+        ].forEach(selector => {
+            $(selector).forEach(element => {
+                element.style.transition = '0s';
+                element.style.opacity = '0';
+                element.style.transform = 'scale(0.8)';
+                element.style.transformOrigin = 'center top';
+            });
+        });
+    } catch (e) {
+        root.classList.remove('is-animating');
+        throw e;
+    }
     // disable jump to location.hash
     if (window.location.hash) {
         window.scrollTo(0, 0);
@@ -32,6 +44,7 @@
             element.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
         });
         document.querySelector('body > .navbar').style.transform = 'translateY(0)';
+        root.classList.remove('is-animating');
 
         let i = 1;
         [

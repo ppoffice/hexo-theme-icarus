@@ -139,8 +139,8 @@ $(document).ready(() => {
     }
 
     update();
-    $(window).resize(update);
-    $(window).scroll(update);
+    // This script runs again after every PJAX navigation: replace, do not add, window handlers.
+    $(window).off('.icarus-backtotop').on('resize.icarus-backtotop scroll.icarus-backtotop', update);
 
     $('#back-to-top').on('click', () => {
         if (CSS && CSS.supports && CSS.supports('(scroll-behavior: smooth)')) {

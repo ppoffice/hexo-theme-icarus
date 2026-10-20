@@ -49,8 +49,8 @@ class Footer extends Component {
                             {Object.keys(links).map(name => {
                                 const link = links[name];
                                 return <p class="control">
-                                    <a class={`button is-transparent ${link.icon ? 'is-large' : ''}`} target="_blank" rel="noopener" title={name} href={link.url}>
-                                        {link.icon ? <i class={link.icon}></i> : name}
+                                    <a class={`button is-transparent ${link.icon ? 'is-large' : ''}`} target="_blank" rel="noopener" title={name} href={link.url} aria-label={link.icon ? name : null}>
+                                        {link.icon ? <i class={link.icon} aria-hidden="true"></i> : name}
                                     </a>
                                 </p>;
                             })}
