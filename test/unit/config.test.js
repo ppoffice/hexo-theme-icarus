@@ -116,6 +116,16 @@ describe('include/config (theme configuration check, generation and migration)',
             assert.doesNotMatch(output, /failed one or more checks/, output);
         });
 
+        it('accepts widgets: null overriding the widgets of the theme-directory configuration', () => {
+            env = createEnv({
+                themeDirConfig: { version: '5.1.0', widgets: [{ position: 'left', type: 'profile' }] },
+                themeSiteConfig: { widgets: null }
+            });
+            const { exitCode, output } = capture(() => checkConfig(env.hexo));
+            assert.equal(exitCode, null);
+            assert.doesNotMatch(output, /failed one or more checks/, output);
+        });
+
         it('accepts an empty theme configuration file', () => {
             env = createEnv({ themeDirConfig: { version: '5.1.0' }, themeSiteConfig: '' });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));

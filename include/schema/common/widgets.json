@@ -1,8 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "/common/widgets.json",
-    "description": "Sidebar widget configurations\nhttp://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/",
+    "description": "Sidebar widget configurations. Set to null to disable all widgets\nhttp://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/",
     "type": "array",
+    "nullable": true,
     "items": {
         "type": "object",
         "properties": {
