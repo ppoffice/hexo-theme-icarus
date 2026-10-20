@@ -60,3 +60,18 @@ describe('include/stylus (locating bulma-stylus)', function() {
         });
     });
 });
+
+describe('source/css (code block copy button)', function() {
+    this.timeout(60000);
+
+    ['default', 'cyberpunk'].forEach(variant => {
+        it(`only reveals the ${variant} copy buttons on hover or focus where hovering is possible`, async () => {
+            const css = await compile(path.join(REPO_ROOT, `source/css/${variant}.styl`), stylusFilter());
+            const hide = /figure\.highlight:not\(:hover\):not\(:focus-within\) \.copy:not\(\.is-copied\) \{\s*opacity: 0;/;
+            const media = css.match(/@media \(hover: hover\) and \(pointer: fine\) \{(?:[^{}]*\{[^{}]*\})*\s*\}/g) || [];
+            assert.ok(media.some(block => hide.test(block)), 'the copy button is hidden inside a hover-capable media query');
+            assert.doesNotMatch(media.reduce((rest, block) => rest.replace(block, ''), css), hide,
+                'touch screens without hover keep the copy button visible');
+        });
+    });
+});

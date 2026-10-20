@@ -27,6 +27,15 @@ figure.highlight
         &:hover, &:focus-visible, &.is-copied
             opacity: 1
 
+    // where the pointer can hover, only show the copy button of the hovered (or focused) block;
+    // opacity keeps it in the tab order and the accessibility tree, touch screens always show it
+    @media (hover: hover) and (pointer: fine)
+        .copy
+            transition: opacity .2s ease
+
+        &:not(:hover):not(:focus-within) .copy:not(.is-copied)
+            opacity: 0
+
     pre, table tr:hover
         color: inherit
         background: transparent
