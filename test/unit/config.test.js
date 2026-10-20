@@ -129,6 +129,37 @@ describe('include/config (theme configuration check, generation and migration)',
             assert.match(output, /"theme_config" found in/);
         });
 
+        describe('Valine privacy warning', () => {
+            const valine = { type: 'valine', app_id: 'fixture', app_key: 'fixture' };
+            const warning = /Valine exposes commenters' email and IP addresses[\s\S]*issues\/788/;
+
+            it('warns when Valine is the configured comment plugin', () => {
+                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
+                const { exitCode, output } = capture(() => checkConfig(env.hexo));
+                assert.equal(exitCode, null, output);
+                assert.match(output, warning);
+                assert.doesNotMatch(output, /failed one or more checks/, output);
+            });
+
+            it('does not warn for another comment plugin', () => {
+                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: { type: 'disqus', shortname: 'fixture' } } });
+                const { output } = capture(() => checkConfig(env.hexo));
+                assert.doesNotMatch(output, /Valine/);
+            });
+
+            it('does not warn when no comment plugin is configured', () => {
+                env = createEnv({ themeSiteConfig: { version: '5.1.0' } });
+                const { output } = capture(() => checkConfig(env.hexo));
+                assert.doesNotMatch(output, /Valine/);
+            });
+
+            it('does not warn with --icarus-dont-check-config', () => {
+                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
+                const { output } = withArgv(['--icarus-dont-check-config'], () => capture(() => checkConfig(env.hexo)));
+                assert.doesNotMatch(output, /Valine/);
+            });
+        });
+
         it('exits with an error when the theme config is not valid YAML', () => {
             env = createEnv({ themeSiteConfig: 'version: 5.1.0\nvariant: [unclosed\n' });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
