@@ -1,5 +1,4 @@
 /* eslint n/no-process-exit: "off" */
-const semver = require('semver');
 const createLogger = require('hexo-log');
 const packageInfo = require('../package.json');
 const { yellow, red, green } = require('./util/console');
@@ -7,11 +6,19 @@ const { yellow, red, green } = require('./util/console');
 const logger = createLogger.default();
 
 module.exports = hexo => {
+    // semver is one of the dependencies being checked, so it may be missing too (#1340).
+    // In that case it is reported like any other missing package and the other packages
+    // are only checked for presence, since their versions cannot be compared without it.
+    let semver = null;
+    try {
+        semver = require('semver');
+    } catch (e) { }
+
     function checkDependency(name, reqVer) {
         try {
             require.resolve(name);
             const version = require(name + '/package.json').version;
-            if (!semver.satisfies(version, reqVer)) {
+            if (semver && !semver.satisfies(version, reqVer)) {
                 logger.error(`Package ${yellow(name)}'s version (${yellow(version)}) does not satisfy the required version (${red(reqVer)}).`);
                 return false;
             }

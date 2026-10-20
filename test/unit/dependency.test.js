@@ -1,4 +1,5 @@
 const assert = require('assert').strict;
+const Module = require('module');
 const path = require('path');
 const checkDependencies = require('../../include/dependency');
 const packageInfo = require('../../package.json');
@@ -52,6 +53,82 @@ describe('include/dependency (package dependency check)', () => {
         const { output } = capture(() => checkDependencies({}));
         assert.match(output, /npm install --save "icarus-test-missing-package@\^1\.0\.0 \|\| \^2\.0\.0"/);
         assert.match(output, /yarn add "icarus-test-missing-package@\^1\.0\.0 \|\| \^2\.0\.0"/);
+    });
+
+    describe('when semver itself is not installed (#1340)', () => {
+        const dependencyPath = require.resolve('../../include/dependency');
+        const isSemver = request => request === 'semver' || request.startsWith('semver/');
+        const semverSpec = `semver@${originalDependencies.semver}`;
+        let originalLoad, originalResolve, originalModule;
+
+        // Load a fresh copy of the module so that it also has to require semver from scratch.
+        const checkFreshDependencies = hexo => {
+            delete require.cache[dependencyPath];
+            return require(dependencyPath)(hexo);
+        };
+
+        // Make every require('semver...') and require.resolve('semver...') fail as on a fresh
+        // Hexo site, which does not depend on semver. Both hooks are needed: require() can
+        // return an already loaded module without resolving it again.
+        beforeEach(() => {
+            originalModule = require.cache[dependencyPath];
+            originalLoad = Module._load;
+            originalResolve = Module._resolveFilename;
+            const notFound = request => Object.assign(new Error(`Cannot find module '${request}'`), { code: 'MODULE_NOT_FOUND' });
+            Module._load = function(request, ...args) {
+                if (isSemver(request)) {
+                    throw notFound(request);
+                }
+                return originalLoad.call(this, request, ...args);
+            };
+            Module._resolveFilename = function(request, ...args) {
+                if (isSemver(request)) {
+                    throw notFound(request);
+                }
+                return originalResolve.call(this, request, ...args);
+            };
+        });
+
+        afterEach(() => {
+            Module._load = originalLoad;
+            Module._resolveFilename = originalResolve;
+            require.cache[dependencyPath] = originalModule;
+        });
+
+        it('reports semver as missing instead of crashing', () => {
+            const { error, exitCode, output } = capture(() => checkFreshDependencies({}));
+            assert.equal(exitCode, -1, error && error.stack);
+            assert.match(output, /semver.*is not installed/);
+            assert.ok(output.includes(`npm install --save ${semverSpec}`), output);
+            assert.ok(output.includes(`yarn add ${semverSpec}`), output);
+        });
+
+        it('does not report the other installed dependencies', () => {
+            const { output } = capture(() => checkFreshDependencies({}));
+            const reported = output.split('\n').filter(line => /is not installed|does not satisfy/.test(line));
+            assert.equal(reported.length, 1, output);
+            assert.match(reported[0], /semver/);
+        });
+
+        it('still reports other missing dependencies alongside semver', () => {
+            packageInfo.dependencies['icarus-test-missing-package'] = '^1.0.0';
+            const { output } = capture(() => checkFreshDependencies({}));
+            assert.match(output, /npm install --save .*icarus-test-missing-package@\^1\.0\.0/);
+            assert.ok(output.includes(` ${semverSpec}`), output);
+        });
+
+        it('skips version checks it cannot perform', () => {
+            packageInfo.dependencies.hexo = '^0.0.1';
+            const { output } = capture(() => checkFreshDependencies({}));
+            assert.match(output, /semver.*is not installed/);
+            assert.doesNotMatch(output, /does not satisfy the required version/);
+        });
+
+        it('can still be skipped with --icarus-dont-check-deps', () => {
+            const { error, output } = withArgv(['--icarus-dont-check-deps'], () => capture(() => checkFreshDependencies({})));
+            assert.equal(error, null, output);
+            assert.doesNotMatch(output, /ERROR/);
+        });
     });
 
     describe('installed Hexo version', () => {
