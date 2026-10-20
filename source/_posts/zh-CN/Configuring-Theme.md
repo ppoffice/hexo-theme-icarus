@@ -519,6 +519,7 @@ WARN  [
 这些脚本存放在`<icarus_directory>/include/migration`目录。
 你可以在你的`hexo`命令后附上`--icarus-dont-upgrade-config`来禁止配置升级。
 最后，Icarus也会检查主题依赖的Node.js库是否安装并提醒你安装缺失的库。
+你可以在你的`hexo`命令后附上`--icarus-dont-check-deps`来跳过此检查，例如在尝试某个依赖的更新的主版本时。
 
 
 <article class="message message-immersive is-warning">

@@ -15,6 +15,29 @@ toc: true
 
 <!-- more -->
 
+### Upgrading from 6.x to 6.2 and Hexo 8
+
+1. Upgrade Icarus to 6.2.0 or a newer version.
+   If you installed the theme via NPM, run the following command in your site root directory:
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-theme-icarus@^6.2.0
+   {% endcodeblock %}
+
+2. (Optional) Icarus 6.2 supports both Hexo 7 and Hexo 8.
+   To upgrade to Hexo 8, upgrade Node.js to 20.19.0 or a newer version first, and then upgrade Hexo and
+   your Hexo plugins to their latest versions.
+   Refer to the [Hexo release notes](https://github.com/hexojs/hexo/releases) for the breaking changes.
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo@^8.0.0
+   {% endcodeblock %}
+
+3. Run `hexo clean` and generate your site again.
+
+4. Check out the [release notes](https://github.com/ppoffice/hexo-theme-icarus/releases) for the full list of
+   changes and bug fixes.
+
 ### Upgrading from 5.x to 6.0
 
 1. Upgrade Node.js to 14.0 or a newer version.

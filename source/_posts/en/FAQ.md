@@ -32,8 +32,9 @@ I can't generate my site. / I met some errors when I generate my site.
 </div>
 </article>
 
-Icarus 5 runs on Node.js 12.4.0 or a newer version.
-It also requires Hexo 6.0.0 or a newer version.
+Icarus 6 runs on Node.js 14.0 or a newer version.
+It also requires Hexo 7.1.1 or a newer version (Hexo 8 is supported since Icarus 6.2.0, and it
+requires Node.js 20.19.0 or a newer version).
 Apart from that, make sure you have all the Node.js dependencies installed.
 You can find them in the `dependencies` section of the 
 [`<icarus_directory>/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
@@ -57,6 +58,7 @@ Change the following setting:
 
 You can find all available translations under the `<icarus_directory>/languages` directory.
 The `<language_name>` is the translation file name without the `.yml` extension.
+If there is no translation for your language, Icarus falls back to English.
 
 
 ## Layout

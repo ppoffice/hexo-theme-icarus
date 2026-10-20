@@ -34,8 +34,8 @@ providers:
 </div>
 </article>
 
-Icarus 5运行在Node.js 12.4.0或更新的版本上。
-它同时依赖Hexo 6.0.0或更高版本。
+Icarus 6运行在Node.js 14.0或更新的版本上。
+它同时依赖Hexo 7.1.1或更高版本(Icarus 6.2.0起支持Hexo 8，而Hexo 8需要Node.js 20.19.0或更新的版本)。
 除此之外，请确保所有的Node.js依赖已安装。
 你可以在[`<icarus_directory>/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
 文件的`dependencies`部分下找到这些依赖。
@@ -56,6 +56,7 @@ Icarus 5运行在Node.js 12.4.0或更新的版本上。
 
 你可以在`<icarus_directory>/languages`目录下找到所有可用的翻译。
 `<语言名>`为不带后缀名的翻译文件名。
+如果你的语言没有对应的翻译，Icarus会使用英文。
 
 
 ## 布局

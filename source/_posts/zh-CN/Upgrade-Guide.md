@@ -19,6 +19,27 @@ toc: true
 
 <!-- more -->
 
+### 从6.x升级至6.2及Hexo 8
+
+1. 将Icarus升级到6.2.0或更新的版本。
+   如果你是通过NPM安装的主题，在站点根目录运行如下命令：
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-theme-icarus@^6.2.0
+   {% endcodeblock %}
+
+2. (可选)Icarus 6.2同时支持Hexo 7和Hexo 8。
+   如需升级到Hexo 8，请先将Node.js升级到20.19.0或者更新的版本，然后将Hexo及你的Hexo插件升级到最新版本。
+   请参阅[Hexo更新说明](https://github.com/hexojs/hexo/releases)了解不兼容的变更。
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo@^8.0.0
+   {% endcodeblock %}
+
+3. 运行`hexo clean`并重新生成站点。
+
+4. 阅读[更新说明](https://github.com/ppoffice/hexo-theme-icarus/releases)来了解完整的变更与问题修复列表。
+
 ### 从5.x升级至6.x
 
 1. 将Node.js升级到14.0或者更新的版本。

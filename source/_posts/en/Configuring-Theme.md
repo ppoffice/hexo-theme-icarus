@@ -539,6 +539,8 @@ version if it is not.
 These scripts are in the `<icarus_directory>/include/migration` directory.
 You may disable the upgrade by appending the `--icarus-dont-upgrade-config` flag to your `hexo` commands.
 Finally, Icarus will also check the Node.js package dependencies and remind you to install them if you haven't.
+You may skip this check by appending the `--icarus-dont-check-deps` flag to your `hexo` commands, e.g., when
+trying out a newer major version of a dependency.
 
 
 <article class="message message-immersive is-warning">
