@@ -32,6 +32,45 @@ module.exports = {
         theme: { appearance: 'auto', logo: '/img/avatar.png', logo_dark: '/img/og_image.png' }
     },
 
+    // A light site with a dark post and an "auto" post (front-matter), navigated with PJAX.
+    'appearance-per-page': {
+        theme: { plugins: { pjax: true } },
+        files: {
+            'source/_posts/dark-appearance.md': [
+                '---',
+                'title: Dark Appearance',
+                'date: 2024-04-02 10:00:00',
+                'appearance: dark',
+                '---',
+                'A post with a dark appearance. Next: [the auto post](/2024/04/01/auto-appearance/).',
+                '',
+                '```js',
+                'const dark = true;',
+                '```',
+                ''
+            ].join('\n'),
+            'source/_posts/auto-appearance.md': [
+                '---',
+                'title: Auto Appearance',
+                'date: 2024-04-01 10:00:00',
+                'appearance: auto',
+                '---',
+                'A post following the system color scheme. Back to [the dark post](/2024/04/02/dark-appearance/)',
+                'or [a light post](/2024/02/20/code-blocks/).',
+                '',
+                '```js',
+                'const auto = true;',
+                '```',
+                ''
+            ].join('\n')
+        }
+    },
+
+    // The "auto" appearance for posts only, from a layout configuration file.
+    'appearance-posts-auto': {
+        files: { '_config.post.yml': 'appearance: auto\n' }
+    },
+
     // The cyberpunk variant is always dark and ignores the appearance setting.
     'cyberpunk-appearance-dark': {
         theme: { variant: 'cyberpunk', appearance: 'dark' }

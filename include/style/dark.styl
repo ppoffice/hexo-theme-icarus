@@ -2,8 +2,8 @@
  *         Dark Appearance
  * --------------------------------- */
 // Colors of the default variant when it looks dark. source/css/default.styl applies them with
-// dark-appearance(), depending on the `appearance` setting: inside a prefers-color-scheme media
-// query for "auto", unconditionally for "dark", not at all for "light".
+// dark-appearance() to the pages whose appearance is "dark", and to those whose appearance is
+// "auto" inside a prefers-color-scheme media query.
 //
 // They only override colors (backgrounds, text, borders, shadows) of the light stylesheet, so
 // every selector below must be at least as specific as the light rule it overrides.
@@ -27,29 +27,50 @@ $dark-card-shadow ?= $dark-shadow, 0 0 0 1px rgba(255, 255, 255, .04)
 $dark-dropdown-shadow ?= 0 8px 24px rgba(0, 0, 0, .45), 0 0 0 1px $dark-border
 $dark-codeblock-caption-bg ?= rgba(255, 255, 255, .05)
 
-dark-appearance()
-    // Form controls and scrollbars drawn by the browser
-    html
+// The dark colors, for the pages whose <html> has data-appearance="{$appearance}" (layout/layout.jsx).
+// The attribute selector is inside :where(), so that every rule is exactly as specific as the
+// light rule it overrides.
+dark-appearance($appearance)
+    $attribute = '[data-appearance="' + $appearance + '"]'
+    $root = 'html:where(' + $attribute + ')'
+    $scope = ':where(html' + $attribute + ')'
+
+    {$root}
+        // Form controls and scrollbars drawn by the browser
         color-scheme: dark
         background-color: $dark-background
 
+    {$scope}
+        dark-colors()
+
+    // Media queries come first and selectors inside them: Stylus drops the selector of a media
+    // query nested in a selector when this mixin is itself inside a media query ("auto").
+    +desktop()
+        // The scrollbars of the page and of the elements in it
+        {$root + '::-webkit-scrollbar-track'}, {$scope + ' ::-webkit-scrollbar-track'}
+            background: rgba(255, 255, 255, .04)
+            box-shadow: none
+
+        {$root + '::-webkit-scrollbar-thumb'}, {$scope + ' ::-webkit-scrollbar-thumb'}
+            background: rgba(255, 255, 255, .16)
+            box-shadow: none
+
+        {$root + '::-webkit-scrollbar-thumb:hover'}, {$scope + ' ::-webkit-scrollbar-thumb:hover'}
+            background: rgba(255, 255, 255, .28)
+
+    +mobile()
+        // The table of contents over the page
+        {$scope + ' .widget.card#toc'}
+            background-color: $dark-surface-raised
+            box-shadow: $dark-dropdown-shadow
+
+// The dark colors of the elements of the page, for dark-appearance() to scope.
+dark-colors()
     body
         color: $dark-text
 
     ::selection
         background: rgba($dark-link, .35)
-
-    +desktop()
-        ::-webkit-scrollbar-track
-            background: rgba(255, 255, 255, .04)
-            box-shadow: none
-
-        ::-webkit-scrollbar-thumb
-            background: rgba(255, 255, 255, .16)
-            box-shadow: none
-
-        ::-webkit-scrollbar-thumb:hover
-            background: rgba(255, 255, 255, .28)
 
     a
         color: $dark-link
@@ -134,9 +155,10 @@ dark-appearance()
             color: $dark-text
             background-color: transparent
 
-        &[disabled], fieldset[disabled] &
-            background-color: $dark-surface
-            border-color: $dark-border
+    // (not `fieldset[disabled] &`, which would put the fieldset before <html>)
+    .button[disabled], fieldset[disabled] .button
+        background-color: $dark-surface
+        border-color: $dark-border
 
     // "Read more" buttons and other light buttons
     .button.is-light, article.article .article-more
@@ -306,12 +328,6 @@ dark-appearance()
     figure.highlight
         figcaption, .gutter
             background: $dark-codeblock-caption-bg
-
-    // The table of contents over the page on mobile
-    +mobile()
-        .widget.card#toc
-            background-color: $dark-surface-raised
-            box-shadow: $dark-dropdown-shadow
 
     // Pagination
     .pagination-previous, .pagination-next, .pagination-link

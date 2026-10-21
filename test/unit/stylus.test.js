@@ -79,24 +79,26 @@ describe('source/css (code block copy button)', function() {
 describe('source/css (appearance)', function() {
     this.timeout(120000);
     const defaultStyl = path.join(REPO_ROOT, 'source/css/default.styl');
-    const css = {};
+    let css, light;
 
     before(async () => {
-        for (const appearance of ['light', 'auto', 'dark']) {
-            css[appearance] = await compile(defaultStyl, stylusFilter({ appearance }));
-        }
+        css = await compile(defaultStyl, stylusFilter());
+        // The stylesheet without the dark colors
+        light = await compile(defaultStyl, stylusFilter(), '@import \'_style\'\n');
     });
 
-    /** The CSS outside of @media (prefers-color-scheme: dark) blocks, and those blocks. */
-    function splitDarkMedia(text) {
-        const blocks = [];
-        let rest = '';
+    /** The style rules of a stylesheet: { media: [conditions], selectors: [...], body }. */
+    function rules(text, media = []) {
+        const result = [];
         let index = 0;
-        const pattern = /@media[^{]*prefers-color-scheme: dark[^{]*\{/g;
-        let match;
-        while ((match = pattern.exec(text)) !== null) {
+        while (index < text.length) {
+            const open = text.indexOf('{', index);
+            if (open < 0) {
+                break;
+            }
+            const prelude = text.slice(index, open).trim();
             let depth = 1;
-            let end = pattern.lastIndex;
+            let end = open + 1;
             while (depth > 0) {
                 if (text[end] === '{') {
                     depth++;
@@ -105,56 +107,55 @@ describe('source/css (appearance)', function() {
                 }
                 end++;
             }
-            rest += text.slice(index, match.index);
-            blocks.push(text.slice(match.index, end));
+            const body = text.slice(open + 1, end - 1);
+            if (prelude.startsWith('@media')) {
+                result.push(...rules(body, media.concat(prelude)));
+            } else {
+                result.push({ media, selectors: prelude.split(',').map(selector => selector.trim()), body });
+            }
             index = end;
-            pattern.lastIndex = end;
         }
-        return { rest: rest + text.slice(index), blocks };
+        return result;
     }
 
     // The page background of the dark colors (include/style/dark.styl)
     const darkBackground = /background-color: #17181c/;
 
-    it('emits no dark colors for "light", the default, or an unknown value', async () => {
-        // The stylesheet without the dark layer at all
-        const withoutDark = await compile(defaultStyl, stylusFilter(), '@import \'_style\'\n');
-        assert.equal(css.light, withoutDark);
-        assert.equal(await compile(defaultStyl, stylusFilter()), withoutDark);
-        assert.equal(await compile(defaultStyl, stylusFilter({ appearance: 'night' })), withoutDark);
-        assert.doesNotMatch(css.light, /prefers-color-scheme|color-scheme/);
+    it('starts with the light stylesheet, unchanged', () => {
+        assert.ok(css.startsWith(light.trimEnd()));
+        assert.doesNotMatch(light, /data-appearance|color-scheme/);
     });
 
-    it('only emits the dark colors inside a prefers-color-scheme: dark media query for "auto"', () => {
-        assert.ok(css.auto.startsWith(css.light), 'the light stylesheet comes first, unchanged');
-        const { rest, blocks } = splitDarkMedia(css.auto);
-        // Besides the layout of the logo that switches to the dark one (layout/misc/logo.jsx)
-        const logo = /\.navbar-logo picture,\s*\.footer-logo picture \{\s*display: contents;\s*\}\s*/;
-        assert.match(rest, logo);
-        assert.equal(rest.replace(logo, '').trimEnd(), css.light.trimEnd());
-        assert.ok(blocks.some(block => darkBackground.test(block)));
-        // Nested media queries (e.g. the table of contents overlay on mobile) keep both conditions.
-        assert.ok(blocks.some(block => /prefers-color-scheme: dark\) and \(max-width: 768px\)[^{]*\{\s*\.widget\.card#toc/.test(block)), 'mobile toc');
-    });
-
-    it('emits the dark colors unconditionally for "dark"', () => {
-        assert.ok(css.dark.startsWith(css.light));
-        const darkLayer = css.dark.slice(css.light.length);
-        assert.doesNotMatch(darkLayer, /prefers-color-scheme/);
-        assert.match(darkLayer, /^html \{\s*color-scheme: dark;\s*background-color: #17181c;/m);
-        // The same colors as "auto", without the media query
-        const count = (text, color) => text.split(color).length - 1;
-        for (const color of ['#17181c', '#1f2026', '#d4d6db', '#6ea0f0']) {
-            assert.ok(count(darkLayer, color) > 0, color);
-            assert.equal(count(darkLayer, color), count(css.auto, color), color);
+    it('only applies the dark colors to pages with a dark appearance, or an "auto" one in a dark system color scheme', () => {
+        const darkRules = rules(css.slice(light.trimEnd().length))
+            // The layout of the logo that switches to the dark one (layout/misc/logo.jsx)
+            .filter(rule => rule.selectors.join() !== '.navbar-logo picture,.footer-logo picture');
+        assert.ok(darkRules.length > 100);
+        for (const rule of darkRules) {
+            const auto = rule.media.some(media => media.includes('(prefers-color-scheme: dark)'));
+            const appearance = auto ? 'auto' : 'dark';
+            for (const selector of rule.selectors) {
+                // Inside :where(), so that the rules are exactly as specific as the light ones
+                assert.ok(selector.startsWith(`html:where([data-appearance="${appearance}"])`)
+                    || selector.startsWith(`:where(html[data-appearance="${appearance}"]) `), `${rule.media.join(' ')} ${selector}`);
+            }
         }
-    });
-
-    it('leaves the cyberpunk stylesheet unchanged, whatever the appearance', async () => {
-        const file = path.join(REPO_ROOT, 'source/css/cyberpunk.styl');
-        const light = await compile(file, stylusFilter({ variant: 'cyberpunk' }));
+        const byAppearance = appearance => darkRules.filter(rule => rule.selectors[0].includes(`"${appearance}"`));
+        // Both have the same rules, with nested media queries keeping their own conditions
+        assert.equal(byAppearance('auto').length, byAppearance('dark').length);
         for (const appearance of ['auto', 'dark']) {
-            assert.equal(await compile(file, stylusFilter({ variant: 'cyberpunk', appearance })), light, appearance);
+            assert.ok(byAppearance(appearance).some(rule => darkBackground.test(rule.body)), appearance);
+            assert.ok(byAppearance(appearance).some(rule => rule.selectors[0].endsWith(' .widget.card#toc')
+                && rule.media.some(media => media.includes('(max-width: 768px)'))), `${appearance}: mobile toc`);
         }
+    });
+
+    it('does not depend on the appearance setting', async () => {
+        assert.equal(await compile(defaultStyl, stylusFilter({ appearance: 'dark' })), css);
+    });
+
+    it('leaves the cyberpunk stylesheet without dark colors', async () => {
+        const cyberpunk = await compile(path.join(REPO_ROOT, 'source/css/cyberpunk.styl'), stylusFilter({ variant: 'cyberpunk', appearance: 'dark' }));
+        assert.doesNotMatch(cyberpunk, /data-appearance|#17181c/);
     });
 });

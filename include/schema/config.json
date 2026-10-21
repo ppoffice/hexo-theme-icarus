@@ -20,7 +20,7 @@
         },
         "appearance": {
             "type": "string",
-            "description": "Color scheme of the default variant, can be \"light\", \"dark\" or \"auto\" (light or dark following the setting of the browser or system of each visitor). Ignored by the cyberpunk variant, which is always dark",
+            "description": "Color scheme of the default variant, can be \"light\", \"dark\" or \"auto\" (light or dark following the setting of the browser or system of each visitor). Can be set per page in the front-matter or in layout configuration files such as _config.post.yml. Ignored by the cyberpunk variant, which is always dark",
             "enum": [
                 "light",
                 "auto",

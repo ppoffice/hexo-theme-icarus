@@ -40,8 +40,7 @@ module.exports = class extends Component {
             highlight,
             variant = 'default'
         } = config;
-        // The cyberpunk variant is always dark: only the default variant has an appearance.
-        const appearance = variant === 'default' ? getAppearance(config) : 'light';
+        const appearance = getAppearance(config);
         const {
             meta = [],
             manifest = {},

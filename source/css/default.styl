@@ -1,17 +1,14 @@
 @import '_style'
 @import '../../include/style/dark'
 
-// The `appearance` setting, given by include/stylus.js: dark colors that follow the system
-// color scheme ("auto"), that are always used ("dark"), or none ("light", the default).
-icarus-appearance ?= 'light'
+// The logo is a <picture> that switches to the dark logo for the "auto" appearance
+// (layout/misc/logo.jsx): lay out its image as before.
+.navbar-logo picture, .footer-logo picture
+    display: contents
 
-if icarus-appearance == 'auto'
-    // The logo is a <picture> that switches to the dark logo (layout/misc/logo.jsx): lay out its
-    // image as before.
-    .navbar-logo picture, .footer-logo picture
-        display: contents
+// Dark colors for the pages whose appearance (the `appearance` setting, which pages can override)
+// is "auto" while the system color scheme is dark, or "dark".
+@media (prefers-color-scheme: dark)
+    dark-appearance('auto')
 
-    @media (prefers-color-scheme: dark)
-        dark-appearance()
-else if icarus-appearance == 'dark'
-    dark-appearance()
+dark-appearance('dark')

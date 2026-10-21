@@ -34,6 +34,28 @@ describe('layout/layout (page skeleton)', () => {
         });
     }
 
+    describe('appearance', () => {
+        const attribute = async config => (await renderLayout({}, config)).$('html').attr('data-appearance');
+
+        it('marks the dark appearances on <html>, for the dark colors of the stylesheet', async () => {
+            assert.equal(await attribute({ appearance: 'auto' }), 'auto');
+            assert.equal(await attribute({ appearance: 'dark' }), 'dark');
+        });
+
+        it('adds no attribute for the light appearance and the cyberpunk variant', async () => {
+            for (const config of [{}, { appearance: 'light' }, { appearance: 'night' }, { variant: 'cyberpunk', appearance: 'dark' }]) {
+                assert.equal(await attribute(config), undefined, JSON.stringify(config));
+            }
+        });
+
+        it('applies the appearance of the page to the head and the logos too', async () => {
+            const { $ } = await renderLayout({}, { appearance: 'dark' });
+            assert.equal($('meta[name="color-scheme"]').attr('content'), 'dark');
+            assert.deepEqual($('link[href*="highlight.js"]').map((i, el) => el.attribs.href.split('/').pop()).get(), ['atom-one-dark.css']);
+            assert.deepEqual($('.navbar-logo img, .footer-logo img').map((i, el) => el.attribs.src).get(), ['/img/logo-dark.svg', '/img/logo-dark.svg']);
+        });
+    });
+
     it('renders with empty widget entries (a bare "-" in YAML)', async () => {
         const { $ } = await renderLayout({ toc: true }, { widgets: [null, ...onlyProfile('left'), null] });
         assert.ok($('body').hasClass('is-2-column'));

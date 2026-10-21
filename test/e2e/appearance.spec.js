@@ -207,3 +207,85 @@ test.describe('appearance: light (the default)', () => {
         expect(await page.evaluate(() => getComputedStyle(document.documentElement).colorScheme)).toBe('normal');
     });
 });
+
+test.describe('appearance per page (front-matter)', () => {
+    const DARK_POST = '/2024/04/02/dark-appearance/';
+    const AUTO_POST = '/2024/04/01/auto-appearance/';
+    const LIGHT_POST = '/2024/02/20/code-blocks/';
+    const state = page => page.evaluate(() => ({
+        attribute: document.documentElement.getAttribute('data-appearance'),
+        colorScheme: (document.querySelector('meta[name="color-scheme"]') || {}).content || null,
+        themes: Array.from(document.querySelectorAll('link[href*="highlight.js"]'), link => link.href.split('/').pop() + (link.media ? ' ' + link.media : ''))
+    }));
+
+    /** Click a link and wait until PJAX has swapped the page in and re-run its scripts. */
+    async function pjaxClick(page, locator) {
+        const done = page.evaluate(() => new Promise(resolve => document.addEventListener('pjax:complete', resolve, { once: true })));
+        await locator.click();
+        await done;
+        await page.waitForLoadState('networkidle');
+    }
+
+    test.describe('with a light system color scheme', () => {
+        test.use({ colorScheme: 'light' });
+
+        test('a dark post is dark while the other pages stay light', async ({ page, visit, diagnostics }) => {
+            await visit('/', { variant: 'appearance-per-page' });
+            expect(isLight(await colorOf(page, '.column-main .card'))).toBe(true);
+            await visit(DARK_POST, { variant: 'appearance-per-page' });
+            for (const selector of ['body', '.column-main .card', '.navbar-main', 'body > footer.footer']) {
+                expect(isDark(await colorOf(page, selector)), selector).toBe(true);
+            }
+            expect(await codeBackground(page)).toBe(ATOM_ONE_DARK);
+            expect((await logos(page)).map(logo => logo.src)).toEqual(['/img/logo-dark.svg', '/img/logo-dark.svg']);
+            await expectReadable(page, ['.content > p', '.article-meta', '.menu-label', '.content > p a', '.navbar-start .navbar-item']);
+            expect(diagnostics.consoleErrors).toEqual([]);
+        });
+    });
+
+    test.describe('with a dark system color scheme', () => {
+        test.use({ colorScheme: 'dark' });
+
+        test('PJAX switches the appearance from page to page without reloading', async ({ page, visit, diagnostics }) => {
+            await visit('/', { variant: 'appearance-per-page' });
+            await page.evaluate(() => { window.notReloaded = true; });
+            expect(await state(page)).toEqual({ attribute: null, colorScheme: null, themes: ['atom-one-light.css'] });
+            expect(isLight(await colorOf(page, '.column-main .card'))).toBe(true);
+
+            const expectPage = async (expected, dark, logo) => {
+                expect(await state(page)).toEqual(expected);
+                for (const selector of ['body', '.column-main .card', '.navbar-main', 'body > footer.footer']) {
+                    expect((dark ? isDark : isLight)(await colorOf(page, selector)), selector).toBe(true);
+                }
+                await expect.poll(() => codeBackground(page)).toBe(dark ? ATOM_ONE_DARK : ATOM_ONE_LIGHT);
+                expect((await logos(page)).map(({ src }) => src)).toEqual([logo, logo]);
+                expect(await page.evaluate(() => window.notReloaded)).toBe(true);
+            };
+
+            await pjaxClick(page, page.locator(`.column-main a[href="${DARK_POST}"]`).first());
+            await expectPage({ attribute: 'dark', colorScheme: 'dark', themes: ['atom-one-dark.css'] }, true, '/img/logo-dark.svg');
+
+            await pjaxClick(page, page.locator(`.content a[href="${AUTO_POST}"]`));
+            await expectPage({
+                attribute: 'auto',
+                colorScheme: 'light dark',
+                themes: ['atom-one-light.css (prefers-color-scheme: light)', 'atom-one-dark.css (prefers-color-scheme: dark)']
+            }, true, '/img/logo-dark.svg');
+
+            await pjaxClick(page, page.locator(`.content a[href="${LIGHT_POST}"]`));
+            await expectPage({ attribute: null, colorScheme: null, themes: ['atom-one-light.css'] }, false, '/img/logo.svg');
+
+            // The logos, whose images were switched, still navigate with PJAX
+            for (const locator of ['.navbar-logo', `.column-main a[href="${DARK_POST}"] >> nth=0`, '.footer-logo']) {
+                await pjaxClick(page, page.locator(locator));
+            }
+            await expect(page).toHaveURL(/\/$/);
+            expect(await state(page)).toEqual({ attribute: null, colorScheme: null, themes: ['atom-one-light.css'] });
+            expect(await page.evaluate(() => window.notReloaded)).toBe(true);
+
+            expect(diagnostics.pageErrors).toEqual([]);
+            expect(diagnostics.consoleErrors).toEqual([]);
+            expect(diagnostics.failedRequests).toEqual([]);
+        });
+    });
+});
