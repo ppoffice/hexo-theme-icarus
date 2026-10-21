@@ -77,6 +77,14 @@ describe('comment, share, donate and search providers', () => {
                 assert.doesNotMatch(output, /cannot load/i);
                 assert.equal($('#comments').length, 1);
                 assert.ok($('#comments .card-content').children().length > 1, `${type} rendered nothing`);
+                // Nothing in the comments holds up the rest of the page while it loads
+                $('#comments script[src]').each((i, el) => {
+                    assert.ok('async' in el.attribs || el.attribs.type === 'module', `${type}: ${$.html(el)} blocks the parser`);
+                });
+                $('#comments link[rel="stylesheet"]').each((i, el) => {
+                    assert.equal(el.attribs.media, 'print', `${type}: ${$.html(el)} blocks rendering`);
+                    assert.equal(el.attribs.onload, 'this.media=\'all\'', `${type}: ${$.html(el)} is never applied`);
+                });
             });
         }
     });

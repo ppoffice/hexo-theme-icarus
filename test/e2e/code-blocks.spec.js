@@ -61,7 +61,7 @@ test.describe('code blocks', () => {
 
     test('a copy button shows while it has keyboard focus', async ({ page }) => {
         const button = page.locator('figure.highlight button.copy').first();
-        // Start keyboard navigation from the text above the block (tabbing from the top would open the search box).
+        // Start keyboard navigation from the text above the block, a few Tab presses from its button.
         await page.locator('.article .content p', { hasText: 'A code block with a caption:' }).click();
         await page.mouse.move(0, 0);
         await expect(button).toHaveCSS('opacity', '0');

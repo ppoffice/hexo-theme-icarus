@@ -220,4 +220,79 @@ test.describe('search', () => {
         await page.locator('.searchbox-close').click();
         await expect(page.locator('.searchbox')).not.toHaveClass(/show/);
     });
+
+    const searchbox = page => page.locator('.searchbox');
+    const button = page => page.locator('.navbar-main .search');
+    const isOpen = page => searchbox(page).evaluate(el => el.classList.contains('show'));
+
+    test('does not open when its button gets the focus', async ({ page, visit }) => {
+        await visit('/');
+        await button(page).focus();
+        await expect(button(page)).toBeFocused();
+        expect(await isOpen(page)).toBe(false);
+    });
+
+    for (const key of ['Enter', 'Space']) {
+        test(`opens with ${key} on its button and closes on Escape, giving the focus back to the button`, async ({ page, visit }) => {
+            await visit('/');
+            await button(page).focus();
+            await page.keyboard.press(key);
+            await expect(searchbox(page)).toHaveClass(/show/);
+            await expect(page.locator('.searchbox-input')).toBeFocused();
+            await page.keyboard.press('Escape');
+            await expect(searchbox(page)).not.toHaveClass(/show/);
+            await expect(button(page)).toBeFocused();
+        });
+    }
+
+    test('lets Tab move from the top of the page past its button to the article', async ({ page, visit }) => {
+        await visit('/');
+        const passed = [];
+        for (let i = 0; i < 40; i++) {
+            await page.keyboard.press('Tab');
+            const focused = await page.evaluate(() => {
+                const el = document.activeElement;
+                return {
+                    search: el.matches('.navbar-main .search'),
+                    article: !!el.closest('.column-main article'),
+                    open: document.querySelector('.searchbox').classList.contains('show')
+                };
+            });
+            expect(focused.open, `search opened after ${i + 1} Tab presses`).toBe(false);
+            passed.push(focused);
+            if (focused.article) {
+                break;
+            }
+        }
+        expect(passed.some(focused => focused.search), 'reached the search button').toBe(true);
+        expect(passed[passed.length - 1].article, 'reached the article').toBe(true);
+    });
+
+    test('opens with "/" outside of text fields, and with Ctrl+K or Cmd+K', async ({ page, visit }) => {
+        await visit('/');
+        for (const shortcut of ['/', 'Control+k', 'Meta+k']) {
+            await page.locator('.column-main article').first().click({ position: { x: 5, y: 5 } });
+            expect(await isOpen(page)).toBe(false);
+            await page.keyboard.press(shortcut);
+            await expect(searchbox(page), shortcut).toHaveClass(/show/);
+            await expect(page.locator('.searchbox-input')).toBeFocused();
+            await expect(page.locator('.searchbox-input'), `${shortcut} is not typed`).toHaveValue('');
+            await page.keyboard.press('Escape');
+            await expect(searchbox(page)).not.toHaveClass(/show/);
+        }
+        // "/" can still be typed in the search box
+        await button(page).click();
+        await page.keyboard.type('a/b');
+        await expect(page.locator('.searchbox-input')).toHaveValue('a/b');
+        await expect(searchbox(page)).toHaveClass(/show/);
+    });
+
+    test('closes when the focus leaves it', async ({ page, visit }) => {
+        await visit('/');
+        await button(page).click();
+        await expect(page.locator('.searchbox-input')).toBeFocused();
+        await page.keyboard.press('Shift+Tab');
+        await expect(searchbox(page)).not.toHaveClass(/show/);
+        expect(await page.evaluate(() => document.querySelector('.searchbox').contains(document.activeElement))).toBe(false);
+    });
 });

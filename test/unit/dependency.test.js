@@ -162,4 +162,39 @@ describe('include/dependency (package dependency check)', () => {
             });
         }
     });
+
+    describe('installed hexo-component-inferno version', () => {
+        const packagePath = require.resolve('hexo-component-inferno/package.json', { paths: [path.join(REPO_ROOT, 'include')] });
+        let original;
+
+        beforeEach(() => {
+            require(packagePath);
+            original = require.cache[packagePath].exports;
+        });
+
+        afterEach(() => {
+            require.cache[packagePath].exports = original;
+        });
+
+        const withComponent = version => {
+            require.cache[packagePath].exports = Object.assign({}, original, { version });
+            return capture(() => checkDependencies({}));
+        };
+
+        it('accepts 4.x', () => {
+            for (const version of ['4.0.0', '4.3.1']) {
+                const { exitCode, output } = withComponent(version);
+                assert.equal(exitCode, null, output);
+            }
+        });
+
+        // A site upgrading the theme with its old node_modules still has 3.x installed.
+        it('rejects 3.x with the version it requires and the command to install it', () => {
+            const { exitCode, output } = withComponent('3.1.2');
+            assert.equal(exitCode, -1);
+            assert.match(output, /hexo-component-inferno.*\(.*3\.1\.2.*\) does not satisfy the required version \(.*\^4\.0\.0.*\)/);
+            assert.match(output, /npm install --save hexo-component-inferno@\^4\.0\.0/);
+            assert.match(output, /yarn add hexo-component-inferno@\^4\.0\.0/);
+        });
+    });
 });
