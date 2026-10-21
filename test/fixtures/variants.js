@@ -27,6 +27,11 @@ module.exports = {
         theme: { appearance: 'dark' }
     },
 
+    // A logo of the site, with a dark version.
+    'appearance-auto-custom-logo': {
+        theme: { appearance: 'auto', logo: '/img/avatar.png', logo_dark: '/img/og_image.png' }
+    },
+
     // The cyberpunk variant is always dark and ignores the appearance setting.
     'cyberpunk-appearance-dark': {
         theme: { variant: 'cyberpunk', appearance: 'dark' }

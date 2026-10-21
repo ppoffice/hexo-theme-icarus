@@ -18,6 +18,36 @@ describe('layout/common/navbar', () => {
         assert.equal($('.navbar-logo img').length, 0);
     });
 
+    describe('dark logo', () => {
+        // [description, theme config, navbar logo markup]
+        const picture = (dark, light) => `<picture><source srcset="${dark}" media="(prefers-color-scheme: dark)"><img src="${light}" alt="Icarus Fixture" height="28"></picture>`;
+        const img = src => `<img src="${src}" alt="Icarus Fixture" height="28">`;
+        for (const [description, config, expected] of [
+            ['keeps the logo for the light appearance', {}, img('/img/logo.svg')],
+            ['keeps the logo for the light appearance even with logo_dark', { logo_dark: '/img/night.svg' }, img('/img/logo.svg')],
+            ['switches the theme logo to its dark version with the system for "auto"', { appearance: 'auto' }, picture('/img/logo-dark.svg', '/img/logo.svg')],
+            ['uses the dark version of the theme logo for "dark"', { appearance: 'dark' }, img('/img/logo-dark.svg')],
+            ['keeps a logo of the site without logo_dark', { appearance: 'auto', logo: '/img/mine.svg' }, img('/img/mine.svg')],
+            ['keeps a logo of the site without logo_dark for "dark"', { appearance: 'dark', logo: '/img/mine.svg' }, img('/img/mine.svg')],
+            ['switches to logo_dark for "auto"', { appearance: 'auto', logo: '/img/mine.svg', logo_dark: '/img/mine-dark.svg' }, picture('/img/mine-dark.svg', '/img/mine.svg')],
+            ['uses logo_dark for "dark"', { appearance: 'dark', logo: '/img/mine.svg', logo_dark: 'https://example.com/dark.png' }, img('https://example.com/dark.png')],
+            ['uses logo_dark with the theme logo too', { appearance: 'auto', logo_dark: '/img/night.svg' }, picture('/img/night.svg', '/img/logo.svg')],
+            ['keeps the logo of the cyberpunk variant', { variant: 'cyberpunk', appearance: 'dark', logo_dark: '/img/night.svg' }, img('/img/logo.svg')]
+        ]) {
+            it(description, async () => {
+                const { $ } = await renderNavbar({}, config);
+                assert.equal($('.navbar-logo').html(), expected);
+            });
+        }
+
+        it('keeps a text logo', async () => {
+            for (const appearance of ['auto', 'dark']) {
+                const { $ } = await renderNavbar({}, { appearance, logo: { text: 'Text Logo' }, logo_dark: '/img/night.svg' });
+                assert.equal($('.navbar-logo').html(), 'Text Logo', appearance);
+            }
+        });
+    });
+
     it('renders menu items in configuration order', async () => {
         const { $ } = await renderNavbar();
         const items = $('.navbar-start > a.navbar-item').map((i, el) => [[$(el).text(), $(el).attr('href')]]).get();

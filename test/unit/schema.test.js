@@ -123,10 +123,25 @@ describe('include/schema', () => {
             assert.ok(!valid({ article: { highlight: { dark_theme: 42 } } }));
         });
 
-        it('defaults to light, with atom-one-dark for the code blocks, in the generated configuration', () => {
+        it('accepts a dark logo, or none', () => {
+            assert.ok(valid({ logo_dark: '/img/logo-night.svg' }));
+            assert.ok(valid({ logo_dark: null }));
+            assert.ok(!valid({ logo_dark: { text: 'Text' } }));
+        });
+
+        it('defaults to light, with atom-one-dark for the code blocks and no dark logo, in the generated configuration', () => {
             const defaults = yaml.parse(loadSchema().getDefaultValue().toYaml());
             assert.equal(defaults.appearance, 'light');
             assert.equal(defaults.article.highlight.dark_theme, 'atom-one-dark');
+            assert.ok('logo_dark' in defaults);
+            assert.equal(defaults.logo_dark, null);
+        });
+
+        it('ships a dark version of the default logo', () => {
+            const logo = fs.readFileSync(path.join(REPO_ROOT, 'source', require(path.join(schemaDir, 'config.json')).properties.logo.default), 'utf8');
+            const darkLogo = fs.readFileSync(path.join(REPO_ROOT, 'source/img/logo-dark.svg'), 'utf8');
+            // Only the color of the wordmark differs
+            assert.equal(darkLogo.replace('fill="#eceef1"', 'fill="#333"'), logo);
         });
     });
 

@@ -6,6 +6,11 @@
 icarus-appearance ?= 'light'
 
 if icarus-appearance == 'auto'
+    // The logo is a <picture> that switches to the dark logo (layout/misc/logo.jsx): lay out its
+    // image as before.
+    .navbar-logo picture, .footer-logo picture
+        display: contents
+
     @media (prefers-color-scheme: dark)
         dark-appearance()
 else if icarus-appearance == 'dark'

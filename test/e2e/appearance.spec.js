@@ -58,6 +58,16 @@ async function colorOf(page, selector) {
 
 const isDark = colors => colors.background < 0.05 && colors.color > 0.3;
 const isLight = colors => colors.background > 0.8 && colors.color < 0.2;
+
+/** The image each logo shows (navbar, footer) and its size. */
+function logos(page) {
+    return page.locator('.navbar-logo img, .footer-logo img').evaluateAll(images => Promise.all(images.map(async img => {
+        await img.decode();
+        const { width, height } = img.getBoundingClientRect();
+        return { src: new URL(img.currentSrc).pathname, width: Math.round(width), height: Math.round(height) };
+    })));
+}
+
 const codeBackground = page => page.locator('figure.highlight').first().evaluate(el => getComputedStyle(el).backgroundColor);
 
 async function expectReadable(page, selectors) {
@@ -83,6 +93,16 @@ test.describe('appearance: auto, with a dark system color scheme', () => {
         expect(diagnostics.pageErrors).toEqual([]);
         expect(diagnostics.consoleErrors).toEqual([]);
         expect(diagnostics.failedRequests).toEqual([]);
+    });
+
+    test('the navbar and footer show the dark logo, at the size of the logo', async ({ page, visit }) => {
+        await visit('/');
+        const light = await logos(page);
+        await visit('/', { variant: 'appearance-auto' });
+        const dark = await logos(page);
+        expect(dark.map(logo => logo.src)).toEqual(['/img/logo-dark.svg', '/img/logo-dark.svg']);
+        expect(dark.map(({ width, height }) => [width, height])).toEqual(light.map(({ width, height }) => [width, height]));
+        expect(dark[0].height).toBeGreaterThan(0);
     });
 
     test('text, muted text and links are readable (WCAG AA contrast)', async ({ page, visit }) => {
@@ -149,6 +169,7 @@ test.describe('appearance: auto, with a light system color scheme', () => {
             expect(isLight(await colorOf(page, selector)), selector).toBe(true);
         }
         expect(await codeBackground(page)).toBe(ATOM_ONE_LIGHT);
+        expect((await logos(page)).map(logo => logo.src)).toEqual(['/img/logo.svg', '/img/logo.svg']);
         expect(diagnostics.consoleErrors).toEqual([]);
     });
 });
@@ -164,6 +185,7 @@ test.describe('appearance: dark', () => {
                     expect(isDark(await colorOf(page, selector)), selector).toBe(true);
                 }
                 expect(await codeBackground(page)).toBe(ATOM_ONE_DARK);
+                expect((await logos(page)).map(logo => logo.src)).toEqual(['/img/logo-dark.svg', '/img/logo-dark.svg']);
                 await expectReadable(page, ['.content > p', '.article-meta', '.menu-label', '.content > p a', '.navbar-start .navbar-item']);
                 expect(diagnostics.consoleErrors).toEqual([]);
                 expect(diagnostics.failedRequests).toEqual([]);
@@ -181,6 +203,7 @@ test.describe('appearance: light (the default)', () => {
             expect(isLight(await colorOf(page, selector)), selector).toBe(true);
         }
         expect(await codeBackground(page)).toBe(ATOM_ONE_LIGHT);
+        expect((await logos(page)).map(logo => logo.src)).toEqual(['/img/logo.svg', '/img/logo.svg']);
         expect(await page.evaluate(() => getComputedStyle(document.documentElement).colorScheme)).toBe('normal');
     });
 });

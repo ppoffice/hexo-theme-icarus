@@ -128,7 +128,10 @@ describe('source/css (appearance)', function() {
     it('only emits the dark colors inside a prefers-color-scheme: dark media query for "auto"', () => {
         assert.ok(css.auto.startsWith(css.light), 'the light stylesheet comes first, unchanged');
         const { rest, blocks } = splitDarkMedia(css.auto);
-        assert.equal(rest.trimEnd(), css.light.trimEnd());
+        // Besides the layout of the logo that switches to the dark one (layout/misc/logo.jsx)
+        const logo = /\.navbar-logo picture,\s*\.footer-logo picture \{\s*display: contents;\s*\}\s*/;
+        assert.match(rest, logo);
+        assert.equal(rest.replace(logo, '').trimEnd(), css.light.trimEnd());
         assert.ok(blocks.some(block => darkBackground.test(block)));
         // Nested media queries (e.g. the table of contents overlay on mobile) keep both conditions.
         assert.ok(blocks.some(block => /prefers-color-scheme: dark\) and \(max-width: 768px\)[^{]*\{\s*\.widget\.card#toc/.test(block)), 'mobile toc');

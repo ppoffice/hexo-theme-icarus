@@ -38,6 +38,18 @@ describe('fixture site variants', function() {
     describe('appearance', () => {
         const highlightThemes = $ => $('link[href*="highlight.js"]').map((i, el) => [[el.attribs.href.match(/styles\/(.+)\.css$/)[1], el.attribs.media || null]]).get();
 
+        const logos = $ => ['.navbar-logo', '.footer-logo'].map(selector => $(selector).html());
+        const picture = (dark, light) => `<picture><source srcset="${dark}" media="(prefers-color-scheme: dark)"><img src="${light}" alt="Icarus Fixture" height="28"></picture>`;
+        const img = src => `<img src="${src}" alt="Icarus Fixture" height="28">`;
+
+        it('switches the navbar and footer logos to their dark version', () => {
+            assert.deepEqual(logos(getSite('appearance-auto').$('/')), Array(2).fill(picture('/img/logo-dark.svg', '/img/logo.svg')));
+            assert.deepEqual(logos(getSite('appearance-dark').$('/')), Array(2).fill(img('/img/logo-dark.svg')));
+            assert.deepEqual(logos(getSite('appearance-auto-custom-logo').$('/')), Array(2).fill(picture('/img/og_image.png', '/img/avatar.png')));
+            assert.deepEqual(logos(getSite('default').$('/')), Array(2).fill(img('/img/logo.svg')));
+            assert.ok(getSite('appearance-auto').exists('img/logo-dark.svg'));
+        });
+
         for (const [variant, colorScheme, themes, darkCss] of [
             ['appearance-auto', 'light dark', [['atom-one-light', '(prefers-color-scheme: light)'], ['atom-one-dark', '(prefers-color-scheme: dark)']], /@media \(prefers-color-scheme: dark\) \{\s*html \{\s*color-scheme: dark;/],
             ['appearance-dark', 'dark', [['atom-one-dark', null]], /\nhtml \{\s*color-scheme: dark;/]
