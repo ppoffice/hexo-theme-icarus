@@ -32,6 +32,17 @@ async function pjaxClick(page, locator) {
     await page.waitForLoadState('networkidle');
 }
 
+/** Left edge of the element's text: its box plus its left padding and border. */
+function textStart(locator) {
+    return locator.evaluate(el => {
+        const style = getComputedStyle(el);
+        return el.getBoundingClientRect().left + parseFloat(style.paddingLeft) + parseFloat(style.borderLeftWidth);
+    });
+}
+
+const fontSize = locator => locator.evaluate(el => getComputedStyle(el).fontSize);
+const background = locator => locator.evaluate(el => getComputedStyle(el).backgroundColor);
+
 /** Whether every corner of the element is the topmost element at that point, inside the window. */
 function fullyVisible(locator) {
     return locator.evaluate(el => {
@@ -65,11 +76,18 @@ test.describe('navbar sub-menu on a wide screen', () => {
         for (const name of ['Hello World', 'Code Blocks']) {
             expect(await fullyVisible(subLink(page, name)), name).toBe(true);
         }
-        const [group, panel, navbar, main] = await Promise.all(['.has-dropdown', '#navbar-main-menu-4', '.navbar-container', '.column-main']
+        const [panel, navbar, main] = await Promise.all(['#navbar-main-menu-4', '.navbar-container', '.column-main']
             .map(selector => page.locator(selector).first().boundingBox()));
-        expect(Math.abs(panel.x - group.x)).toBeLessThan(1);
-        expect(Math.abs(panel.y - (navbar.y + navbar.height))).toBeLessThan(1);
+        expect(panel.y - (navbar.y + navbar.height)).toBeGreaterThanOrEqual(0);
+        expect(panel.y - (navbar.y + navbar.height)).toBeLessThan(8);
         expect(panel.y + panel.height).toBeGreaterThan(main.y);
+        // Its link names start where the button name does, in the same font size.
+        const [buttonText, linkText] = await Promise.all([button(page), subLink(page, 'Hello World')].map(textStart));
+        expect(Math.abs(buttonText - linkText)).toBeLessThan(1);
+        expect(await fontSize(subLink(page, 'Hello World'))).toBe(await fontSize(page.locator('.navbar-start > a').first()));
+        // The open button keeps the look of the other links: no background.
+        await page.mouse.move(5, WIDE.height - 5);
+        expect(await background(button(page))).toBe('rgba(0, 0, 0, 0)');
         // Opening it neither folds nor scrolls the menu.
         await frames(page);
         await expect(page.locator('.navbar-main')).not.toHaveClass(/is-collapsed/);
@@ -155,7 +173,11 @@ test.describe('navbar sub-menu on a wide screen', () => {
         await button(page).hover();
         await expect(dropdown(page)).toBeVisible();
         await expect(button(page)).toHaveAttribute('aria-expanded', 'false');
-        // From the button down to its links.
+        // From the button down to its links, across the gap between them.
+        const [from, to] = await Promise.all([button(page).boundingBox(), subLink(page, 'Hello World').boundingBox()]);
+        await page.mouse.move(from.x + 10, from.y + (from.height / 2));
+        await page.mouse.move(from.x + 10, to.y + (to.height / 2), { steps: 40 });
+        await expect(dropdown(page)).toBeVisible();
         await subLink(page, 'Code Blocks').hover();
         await expect(dropdown(page)).toBeVisible();
         expect(await fullyVisible(dropdown(page))).toBe(true);
@@ -229,6 +251,13 @@ test.describe('navbar sub-menu in the folded menu', () => {
         const center = box => box.x + (box.width / 2);
         expect(Math.abs(center(first) - center(about))).toBeLessThan(2);
         expect(await dropdown(page).evaluate(el => getComputedStyle(el).position)).toBe('static');
+        // Like the other links, without a background; its links in the same size, dimmed.
+        await page.mouse.move(5, NARROW.height - 5);
+        expect(await background(button(page))).toBe('rgba(0, 0, 0, 0)');
+        const home = page.locator('.navbar-start > a', { hasText: 'Home' });
+        expect(await fontSize(subLink(page, 'Code Blocks'))).toBe(await fontSize(home));
+        const color = locator => locator.evaluate(el => getComputedStyle(el).color);
+        expect(await color(subLink(page, 'Code Blocks'))).not.toBe(await color(page.locator('.navbar-start > a', { hasText: 'About' })));
         // The menu stays folded, without scrolling.
         await frames(page);
         await expect(page.locator('.navbar-main')).toHaveClass(/is-collapsed/);
@@ -353,6 +382,11 @@ test.describe('navbar sub-menu in the cyberpunk variant', () => {
         await expect(subLink(page, 'Hello World')).toHaveClass(/is-active/);
         expect(await contrasts(subLink(page, 'Hello World')), 'active link').toBe(true);
         expect(await contrasts(button(page)), 'active button').toBe(true);
+        // The active link is framed by the panel.
+        const [panel, active] = await Promise.all([dropdown(page).boundingBox(), subLink(page, 'Hello World').boundingBox()]);
+        expect(active.x).toBeGreaterThan(panel.x + 2);
+        expect(active.x + active.width).toBeLessThan(panel.x + panel.width - 2);
+        expect(active.y).toBeGreaterThan(panel.y + 2);
 
         await page.setViewportSize(NARROW);
         await expect(page.locator('.navbar-main')).toHaveClass(/is-collapsed/);

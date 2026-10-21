@@ -5,6 +5,11 @@ $navbar-item-padding-v ?= 1.25rem
 $navbar-item-padding-h ?= .75rem
 $navbar-item-margin-v ?= 0
 $navbar-item-margin-h ?= 0
+$navbar-dropdown-gap ?= .25rem
+$navbar-dropdown-padding-h ?= 0
+$navbar-dropdown-shadow ?= $card-shadow
+$navbar-dropdown-item-padding-h ?= 1rem
+$navbar-dropdown-item-muted-color ?= darken($grey, 10%)
 
 .navbar-main
     box-shadow: $shadow
@@ -94,46 +99,58 @@ $navbar-item-margin-h ?= 0
         margin: 0
         padding: 0
 
-    .navbar-link
+    // The button looks like the other menu links, with a chevron pointing up when open.
+    .navbar-item.has-dropdown .navbar-link
         display: flex
         align-items: center
         margin: $navbar-item-margin-v $navbar-item-margin-h
-        padding: $navbar-item-padding-v 2.25em $navbar-item-padding-v $navbar-item-padding-h
+        padding: $navbar-item-padding-v $navbar-item-padding-h
         border: none
-        background: none
+        background-color: transparent
         font: inherit
         line-height: 1.5
         color: $navbar-item-color
         cursor: pointer
 
         &::after
-            display: block
-            border-color: currentColor
-            right: 1em
+            position: static
+            display: inline-block
+            flex-shrink: 0
+            width: .4em
+            height: .4em
+            margin: 0 0 0 .5em
+            border: solid currentColor
+            border-width: 0 1.5px 1.5px 0
+            border-radius: 0
+            transform: translateY(-25%) rotate(45deg)
+            transition: transform .2s ease
 
         &[aria-expanded="true"]::after
-            margin-top: -.125em
-            transform: rotate(135deg)
+            transform: translateY(25%) rotate(225deg)
 
-        &:focus, &:hover
-            background-color: $navbar-item-hover-background-color
+        &:hover
             color: $navbar-item-hover-color
 
         &.is-active
             color: $navbar-item-active-color
+
+    @media (prefers-reduced-motion: reduce)
+        .navbar-item.has-dropdown .navbar-link::after
+            transition: none
 
     .navbar-dropdown
         display: none
         position: static
         min-width: 0
         padding: 0
+        font-size: inherit
         background: none
         border: none
+        border-radius: 0
         box-shadow: none
 
         a.navbar-item
-            &:focus, &:hover
-                background-color: $navbar-item-hover-background-color
+            &:hover
                 color: $navbar-item-hover-color
 
             &.is-active
@@ -155,27 +172,43 @@ $navbar-item-margin-h ?= 0
             .navbar-container, .navbar-menu
                 overflow: visible
 
+    // A card below the button, its link names aligned with the button name
     &.is-scripted:not(.is-collapsed)
         .navbar-dropdown
             position: absolute
             top: 100%
-            left: 0
+            left: $navbar-item-margin-h + $navbar-item-padding-h - $navbar-dropdown-padding-h - $navbar-dropdown-item-padding-h
             z-index: $navbar-dropdown-z
-            min-width: 100%
+            min-width: unquote('max(100%, 10rem)')
             width: max-content
             max-width: calc(100vw - 2rem)
-            padding: .5rem 0
-            font-size: .875rem
+            margin-top: $navbar-dropdown-gap
+            padding: .5rem $navbar-dropdown-padding-h
             background-color: $navbar-background-color
-            border-top: $navbar-dropdown-border-top
-            border-radius: 0 0 $navbar-dropdown-radius $navbar-dropdown-radius
-            box-shadow: 0 8px 8px rgba($scheme-invert, .1)
+            border-radius: $radius
+            box-shadow: $navbar-dropdown-shadow
+
+            // Bridge the gap, so that the mouse keeps it open on its way down to the links.
+            &::before
+                content: ''
+                position: absolute
+                left: 0
+                right: 0
+                bottom: 100%
+                height: $navbar-dropdown-gap
 
             .navbar-item
                 margin: 0
-                padding: .375rem 1rem
+                padding: .5rem $navbar-dropdown-item-padding-h
                 white-space: normal
                 overflow-wrap: anywhere
+
+            a.navbar-item:hover
+                background-color: $navbar-dropdown-item-hover-background-color
+                color: $navbar-item-color
+
+            a.navbar-item.is-active
+                color: $navbar-item-active-color
 
         .navbar-link[aria-expanded="true"] + .navbar-dropdown
             display: block
@@ -191,25 +224,32 @@ $navbar-item-margin-h ?= 0
             .navbar-item.has-dropdown:not(.is-hover-closed):hover .navbar-dropdown
                 display: block
 
+    // In the folded menu, the links of an open sub-menu follow its button in the column, dimmed.
     &.is-collapsed .navbar-start
         .navbar-item.has-dropdown
             flex-direction: column
             align-items: center
             padding: 0
 
-        .navbar-link
+        .navbar-item.has-dropdown .navbar-link
             margin: 0
-            padding: .5rem 2.25em
+            padding: .5rem $navbar-item-padding-h
 
         .navbar-link[aria-expanded="true"] + .navbar-dropdown
             display: flex
             flex-direction: column
             align-items: center
             padding-bottom: .25rem
-            font-size: .875rem
 
-            .navbar-item
-                padding: .375rem $navbar-item-padding-h
+            a.navbar-item
+                padding: .25rem $navbar-item-padding-h
+                color: $navbar-dropdown-item-muted-color
+
+                &:hover
+                    color: $navbar-item-hover-color
+
+                &.is-active
+                    color: $navbar-item-active-color
 
     +from($navbar-breakpoint)
         &.is-collapsed

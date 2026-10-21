@@ -85,7 +85,7 @@
             return;
         }
         const style = dropdown.style;
-        style.left = '';
+        style.marginLeft = '';
         if ($navbar.hasClass('is-collapsed')) {
             return;
         }
@@ -93,10 +93,11 @@
         style.display = 'block';
         style.visibility = 'hidden';
         const rect = dropdown.getBoundingClientRect();
+        const margin = parseFloat(getComputedStyle(dropdown).marginLeft) || 0;
         style.display = '';
         style.visibility = '';
         const shift = Math.max(Math.min(0, document.documentElement.clientWidth - rect.right), -rect.left);
-        style.left = shift < 0 ? shift + 'px' : '';
+        style.marginLeft = shift < 0 ? (margin + shift) + 'px' : '';
     }
 
     function openNavbarDropdown($link) {
