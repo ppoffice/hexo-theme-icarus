@@ -80,6 +80,25 @@ module.exports = {
         theme: { plugins: { pjax: true } }
     },
 
+    // PJAX with a comment provider and analytics plugins, whose scripts the browser tests stub.
+    'pjax-comment-analytics': {
+        theme: {
+            comment: {
+                type: 'gitalk',
+                client_id: 'fixture-client-id',
+                client_secret: 'fixture-client-secret',
+                repo: 'fixture-comments',
+                owner: 'fixture-owner',
+                admin: ['fixture-owner']
+            },
+            plugins: {
+                pjax: true,
+                matomo: { url: 'https://matomo.example.com/', site_id: 1 },
+                umami: { website_id: 'fixture-umami' }
+            }
+        }
+    },
+
     'animejs': {
         theme: { plugins: { animejs: true } }
     },
