@@ -218,7 +218,7 @@
         }
         const offset = entry.getBoundingClientRect().top - scroller.getBoundingClientRect().top - scroller.clientTop;
         const max = scroller.scrollHeight - scroller.clientHeight;
-        const top = Math.round(Math.min(max, Math.max(0, scroller.scrollTop + offset - (scroller.clientHeight - entry.offsetHeight) / 2)));
+        const top = Math.round(Math.min(max, Math.max(0, scroller.scrollTop + offset - ((scroller.clientHeight - entry.offsetHeight) / 2))));
         // Do not restart a smooth scroll that is already heading there.
         if (!instant && $(scroller).data('icarus-toc-top') === top) {
             return;
