@@ -3,6 +3,7 @@ const MetaTags = require('hexo-component-inferno/lib/view/misc/meta');
 const WebApp = require('hexo-component-inferno/lib/view/misc/web_app');
 const OpenGraph = require('hexo-component-inferno/lib/view/misc/open_graph');
 const StructuredData = require('hexo-component-inferno/lib/view/misc/structured_data');
+const { getAppearance } = require('../../include/util/appearance');
 const Plugins = require('./plugins');
 
 function getPageTitle(page, siteTitle, helper) {
@@ -39,6 +40,8 @@ module.exports = class extends Component {
             highlight,
             variant = 'default'
         } = config;
+        // The cyberpunk variant is always dark: only the default variant has an appearance.
+        const appearance = variant === 'default' ? getAppearance(config) : 'light';
         const {
             meta = [],
             manifest = {},
@@ -64,6 +67,15 @@ module.exports = class extends Component {
             hlTheme = article.highlight.theme;
         } else {
             hlTheme = 'atom-one-light';
+        }
+        // Code highlight themes to load, each with the media query it applies to (if any)
+        let hlThemes = [];
+        if (hlTheme && appearance === 'light') {
+            hlThemes = [[hlTheme]];
+        } else if (hlTheme) {
+            const hlDarkTheme = (article && article.highlight && article.highlight.dark_theme) || 'atom-one-dark';
+            hlThemes = appearance === 'dark' ? [[hlDarkTheme]]
+                : [[hlTheme, '(prefers-color-scheme: light)'], [hlDarkTheme, '(prefers-color-scheme: dark)']];
         }
 
         if (typeof page.og_image === 'string') {
@@ -120,6 +132,7 @@ module.exports = class extends Component {
         return <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
+            {appearance !== 'light' ? <meta name="color-scheme" content={appearance === 'auto' ? 'light dark' : 'dark'} /> : null}
             {noIndex ? <meta name="robots" content="noindex" /> : null}
             {meta && meta.length ? <MetaTags meta={meta} /> : null}
 
@@ -166,7 +179,7 @@ module.exports = class extends Component {
             {rss ? <link rel="alternate" href={url_for(rss)} title={config.title} type="application/atom+xml" /> : null}
             {favicon ? <link rel="icon" href={url_for(favicon)} /> : null}
             <link rel="stylesheet" href={iconcdn()} />
-            {hlTheme ? <link data-pjax rel="stylesheet" href={cdn('highlight.js', '11.11.1', 'styles/' + hlTheme + '.css')} /> : null}
+            {hlThemes.map(([theme, media]) => <link data-pjax rel="stylesheet" href={cdn('highlight.js', '11.11.1', 'styles/' + theme + '.css')} media={media} />)}
             <link rel="stylesheet" href={fontCssUrl[variant]} />
             <link rel="stylesheet" href={url_for('/css/' + variant + '.css')} />
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />

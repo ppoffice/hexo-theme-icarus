@@ -1,1 +1,12 @@
 @import '_style'
+@import '../../include/style/dark'
+
+// The `appearance` setting, given by include/stylus.js: dark colors that follow the system
+// color scheme ("auto"), that are always used ("dark"), or none ("light", the default).
+icarus-appearance ?= 'light'
+
+if icarus-appearance == 'auto'
+    @media (prefers-color-scheme: dark)
+        dark-appearance()
+else if icarus-appearance == 'dark'
+    dark-appearance()

@@ -18,6 +18,20 @@ module.exports = {
         theme: { variant: 'cyberpunk' }
     },
 
+    // Dark colors following the system color scheme, or always.
+    'appearance-auto': {
+        theme: { appearance: 'auto' }
+    },
+
+    'appearance-dark': {
+        theme: { appearance: 'dark' }
+    },
+
+    // The cyberpunk variant is always dark and ignores the appearance setting.
+    'cyberpunk-appearance-dark': {
+        theme: { variant: 'cyberpunk', appearance: 'dark' }
+    },
+
     'pjax': {
         theme: { plugins: { pjax: true } }
     },

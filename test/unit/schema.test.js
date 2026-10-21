@@ -101,6 +101,35 @@ describe('include/schema', () => {
         });
     });
 
+    describe('appearance', () => {
+        const valid = config => loadSchema().validate(Object.assign({ version: '5.1.0' }, config)) === true;
+
+        it('accepts "light", "auto" and "dark", and can be left out', () => {
+            for (const appearance of ['light', 'auto', 'dark']) {
+                assert.ok(valid({ appearance }), appearance);
+            }
+            assert.ok(valid({}));
+        });
+
+        for (const appearance of ['Dark', 'night', 'system', '', true, null]) {
+            it(`rejects ${JSON.stringify(appearance)}`, () => {
+                assert.ok(!valid({ appearance }));
+            });
+        }
+
+        it('accepts a code highlight theme for the dark appearance, or none', () => {
+            assert.ok(valid({ article: { highlight: { dark_theme: 'github-dark' } } }));
+            assert.ok(valid({ article: { highlight: { dark_theme: null } } }));
+            assert.ok(!valid({ article: { highlight: { dark_theme: 42 } } }));
+        });
+
+        it('defaults to light, with atom-one-dark for the code blocks, in the generated configuration', () => {
+            const defaults = yaml.parse(loadSchema().getDefaultValue().toYaml());
+            assert.equal(defaults.appearance, 'light');
+            assert.equal(defaults.article.highlight.dark_theme, 'atom-one-dark');
+        });
+    });
+
     it('accepts the test fixture theme configuration', () => {
         const cfg = yaml.parse(fs.readFileSync(path.join(FIXTURE_SITE, '_config.icarus.yml'), 'utf8'));
         assert.equal(loadSchema().validate(cfg), true);

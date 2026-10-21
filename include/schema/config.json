@@ -18,6 +18,16 @@
             ],
             "default": "default"
         },
+        "appearance": {
+            "type": "string",
+            "description": "Color scheme of the default variant, can be \"light\", \"dark\" or \"auto\" (light or dark following the setting of the browser or system of each visitor). Ignored by the cyberpunk variant, which is always dark",
+            "enum": [
+                "light",
+                "auto",
+                "dark"
+            ],
+            "default": "light"
+        },
         "logo": {
             "type": [
                 "string",

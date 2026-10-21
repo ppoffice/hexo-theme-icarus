@@ -34,10 +34,12 @@ describe('vendored CDN libraries used by the browser tests', () => {
         assert.ok(references.length > 0);
     });
 
-    it('serves the default code highlight theme from the referenced highlight.js version', () => {
+    it('serves the default code highlight themes from the referenced highlight.js version', () => {
         const schema = require('../../include/schema/common/article.json');
-        const theme = schema.properties.highlight.properties.theme.default;
-        assert.ok(fs.existsSync(path.join(REPO_ROOT, 'node_modules', VENDORED['highlight.js'], 'styles', theme + '.css')), theme);
+        for (const key of ['theme', 'dark_theme']) {
+            const theme = schema.properties.highlight.properties[key].default;
+            assert.ok(fs.existsSync(path.join(REPO_ROOT, 'node_modules', VENDORED['highlight.js'], 'styles', theme + '.css')), theme);
+        }
     });
 
     for (const name of Object.keys(VENDORED)) {

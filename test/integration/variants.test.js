@@ -35,6 +35,59 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('appearance', () => {
+        const highlightThemes = $ => $('link[href*="highlight.js"]').map((i, el) => [[el.attribs.href.match(/styles\/(.+)\.css$/)[1], el.attribs.media || null]]).get();
+
+        for (const [variant, colorScheme, themes, darkCss] of [
+            ['appearance-auto', 'light dark', [['atom-one-light', '(prefers-color-scheme: light)'], ['atom-one-dark', '(prefers-color-scheme: dark)']], /@media \(prefers-color-scheme: dark\) \{\s*html \{\s*color-scheme: dark;/],
+            ['appearance-dark', 'dark', [['atom-one-dark', null]], /\nhtml \{\s*color-scheme: dark;/]
+        ]) {
+            describe(variant, () => {
+                let site;
+
+                before(() => { site = getSite(variant); });
+
+                it('builds without errors or configuration warnings', () => {
+                    assert.equal(site.status, 0);
+                    assert.doesNotMatch(site.output, /^ERROR/m, site.output);
+                    assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+                });
+
+                it('declares the color schemes and loads the matching code highlight themes on every page', () => {
+                    for (const file of site.htmlFiles()) {
+                        const $ = site.$(file);
+                        assert.equal($('meta[name="color-scheme"]').attr('content'), colorScheme, file);
+                        assert.deepEqual(highlightThemes($), themes, file);
+                    }
+                });
+
+                it('compiles the dark colors into the default stylesheet', () => {
+                    const css = site.read('css/default.css');
+                    assert.match(css, darkCss);
+                    assert.ok(css.length < getSite('default').read('css/default.css').length * 1.1, 'the dark colors only add a small layer');
+                });
+            });
+        }
+
+        it('changes nothing for "light", the default', () => {
+            const $ = getSite('default').$('/');
+            assert.equal($('meta[name="color-scheme"]').length, 0);
+            assert.deepEqual(highlightThemes($), [['atom-one-light', null]]);
+            assert.doesNotMatch(getSite('default').read('css/default.css'), /color-scheme/);
+        });
+
+        it('is ignored by the cyberpunk variant', () => {
+            const site = getSite('cyberpunk-appearance-dark');
+            const cyberpunk = getSite('cyberpunk');
+            assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+            assert.equal(site.read('css/cyberpunk.css'), cyberpunk.read('css/cyberpunk.css'));
+            const strip = html => html.replace(/<meta property="article:tag" content="[^"]*">/g, '');
+            for (const file of ['index.html', '2023/07/01/typography/index.html']) {
+                assert.equal(strip(site.read(file)), strip(cyberpunk.read(file)), file);
+            }
+        });
+    });
+
     describe('one column', () => {
         it('renders only the main column', () => {
             const $ = getSite('one-column').$('/2024/03/01/hello-world/');
