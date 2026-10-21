@@ -25,8 +25,11 @@ class Navbar extends Component {
             showToc,
             tocTitle,
             showSearch,
-            searchTitle
+            searchTitle,
+            menuTitle
         } = this.props;
+        // The toggle folds the menu links into a drop-down when they do not fit (source/js/main.js)
+        const hasMenu = Object.keys(menu).length > 0;
 
         let navbarLogo = '';
         if (logo) {
@@ -47,7 +50,10 @@ class Navbar extends Component {
                     </a>
                 </div>
                 <div class="navbar-menu">
-                    {Object.keys(menu).length ? <div class="navbar-start">
+                    {hasMenu ? <button type="button" class="navbar-item navbar-toggle" title={menuTitle} aria-label={menuTitle} aria-expanded="false" aria-controls="navbar-main-menu">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button> : null}
+                    {hasMenu ? <div class="navbar-start" id="navbar-main-menu">
                         {Object.keys(menu).map(name => {
                             const item = menu[name];
                             return <a class={classname({ 'navbar-item': true, 'is-active': item.active })} href={item.url}>{name}</a>;
@@ -114,6 +120,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         showToc,
         tocTitle: _p('widget.catalogue', Infinity),
         showSearch: search && search.type,
-        searchTitle: __('search.search')
+        searchTitle: __('search.search'),
+        menuTitle: __('navbar.menu')
     };
 });

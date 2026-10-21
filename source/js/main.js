@@ -63,17 +63,91 @@
         }
     });
 
-    function adjustNavbar() {
-        const navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
-        if ($(document).outerWidth() < navbarWidth) {
-            $('.navbar-main .navbar-menu').addClass('justify-content-start');
+    // Fold the menu links of the navbar into a drop-down ("is-collapsed") when they do not fit on
+    // one line, instead of scrolling the navbar horizontally. main.js runs again after every PJAX
+    // navigation, which replaces .navbar-start and .navbar-end but keeps the rest of the navbar
+    // (and the toggle): replace, do not add, its handlers and observer.
+    const $navbar = $('.navbar-main');
+    const $navbarToggle = $navbar.find('.navbar-toggle');
+
+    function setNavbarMenuOpen(open) {
+        $navbar.toggleClass('is-open', open);
+        $navbarToggle.attr('aria-expanded', String(open));
+    }
+
+    // Whether the navbar content is wider than the navbar (1px of tolerance for subpixel widths).
+    function navbarOverflows() {
+        return $navbar.find('.navbar-container, .navbar-menu').get().some(el => el.scrollWidth > el.clientWidth + 1);
+    }
+
+    function fitNavbar() {
+        const $menu = $navbar.find('.navbar-menu');
+        // Measure the expanded layout whatever the current state, so that folding the menu cannot
+        // make it fit again and unfold it. Aligned to the start, all the overflow is on the right,
+        // where scrollWidth counts it.
+        $navbar.removeClass('is-collapsed');
+        $menu.addClass('justify-content-start');
+        const collapse = $navbarToggle.length > 0 && navbarOverflows();
+        $navbar.toggleClass('is-collapsed', collapse);
+        if (!collapse) {
+            setNavbarMenuOpen(false);
+        }
+        // Still too wide (e.g. no menu to fold): keep the start of the navbar reachable by scrolling.
+        $menu.toggleClass('justify-content-start', navbarOverflows());
+    }
+
+    if ($navbar.length) {
+        // A followed link (also through PJAX) closes the drop-down.
+        setNavbarMenuOpen(false);
+        fitNavbar();
+
+        $navbarToggle.off('click.icarus-navbar').on('click.icarus-navbar', () => {
+            setNavbarMenuOpen(!$navbar.hasClass('is-open'));
+        });
+        $(document).off('.icarus-navbar').on('click.icarus-navbar', event => {
+            // Close the drop-down on a click outside of it, or on one of its links.
+            const $target = $(event.target);
+            if ($navbar.hasClass('is-open')
+                && ($target.closest('.navbar-start a').length || !$target.closest('.navbar-start, .navbar-toggle').length)) {
+                setNavbarMenuOpen(false);
+            }
+        }).on('keydown.icarus-navbar', event => {
+            if (event.key === 'Escape' && $navbar.hasClass('is-open')) {
+                const focused = document.activeElement;
+                setNavbarMenuOpen(false);
+                // Give the focus back to the toggle, unless the reader has moved it elsewhere.
+                if (!focused || focused === document.body || $.contains($navbar[0], focused)) {
+                    $navbarToggle.trigger('focus');
+                }
+            }
+        });
+
+        if (window.IcarusNavbarObserver) {
+            window.IcarusNavbarObserver.disconnect();
+            window.IcarusNavbarObserver = null;
+        }
+        if (typeof ResizeObserver === 'function') {
+            // Refit in the next frame: changing the layout from the callback would notify the
+            // observer again within the same frame ("ResizeObserver loop" error).
+            let frame = null;
+            window.IcarusNavbarObserver = new ResizeObserver(() => {
+                if (frame === null) {
+                    frame = requestAnimationFrame(() => {
+                        frame = null;
+                        fitNavbar();
+                    });
+                }
+            });
+            // The container follows the window width, the menu links and icons their font.
+            $navbar.find('.navbar-container, .navbar-start, .navbar-end').each((i, el) => window.IcarusNavbarObserver.observe(el));
+            $(window).off('resize.icarus-navbar');
         } else {
-            $('.navbar-main .navbar-menu').removeClass('justify-content-start');
+            $(window).off('resize.icarus-navbar').on('resize.icarus-navbar', fitNavbar);
+        }
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(fitNavbar);
         }
     }
-    adjustNavbar();
-    // main.js runs again after every PJAX navigation: replace, do not add, window handlers.
-    $(window).off('resize.icarus-navbar').on('resize.icarus-navbar', adjustNavbar);
 
     function toggleFold(codeBlock, isFolded) {
         const $toggle = $(codeBlock).find('.fold i');

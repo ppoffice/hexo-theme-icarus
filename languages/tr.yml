@@ -16,6 +16,8 @@ common:
         other: 'Sayfalar'
     prev: 'Önceki'
     next: 'Sonraki'
+navbar:
+    menu: 'Menü'
 widget:
     follow: 'TAKİP ET'
     recents: 'Son'

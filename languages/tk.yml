@@ -16,6 +16,8 @@ common:
         other: 'Sahypalar'
     prev: 'Öňki'
     next: 'Indiki'
+navbar:
+    menu: 'Menýu'
 widget:
     follow: 'Abuna bol'
     recents: 'Täze habarlar'

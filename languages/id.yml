@@ -16,6 +16,8 @@ common:
         other: 'Halaman'
     prev: 'Sebelumnya'
     next: 'Berikutnya'
+navbar:
+    menu: 'Menu'
 widget:
     follow: 'IKUTI'
     recents: 'Terbaru'

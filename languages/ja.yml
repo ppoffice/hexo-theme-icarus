@@ -16,6 +16,8 @@ common:
         other: 'ページ'
     prev: '前'
     next: '次'
+navbar:
+    menu: 'メニュー'
 widget:
     follow: 'フォローする'
     recents: '最近の記事'

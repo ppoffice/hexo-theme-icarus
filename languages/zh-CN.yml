@@ -16,6 +16,8 @@ common:
         other: '页面'
     prev: '上一页'
     next: '下一页'
+navbar:
+    menu: '菜单'
 widget:
     follow: '关注我'
     recents: '最新文章'

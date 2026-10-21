@@ -16,6 +16,8 @@ common:
         other: 'Pagine'
     prev: 'Precedente'
     next: 'Successivo'
+navbar:
+    menu: 'Menu'
 widget:
     follow: 'Segui'
     recents: 'Recenti'

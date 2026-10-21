@@ -17,6 +17,8 @@ common:
         other: 'Páginas'
     prev: 'Anterior'
     next: 'Siguiente'
+navbar:
+    menu: 'Menú'
 widget:
     follow: 'SEGUIR'
     recents: 'Recientes'

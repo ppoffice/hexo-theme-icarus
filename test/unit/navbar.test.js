@@ -63,6 +63,33 @@ describe('layout/common/navbar', () => {
         assert.equal($('a[href^="javascript:"]').length, 0);
     });
 
+    it('renders a labelled toggle for the menu links, collapsed by default', async () => {
+        const { $ } = await renderNavbar();
+        const toggle = $('.navbar-menu > .navbar-toggle');
+        assert.equal(toggle.length, 1);
+        assert.equal(toggle.prop('tagName'), 'BUTTON');
+        assert.equal(toggle.attr('type'), 'button');
+        assert.equal(toggle.attr('title'), 'Menu');
+        assert.equal(toggle.attr('aria-label'), 'Menu');
+        assert.equal(toggle.attr('aria-expanded'), 'false');
+        assert.ok(toggle.find('i').hasClass('fa-bars'));
+        assert.equal(toggle.find('i').attr('aria-hidden'), 'true');
+        // It controls the menu links, which follow it so that they come next in the tab order.
+        assert.equal(toggle.attr('aria-controls'), 'navbar-main-menu');
+        assert.ok(toggle.next().is('.navbar-start#navbar-main-menu'));
+    });
+
+    it('translates the menu toggle label', async () => {
+        const { $ } = await renderNavbar({ lang: 'zh-CN' }, { language: 'zh-CN' });
+        assert.equal($('.navbar-toggle').attr('aria-label'), '菜单');
+    });
+
+    it('renders no menu toggle without menu items', async () => {
+        const { $ } = await renderNavbar({}, { navbar: { menu: null } });
+        assert.equal($('.navbar-start').length, 0);
+        assert.equal($('.navbar-toggle').length, 0);
+    });
+
     it('shows the search button only when search is configured', async () => {
         assert.equal((await renderNavbar()).$('.navbar-item.search').length, 1);
         assert.equal((await renderNavbar({}, { search: { type: null } })).$('.navbar-item.search').length, 0);
