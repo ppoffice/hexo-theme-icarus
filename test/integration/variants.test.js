@@ -25,6 +25,17 @@ describe('fixture site variants', function() {
             assert.ok(site.exists('index.html'));
             assert.doesNotMatch(site.output, /failed one or more checks/);
         });
+
+        it('lists the analytics plugins without enabling them', () => {
+            const config = yaml.parse(fs.readFileSync(path.join(site.dir, '_config.icarus.yml'), 'utf8'));
+            assert.deepEqual(config.plugins.umami, { website_id: null, script_url: 'https://cloud.umami.is/script.js', domains: null });
+            assert.deepEqual(config.plugins.matomo, { url: null, site_id: null, disable_cookies: false });
+            assert.deepEqual(config.plugins.google_analytics, { tracking_id: null });
+            const html = site.read('index.html');
+            for (const marker of ['umami', 'matomo', 'googletagmanager']) {
+                assert.ok(!html.includes(marker), `${marker} found in index.html`);
+            }
+        });
     });
 
     describe('cyberpunk variant', () => {
@@ -237,14 +248,38 @@ describe('fixture site variants', function() {
                 ['hotjar', 'hotjar'],
                 ['katex', 'katex'],
                 ['mathjax', 'mathjax'],
+                ['matomo', 'matomo.example.com/'],
                 ['outdated_browser', 'outdated'],
                 ['pjax', '/js/pjax.js'],
                 ['progressbar', 'pace'],
                 ['statcounter', 'statcounter'],
-                ['twitter_conversion_tracking', 'twq']
+                ['twitter_conversion_tracking', 'twq'],
+                ['umami', 'data-website-id="fixture-umami"']
             ]) {
                 assert.ok(html.toLowerCase().includes(marker.toLowerCase()), `${plugin}: "${marker}" not found`);
             }
+        });
+
+        it('loads Umami in <head> with its default script URL and the configured domains', () => {
+            const $ = site.$('/2024/03/01/hello-world/');
+            const script = $('head script[data-website-id]');
+            assert.equal(script.length, 1);
+            assert.deepEqual({ ...script.attr() }, {
+                'src': 'https://cloud.umami.is/script.js',
+                'data-website-id': 'fixture-umami',
+                'data-domains': 'example.com',
+                'defer': ''
+            });
+        });
+
+        it('loads Matomo in <head> for the configured server and site, without cookies, and tracks PJAX navigations', () => {
+            const $ = site.$('/2024/03/01/hello-world/');
+            const code = $('head script').filter((i, el) => $(el).html().includes('_paq')).map((i, el) => $(el).html()).get();
+            assert.equal(code.length, 1);
+            assert.ok(code[0].includes('var u = "https://matomo.example.com/";'), code[0]);
+            assert.ok(code[0].includes('_paq.push([\'setSiteId\', "7"]);'), code[0]);
+            assert.ok(code[0].includes('_paq.push([\'disableCookies\']);'), code[0]);
+            assert.ok(code[0].includes('pjax:complete'), code[0]);
         });
 
         it('keeps every page a valid document with one <title>', () => {

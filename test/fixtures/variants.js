@@ -141,11 +141,13 @@ module.exports = {
                 hotjar: { site_id: 'fixture' },
                 katex: true,
                 mathjax: true,
+                matomo: { url: 'https://matomo.example.com', site_id: 7, disable_cookies: true },
                 outdated_browser: true,
                 pjax: true,
                 progressbar: true,
                 statcounter: { project: 'fixture', security: 'fixture' },
-                twitter_conversion_tracking: { pixel_id: 'fixture' }
+                twitter_conversion_tracking: { pixel_id: 'fixture' },
+                umami: { website_id: 'fixture-umami', domains: 'example.com' }
             }
         }
     }
