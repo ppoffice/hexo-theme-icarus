@@ -164,7 +164,7 @@ describe('include/config (theme configuration check, generation and migration)',
 
         describe('Valine privacy warning', () => {
             const valine = { type: 'valine', app_id: 'fixture', app_key: 'fixture' };
-            const warning = /Valine exposes commenters' email and IP addresses[\s\S]*issues\/788/;
+            const warning = /Valine exposes commenters' email addresses to anyone[\s\S]*issues\/788/;
 
             it('warns when Valine is the configured comment plugin', () => {
                 env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
@@ -172,6 +172,12 @@ describe('include/config (theme configuration check, generation and migration)',
                 assert.equal(exitCode, null, output);
                 assert.match(output, warning);
                 assert.doesNotMatch(output, /failed one or more checks/, output);
+            });
+
+            it('only mentions IP addresses when record_ip is on', () => {
+                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: { ...valine, record_ip: true } } });
+                const { output } = capture(() => checkConfig(env.hexo));
+                assert.match(output, /Valine exposes commenters' email and IP addresses to anyone[\s\S]*issues\/788/);
             });
 
             it('does not warn for another comment plugin', () => {
