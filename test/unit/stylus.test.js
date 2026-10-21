@@ -8,9 +8,9 @@ const { REPO_ROOT } = require('../support/paths');
 // eslint-disable-next-line n/no-extraneous-require
 const stylus = require(require.resolve('stylus', { paths: [require.resolve('hexo-renderer-stylus')] }));
 
-function stylusFilter() {
+function stylusFilter(themeConfig = {}) {
     let filter = null;
-    registerStylus({ extend: { filter: { register: (type, fn) => { if (type === 'stylus:renderer') filter = fn; } } } });
+    registerStylus({ theme: { config: themeConfig }, extend: { filter: { register: (type, fn) => { if (type === 'stylus:renderer') filter = fn; } } } });
     return filter;
 }
 
@@ -24,9 +24,9 @@ function isolatedTheme() {
     return { root, theme };
 }
 
-function compile(file, filter) {
+function compile(file, filter, source = fs.readFileSync(file, 'utf8')) {
     return new Promise((resolve, reject) => {
-        const style = stylus(fs.readFileSync(file, 'utf8')).set('filename', file);
+        const style = stylus(source).set('filename', file);
         if (filter) {
             style.use(filter);
         }
@@ -73,5 +73,89 @@ describe('source/css (code block copy button)', function() {
             assert.doesNotMatch(media.reduce((rest, block) => rest.replace(block, ''), css), hide,
                 'touch screens without hover keep the copy button visible');
         });
+    });
+});
+
+describe('source/css (appearance)', function() {
+    this.timeout(120000);
+    const defaultStyl = path.join(REPO_ROOT, 'source/css/default.styl');
+    let css, light;
+
+    before(async () => {
+        css = await compile(defaultStyl, stylusFilter());
+        // The stylesheet without the dark colors
+        light = await compile(defaultStyl, stylusFilter(), '@import \'_style\'\n');
+    });
+
+    /** The style rules of a stylesheet: { media: [conditions], selectors: [...], body }. */
+    function rules(text, media = []) {
+        const result = [];
+        let index = 0;
+        while (index < text.length) {
+            const open = text.indexOf('{', index);
+            if (open < 0) {
+                break;
+            }
+            const prelude = text.slice(index, open).trim();
+            let depth = 1;
+            let end = open + 1;
+            while (depth > 0) {
+                if (text[end] === '{') {
+                    depth++;
+                } else if (text[end] === '}') {
+                    depth--;
+                }
+                end++;
+            }
+            const body = text.slice(open + 1, end - 1);
+            if (prelude.startsWith('@media')) {
+                result.push(...rules(body, media.concat(prelude)));
+            } else {
+                result.push({ media, selectors: prelude.split(',').map(selector => selector.trim()), body });
+            }
+            index = end;
+        }
+        return result;
+    }
+
+    // The page background of the dark colors (include/style/dark.styl)
+    const darkBackground = /background-color: #17181c/;
+
+    it('starts with the light stylesheet, unchanged', () => {
+        assert.ok(css.startsWith(light.trimEnd()));
+        assert.doesNotMatch(light, /data-appearance|color-scheme/);
+    });
+
+    it('only applies the dark colors to pages with a dark appearance, or an "auto" one in a dark system color scheme', () => {
+        const darkRules = rules(css.slice(light.trimEnd().length))
+            // The layout of the logo that switches to the dark one (layout/misc/logo.jsx)
+            .filter(rule => rule.selectors.join() !== '.navbar-logo picture,.footer-logo picture');
+        assert.ok(darkRules.length > 100);
+        for (const rule of darkRules) {
+            const auto = rule.media.some(media => media.includes('(prefers-color-scheme: dark)'));
+            const appearance = auto ? 'auto' : 'dark';
+            for (const selector of rule.selectors) {
+                // Inside :where(), so that the rules are exactly as specific as the light ones
+                assert.ok(selector.startsWith(`html:where([data-appearance="${appearance}"])`)
+                    || selector.startsWith(`:where(html[data-appearance="${appearance}"]) `), `${rule.media.join(' ')} ${selector}`);
+            }
+        }
+        const byAppearance = appearance => darkRules.filter(rule => rule.selectors[0].includes(`"${appearance}"`));
+        // Both have the same rules, with nested media queries keeping their own conditions
+        assert.equal(byAppearance('auto').length, byAppearance('dark').length);
+        for (const appearance of ['auto', 'dark']) {
+            assert.ok(byAppearance(appearance).some(rule => darkBackground.test(rule.body)), appearance);
+            assert.ok(byAppearance(appearance).some(rule => rule.selectors[0].endsWith(' .widget.card#toc')
+                && rule.media.some(media => media.includes('(max-width: 768px)'))), `${appearance}: mobile toc`);
+        }
+    });
+
+    it('does not depend on the appearance setting', async () => {
+        assert.equal(await compile(defaultStyl, stylusFilter({ appearance: 'dark' })), css);
+    });
+
+    it('leaves the cyberpunk stylesheet without dark colors', async () => {
+        const cyberpunk = await compile(path.join(REPO_ROOT, 'source/css/cyberpunk.styl'), stylusFilter({ variant: 'cyberpunk', appearance: 'dark' }));
+        assert.doesNotMatch(cyberpunk, /data-appearance|#17181c/);
     });
 });

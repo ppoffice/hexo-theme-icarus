@@ -1,1 +1,14 @@
 @import '_style'
+@import '../../include/style/dark'
+
+// The logo is a <picture> that switches to the dark logo for the "auto" appearance
+// (layout/misc/logo.jsx): lay out its image as before.
+.navbar-logo picture, .footer-logo picture
+    display: contents
+
+// Dark colors for the pages whose appearance (the `appearance` setting, which pages can override)
+// is "auto" while the system color scheme is dark, or "dark".
+@media (prefers-color-scheme: dark)
+    dark-appearance('auto')
+
+dark-appearance('dark')

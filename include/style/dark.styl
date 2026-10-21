@@ -1,0 +1,416 @@
+/* ---------------------------------
+ *         Dark Appearance
+ * --------------------------------- */
+// Colors of the default variant when it looks dark. source/css/default.styl applies them with
+// dark-appearance() to the pages whose appearance is "dark", and to those whose appearance is
+// "auto" inside a prefers-color-scheme media query.
+//
+// They only override colors (backgrounds, text, borders, shadows) of the light stylesheet, so
+// every selector below must be at least as specific as the light rule it overrides.
+$dark-background ?= #17181c
+$dark-surface ?= #1f2026
+$dark-surface-raised ?= #272930
+$dark-surface-hover ?= #30323a
+$dark-border ?= #30323a
+$dark-border-strong ?= #464952
+$dark-text ?= #d4d6db
+$dark-text-strong ?= #eceef1
+$dark-text-muted ?= #a3a6ad
+$dark-link ?= #6ea0f0
+$dark-link-hover ?= $dark-text-strong
+$dark-link-active ?= #8db6f6
+$dark-link-active-background ?= rgba($dark-link, .14)
+$dark-code ?= #f37a92
+$dark-highlight ?= rgba($yellow, .3)
+$dark-shadow ?= 0 4px 10px rgba(0, 0, 0, .3)
+$dark-card-shadow ?= $dark-shadow, 0 0 0 1px rgba(255, 255, 255, .04)
+$dark-dropdown-shadow ?= 0 8px 24px rgba(0, 0, 0, .45), 0 0 0 1px $dark-border
+$dark-codeblock-caption-bg ?= rgba(255, 255, 255, .05)
+
+// The dark colors, for the pages whose <html> has data-appearance="{$appearance}" (layout/layout.jsx).
+// The attribute selector is inside :where(), so that every rule is exactly as specific as the
+// light rule it overrides.
+dark-appearance($appearance)
+    $attribute = '[data-appearance="' + $appearance + '"]'
+    $root = 'html:where(' + $attribute + ')'
+    $scope = ':where(html' + $attribute + ')'
+
+    {$root}
+        // Form controls and scrollbars drawn by the browser
+        color-scheme: dark
+        background-color: $dark-background
+
+    {$scope}
+        dark-colors()
+
+    // Media queries come first and selectors inside them: Stylus drops the selector of a media
+    // query nested in a selector when this mixin is itself inside a media query ("auto").
+    +desktop()
+        // The scrollbars of the page and of the elements in it
+        {$root + '::-webkit-scrollbar-track'}, {$scope + ' ::-webkit-scrollbar-track'}
+            background: rgba(255, 255, 255, .04)
+            box-shadow: none
+
+        {$root + '::-webkit-scrollbar-thumb'}, {$scope + ' ::-webkit-scrollbar-thumb'}
+            background: rgba(255, 255, 255, .16)
+            box-shadow: none
+
+        {$root + '::-webkit-scrollbar-thumb:hover'}, {$scope + ' ::-webkit-scrollbar-thumb:hover'}
+            background: rgba(255, 255, 255, .28)
+
+    +mobile()
+        // The table of contents over the page
+        {$scope + ' .widget.card#toc'}
+            background-color: $dark-surface-raised
+            box-shadow: $dark-dropdown-shadow
+
+// The dark colors of the elements of the page, for dark-appearance() to scope.
+dark-colors()
+    body
+        color: $dark-text
+
+    ::selection
+        background: rgba($dark-link, .35)
+
+    a
+        color: $dark-link
+
+        &:hover
+            color: $dark-link-hover
+
+    .link-muted:hover
+        color: $dark-link !important
+
+    strong, table th, .title, .card-header-title, .label
+        color: $dark-text-strong
+
+    .subtitle, .card, .box
+        color: $dark-text
+
+    .subtitle strong
+        color: $dark-text-strong
+
+    hr
+        background-color: $dark-border
+
+    code
+        color: $dark-code
+        background-color: $dark-surface-raised
+
+    pre
+        color: $dark-text
+        background-color: $dark-surface-raised
+
+    // (@extend does not reach into media queries: list the selectors extending these classes)
+    .has-text-grey, .has-text-grey-light, .has-text-grey-dark, .article-licensing .licensing-title a
+        color: $dark-text-muted !important
+
+    // Cards, widgets, the navbar and the footer
+    .card, .box, .footer, .navbar, .navbar-menu
+        background-color: $dark-surface
+
+    .card, .box
+        box-shadow: $dark-card-shadow
+
+    .card-footer, .card-footer-item:not(:last-child)
+        border-color: $dark-border
+
+    .menu-label
+        color: $dark-text-muted
+
+    .menu-list
+        a
+            color: $dark-text
+
+            &:hover
+                color: $dark-text-strong
+                background-color: $dark-surface-raised
+
+            &.is-active
+                color: $dark-link-active
+                background-color: $dark-link-active-background
+
+        li ul
+            border-left-color: $dark-border
+
+    .tag:not(body)
+        color: $dark-text
+        background-color: $dark-surface-hover
+
+    .button
+        color: $dark-text-strong
+        background-color: $dark-surface-raised
+        border-color: $dark-border-strong
+
+        &:hover, &.is-hovered, &:focus, &.is-focused, &:active, &.is-active
+            color: $dark-text-strong
+
+        &:hover, &.is-hovered
+            border-color: lighten($dark-border-strong, 15%)
+
+        &:focus, &.is-focused
+            border-color: $dark-link
+
+        &.is-text
+            color: $dark-text
+            background-color: transparent
+
+    // (not `fieldset[disabled] &`, which would put the fieldset before <html>)
+    .button[disabled], fieldset[disabled] .button
+        background-color: $dark-surface
+        border-color: $dark-border
+
+    // "Read more" buttons and other light buttons
+    .button.is-light, article.article .article-more
+        color: $dark-text-strong
+        background-color: $dark-surface-raised
+
+        &:hover, &.is-hovered, &:focus, &.is-focused
+            color: $dark-text-strong
+            background-color: $dark-surface-hover
+
+        &:active, &.is-active
+            color: $dark-text-strong
+            background-color: lighten($dark-surface-hover, 5%)
+
+    // The states above must not change the transparent buttons (profile widget, footer) and the
+    // donate buttons, whose light rules come after Bulma's with the same specificity.
+    .button.is-transparent
+        color: inherit
+        background: transparent
+        border-color: transparent
+
+    for $name, $color in $donate-button-colors
+        .donate[data-type={'"' + $name + '"'}]
+            &:hover, &:focus, &:active
+                color: findColorInvert($color)
+                border-color: transparent
+
+    .input, .textarea, .select select
+        color: $dark-text-strong
+        background-color: $dark-background
+        border-color: $dark-border-strong
+
+        &::placeholder
+            color: $dark-text-muted
+
+    // Navbar, its folded menu and its sub-menus
+    .navbar-main
+        box-shadow: 0 1px 0 $dark-border, $dark-shadow
+
+    .navbar-item, .navbar-link, .navbar-main button.navbar-item,
+    .navbar-main .navbar-item.has-dropdown .navbar-link
+        color: $dark-text
+
+    a.navbar-item, .navbar-link, .navbar-main button.navbar-item
+        &:focus, &:focus-within, &:hover
+            color: $dark-link
+            background-color: $dark-surface-raised
+
+    .navbar-brand a.navbar-item
+        &:focus, &:hover
+            background-color: transparent
+
+    a.navbar-item.is-active, .navbar-link.is-active, .navbar-main .navbar-toggle[aria-expanded="true"],
+    .navbar-main .navbar-item.has-dropdown .navbar-link:hover,
+    .navbar-main .navbar-item.has-dropdown .navbar-link.is-active,
+    .navbar-main .navbar-dropdown a.navbar-item:hover,
+    .navbar-main .navbar-dropdown a.navbar-item.is-active
+        color: $dark-link
+
+    // Sub-menu links in the folded menu, or opened without JavaScript
+    .navbar-dropdown a.navbar-item
+        &:focus, &:hover
+            background-color: $dark-surface-raised
+
+    .navbar-main.is-scripted:not(.is-collapsed) .navbar-dropdown
+        background-color: $dark-surface-raised
+        box-shadow: $dark-dropdown-shadow
+
+        a.navbar-item:hover
+            color: $dark-text-strong
+            background-color: $dark-surface-hover
+
+        a.navbar-item.is-active
+            color: $dark-link
+
+    .navbar-main.is-collapsed .navbar-start .navbar-link[aria-expanded="true"] + .navbar-dropdown
+        a.navbar-item
+            color: $dark-text-muted
+
+            &:hover, &.is-active
+                color: $dark-link
+
+    // Article contents
+    .content
+        h1, h2, h3, h4, h5, h6
+            color: $dark-text-strong
+
+        blockquote
+            background-color: $dark-surface-raised
+            border-left-color: $dark-border-strong
+
+        table
+            td, th
+                border-color: $dark-border
+
+            th, thead td, thead th, tfoot td, tfoot th
+                color: $dark-text-strong
+
+    .table
+        color: $dark-text
+        background-color: transparent
+
+        td, th
+            border-color: $dark-border
+
+        th, thead td, thead th, tfoot td, tfoot th
+            color: $dark-text-strong
+
+        &.is-hoverable tbody tr:not(.is-selected):hover,
+        &.is-striped tbody tr:not(.is-selected):nth-child(even)
+            background-color: $dark-surface-raised
+
+    // {% message %} and {% tabs %} tags
+    .message
+        background-color: $dark-surface-raised
+
+    .message-body
+        color: $dark-text
+        border-color: $dark-border-strong
+
+    for $name, $pair in $colors
+        $color = $pair['1']
+
+        .message.is-{$name}
+            background-color: rgba($color, .12)
+
+            .message-body
+                color: $dark-text
+                border-color: $color
+
+    .tabs
+        a
+            color: $dark-text
+            border-bottom-color: $dark-border
+
+            &:hover
+                color: $dark-text-strong
+                border-bottom-color: $dark-text-muted
+
+        ul
+            border-bottom-color: $dark-border
+
+        li.is-active a
+            color: $dark-link
+            border-bottom-color: $dark-link
+
+    .breadcrumb
+        a
+            color: $dark-link
+
+        a:hover, li.is-active a
+            color: $dark-text-strong
+
+    article.media, article.media .media-content, article.article .article-meta,
+    article.article .article-tags, .post-navigation, .gallery-item .caption
+        color: $dark-text-muted
+
+    article.media a:hover
+        color: $dark-link
+
+    .article-licensing
+        background: $dark-surface-raised
+
+        &:after
+            opacity: .05
+
+    figure.highlight
+        figcaption, .gutter
+            background: $dark-codeblock-caption-bg
+
+    // Pagination
+    .pagination-previous, .pagination-next, .pagination-link
+        color: $dark-text-strong
+
+        &:hover
+            color: $dark-link
+
+    .pagination
+        .pagination-link, .pagination-previous, .pagination-next
+            background: $dark-surface
+            box-shadow: $dark-card-shadow
+
+            a
+                color: $dark-text-strong
+
+        .pagination-link.is-current
+            background: $link
+
+            a
+                color: $link-invert
+
+    .pagination-ellipsis
+        color: $dark-text-muted
+
+    // Archive timeline
+    .timeline
+        border-left-color: $dark-border
+
+        .media:before
+            background: $dark-border-strong
+
+        .media:last-child:after
+            background: $dark-surface
+
+    // Insight search box
+    .searchbox
+        .searchbox-container
+            background-color: $dark-surface
+            box-shadow: $dark-dropdown-shadow
+
+        .searchbox-header, .searchbox-input
+            color: $dark-text-strong
+            background: $dark-surface-raised
+
+        .searchbox-close:hover
+            background: $dark-surface-hover
+
+        .searchbox-close:active
+            background: lighten($dark-surface-hover, 5%)
+
+        .searchbox-body, .searchbox-result-section
+            border-color: $dark-border
+
+        .searchbox-result-section header, .searchbox-result-title-secondary,
+        .searchbox-result-item:not(:active):not(.active) .searchbox-result-preview
+            color: $dark-text-muted
+
+        .searchbox-result-item:not(.disabled):not(.active):not(:active):hover
+            background-color: $dark-surface-raised
+
+        .searchbox-result-item em
+            background: $dark-highlight
+
+        .searchbox-pagination
+            .searchbox-pagination-link
+                background-color: $dark-surface-raised
+                box-shadow: none
+
+            .searchbox-pagination-item.disabled .searchbox-pagination-link,
+            .searchbox-pagination-item:not(.active):not(.disabled) .searchbox-pagination-link:hover
+                background-color: $dark-surface-hover
+
+            .searchbox-pagination-item.active .searchbox-pagination-link
+                background-color: $primary
+
+    // Donate QR codes, cookie consent
+    .donate .qrcode
+        box-shadow: $dark-dropdown-shadow
+
+    .cc-window
+        color: $dark-text !important
+        background-color: $dark-surface !important
+
+        &.cc-banner
+            background-color: $dark-surface !important

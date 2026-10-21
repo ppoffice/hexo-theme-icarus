@@ -1,5 +1,7 @@
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
+const { getAppearance, getDarkLogo } = require('../../include/util/appearance');
+const Logo = require('../misc/logo');
 const classname = require('hexo-component-inferno/lib/util/classname');
 
 function isSameLink(a, b) {
@@ -18,6 +20,8 @@ class Navbar extends Component {
         const {
             logo,
             logoUrl,
+            darkLogoUrl,
+            appearance,
             siteUrl,
             siteTitle,
             menu,
@@ -36,7 +40,7 @@ class Navbar extends Component {
             if (logo.text) {
                 navbarLogo = logo.text;
             } else {
-                navbarLogo = <img src={logoUrl} alt={siteTitle} height="28" />;
+                navbarLogo = <Logo src={logoUrl} darkSrc={darkLogoUrl} appearance={appearance} alt={siteTitle} />;
             }
         } else {
             navbarLogo = siteTitle;
@@ -100,6 +104,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
     const { config, helper, page } = props;
     const { url_for, _p, __ } = helper;
     const { logo, title, navbar, widgets, search } = config;
+    const darkLogo = getDarkLogo(config);
 
     const hasTocWidget = Array.isArray(widgets) && widgets.find(widget => widget && widget.type === 'toc');
     const showToc = (config.toc === true || page.toc) && hasTocWidget && ['page', 'post'].includes(page.layout);
@@ -142,6 +147,8 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
     return {
         logo,
         logoUrl: url_for(logo),
+        darkLogoUrl: darkLogo ? url_for(darkLogo) : null,
+        appearance: getAppearance(config),
         siteUrl: url_for('/'),
         siteTitle: title,
         menu,

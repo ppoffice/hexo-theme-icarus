@@ -1,11 +1,15 @@
 const { Component } = require('inferno');
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
+const { getAppearance, getDarkLogo } = require('../../include/util/appearance');
+const Logo = require('../misc/logo');
 
 class Footer extends Component {
     render() {
         const {
             logo,
             logoUrl,
+            darkLogoUrl,
+            appearance,
             siteUrl,
             siteTitle,
             siteYear,
@@ -21,7 +25,7 @@ class Footer extends Component {
             if (logo.text) {
                 footerLogo = logo.text;
             } else {
-                footerLogo = <img src={logoUrl} alt={siteTitle} height="28" />;
+                footerLogo = <Logo src={logoUrl} darkSrc={darkLogoUrl} appearance={appearance} alt={siteTitle} />;
             }
         } else {
             footerLogo = siteTitle;
@@ -66,6 +70,7 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
     const { config, helper } = props;
     const { url_for, _p, date } = helper;
     const { logo, title, author, footer, plugins } = config;
+    const darkLogo = getDarkLogo(config);
 
     const links = {};
     if (footer && footer.links) {
@@ -81,6 +86,8 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
     return {
         logo,
         logoUrl: url_for(logo),
+        darkLogoUrl: darkLogo ? url_for(darkLogo) : null,
+        appearance: getAppearance(config),
         siteUrl: url_for('/'),
         siteTitle: title,
         siteYear: date(new Date(), 'YYYY'),

@@ -1,5 +1,6 @@
 const { Component } = require('inferno');
 const classname = require('hexo-component-inferno/lib/util/classname');
+const { getAppearance } = require('../include/util/appearance');
 const Head = require('./common/head');
 const Navbar = require('./common/navbar');
 const Widgets = require('./common/widgets');
@@ -21,8 +22,10 @@ module.exports = class extends Component {
 
         const language = page.lang || page.language || config.language;
         const columnCount = Widgets.getColumnCount(config.widgets, config, page);
+        // Selects the dark colors of css/default.css (include/style/dark.styl)
+        const appearance = getAppearance(config);
 
-        return <html lang={getLanguageTag(language)}>
+        return <html lang={getLanguageTag(language)} data-appearance={appearance === 'light' ? null : appearance}>
             <Head site={site} config={config} helper={helper} page={page} />
             <body class={`is-${columnCount}-column`}>
                 <Navbar config={config} helper={helper} page={page} />

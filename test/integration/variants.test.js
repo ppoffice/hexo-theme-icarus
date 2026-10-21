@@ -35,6 +35,101 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('appearance', () => {
+        const highlightThemes = $ => $('link[href*="highlight.js"]').map((i, el) => [[el.attribs.href.match(/styles\/(.+)\.css$/)[1], el.attribs.media || null]]).get();
+
+        const logos = $ => ['.navbar-logo', '.footer-logo'].map(selector => $(selector).html());
+        const picture = (dark, light) => `<picture><source srcset="${dark}" media="(prefers-color-scheme: dark)"><img src="${light}" alt="Icarus Fixture" height="28"></picture>`;
+        const img = src => `<img src="${src}" alt="Icarus Fixture" height="28">`;
+
+        it('switches the navbar and footer logos to their dark version', () => {
+            assert.deepEqual(logos(getSite('appearance-auto').$('/')), Array(2).fill(picture('/img/logo-dark.svg', '/img/logo.svg')));
+            assert.deepEqual(logos(getSite('appearance-dark').$('/')), Array(2).fill(img('/img/logo-dark.svg')));
+            assert.deepEqual(logos(getSite('appearance-auto-custom-logo').$('/')), Array(2).fill(picture('/img/og_image.png', '/img/avatar.png')));
+            assert.deepEqual(logos(getSite('default').$('/')), Array(2).fill(img('/img/logo.svg')));
+            assert.ok(getSite('appearance-auto').exists('img/logo-dark.svg'));
+        });
+
+        const appearanceOf = $ => ({
+            attribute: $('html').attr('data-appearance') || null,
+            colorScheme: $('meta[name="color-scheme"]').attr('content') || null,
+            themes: highlightThemes($)
+        });
+        const LIGHT = { attribute: null, colorScheme: null, themes: [['atom-one-light', null]] };
+        const AUTO = { attribute: 'auto', colorScheme: 'light dark', themes: [['atom-one-light', '(prefers-color-scheme: light)'], ['atom-one-dark', '(prefers-color-scheme: dark)']] };
+        const DARK = { attribute: 'dark', colorScheme: 'dark', themes: [['atom-one-dark', null]] };
+
+        for (const [variant, expected] of [['appearance-auto', AUTO], ['appearance-dark', DARK]]) {
+            describe(variant, () => {
+                let site;
+
+                before(() => { site = getSite(variant); });
+
+                it('builds without errors or configuration warnings', () => {
+                    assert.equal(site.status, 0);
+                    assert.doesNotMatch(site.output, /^ERROR/m, site.output);
+                    assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+                });
+
+                it('marks every page with the appearance, its color schemes and code highlight themes', () => {
+                    for (const file of site.htmlFiles()) {
+                        assert.deepEqual(appearanceOf(site.$(file)), expected, file);
+                    }
+                });
+
+                it('uses the same stylesheet as a light site, which has the dark colors of every appearance', () => {
+                    const css = site.read('css/default.css');
+                    assert.equal(css, getSite('default').read('css/default.css'));
+                    assert.match(css, /@media \(prefers-color-scheme: dark\) \{\s*html:where\(\[data-appearance="auto"\]\) \{\s*color-scheme: dark;/);
+                    assert.match(css, /\nhtml:where\(\[data-appearance="dark"\]\) \{\s*color-scheme: dark;/);
+                });
+            });
+        }
+
+        it('changes no page for "light", the default', () => {
+            for (const file of getSite('default').htmlFiles()) {
+                assert.deepEqual(appearanceOf(getSite('default').$(file)), LIGHT, file);
+            }
+        });
+
+        describe('per page', () => {
+            it('follows the front-matter of the page', () => {
+                const site = getSite('appearance-per-page');
+                assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+                assert.deepEqual(appearanceOf(site.$('/2024/04/02/dark-appearance/')), DARK);
+                assert.deepEqual(logos(site.$('/2024/04/02/dark-appearance/')), Array(2).fill(img('/img/logo-dark.svg')));
+                assert.deepEqual(appearanceOf(site.$('/2024/04/01/auto-appearance/')), AUTO);
+                assert.deepEqual(logos(site.$('/2024/04/01/auto-appearance/')), Array(2).fill(picture('/img/logo-dark.svg', '/img/logo.svg')));
+                // The other pages, including the index listing those posts, stay light
+                for (const file of site.htmlFiles().filter(file => !file.includes('-appearance/'))) {
+                    assert.deepEqual(appearanceOf(site.$(file)), LIGHT, file);
+                }
+            });
+
+            it('follows a layout configuration file (_config.post.yml) on posts only', () => {
+                const site = getSite('appearance-posts-auto');
+                assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+                for (const file of ['2024/03/01/hello-world/index.html', '2023/07/01/typography/index.html']) {
+                    assert.deepEqual(appearanceOf(site.$(file)), AUTO, file);
+                }
+                for (const file of ['index.html', 'about/index.html', 'archives/index.html', 'tags/index.html']) {
+                    assert.deepEqual(appearanceOf(site.$(file)), LIGHT, file);
+                }
+            });
+        });
+
+        it('is ignored by the cyberpunk variant', () => {
+            const site = getSite('cyberpunk-appearance-dark');
+            const cyberpunk = getSite('cyberpunk');
+            assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+            assert.equal(site.read('css/cyberpunk.css'), cyberpunk.read('css/cyberpunk.css'));
+            const strip = html => html.replace(/<meta property="article:tag" content="[^"]*">/g, '');
+            for (const file of ['index.html', '2023/07/01/typography/index.html']) {
+                assert.equal(strip(site.read(file)), strip(cyberpunk.read(file)), file);
+            }
+        });
+    });
+
     describe('one column', () => {
         it('renders only the main column', () => {
             const $ = getSite('one-column').$('/2024/03/01/hello-world/');

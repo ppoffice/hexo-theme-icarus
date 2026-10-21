@@ -104,6 +104,59 @@ describe('layout/common/head', () => {
         });
     });
 
+    describe('appearance', () => {
+        const highlightThemes = async config => (await renderHead({}, config)).$('link[href*="highlight.js"]')
+            .map((i, el) => [[el.attribs.href.match(/styles\/(.+)\.css$/)[1], el.attribs.media || null, 'data-pjax' in el.attribs]]).get();
+        const colorScheme = async config => {
+            const meta = (await renderHead({}, config)).$('meta[name="color-scheme"]');
+            return meta.length ? meta.attr('content') : null;
+        };
+
+        it('changes nothing for "light", the default', async () => {
+            for (const config of [{}, { appearance: 'light' }, { appearance: 'unknown' }]) {
+                assert.equal(await colorScheme(config), null);
+                assert.deepEqual(await highlightThemes(config), [['atom-one-light', null, true]]);
+            }
+        });
+
+        it('follows the system color scheme for "auto"', async () => {
+            assert.equal(await colorScheme({ appearance: 'auto' }), 'light dark');
+            assert.deepEqual(await highlightThemes({ appearance: 'auto' }), [
+                ['atom-one-light', '(prefers-color-scheme: light)', true],
+                ['atom-one-dark', '(prefers-color-scheme: dark)', true]
+            ]);
+        });
+
+        it('only loads the dark code highlight theme for "dark"', async () => {
+            assert.equal(await colorScheme({ appearance: 'dark' }), 'dark');
+            assert.deepEqual(await highlightThemes({ appearance: 'dark' }), [['atom-one-dark', null, true]]);
+        });
+
+        it('honours article.highlight.dark_theme, and falls back to atom-one-dark without it', async () => {
+            const highlight = { theme: 'github', dark_theme: 'github-dark' };
+            assert.deepEqual(await highlightThemes({ appearance: 'auto', article: { highlight } }), [
+                ['github', '(prefers-color-scheme: light)', true],
+                ['github-dark', '(prefers-color-scheme: dark)', true]
+            ]);
+            assert.deepEqual(await highlightThemes({ appearance: 'dark', article: { highlight } }), [['github-dark', null, true]]);
+            assert.deepEqual(await highlightThemes({ appearance: 'dark', article: { highlight: { dark_theme: null } } }), [['atom-one-dark', null, true]]);
+        });
+
+        it('loads no code highlight theme when highlighting is disabled', async () => {
+            for (const appearance of ['auto', 'dark']) {
+                assert.deepEqual(await highlightThemes({ appearance, highlight: { enable: false } }), [], appearance);
+            }
+        });
+
+        it('is ignored by the cyberpunk variant', async () => {
+            for (const appearance of ['auto', 'dark']) {
+                const config = { variant: 'cyberpunk', appearance };
+                assert.equal(await colorScheme(config), null, appearance);
+                assert.deepEqual(await highlightThemes(config), [['atom-one-light', null, true]], appearance);
+            }
+        });
+    });
+
     it('adds the AdSense script and follow.it verification only when those widgets exist', async () => {
         let { $ } = await renderHead({});
         assert.equal($('script[data-ad-client]').length, 0);
