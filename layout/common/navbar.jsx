@@ -25,8 +25,11 @@ class Navbar extends Component {
             showToc,
             tocTitle,
             showSearch,
-            searchTitle
+            searchTitle,
+            menuTitle
         } = this.props;
+        // The toggle folds the menu links into a drop-down when they do not fit (source/js/main.js)
+        const hasMenu = Object.keys(menu).length > 0;
 
         let navbarLogo = '';
         if (logo) {
@@ -47,9 +50,27 @@ class Navbar extends Component {
                     </a>
                 </div>
                 <div class="navbar-menu">
-                    {Object.keys(menu).length ? <div class="navbar-start">
-                        {Object.keys(menu).map(name => {
+                    {hasMenu ? <button type="button" class="navbar-item navbar-toggle" title={menuTitle} aria-label={menuTitle} aria-expanded="false" aria-controls="navbar-main-menu">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button> : null}
+                    {hasMenu ? <div class="navbar-start" id="navbar-main-menu">
+                        {Object.keys(menu).map((name, i) => {
                             const item = menu[name];
+                            if (item.items) {
+                                // A sub-menu: a button showing its links, as a drop-down or below it
+                                // in the folded menu (source/js/main.js). Bulma's is-active on
+                                // .has-dropdown means "open", so the button marks the current page.
+                                const id = `navbar-main-menu-${i}`;
+                                return <div class="navbar-item has-dropdown">
+                                    <button type="button" class={classname({ 'navbar-link': true, 'is-active': item.active })} aria-expanded="false" aria-controls={id}>{name}</button>
+                                    <div class="navbar-dropdown" id={id}>
+                                        {Object.keys(item.items).map(subName => {
+                                            const subItem = item.items[subName];
+                                            return <a class={classname({ 'navbar-item': true, 'is-active': subItem.active })} href={subItem.url}>{subName}</a>;
+                                        })}
+                                    </div>
+                                </div>;
+                            }
                             return <a class={classname({ 'navbar-item': true, 'is-active': item.active })} href={item.url}>{name}</a>;
                         })}
                     </div> : null}
@@ -86,10 +107,24 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
     const menu = {};
     if (navbar && navbar.menu) {
         const pageUrl = typeof page.path !== 'undefined' ? url_for(page.path) : '';
+        const getLink = path => {
+            const url = url_for(path);
+            return { url, active: isSameLink(url, pageUrl) };
+        };
         Object.keys(navbar.menu).forEach(name => {
-            const url = url_for(navbar.menu[name]);
-            const active = isSameLink(url, pageUrl);
-            menu[name] = { url, active };
+            const item = navbar.menu[name];
+            if (item && typeof item === 'object') {
+                // A sub-menu: the names of its links mapped to their URLs or paths
+                const items = {};
+                Object.keys(item).forEach(subName => {
+                    items[subName] = getLink(item[subName]);
+                });
+                if (Object.keys(items).length) {
+                    menu[name] = { items, active: Object.keys(items).some(subName => items[subName].active) };
+                }
+            } else {
+                menu[name] = getLink(item);
+            }
         });
     }
 
@@ -114,6 +149,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         showToc,
         tocTitle: _p('widget.catalogue', Infinity),
         showSearch: search && search.type,
-        searchTitle: __('search.search')
+        searchTitle: __('search.search'),
+        menuTitle: __('navbar.menu')
     };
 });

@@ -16,6 +16,8 @@ common:
         other: 'Strony'
     prev: 'Poprzedni'
     next: 'Następny'
+navbar:
+    menu: 'Menu'
 widget:
     follow: 'SUBSKRYBUJ'
     recents: 'Najnowsze wpisy'

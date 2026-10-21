@@ -53,6 +53,20 @@ module.exports = {
         theme: { widgets: [] }
     },
 
+    // `widgets: null` in _config.icarus.yml must also disable the widgets of the theme
+    // directory's _config.yml, which Hexo merges array items into rather than replacing.
+    'no-widgets-over-theme-dir': {
+        theme: { widgets: null },
+        files: {
+            'themes/icarus/_config.yml': 'widgets:\n  - position: left\n    type: profile\n    author: Theme Dir Author\n  - position: right\n    type: recent_posts\n'
+        }
+    },
+
+    // A layout configuration file disabling all widgets on posts only.
+    'no-widgets-on-posts': {
+        files: { '_config.post.yml': 'widgets: null\n' }
+    },
+
     // Every plugin enabled, with placeholder IDs.
     'all-plugins': {
         theme: {

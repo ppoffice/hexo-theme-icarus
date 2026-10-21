@@ -93,6 +93,11 @@ function checkConfig(hexo) {
             logger.warn(util.inspect(validation));
         }
 
+        if (cfg.comment && cfg.comment.type === 'valine') {
+            logger.warn('Valine exposes commenters\' email and IP addresses to anyone with the site\'s public LeanCloud keys.');
+            logger.warn(`Consider another comment plugin, such as Waline, Twikoo or giscus. See ${yellow('https://github.com/ppoffice/hexo-theme-icarus/issues/788')}.`);
+        }
+
         const rootCfg = yaml.parse(fs.readFileSync(siteCfgFile));
         if (rootCfg.theme_config) {
             logger.warn(`"theme_config" found in ${yellow(siteCfgFile)}.`);

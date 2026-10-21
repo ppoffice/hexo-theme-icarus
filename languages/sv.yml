@@ -16,6 +16,8 @@ common:
         other: 'Sidor'
     prev: 'Föregående'
     next: 'Nästa'
+navbar:
+    menu: 'Meny'
 widget:
     follow: 'Följ'
     recents: 'Senaste'

@@ -1,5 +1,7 @@
 const { test, expect } = require('./fixtures');
 
+const opacity = locator => locator.evaluate(el => getComputedStyle(el).opacity);
+
 test.describe('code blocks', () => {
     test.beforeEach(async ({ visit }) => {
         await visit('/2024/02/20/code-blocks/');
@@ -44,6 +46,34 @@ test.describe('code blocks', () => {
         await expect(button.locator('i')).toHaveClass(/fa-copy/);
     });
 
+    test('copy buttons only show while the mouse is over their code block', async ({ page }) => {
+        const block = page.locator('figure.highlight').first();
+        const button = block.locator('button.copy');
+        const other = page.locator('figure.highlight').nth(2).locator('button.copy');
+        await page.mouse.move(0, 0);
+        await expect(button).toHaveCSS('opacity', '0');
+        await block.locator('.highlight-body').hover();
+        await expect.poll(async () => Number(await opacity(button))).toBeGreaterThan(0);
+        await expect(other, 'only the hovered block shows its button').toHaveCSS('opacity', '0');
+        await page.mouse.move(0, 0);
+        await expect(button).toHaveCSS('opacity', '0');
+    });
+
+    test('a copy button shows while it has keyboard focus', async ({ page }) => {
+        const button = page.locator('figure.highlight button.copy').first();
+        // Start keyboard navigation from the text above the block (tabbing from the top would open the search box).
+        await page.locator('.article .content p', { hasText: 'A code block with a caption:' }).click();
+        await page.mouse.move(0, 0);
+        await expect(button).toHaveCSS('opacity', '0');
+        for (let i = 0; i < 10 && !await button.evaluate(el => el === document.activeElement); i++) {
+            await page.keyboard.press('Tab');
+        }
+        await expect(button).toBeFocused();
+        await expect(button).toHaveCSS('opacity', '1');
+        await page.keyboard.press('Shift+Tab');
+        await expect(button, 'hidden again once focus leaves the block').toHaveCSS('opacity', '0');
+    });
+
     test('code blocks keep their own ids', async ({ page }) => {
         await expect(page.locator('figure.highlight[id^="code-"]')).toHaveCount(0);
     });
@@ -69,6 +99,18 @@ test.describe('code blocks', () => {
 
     test('caption text is kept in the left part of the caption bar', async ({ page }) => {
         await expect(page.locator('figure.highlight').first().locator('figcaption .level-left')).toContainText('Captioned example');
+    });
+});
+
+test.describe('code blocks on a touch screen', () => {
+    test.use({ hasTouch: true, isMobile: true });
+
+    test('always show their copy buttons, since nothing can be hovered', async ({ page, visit }) => {
+        await visit('/2024/02/20/code-blocks/');
+        expect(await page.evaluate(() => matchMedia('(hover: hover) and (pointer: fine)').matches)).toBe(false);
+        for (const button of await page.locator('figure.highlight button.copy').all()) {
+            await expect(button).toHaveCSS('opacity', '0.7');
+        }
     });
 });
 

@@ -16,6 +16,8 @@ common:
         other: 'страницы'
     prev: 'Назад'
     next: 'Далее'
+navbar:
+    menu: 'Меню'
 widget:
     follow: 'Подписаться'
     recents: 'недавние'

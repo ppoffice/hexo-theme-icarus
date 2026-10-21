@@ -16,6 +16,8 @@ common:
         other: 'Trang'
     prev: 'Trước'
     next: 'Sau'
+navbar:
+    menu: 'Menu'
 widget:
     follow: 'Theo dõi'
     recents: 'Gần đây'

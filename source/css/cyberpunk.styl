@@ -53,6 +53,11 @@ $navbar-item-margin-v ?= 1.25rem
 $navbar-item-margin-h ?= .25rem
 $navbar-item-padding-v ?= 0
 $navbar-item-padding-h ?= .5rem
+$navbar-dropdown-gap ?= 0
+$navbar-dropdown-padding-h ?= .5rem
+$navbar-dropdown-shadow ?= none
+$navbar-dropdown-item-padding-h ?= .5rem
+$navbar-dropdown-item-muted-color ?= rgba($black, .7)
 $card-background-color ?= transparent
 $menu-label-color ?= $blue
 $menu-item-hover-color ?= $black
@@ -236,10 +241,16 @@ clip-button($color, $color-invert)
         height: 40px
 
     .navbar-menu
-        .navbar-item
+        // Sub-menus: their buttons and links, not the groups holding them
+        .navbar-item:not(.has-dropdown), .navbar-link
             &:hover, &.is-active
-                color: $navbar-background-color
+                color: $navbar-background-color !important
                 background-color: $body-background-color !important
+
+    // A yellow tab hanging from the bar, its links below the bottom edge of the bar
+    &.is-scripted:not(.is-collapsed) .navbar-dropdown
+        padding-top: calc(30px + .5rem)
+        cut-corner-bottom-right(12px)
 
 article.article, article.media
     .title a

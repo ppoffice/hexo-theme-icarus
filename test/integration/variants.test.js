@@ -45,6 +45,28 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('widgets: null', () => {
+        const assertOneColumn = $ => {
+            assert.ok($('body').hasClass('is-1-column'), $('body').attr('class'));
+            assert.ok($('.column-main').hasClass('is-12'));
+            assert.equal($('.column-left, .column-right').length, 0);
+        };
+
+        it('disables the widgets of the theme directory _config.yml without a configuration warning', () => {
+            const site = getSite('no-widgets-over-theme-dir');
+            assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+            assertOneColumn(site.$('/'));
+            assertOneColumn(site.$('/2024/03/01/hello-world/'));
+        });
+
+        it('disables all widgets on posts when set in _config.post.yml', () => {
+            const site = getSite('no-widgets-on-posts');
+            assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+            assertOneColumn(site.$('/2024/03/01/hello-world/'));
+            assert.ok(site.$('/')('body').hasClass('is-3-column'), 'other layouts keep their widgets');
+        });
+    });
+
     describe('toc as the only right-column widget', () => {
         it('shows the toc in the right column on posts with a toc', () => {
             const $ = getSite('toc-only-right').$('/2024/03/01/hello-world/');

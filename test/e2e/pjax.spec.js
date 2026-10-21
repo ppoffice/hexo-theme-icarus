@@ -81,6 +81,27 @@ test.describe('PJAX navigation', () => {
         await expect(page.locator('#toc-mask')).not.toHaveClass(/is-active/);
     });
 
+    test('keeps the active toc entry in view after navigating', async ({ page, visit }) => {
+        // The long toc post is the oldest one: reach it again through the post navigation.
+        await visit('/2023/08/01/long-toc/', { variant: 'pjax' });
+        await page.evaluate(() => { window.__noFullReload = true; });
+        await pjaxClick(page, page.locator('.article-nav-prev'));
+        await pjaxClick(page, page.locator('.article-nav-next'));
+        await expect(page).toHaveTitle('Long Table of Contents - Icarus Fixture');
+        await page.addStyleTag({ content: '#toc .menu { max-height: 200px; overflow-y: auto; }' });
+        await page.locator('#Section-14').evaluate(heading => {
+            window.scrollTo({ top: heading.getBoundingClientRect().top + window.scrollY - 10, behavior: 'instant' });
+        });
+        const entry = page.locator('#toc a[data-href="#Section-14"]');
+        await expect(entry).toHaveClass(/is-active/);
+        await expect.poll(() => entry.evaluate(el => {
+            const box = el.closest('.menu').getBoundingClientRect();
+            const rect = el.getBoundingClientRect();
+            return Math.round(Math.abs((rect.top + rect.bottom - box.top - box.bottom) / 2));
+        })).toBeLessThan(20);
+        expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+    });
+
     test('copies code once per click after navigating', async ({ page, context }) => {
         await context.grantPermissions(['clipboard-read', 'clipboard-write']);
         for (let i = 0; i < 2; i++) {

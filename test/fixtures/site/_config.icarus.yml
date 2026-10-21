@@ -13,6 +13,10 @@ navbar:
     Archives: /archives
     Categories: /categories
     Tags: /tags
+    # A sub-menu
+    Posts:
+      Hello World: /2024/03/01/hello-world/
+      Code Blocks: /2024/02/20/code-blocks/
     About: /about
   links:
     GitHub:

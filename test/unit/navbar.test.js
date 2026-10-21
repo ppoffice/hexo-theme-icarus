@@ -20,8 +20,84 @@ describe('layout/common/navbar', () => {
 
     it('renders menu items in configuration order', async () => {
         const { $ } = await renderNavbar();
-        const items = $('.navbar-start .navbar-item').map((i, el) => [[$(el).text(), $(el).attr('href')]]).get();
+        const items = $('.navbar-start > a.navbar-item').map((i, el) => [[$(el).text(), $(el).attr('href')]]).get();
         assert.deepEqual(items, [['Home', '/'], ['Archives', '/archives'], ['Categories', '/categories'], ['Tags', '/tags'], ['About', '/about']]);
+        // The fixture sub-menu sits between Tags and About.
+        assert.deepEqual($('.navbar-start > .navbar-item').map((i, el) => { return $(el).is('.has-dropdown') ? 'group' : $(el).text(); }).get(),
+            ['Home', 'Archives', 'Categories', 'Tags', 'group', 'About']);
+    });
+
+    describe('sub-menus', () => {
+        const menu = {
+            Home: '/',
+            About: { Trademark: '/about/trademark/', Enterprise: 'https://example.com/enterprise' },
+            Tags: '/tags',
+            More: { Archives: '/archives' }
+        };
+        // Replace the fixture menu instead of merging into it.
+        const renderWithMenu = (page, navbarMenu) => {
+            const config = fixtureConfig();
+            config.navbar.menu = navbarMenu;
+            return render('common/navbar', { config, page: makePage(page) });
+        };
+        const renderMenu = page => renderWithMenu(page, menu);
+
+        it('renders an object value as a button controlling a drop-down of links', async () => {
+            const { $ } = await renderMenu();
+            const groups = $('.navbar-start > .navbar-item.has-dropdown');
+            assert.equal(groups.length, 2);
+            const group = groups.first();
+            assert.equal(group.prop('tagName'), 'DIV');
+            const button = group.children().first();
+            assert.ok(button.is('button.navbar-link'));
+            assert.equal(button.attr('type'), 'button');
+            assert.equal(button.text(), 'About');
+            assert.equal(button.attr('aria-expanded'), 'false');
+            const dropdown = button.next();
+            assert.ok(dropdown.is('div.navbar-dropdown'));
+            assert.equal(button.attr('aria-controls'), dropdown.attr('id'));
+            const links = dropdown.children().map((i, el) => [[el.tagName, $(el).attr('class'), $(el).text(), $(el).attr('href')]]).get();
+            assert.deepEqual(links, [
+                ['a', 'navbar-item', 'Trademark', '/about/trademark/'],
+                ['a', 'navbar-item', 'Enterprise', 'https://example.com/enterprise']
+            ]);
+        });
+
+        it('gives each drop-down a unique id', async () => {
+            const { $ } = await renderMenu();
+            const ids = $('.navbar-link').map((i, el) => $(el).attr('aria-controls')).get();
+            assert.deepEqual(ids, ['navbar-main-menu-1', 'navbar-main-menu-3']);
+            for (const id of ids) {
+                assert.equal($(`[id="${id}"]`).length, 1, id);
+                assert.ok($(`#${id}`).is('.navbar-dropdown'));
+            }
+        });
+
+        it('keeps string values as plain links, in configuration order', async () => {
+            const { $ } = await renderMenu();
+            assert.deepEqual($('.navbar-start > *').map((i, el) => { return $(el).is('a') ? `${$(el).text()} ${$(el).attr('href')}` : $(el).children('button').text(); }).get(),
+                ['Home /', 'About', 'Tags /tags', 'More']);
+            assert.deepEqual($('.navbar-start > a').map((i, el) => $(el).attr('class')).get(), ['navbar-item', 'navbar-item']);
+        });
+
+        it('marks the group button and the link of the current page as active', async () => {
+            const { $ } = await renderMenu({ path: 'about/trademark/index.html' });
+            assert.deepEqual($('.navbar-start .is-active').map((i, el) => `${el.tagName} ${$(el).text()}`).get(), ['button About', 'a Trademark']);
+            assert.equal($('.navbar-link.is-active').attr('aria-expanded'), 'false');
+            // Bulma opens a .has-dropdown.is-active: the group itself is not marked.
+            assert.equal($('.has-dropdown.is-active').length, 0);
+        });
+
+        it('marks nothing in the groups for another page', async () => {
+            const { $ } = await renderMenu({ path: 'tags/index.html' });
+            assert.deepEqual($('.navbar-start .is-active').map((i, el) => $(el).text()).get(), ['Tags']);
+        });
+
+        it('skips an empty sub-menu', async () => {
+            const { $ } = await renderWithMenu({}, { Home: '/', Empty: {} });
+            assert.equal($('.has-dropdown').length, 0);
+            assert.deepEqual($('.navbar-start > *').map((i, el) => $(el).text()).get(), ['Home']);
+        });
     });
 
     for (const [path, expected] of [
@@ -61,6 +137,33 @@ describe('layout/common/navbar', () => {
             assert.equal(button.find('i').attr('aria-hidden'), 'true');
         }
         assert.equal($('a[href^="javascript:"]').length, 0);
+    });
+
+    it('renders a labelled toggle for the menu links, collapsed by default', async () => {
+        const { $ } = await renderNavbar();
+        const toggle = $('.navbar-menu > .navbar-toggle');
+        assert.equal(toggle.length, 1);
+        assert.equal(toggle.prop('tagName'), 'BUTTON');
+        assert.equal(toggle.attr('type'), 'button');
+        assert.equal(toggle.attr('title'), 'Menu');
+        assert.equal(toggle.attr('aria-label'), 'Menu');
+        assert.equal(toggle.attr('aria-expanded'), 'false');
+        assert.ok(toggle.find('i').hasClass('fa-bars'));
+        assert.equal(toggle.find('i').attr('aria-hidden'), 'true');
+        // It controls the menu links, which follow it so that they come next in the tab order.
+        assert.equal(toggle.attr('aria-controls'), 'navbar-main-menu');
+        assert.ok(toggle.next().is('.navbar-start#navbar-main-menu'));
+    });
+
+    it('translates the menu toggle label', async () => {
+        const { $ } = await renderNavbar({ lang: 'zh-CN' }, { language: 'zh-CN' });
+        assert.equal($('.navbar-toggle').attr('aria-label'), '菜单');
+    });
+
+    it('renders no menu toggle without menu items', async () => {
+        const { $ } = await renderNavbar({}, { navbar: { menu: null } });
+        assert.equal($('.navbar-start').length, 0);
+        assert.equal($('.navbar-toggle').length, 0);
     });
 
     it('shows the search button only when search is configured', async () => {

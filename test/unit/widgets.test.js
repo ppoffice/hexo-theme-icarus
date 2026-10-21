@@ -21,6 +21,7 @@ describe('layout/common/widgets', () => {
         it('is 1 without widgets', () => {
             assert.equal(count([]), 1);
             assert.equal(count(undefined), 1);
+            assert.equal(count(null), 1);
         });
 
         it('counts each side that has at least one widget', () => {

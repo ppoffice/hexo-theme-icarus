@@ -66,6 +66,100 @@ test.describe('table of contents', () => {
     });
 });
 
+test.describe('table of contents in a scrollable container', () => {
+    const POST = '/2023/08/01/long-toc/'; // 24 sections
+
+    /** Scroll the page so a heading is at the top and wait until toc.js highlights its entry. */
+    async function readSection(page, id) {
+        const scrollY = await page.locator('#' + id).evaluate(heading => {
+            window.scrollTo({ top: heading.getBoundingClientRect().top + window.scrollY - 10, behavior: 'instant' });
+            return window.scrollY;
+        });
+        await expect(page.locator(`#toc a[data-href="#${id}"]`)).toHaveClass(/is-active/);
+        return scrollY;
+    }
+
+    /** Where the active toc entry is in its scroll container. */
+    function activeEntry(page, container) {
+        return page.locator(container).evaluate(el => {
+            const entry = Array.from(el.querySelectorAll('a.is-active')).pop();
+            const box = el.getBoundingClientRect();
+            const rect = entry.getBoundingClientRect();
+            return {
+                visible: rect.top >= box.top - 1 && rect.bottom <= box.bottom + 1,
+                // distance between the centers of the entry and of the container
+                offCenter: Math.round(Math.abs((rect.top + rect.bottom - box.top - box.bottom) / 2))
+            };
+        });
+    }
+
+    test('keeps the active entry around the middle without scrolling the page', async ({ page, visit }) => {
+        await page.setViewportSize({ width: 1440, height: 700 });
+        await visit(POST);
+        await page.addStyleTag({ content: '#toc .menu { max-height: 200px; overflow-y: auto; }' });
+        const scrollY = await readSection(page, 'Section-14');
+        await expect.poll(async () => (await activeEntry(page, '#toc .menu')).offCenter).toBeLessThan(20);
+        expect((await activeEntry(page, '#toc .menu')).visible).toBe(true);
+        expect(await page.evaluate(() => window.scrollY)).toBe(scrollY);
+
+        // The last entries cannot be centered: the container stops at the end of the list.
+        await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+        await expect(page.locator('#toc a[data-href="#Section-24"]')).toHaveClass(/is-active/);
+        await expect.poll(() => page.locator('#toc .menu').evaluate(el => el.scrollHeight - el.clientHeight - el.scrollTop)).toBeLessThan(1);
+        expect((await activeEntry(page, '#toc .menu')).visible).toBe(true);
+    });
+
+    test('does not animate when the reader prefers reduced motion', async ({ page, visit }) => {
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await page.setViewportSize({ width: 1440, height: 700 });
+        await visit(POST);
+        await page.addStyleTag({ content: '#toc .menu { max-height: 200px; overflow-y: auto; }' });
+        await readSection(page, 'Section-14');
+        // One frame after the highlight moved, the entry is already in place.
+        const offCenter = await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => {
+            const menu = document.querySelector('#toc .menu');
+            const box = menu.getBoundingClientRect();
+            const rect = Array.from(menu.querySelectorAll('a.is-active')).pop().getBoundingClientRect();
+            resolve(Math.round(Math.abs((rect.top + rect.bottom - box.top - box.bottom) / 2)));
+        }))));
+        expect(offCenter).toBeLessThan(20);
+    });
+
+    test('still scrolls the page to the heading of a clicked entry', async ({ page, visit }) => {
+        await page.setViewportSize({ width: 1440, height: 700 });
+        await visit(POST);
+        await page.addStyleTag({ content: '#toc .menu { max-height: 200px; overflow-y: auto; }' });
+        await page.locator('#toc a[data-href="#Section-6"]').click();
+        await expect.poll(() => page.locator('#Section-6').evaluate(el => Math.round(el.getBoundingClientRect().top))).toBeLessThan(100);
+        await expect(page.locator('#toc a[data-href="#Section-6"]')).toHaveClass(/is-active/);
+        await expect.poll(() => activeEntry(page, '#toc .menu')).toMatchObject({ visible: true });
+    });
+
+    test('does not scroll a container that is not scrollable', async ({ page, visit }) => {
+        await page.setViewportSize({ width: 1440, height: 700 });
+        await visit(POST);
+        // overflow: hidden clips the list, but the reader cannot scroll it: leave it alone.
+        await page.addStyleTag({ content: '#toc .menu { max-height: 200px; overflow-y: hidden; }' });
+        const scrollY = await readSection(page, 'Section-14');
+        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 500))));
+        const scrollTops = await page.locator('#toc, #toc .card-content, #toc .menu').evaluateAll(els => els.map(el => el.scrollTop));
+        expect(scrollTops).toEqual([0, 0, 0]);
+        expect(await page.evaluate(() => window.scrollY)).toBe(scrollY);
+    });
+
+    test('shows the active entry when the mobile overlay opens', async ({ page, visit }) => {
+        await page.setViewportSize({ width: 375, height: 400 });
+        await visit(POST);
+        const scrollY = await readSection(page, 'Section-18');
+        // Like a sticky navbar would: click() would first scroll the page up to the button.
+        await page.locator('.navbar-main .catalogue').dispatchEvent('click');
+        await expect(page.locator('#toc')).toHaveClass(/is-active/);
+        await expect.poll(async () => (await activeEntry(page, '#toc .menu')).offCenter).toBeLessThan(20);
+        expect((await activeEntry(page, '#toc .menu')).visible).toBe(true);
+        expect(await page.evaluate(() => window.scrollY)).toBe(scrollY);
+    });
+});
+
 test.describe('back to top button', () => {
     test('appears after scrolling on desktop and scrolls back up', async ({ page, visit }) => {
         await page.setViewportSize({ width: 1440, height: 600 });
