@@ -62,6 +62,45 @@ describe('include/schema', () => {
         }
     });
 
+    describe('navbar.menu', () => {
+        const navbar = () => SchemaLoader.load(require(path.join(schemaDir, 'config.json')), schemaDir).getSchema('/common/navbar.json');
+        const errors = menu => {
+            const result = navbar().validate({ menu });
+            return result === true ? [] : result.map(error => error.instancePath);
+        };
+
+        it('accepts links and one level of sub-menus, as in the example of #1250', () => {
+            const menu = yaml.parse([
+                'Home: /',
+                'About:',
+                '    trademark: /about/trademark/',
+                '    enterprise: /about/enterprise/',
+                'GitHub: https://github.com/'
+            ].join('\n'));
+            assert.deepEqual(errors(menu), []);
+            assert.deepEqual(errors({ Home: '/', Archives: '/archives' }), []);
+            assert.deepEqual(errors(null), []);
+        });
+
+        for (const [description, menu] of [
+            ['a sub-menu nested in a sub-menu', { About: { Company: { Trademark: '/about/trademark/' } } }],
+            ['a sub-menu link that is not a string', { About: { Trademark: 42 } }],
+            ['a sub-menu link that is null', { About: { Trademark: null } }],
+            ['an empty sub-menu', { About: {} }],
+            ['a list of links', { About: ['/about/trademark/'] }],
+            ['a menu item that is null', { About: null }]
+        ]) {
+            it(`rejects ${description}`, () => {
+                assert.ok(errors(menu).some(instancePath => instancePath.startsWith('/menu/About')), JSON.stringify(menu));
+            });
+        }
+
+        it('keeps the generated default menu as plain links', () => {
+            const defaults = yaml.parse(loadSchema().getDefaultValue().toYaml());
+            assert.deepEqual(defaults.navbar.menu, { Home: '/', Archives: '/archives', Categories: '/categories', Tags: '/tags', About: '/about' });
+        });
+    });
+
     it('accepts the test fixture theme configuration', () => {
         const cfg = yaml.parse(fs.readFileSync(path.join(FIXTURE_SITE, '_config.icarus.yml'), 'utf8'));
         assert.equal(loadSchema().validate(cfg), true);

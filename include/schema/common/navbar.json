@@ -9,8 +9,23 @@
             "description": "Navigation menu items",
             "patternProperties": {
                 ".+": {
-                    "type": "string",
-                    "description": "URL or path of the menu link"
+                    "oneOf": [
+                        {
+                            "type": "string",
+                            "description": "URL or path of the menu link"
+                        },
+                        {
+                            "type": "object",
+                            "description": "Sub-menu: names of its links mapped to their URLs or paths",
+                            "patternProperties": {
+                                ".+": {
+                                    "type": "string",
+                                    "description": "URL or path of the sub-menu link"
+                                }
+                            },
+                            "minProperties": 1
+                        }
+                    ]
                 }
             },
             "examples": [
@@ -20,6 +35,14 @@
                     "Categories": "/categories",
                     "Tags": "/tags",
                     "About": "/about"
+                },
+                {
+                    "Home": "/",
+                    "Archives": "/archives",
+                    "About": {
+                        "Trademark": "/about/trademark/",
+                        "Enterprise": "/about/enterprise/"
+                    }
                 }
             ],
             "nullable": true

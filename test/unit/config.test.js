@@ -126,6 +126,29 @@ describe('include/config (theme configuration check, generation and migration)',
             assert.doesNotMatch(output, /failed one or more checks/, output);
         });
 
+        it('accepts navbar sub-menus next to plain links without rewriting the configuration', () => {
+            env = createEnv({
+                themeSiteConfig: {
+                    version: '5.1.0',
+                    navbar: { menu: { Home: '/', About: { Trademark: '/about/trademark/', Enterprise: '/about/enterprise/' } } }
+                }
+            });
+            const before = fs.readFileSync(env.sitePath('_config.icarus.yml'), 'utf8');
+            const { exitCode, output } = capture(() => checkConfig(env.hexo));
+            assert.equal(exitCode, null, output);
+            assert.doesNotMatch(output, /failed one or more checks|outdated/, output);
+            assert.equal(fs.readFileSync(env.sitePath('_config.icarus.yml'), 'utf8'), before, 'file must not be rewritten');
+        });
+
+        it('warns about a navbar sub-menu nested in a sub-menu', () => {
+            env = createEnv({
+                themeSiteConfig: { version: '5.1.0', navbar: { menu: { About: { Company: { Trademark: '/about/trademark/' } } } } }
+            });
+            const { exitCode, output } = capture(() => checkConfig(env.hexo));
+            assert.equal(exitCode, null);
+            assert.match(output, /failed one or more checks/);
+        });
+
         it('accepts an empty theme configuration file', () => {
             env = createEnv({ themeDirConfig: { version: '5.1.0' }, themeSiteConfig: '' });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));

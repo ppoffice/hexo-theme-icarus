@@ -70,6 +70,43 @@
     const $navbar = $('.navbar-main');
     const $navbarToggle = $navbar.find('.navbar-toggle');
 
+    // Sub-menus: a button (.navbar-link) opening its links (.navbar-dropdown) as a drop-down, or
+    // under it in the folded menu. One is open at a time. With a mouse, they also open on hover
+    // (CSS), unless closed with the button or Escape while hovered (.is-hover-closed).
+    function closeNavbarDropdowns() {
+        $navbar.find('.navbar-link[aria-expanded="true"]').attr('aria-expanded', 'false');
+        $navbar.removeClass('is-dropdown-open');
+    }
+
+    // Keep a drop-down within the window: shift it to the left when it overflows on the right.
+    function alignNavbarDropdown($group) {
+        const dropdown = $group.children('.navbar-dropdown')[0];
+        if (!dropdown) {
+            return;
+        }
+        const style = dropdown.style;
+        style.left = '';
+        if ($navbar.hasClass('is-collapsed')) {
+            return;
+        }
+        // Measure it shown, whether it is open or not (nothing is painted in between).
+        style.display = 'block';
+        style.visibility = 'hidden';
+        const rect = dropdown.getBoundingClientRect();
+        style.display = '';
+        style.visibility = '';
+        const shift = Math.max(Math.min(0, document.documentElement.clientWidth - rect.right), -rect.left);
+        style.left = shift < 0 ? shift + 'px' : '';
+    }
+
+    function openNavbarDropdown($link) {
+        closeNavbarDropdowns();
+        const $group = $link.closest('.has-dropdown').removeClass('is-hover-closed');
+        alignNavbarDropdown($group);
+        $link.attr('aria-expanded', 'true');
+        $navbar.addClass('is-dropdown-open');
+    }
+
     function setNavbarMenuOpen(open) {
         $navbar.toggleClass('is-open', open);
         $navbarToggle.attr('aria-expanded', String(open));
@@ -82,10 +119,11 @@
 
     function fitNavbar() {
         const $menu = $navbar.find('.navbar-menu');
+        const wasCollapsed = $navbar.hasClass('is-collapsed');
         // Measure the expanded layout whatever the current state, so that folding the menu cannot
         // make it fit again and unfold it. Aligned to the start, all the overflow is on the right,
-        // where scrollWidth counts it.
-        $navbar.removeClass('is-collapsed');
+        // where scrollWidth counts it. Sub-menus count as their button (.is-measuring).
+        $navbar.removeClass('is-collapsed is-scrolling').addClass('is-measuring');
         $menu.addClass('justify-content-start');
         const collapse = $navbarToggle.length > 0 && navbarOverflows();
         $navbar.toggleClass('is-collapsed', collapse);
@@ -93,32 +131,85 @@
             setNavbarMenuOpen(false);
         }
         // Still too wide (e.g. no menu to fold): keep the start of the navbar reachable by scrolling.
-        $menu.toggleClass('justify-content-start', navbarOverflows());
+        const scrolls = navbarOverflows();
+        $menu.toggleClass('justify-content-start', scrolls);
+        $navbar.toggleClass('is-scrolling', scrolls).removeClass('is-measuring');
+        if (collapse !== wasCollapsed) {
+            closeNavbarDropdowns();
+        }
+        $navbar.find('.navbar-link[aria-expanded="true"]').each((i, link) => alignNavbarDropdown($(link).closest('.has-dropdown')));
     }
 
     if ($navbar.length) {
-        // A followed link (also through PJAX) closes the drop-down.
+        // A followed link (also through PJAX) closes the drop-downs.
+        $navbar.addClass('is-scripted');
         setNavbarMenuOpen(false);
+        closeNavbarDropdowns();
         fitNavbar();
 
         $navbarToggle.off('click.icarus-navbar').on('click.icarus-navbar', () => {
             setNavbarMenuOpen(!$navbar.hasClass('is-open'));
         });
-        $(document).off('.icarus-navbar').on('click.icarus-navbar', event => {
-            // Close the drop-down on a click outside of it, or on one of its links.
+        // Delegated: PJAX replaces the menu links.
+        $(document).off('.icarus-navbar').on('click.icarus-navbar', '.navbar-main .navbar-link', function() {
+            const $link = $(this);
+            if ($link.attr('aria-expanded') === 'true') {
+                closeNavbarDropdowns();
+                $link.closest('.has-dropdown').addClass('is-hover-closed');
+            } else {
+                openNavbarDropdown($link);
+            }
+        }).on('mouseenter.icarus-navbar', '.navbar-main .has-dropdown', function() {
+            const $group = $(this);
+            if (!$navbar.hasClass('is-collapsed')) {
+                // Hovering one sub-menu closes the one opened with its button.
+                if (!$group.find('.navbar-link[aria-expanded="true"]').length && window.matchMedia
+                    && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                    closeNavbarDropdowns();
+                }
+                alignNavbarDropdown($group);
+            }
+        }).on('mouseleave.icarus-navbar', '.navbar-main .has-dropdown', function() {
+            $(this).removeClass('is-hover-closed');
+        }).on('focusout.icarus-navbar', '.navbar-main .has-dropdown', function(event) {
+            // Leaving a drop-down with the keyboard closes it, but not in the folded menu.
+            if (!$navbar.hasClass('is-collapsed') && event.relatedTarget && !$.contains(this, event.relatedTarget)
+                && $(this).find('.navbar-link[aria-expanded="true"]').length) {
+                closeNavbarDropdowns();
+            }
+        }).on('click.icarus-navbar', event => {
             const $target = $(event.target);
+            // Close the sub-menus on a click outside of them, or on one of their links.
+            if ($target.closest('.navbar-dropdown a').length || !$target.closest('.navbar-main .has-dropdown').length) {
+                closeNavbarDropdowns();
+            }
+            // Close the drop-down on a click outside of it, or on one of its links.
             if ($navbar.hasClass('is-open')
                 && ($target.closest('.navbar-start a').length || !$target.closest('.navbar-start, .navbar-toggle').length)) {
                 setNavbarMenuOpen(false);
             }
         }).on('keydown.icarus-navbar', event => {
-            if (event.key === 'Escape' && $navbar.hasClass('is-open')) {
-                const focused = document.activeElement;
-                setNavbarMenuOpen(false);
-                // Give the focus back to the toggle, unless the reader has moved it elsewhere.
+            if (event.key !== 'Escape') {
+                return;
+            }
+            const focused = document.activeElement;
+            // Give the focus back to the button, unless the reader has moved it elsewhere.
+            const refocus = $button => {
                 if (!focused || focused === document.body || $.contains($navbar[0], focused)) {
-                    $navbarToggle.trigger('focus');
+                    $button.trigger('focus');
                 }
+            };
+            const $open = $navbar.find('.navbar-link[aria-expanded="true"]');
+            // Also hide a sub-menu shown by hovering it.
+            $navbar.find('.has-dropdown').filter(':hover').addClass('is-hover-closed');
+            if ($open.length) {
+                // Close the open sub-menu first, and the folded menu on the next Escape.
+                closeNavbarDropdowns();
+                $open.closest('.has-dropdown').addClass('is-hover-closed');
+                refocus($open);
+            } else if ($navbar.hasClass('is-open')) {
+                setNavbarMenuOpen(false);
+                refocus($navbarToggle);
             }
         });
 

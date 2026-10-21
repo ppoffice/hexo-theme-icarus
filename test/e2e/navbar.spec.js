@@ -1,6 +1,7 @@
 const { test, expect, jqueryHandlerCounts } = require('./fixtures');
 
-// The fixture menu (5 links) plus its icons do not fit on one line at 375px, and fit at 1440px.
+// The fixture menu (5 links and a sub-menu) plus its icons do not fit on one line at 375px, and
+// fit at 1440px.
 const NARROW = { width: 375, height: 800 };
 const WIDE = { width: 1440, height: 900 };
 
@@ -47,8 +48,9 @@ test.describe('navbar menu on a narrow screen', () => {
         const toggle = page.locator('.navbar-toggle');
         await toggle.click();
         await expect(toggle).toHaveAttribute('aria-expanded', 'true');
-        const links = page.locator('#navbar-main-menu .navbar-item');
-        await expect(links).toHaveCount(5);
+        // The links and the sub-menu (its button, its links closed).
+        const links = page.locator('#navbar-main-menu > .navbar-item');
+        await expect(links).toHaveCount(6);
         for (const link of await links.all()) {
             await expect(link).toBeVisible();
         }
@@ -58,7 +60,7 @@ test.describe('navbar menu on a narrow screen', () => {
         const navbarBox = await page.locator('.navbar-main').boundingBox();
         expect(boxes[0].top).toBeGreaterThanOrEqual(toggleBox.y + toggleBox.height - 1);
         boxes.slice(1).forEach((box, i) => expect(box.top).toBeGreaterThanOrEqual(boxes[i].bottom - 1));
-        expect(boxes[4].bottom).toBeLessThanOrEqual(navbarBox.y + navbarBox.height);
+        expect(boxes[5].bottom).toBeLessThanOrEqual(navbarBox.y + navbarBox.height);
         // The current page stays marked.
         await expect(page.locator('#navbar-main-menu .navbar-item.is-active')).toHaveText('Home');
         expect(await navbarScrolls(page)).toBe(false);
@@ -122,7 +124,7 @@ test.describe('navbar menu on a narrow screen', () => {
         await expect(page.locator('.navbar-toggle')).toHaveAttribute('aria-expanded', 'false');
         await expect(page.locator('.navbar-start a', { hasText: 'About' })).toBeVisible();
         // Inline again: all the links on the same line.
-        const tops = await page.locator('.navbar-start .navbar-item').evaluateAll(els => els.map(el => Math.round(el.getBoundingClientRect().top)));
+        const tops = await page.locator('.navbar-start > .navbar-item').evaluateAll(els => els.map(el => Math.round(el.getBoundingClientRect().top)));
         expect(new Set(tops).size).toBe(1);
 
         await page.setViewportSize(NARROW);
@@ -136,8 +138,8 @@ test.describe('navbar menu around the width where it folds', () => {
         await page.setViewportSize(NARROW);
         await visit('/');
         const states = [];
-        // The expanded fixture navbar is about 475px wide.
-        for (let width = 420; width <= 540; width += 6) {
+        // The expanded fixture navbar is about 550px wide.
+        for (let width = 490; width <= 610; width += 6) {
             await page.setViewportSize({ width, height: 800 });
             // Let the resize observer refit, then sample the state over 10 frames.
             const samples = await page.evaluate(() => new Promise(resolve => {
@@ -174,8 +176,8 @@ test.describe('navbar menu on a wide screen', () => {
         await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
         await expect(page.locator('.navbar-main')).not.toHaveClass(/is-collapsed/);
         await expect(page.locator('.navbar-toggle')).toBeHidden();
-        await expect(page.locator('.navbar-start .navbar-item')).toHaveCount(5);
-        for (const link of await page.locator('.navbar-start .navbar-item').all()) {
+        await expect(page.locator('.navbar-start > .navbar-item')).toHaveCount(6);
+        for (const link of await page.locator('.navbar-start > .navbar-item').all()) {
             await expect(link).toBeVisible();
         }
         expect(await navbarScrolls(page)).toBe(false);
@@ -186,7 +188,7 @@ test.describe('navbar menu on a wide screen', () => {
         await visit('/');
         await expect(page.locator('.navbar-main')).not.toHaveClass(/is-collapsed/);
         // Longer link texts, as with more menu items.
-        await page.locator('.navbar-start .navbar-item').evaluateAll(els => els.forEach(el => { el.textContent += ' with a long name'; }));
+        await page.locator('.navbar-start > a.navbar-item').evaluateAll(els => els.forEach(el => { el.textContent += ' with a long name'; }));
         await expect(page.locator('.navbar-main')).toHaveClass(/is-collapsed/);
         expect(await navbarScrolls(page)).toBe(false);
         await page.locator('.navbar-toggle').click();

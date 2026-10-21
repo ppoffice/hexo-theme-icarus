@@ -53,6 +53,8 @@ $navbar-item-margin-v ?= 1.25rem
 $navbar-item-margin-h ?= .25rem
 $navbar-item-padding-v ?= 0
 $navbar-item-padding-h ?= .5rem
+$navbar-dropdown-radius ?= 0
+$navbar-dropdown-border-top ?= 2px solid $black
 $card-background-color ?= transparent
 $menu-label-color ?= $blue
 $menu-item-hover-color ?= $black
@@ -236,7 +238,8 @@ clip-button($color, $color-invert)
         height: 40px
 
     .navbar-menu
-        .navbar-item
+        // Sub-menus: their buttons and links, not the groups holding them
+        .navbar-item:not(.has-dropdown), .navbar-link
             &:hover, &.is-active
                 color: $navbar-background-color
                 background-color: $body-background-color !important

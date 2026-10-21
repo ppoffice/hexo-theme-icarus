@@ -85,6 +85,132 @@ $navbar-item-margin-h ?= 0
     &.is-collapsed.is-open .navbar-start
         display: flex
 
+    // Sub-menus: a button (.navbar-link) followed by its links (.navbar-dropdown). Without
+    // JavaScript, the links show next to the button while it is hovered or focused, in the
+    // horizontally scrolling menu. source/js/main.js (.is-scripted) opens them with the button,
+    // as a drop-down below it, or under it in the folded menu.
+    .navbar-item.has-dropdown
+        align-items: stretch
+        margin: 0
+        padding: 0
+
+    .navbar-link
+        display: flex
+        align-items: center
+        margin: $navbar-item-margin-v $navbar-item-margin-h
+        padding: $navbar-item-padding-v 2.25em $navbar-item-padding-v $navbar-item-padding-h
+        border: none
+        background: none
+        font: inherit
+        line-height: 1.5
+        color: $navbar-item-color
+        cursor: pointer
+
+        &::after
+            display: block
+            border-color: currentColor
+            right: 1em
+
+        &[aria-expanded="true"]::after
+            margin-top: -.125em
+            transform: rotate(135deg)
+
+        &:focus, &:hover
+            background-color: $navbar-item-hover-background-color
+            color: $navbar-item-hover-color
+
+        &.is-active
+            color: $navbar-item-active-color
+
+    .navbar-dropdown
+        display: none
+        position: static
+        min-width: 0
+        padding: 0
+        background: none
+        border: none
+        box-shadow: none
+
+        a.navbar-item
+            &:focus, &:hover
+                background-color: $navbar-item-hover-background-color
+                color: $navbar-item-hover-color
+
+            &.is-active
+                background-color: transparent
+                color: $navbar-item-active-color
+
+    &:not(.is-scripted) .navbar-item.has-dropdown
+        &:hover, &:focus-within
+            .navbar-dropdown
+                display: flex
+
+    &.is-scripted
+        // The menu is fitted with its drop-downs closed, so that opening one cannot fold it.
+        &.is-measuring .navbar-dropdown
+            display: none !important
+
+        // Do not clip the drop-downs: the menu only scrolls if it still does not fit once folded.
+        &:not(.is-scrolling)
+            .navbar-container, .navbar-menu
+                overflow: visible
+
+    &.is-scripted:not(.is-collapsed)
+        .navbar-dropdown
+            position: absolute
+            top: 100%
+            left: 0
+            z-index: $navbar-dropdown-z
+            min-width: 100%
+            width: max-content
+            max-width: calc(100vw - 2rem)
+            padding: .5rem 0
+            font-size: .875rem
+            background-color: $navbar-background-color
+            border-top: $navbar-dropdown-border-top
+            border-radius: 0 0 $navbar-dropdown-radius $navbar-dropdown-radius
+            box-shadow: 0 8px 8px rgba($scheme-invert, .1)
+
+            .navbar-item
+                margin: 0
+                padding: .375rem 1rem
+                white-space: normal
+                overflow-wrap: anywhere
+
+        .navbar-link[aria-expanded="true"] + .navbar-dropdown
+            display: block
+
+        // Above the sticky columns (z-index: 99) while a drop-down is open, under the overlays.
+        &.is-dropdown-open
+            z-index: 100
+
+        @media (hover: hover) and (pointer: fine)
+            &:hover
+                z-index: 100
+
+            .navbar-item.has-dropdown:not(.is-hover-closed):hover .navbar-dropdown
+                display: block
+
+    &.is-collapsed .navbar-start
+        .navbar-item.has-dropdown
+            flex-direction: column
+            align-items: center
+            padding: 0
+
+        .navbar-link
+            margin: 0
+            padding: .5rem 2.25em
+
+        .navbar-link[aria-expanded="true"] + .navbar-dropdown
+            display: flex
+            flex-direction: column
+            align-items: center
+            padding-bottom: .25rem
+            font-size: .875rem
+
+            .navbar-item
+                padding: .375rem $navbar-item-padding-h
+
     +from($navbar-breakpoint)
         &.is-collapsed
             .navbar-brand
