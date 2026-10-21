@@ -193,4 +193,76 @@
     } else {
         $('#toc-mask').remove();
     }
+
+    // The scrollable box, between a toc entry and the toc itself, that clips the entry: the mobile
+    // overlay, or a widget given a max-height. Without one there is nothing to scroll.
+    function getTocScroller(entry, toc) {
+        for (let el = entry.parentElement; el; el = el.parentElement) {
+            if (/^(auto|scroll|overlay)$/.test(getComputedStyle(el).overflowY) && el.scrollHeight > el.clientHeight) {
+                return el;
+            }
+            if (el === toc) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    // Bring the active (deepest highlighted) toc entry to the middle of its scroll box. Only that box
+    // scrolls: scrollIntoView() would also scroll the page under the reader.
+    function scrollTocToActive(toc, instant) {
+        const entry = $(toc).find('.menu-list a.is-active').last()[0];
+        const scroller = entry && getTocScroller(entry, toc);
+        if (!scroller) {
+            return;
+        }
+        const offset = entry.getBoundingClientRect().top - scroller.getBoundingClientRect().top - scroller.clientTop;
+        const max = scroller.scrollHeight - scroller.clientHeight;
+        const top = Math.round(Math.min(max, Math.max(0, scroller.scrollTop + offset - (scroller.clientHeight - entry.offsetHeight) / 2)));
+        // Do not restart a smooth scroll that is already heading there.
+        if (!instant && $(scroller).data('icarus-toc-top') === top) {
+            return;
+        }
+        $(scroller).data('icarus-toc-top', top);
+        const smooth = !instant && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        if (typeof scroller.scrollTo === 'function') {
+            scroller.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' });
+        } else {
+            scroller.scrollTop = top;
+        }
+    }
+
+    // toc.js highlights the entry being read with "is-active": follow it. Every #toc counts, including
+    // the copy column.js makes of the right column. main.js runs again after every PJAX navigation:
+    // replace the observer of the previous page instead of adding another one.
+    if (window.IcarusTocObserver) {
+        window.IcarusTocObserver.disconnect();
+        window.IcarusTocObserver = null;
+    }
+    const tocs = document.querySelectorAll('#toc');
+    if (tocs.length && typeof MutationObserver === 'function') {
+        const pending = new Map();
+        let frame = null;
+        const schedule = (toc, instant) => {
+            pending.set(toc, pending.get(toc) || instant);
+            if (frame === null) {
+                frame = requestAnimationFrame(() => {
+                    frame = null;
+                    pending.forEach((instant, toc) => scrollTocToActive(toc, instant));
+                    pending.clear();
+                });
+            }
+        };
+        window.IcarusTocObserver = new MutationObserver(records => {
+            for (const record of records) {
+                const toc = record.target.closest('#toc');
+                // A class change on the toc itself opens the mobile overlay: jump, do not animate.
+                schedule(toc, record.target === toc);
+            }
+        });
+        tocs.forEach(toc => {
+            window.IcarusTocObserver.observe(toc, { subtree: true, attributes: true, attributeFilter: ['class'] });
+            schedule(toc, true);
+        });
+    }
 }(jQuery, window.ClipboardJS, window.IcarusThemeSettings));
