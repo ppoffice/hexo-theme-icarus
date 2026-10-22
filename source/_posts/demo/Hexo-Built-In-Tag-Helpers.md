@@ -15,6 +15,16 @@ with minor revisions.
 
 Tag plugins are different from post tags. They are ported from Octopress and provide a useful way for you to quickly add specific content to your posts.
 <!-- more -->
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>Since Hexo 7, the <code>jsfiddle</code>, <code>gist</code>,
+<code>youtube</code>, and <code>vimeo</code> tags are no longer built into Hexo.
+They are provided by the <a href="https://github.com/hexojs/hexo-tag-embed">hexo-tag-embed</a> plugin, which
+you need to install in your site (<code>npm install hexo-tag-embed</code>) before using them.
+</div>
+</article>
+
 ## Block Quote
 
 Perfect for adding quotes to your post, with optional author, source and title information.
@@ -168,7 +178,7 @@ content
 
 ## jsFiddle
 
-To embed a jsFiddle snippet:
+To embed a jsFiddle snippet (requires hexo-tag-embed):
 
 ```
 {% jsfiddle shorttag [tabs] [skin] [width] [height] %}
@@ -178,7 +188,7 @@ To embed a jsFiddle snippet:
 
 ## Gist
 
-To embed a Gist snippet:
+To embed a Gist snippet (requires hexo-tag-embed):
 
 ```
 {% gist gist_id [filename] %}
@@ -228,20 +238,21 @@ Inserts code snippets in `source/downloads/code` folder.
 
 ## YouTube
 
-Inserts a YouTube video.
+Inserts a YouTube video or playlist (requires hexo-tag-embed).
+Set `type` to `playlist` to embed a playlist, and `cookie` to `false` to use the privacy-enhanced mode of YouTube.
 
 ```
-{% youtube video_id %}
+{% youtube video_id [type] [cookie] %}
 ```
 
 {% youtube yaqe1qesQ8c %}
 
 ## Vimeo
 
-Inserts a Vimeo video.
+Inserts a Vimeo video (requires hexo-tag-embed).
 
 ```
-{% vimeo video_id %}
+{% vimeo video_id [width] [height] %}
 ```
 
 {% vimeo 191822120 %}
@@ -264,6 +275,22 @@ Include post assets.
 {% asset_img slug [title] %}
 {% asset_link slug [title] %}
 ```
+
+## URL
+
+Inserts a link to a path of your site.
+`url_for` adds the `root` of your site to the path, and `full_url_for` adds the `url` of your site instead.
+
+```
+{% url_for text path [relative] %}
+{% full_url_for text path %}
+```
+
+```
+{% url_for "The archives page" /archives/ %}
+```
+
+{% url_for "The archives page" /archives/ %}
 
 ## Raw
 
