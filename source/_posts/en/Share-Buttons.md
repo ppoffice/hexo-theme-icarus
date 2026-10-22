@@ -12,7 +12,7 @@ share:
     install_url: //platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&product=inline-share-buttons
 ---
 
-This article covers share buttons supported by Icarus 5.
+This article covers share buttons supported by Icarus.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -31,58 +31,13 @@ Please refer to it for a complete list of supported plugins and their configurat
 </div>
 </article>
 
-
-## AddThis
-
-<article class="message message-immersive is-danger">
+<article class="message message-immersive is-warning">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>AddThis shut down on May 31, 2023, so these share buttons no
-longer work.
-The AddThis share buttons are deprecated since hexo-component-inferno 4.2.0, and a warning is printed when you
-generate your site with them.
-Please use <a href="#AddToAny">AddToAny</a> or <a href="#ShareThis">ShareThis</a> instead.
+<i class="fas fa-exclamation-triangle mr-2"></i>AddThis shut down on May 31, 2023, and its share buttons
+(<code>type: addthis</code>) are deprecated since hexo-component-inferno 4.2.0, so this guide no longer covers them.
+If you still use them, please switch to <a href="#AddToAny">AddToAny</a> or <a href="#ShareThis">ShareThis</a>.
 </div>
 </article>
-
-<div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/share/AddThis %}">Preview</a>
-</div>
-
-1. Register for [AddThis](https://www.addthis.com/). 
-   Select the "Share Buttons" on the "Select a Tool" page after submitting the registration form.
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/addthis-select-tool.png 360 '"Select Tool - AddThis" "Select Tool - AddThis"' %}
-   <br>
-
-2. Select the style and buttons on the "Select a Tool Type" page and click "Continue".
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/addthis-select-tool-type.png 360 '"Select Tool Type - AddThis" "Select Tool Type - AddThis"' %}
-   <br>
-
-3. Make further customizations on the next page and click the "Activate Tool" button when finished.
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/addthis-customize-share.png 360 '"Customize Share Buttons - AddThis" "Customize Share Buttons - AddThis"' %}
-   <br>
-
-4. Find the HTML code from the "Get The Code" page, copy the URL in the `src` attribute to the share button configuration. 
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/addthis-get-code.png 360 '"Get Code - AddThis" "Get Code - AddThis"' %}
-   <br>
-   
-   For example, the URL in the following AddThis code:
-
-    {% codeblock "AddThis Code" lang:html %}
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-xxxxxxxxxxxxx"></script>
-    {% endcodeblock %}
-
-    maps to the following theme configuration:
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    share:
-        type: addthis
-        install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-xxxxxxxxxxxxx
-    {% endcodeblock %}
 
 
 ## AddToAny
@@ -114,12 +69,12 @@ Take the following steps if you want to customize the share buttons:
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/addtoany-get-code.png 360 '"Get Code - AddToAny" "Get Code - AddToAny"' %}
    <br>
 
-4. Since the share buttons of Icarus is provided by 
+4. Since the share buttons of Icarus are provided by 
    [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno),
-   you need to copy the layout file 
-   ([src/view/share/addtoany.jsx](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.2/src/view/share/addtoany.jsx)) 
-   of AddToAny from this repository
-   to `<icarus_directory>/layout/share/addtoany.jsx`.
+   you need to copy the layout file of AddToAny from the
+   [src/view/share](https://github.com/ppoffice/hexo-component-inferno/tree/HEAD/src/view/share)
+   directory of this repository to `<icarus_directory>/layout/share/addtoany.jsx`.
+   Icarus uses a layout file in its `layout/` directory instead of the one in hexo-component-inferno with the same path.
    Then, replace the AddToAny code in `addtoany.jsx` and fix the package import in the file header.
 
    For example, assume the following code is what you get from the last step:
@@ -177,22 +132,18 @@ Take the following steps if you want to customize the share buttons:
 
 <article class="message message-immersive is-danger">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Some AD blockers may block this share button service.
-Use it with caution.
-</div>
-</article>
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>The Baidu share button service seems to be no longer maintained.
-Use other services as alternatives.
+<i class="fas fa-exclamation-triangle mr-2"></i>The Baidu share button service is discontinued and not recommended.
+Its script is loaded from an <code>http://</code> address, which browsers block on pages served over HTTPS,
+so the buttons do not show up on most sites.
+Some ad blockers may also block it.
+Please use <a href="#AddToAny">AddToAny</a> or <a href="#ShareThis">ShareThis</a> instead.
 </div>
 </article>
 
 **Installation Guide**
 
-1. You can activate Baidu Share without user registration.
-   Just put the following code to your theme configurations:
+1. Baidu Share does not need user registration.
+   It is enabled with the following theme configuration:
 
     {% codeblock _config.icarus.yml lang:yaml %}
     share:
@@ -242,21 +193,21 @@ Use other services as alternatives.
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/sharethis-choose-button-type.png 360 '"Choose Button Type - ShareThis" "Choose Button Type - ShareThis"' %}
    <br>
 
-2. Select "HTML" on the "Choose your CMS platform" page and click "Next".
+3. Select "HTML" on the "Choose your CMS platform" page and click "Next".
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/sharethis-choose-platform.png 360 '"Choose Platform - ShareThis" "Choose Platform - ShareThis"' %}
    <br>
 
-3. Enter your email and password to finish the registration for ShareThis on the "Register and get the code!" page.
+4. Enter your email and password to finish the registration for ShareThis on the "Register and get the code!" page.
 
-4. Finally, copy the `src` URL from the HTML code fragment to the share button configuration.
+5. Finally, copy the `src` URL from the HTML code fragment to the share button configuration.
    
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/sharethis-get-code.png 360 '"Get Code - ShareThis" "Get Code - ShareThis"' %}
    <br>
    
    For example, the following ShareThis code:
 
-    {% codeblock "AddThis Code" lang:html %}
+    {% codeblock "ShareThis Code" lang:html %}
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=xxxxxxxxxxxxx&product=inline-share-buttons" async="async"></script>
     {% endcodeblock %}
 
