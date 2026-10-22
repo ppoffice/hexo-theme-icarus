@@ -1,7 +1,8 @@
 const assert = require('assert').strict;
-const { render } = require('../support/render');
+const { render, makePage } = require('../support/render');
 
-const Upstream = require('hexo-component-inferno/lib/view/misc/paginator');
+/** The paginator of hexo-component-inferno, which the index and archive layouts use. */
+const Paginator = require('hexo-component-inferno/lib/view/misc/paginator');
 
 const props = (current, total, baseUrl = '/') => ({
     current,
@@ -14,12 +15,12 @@ const props = (current, total, baseUrl = '/') => ({
 });
 
 async function renderPaginator(current, total, baseUrl) {
-    return render('misc/paginator', props(current, total, baseUrl));
+    return render(Paginator, props(current, total, baseUrl));
 }
 
 const pageLabels = $ => $('.pagination-list li').map((i, el) => $(el).text()).get();
 
-describe('layout/misc/paginator', () => {
+describe('paginator (hexo-component-inferno misc/paginator)', () => {
     it('links to the previous and next pages', async () => {
         const { $ } = await renderPaginator(2, 3);
         assert.equal($('.pagination-previous a').attr('href'), '/');
@@ -60,11 +61,34 @@ describe('layout/misc/paginator', () => {
         });
     }
 
-    it('renders the same markup as the hexo-component-inferno paginator on middle pages', async () => {
-        for (const [current, total] of [[2, 3], [5, 10], [3, 4]]) {
-            const ours = (await render('misc/paginator', props(current, total))).html;
-            const upstream = (await render(Upstream, props(current, total))).html;
-            assert.equal(ours, upstream, `page ${current} of ${total}`);
-        }
+    describe('in the layouts', () => {
+        const pagination = $ => ({
+            prev: [$('.pagination-previous').hasClass('is-invisible'), $('.pagination-previous a').attr('href')],
+            next: [$('.pagination-next').hasClass('is-invisible'), $('.pagination-next a').attr('href')],
+            pages: $('.pagination-link').map((i, el) => el.attribs.href).get()
+        });
+
+        it('index: links pages under the pagination directory, without a link on the hidden "Previous"', async () => {
+            const page = makePage({ layout: 'index', posts: [], current: 1, total: 3, base: '/' });
+            const { $ } = await render('index', { page });
+            assert.deepEqual(pagination($), { prev: [true, undefined], next: [false, '/page/2/'], pages: ['/', '/page/2/', '/page/3/'] });
+            assert.equal($('.pagination-previous a').text(), 'Previous');
+            assert.equal($('.pagination-next a').text(), 'Next');
+        });
+
+        it('archive: links pages under the archive, without a link on the hidden "Next"', async () => {
+            const page = makePage({ layout: 'archive', posts: [], year: 2024, month: 3, current: 2, total: 2, base: '/archives/2024/03/' });
+            const { $ } = await render('archive', { page });
+            assert.deepEqual(pagination($), {
+                prev: [false, '/archives/2024/03/'],
+                next: [true, undefined],
+                pages: ['/archives/2024/03/', '/archives/2024/03/page/2/']
+            });
+        });
+
+        it('index: renders no paginator for a single page', async () => {
+            const page = makePage({ layout: 'index', posts: [], current: 1, total: 1, base: '/' });
+            assert.equal((await render('index', { page })).$('.pagination').length, 0);
+        });
     });
 });

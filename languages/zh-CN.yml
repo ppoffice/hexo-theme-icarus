@@ -27,6 +27,7 @@ widget:
     subscribe: '订阅'
     adsense: '广告'
     followit: 'follow.it'
+    more: '更多'
 article:
     created_at: '%s发表'
     updated_at: '%s更新'

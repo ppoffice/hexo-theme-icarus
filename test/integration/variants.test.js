@@ -25,6 +25,17 @@ describe('fixture site variants', function() {
             assert.ok(site.exists('index.html'));
             assert.doesNotMatch(site.output, /failed one or more checks/);
         });
+
+        it('lists the analytics plugins without enabling them', () => {
+            const config = yaml.parse(fs.readFileSync(path.join(site.dir, '_config.icarus.yml'), 'utf8'));
+            assert.deepEqual(config.plugins.umami, { website_id: null, script_url: 'https://cloud.umami.is/script.js', domains: null });
+            assert.deepEqual(config.plugins.matomo, { url: null, site_id: null, disable_cookies: false });
+            assert.deepEqual(config.plugins.google_analytics, { tracking_id: null });
+            const html = site.read('index.html');
+            for (const marker of ['umami', 'matomo', 'googletagmanager']) {
+                assert.ok(!html.includes(marker), `${marker} found in index.html`);
+            }
+        });
     });
 
     describe('cyberpunk variant', () => {
@@ -162,6 +173,43 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('widgets with an amount', () => {
+        // The last entry of each widget, which links to the page of all entries when some are not shown
+        const more = ($, type) => {
+            const $widget = $(`.widget[data-type="${type}"]`);
+            const $link = $widget.find(type === 'tags' ? '.control:last-child a' : '.menu-list > li:last-child > a');
+            return { href: $link.attr('href'), text: $link.text().trim(), icon: $link.find('i.fa-chevron-right').length };
+        };
+        const entries = ($, type) => $(`.widget[data-type="${type}"] ${type === 'tags' ? '.control' : '.menu-list > li'}`).length;
+
+        for (const [variant, lang] of [['widget-amount', 'en'], ['widget-amount-zh-CN', 'zh-CN']]) {
+            it(`show that many entries and a link to the others, in ${lang}`, () => {
+                const site = getSite(variant);
+                assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+                const text = strings(lang).widget.more;
+                assert.equal(text, { 'en': 'More', 'zh-CN': '更多' }[lang]);
+                for (const file of ['index.html', '2024/03/01/hello-world/index.html']) {
+                    const $ = site.$(file);
+                    assert.equal(entries($, 'archives'), 3 + 1, file);
+                    assert.deepEqual(more($, 'archives'), { href: '/archives/', text, icon: 1 }, file);
+                    assert.equal(entries($, 'categories'), 1 + 1, file);
+                    assert.deepEqual(more($, 'categories'), { href: '/categories/', text, icon: 1 }, file);
+                    assert.equal(entries($, 'tags'), 3 + 1, file);
+                    assert.deepEqual(more($, 'tags'), { href: '/tags/', text, icon: 1 }, file);
+                }
+            });
+        }
+
+        it('show every entry, without a link to the others, without an amount', () => {
+            const $ = getSite('default').$('/');
+            for (const type of ['archives', 'categories', 'tags']) {
+                assert.equal($(`.widget[data-type="${type}"] i.fa-chevron-right`).length, 0, type);
+            }
+            assert.equal(entries($, 'archives'), 9);
+            assert.equal(entries($, 'categories'), 2);
+        });
+    });
+
     describe('toc as the only right-column widget', () => {
         it('shows the toc in the right column on posts with a toc', () => {
             const $ = getSite('toc-only-right').$('/2024/03/01/hello-world/');
@@ -237,14 +285,39 @@ describe('fixture site variants', function() {
                 ['hotjar', 'hotjar'],
                 ['katex', 'katex'],
                 ['mathjax', 'mathjax'],
+                ['matomo', 'matomo.example.com/'],
                 ['outdated_browser', 'outdated'],
                 ['pjax', '/js/pjax.js'],
                 ['progressbar', 'pace'],
                 ['statcounter', 'statcounter'],
-                ['twitter_conversion_tracking', 'twq']
+                ['twitter_conversion_tracking', 'twq'],
+                ['umami', 'data-website-id="fixture-umami"'],
+                ['waline_pageview', 'class="waline-pageview-count"']
             ]) {
                 assert.ok(html.toLowerCase().includes(marker.toLowerCase()), `${plugin}: "${marker}" not found`);
             }
+        });
+
+        it('loads Umami in <head> with its default script URL and the configured domains', () => {
+            const $ = site.$('/2024/03/01/hello-world/');
+            const script = $('head script[data-website-id]');
+            assert.equal(script.length, 1);
+            assert.deepEqual({ ...script.attr() }, {
+                'src': 'https://cloud.umami.is/script.js',
+                'data-website-id': 'fixture-umami',
+                'data-domains': 'example.com',
+                'defer': ''
+            });
+        });
+
+        it('loads Matomo in <head> for the configured server and site, without cookies, and tracks PJAX navigations', () => {
+            const $ = site.$('/2024/03/01/hello-world/');
+            const code = $('head script').filter((i, el) => $(el).html().includes('_paq')).map((i, el) => $(el).html()).get();
+            assert.equal(code.length, 1);
+            assert.ok(code[0].includes('var u = "https://matomo.example.com/";'), code[0]);
+            assert.ok(code[0].includes('_paq.push([\'setSiteId\', "7"]);'), code[0]);
+            assert.ok(code[0].includes('_paq.push([\'disableCookies\']);'), code[0]);
+            assert.ok(code[0].includes('pjax:complete'), code[0]);
         });
 
         it('keeps every page a valid document with one <title>', () => {
@@ -253,6 +326,145 @@ describe('fixture site variants', function() {
                 assert.equal($('title').length, 1, file);
                 assert.equal($('head').length, 1, file);
             }
+        });
+    });
+
+    describe('Waline page view counter', () => {
+        let site;
+        const PAGEVIEW_JS = 'https://cdn.jsdelivr.net/npm/@waline/client@3.3.0/dist/pageview.js';
+        const scripts = $ => $('script').filter((i, el) => $(el).html().includes(PAGEVIEW_JS)).map((i, el) => $(el).html()).get();
+
+        before(() => { site = getSite('waline-pageview'); });
+
+        it('builds without errors or configuration warnings', () => {
+            assert.equal(site.status, 0);
+            assert.doesNotMatch(site.output, /^ERROR/m, site.output);
+            assert.doesNotMatch(site.output, /failed one or more checks|waline_pageview|Icarus cannot load/, site.output);
+        });
+
+        it('shows the views of a post in its metadata, and counts them with the server of the Waline comments', () => {
+            const $ = site.$('/2024/03/01/hello-world/');
+            const $counter = $('.article-meta .waline-pageview-count');
+            assert.equal($counter.length, 1);
+            assert.equal($counter.attr('data-path'), '/2024/03/01/hello-world/');
+            assert.equal($counter.parent().text(), `0${strings('en').plugin.visit_count.replace('%s', '').replace('&nbsp;', '\u00a0')}`);
+            const code = scripts($);
+            assert.equal(code.length, 1);
+            assert.ok(code[0].includes('serverURL: "https://waline.example.com",'), code[0]);
+            assert.ok(code[0].includes('path: window.location.pathname,'), code[0]);
+            // Counts the pages PJAX switches to too
+            assert.ok(code[0].includes('document.addEventListener(\'pjax:complete\', count);'), code[0]);
+        });
+
+        it('counts the views of the other pages without showing them', () => {
+            const $ = site.$('/');
+            assert.equal($('.waline-pageview-count').length, 0);
+            assert.equal(scripts($).length, 1);
+        });
+
+        it('changes nothing on a site without it', () => {
+            const html = getSite('default').read('2024/03/01/hello-world/index.html');
+            assert.ok(!html.includes('waline'), 'waline found in the default site');
+        });
+    });
+
+    describe('providers.cdn_overrides', () => {
+        it('loads the listed packages from their own provider or URL, and the others from the cdn provider', () => {
+            const site = getSite('cdn-overrides');
+            assert.equal(site.status, 0);
+            assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+            const $ = site.$('/2024/02/20/code-blocks/');
+            const sources = $('script[src^="http"]').map((i, el) => el.attribs.src).get();
+            assert.deepEqual(sources, [
+                'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
+                'https://static.example.com/js/clipboard.min.js',
+                'https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js'
+            ]);
+            assert.deepEqual($('link[href*="highlight.js"]').map((i, el) => el.attribs.href).get(), ['https://unpkg.com/highlight.js@11.11.1/styles/atom-one-light.css']);
+        });
+    });
+
+    describe('comment providers', () => {
+        let site;
+        const comments = name => site.$(`/2024/05/0${['giscus', 'giscus-light', 'utterances', 'beaudar', 'waline', 'artalk', 'cusdis'].indexOf(name) + 1}/comments-${name}/`)('#comments .card-content');
+        const script = $comments => $comments.find('script').html();
+
+        before(() => { site = getSite('pjax-comments'); });
+
+        it('build from the theme configuration and the front-matter without warnings', () => {
+            assert.equal(site.status, 0);
+            assert.doesNotMatch(site.output, /^ERROR/m, site.output);
+            assert.doesNotMatch(site.output, /failed one or more checks|Icarus cannot load/, site.output);
+        });
+
+        it('renders Artalk with its library and stylesheet, for the configured server and site', () => {
+            const $comments = comments('artalk');
+            assert.equal($comments.find('#artalk-thread').length, 1);
+            assert.equal($comments.find('link[rel="stylesheet"]').attr('href'), 'https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.css');
+            const code = script($comments);
+            assert.ok(code.includes('"https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.js"'), code);
+            assert.match(code, /Artalk\.init\(\{\s*el: '#artalk-thread',\s*server: "https:\/\/artalk\.example\.com",\s*site: "Icarus Fixture",/);
+            // The previous instance is destroyed when PJAX runs the script again
+            assert.ok(code.includes('window.__artalkInstance.destroy()'), code);
+        });
+
+        it('renders Cusdis with the page and the language of the configuration', () => {
+            const $comments = comments('cusdis');
+            assert.deepEqual({ ...$comments.find('#cusdis_thread').attr() }, {
+                'id': 'cusdis_thread',
+                'data-host': 'https://cusdis.com',
+                'data-app-id': 'fixture-app-id',
+                'data-page-id': '/2024/05/07/comments-cusdis/',
+                'data-page-url': 'http://localhost:4000/2024/05/07/comments-cusdis/',
+                'data-page-title': 'Comments cusdis'
+            });
+            const code = script($comments);
+            assert.ok(code.includes('["https://cusdis.com/js/widget/lang/zh-cn.js","https://cusdis.com/js/cusdis.es.js"]'), code);
+            assert.ok(code.includes('window.renderCusdis(element)'), code);
+        });
+
+        it('renders Beaudar, Utterances and Giscus as scripts that add their client to the page', () => {
+            for (const [name, client, element, attrs] of [
+                ['beaudar', 'https://beaudar.lipk.org/client.js', '#beaudar-thread', '{"repo":"fixture-owner/fixture-comments","branch":"main","issue-term":"title","crossorigin":"anonymous"}'],
+                ['utterances', 'https://utteranc.es/client.js', '#utterances-thread', '{"repo":"fixture-owner/fixture-comments","issue-term":"pathname","crossorigin":"anonymous"}'],
+                // Giscus puts its iframe into .giscus, wherever its script is
+                ['giscus', 'https://giscus.app/client.js', 'head', '"data-repo":"fixture-owner/fixture-comments","data-repo-id":"fixture-repo-id","data-category-id":"fixture-category-id"']
+            ]) {
+                const $comments = comments(name);
+                const code = script($comments);
+                assert.equal($comments.find('script[src]').length, 0, `${name}: the client is added by the inline script`);
+                assert.equal($comments.find(name === 'giscus' ? '.giscus#giscus-thread' : element).length, 1, name);
+                assert.ok(code.includes(`script.src = "${client}";`), code);
+                assert.ok(code.includes(`document.querySelector(${JSON.stringify(element)})`), code);
+                assert.ok(code.includes(attrs), code);
+            }
+        });
+
+        it('chooses the theme of Giscus, Utterances and Beaudar for dark pages in the browser', () => {
+            // isDark() of hexo-component-inferno: data-appearance="dark", or "auto" with a dark system color scheme
+            const isDark = /\(function \(appearance\) \{\s*return appearance === 'dark' \|\| \(appearance === 'auto' && [^}]+\}\)\(document\.documentElement\.getAttribute\('data-appearance'\)\)/.source;
+            for (const [name, attribute, dark, light] of [
+                ['giscus', 'data-theme', 'dark_dimmed', 'light'],
+                ['utterances', 'theme', 'photon-dark', 'github-light'],
+                ['beaudar', 'theme', 'icy-dark', 'github-light']
+            ]) {
+                assert.match(script(comments(name)), new RegExp(`attrs\\["${attribute}"\\] = ${isDark} \\? "${dark}" : "${light}";`), name);
+            }
+        });
+
+        it('initialises Waline with a classic script, which PJAX runs again, following the appearance', () => {
+            const $comments = comments('waline');
+            const $script = $comments.find('script');
+            assert.equal($script.attr('type'), undefined);
+            const code = $script.html();
+            assert.match(code, /^import\("https:\/\/cdn\.jsdelivr\.net\/npm\/@waline\/client@3\.3\.0\/dist\/waline\.js"\)\.then\(/);
+            assert.ok(code.includes('window.__walineInstance.destroy()'), code);
+            assert.ok(code.includes('path: window.location.pathname,'), code);
+            assert.match(code, /dark: \(function \(appearance\) \{[^}]+\}\)\(document\.documentElement\.getAttribute\('data-appearance'\)\) === 'auto' \? 'auto' : 'html\[data-appearance="dark"\]',/);
+        });
+
+        it('keeps the comments of the theme configuration on posts without comment front-matter', () => {
+            assert.equal(site.$('/2024/03/01/hello-world/')('#comments .giscus#giscus-thread').length, 1);
         });
     });
 

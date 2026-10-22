@@ -145,6 +145,113 @@ describe('include/schema', () => {
         });
     });
 
+    describe('providers.cdn_overrides', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = cdn_overrides => schema.validate({ version: '5.1.0', providers: { cdn: 'jsdelivr', cdn_overrides } }) === true;
+
+        it('accepts CDN provider names and URL templates by package name, or nothing', () => {
+            assert.ok(valid({ 'jquery': 'unpkg', 'highlight.js': '[cdnjs]https://cdn.example.com/${package}/${version}/${filename}', '@waline/client': 'https://example.com/waline.js' }));
+            assert.ok(valid({}));
+            assert.ok(valid(null));
+            assert.ok(schema.validate({ version: '5.1.0', providers: { cdn: 'jsdelivr' } }) === true);
+        });
+
+        for (const [description, value] of [
+            ['a provider name for every package', 'unpkg'],
+            ['a list', ['jquery', 'unpkg']],
+            ['an empty provider', { jquery: '' }],
+            ['a provider that is not a string', { jquery: 42 }],
+            ['nested packages', { jquery: { cdn: 'unpkg' } }]
+        ]) {
+            it(`rejects ${description}`, () => {
+                assert.ok(!valid(value), JSON.stringify(value));
+            });
+        }
+
+        it('is an empty mapping in the generated configuration, documented with examples', () => {
+            const yamlText = schema.getDefaultValue().toYaml();
+            assert.deepEqual(yaml.parse(yamlText).providers.cdn_overrides, {});
+            assert.match(yamlText, /# +jquery: unpkg\n/);
+            assert.match(yamlText, /# +clipboard: https:\/\/example\.com\/js\/clipboard\.min\.js\n\s*cdn_overrides: \{\}\n/);
+        });
+    });
+
+    describe('plugins.waline_pageview', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = waline_pageview => schema.validate({ version: '5.1.0', plugins: { waline_pageview } }) === true;
+
+        it('accepts true, false, or the URL of a server', () => {
+            for (const value of [true, false, {}, { server_url: 'https://waline.example.com' }, { server_url: null }]) {
+                assert.ok(valid(value), JSON.stringify(value));
+            }
+        });
+
+        for (const value of ['https://waline.example.com', 1, { server_url: 42 }, ['https://waline.example.com']]) {
+            it(`rejects ${JSON.stringify(value)}`, () => {
+                assert.ok(!valid(value));
+            });
+        }
+
+        it('is disabled in the generated configuration, which warns against the pageview option of Waline', () => {
+            const yamlText = schema.getDefaultValue().toYaml();
+            assert.equal(yaml.parse(yamlText).plugins.waline_pageview, false);
+            assert.match(yamlText, /# Waline page view counter.*Do not also enable the pageview option of the Waline comments.*\n(\s*#.*\n)*\s*waline_pageview: false\n/);
+        });
+    });
+
+    describe('comment', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = comment => schema.validate({ version: '5.1.0', comment }) === true;
+
+        it('accepts Artalk, Cusdis and Beaudar with their required options', () => {
+            assert.ok(valid({ type: 'artalk', server: 'https://artalk.example.com' }));
+            assert.ok(valid({ type: 'artalk', server: 'https://artalk.example.com', site: 'Blog', locale: 'auto', dark_mode: 'auto' }));
+            assert.ok(valid({ type: 'artalk', server: 'https://artalk.example.com', dark_mode: false }));
+            assert.ok(valid({ type: 'cusdis', app_id: 'fixture' }));
+            assert.ok(valid({ type: 'cusdis', app_id: 'fixture', host: 'https://cusdis.example.com', theme: 'auto', lang: 'zh-cn' }));
+            assert.ok(valid({ type: 'beaudar', repo: 'user/repo', issue_term: 'pathname' }));
+            assert.ok(valid({ type: 'beaudar', repo: 'user/repo', issue_number: 1, branch: 'main', label: 'comment', theme: 'github-light', dark_theme: 'icy-dark' }));
+        });
+
+        for (const [description, comment] of [
+            ['Artalk without a server', { type: 'artalk', site: 'Blog' }],
+            ['Artalk with a dark mode that is a number', { type: 'artalk', server: 'https://artalk.example.com', dark_mode: 1 }],
+            ['Cusdis without an app ID', { type: 'cusdis', host: 'https://cusdis.com' }],
+            ['Cusdis with an unknown theme', { type: 'cusdis', app_id: 'fixture', theme: 'blue' }],
+            ['Beaudar without a repository', { type: 'beaudar', issue_term: 'pathname' }],
+            ['Beaudar without an issue term or number', { type: 'beaudar', repo: 'user/repo' }],
+            ['Beaudar with an issue number that is not an integer', { type: 'beaudar', repo: 'user/repo', issue_number: 'one' }],
+            ['an unknown comment type', { type: 'no-such-comment' }]
+        ]) {
+            it(`rejects ${description}`, () => {
+                assert.ok(!valid(comment), JSON.stringify(comment));
+            });
+        }
+
+        it('accepts a theme for dark pages for Giscus and Utterances', () => {
+            const giscus = { type: 'giscus', repo: 'user/repo', repoId: 'R', category: 'C', categoryId: 'C', mapping: 'pathname' };
+            assert.ok(valid({ ...giscus, theme: 'light', darkTheme: 'dark_dimmed' }));
+            assert.ok(!valid({ ...giscus, darkTheme: 42 }));
+            const utterances = { type: 'utterances', repo: 'user/repo', issue_term: 'pathname' };
+            assert.ok(valid({ ...utterances, theme: 'github-light', dark_theme: 'photon-dark' }));
+            assert.ok(!valid({ ...utterances, dark_theme: 'no-such-theme' }));
+        });
+
+        it('keeps Disqus as the comment plugin of the generated configuration', () => {
+            const defaults = yaml.parse(schema.getDefaultValue().toYaml());
+            assert.deepEqual(defaults.comment, { type: 'disqus', shortname: '' });
+        });
+    });
+
     it('accepts the test fixture theme configuration', () => {
         const cfg = yaml.parse(fs.readFileSync(path.join(FIXTURE_SITE, '_config.icarus.yml'), 'utf8'));
         assert.equal(loadSchema().validate(cfg), true);

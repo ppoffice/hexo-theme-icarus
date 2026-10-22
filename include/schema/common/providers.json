@@ -10,6 +10,15 @@
             "default": "jsdelivr",
             "nullable": true
         },
+        "cdn_overrides": {
+            "type": "object",
+            "description": "CDN providers (same names as cdn) or URL templates of the packages that do not use the cdn provider above, by package name, e.g.\n    jquery: unpkg\n    highlight.js: https://cdn.example.com/${package}@${version}/${filename}\nA URL without ${package}, ${version} or ${filename} is used as is for every file of the package, so only use it for packages that load a single file, e.g.\n    clipboard: https://example.com/js/clipboard.min.js",
+            "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+            },
+            "nullable": true
+        },
         "fontcdn": {
             "type": "string",
             "description": "Name or URL template of the webfont CDN provider",

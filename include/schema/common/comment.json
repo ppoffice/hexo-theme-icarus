@@ -42,6 +42,15 @@
         },
         {
             "$ref": "/comment/twikoo.json"
+        },
+        {
+            "$ref": "/comment/artalk.json"
+        },
+        {
+            "$ref": "/comment/beaudar.json"
+        },
+        {
+            "$ref": "/comment/cusdis.json"
         }
     ]
 }

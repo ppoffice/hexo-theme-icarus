@@ -7,10 +7,16 @@ const logger = createLogger.default();
 module.exports = class extends Component {
     render() {
         const { config, page, helper } = this.props;
-        const { __ } = helper;
-        const { comment } = config;
+        const { __, url_for } = helper;
+        let { comment } = config;
         if (!comment || typeof comment.type !== 'string') {
             return null;
+        }
+        // Without page_key, Artalk uses the path of the URL when it is initialized. PJAX only
+        // changes the URL after running the scripts of the new page, which initialize Artalk right
+        // away once its library is loaded, so the comments of the previous page would be shown.
+        if (comment.type === 'artalk' && !comment.page_key) {
+            comment = Object.assign({}, comment, { page_key: url_for(page.path) });
         }
 
         return <div class="card" id="comments">

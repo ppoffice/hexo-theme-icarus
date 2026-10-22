@@ -40,6 +40,9 @@
         "mathjax": {
             "$ref": "/plugin/mathjax.json"
         },
+        "matomo": {
+            "$ref": "/plugin/matomo.json"
+        },
         "outdated_browser": {
             "$ref": "/plugin/outdated_browser.json"
         },
@@ -54,6 +57,12 @@
         },
         "twitter_conversion_tracking": {
             "$ref": "/plugin/twitter_conversion_tracking.json"
+        },
+        "umami": {
+            "$ref": "/plugin/umami.json"
+        },
+        "waline_pageview": {
+            "$ref": "/plugin/waline_pageview.json"
         }
     }
 }

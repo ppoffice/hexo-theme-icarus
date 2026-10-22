@@ -27,6 +27,7 @@ widget:
     subscribe: 'Abone ol'
     adsense: 'İlan'
     followit: 'follow.it'
+    more: 'Daha fazla'
 article:
     created_at: '%s&nbsp;yayınlandı'
     updated_at: '%s&nbsp;güncellendi'

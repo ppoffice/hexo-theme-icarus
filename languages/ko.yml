@@ -27,6 +27,7 @@ widget:
     subscribe: '구독'
     adsense: '광고'
     followit: 'follow.it'
+    more: '더 보기'
 article:
     created_at: '%s&nbsp;게시 됨'
     updated_at: '%s&nbsp;업데이트 됨'

@@ -164,7 +164,7 @@ describe('include/config (theme configuration check, generation and migration)',
 
         describe('Valine privacy warning', () => {
             const valine = { type: 'valine', app_id: 'fixture', app_key: 'fixture' };
-            const warning = /Valine exposes commenters' email and IP addresses[\s\S]*issues\/788/;
+            const warning = /Valine exposes commenters' email addresses to anyone[\s\S]*issues\/788/;
 
             it('warns when Valine is the configured comment plugin', () => {
                 env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
@@ -172,6 +172,12 @@ describe('include/config (theme configuration check, generation and migration)',
                 assert.equal(exitCode, null, output);
                 assert.match(output, warning);
                 assert.doesNotMatch(output, /failed one or more checks/, output);
+            });
+
+            it('only mentions IP addresses when record_ip is on', () => {
+                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: { ...valine, record_ip: true } } });
+                const { output } = capture(() => checkConfig(env.hexo));
+                assert.match(output, /Valine exposes commenters' email and IP addresses to anyone[\s\S]*issues\/788/);
             });
 
             it('does not warn for another comment plugin', () => {
@@ -190,6 +196,62 @@ describe('include/config (theme configuration check, generation and migration)',
                 env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
                 const { output } = withArgv(['--icarus-dont-check-config'], () => capture(() => checkConfig(env.hexo)));
                 assert.doesNotMatch(output, /Valine/);
+            });
+        });
+
+        describe('waline_pageview warnings', () => {
+            const waline = { type: 'waline', server_url: 'https://waline.example.com' };
+            const twice = /Both the waline_pageview plugin and the pageview option of the Waline comments count page views[\s\S]*comment\.pageview/;
+            const noServer = /The waline_pageview plugin is enabled, but has no Waline server/;
+            const check = (comment, plugins) => {
+                // Some tests check several configurations
+                if (env) {
+                    env.cleanup();
+                }
+                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment, plugins } });
+                return capture(() => checkConfig(env.hexo));
+            };
+
+            for (const pageview of [true, '.pageview-count']) {
+                it(`warns that views are counted twice with the pageview option ${JSON.stringify(pageview)} of the Waline comments`, () => {
+                    const { exitCode, output } = check({ ...waline, pageview }, { waline_pageview: true });
+                    assert.equal(exitCode, null, output);
+                    assert.match(output, twice);
+                    assert.doesNotMatch(output, noServer);
+                    assert.doesNotMatch(output, /failed one or more checks/, output);
+                });
+            }
+
+            it('also warns with a server of its own', () => {
+                assert.match(check({ ...waline, pageview: true }, { waline_pageview: { server_url: 'https://other.example.com' } }).output, twice);
+            });
+
+            it('warns when it has no server', () => {
+                for (const [comment, plugin] of [
+                    [{ type: 'disqus', shortname: 'fixture' }, true],
+                    [undefined, {}],
+                    [{ type: 'waline' }, { server_url: null }]
+                ]) {
+                    const { output } = check(comment, { waline_pageview: plugin });
+                    assert.match(output, noServer, JSON.stringify([comment, plugin]));
+                    assert.doesNotMatch(output, twice);
+                }
+            });
+
+            it('does not warn with the server of the plugin or the Waline comments, without their pageview option', () => {
+                for (const [comment, plugin] of [
+                    [waline, true],
+                    [{ ...waline, pageview: false }, true],
+                    [{ type: 'disqus', shortname: 'fixture' }, { server_url: 'https://waline.example.com' }]
+                ]) {
+                    const { output } = check(comment, { waline_pageview: plugin });
+                    assert.doesNotMatch(output, /waline_pageview/, output);
+                }
+            });
+
+            it('does not warn when the plugin is disabled', () => {
+                assert.doesNotMatch(check({ ...waline, pageview: true }, { waline_pageview: false }).output, /waline_pageview/);
+                assert.doesNotMatch(check({ ...waline, pageview: true }).output, /waline_pageview/);
             });
         });
 

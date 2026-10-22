@@ -37,7 +37,16 @@
             newLinks.forEach(link => oldHead.insertBefore(link.cloneNode(), anchor));
             oldLinks.forEach(link => link.remove());
         }
+    }
 
+    /**
+     * Switch the title and the appearance of the page. <head> itself is not one of the selectors
+     * because PJAX runs the scripts of the switched elements again: the analytics and other scripts
+     * of <head> would run again, counting page views twice and adding their listeners again.
+     */
+    function switchHead(oldTitle, newTitle, options) {
+        oldTitle.textContent = newTitle.textContent;
+        switchAppearance(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, options);
         this.onSwitch();
     }
 
@@ -54,7 +63,6 @@
                 selectors: [
                     // The stylesheets of <head> are switched with the appearance: their number varies.
                     '[data-pjax]:not(link)',
-                    'head',
                     '.navbar-logo',
                     '.footer-logo',
                     '.pjax-reload',
@@ -64,12 +72,13 @@
                     '.navbar-end',
                     '.searchbox link',
                     '.searchbox script',
-                    '#back-to-top',
-                    '#comments link',
-                    '#comments script'
+                    // The comments are switched, and their scripts run again, with .columns. Selecting
+                    // their elements too would make PJAX fail and reload the page when the numbers
+                    // differ: pages without comments, or comment scripts removed by PJAX once run.
+                    '#back-to-top'
                 ],
                 switches: {
-                    'head': switchAppearance,
+                    'head title': switchHead,
                     '.navbar-logo': switchContent,
                     '.footer-logo': switchContent
                 },
