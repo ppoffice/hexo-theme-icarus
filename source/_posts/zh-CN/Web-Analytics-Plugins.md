@@ -13,7 +13,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 5支持的网站统计与分析插件的安装配置。
+本文介绍Icarus 6支持的网站统计与分析插件的安装配置。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -79,7 +79,7 @@ providers:
 
 **安装指南**
 
-1. 登录[Bing - Webmaster Tools](https://www.bing.com/toolbox/webmaster/).
+1. 登录[Bing - Webmaster Tools](https://www.bing.com/toolbox/webmaster/)。
    然后，选择“手动添加网站”(Add your site manually)并输入你网站的URL。
    点击“添加”(Add)继续。
 
@@ -103,7 +103,8 @@ providers:
 
 **安装指南**
 
-1. 将`plugins` > `busuanzi`设置为`true`来开启不蒜子访客计数器并在网页尾部和每篇博文的头部展示访问次数。
+1. 将`plugins` > `busuanzi`设置为`true`来开启[不蒜子网页计数器](https://busuanzi.ibruce.info/)。
+   它会在每篇博文的头部展示当前文章的浏览量，并在每个网页的尾部展示全站的访客数。
 
     {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
@@ -111,13 +112,19 @@ providers:
     {% endcodeblock %}
 
 
-## CNZZ统计
+## 友盟+（原CNZZ）统计
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>CNZZ统计现在由友盟+提供，相关页面可能与下面的步骤和截图有所不同。
+</div>
+</article>
 
 **安装指南**
 
 1. 登录[友盟+](https://www.umeng.com/)。
    在友盟+工作台首页点击“创建新应用” > “Web应用”。
-   然后输入“网站名称”，“网站域名”，“网站首页”等站点信息信息。
+   然后输入“网站名称”、“网站域名”、“网站首页”等站点信息。
    完成后点击“确认添加站点”。
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/cnzz-add-site.png 360 '"添加站点 - CNZZ" "添加站点 - CNZZ"' %}
@@ -149,52 +156,49 @@ providers:
 
 **安装指南**
 
-1. 登录[Google Analytics](https://analytics.google.com/)并点击左侧的”管理“(Admin)进入管理界面。
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>Google已经用Google Analytics 4（GA4）取代了Universal Analytics，以<code>UA-</code>开头的旧跟踪ID已不再收集数据。请改用GA4媒体资源的衡量ID（<code>G-XXXXXXXXXX</code>）。Google Analytics的页面时有变化，下文中的名称可能与你看到的略有不同。
+</div>
+</article>
 
-2. 在管理界面上点击”创建资产“(Create Property)按钮，选择“测量的应用类型”(What do you want to measure?)为Web。
-   然后点击”继续“(Continue)按钮。
+1. 登录[Google Analytics](https://analytics.google.com/)并打开“管理”(Admin)页面。
+   新建一个媒体资源(Property)，填写媒体资源名称、报告时区、币种以及你的业务信息。
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-analytics-create-property.png 360 '"创建资产 - Google Analytics" "创建资产 - Google Analytics"' %}
-   <br>
+2. 在提示开始收集数据时，选择“网站”(Web)平台。
+   填写网站的网址和名称，创建网站数据流(Web data stream)。
 
-3. 然后，填写“网站名称”(Website Name)，“URL地址”(Website URL)，“行业分类”(Industry Category)，以及“报告时区”
-   (Reporting Time Zone)等信息。
-   点击”创建“(Create)按钮完成资产创建。
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-analytics-property-setup.png 360 '"资产设置 - Google Analytics" "资产设置 - Google Analytics"' %}
-   <br>
-
-4. 在”追踪代码“(Tracking Code)界面上找到"Tracking ID"的值，例如"UA-12345678-0".
+3. 在网站数据流的详情中找到“衡量ID”(Measurement ID)，例如`G-XXXXXXXXXX`。
+   之后你也可以在“管理”页面中该媒体资源的“数据流”(Data streams)列表里找到它。
    将其填写到主题配置的`plugins` > `google_analytics` > `tracking_id`即可开启Google Analytics插件。
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-analytics-get-code.png 360 '"获取代码 - Google Analytics" "获取代码 - Google Analytics"' %}
-   <br>
 
     {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         google_analytics:
-            tracking_id: UA-12345678-0
+            tracking_id: G-XXXXXXXXXX
     {% endcodeblock %}
+
+   Icarus会用这个ID在每个网页的`<head>`中加入Google代码(gtag.js)，因此你不需要复制Google Analytics给出的代码。
 
 
 ## Hotjar
 
 **安装指南**
 
-1. 登录[Hotjar](https://www.hotjar.com/)，点击页面左上角的➕(加号) > ”添加新站点“(Add new site)链接。
+1. 登录[Hotjar](https://www.hotjar.com/)，点击页面左上角的➕(加号) > “添加新站点”(Add new site)链接。
 
-2. 填写”网站地址“(WEBSITE)，”站点类型“(SITE TYPE)，和”站点所有者“(SITE OWNER)，然后点击”添加站点“(Add Site)按钮。
+2. 填写“网站地址”(WEBSITE)，“站点类型”(SITE TYPE)，和“站点所有者”(SITE OWNER)，然后点击“添加站点”(Add Site)按钮。
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/hotjar-new-site.png 360 '"新建站点 - Hotjar" "新建站点 - Hotjar"' %}
    <br>
 
-3. 在重定向到的”站点&组织“(Sites & Organizations)页面找到新建的站点。
-   点击右侧的”追踪代码“(Tracking Code)按钮。
+3. 在重定向到的“站点&组织”(Sites & Organizations)页面找到新建的站点。
+   点击右侧的“追踪代码”(Tracking Code)按钮。
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/hotjar-site-list.png 360 '"站点列表 - Hotjar" "站点列表 - Hotjar"' %}
    <br>
    
-4. 复制弹出对话框中"Site ID"的值(如"1234567")到主题配置的`plugins` > `hotjar` > `site_id`来启用Hotjar插件。
+4. 复制弹出对话框中“Site ID”的值(如`1234567`)到主题配置的`plugins` > `hotjar` > `site_id`来启用Hotjar插件。
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/hotjar-get-code.png 360 '"获取代码 - Hotjar" "获取代码 - Hotjar"' %}
    <br>
@@ -204,6 +208,50 @@ providers:
         hotjar:
             site_id: 1234567
     {% endcodeblock %}
+
+
+## Matomo
+
+**安装指南**
+
+1. 在你自己的服务器上部署[Matomo](https://matomo.org/)，或者使用Matomo Cloud，然后在其中添加你的网站。
+
+2. 在Matomo中找到你网站的JavaScript跟踪代码。
+   分别将其中`u`的值(Matomo服务器的地址)和传给`setSiteId`的值复制到主题配置的`plugins` > `matomo` > `url`和
+   `plugins` > `matomo` > `site_id`中。
+   这两项均为必填项。
+
+   例如，如下的Matomo跟踪代码：
+
+   {% codeblock "Matomo跟踪代码" lang:html %}
+   <script>
+     var _paq = window._paq = window._paq || [];
+     _paq.push(['trackPageView']);
+     _paq.push(['enableLinkTracking']);
+     (function() {
+       var u="https://matomo.example.com/";
+       _paq.push(['setTrackerUrl', u+'matomo.php']);
+       _paq.push(['setSiteId', '1']);
+       ...
+     })();
+   </script>
+   {% endcodeblock %}
+
+   对应的主题配置为：
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   plugins:
+       matomo:
+           # Matomo服务器的地址，如https://matomo.example.com/或https://example.matomo.cloud/
+           url: https://matomo.example.com/
+           # 你的网站在Matomo中的ID
+           site_id: 1
+           # 可选项。设为true时不使用Cookie跟踪访客，默认为false
+           disable_cookies: false
+   {% endcodeblock %}
+
+   Icarus会从你的Matomo服务器加载`matomo.js`。
+   开启<a href="{% post_path zh-CN/Other-Plugins %}#PJAX">PJAX</a>时，访客每切换到一个页面都会记为一次新的浏览。
 
 
 ## Statcounter
@@ -216,7 +264,7 @@ providers:
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/statcounter-projects.png 360 '"项目 - Statcounter" "项目 - Statcounter"' %}
    <br>
 
-2. 在“添加页面”(Add Project)页面上填写网站网址和项目标题。
+2. 在“添加项目”(Add Project)页面上填写网站网址和项目标题。
    如有需要，调整其他的项目设置。
    然后，点击“添加项目”(Add Project)按钮。
 
@@ -259,7 +307,13 @@ providers:
     {% endcodeblock %}
 
 
-## Twitter转化跟踪
+## Twitter（X）转化跟踪
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>Twitter已更名为X，下面的链接和代码是在更名前编写的，现在可能已有变化。
+</div>
+</article>
 
 **安装指南**
 
@@ -290,6 +344,70 @@ providers:
       twitter_conversion_tracking:
          pixel_id: abcdef
    {% endcodeblock %}
+
+
+## Umami
+
+**安装指南**
+
+1. 在Umami Cloud或者你自己的Umami服务器上，将你的网站添加到[Umami](https://umami.is/)中。
+
+2. 在Umami中找到你网站的跟踪代码。
+   将其中`data-website-id`的值复制到主题配置的`plugins` > `umami` > `website_id`中。
+   此项为必填项。
+   如果你自己部署了Umami，还需要将跟踪脚本的`src`复制到`plugins` > `umami` > `script_url`中。
+
+   例如，如下的Umami跟踪代码：
+
+   {% codeblock "Umami跟踪代码" lang:html %}
+   <script defer src="https://umami.example.com/script.js" data-website-id="12345678-abcd-1234-abcd-123456789abc"></script>
+   {% endcodeblock %}
+
+   对应的主题配置为：
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   plugins:
+       umami:
+           # 你的网站在Umami中的ID
+           website_id: 12345678-abcd-1234-abcd-123456789abc
+           # 可选项。Umami跟踪脚本的地址，默认为https://cloud.umami.is/script.js(Umami Cloud)
+           script_url: https://umami.example.com/script.js
+           # 可选项。只统计这些域名上的访问，多个域名用逗号分隔，如example.com,www.example.com
+           domains:
+   {% endcodeblock %}
+
+   访客通过<a href="{% post_path zh-CN/Other-Plugins %}#PJAX">PJAX</a>切换到的页面，Umami同样会统计。
+
+
+## Waline浏览量统计
+
+**安装指南**
+
+Waline除了提供评论功能，也可以[统计每个页面的浏览量](https://waline.js.org/guide/features/pageview.html)。
+若要使用Waline统计浏览量并在每篇文章的头部显示浏览次数，请将主题配置中`plugins` > `waline_pageview`的值设置为`true`。
+此时浏览量统计会使用<a href="{% post_path zh-CN/Comment-Plugins %}#Waline">Waline评论插件</a>的`server_url`，
+这要求`comment` > `type`为`waline`：
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    waline_pageview: true
+{% endcodeblock %}
+
+如果你使用的是其他评论插件，或者想用另一个Waline服务端统计浏览量，请在`plugins` > `waline_pageview` > `server_url`中填写
+Waline服务端的地址：
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    waline_pageview:
+        server_url: https://your-domain.vercel.app
+{% endcodeblock %}
+
+需要注意的是：
+
+- 不要同时开启Waline评论插件的`pageview`设置，否则每次浏览都会被统计两次。
+  如果两者同时开启，Icarus会在生成网站时输出警告。
+- 如果两处都没有设置`server_url`，浏览次数不会显示，Icarus也会在生成网站时输出警告。
+- 浏览量按页面URL的路径统计。访客通过<a href="{% post_path zh-CN/Other-Plugins %}#PJAX">PJAX</a>切换到的页面也会被统计。
 
 
 <article class="message message-immersive is-warning">

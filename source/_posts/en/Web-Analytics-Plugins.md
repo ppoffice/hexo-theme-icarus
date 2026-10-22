@@ -9,7 +9,7 @@ language: en
 toc: true
 ---
 
-This article covers web analytics plugins supported by Icarus 5.
+This article covers web analytics plugins supported by Icarus 6.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -105,8 +105,9 @@ Use them with caution.
 
 **Installation Guide**
 
-1. Set the `plugins` > `busuanzi` to `true` to enable [BuSuanZi web counter](https://busuanzi.ibruce.info/) 
-   and display the number of visitors on the header of each blog post and the bottom of the page.
+1. Set the `plugins` > `busuanzi` to `true` to enable [BuSuanZi web counter](https://busuanzi.ibruce.info/).
+   It displays the number of views of the current post on the header of each blog post, and the number of
+   unique visitors of the whole site at the bottom of each page.
 
     {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
@@ -114,7 +115,14 @@ Use them with caution.
     {% endcodeblock %}
 
 
-## CNZZ Statistics
+## CNZZ Statistics (Umeng+)
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>CNZZ is now provided as part of Umeng+, and its pages may have
+changed since the following steps and screenshots were made.
+</div>
+</article>
 
 **Installation Guide**
 
@@ -153,32 +161,34 @@ Use them with caution.
 
 **Installation Guide**
 
-1. Log into [Google Analytics](https://analytics.google.com/) and click the "Admin" on the left side of the user dashboard.
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>Google has replaced Universal Analytics with Google Analytics 4 (GA4).
+Old tracking IDs that start with <code>UA-</code> no longer collect data.
+Use the Measurement ID (<code>G-XXXXXXXXXX</code>) of a GA4 property instead.
+The Google Analytics pages change from time to time, so the names below may differ slightly from what you see.
+</div>
+</article>
 
-2. On the admin page, click the "Create Property" button and set "What do you want to measure?" to "Web".
-   Click the "Continue" button after that.
+1. Log into [Google Analytics](https://analytics.google.com/) and open the "Admin" page.
+   Create a new property, and fill in the property name, reporting time zone, currency, and your business details.
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-analytics-create-property.png 360 '"Create Property - Google Analytics" "Create Property - Google Analytics"' %}
-   <br>
+2. When asked to start collecting data, choose the "Web" platform.
+   Enter the URL and a name for your site, and create the web data stream.
 
-3. Then, fill in the Website Name, Website URL, Industry Category, and Reporting Time Zone.
-   Click the "Create" button to finish the property creation.
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-analytics-property-setup.png 360 '"Property Setup - Google Analytics" "Property Setup - Google Analytics"' %}
-   <br>
-
-3. Find the value of "Tracking ID", e.g., "UA-12345678-0", on the "Tracking Code" page. 
-   Set it to the `plugins` > 
-   `google_analytics` > `tracking_id` in the theme configurations to enable the Google Analytics plugin.
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-analytics-get-code.png 360 '"Get Code - Google Analytics" "Get Code - Google Analytics"' %}
-   <br>
+3. Find the "Measurement ID", e.g., `G-XXXXXXXXXX`, in the details of the web data stream.
+   You can also find it later in the "Data streams" list of the property on the "Admin" page.
+   Set it to the `plugins` > `google_analytics` > `tracking_id` in the theme configurations to enable the Google
+   Analytics plugin.
 
     {% codeblock _config.icarus.yml lang:yaml %}
     plugins:
         google_analytics:
-            tracking_id: UA-12345678-0
+            tracking_id: G-XXXXXXXXXX
     {% endcodeblock %}
+
+   Icarus adds the Google tag (gtag.js) with this ID to the `<head>` of every page, so you do not need to copy
+   the tag that Google Analytics shows you.
 
 
 ## Hotjar
@@ -209,6 +219,51 @@ Use them with caution.
         hotjar:
             site_id: 1234567
     {% endcodeblock %}
+
+
+## Matomo
+
+**Installation Guide**
+
+1. Set up [Matomo](https://matomo.org/), either on your own server or with Matomo Cloud, and add your site to it.
+
+2. Find the JavaScript tracking code of your site in Matomo.
+   Copy the value of `u` (the URL of your Matomo server) and the value passed to `setSiteId` to `plugins` >
+   `matomo` > `url` and `plugins` > `matomo` > `site_id` in the theme configurations, respectively.
+   Both settings are required.
+
+   For example, the following Matomo tracking code:
+
+   {% codeblock "Matomo tracking code" lang:html %}
+   <script>
+     var _paq = window._paq = window._paq || [];
+     _paq.push(['trackPageView']);
+     _paq.push(['enableLinkTracking']);
+     (function() {
+       var u="https://matomo.example.com/";
+       _paq.push(['setTrackerUrl', u+'matomo.php']);
+       _paq.push(['setSiteId', '1']);
+       ...
+     })();
+   </script>
+   {% endcodeblock %}
+
+   maps to the following theme configuration:
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   plugins:
+       matomo:
+           # URL of your Matomo server, such as https://matomo.example.com/ or https://example.matomo.cloud/
+           url: https://matomo.example.com/
+           # ID of your site in Matomo
+           site_id: 1
+           # Optional. Set to true to track visitors without cookies. Defaults to false.
+           disable_cookies: false
+   {% endcodeblock %}
+
+   Icarus loads `matomo.js` from your Matomo server.
+   When <a href="{% post_path en/Other-Plugins %}#PJAX">PJAX</a> is enabled, every page that visitors switch to is
+   tracked as a new page view.
 
 
 ## Statcounter
@@ -264,7 +319,14 @@ Use them with caution.
    {% endcodeblock %}
 
 
-## Twitter Conversion Tracking
+## Twitter (X) Conversion Tracking
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>Twitter has been renamed X.
+The following link and code were made for Twitter and may have changed since then.
+</div>
+</article>
 
 **Installation Guide**
 
@@ -296,6 +358,75 @@ Use them with caution.
       twitter_conversion_tracking:
          pixel_id: abcdef
    {% endcodeblock %}
+
+
+## Umami
+
+**Installation Guide**
+
+1. Add your site to [Umami](https://umami.is/), either on Umami Cloud or on your own Umami server.
+
+2. Find the tracking code of your site in Umami.
+   Copy the value of `data-website-id` to `plugins` > `umami` > `website_id` in the theme configurations.
+   This setting is required.
+   If you host Umami yourself, also copy the `src` of the script to `plugins` > `umami` > `script_url`.
+
+   For example, the following Umami tracking code:
+
+   {% codeblock "Umami tracking code" lang:html %}
+   <script defer src="https://umami.example.com/script.js" data-website-id="12345678-abcd-1234-abcd-123456789abc"></script>
+   {% endcodeblock %}
+
+   maps to the following theme configuration:
+
+   {% codeblock _config.icarus.yml lang:yaml %}
+   plugins:
+       umami:
+           # ID of your site in Umami
+           website_id: 12345678-abcd-1234-abcd-123456789abc
+           # Optional. URL of the Umami tracker script. Defaults to https://cloud.umami.is/script.js (Umami Cloud).
+           script_url: https://umami.example.com/script.js
+           # Optional. Only track the visits on these comma-separated domains, e.g., example.com,www.example.com
+           domains:
+   {% endcodeblock %}
+
+   Umami also tracks the pages that visitors switch to with
+   <a href="{% post_path en/Other-Plugins %}#PJAX">PJAX</a>.
+
+
+## Waline Page View Counter
+
+**Installation Guide**
+
+Waline can [count the views of each page](https://waline.js.org/en/guide/features/pageview.html) as well as
+host comments.
+To count page views with Waline and display the number of views on the header of each post, set
+`plugins` > `waline_pageview` to `true` in the theme configurations.
+The counter then uses the `server_url` of the
+<a href="{% post_path en/Comment-Plugins %}#Waline">Waline comment plugin</a>, which requires `comment` > `type` to be
+`waline`:
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    waline_pageview: true
+{% endcodeblock %}
+
+If you use another comment plugin, or want to count page views with a different Waline server, set the URL of your
+Waline server in `plugins` > `waline_pageview` > `server_url` instead:
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    waline_pageview:
+        server_url: https://your-domain.vercel.app
+{% endcodeblock %}
+
+Some notes on this plugin:
+
+- Do not also turn on the `pageview` setting of the Waline comment plugin, or each page view is counted twice.
+  Icarus prints a warning when you generate your site with both of them on.
+- If neither `server_url` is set, the counter is not shown, and Icarus prints a warning when you generate your site.
+- Pages are counted by the path of their URLs, and the pages that visitors switch to with
+  <a href="{% post_path en/Other-Plugins %}#PJAX">PJAX</a> are counted too.
 
 
 <article class="message message-immersive is-warning">
