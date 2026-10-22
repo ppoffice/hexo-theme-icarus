@@ -117,6 +117,17 @@ describe('layout/common/head', () => {
             const { $ } = await renderHead({});
             assert.equal($('link[href="/css/default.css"]').attr('data-pjax'), undefined);
         });
+
+        // PJAX replaces them only when the next page has another variant, set in its front-matter
+        it('marks the theme and web font stylesheets of the variant', async () => {
+            for (const [variant, font] of [['default', 'Ubuntu'], ['cyberpunk', 'Oxanium']]) {
+                const { $ } = await renderHead({}, { variant });
+                const hrefs = $('link[data-variant]').map((i, el) => el.attribs.href).get();
+                assert.equal(hrefs.length, 2, hrefs.join('\n'));
+                assert.ok(hrefs[0].includes('family=' + font), hrefs[0]);
+                assert.equal(hrefs[1], `/css/${variant}.css`);
+            }
+        });
     });
 
     describe('appearance', () => {

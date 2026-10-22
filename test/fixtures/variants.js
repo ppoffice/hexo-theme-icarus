@@ -90,6 +90,22 @@ module.exports = {
         }
     },
 
+    // A default site with a cyberpunk post (front-matter), navigated with PJAX.
+    'variant-per-page': {
+        theme: { plugins: { pjax: true } },
+        files: {
+            'source/_posts/cyberpunk-variant.md': [
+                '---',
+                'title: Cyberpunk Variant',
+                'date: 2024-04-03 10:00:00',
+                'variant: cyberpunk',
+                '---',
+                'A post in the cyberpunk variant. Back to [a default post](/2024/03/01/hello-world/).',
+                ''
+            ].join('\n')
+        }
+    },
+
     // The "auto" appearance for posts only, from a layout configuration file.
     'appearance-posts-auto': {
         files: { '_config.post.yml': 'appearance: auto\n' }
