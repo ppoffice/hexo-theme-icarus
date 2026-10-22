@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/widget/categories.json",
+    "description": "Categories widget configurations",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "categories"
+        },
+        "amount": {
+            "type": "integer",
+            "description": "Amount of top-level categories to show, with a link to the category page for the rest. Will show all if not set",
+            "nullable": true
+        },
+        "order_by": {
+            "type": "string",
+            "description": "How to order the categories. For example 'name' to order by name, and 'length' to order by number of posts. Orders by name if not set",
+            "nullable": true
+        },
+        "order": {
+            "type": "integer",
+            "enum": [1, -1, null],
+            "description": "1 for ascending order, or -1 for descending order. Ascending if not set",
+            "nullable": true
+        },
+        "depth": {
+            "type": "integer",
+            "description": "Levels of categories to show, for example 1 for the top-level categories only. Shows all levels if not set or 0",
+            "nullable": true
+        },
+        "show_current": {
+            "type": "boolean",
+            "description": "Whether to highlight the categories of the current post",
+            "nullable": true
+        },
+        "show_count": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to show the number of posts of each category",
+            "nullable": true
+        }
+    },
+    "required": ["type"]
+}

@@ -252,6 +252,58 @@ describe('include/schema', () => {
         });
     });
 
+    describe('archives and categories widgets', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = widget => schema.validate({ version: '5.1.0', widgets: [{ position: 'left', ...widget }] }) === true;
+
+        it('accepts the options of hexo-component-inferno 4.2.0, or none of them, as in the generated configuration', () => {
+            for (const widget of [
+                { type: 'archives' },
+                { type: 'archives', amount: null, group_by: null, order: null, format: null, show_count: true },
+                { type: 'archives', amount: 3, group_by: 'yearly', order: 1, format: 'YYYY', show_count: false },
+                { type: 'categories' },
+                { type: 'categories', amount: null, order_by: null, order: null, depth: null, show_current: null, show_count: true },
+                { type: 'categories', amount: 1, order_by: 'length', order: -1, depth: 1, show_current: true, show_count: false },
+                { type: 'recent_posts', limit: 3 }
+            ]) {
+                assert.ok(valid(widget), JSON.stringify(widget));
+            }
+        });
+
+        for (const widget of [
+            { type: 'archives', group_by: 'weekly' },
+            { type: 'archives', order: 0 },
+            { type: 'categories', order: 'desc' }
+        ]) {
+            it(`rejects ${JSON.stringify(widget)}`, () => {
+                assert.ok(!valid(widget));
+            });
+        }
+
+        // hexo-component-inferno 4.2.0 makes these options nullable, but leaves null out of their enums,
+        // so the empty values of the generated configuration fail the check. The theme has copies of the
+        // two schemas with null in the enums until hexo-component-inferno accepts it.
+        for (const name of ['archives', 'categories']) {
+            it(`overrides the ${name} schema of hexo-component-inferno only to accept null in its enums`, () => {
+                const original = require(`hexo-component-inferno/lib/schema/widget/${name}.json`);
+                const override = require(path.join(schemaDir, `widget/${name}.json`));
+                const enums = Object.values(original.properties).filter(property => Array.isArray(property.enum));
+                assert.ok(enums.some(property => property.nullable && !property.enum.includes(null)),
+                    `hexo-component-inferno accepts null in the enums of the ${name} widget now. Remove include/schema/widget/${name}.json.`);
+                const expected = JSON.parse(JSON.stringify(original));
+                for (const property of Object.values(expected.properties)) {
+                    if (property.nullable && Array.isArray(property.enum) && !property.enum.includes(null)) {
+                        property.enum.push(null);
+                    }
+                }
+                assert.deepEqual(override, expected, `Update include/schema/widget/${name}.json to the schema of hexo-component-inferno.`);
+            });
+        }
+    });
+
     it('accepts the test fixture theme configuration', () => {
         const cfg = yaml.parse(fs.readFileSync(path.join(FIXTURE_SITE, '_config.icarus.yml'), 'utf8'));
         assert.equal(loadSchema().validate(cfg), true);
