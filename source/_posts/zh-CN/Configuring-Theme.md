@@ -13,9 +13,9 @@ providers:
     iconcdn: loli
 ---
 
-Icarus的默认主题配置文件为`_config.icarus.yml`。
+Icarus的默认主题配置文件为`_config.icarus.yml`，它位于站点根目录中，与站点配置文件`_config.yml`放在一起。
 此文件定义了站点全局的布局与样式设置，同时也控制了例如插件与挂件等外部功能的配置。
-本文详细介绍了本主题的一般配置，并且解释了Icarus使用哪些配置文件和它是如何生成并验证这些配置。
+本文详细介绍了本主题的一般配置，并且解释了Icarus使用哪些配置文件，以及它是如何生成并验证这些配置的。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -41,18 +41,32 @@ Icarus使用此版本号来决定是否升级默认主题配置文件。
 请不要自己更改这个版本号。
 
 {% codeblock _config.icarus.yml lang:yaml %}
-version: 5.0.0
+version: 5.1.0
 {% endcodeblock %}
 
 ### 主题变体
 
-通过此设置为Icarus更换”皮肤“。
-此设置目前支持”`default`“和”`cyberpunk`“两种值。
+通过此设置为Icarus更换“皮肤”。
+此设置目前支持`default`和`cyberpunk`两种值。
 你可以在{% post_link demo/Cyberpunk "此处" %}查看Cyberpunk变体的效果。
 
 {% codeblock _config.icarus.yml lang:yaml %}
 variant: default
 {% endcodeblock %}
+
+### 外观
+
+默认变体可以是亮色或暗色的。
+将`appearance`设置为`light`（默认值）、`auto`（跟随每位访客的浏览器或操作系统的亮色/暗色设置）或`dark`（始终使用暗色）。
+Cyberpunk变体有自己的暗色配色，会忽略此设置。
+
+{% codeblock _config.icarus.yml lang:yaml %}
+appearance: auto
+{% endcodeblock %}
+
+和其他主题配置一样，`appearance`也可以在布局配置文件中为所有文章或页面设置，或在某个文章或页面的front-matter中单独设置（参见[配置文件与优先级](#配置文件与优先级)）。
+页面显示为暗色时，代码块会使用[代码高亮](#代码高亮)设置中的`dark_theme`，logo也会换成[`logo_dark`](#Logo)。
+你可以在{% post_link demo/Dark-Mode "此处" %}查看暗色外观的效果。
 
 ### Logo
 
@@ -70,6 +84,16 @@ logo: /img/logo.svg
 logo:
     text: My Beautiful Site
 {% endcodeblock %}
+
+当默认变体显示为暗色时（参见[外观](#外观)），logo图片会换成`logo_dark`中设置的图片：
+
+{% codeblock _config.icarus.yml lang:yaml %}
+logo: /img/logo.svg
+logo_dark: /img/logo-dark.svg
+{% endcodeblock %}
+
+如果没有设置`logo_dark`，主题自带的logo（`/img/logo.svg`）会换成`/img/logo-dark.svg`，其他logo图片则保持不变。
+文字logo不会改变。
 
 ### Favicon
 
@@ -217,6 +241,7 @@ head:
 
 `navbar`部分定义了导航栏中的菜单与链接。
 你可以通过向`menu`设置项中添加`<链接名>: <链接URL>`的方式添加任意导航栏菜单链接。
+如要把几个链接归到同一个菜单项下，请把这个菜单项设置为由`<链接名>: <链接URL>`组成的对象，这些链接会显示在子菜单中。
 如要向导航栏右侧添加链接，请向`links`设置项中添加`<链接名>: <链接URL>`。
 
 {% codeblock _config.icarus.yml lang:yaml %}
@@ -227,7 +252,10 @@ navbar:
         Archives: /archives
         Categories: /categories
         Tags: /tags
-        About: /about
+        # 子菜单
+        About:
+            About Me: /about
+            Projects: /projects
     # 导航栏右侧的链接
     links:
         GitHub: 'https://github.com'
@@ -236,6 +264,8 @@ navbar:
             url: 'https://github.com/ppoffice/hexo-theme-icarus'
 {% endcodeblock %}
 
+当菜单项和链接无法在一行中显示时（例如在手机上），菜单项会折叠到一个下拉菜单中，点击菜单按钮即可打开。
+
 你也可以使用FontAwesome图标来作为纯文字链接的替换，格式如下：
 
 {% codeblock "链接格式" lang:yaml %}
@@ -243,6 +273,8 @@ navbar:
     icon: <FontAwesome图标的class名>
     url: <链接URL>
 {% endcodeblock %}
+
+这种格式适用于`navbar.links`、`footer.links`、`article.licenses`以及个人信息挂件的`social_links`，但不适用于`navbar.menu`中的菜单项，菜单项始终显示为文字。
 
 ### 页脚
 
@@ -273,10 +305,13 @@ footer:
 ### 代码高亮
 
 如果你已在Hexo中启用了代码高亮功能，你可以通过`article`中的`highlight`设置来自定义代码块。
-请从[highlight.js/src/styles](https://github.com/highlightjs/highlight.js/tree/9.18.1/src/styles)下列出的所有主题中
+请从[highlight.js/src/styles](https://github.com/highlightjs/highlight.js/tree/11.11.1/src/styles)下列出的所有主题中
 选择一个主题。
 然后，复制文件名(不带`.css`后缀)到`theme`设置项中。
+`base16`目录中的主题（如`solarized-light`）需要在名称中保留目录名，例如`base16/solarized-light`。
+`dark_theme`设置项是页面显示为暗色时改用的主题（参见[外观](#外观)）。
 
+在使用鼠标的设备上，代码块的复制按钮只在鼠标悬停于代码块上或代码块获得焦点时显示；在触摸屏上则始终显示。
 如要隐藏复制代码按钮，将`clipboard`设置为`false`。
 如果你希望折叠或展开所有代码块，将`fold`设置为`"folded"`或`"unfolded"`。
 你也可以将`fold`设置为空来禁止代码块折叠。
@@ -287,6 +322,8 @@ article:
         # 代码高亮主题
         # https://github.com/highlightjs/highlight.js/tree/master/src/styles
         theme: atom-one-light
+        # 默认变体显示为暗色时使用的代码高亮主题（参见appearance）
+        dark_theme: atom-one-dark
         # 显示复制代码按钮
         clipboard: true
         # 代码块的默认折叠状态。可以是"", "folded", "unfolded"
@@ -337,7 +374,8 @@ article:
 
 ### 文章更新时间
 
-若要显示文章的更新时间，请在文章的front_matter中设置`updated`时间：
+Icarus会在文章的发布时间旁边显示更新时间。
+你可以在文章的front-matter中设置更新时间：
 
 {% codeblock post.md lang:yaml %}
 title: Icarus快速上手
@@ -346,15 +384,22 @@ updated: 2020-04-01 00:00:00
 Post content...
 {% endcodeblock %}
 
-然后，将主题配置文件的`article`部分的`update_time`设置为`true`：
+主题配置文件`article`部分的`update_time`设置决定是否显示更新时间：
 
 {% codeblock _config.icarus.yml lang:yaml %}
 article:
     update_time: true
 {% endcodeblock %}
 
-你也可以将`update_time`设置为`false`来隐藏所有文章的更新时间，或设置为`auto`而在文章的更新时间
-与发布时间相同时隐藏更新时间。
+设置为`true`（默认值）会显示所有文章的更新时间，设置为`false`会隐藏所有文章的更新时间，设置为`auto`则在文章的更新时间与发布时间相同时隐藏更新时间。
+
+如果front-matter中没有`updated`，Hexo会把Markdown文件的修改时间当作更新时间，因为站点配置文件中`updated_option`的默认值是`mtime`。
+所以每篇文章都会显示更新时间（即使设置为`auto`，通常也是如此），而且在你检出或复制文件后，更新时间可能会改变。
+如果只想显示在front-matter中设置了`updated`的文章的更新时间，请在`_config.yml`中把`updated_option`设置为`empty`：
+
+{% codeblock _config.yml lang:yaml %}
+updated_option: empty
+{% endcodeblock %}
 
 ### 文章许可协议
 
@@ -399,6 +444,10 @@ sidebar:
 - (已弃用) 位于`themes/icarus/_config.yml`的旧主题配置文件
 - (已弃用) 位于`themes/icarus/_config.post.yml`和`themes/icarus/_config.page.yml`的旧布局配置文件
 
+除了旧的配置文件，上面的文件都位于站点根目录中。
+如果你还保留着旧的配置文件：`_config.icarus.yml`会覆盖`themes/icarus/_config.yml`，但`themes/icarus/_config.post.yml`和`themes/icarus/_config.page.yml`中设置的顶层配置项会覆盖站点根目录中的布局配置文件。
+为避免意外，请把它们的内容移到站点根目录中的配置文件里。
+
 ### 布局配置文件
 
 布局配置文件遵循着与主题配置文件相同的格式和定义。
@@ -435,12 +484,18 @@ widgets:
         position: right
 {% endcodeblock %}
 
+如要去掉所有挂件，例如让所有自定义页面都使用单栏布局，请将`widgets`设置为`null`：
+
+{% codeblock _config.page.yml lang:yaml %}
+widgets: null
+{% endcodeblock %}
+
 ### 文章/页面的Front-matter
 
 如果你只想要在某个文章/页面中覆盖主题配置，你可以在那个文章/页面的front-matter中写下配置。
 例如，你可以像下面这样在一篇文章的front-matter中更改某篇文章的代码高亮主题：
 
-{% codeblock source/_post/some-post.md lang:yaml %}
+{% codeblock source/_posts/some-post.md lang:yaml %}
 title: 我的第一篇文章
 date: '2015-01-01 00:00:01'
 article:
@@ -450,12 +505,33 @@ article:
 # 文章标题
 {% endcodeblock %}
 
-上面的配置会为那篇文章覆盖掉`_config.post.yml`和`_config.icarus.yml`中的`article.highlight`。
+上面的配置会为那篇文章覆盖掉`_config.post.yml`和`_config.icarus.yml`中的`article`配置。
+
+注意，布局配置文件和front-matter是按顶层配置项逐个覆盖主题配置的，不会合并顶层配置项内部的设置。
+在上面的例子中，这篇文章使用的是front-matter中的`article`部分，而不是`_config.icarus.yml`中的整个`article`部分。
+这个部分中的其他设置，例如`highlight.clipboard`、`highlight.fold`、`readtime`和`licenses`，都不会再从`_config.icarus.yml`中读取：比如这篇文章的阅读时间和许可协议都会消失。
+请把需要保留的设置也写上：
+
+{% codeblock source/_posts/some-post.md lang:yaml %}
+title: 我的第一篇文章
+date: '2015-01-01 00:00:01'
+article:
+    highlight:
+        theme: atom-one-dark
+        clipboard: true
+        fold: unfolded
+    readtime: true
+    licenses:
+        'CC BY-NC-SA 4.0': 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
+---
+# 文章标题
+{% endcodeblock %}
+
 这种层次化的配置系统对于页面个性化和不同访客间的差异化优化十分有效。
-比如，你可以为根据你页面目标访客的国家和语言来开启更快的CDN或本地化的评论服务。
+比如，你可以根据页面目标访客的国家和语言来开启更快的CDN或本地化的评论服务。
 
 然而需要注意的是，一些Hexo定义的文章或页面属性不会覆盖掉其他配置源中的同名配置，如
-`title`, `date`, `updated`, `comments` (not `comment`), `layout`, `source`, `photos`, 和`excerpt`。
+`title`、`date`、`updated`、`comments`（不是`comment`）、`layout`、`source`、`photos`和`excerpt`。
 
 ### 站点配置文件
 
@@ -464,7 +540,7 @@ article:
 Icarus没有用到这个配置项。
 
 另外，站点配置文件`_config.yml`中的`theme_config`选项会与主题配置文件中的主题配置合并并覆盖掉同名配置。
-然而，我们非常不推荐使用这个配置选项。
+然而，我们非常不推荐使用这个配置选项，Icarus发现它时也会打印一条警告。
 
 ### 总结
 
@@ -497,34 +573,38 @@ Icarus没有用到这个配置项。
 所有的Icarus主题配置均使用[YAML语言](https://yaml.org/)编写。
 如果配置文件不存在，Icarus会通过一系列[JSON Schema](https://json-schema.org/)来自动生成默认的配置文件`_config.icarus.yml`。
 这也是为什么你在主题目录下找不到示例配置文件(如`_config.yml.example`)。
+如要查看所有可用的配置项及其说明，请阅读生成的`_config.icarus.yml`。
 大多数的JSON Schema存放在`<icarus_directory>/include/schema`目录下，而其他的则存放在
 [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno)仓库中。
 你可以在你的`hexo`命令后附上`--icarus-dont-generate-config`来避免配置文件的自动生成。
 
 当你每次运行`hexo`命令时，主题也会对比JSON Schema来校验你的配置文件。
 如果校验中出现任何错误，Icarus会将错误位置与错误类型打印在屏幕上。
-例如，如下的错误信息告诉我们`logo`配置值应该为字符串或是对象，而不是一个整型数。
+例如，如下的错误信息告诉我们`logo`配置（`instancePath: '/logo'`）的值必须是字符串或对象，而不是一个整数。
 你可以在你的`hexo`命令后附上`--icarus-dont-check-config`来跳过校验，但并不推荐这么做。
 
 {% codeblock "hexo日志" %}
 INFO  === Checking package dependencies ===
-INFO  === Checking the configuration file ===
-WARN  Configuration file failed one or more checks.
-WARN  Icarus may still run, but you will encounter unexcepted results.
+INFO  === Checking theme configurations ===
+WARN  Theme configurations failed one or more checks.
+WARN  Icarus may still run, but you will encounter unexpected results.
 WARN  Here is some information for you to correct the configuration file.
 WARN  [
   {
-    keyword: 'type',
-    dataPath: '.logo',
+    instancePath: '/logo',
     schemaPath: '#/properties/logo/type',
-    params: { type: 'string,object' },
-    message: 'should be string,object'
+    keyword: 'type',
+    params: { type: [Array] },
+    message: 'must be string,object'
   }
 ]
 {% endcodeblock %}
 
+对于一些虽然合法、但很可能不是你想要的设置，配置检查也会打印警告：Valine评论插件（它会暴露评论者的邮箱地址）；`waline_pageview`插件与Waline评论插件的`pageview`选项同时开启（每次浏览会被计数两次），或者`waline_pageview`没有可用的Waline服务端来统计浏览量；以及站点配置文件中的`theme_config`选项。
+
 此外，如果你的默认主题配置文件不是最新版本的话，Icarus会运行迁移脚本将它升级到最新版本。
 这些脚本存放在`<icarus_directory>/include/migration`目录。
+升级之前，Icarus会备份你的配置文件；升级之后，Icarus还会把一份新生成的配置文件写入`_config.icarus.yml.example`供你参考。
 你可以在你的`hexo`命令后附上`--icarus-dont-upgrade-config`来禁止配置升级。
 最后，Icarus也会检查主题依赖的Node.js库是否安装并提醒你安装缺失的库。
 你可以在你的`hexo`命令后附上`--icarus-dont-check-deps`来跳过此检查，例如在尝试某个依赖的更新的主版本时。
