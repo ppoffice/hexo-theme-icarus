@@ -83,39 +83,40 @@ head:
 ### Web App Manifest
 
 Icarus支持基本的PWA`manifest.json`的生成与Meta标签。
-要开启web app manifest，请再主题配置中使用如下的配置。
+要开启web app manifest，请在主题配置的`head`配置中使用如下的配置。
 你也可以参考[MDN](https://developer.mozilla.org/zh-CN/docs/Web/Manifest)来了解每个配置项的详情。
 
 {% codeblock _config.icarus.yml lang:yaml >folded %}
-manifest:
-    # Web应用的名称 (默认为站点标题)
-    name: Icaurs - Hexo Theme
-    # Web的显示名称
-    # 当没有空间显示全名时显示
-    short_name: Icarus
-    # Web应用的初始URL
-    start_url: https://ppoffice.github.io/
-    # 应用的默认主题颜色
-    theme_color: "#3273dc"
-    # 在应用的样式表加载之前显示的应用页默认占位背景颜色
-    background_color: "#3273dc"
-    # 网站首选的展示模式
-    display: standalone
-    # 在不同上下文下用作应用图标的图片文件
-    icons:
-        -
-            # 图片文件的路径
-            src: icons/touch-icon-iphone.png
-            # 空格分割的表示图标尺寸的字符串
-            sizes: 144x144
-            # 图片的媒体类型提示 (可选)
-            type: image/png
-        -
-            src: icons/touch-icon-ipad.png
-            sizes: 152x152
-        -
-            src: icon/logo.ico
-            sizes: 72x72 96x96 128x128 256x256
+head:
+    manifest:
+        # Web应用的名称 (默认为站点标题)
+        name: Icarus - Hexo Theme
+        # Web的显示名称
+        # 当没有空间显示全名时显示
+        short_name: Icarus
+        # Web应用的初始URL
+        start_url: https://ppoffice.github.io/
+        # 应用的默认主题颜色
+        theme_color: "#3273dc"
+        # 在应用的样式表加载之前显示的应用页默认占位背景颜色
+        background_color: "#3273dc"
+        # 网站首选的展示模式
+        display: standalone
+        # 在不同上下文下用作应用图标的图片文件
+        icons:
+            -
+                # 图片文件的路径
+                src: icons/touch-icon-iphone.png
+                # 空格分割的表示图标尺寸的字符串
+                sizes: 144x144
+                # 图片的媒体类型提示 (可选)
+                type: image/png
+            -
+                src: icons/touch-icon-ipad.png
+                sizes: 152x152
+            -
+                src: icon/logo.ico
+                sizes: 72x72 96x96 128x128 256x256
 {% endcodeblock %}
 
 ### Open Graph
@@ -455,7 +456,7 @@ article:
 例如，`_config.icarus.yml`中的`title`设置会覆盖掉`_config.yml`中的`title`，但`new_post_name`却不会，因为
 Icarus没有用到这个配置项。
 
-另外，主题配置文件中的`theme_config`选项会与主题配置文件中的主题配置合并并覆盖掉同名配置。
+另外，站点配置文件`_config.yml`中的`theme_config`选项会与主题配置文件中的主题配置合并并覆盖掉同名配置。
 然而，我们非常不推荐使用这个配置选项。
 
 ### 总结
