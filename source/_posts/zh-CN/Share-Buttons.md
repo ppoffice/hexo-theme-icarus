@@ -43,13 +43,9 @@ providers:
 
 <article class="message message-immersive is-danger">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>此分享按钮可能会被部分广告拦截浏览器扩展拦截，请酌情使用。
-</div>
-</article>
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>AddThis分享按钮服务已下线，建议使用其他分享按钮服务作为替代。
+<i class="fas fa-exclamation-triangle mr-2"></i>AddThis已于2023年5月31日停止服务，此分享按钮已无法使用。
+自hexo-component-inferno 4.2.0起，AddThis分享按钮已弃用，使用它生成网站时会输出警告。
+请换用<a href="#AddToAny">AddToAny</a>或<a href="#ShareThis">ShareThis</a>。
 </div>
 </article>
 

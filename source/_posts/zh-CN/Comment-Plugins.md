@@ -338,7 +338,9 @@ providers:
 
 <article class="message message-immersive is-danger">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Gitment似乎已停止维护。你可以选择Gitalk或utterances作为基于GitHub Issues的评论系统的替代。
+<i class="fas fa-exclamation-triangle mr-2"></i>自hexo-component-inferno 4.2.0起，Gitment已弃用，使用它生成网站时会输出警告。
+Gitment已停止维护，它使用的GitHub登录代理也已失效。
+请换用<a href="#Giscus">Giscus</a>、<a href="#utterances">utterances</a>或<a href="#Gitalk">Gitalk</a>。
 </div>
 </article>
 
@@ -536,9 +538,12 @@ Twikoo是一个基于云函数的自建评论系统。
 
 <article class="message message-immersive is-danger">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>有用户发现一个存在于Valine评论插件的漏洞会导致此评论服务暴露所有评论者的
-IP地址 (<a href="https://github.com/xCss/Valine/issues/336" target="_blank" rel="noopener">xCss/Valine#336</a>)。
-请在此漏洞修复之前换用其他评论服务。
+<i class="fas fa-exclamation-triangle mr-2"></i>自hexo-component-inferno 4.2.0起，Valine已弃用，使用它生成网站时会输出警告。
+Valine用来存储评论的LeanCloud将于2027年1月12日停止服务。
+此外，任何人只要拿到你公开的App ID和App Key，就能读取Valine存储的评论：评论者的邮箱地址始终会暴露，
+如果设置了<code>record_ip: true</code>，评论者的IP地址也会暴露
+（<a href="https://github.com/ppoffice/hexo-theme-icarus/issues/788" target="_blank" rel="noopener">ppoffice/hexo-theme-icarus#788</a>）。
+请换用<a href="#Waline">Waline</a>、<a href="#Twikoo">Twikoo</a>或其他评论系统。
 </div>
 </article>
 

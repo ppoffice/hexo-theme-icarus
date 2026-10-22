@@ -36,15 +36,11 @@ Please refer to it for a complete list of supported plugins and their configurat
 
 <article class="message message-immersive is-danger">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Some AD blockers may block this share button service.
-Use it with caution.
-</div>
-</article>
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>The Baidu share button service is no longer available.
-Use other services as alternatives.
+<i class="fas fa-exclamation-triangle mr-2"></i>AddThis shut down on May 31, 2023, so these share buttons no
+longer work.
+The AddThis share buttons are deprecated since hexo-component-inferno 4.2.0, and a warning is printed when you
+generate your site with them.
+Please use <a href="#AddToAny">AddToAny</a> or <a href="#ShareThis">ShareThis</a> instead.
 </div>
 </article>
 
