@@ -259,7 +259,7 @@ describe('include/schema', () => {
         assert.equal(defaults.head.open_graph.type, null);
     });
 
-    describe('archives and categories widgets', () => {
+    describe('widgets', () => {
         let schema;
 
         before(() => { schema = loadSchema(); });
@@ -278,6 +278,18 @@ describe('include/schema', () => {
             ]) {
                 assert.ok(valid(widget), JSON.stringify(widget));
             }
+        });
+
+        // hexo-component-inferno 4.2.0 warns about it on every build
+        it('leaves the deprecated FeedBurner widget out of the generated configuration, but still accepts it', () => {
+            const defaults = yaml.parse(schema.getDefaultValue().toYaml());
+            const types = defaults.widgets.map(widget => widget.type);
+            assert.ok(!types.includes('subscribe_email'), types.join());
+            assert.deepEqual(types.slice(-2), ['adsense', 'followit']);
+            assert.ok(valid({ type: 'subscribe_email', feedburner_id: 'fixture' }));
+            assert.ok(valid({ type: 'followit', action_url: 'https://api.follow.it/subscription-form/fixture', verification_code: 'fixture' }));
+            assert.ok(!valid({ type: 'subscribe_email' }));
+            assert.ok(!valid({ type: 'followit' }));
         });
 
         for (const widget of [
