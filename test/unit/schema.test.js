@@ -252,6 +252,57 @@ describe('include/schema', () => {
         });
     });
 
+    // hexo-component-inferno 4.1.0 and earlier gave it the default "blog", which is not an Open Graph type
+    it('leaves head.open_graph.type empty in the generated configuration', () => {
+        const defaults = yaml.parse(loadSchema().getDefaultValue().toYaml());
+        assert.ok('type' in defaults.head.open_graph);
+        assert.equal(defaults.head.open_graph.type, null);
+    });
+
+    describe('widgets', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = widget => schema.validate({ version: '5.1.0', widgets: [{ position: 'left', ...widget }] }) === true;
+
+        it('accepts the options of hexo-component-inferno 4.2.0, or none of them, as in the generated configuration', () => {
+            for (const widget of [
+                { type: 'archives' },
+                { type: 'archives', amount: null, group_by: null, order: null, format: null, show_count: true },
+                { type: 'archives', amount: 3, group_by: 'yearly', order: 1, format: 'YYYY', show_count: false },
+                { type: 'categories' },
+                { type: 'categories', amount: null, order_by: null, order: null, depth: null, show_current: null, show_count: true },
+                { type: 'categories', amount: 1, order_by: 'length', order: -1, depth: 1, show_current: true, show_count: false },
+                { type: 'recent_posts', limit: 3 }
+            ]) {
+                assert.ok(valid(widget), JSON.stringify(widget));
+            }
+        });
+
+        // hexo-component-inferno 4.2.0 warns about it on every build
+        it('leaves the deprecated FeedBurner widget out of the generated configuration, but still accepts it', () => {
+            const defaults = yaml.parse(schema.getDefaultValue().toYaml());
+            const types = defaults.widgets.map(widget => widget.type);
+            assert.ok(!types.includes('subscribe_email'), types.join());
+            assert.deepEqual(types.slice(-2), ['adsense', 'followit']);
+            assert.ok(valid({ type: 'subscribe_email', feedburner_id: 'fixture' }));
+            assert.ok(valid({ type: 'followit', action_url: 'https://api.follow.it/subscription-form/fixture', verification_code: 'fixture' }));
+            assert.ok(!valid({ type: 'subscribe_email' }));
+            assert.ok(!valid({ type: 'followit' }));
+        });
+
+        for (const widget of [
+            { type: 'archives', group_by: 'weekly' },
+            { type: 'archives', order: 0 },
+            { type: 'categories', order: 'desc' }
+        ]) {
+            it(`rejects ${JSON.stringify(widget)}`, () => {
+                assert.ok(!valid(widget));
+            });
+        }
+    });
+
     it('accepts the test fixture theme configuration', () => {
         const cfg = yaml.parse(fs.readFileSync(path.join(FIXTURE_SITE, '_config.icarus.yml'), 'utf8'));
         assert.equal(loadSchema().validate(cfg), true);

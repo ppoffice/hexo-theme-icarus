@@ -96,8 +96,9 @@ function checkConfig(hexo) {
         if (cfg.comment && cfg.comment.type === 'valine') {
             // IP addresses are only stored when record_ip is on, which is off by default
             const leaked = cfg.comment.record_ip === true ? 'email and IP addresses' : 'email addresses';
-            logger.warn(`Valine exposes commenters' ${leaked} to anyone with the site's public LeanCloud keys.`);
-            logger.warn(`Consider another comment plugin, such as Waline, Twikoo or giscus. See ${yellow('https://github.com/ppoffice/hexo-theme-icarus/issues/788')}.`);
+            // hexo-component-inferno warns that Valine is deprecated when it renders the comments, with the
+            // shutdown date of LeanCloud and the comment plugins to use instead, so only add what it leaves out
+            logger.warn(`Valine exposes commenters' ${leaked} to anyone with the site's public LeanCloud keys. See ${yellow('https://github.com/ppoffice/hexo-theme-icarus/issues/788')}.`);
         }
 
         const walinePageview = cfg.plugins && typeof cfg.plugins === 'object' ? cfg.plugins.waline_pageview : null;
@@ -111,6 +112,12 @@ function checkConfig(hexo) {
                 logger.warn('The waline_pageview plugin is enabled, but has no Waline server to count the page views.');
                 logger.warn(`Please set ${yellow('plugins.waline_pageview.server_url')}, or the ${yellow('server_url')} of the Waline comments.`);
             }
+        }
+
+        // Configurations generated before hexo-component-inferno 4.2.0 have type: blog, which the theme ignores
+        const openGraph = cfg.head && typeof cfg.head === 'object' ? cfg.head.open_graph : null;
+        if (openGraph && typeof openGraph === 'object' && openGraph.type === 'blog') {
+            logger.warn(`${yellow('head.open_graph.type')} is "blog", which is not an Open Graph type and is ignored. Please remove it.`);
         }
 
         const rootCfg = yaml.parse(fs.readFileSync(siteCfgFile));

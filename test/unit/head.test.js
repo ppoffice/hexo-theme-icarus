@@ -70,6 +70,21 @@ describe('layout/common/head', () => {
         assert.equal((await renderHead({ layout: 'page' })).$('meta[property="og:type"]').attr('content'), 'website');
     });
 
+    describe('og:type of head.open_graph.type', () => {
+        const ogType = async (page, type) => (await renderHead(page, { head: { open_graph: { type } } })).$('meta[property="og:type"]').attr('content');
+
+        // Configurations generated before hexo-component-inferno 4.2.0 have type: blog.
+        it('ignores "blog", which is not an Open Graph type', async () => {
+            assert.equal(await ogType({ __post: true, layout: 'post' }, 'blog'), 'article');
+            assert.equal(await ogType({ layout: 'page' }, 'blog'), 'website');
+        });
+
+        it('keeps any other type', async () => {
+            assert.equal(await ogType({ __post: true, layout: 'post' }, 'website'), 'website');
+            assert.equal(await ogType({ layout: 'page' }, 'profile'), 'profile');
+        });
+    });
+
     it('emits JSON-LD structured data', async () => {
         const { $ } = await renderHead({ title: 'Structured' });
         const data = JSON.parse($('script[type="application/ld+json"]').html());
@@ -101,6 +116,17 @@ describe('layout/common/head', () => {
         it('does not let PJAX swap the main theme stylesheet (FOUC regression)', async () => {
             const { $ } = await renderHead({});
             assert.equal($('link[href="/css/default.css"]').attr('data-pjax'), undefined);
+        });
+
+        // PJAX replaces them only when the next page has another variant, set in its front-matter
+        it('marks the theme and web font stylesheets of the variant', async () => {
+            for (const [variant, font] of [['default', 'Ubuntu'], ['cyberpunk', 'Oxanium']]) {
+                const { $ } = await renderHead({}, { variant });
+                const hrefs = $('link[data-variant]').map((i, el) => el.attribs.href).get();
+                assert.equal(hrefs.length, 2, hrefs.join('\n'));
+                assert.ok(hrefs[0].includes('family=' + font), hrefs[0]);
+                assert.equal(hrefs[1], `/css/${variant}.css`);
+            }
         });
     });
 

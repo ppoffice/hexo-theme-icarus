@@ -164,7 +164,7 @@ describe('include/config (theme configuration check, generation and migration)',
 
         describe('Valine privacy warning', () => {
             const valine = { type: 'valine', app_id: 'fixture', app_key: 'fixture' };
-            const warning = /Valine exposes commenters' email addresses to anyone[\s\S]*issues\/788/;
+            const warning = /Valine exposes commenters' email addresses to anyone with the site's public LeanCloud keys\. See .*issues\/788/;
 
             it('warns when Valine is the configured comment plugin', () => {
                 env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
@@ -174,10 +174,17 @@ describe('include/config (theme configuration check, generation and migration)',
                 assert.doesNotMatch(output, /failed one or more checks/, output);
             });
 
+            // hexo-component-inferno's deprecation warning names them, with the shutdown date of LeanCloud
+            it('leaves the comment plugins to use instead to the deprecation warning of hexo-component-inferno', () => {
+                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
+                const { output } = capture(() => checkConfig(env.hexo));
+                assert.doesNotMatch(output, /Waline|Twikoo|giscus|deprecated/i, output);
+            });
+
             it('only mentions IP addresses when record_ip is on', () => {
                 env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: { ...valine, record_ip: true } } });
                 const { output } = capture(() => checkConfig(env.hexo));
-                assert.match(output, /Valine exposes commenters' email and IP addresses to anyone[\s\S]*issues\/788/);
+                assert.match(output, /Valine exposes commenters' email and IP addresses to anyone with the site's public LeanCloud keys\. See .*issues\/788/);
             });
 
             it('does not warn for another comment plugin', () => {
@@ -253,6 +260,28 @@ describe('include/config (theme configuration check, generation and migration)',
                 assert.doesNotMatch(check({ ...waline, pageview: true }, { waline_pageview: false }).output, /waline_pageview/);
                 assert.doesNotMatch(check({ ...waline, pageview: true }).output, /waline_pageview/);
             });
+        });
+
+        describe('og:type warning', () => {
+            const warning = /head\.open_graph\.type.* is "blog", which is not an Open Graph type and is ignored\. Please remove it\./;
+            const check = head => {
+                env = createEnv({ themeSiteConfig: { version: '5.1.0', head } });
+                return capture(() => checkConfig(env.hexo));
+            };
+
+            // Configurations generated before hexo-component-inferno 4.2.0 have it
+            it('warns about type: blog', () => {
+                const { exitCode, output } = check({ open_graph: { type: 'blog' } });
+                assert.equal(exitCode, null, output);
+                assert.match(output, warning);
+                assert.doesNotMatch(output, /failed one or more checks/, output);
+            });
+
+            for (const head of [{ open_graph: { type: 'website' } }, { open_graph: { type: null } }, { open_graph: null }, {}]) {
+                it(`does not warn with ${JSON.stringify(head)}`, () => {
+                    assert.doesNotMatch(check(head).output, /open_graph/);
+                });
+            }
         });
 
         it('exits with an error when the theme config is not valid YAML', () => {

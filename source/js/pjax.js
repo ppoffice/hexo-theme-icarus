@@ -3,6 +3,21 @@
     let pjax;
 
     /**
+     * Replace the stylesheets of <head> matching the selector with those of the new page, only when
+     * they differ, so that the stylesheets that stay are not loaded and applied again.
+     */
+    function switchStylesheets(oldHead, newHead, selector) {
+        const key = links => Array.from(links).map(link => link.getAttribute('href') + ' ' + link.getAttribute('media')).join();
+        const oldLinks = oldHead.querySelectorAll(selector);
+        const newLinks = newHead.querySelectorAll(selector);
+        if (key(oldLinks) !== key(newLinks)) {
+            const anchor = oldLinks.length ? oldLinks[0] : null;
+            newLinks.forEach(link => oldHead.insertBefore(link.cloneNode(), anchor));
+            oldLinks.forEach(link => link.remove());
+        }
+    }
+
+    /**
      * Switch to the appearance of the new page (light, auto or dark, which pages can set in their
      * front-matter): the data-appearance attribute of <html> that selects the dark colors, which
      * PJAX does not copy, the color-scheme meta and the code highlight stylesheets, of which
@@ -29,24 +44,20 @@
             oldHead.insertBefore(newMeta.cloneNode(), viewport ? viewport.nextSibling : oldHead.firstChild);
         }
 
-        const key = links => Array.from(links).map(link => link.getAttribute('href') + ' ' + link.getAttribute('media')).join();
-        const oldLinks = oldHead.querySelectorAll('link[data-pjax]');
-        const newLinks = newHead.querySelectorAll('link[data-pjax]');
-        if (key(oldLinks) !== key(newLinks)) {
-            const anchor = oldLinks.length ? oldLinks[0] : null;
-            newLinks.forEach(link => oldHead.insertBefore(link.cloneNode(), anchor));
-            oldLinks.forEach(link => link.remove());
-        }
+        switchStylesheets(oldHead, newHead, 'link[data-pjax]');
     }
 
     /**
-     * Switch the title and the appearance of the page. <head> itself is not one of the selectors
-     * because PJAX runs the scripts of the switched elements again: the analytics and other scripts
-     * of <head> would run again, counting page views twice and adding their listeners again.
+     * Switch the title, the appearance and the variant (default or cyberpunk, which pages can also
+     * set in their front-matter, with its theme and font stylesheets) of the page. <head> itself is
+     * not one of the selectors because PJAX runs the scripts of the switched elements again: the
+     * analytics and other scripts of <head> would run again, counting page views twice and adding
+     * their listeners again.
      */
     function switchHead(oldTitle, newTitle, options) {
         oldTitle.textContent = newTitle.textContent;
         switchAppearance(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, options);
+        switchStylesheets(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, 'link[data-variant]');
         this.onSwitch();
     }
 

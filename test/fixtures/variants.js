@@ -90,6 +90,22 @@ module.exports = {
         }
     },
 
+    // A default site with a cyberpunk post (front-matter), navigated with PJAX.
+    'variant-per-page': {
+        theme: { plugins: { pjax: true } },
+        files: {
+            'source/_posts/cyberpunk-variant.md': [
+                '---',
+                'title: Cyberpunk Variant',
+                'date: 2024-04-03 10:00:00',
+                'variant: cyberpunk',
+                '---',
+                'A post in the cyberpunk variant. Back to [a default post](/2024/03/01/hello-world/).',
+                ''
+            ].join('\n')
+        }
+    },
+
     // The "auto" appearance for posts only, from a layout configuration file.
     'appearance-posts-auto': {
         files: { '_config.post.yml': 'appearance: auto\n' }
@@ -158,6 +174,11 @@ module.exports = {
             comment: { type: 'waline', server_url: 'https://waline.example.com' },
             plugins: { waline_pageview: true }
         }
+    },
+
+    // Valine, which the theme and hexo-component-inferno warn about.
+    'comment-valine': {
+        theme: { comment: { type: 'valine', app_id: 'fixture', app_key: 'fixture' } }
     },
 
     // Some packages from another CDN provider or URL than the rest.

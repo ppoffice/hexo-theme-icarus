@@ -36,13 +36,20 @@
                 "$ref": "/widget/tags.json"
             },
             {
-                "$ref": "/widget/subscribe_email.json"
-            },
-            {
                 "$ref": "/widget/adsense.json"
             },
             {
-                "$ref": "/widget/followit.json"
+                "$comment": "The generated configuration only has the first of the two, as the FeedBurner widget is deprecated",
+                "description": "Follow.it email subscription widget configurations",
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "/widget/followit.json"
+                    },
+                    {
+                        "$ref": "/widget/subscribe_email.json"
+                    }
+                ]
             }
         ],
         "required": [

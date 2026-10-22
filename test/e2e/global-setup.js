@@ -8,7 +8,7 @@ const path = require('path');
 const { buildSite } = require('../support/site');
 const { contentType } = require('./cdn');
 
-const VARIANTS = ['default', 'pjax', 'pjax-comment-analytics', 'pjax-comments', 'animejs', 'zh-CN', 'cyberpunk', 'appearance-auto', 'appearance-dark', 'appearance-per-page'];
+const VARIANTS = ['default', 'pjax', 'pjax-comment-analytics', 'pjax-comments', 'animejs', 'zh-CN', 'cyberpunk', 'appearance-auto', 'appearance-dark', 'appearance-per-page', 'variant-per-page'];
 
 function serve(root) {
     const server = http.createServer((req, res) => {
