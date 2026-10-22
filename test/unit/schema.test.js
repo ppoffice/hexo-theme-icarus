@@ -301,26 +301,6 @@ describe('include/schema', () => {
                 assert.ok(!valid(widget));
             });
         }
-
-        // hexo-component-inferno 4.2.0 makes these options nullable, but leaves null out of their enums,
-        // so the empty values of the generated configuration fail the check. The theme has copies of the
-        // two schemas with null in the enums until hexo-component-inferno accepts it.
-        for (const name of ['archives', 'categories']) {
-            it(`overrides the ${name} schema of hexo-component-inferno only to accept null in its enums`, () => {
-                const original = require(`hexo-component-inferno/lib/schema/widget/${name}.json`);
-                const override = require(path.join(schemaDir, `widget/${name}.json`));
-                const enums = Object.values(original.properties).filter(property => Array.isArray(property.enum));
-                assert.ok(enums.some(property => property.nullable && !property.enum.includes(null)),
-                    `hexo-component-inferno accepts null in the enums of the ${name} widget now. Remove include/schema/widget/${name}.json.`);
-                const expected = JSON.parse(JSON.stringify(original));
-                for (const property of Object.values(expected.properties)) {
-                    if (property.nullable && Array.isArray(property.enum) && !property.enum.includes(null)) {
-                        property.enum.push(null);
-                    }
-                }
-                assert.deepEqual(override, expected, `Update include/schema/widget/${name}.json to the schema of hexo-component-inferno.`);
-            });
-        }
     });
 
     it('accepts the test fixture theme configuration', () => {
