@@ -29,17 +29,22 @@ Icarus同时也提供了超多插件与挂件来满足你的多元的站点个�
 <!-- more -->
 
 在你继续安装Icarus之前，请先花些时间阅览[Hexo文档](https://hexo.io)。
+Icarus 6.3需要Hexo 7.1.1或更新的版本（Hexo 7或Hexo 8），以及Node.js 14或更新的版本。
+注意Hexo 8本身需要Node.js 20.19或更新的版本。
 如要安装Icarus，你可以选择如下两种方式中的任意一种：
 
 {% tabs align:left style:boxed %}
 <!-- tab id:install-source 'icon:fas fa-file-code' title:从源码安装 -->
-从GitHub的仓库中下载源码的压缩包并解压到你Hexo站点的主题目录中。
+从GitHub的仓库中下载源码的压缩包并解压到你Hexo站点的`themes/icarus`目录中。
+目录名必须是`icarus`，与下文在站点配置中设置的主题名一致。
 或者，你可以使用Git来克隆Icarus的代码仓库到`themes`目录下：
 
 {% codeblock "Git Bash/命令行" %}
 git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
 {% endcodeblock %}
 
+请将`<version number>`替换为你需要的版本，例如`-b 6.3.0`。
+Icarus的版本标签没有`v`前缀。
 你可以省略`-b <version number>`来获取Icarus的最新开发版本。
 如果你想同时下载Git仓库的完整提交历史，请同时省略`--depth 1`。
 另外，你也可以使用下面的命令将Icarus安装为Git子模块(submodule)：
@@ -47,6 +52,25 @@ git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <ve
 {% codeblock "Git Bash/命令行" %}
 git submodule add https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
 {% endcodeblock %}
+
+从源码安装时，Icarus使用的是你站点中的Node.js依赖包，所以你还需要在站点根目录中安装它的依赖，其中包括`hexo-renderer-inferno`渲染器。
+你不需要自己逐个查找这些依赖：每次运行`hexo`命令时（见下面的步骤），Icarus都会检查依赖，列出缺失的包，并打印出安装它们的命令，例如：
+
+{% codeblock "命令行" %}
+$ hexo clean
+INFO  === Checking package dependencies ===
+ERROR Package bulma-stylus is not installed.
+ERROR Package hexo-component-inferno is not installed.
+ERROR Package hexo-renderer-inferno is not installed.
+...
+ERROR Please install the missing dependencies in your Hexo site root directory:
+ERROR npm install --save bulma-stylus@0.8.0 hexo-component-inferno@^4.1.0 hexo-renderer-inferno@^1.0.2 ...
+ERROR or:
+ERROR yarn add bulma-stylus@0.8.0 hexo-component-inferno@^4.1.0 hexo-renderer-inferno@^1.0.2 ...
+{% endcodeblock %}
+
+请在站点根目录（而不是`themes/icarus`目录）中运行打印出来的`npm install`（或`yarn add`）命令。
+Hexo只会加载站点`package.json`中列出的渲染器，例如`hexo-renderer-inferno`。
 <!-- endtab -->
 
 <!-- tab active id:install-npm 'icon:fas fa-cubes' title:使用NPM安装 -->
@@ -55,18 +79,21 @@ git submodule add https://github.com/ppoffice/hexo-theme-icarus.git themes/icaru
 {% codeblock "命令行" %}
 npm install -S hexo-theme-icarus hexo-renderer-inferno
 {% endcodeblock %}
+
+Icarus的其他依赖会随它一起安装。
+之所以要单独安装`hexo-renderer-inferno`，是因为Hexo只会加载站点`package.json`中列出的渲染器。
 <!-- endtab -->
 {% endtabs %}
 
 <hr>
 
-接下来，在你的站点的`_config.yml`文件中的开启Icarus：
+接下来，在你的站点的`_config.yml`文件中开启Icarus：
 
 {% codeblock _config.yml lang:yaml %}
 theme: icarus
 {% endcodeblock %}
 
-或使用`hexo`命令修改主题为Icarus:
+或使用`hexo`命令修改主题为Icarus：
 
 {% codeblock "命令行" %}
 hexo config theme icarus
@@ -79,6 +106,9 @@ hexo config theme icarus
 hexo server
 {% endcodeblock %}
 
+第一次使用Icarus运行`hexo`命令时，它会在站点根目录中生成主题配置文件`_config.icarus.yml`，其中包含了所有配置项及其说明。
+你可以编辑这个文件来配置主题，详见{% post_link zh-CN/Configuring-Theme %}。
+
 如需了解更多主题、挂件、和插件相关的信息，请查看
 [Icarus用户指南](/hexo-theme-icarus/tags/Icarus用户指南/)。
 你也可以参考本站的源代码来获取更多的使用示例。
@@ -88,6 +118,7 @@ hexo server
 **额外资源**
 
 下面是一些帮助你进一步个性化你的站点的其他资源。
+除Hexo文档外，下列社区教程大多是为较早的Icarus版本（如Icarus 3和4）编写的，部分内容可能已不适用于当前版本，请结合本站的文档参考。
 你也可以[点击此处](https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Getting-Started.md)来提交你的Icarus教程。
 
 <div class="menu-list is-size-6">
