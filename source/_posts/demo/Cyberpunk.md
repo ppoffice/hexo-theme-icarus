@@ -60,7 +60,7 @@ thumbnail: /gallery/covers/CP77-KV-en.jpg
 Icarus includes a new variant called Cyberpunk starting from version 3.0.0.
 The theme is inspired by the video game [Cyberpunk 2077](https://www.cyberpunk.net/us/en/) 
 developed by CD PROJEKT RED.
-This variant aims at providing a different Icarus experience to these who like dark-themed
+This variant aims at providing a different Icarus experience to those who like dark-themed
 blogs.
 It should be noted that it uses recent web styling features that are not working correctly  
 in some legacy browsers, including Internet Explorer and legacy Microsoft Edge.
@@ -74,9 +74,12 @@ To enable the Cyberpunk theme, open `_config.icarus.yml` and make the following 
 + variant: cyberpunk
 {% endcodeblock %}
 
+The Cyberpunk variant is always dark, so the `appearance`, `logo_dark`, and `article.highlight.dark_theme`
+settings of the {% post_link demo/Dark-Mode "dark appearance" %} do not apply to it.
+
 You may also want to change the theme of highlighted code blocks.
-In that case, you can find some dark highlight.js themes 
-[here](https://github.com/highlightjs/highlight.js/tree/master/src/styles).
+In that case, you can find some dark themes of highlight.js 11.11.1, the version that Icarus uses,
+[here](https://github.com/highlightjs/highlight.js/tree/11.11.1/src/styles).
 Copy the file name, excluding the `.css` extension, and put it in the `article.highlight.theme`
 option in `_config.icarus.yml`.
 For example, if you want to change the theme to `xt256`, make the following change:

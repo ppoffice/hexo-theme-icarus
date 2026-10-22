@@ -18,7 +18,7 @@ This post itself is displayed with the dark appearance, while the rest of this s
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
-<i class="fas fa-info-circle mr-2"></i>The dark appearance requires the next release of Icarus after 6.2.0.
+<i class="fas fa-info-circle mr-2"></i>The dark appearance is available since Icarus 6.3.0.
 It is not available in Icarus 6.2.0 or earlier.
 </div>
 </article>
@@ -50,7 +50,8 @@ To make your site dark for everyone, use `dark` instead:
 {% endcodeblock %}
 
 Form controls and scrollbars drawn by the browser follow the appearance as well.
-The Cyberpunk variant, which is already dark, ignores this setting.
+The Cyberpunk variant, which is already dark, ignores this setting, as well as the `dark_theme` and `logo_dark`
+settings described below.
 
 ## Per-Layout and Per-Page Appearance
 
@@ -78,9 +79,10 @@ This is exactly how this post is made dark.
 When a page is dark, code blocks use the `dark_theme` setting in the `article` > `highlight` section,
 which defaults to `atom-one-dark`.
 With `auto`, both themes are loaded and the browser picks the one matching the color scheme of the visitor.
-You can find other dark highlight.js themes
-[here](https://github.com/highlightjs/highlight.js/tree/master/src/styles).
+You can find other dark themes of highlight.js 11.11.1, the version that Icarus uses,
+[here](https://github.com/highlightjs/highlight.js/tree/11.11.1/src/styles).
 Copy the file name, excluding the `.css` extension, and put it in the `dark_theme` setting.
+Themes in the `base16` folder need the folder name as well, such as `base16/dracula`.
 For example, to use `github-dark`:
 
 {% codeblock _config.icarus.yml lang:diff %}
@@ -135,8 +137,12 @@ html[data-appearance="dark"] .content img {
 
 ## Limitations
 
-- Content from third-party services, such as comment systems, the Google Custom Search, Baidu, and Algolia
-  search widgets, and share buttons, keeps its own (usually light) look.
+- The Giscus, utterances, Beaudar, Waline, Artalk, and Cusdis comment plugins follow the appearance of the page,
+  unless you set their own theme or dark mode settings.
+  Giscus, utterances, and Beaudar pick their colors when the comments are loaded, so on `auto` pages they do not
+  switch until the page is reloaded if the color scheme of the visitor changes meanwhile.
+- Other comment plugins, and other content from third-party services, such as the Google Custom Search, Baidu,
+  and Algolia search widgets, and share buttons, keep their own (usually light) look.
 - Images are not inverted or dimmed.
 - Browsers that do not support the `:where()` CSS selector display the light appearance, and those that do
   not support the `prefers-color-scheme` media query display `auto` pages in light.
