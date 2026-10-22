@@ -13,7 +13,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 5支持的站内搜索插件的安装配置。
+本文介绍Icarus支持的站内搜索插件的安装配置。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -28,6 +28,9 @@ providers:
 <i class="fas fa-info-circle mr-2"></i>下面的站内搜索插件由<a href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>提供，完整的支持插件列表和配置详情以其为准。
 </div>
 </article>
+
+访客点击导航栏上的搜索按钮即可打开搜索框。
+除百度搜索外，搜索框也可以用键盘打开，并用<kbd>Esc</kbd>关闭，详见[快捷键](#快捷键)。
 
 <style>
 .content ol:not([type]) {
@@ -46,12 +49,12 @@ providers:
 
 2. 注册并登录[Algolia](https://www.algolia.com/)。
    首次登录控制面板(Dashboard)时点击页面上的“创建索引”(Create Index)按钮。
-   然后，输入”索引名称“(Index name)并点击“创建”(Create)完成索引创建。
+   然后，输入“索引名称”(Index name)并点击“创建”(Create)完成索引创建。
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/algolia-create-index.png 360 '"创建索引 - Algolia" "创建索引 - Algolia"' %}
    <br>
 
-3. 下一步，点击右侧导航栏上的”API密钥“(API Keys)，复制页面上的“应用ID”(Application ID)和“仅限搜索的API Key”
+3. 下一步，点击左侧导航栏上的“API密钥”(API Keys)，复制页面上的“应用ID”(Application ID)和“仅限搜索的API Key”
    (Search-Only API Key)。
    打开Hexo站点根目录下的站点配置文件`_config.yml`，填入上面复制的信息到hexo-algolia插件的配置中。
 
@@ -75,9 +78,9 @@ providers:
         apiKey: 7b08fca7d42412cee901a25643124221
     {% endcodeblock %}
 
-4. 回到Algolia控制面板的”API密钥“(API Keys)页面并切换到“所有API Keys”(All API Keys)标签页。
+4. 回到Algolia控制面板的“API密钥”(API Keys)页面并切换到“所有API Keys”(All API Keys)标签页。
    点击“新建API Key”(New API Key)按钮。
-   在弹出的“创建API Key”(Create API Key)对话框中，在”索引“(Indices)处选择你在上一步中创建的“索引”(Indices)。
+   在弹出的“创建API Key”(Create API Key)对话框中，在“索引”(Indices)处选择你在第2步中创建的索引。
    然后，“ACL”项中添加`addObject`，`deleteObject`，`listIndexes`， `deleteIndex`。
    点击“创建”(Create)完成密钥的创建。
    复制刚刚创建的API Key，例如`727fbd8c998fe419318fa350db6793ca`。
@@ -115,7 +118,13 @@ providers:
     {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: algolia
+        excerpt: excerpt        # 可选填，默认为`excerpt`
     {% endcodeblock %}
+
+    `excerpt`是Algolia记录中的一个属性名，这个属性的内容会作为每条搜索结果的预览文字。
+    如果你的记录把文章正文存在其他属性中，请设置这一项。
+    搜索结果中的标题和预览文字都以纯文本显示，并高亮匹配到的词：
+    自hexo-component-inferno 4.2.0起，预览文字中的HTML标签会被去掉，记录中的其他HTML会被转义，而不会被渲染。
 
 
 ## 百度搜索
@@ -129,8 +138,18 @@ providers:
         type: baidu
     {% endcodeblock %}
 
+    百度搜索会把访客带到百度网站上搜索你的站点，搜索范围限定为站点配置文件`_config.yml`中`url`设置的域名。
+    请确认`url`是你的站点地址。
+    百度搜索的搜索框不支持快捷键。
+
 
 ## 谷歌自定义搜索
+
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>谷歌现在似乎把这项服务称为Programmable Search Engine（可编程搜索引擎），因此它的页面可能与下面的截图不同。
+</div>
+</article>
 
 <div>
 <strong>安装指南</strong>
@@ -180,6 +199,23 @@ providers:
         type: insight
         index_pages: true       # 可选项，默认为`true`。设置为`false`时从搜索结果中排除所有页面（page）
     {% endcodeblock %}
+
+2. Insight不需要任何外部服务。
+   生成网站时，它会把文章、页面、分类和标签的文字保存到`content.json`文件中，搜索框会下载这个文件并在浏览器中搜索。
+   自hexo-component-inferno 4.2.0起，搜索关键词按纯文本匹配，不再被当作正则表达式；搜索结果也会被转义，以纯文本显示。
+   你还可以用<kbd>↑</kbd>和<kbd>↓</kbd>选择搜索结果，按<kbd>Enter</kbd>打开它。
+
+
+## 快捷键
+
+除百度搜索外，上面所有的搜索插件都支持下面的快捷键：
+
+- <kbd>/</kbd>：打开搜索框。正在输入框、文本框或其他可编辑内容中输入时除外。
+- <kbd>Ctrl</kbd> + <kbd>K</kbd>（macOS上为<kbd>⌘ Command</kbd> + <kbd>K</kbd>）：打开搜索框，正在输入时也可以使用。
+- <kbd>Esc</kbd>：关闭搜索框，焦点会回到打开搜索框之前的位置。
+
+用<kbd>Tab</kbd>等方式让导航栏上的搜索按钮获得焦点时，不会打开搜索框；请在按钮上按<kbd>Enter</kbd>或<kbd>空格</kbd>，或者点击它。
+用<kbd>Tab</kbd>等方式把焦点移出已打开的搜索框时，搜索框会关闭。
 
 
 <article class="message message-immersive is-warning">

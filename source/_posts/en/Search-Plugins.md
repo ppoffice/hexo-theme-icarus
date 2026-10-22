@@ -9,7 +9,7 @@ language: en
 toc: true
 ---
 
-This article covers search plugin configurations supported by Icarus 5.
+This article covers search plugin configurations supported by Icarus.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -27,6 +27,10 @@ This article covers search plugin configurations supported by Icarus 5.
 Please refer to it for a complete list of supported plugins and their configuration details.
 </div>
 </article>
+
+Visitors open the search box by clicking the search button on the navigation bar.
+Except for Baidu Search, the search box can also be opened with the keyboard and closed with <kbd>Esc</kbd>.
+See [Keyboard Shortcuts](#Keyboard-Shortcuts) for details.
 
 ## Algolia
 
@@ -51,7 +55,7 @@ Please refer to it for a complete list of supported plugins and their configurat
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/algolia-api-keys.png 360 '"API Keys - Algolia" "API Keys - Algolia"' %}
    <br>
 
-   For example, the following Aloglia index information:
+   For example, the following Algolia index information:
 
     {% codeblock "Algolia Index Information" %}
     Algolia Index Name: My-Hexo-Site
@@ -70,7 +74,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 
 4. Go back to the "API Keys" page from the Algolia dashboard and switch to the "All API Keys" tab.
    Click the "New API Key" button.
-   On the popup "Create API Key" dialog, select the index you created in the last step in "Indices" select box.
+   On the popup "Create API Key" dialog, select the index you created in step 2 in the "Indices" select box.
    Then, add `addObject`, `deleteObject`, `listIndexes`, `deleteIndex` to the "ACL" field.
    Click the "Create" button to finish key creation.
    Copy the API key you just created, e.g., `727fbd8c998fe419318fa350db6793ca`.
@@ -109,7 +113,15 @@ Please refer to it for a complete list of supported plugins and their configurat
     {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: algolia
+        excerpt: excerpt        # Optional. Defaults to `excerpt`
     {% endcodeblock %}
+
+    `excerpt` is the name of the attribute of your Algolia records that is shown as the preview text of each
+    search result.
+    Set it if your records keep the text of the posts in another attribute.
+    The search results show the title and the preview text as plain text with the matched words highlighted:
+    since hexo-component-inferno 4.2.0, HTML tags in the preview text are removed, and other HTML in the records
+    is escaped instead of being rendered.
 
 
 ## Baidu Search
@@ -123,8 +135,20 @@ Please refer to it for a complete list of supported plugins and their configurat
         type: baidu
     {% endcodeblock %}
 
+    Baidu Search sends visitors to the Baidu website to search your site, which is limited to the domain in the
+    `url` setting of your site configuration file `_config.yml`.
+    Make sure `url` is the address of your site.
+    The search box of Baidu Search has no keyboard shortcuts.
+
 
 ## Google Custom Search Engine (CSE)
+
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-info-circle mr-2"></i>Google now seems to call this service Programmable Search Engine, so its
+pages may look different from the screenshots below.
+</div>
+</article>
 
 <div>
 <strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/search/Google-CSE %}">Preview</a>
@@ -173,6 +197,28 @@ Please refer to it for a complete list of supported plugins and their configurat
         type: insight
         index_pages: true       # Optional. Defaults to `true`. Set to `false` to exclude pages from search results.
     {% endcodeblock %}
+
+2. Insight does not need any external service.
+   When you generate your site, it saves the text of your posts, pages, categories, and tags to a `content.json`
+   file, which the search box downloads and searches in the browser.
+   Since hexo-component-inferno 4.2.0, the keywords are matched as plain text instead of regular expressions,
+   and the search results are escaped and shown as plain text.
+   You can also use <kbd>↑</kbd> and <kbd>↓</kbd> to select a search result and <kbd>Enter</kbd> to open it.
+
+
+## Keyboard Shortcuts
+
+Except for Baidu Search, all search plugins above support the following keyboard shortcuts:
+
+- <kbd>/</kbd> opens the search box, unless you are typing in an input field, a text area, or other editable
+  content.
+- <kbd>Ctrl</kbd> + <kbd>K</kbd> (<kbd>⌘ Command</kbd> + <kbd>K</kbd> on macOS) opens the search box, even when you
+  are typing.
+- <kbd>Esc</kbd> closes the search box, and the focus returns to where it was before the search box opened.
+
+Focusing the search button on the navigation bar, for example with <kbd>Tab</kbd>, does not open the search box.
+Press <kbd>Enter</kbd> or <kbd>Space</kbd> on it, or click it, instead.
+Moving the focus out of the open search box, for example with <kbd>Tab</kbd>, closes it.
 
 
 <article class="message message-immersive is-warning">
