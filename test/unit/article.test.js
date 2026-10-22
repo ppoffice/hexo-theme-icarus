@@ -164,6 +164,46 @@ describe('layout/common/article', () => {
             assert.equal((await renderArticle({}, { config: { plugins: { busuanzi: true } } })).$('#busuanzi_value_page_pv').length, 1);
             assert.equal((await renderArticle()).$('#busuanzi_value_page_pv').length, 0);
         });
+
+        describe('Waline page view counter', () => {
+            const waline = { type: 'waline', server_url: 'https://waline.example.com' };
+            const counter = async (config, options = {}) => (await renderArticle(options.page || {}, { config, index: options.index })).$('.article-meta .waline-pageview-count');
+
+            it('shows the views of the page with the server of the Waline comments', async () => {
+                const { $ } = await renderArticle({}, { config: { comment: waline, plugins: { waline_pageview: true } } });
+                const $counter = $('.article-meta .waline-pageview-count');
+                assert.equal($counter.length, 1);
+                assert.equal($counter.attr('data-path'), '/2024/01/01/article/');
+                assert.ok($counter.parent().is('span.level-item'));
+                assert.equal($counter.parent().text(), '0\u00a0visits');
+            });
+
+            it('shows the views with its own server', async () => {
+                assert.equal((await counter({ plugins: { waline_pageview: { server_url: 'https://waline.example.com' } } })).length, 1);
+            });
+
+            it('gives the path of the page with the root of the site, encoded like the URL', async () => {
+                const $counter = await counter({ root: '/blog/', comment: waline, plugins: { waline_pageview: true } }, { page: { path: '2024/01/01/文章/' } });
+                assert.equal($counter.attr('data-path'), '/blog/2024/01/01/%E6%96%87%E7%AB%A0/');
+            });
+
+            it('uses the translation of the other page view counters', async () => {
+                const $counter = await counter({ language: 'zh-CN', comment: waline, plugins: { waline_pageview: true } });
+                assert.equal($counter.parent().text(), '0次访问');
+            });
+
+            for (const [description, config, options] of [
+                ['when the plugin is disabled', { comment: waline, plugins: { waline_pageview: false } }],
+                ['without the plugin', { comment: waline }],
+                ['without a server, from the plugin or Waline comments', { comment: { type: 'disqus', shortname: 'fixture' }, plugins: { waline_pageview: true } }],
+                ['with Waline comments without a server', { comment: { type: 'waline' }, plugins: { waline_pageview: {} } }],
+                ['in the index', { comment: waline, plugins: { waline_pageview: true } }, { index: true }]
+            ]) {
+                it(`is not shown ${description}`, async () => {
+                    assert.equal((await counter(config, options)).length, 0);
+                });
+            }
+        });
     });
 
     describe('index view', () => {

@@ -1,9 +1,11 @@
 /**
- * Comment providers of hexo-component-inferno with PJAX and the dark appearance.
+ * Comment providers of hexo-component-inferno with PJAX and the dark appearance, and the Waline
+ * page view counter with PJAX.
  *
  * The fixture variant has a post for each provider (test/fixtures/variants.js), which follows
  * the system color scheme, and a light post with Giscus. The client scripts and libraries of the
- * providers are replaced by the stubs below, which record how they were loaded and initialised.
+ * providers and the counter are replaced by the stubs below, which record how they were loaded
+ * and initialised.
  */
 const { test, expect } = require('./fixtures');
 
@@ -70,6 +72,20 @@ export function init(options) {
     return { destroy: function () { record.destroyed = true; } };
 }`;
 
+const PAGEVIEW_JS = 'https://cdn.jsdelivr.net/npm/@waline/client@3.3.0/dist/pageview.js';
+
+// Count a view of the path, and show the views of the path of each counter.
+const PAGEVIEW_STUB = `
+export function pageviewCount(options) {
+    window.__pageviews = window.__pageviews || [];
+    window.__pageviews.push({ serverURL: options.serverURL, path: options.path });
+    document.querySelectorAll('.waline-pageview-count').forEach(function (element) {
+        var path = element.getAttribute('data-path') || options.path;
+        element.textContent = String(window.__pageviews.filter(function (view) { return view.path === path; }).length);
+    });
+    return function () {};
+}`;
+
 // Like Artalk, use the path of the current URL as the page key without the pageKey option.
 const ARTALK_STUB = `
 window.__loads = window.__loads || {};
@@ -101,6 +117,7 @@ async function stubComments(page) {
         await page.route(url, route => route.fulfill(js(stub)));
     }
     await page.route('https://cdn.jsdelivr.net/npm/@waline/client@3.3.0/dist/waline.js', route => route.fulfill(module_(WALINE_STUB)));
+    await page.route(PAGEVIEW_JS, route => route.fulfill(module_(PAGEVIEW_STUB)));
     await page.route('https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.js', route => route.fulfill(js(ARTALK_STUB)));
     await page.route('https://cusdis.com/js/widget/lang/zh-cn.js', route => route.fulfill(js('window.CUSDIS_LOCALE = "zh-cn";')));
     await page.route('https://cusdis.com/js/cusdis.es.js', route => route.fulfill(js(CUSDIS_STUB)));
@@ -233,6 +250,30 @@ test.describe('Cusdis', () => {
         await goTo(page, 'cusdis');
         await expect(thread).toHaveText(`Cusdis ${postUrl('cusdis')} auto zh-cn`);
         expect(await page.evaluate(() => [window.__loads.cusdis, window.__cusdisRenders, window.__noFullReload])).toEqual([1, 2, true]);
+        expect(diagnostics.pageErrors).toEqual([]);
+    });
+});
+
+test.describe('Waline page view counter', () => {
+    test('counts a view of the first page and of each page PJAX switches to, and shows the views of posts', async ({ page, visit, diagnostics }) => {
+        const counter = page.locator('.article-meta .waline-pageview-count');
+        const views = () => page.evaluate(() => (window.__pageviews || []).map(view => view.path));
+        await visit(postUrl('giscus-light'), { variant: VARIANT });
+        await expect(counter).toHaveText('1');
+        await expect(counter).toHaveAttribute('data-path', postUrl('giscus-light'));
+        expect(await page.evaluate(() => window.__pageviews[0].serverURL)).toBe('https://waline.example.com');
+        await page.evaluate(() => { window.__noFullReload = true; });
+
+        await goTo(page, 'utterances');
+        await expect(counter).toHaveAttribute('data-path', postUrl('utterances'));
+        await expect(counter).toHaveText('1');
+        await goTo(page, 'giscus-light');
+        await expect(counter).toHaveText('2');
+        await pjaxClick(page, page.locator('.navbar-start a', { hasText: 'Home' }));
+        await expect(page.locator('.waline-pageview-count')).toHaveCount(0);
+
+        expect(await views()).toEqual([postUrl('giscus-light'), postUrl('utterances'), postUrl('giscus-light'), '/']);
+        expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
         expect(diagnostics.pageErrors).toEqual([]);
     });
 });

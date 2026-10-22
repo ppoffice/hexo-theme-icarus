@@ -100,6 +100,19 @@ function checkConfig(hexo) {
             logger.warn(`Consider another comment plugin, such as Waline, Twikoo or giscus. See ${yellow('https://github.com/ppoffice/hexo-theme-icarus/issues/788')}.`);
         }
 
+        const walinePageview = cfg.plugins && typeof cfg.plugins === 'object' ? cfg.plugins.waline_pageview : null;
+        if (walinePageview) {
+            const waline = cfg.comment && cfg.comment.type === 'waline' ? cfg.comment : null;
+            if (waline && waline.pageview) {
+                logger.warn('Both the waline_pageview plugin and the pageview option of the Waline comments count page views, so each view is counted twice.');
+                logger.warn(`Please set ${yellow('comment.pageview')} to false, or disable ${yellow('plugins.waline_pageview')}.`);
+            }
+            if (!(typeof walinePageview === 'object' && walinePageview.server_url) && !(waline && waline.server_url)) {
+                logger.warn('The waline_pageview plugin is enabled, but has no Waline server to count the page views.');
+                logger.warn(`Please set ${yellow('plugins.waline_pageview.server_url')}, or the ${yellow('server_url')} of the Waline comments.`);
+            }
+        }
+
         const rootCfg = yaml.parse(fs.readFileSync(siteCfgFile));
         if (rootCfg.theme_config) {
             logger.warn(`"theme_config" found in ${yellow(siteCfgFile)}.`);

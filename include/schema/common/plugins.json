@@ -60,6 +60,9 @@
         },
         "umami": {
             "$ref": "/plugin/umami.json"
+        },
+        "waline_pageview": {
+            "$ref": "/plugin/waline_pageview.json"
         }
     }
 }

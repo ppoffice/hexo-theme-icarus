@@ -118,7 +118,8 @@ module.exports = {
 
     // PJAX with a post for each comment provider whose client the browser tests stub: Giscus from
     // the theme configuration, the others from the front-matter. The posts follow the system color
-    // scheme (appearance: auto), except the light Giscus post, and link to each other.
+    // scheme (appearance: auto), except the light Giscus post, and link to each other. The Waline
+    // page view counter, with its own server, is stubbed too.
     'pjax-comments': {
         theme: {
             comment: {
@@ -131,7 +132,7 @@ module.exports = {
                 theme: 'light',
                 darkTheme: 'dark_dimmed'
             },
-            plugins: { pjax: true }
+            plugins: { pjax: true, waline_pageview: { server_url: 'https://waline.example.com' } }
         },
         files: commentPosts([
             ['giscus', null],
@@ -142,6 +143,14 @@ module.exports = {
             ['artalk', { type: 'artalk', server: 'https://artalk.example.com', site: 'Icarus Fixture' }],
             ['cusdis', { type: 'cusdis', app_id: 'fixture-app-id', lang: 'zh-cn' }]
         ])
+    },
+
+    // The Waline page view counter with the server of the Waline comments.
+    'waline-pageview': {
+        theme: {
+            comment: { type: 'waline', server_url: 'https://waline.example.com' },
+            plugins: { waline_pageview: true }
+        }
     },
 
     // Some packages from another CDN provider or URL than the rest.
@@ -226,7 +235,8 @@ module.exports = {
                 progressbar: true,
                 statcounter: { project: 'fixture', security: 'fixture' },
                 twitter_conversion_tracking: { pixel_id: 'fixture' },
-                umami: { website_id: 'fixture-umami', domains: 'example.com' }
+                umami: { website_id: 'fixture-umami', domains: 'example.com' },
+                waline_pageview: { server_url: 'https://waline.example.com' }
             }
         }
     }

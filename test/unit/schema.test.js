@@ -179,6 +179,32 @@ describe('include/schema', () => {
         });
     });
 
+    describe('plugins.waline_pageview', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = waline_pageview => schema.validate({ version: '5.1.0', plugins: { waline_pageview } }) === true;
+
+        it('accepts true, false, or the URL of a server', () => {
+            for (const value of [true, false, {}, { server_url: 'https://waline.example.com' }, { server_url: null }]) {
+                assert.ok(valid(value), JSON.stringify(value));
+            }
+        });
+
+        for (const value of ['https://waline.example.com', 1, { server_url: 42 }, ['https://waline.example.com']]) {
+            it(`rejects ${JSON.stringify(value)}`, () => {
+                assert.ok(!valid(value));
+            });
+        }
+
+        it('is disabled in the generated configuration, which warns against the pageview option of Waline', () => {
+            const yamlText = schema.getDefaultValue().toYaml();
+            assert.equal(yaml.parse(yamlText).plugins.waline_pageview, false);
+            assert.match(yamlText, /# Waline page view counter.*Do not also enable the pageview option of the Waline comments.*\n(\s*#.*\n)*\s*waline_pageview: false\n/);
+        });
+    });
+
     describe('comment', () => {
         let schema;
 

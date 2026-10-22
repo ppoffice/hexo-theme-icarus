@@ -59,7 +59,8 @@ Recent Posts &middot; Google Feedburner &middot; Tags &middot; Table of Contents
 **[Analytics](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/)**
 
 Baidu Statistics &middot; Bing Webmaster &middot; BuSuanZi Web Counter &middot; CNZZ Statistics &middot;
-Google Analytics &middot; Hotjar &middot; Matomo &middot; StatCounter &middot; Twitter Conversion Tracking &middot; Umami
+Google Analytics &middot; Hotjar &middot; Matomo &middot; StatCounter &middot; Twitter Conversion Tracking &middot; Umami &middot;
+Waline Page View Counter
 
 **[Other Plugins](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/)**
 

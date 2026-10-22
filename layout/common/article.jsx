@@ -30,6 +30,22 @@ function getWordCount(html) {
     return (text.match(WORD_PATTERN) || []).filter(word => LETTER_PATTERN.test(word)).length;
 }
 
+/**
+ * The server of the waline_pageview plugin, which only counts and shows the page views with one:
+ * its server_url, or the one of the Waline comments.
+ */
+function getWalinePageviewServer(config) {
+    const { plugins, comment } = config;
+    const plugin = plugins ? plugins.waline_pageview : null;
+    if (!plugin) {
+        return null;
+    }
+    if (typeof plugin === 'object' && plugin.server_url) {
+        return plugin.server_url;
+    }
+    return comment && comment.type === 'waline' && comment.server_url ? comment.server_url : null;
+}
+
 module.exports = class extends Component {
     render() {
         const { config, helper, page, index } = this.props;
@@ -99,6 +115,11 @@ module.exports = class extends Component {
                             {/* Visitor counter */}
                             {!index && plugins && plugins.busuanzi === true ? <span class="level-item" id="busuanzi_container_page_pv" dangerouslySetInnerHTML={{
                                 __html: _p('plugin.visit_count', '<span id="busuanzi_value_page_pv">0</span>')
+                            }}></span> : null}
+                            {/* Waline page view counter, which fills the element with the views of the page at
+                                its data-path: the path of the URL that the plugin counts, like the Waline comments */}
+                            {!index && getWalinePageviewServer(config) ? <span class="level-item" dangerouslySetInnerHTML={{
+                                __html: _p('plugin.visit_count', `<span class="waline-pageview-count" data-path="${escapeHTML(url_for(page.path))}">0</span>`)
                             }}></span> : null}
                         </div>
                     </div> : null}

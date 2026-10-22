@@ -254,7 +254,8 @@ describe('fixture site variants', function() {
                 ['progressbar', 'pace'],
                 ['statcounter', 'statcounter'],
                 ['twitter_conversion_tracking', 'twq'],
-                ['umami', 'data-website-id="fixture-umami"']
+                ['umami', 'data-website-id="fixture-umami"'],
+                ['waline_pageview', 'class="waline-pageview-count"']
             ]) {
                 assert.ok(html.toLowerCase().includes(marker.toLowerCase()), `${plugin}: "${marker}" not found`);
             }
@@ -288,6 +289,45 @@ describe('fixture site variants', function() {
                 assert.equal($('title').length, 1, file);
                 assert.equal($('head').length, 1, file);
             }
+        });
+    });
+
+    describe('Waline page view counter', () => {
+        let site;
+        const PAGEVIEW_JS = 'https://cdn.jsdelivr.net/npm/@waline/client@3.3.0/dist/pageview.js';
+        const scripts = $ => $('script').filter((i, el) => $(el).html().includes(PAGEVIEW_JS)).map((i, el) => $(el).html()).get();
+
+        before(() => { site = getSite('waline-pageview'); });
+
+        it('builds without errors or configuration warnings', () => {
+            assert.equal(site.status, 0);
+            assert.doesNotMatch(site.output, /^ERROR/m, site.output);
+            assert.doesNotMatch(site.output, /failed one or more checks|waline_pageview|Icarus cannot load/, site.output);
+        });
+
+        it('shows the views of a post in its metadata, and counts them with the server of the Waline comments', () => {
+            const $ = site.$('/2024/03/01/hello-world/');
+            const $counter = $('.article-meta .waline-pageview-count');
+            assert.equal($counter.length, 1);
+            assert.equal($counter.attr('data-path'), '/2024/03/01/hello-world/');
+            assert.equal($counter.parent().text(), `0${strings('en').plugin.visit_count.replace('%s', '').replace('&nbsp;', '\u00a0')}`);
+            const code = scripts($);
+            assert.equal(code.length, 1);
+            assert.ok(code[0].includes('serverURL: "https://waline.example.com",'), code[0]);
+            assert.ok(code[0].includes('path: window.location.pathname,'), code[0]);
+            // Counts the pages PJAX switches to too
+            assert.ok(code[0].includes('document.addEventListener(\'pjax:complete\', count);'), code[0]);
+        });
+
+        it('counts the views of the other pages without showing them', () => {
+            const $ = site.$('/');
+            assert.equal($('.waline-pageview-count').length, 0);
+            assert.equal(scripts($).length, 1);
+        });
+
+        it('changes nothing on a site without it', () => {
+            const html = getSite('default').read('2024/03/01/hello-world/index.html');
+            assert.ok(!html.includes('waline'), 'waline found in the default site');
         });
     });
 
