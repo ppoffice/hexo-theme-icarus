@@ -307,7 +307,7 @@ for the detailed configuration process of DisqusJS.
 
 <article class="message message-immersive is-danger">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Some AD blockers may block this comment plugin. Use it with caution. 
+<i class="fas fa-exclamation-triangle mr-2"></i>Some ad blockers may block this comment plugin. Use it with caution.
 </div>
 </article>
 
@@ -527,7 +527,7 @@ However, unlike the other services, Isso requires a web host for running the Iss
 
 <article class="message message-immersive is-danger">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Some AD blockers may block this comment plugin. Use it with caution. 
+<i class="fas fa-exclamation-triangle mr-2"></i>Some ad blockers may block this comment plugin. Use it with caution.
 </div>
 </article>
 

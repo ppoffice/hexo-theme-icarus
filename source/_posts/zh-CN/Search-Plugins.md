@@ -166,7 +166,7 @@ providers:
    <br>
 
 2. 然后，点击页面上的“添加到你的站点”(Add it to your site)右侧的“获取代码”(Get code)按钮。
-   从HTML代码中复制`cx`的值填入到对应主题配置项中。
+   从HTML代码中复制`cx`的值，填入对应的主题配置项中。
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/google-cse-code.png 360 '"获取代码 - Google CSE" "获取代码 - Google CSE"' %}
    <br>

@@ -496,7 +496,7 @@ Gitment已停止维护，它使用的GitHub登录代理也已失效。
 
 1. 请参照[Isso文档](https://posativ.org/isso/docs/install/)安装并启动Isso服务器。
 
-2. 将Isso服务器的HTTP URL填入到主题配置的相应配置项中。
+2. 将Isso服务器的HTTP URL填入主题配置的相应配置项中。
    例如，如果你的Isso服务地址为`https://posativ.org/isso/api/`，你会有如下的评论配置：
 
     {% codeblock _config.icarus.yml lang:yaml %}
@@ -577,7 +577,7 @@ Twikoo是一个基于云函数的自建评论系统。
 <strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Twikoo %}">在线预览</a>
 </div>
 
-1. 按照[Twikoo文档](https://twikoo.js.org/)，将Twikoo云函数部署到你指定的云服务商之上。
+1. 按照[Twikoo文档](https://twikoo.js.org/)，将Twikoo云函数部署到你选择的云服务商上。
 
 2. 将你部署的`env_id`填入主题配置的对应配置项中。
    如果将Twikoo部署到腾讯云开发(CloudBase)，它是环境ID；如果部署到Vercel或自己搭建，它是你的部署地址，例如`https://your-twikoo.vercel.app`。
