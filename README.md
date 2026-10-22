@@ -56,14 +56,17 @@ One to three columns, navbar sub-menus that fold into a menu button, and a mobil
 </tr>
 <tr>
 <td valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/config.png" alt="Per-page configuration">
 <p><b>Configure per page</b><br>
 Set options site-wide, override them per layout in <code>_config.post.yml</code>, or per post in its front-matter.</p>
 </td>
 <td valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/plugins.png" alt="Waline comments in the dark appearance">
 <p><b>40+ plugins built in</b><br>
 Comments, search, sharing, donations, analytics and widgets, ready to switch on in the config.</p>
 </td>
 <td valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/accessible.png" alt="Navbar sub-menu opened with the keyboard">
 <p><b>Fast and accessible</b><br>
 PJAX page loading, keyboard and screen reader support, and translations into 17 languages.</p>
 </td>

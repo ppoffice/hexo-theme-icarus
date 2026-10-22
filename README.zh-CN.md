@@ -55,14 +55,17 @@ hexo server
 </tr>
 <tr>
 <td valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/config.png" alt="按页面配置">
 <p><b>按页面配置</b><br>
 全站统一配置，也可以用 <code>_config.post.yml</code> 等布局配置文件，或文章的 front-matter 单独覆盖。</p>
 </td>
 <td valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/plugins.png" alt="暗色下的 Waline 评论">
 <p><b>内置 40 多个插件</b><br>
 评论、搜索、分享、打赏、统计和侧边栏小组件，在配置文件里打开就能用。</p>
 </td>
 <td valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/accessible.png" alt="用键盘打开的导航栏子菜单">
 <p><b>快速且无障碍</b><br>
 PJAX 无刷新加载页面，支持键盘操作和屏幕阅读器，内置 17 种语言的翻译。</p>
 </td>
