@@ -199,6 +199,11 @@ head:
         - 'name=generator;content="Hexo 4.2.0"'
 {% endcodeblock %}
 
+Since hexo-component-inferno 4.2.0, only the first `=` of each pair separates the field name from the value, so
+the value can contain `=`.
+To use `;` in a value (or `=` in a field name), escape it with a backslash, for example,
+`'http-equiv=refresh;content=5\;url=https://example.com/'`.
+
 ### RSS
 
 You can add a link to your RSS feed at the `rss` setting in the `head` section.

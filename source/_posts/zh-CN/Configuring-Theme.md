@@ -201,6 +201,9 @@ head:
         - 'name=generator;content="Hexo 4.2.0"'
 {% endcodeblock %}
 
+自hexo-component-inferno 4.2.0起，每组中只有第一个`=`用来分隔属性名和属性值，所以属性值中可以包含`=`。
+如果属性值中需要使用`;`（或属性名中需要使用`=`），请用反斜杠转义，例如`'http-equiv=refresh;content=5\;url=https://example.com/'`。
+
 ### RSS
 
 你可以通过`head`部分的`rss`设置来添加RSS链接信息。
