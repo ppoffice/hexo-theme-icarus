@@ -28,7 +28,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 5支持的其他插件的安装配置。
+本文介绍Icarus 6支持的其他插件的安装配置。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -50,7 +50,9 @@ providers:
 
 Icarus的画廊插件同时包含了[lightGallery](https://sachinchoolur.github.io/lightGallery/)与
 [Justified Gallery](https://miromannino.github.io/Justified-Gallery/)两种插件。
-若要启用画廊插件，请将主题配置中`plugins` > `gallery`的值设置为`true`。
+画廊插件默认开启：Icarus生成的配置文件中`plugins` > `gallery`的值为`true`。
+如果你的配置文件中没有这一项，请添加它来启用插件。
+若要禁用画廊插件，请将其设置为`false`。
 
 {% codeblock _config.icarus.yml lang:yaml %}
 plugins:
@@ -101,7 +103,7 @@ plugins:
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
-<i class="fas fa-info-circle mr-2"></i>下面的图片来源于<a href="https://www.pexels.com">pexel.com</a>
+<i class="fas fa-info-circle mr-2"></i>下面的图片来源于<a href="https://www.pexels.com">pexels.com</a>。
 </div>
 </article>
 
@@ -145,7 +147,7 @@ $$\displaystyle \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} 
 {% endcodeblock %}
 
 有时你的\\(\TeX\\)语法会被错认为Markdown语法而导致公式渲染异常。
-例如，下面的公式不会渲染成功，因为其中包含多个`_`(下划线)而被Markdown渲染器错误的认成Markdown的斜体字语法：
+例如，下面的公式不会渲染成功，因为其中包含多个`_`(下划线)而被Markdown渲染器错误地当成Markdown的斜体语法：
 
 {% codeblock Some-Post.md lang:tex %}
 $$
@@ -176,7 +178,7 @@ $$
 
 **安装指南**
 
-你可以使用MathJax插件来渲染\\(\TeX\\)，MathML，或AsciiMath数学公式。
+你可以使用MathJax插件来渲染\\(\TeX\\)或MathML数学公式。
 若要启用MathJax插件，请将主题配置中`plugins` > `mathjax`的值设置为`true`。
 
 {% codeblock _config.icarus.yml lang:yaml %}
@@ -263,13 +265,6 @@ A =
 </math>
 {% endcodeblock %}
 
-同样地，你也可以使用MathJax支持的AsciiMath。
-公式需包裹在<code>\\`</code>内。
-
-{% codeblock AsciiMath-Example.md lang:markdown >folded %}
-当\`a != 0\`，方程\`ax^2 + bx + c = 0\`有两个解，它们是<p style="text-align:center">\`x = (-b +- sqrt(b^2-4ac))/(2a)\`.</p>
-{% endcodeblock %}
-
 有时你的\\(\TeX\\)语法会被错认为Markdown语法而导致公式渲染异常。
 请参照[KaTeX](#KaTeX)一节来查看解决方案。
 
@@ -347,10 +342,6 @@ A =
     <mtext>.</mtext>
 </math>
 
-**效果预览(AsciiMath)**
-
-当\`a != 0\`，方程\`ax^2 + bx + c = 0\`有两个解，它们是<p style="text-align:center">\`x = (-b +- sqrt(b^2-4ac))/(2a)\`.</p>
-
 
 ## Cookie同意提示
 
@@ -408,6 +399,44 @@ plugins:
 plugins:
     progressbar: false
 {% endcodeblock %}
+
+
+## 回到顶部按钮
+
+**安装指南**
+
+访客向下滚动页面后，Icarus会显示一个按钮，点击即可回到页面顶部。
+此按钮默认开启：Icarus生成的配置文件中`plugins` > `back_to_top`的值为`true`。
+若需隐藏此按钮，请在你的主题配置中将其设置为`false`。
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    back_to_top: false
+{% endcodeblock %}
+
+
+## PJAX
+
+**安装指南**
+
+开启[PJAX](https://github.com/MoOx/pjax)后，点击站内其他页面的链接时不会重新加载整个网页。
+Icarus会在后台获取新页面，只替换导航栏、正文和侧边栏等发生变化的部分，让页面之间的切换更快、更流畅。
+PJAX默认开启：Icarus生成的配置文件中`plugins` > `pjax`的值为`true`。
+如果你的配置文件中没有这一项，请添加它来启用PJAX。
+若需禁用PJAX，请在你的主题配置中将其设置为`false`。
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    pjax: true
+{% endcodeblock %}
+
+关于PJAX需要注意的是：
+
+- 评论区会和正文一起被替换，评论插件的脚本也会重新运行，因此每个新页面都会加载自己的评论。
+- MathJax会重新渲染新页面中的数学公式。
+- 页面切换后，网站统计插件的脚本不会重新运行，以免同一次访问被统计两次。
+  <a href="{% post_path zh-CN/Web-Analytics-Plugins %}#Matomo">Matomo</a>、<a href="{% post_path zh-CN/Web-Analytics-Plugins %}#Umami">Umami</a>、不蒜子和<a href="{% post_path zh-CN/Web-Analytics-Plugins %}#Waline浏览量统计">Waline浏览量统计</a>会自行统计访客切换到的页面。
+  其他统计服务如果不能自行跟踪页面的变化，可能只会统计访客打开的第一个页面。
 
 
 <article class="message message-immersive is-warning">
