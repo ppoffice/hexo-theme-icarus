@@ -70,8 +70,8 @@ providers:
 
     {% codeblock _config.yml lang:yaml %}
     algolia:
-        applicationID: My-Hexo-Site
-        indexName: ABCDEFGHIJKL
+        applicationID: ABCDEFGHIJKL
+        indexName: My-Hexo-Site
         apiKey: 7b08fca7d42412cee901a25643124221
     {% endcodeblock %}
 
@@ -178,7 +178,7 @@ providers:
     {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: insight
-        include_pages: true     # 可选项。设置为false时从搜索结果中排除所有page
+        index_pages: true       # 可选项，默认为`true`。设置为`false`时从搜索结果中排除所有页面（page）
     {% endcodeblock %}
 
 

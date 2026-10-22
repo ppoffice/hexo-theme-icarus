@@ -63,8 +63,8 @@ Please refer to it for a complete list of supported plugins and their configurat
 
     {% codeblock _config.yml lang:yaml %}
     algolia:
-        applicationID: My-Hexo-Site
-        indexName: ABCDEFGHIJKL
+        applicationID: ABCDEFGHIJKL
+        indexName: My-Hexo-Site
         apiKey: 7b08fca7d42412cee901a25643124221
     {% endcodeblock %}
 
@@ -171,7 +171,7 @@ Please refer to it for a complete list of supported plugins and their configurat
     {% codeblock _config.icarus.yml lang:yaml %}
     search:
         type: insight
-        include_pages: true     # Optional. Set to `false` to exclude pages from search results.
+        index_pages: true       # Optional. Defaults to `true`. Set to `false` to exclude pages from search results.
     {% endcodeblock %}
 
 
