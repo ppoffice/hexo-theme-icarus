@@ -365,6 +365,8 @@ plugins:
     # Enable the Outdated Browser plugin
     # http://outdatedbrowser.com/
     outdated_browser: false
+    # Load pages with PJAX, without reloading the whole page
+    pjax: true
     # Show a progress bar at top of the page on page loading
     progressbar: true
     # Statcounter statistics

@@ -19,6 +19,7 @@ plugins:
     gallery: true
     mathjax: true
     outdated_browser: true
+    pjax: true
     progressbar: true
 providers:
     cdn: loli
