@@ -144,6 +144,21 @@ module.exports = {
         ])
     },
 
+    // Some packages from another CDN provider or URL than the rest.
+    'cdn-overrides': {
+        theme: {
+            plugins: { pjax: true },
+            providers: {
+                cdn: 'jsdelivr',
+                cdn_overrides: {
+                    'jquery': 'cdnjs',
+                    'highlight.js': 'unpkg',
+                    'clipboard': 'https://static.example.com/js/clipboard.min.js'
+                }
+            }
+        }
+    },
+
     'animejs': {
         theme: { plugins: { animejs: true } }
     },

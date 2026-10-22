@@ -56,6 +56,49 @@ describe('layout/layout (page skeleton)', () => {
         });
     });
 
+    describe('CDN providers', () => {
+        const urls = async providers => {
+            const { $ } = await renderLayout({}, { providers, plugins: { pjax: true } });
+            const src = name => $(`script[src*="${name}"]`).attr('src');
+            return { jquery: src('jquery'), clipboard: src('clipboard'), pjax: src('pjax.min.js'), highlight: $('link[href*="highlight.js"]').attr('href') };
+        };
+
+        it('loads the packages from the cdn provider', async () => {
+            assert.deepEqual(await urls({ cdn: 'jsdelivr' }), {
+                jquery: 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js',
+                clipboard: 'https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js',
+                pjax: 'https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js',
+                highlight: 'https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-light.css'
+            });
+        });
+
+        it('loads the packages of cdn_overrides from their own provider, URL template or URL', async () => {
+            assert.deepEqual(await urls({
+                cdn: 'jsdelivr',
+                cdn_overrides: {
+                    'jquery': 'cdnjs',
+                    'highlight.js': 'https://cdn.example.com/${package}/${version}/${filename}',
+                    'clipboard': 'https://example.com/js/clipboard.min.js'
+                }
+            }), {
+                jquery: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
+                clipboard: 'https://example.com/js/clipboard.min.js',
+                pjax: 'https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js',
+                highlight: 'https://cdn.example.com/highlight.js/11.11.1/styles/atom-one-light.css'
+            });
+        });
+
+        it('loads the other packages from the cdn provider, or jsdelivr without one', async () => {
+            const unpkg = await urls({ cdn: 'unpkg', cdn_overrides: { jquery: 'jsdelivr' } });
+            assert.equal(unpkg.jquery, 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js');
+            assert.equal(unpkg.pjax, 'https://unpkg.com/pjax@0.2.8/pjax.min.js');
+            const noCdn = await urls({ cdn: null, cdn_overrides: { jquery: 'unpkg' } });
+            assert.equal(noCdn.jquery, 'https://unpkg.com/jquery@3.7.1/dist/jquery.min.js');
+            assert.equal(noCdn.pjax, 'https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js');
+            assert.deepEqual(await urls({ cdn: 'jsdelivr', cdn_overrides: null }), await urls({ cdn: 'jsdelivr' }));
+        });
+    });
+
     it('renders with empty widget entries (a bare "-" in YAML)', async () => {
         const { $ } = await renderLayout({ toc: true }, { widgets: [null, ...onlyProfile('left'), null] });
         assert.ok($('body').hasClass('is-2-column'));

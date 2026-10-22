@@ -145,6 +145,40 @@ describe('include/schema', () => {
         });
     });
 
+    describe('providers.cdn_overrides', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = cdn_overrides => schema.validate({ version: '5.1.0', providers: { cdn: 'jsdelivr', cdn_overrides } }) === true;
+
+        it('accepts CDN provider names and URL templates by package name, or nothing', () => {
+            assert.ok(valid({ 'jquery': 'unpkg', 'highlight.js': '[cdnjs]https://cdn.example.com/${package}/${version}/${filename}', '@waline/client': 'https://example.com/waline.js' }));
+            assert.ok(valid({}));
+            assert.ok(valid(null));
+            assert.ok(schema.validate({ version: '5.1.0', providers: { cdn: 'jsdelivr' } }) === true);
+        });
+
+        for (const [description, value] of [
+            ['a provider name for every package', 'unpkg'],
+            ['a list', ['jquery', 'unpkg']],
+            ['an empty provider', { jquery: '' }],
+            ['a provider that is not a string', { jquery: 42 }],
+            ['nested packages', { jquery: { cdn: 'unpkg' } }]
+        ]) {
+            it(`rejects ${description}`, () => {
+                assert.ok(!valid(value), JSON.stringify(value));
+            });
+        }
+
+        it('is an empty mapping in the generated configuration, documented with examples', () => {
+            const yamlText = schema.getDefaultValue().toYaml();
+            assert.deepEqual(yaml.parse(yamlText).providers.cdn_overrides, {});
+            assert.match(yamlText, /# +jquery: unpkg\n/);
+            assert.match(yamlText, /# +clipboard: https:\/\/example\.com\/js\/clipboard\.min\.js\n\s*cdn_overrides: \{\}\n/);
+        });
+    });
+
     describe('comment', () => {
         let schema;
 

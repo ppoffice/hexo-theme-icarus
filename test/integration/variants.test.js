@@ -291,6 +291,22 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('providers.cdn_overrides', () => {
+        it('loads the listed packages from their own provider or URL, and the others from the cdn provider', () => {
+            const site = getSite('cdn-overrides');
+            assert.equal(site.status, 0);
+            assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+            const $ = site.$('/2024/02/20/code-blocks/');
+            const sources = $('script[src^="http"]').map((i, el) => el.attribs.src).get();
+            assert.deepEqual(sources, [
+                'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
+                'https://static.example.com/js/clipboard.min.js',
+                'https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js'
+            ]);
+            assert.deepEqual($('link[href*="highlight.js"]').map((i, el) => el.attribs.href).get(), ['https://unpkg.com/highlight.js@11.11.1/styles/atom-one-light.css']);
+        });
+    });
+
     describe('comment providers', () => {
         let site;
         const comments = name => site.$(`/2024/05/0${['giscus', 'giscus-light', 'utterances', 'beaudar', 'waline', 'artalk', 'cusdis'].indexOf(name) + 1}/comments-${name}/`)('#comments .card-content');
