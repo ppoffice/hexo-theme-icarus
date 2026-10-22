@@ -15,7 +15,10 @@ const VENDORED = {
     'highlight.js': 'highlight.js',
     jquery: 'jquery',
     clipboard: 'clipboard',
-    pjax: 'pjax'
+    pjax: 'pjax',
+    // Loaded by the math plugins of hexo-component-inferno
+    mathjax: 'mathjax',
+    katex: 'katex'
 };
 
 const CONTENT_TYPES = {
