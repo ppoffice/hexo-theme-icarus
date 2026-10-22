@@ -39,6 +39,8 @@ Icarus 6运行在Node.js 14.0或更新的版本上。
 除此之外，请确保所有的Node.js依赖已安装。
 你可以在[`<icarus_directory>/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
 文件的`dependencies`部分下找到这些依赖。
+如果你是从源码安装的Icarus，请按照{% post_link zh-CN/Getting-Started %}中的说明，在站点根目录中安装它们。
+无论用哪种方式安装，`hexo-renderer-inferno`都必须列在站点的`package.json`中，因为Hexo只会加载其中列出的插件；缺少它，Hexo就无法渲染Icarus的布局。
 同时，从你的站点中移除所有无用的Node.js依赖，否则它们可能会导致Icarus出现奇怪的问题。
 
 <article class="message is-primary" style="font-size:1em">
@@ -101,11 +103,14 @@ CSS类名中的数字标志着一个挂件或主内容所占据的栏数量。
 
 你可以参考[Bulma文档](https://bulma.io/documentation/columns/sizes/)来获取更多关于布局系统的细节。
 
-下面时一些创建单栏/双栏/三栏布局的提示：
+下面是一些创建单栏/双栏/三栏布局的提示：
 
-- 你可以从主题配置中移除所有的挂件来创建单栏布局。
+- 你可以从主题配置中移除所有的挂件，或将`widgets`设置为`null`，来创建单栏布局。
 - 你可以将所有的挂件移动到页面的一侧来创建双栏布局。
 - 你可以将挂件放在页面两边来创建三栏布局。
+
+注意，目录挂件只会显示在设置了`toc: true`（在front-matter或配置文件中设置）的文章和页面上。
+如果某一侧边栏中只有目录挂件，它在其他页面上不会占用一栏。
 
 若要更改单个文章或页面的布局，请参考[配置文件与优先级](/hexo-theme-icarus/Configuration/icarus用户指南-主题配置/#配置文件与优先级)。
 
@@ -118,25 +123,34 @@ CSS类名中的数字标志着一个挂件或主内容所占据的栏数量。
 插件和挂件的布局文件已被移至一个单独的Node.js库中——[`hexo-component-inferno`](https://github.com/ppoffice/hexo-component-inferno)。
 这样，主题开发者可以更好地在不同主题之间复用这些通用组件，并且普通用户可以更简便地覆盖这些内置组件。
 
-若要自定义这些组件，从`hexo-component-inferno`仓库中拷贝布局文件并把它们放入`<icarus_directory>/layout`下的的相应目录中。
-例如，如果你想要自定义Valine评论插件，你可以从`hexo-component-inferno`仓库中拷贝
-[`src/view/comment/valine.jsx`](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/src/view/comment/valine.jsx)
-到`<icarus_directory>/layout/comment/valine.jsx`。
-同时像下面这样改正此文件头部的一些Node.js引用：
+若要自定义这些组件，从`hexo-component-inferno`仓库中拷贝布局文件并把它们放入`<icarus_directory>/layout`下的相应目录中。
+例如，如果你想要自定义Waline评论插件，你可以从`hexo-component-inferno`仓库中拷贝
+[`src/view/comment/waline.jsx`](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/view/comment/waline.jsx)
+到`<icarus_directory>/layout/comment/waline.jsx`。
+请拷贝与你安装的版本相同的发布版中的文件（版本号见`node_modules/hexo-component-inferno/package.json`中的`version`），因为仓库中最新的代码可能需要更新的版本。
+同时像下面这样，把此文件头部`../../util/...`形式的相对引用改为`hexo-component-inferno/lib/util/...`：
 
-{% codeblock &lt;icarus_directory&gt;/layout/comment/valine.jsx lang:diff %}
+{% codeblock &lt;icarus_directory&gt;/layout/comment/waline.jsx lang:diff %}
 - const { cacheComponent } = require('../../util/cache');
 + const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 {% endcodeblock %}
 
 最后，用`hexo clean`清理你的站点并重新生成HTML文件。
 
-类似的，你可以用同样的方式覆盖主题内置的静态文件，如
-[`asset/js/insight.js`](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/asset/js/insight.js) 。
+类似地，你也可以覆盖主题内置的静态文件，如
+[`asset/js/insight.js`](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/asset/js/insight.js)：
+把你自己的文件放到主题`source`目录下的相同路径即可，例如`<icarus_directory>/source/js/insight.js`。
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>如果你是通过NPM安装的Icarus，<code>&lt;icarus_directory&gt;</code>就是<code>node_modules/hexo-theme-icarus</code>，升级或重新安装Icarus时，你在这里做的修改都会被覆盖。
+如果需要长期修改主题文件，请改为从源码安装Icarus（参见{% post_link zh-CN/Getting-Started %}和{% post_link zh-CN/Upgrade-Guide %}）。
+</div>
+</article>
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
-为什么我的改变的布局文件在我刷新页面时没有生效（假设我正在使用<code>hexo server</code>）？
+为什么我修改的布局文件在我刷新页面时没有生效（假设我正在使用<code>hexo server</code>）？
 </div>
 </article>
 
@@ -170,7 +184,7 @@ Markdown渲染器（hexo-renderer-marked，默认开启`prependRoot: true`）会
 ```
 
 这种情况下，图片路径里同样可以省略网站子目录。
-你可以参考[Hexo文档](https://hexo.io/zh-cn/docs/index.html)来了解更多详情。
+你可以参考[Hexo文档](https://hexo.io/zh-cn/docs/tag-plugins)来了解更多详情。
 
 <article class="message is-primary" style="font-size:1em">
 <div class="message-body">
@@ -218,6 +232,8 @@ excerpt: 这是一篇关于...
 </article>
 
 这些警示信息通常在你遗漏一些插件或挂件的配置设置时出现。
+例如，Icarus首次运行时生成的`_config.icarus.yml`开启了评论插件、打赏按钮、分享按钮和若干挂件（如AdSense和follow.it），但它们的配置值都是空的占位值。
+请为你想使用的插件或挂件填写配置值。
 如果你不想开启某个插件或挂件，把它们从你的主题配置中删掉或注释掉。
 
 例如，注释掉这几行来禁用掉评论插件：

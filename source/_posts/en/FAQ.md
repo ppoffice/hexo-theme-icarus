@@ -39,6 +39,10 @@ Apart from that, make sure you have all the Node.js dependencies installed.
 You can find them in the `dependencies` section of the 
 [`<icarus_directory>/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
 file.
+If you installed Icarus from source, install them in the root directory of your site, as described in
+{% post_link en/Getting-Started %}.
+In any case, `hexo-renderer-inferno` must be listed in the `package.json` of your site, because Hexo only loads
+the plugins listed there; without it, Hexo cannot render the layouts of Icarus.
 Also, remove all unused Node.js dependencies from your site, or they may cause strange problems to 
 Icarus.
 
@@ -109,9 +113,14 @@ column system.
 
 Here are some tips for creating a one/two/three-column layout:
 
-- You can remove all widgets from your theme configurations to create a one-column layout.
+- You can remove all widgets from your theme configurations, or set `widgets` to `null`, to create a one-column
+  layout.
 - You can move all your widgets to the same side of the page to create a two-column layout.
 - You can place widgets on both sides of the page to create a three-column layout.
+
+Note that the table of contents widget only shows on posts and pages with `toc: true` (set in their front-matter
+or in a configuration file).
+A sidebar that only has the table of contents widget does not take up a column on other pages.
 
 To change the layout for a single or all posts/pages, refer to 
 [Configuration Files and Priority](/hexo-theme-icarus/Configuration/icarus-user-guide-configuring-the-theme/#Configuration-Files-and-Priority).
@@ -124,17 +133,21 @@ Where are the layout files for widgets/comments/share...? How do I customize bui
 
 The layout files for plugins and widgets have been moved to a separate Node.js package called 
 [`hexo-component-inferno`](https://github.com/ppoffice/hexo-component-inferno).
-This help theme developers better reuse common components across different themes and make overriding these 
+This helps theme developers better reuse common components across different themes and makes overriding these 
 components easy for average users.
 
 To customize these components, copy the layout files from the `hexo-component-inferno` repository and place
 them in the corresponding directories under `<icarus_directory>/layout`.
-For example, if you want to customize the Valine comment plugin, you can copy 
-[`src/view/comment/valine.jsx`](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/src/view/comment/valine.jsx) 
-from the `hexo-component-inferno` repository to `<icarus_directory>/layout/comment/valine.jsx`.
-Also, remember to fix Node.js imports like the following:
+For example, if you want to customize the Waline comment plugin, you can copy 
+[`src/view/comment/waline.jsx`](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/view/comment/waline.jsx) 
+from the `hexo-component-inferno` repository to `<icarus_directory>/layout/comment/waline.jsx`.
+Copy the file from the release you have installed (see the `version` in
+`node_modules/hexo-component-inferno/package.json`), as the latest code in the repository may need a newer
+release.
+Also, remember to change the relative imports of `../../util/...` to `hexo-component-inferno/lib/util/...`,
+like the following:
 
-{% codeblock &lt;icarus_directory&gt;/layout/comment/valine.jsx lang:diff %}
+{% codeblock &lt;icarus_directory&gt;/layout/comment/waline.jsx lang:diff %}
 - const { cacheComponent } = require('../../util/cache');
 + const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 {% endcodeblock %}
@@ -142,13 +155,23 @@ Also, remember to fix Node.js imports like the following:
 Finally, `hexo clean` your site before regenerating the HTML.
 
 Similarly, you can override static files like 
-[`asset/js/insight.js`](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.4/asset/js/insight.js) 
-in the same way.
+[`asset/js/insight.js`](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/asset/js/insight.js)
+by putting your own copy at the same path under the theme's `source` directory, e.g.,
+`<icarus_directory>/source/js/insight.js`.
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>If you installed Icarus via NPM, <code>&lt;icarus_directory&gt;</code> is
+<code>node_modules/hexo-theme-icarus</code>, and upgrading or reinstalling Icarus overwrites your changes there.
+To keep customizing the theme's files, install Icarus from source instead
+(see {% post_link en/Getting-Started %} and {% post_link en/Upgrade-Guide %}).
+</div>
+</article>
 
 <article class="message is-primary" style="font-size:inherit">
 <div class="message-body">
-Why don't my layout changes take effect when I refresh the page (assuming I am running the 
-<code>hexo server</code>?
+Why don't my layout changes take effect when I refresh the page (assuming I am running 
+<code>hexo server</code>)?
 </div>
 </article>
 
@@ -156,7 +179,7 @@ Icarus caches the layout files when you start the local Hexo server with the `he
 To make the layout changes take effect, restart the local server.
 
 Other times some intermediate data may be cached by Hexo in the memory or `db.json` database.
-Execute `hexo clean` before running `hexo server` or `hexo generate` should resolve this issue.
+Running `hexo clean` before `hexo server` or `hexo generate` should resolve this issue.
 
 
 ## Content
@@ -234,6 +257,9 @@ How can I get rid of those red alerts that are showing on the page and warning m
 </article>
 
 Those alerts usually show up when you miss out on some plugin or widget configurations.
+For example, the `_config.icarus.yml` that Icarus generates on the first run enables a comment plugin, donation
+buttons, share buttons, and several widgets (such as AdSense and follow.it) with empty placeholder values.
+Fill in the values of the ones you want to use.
 If you don't want to enable a certain plugin or widget, delete it or comment it out from your theme configurations.
 
 For example, you can disable the comment plugins by commenting out the following lines:
@@ -257,4 +283,4 @@ to submit your revision.
 </article>
 
 
-<a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-size:12px;line-height:1.2;display:inline-block;border-radius:3px" href="https://www.vecteezy.com/free-vector/vector-landscapee" target="_blank" rel="noopener noreferrer" title="Vector Landscape Vectors by Vecteezy"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white" viewBox="0 0 32 32"><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Vector Landscape Vectors by Vecteezy</span></a>
+<a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-size:12px;line-height:1.2;display:inline-block;border-radius:3px" href="https://www.vecteezy.com/free-vector/vector-landscape" target="_blank" rel="noopener noreferrer" title="Vector Landscape Vectors by Vecteezy"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white" viewBox="0 0 32 32"><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Vector Landscape Vectors by Vecteezy</span></a>
