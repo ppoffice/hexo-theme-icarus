@@ -16,12 +16,12 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref }}
       # No registry-url: it makes setup-node set a placeholder NODE_AUTH_TOKEN, which npm falls
       # back to when the trusted publishing (OIDC) exchange fails, hiding the real error.
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       # Trusted publishing needs npm 11.5.1 or later
