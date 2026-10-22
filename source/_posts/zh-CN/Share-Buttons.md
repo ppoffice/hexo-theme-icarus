@@ -9,7 +9,7 @@ language: zh-CN
 toc: true
 share:
     type: sharethis
-    install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8fc96750876c7d
+    install_url: //platform-api.sharethis.com/js/sharethis.js#property=5ab6f60ace89f00013641890&product=inline-share-buttons
 providers:
     cdn: loli
     fontcdn: loli
