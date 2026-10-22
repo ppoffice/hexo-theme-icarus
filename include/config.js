@@ -113,6 +113,12 @@ function checkConfig(hexo) {
             }
         }
 
+        // Configurations generated before hexo-component-inferno 4.2.0 have type: blog, which the theme ignores
+        const openGraph = cfg.head && typeof cfg.head === 'object' ? cfg.head.open_graph : null;
+        if (openGraph && typeof openGraph === 'object' && openGraph.type === 'blog') {
+            logger.warn(`${yellow('head.open_graph.type')} is "blog", which is not an Open Graph type and is ignored. Please remove it.`);
+        }
+
         const rootCfg = yaml.parse(fs.readFileSync(siteCfgFile));
         if (rootCfg.theme_config) {
             logger.warn(`"theme_config" found in ${yellow(siteCfgFile)}.`);

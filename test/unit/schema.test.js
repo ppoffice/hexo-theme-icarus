@@ -252,6 +252,13 @@ describe('include/schema', () => {
         });
     });
 
+    // hexo-component-inferno 4.1.0 and earlier gave it the default "blog", which is not an Open Graph type
+    it('leaves head.open_graph.type empty in the generated configuration', () => {
+        const defaults = yaml.parse(loadSchema().getDefaultValue().toYaml());
+        assert.ok('type' in defaults.head.open_graph);
+        assert.equal(defaults.head.open_graph.type, null);
+    });
+
     describe('archives and categories widgets', () => {
         let schema;
 

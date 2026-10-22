@@ -255,6 +255,28 @@ describe('include/config (theme configuration check, generation and migration)',
             });
         });
 
+        describe('og:type warning', () => {
+            const warning = /head\.open_graph\.type.* is "blog", which is not an Open Graph type and is ignored\. Please remove it\./;
+            const check = head => {
+                env = createEnv({ themeSiteConfig: { version: '5.1.0', head } });
+                return capture(() => checkConfig(env.hexo));
+            };
+
+            // Configurations generated before hexo-component-inferno 4.2.0 have it
+            it('warns about type: blog', () => {
+                const { exitCode, output } = check({ open_graph: { type: 'blog' } });
+                assert.equal(exitCode, null, output);
+                assert.match(output, warning);
+                assert.doesNotMatch(output, /failed one or more checks/, output);
+            });
+
+            for (const head of [{ open_graph: { type: 'website' } }, { open_graph: { type: null } }, { open_graph: null }, {}]) {
+                it(`does not warn with ${JSON.stringify(head)}`, () => {
+                    assert.doesNotMatch(check(head).output, /open_graph/);
+                });
+            }
+        });
+
         it('exits with an error when the theme config is not valid YAML', () => {
             env = createEnv({ themeSiteConfig: 'version: 5.1.0\nvariant: [unclosed\n' });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));

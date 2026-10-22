@@ -145,7 +145,8 @@ module.exports = class extends Component {
                 name={manifest.name || config.title} />
 
             {typeof open_graph === 'object' && open_graph !== null ? <OpenGraph
-                type={open_graph.type || (is_post(page) ? 'article' : 'website')}
+                // "blog", which generated configurations had, is not an Open Graph type, so ignore it
+                type={(open_graph.type !== 'blog' && open_graph.type) || (is_post(page) ? 'article' : 'website')}
                 title={open_graph.title || page.title || config.title}
                 date={page.date}
                 updated={page.updated}
