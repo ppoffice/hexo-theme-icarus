@@ -36,8 +36,8 @@ blog feature-rich and powerful.
 
 **[Comment](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/)**
 
-Changyan &middot; Disqus &middot; DisqusJS &middot; Facebook &middot; Gitalk &middot; Gitment &middot;
-Isso &middot; LiveRe &middot; Utterance &middot; Valine
+Artalk &middot; Beaudar &middot; Changyan &middot; Cusdis &middot; Disqus &middot; DisqusJS &middot; Facebook &middot;
+Giscus &middot; Gitalk &middot; Gitment &middot; Isso &middot; LiveRe &middot; Twikoo &middot; Utterances &middot; Valine &middot; Waline
 
 **[Donate Button](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/)**
 

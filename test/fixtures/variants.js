@@ -5,6 +5,23 @@
  *          `false` removes the file so the theme generates its default configuration
  *   files: extra files to write, keyed by path relative to the site root
  */
+
+/**
+ * Posts named comments-<name>, published on consecutive days of May 2024, each with its comment
+ * configuration (null for the one of the theme configuration), more front-matter, and links to
+ * every post of the list.
+ */
+function commentPosts(posts) {
+    const url = i => `/2024/05/0${i + 1}/comments-${posts[i][0]}/`;
+    const links = posts.map(([name], i) => `- [${name}](${url(i)})`).join('\n');
+    return Object.fromEntries(posts.map(([name, comment, frontMatter = {}], i) => {
+        const fields = Object.assign({ title: `Comments ${name}`, date: `2024-05-0${i + 1} 10:00:00`, appearance: 'auto', comment }, frontMatter);
+        const lines = Object.entries(fields).filter(([, value]) => value !== null)
+            .map(([key, value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`);
+        return [`source/_posts/comments-${name}.md`, ['---', ...lines, '---', `A post with ${name} comments.`, '', links, ''].join('\n')];
+    }));
+}
+
 module.exports = {
     // The base fixture as-is.
     'default': {},
@@ -97,6 +114,34 @@ module.exports = {
                 umami: { website_id: 'fixture-umami' }
             }
         }
+    },
+
+    // PJAX with a post for each comment provider whose client the browser tests stub: Giscus from
+    // the theme configuration, the others from the front-matter. The posts follow the system color
+    // scheme (appearance: auto), except the light Giscus post, and link to each other.
+    'pjax-comments': {
+        theme: {
+            comment: {
+                type: 'giscus',
+                repo: 'fixture-owner/fixture-comments',
+                repoId: 'fixture-repo-id',
+                category: 'Comments',
+                categoryId: 'fixture-category-id',
+                mapping: 'pathname',
+                theme: 'light',
+                darkTheme: 'dark_dimmed'
+            },
+            plugins: { pjax: true }
+        },
+        files: commentPosts([
+            ['giscus', null],
+            ['giscus-light', null, { appearance: null }],
+            ['utterances', { type: 'utterances', repo: 'fixture-owner/fixture-comments', issue_term: 'pathname', dark_theme: 'photon-dark' }],
+            ['beaudar', { type: 'beaudar', repo: 'fixture-owner/fixture-comments', branch: 'main', issue_term: 'title', dark_theme: 'icy-dark' }],
+            ['waline', { type: 'waline', server_url: 'https://waline.example.com' }],
+            ['artalk', { type: 'artalk', server: 'https://artalk.example.com', site: 'Icarus Fixture' }],
+            ['cusdis', { type: 'cusdis', app_id: 'fixture-app-id', lang: 'zh-cn' }]
+        ])
     },
 
     'animejs': {

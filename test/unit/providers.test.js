@@ -32,6 +32,14 @@ function minimalConfig(kind, type) {
         const schema = require(path.join(upstreamSchemaDir, kind, type + '.json'));
         defaults = Object.fromEntries((schema.required || []).map(key => [key, '']));
     }
+    // Leave out options limited to a list of values but without a default (e.g. the theme of
+    // Cusdis): the generated null is not one of the values, and no placeholder would be either.
+    const { properties = {} } = loader.getSchema(`/${kind}/${type}.json`).def;
+    for (const key of Object.keys(defaults)) {
+        if (defaults[key] === null && properties[key] && Array.isArray(properties[key].enum)) {
+            delete defaults[key];
+        }
+    }
     const fill = value => {
         if (value === '' || value === null) {
             return 'https://example.com/fixture';
@@ -87,6 +95,22 @@ describe('comment, share, donate and search providers', () => {
                 });
             });
         }
+    });
+
+    describe('Artalk page key', () => {
+        const artalk = { type: 'artalk', server: 'https://artalk.example.com' };
+        const code = async comment => (await renderProvider('common/comment', { config: fixtureConfig({ comment }), page })).$('#comments script').html();
+
+        // PJAX changes the URL after running the scripts of the new page, so Artalk cannot use it.
+        it('is the path of the page without the page_key option', async () => {
+            assert.match(await code(artalk), /pageKey: "\/test\/page\/",/);
+        });
+
+        it('is the page_key option when set', async () => {
+            const js = await code({ ...artalk, page_key: '/custom/key/' });
+            assert.match(js, /pageKey: "\/custom\/key\/",/);
+            assert.doesNotMatch(js, /\/test\/page\//);
+        });
     });
 
     describe('share', () => {

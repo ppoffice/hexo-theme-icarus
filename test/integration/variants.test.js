@@ -291,6 +291,90 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('comment providers', () => {
+        let site;
+        const comments = name => site.$(`/2024/05/0${['giscus', 'giscus-light', 'utterances', 'beaudar', 'waline', 'artalk', 'cusdis'].indexOf(name) + 1}/comments-${name}/`)('#comments .card-content');
+        const script = $comments => $comments.find('script').html();
+
+        before(() => { site = getSite('pjax-comments'); });
+
+        it('build from the theme configuration and the front-matter without warnings', () => {
+            assert.equal(site.status, 0);
+            assert.doesNotMatch(site.output, /^ERROR/m, site.output);
+            assert.doesNotMatch(site.output, /failed one or more checks|Icarus cannot load/, site.output);
+        });
+
+        it('renders Artalk with its library and stylesheet, for the configured server and site', () => {
+            const $comments = comments('artalk');
+            assert.equal($comments.find('#artalk-thread').length, 1);
+            assert.equal($comments.find('link[rel="stylesheet"]').attr('href'), 'https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.css');
+            const code = script($comments);
+            assert.ok(code.includes('"https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.js"'), code);
+            assert.match(code, /Artalk\.init\(\{\s*el: '#artalk-thread',\s*server: "https:\/\/artalk\.example\.com",\s*site: "Icarus Fixture",/);
+            // The previous instance is destroyed when PJAX runs the script again
+            assert.ok(code.includes('window.__artalkInstance.destroy()'), code);
+        });
+
+        it('renders Cusdis with the page and the language of the configuration', () => {
+            const $comments = comments('cusdis');
+            assert.deepEqual({ ...$comments.find('#cusdis_thread').attr() }, {
+                'id': 'cusdis_thread',
+                'data-host': 'https://cusdis.com',
+                'data-app-id': 'fixture-app-id',
+                'data-page-id': '/2024/05/07/comments-cusdis/',
+                'data-page-url': 'http://localhost:4000/2024/05/07/comments-cusdis/',
+                'data-page-title': 'Comments cusdis'
+            });
+            const code = script($comments);
+            assert.ok(code.includes('["https://cusdis.com/js/widget/lang/zh-cn.js","https://cusdis.com/js/cusdis.es.js"]'), code);
+            assert.ok(code.includes('window.renderCusdis(element)'), code);
+        });
+
+        it('renders Beaudar, Utterances and Giscus as scripts that add their client to the page', () => {
+            for (const [name, client, element, attrs] of [
+                ['beaudar', 'https://beaudar.lipk.org/client.js', '#beaudar-thread', '{"repo":"fixture-owner/fixture-comments","branch":"main","issue-term":"title","crossorigin":"anonymous"}'],
+                ['utterances', 'https://utteranc.es/client.js', '#utterances-thread', '{"repo":"fixture-owner/fixture-comments","issue-term":"pathname","crossorigin":"anonymous"}'],
+                // Giscus puts its iframe into .giscus, wherever its script is
+                ['giscus', 'https://giscus.app/client.js', 'head', '"data-repo":"fixture-owner/fixture-comments","data-repo-id":"fixture-repo-id","data-category-id":"fixture-category-id"']
+            ]) {
+                const $comments = comments(name);
+                const code = script($comments);
+                assert.equal($comments.find('script[src]').length, 0, `${name}: the client is added by the inline script`);
+                assert.equal($comments.find(name === 'giscus' ? '.giscus#giscus-thread' : element).length, 1, name);
+                assert.ok(code.includes(`script.src = "${client}";`), code);
+                assert.ok(code.includes(`document.querySelector(${JSON.stringify(element)})`), code);
+                assert.ok(code.includes(attrs), code);
+            }
+        });
+
+        it('chooses the theme of Giscus, Utterances and Beaudar for dark pages in the browser', () => {
+            // isDark() of hexo-component-inferno: data-appearance="dark", or "auto" with a dark system color scheme
+            const isDark = /\(function \(appearance\) \{\s*return appearance === 'dark' \|\| \(appearance === 'auto' && [^}]+\}\)\(document\.documentElement\.getAttribute\('data-appearance'\)\)/.source;
+            for (const [name, attribute, dark, light] of [
+                ['giscus', 'data-theme', 'dark_dimmed', 'light'],
+                ['utterances', 'theme', 'photon-dark', 'github-light'],
+                ['beaudar', 'theme', 'icy-dark', 'github-light']
+            ]) {
+                assert.match(script(comments(name)), new RegExp(`attrs\\["${attribute}"\\] = ${isDark} \\? "${dark}" : "${light}";`), name);
+            }
+        });
+
+        it('initialises Waline with a classic script, which PJAX runs again, following the appearance', () => {
+            const $comments = comments('waline');
+            const $script = $comments.find('script');
+            assert.equal($script.attr('type'), undefined);
+            const code = $script.html();
+            assert.match(code, /^import\("https:\/\/cdn\.jsdelivr\.net\/npm\/@waline\/client@3\.3\.0\/dist\/waline\.js"\)\.then\(/);
+            assert.ok(code.includes('window.__walineInstance.destroy()'), code);
+            assert.ok(code.includes('path: window.location.pathname,'), code);
+            assert.match(code, /dark: \(function \(appearance\) \{[^}]+\}\)\(document\.documentElement\.getAttribute\('data-appearance'\)\) === 'auto' \? 'auto' : 'html\[data-appearance="dark"\]',/);
+        });
+
+        it('keeps the comments of the theme configuration on posts without comment front-matter', () => {
+            assert.equal(site.$('/2024/03/01/hello-world/')('#comments .giscus#giscus-thread').length, 1);
+        });
+    });
+
     describe('plugins', () => {
         it('loads PJAX when enabled', () => {
             const $ = getSite('pjax').$('/');

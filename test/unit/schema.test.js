@@ -145,6 +145,53 @@ describe('include/schema', () => {
         });
     });
 
+    describe('comment', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = comment => schema.validate({ version: '5.1.0', comment }) === true;
+
+        it('accepts Artalk, Cusdis and Beaudar with their required options', () => {
+            assert.ok(valid({ type: 'artalk', server: 'https://artalk.example.com' }));
+            assert.ok(valid({ type: 'artalk', server: 'https://artalk.example.com', site: 'Blog', locale: 'auto', dark_mode: 'auto' }));
+            assert.ok(valid({ type: 'artalk', server: 'https://artalk.example.com', dark_mode: false }));
+            assert.ok(valid({ type: 'cusdis', app_id: 'fixture' }));
+            assert.ok(valid({ type: 'cusdis', app_id: 'fixture', host: 'https://cusdis.example.com', theme: 'auto', lang: 'zh-cn' }));
+            assert.ok(valid({ type: 'beaudar', repo: 'user/repo', issue_term: 'pathname' }));
+            assert.ok(valid({ type: 'beaudar', repo: 'user/repo', issue_number: 1, branch: 'main', label: 'comment', theme: 'github-light', dark_theme: 'icy-dark' }));
+        });
+
+        for (const [description, comment] of [
+            ['Artalk without a server', { type: 'artalk', site: 'Blog' }],
+            ['Artalk with a dark mode that is a number', { type: 'artalk', server: 'https://artalk.example.com', dark_mode: 1 }],
+            ['Cusdis without an app ID', { type: 'cusdis', host: 'https://cusdis.com' }],
+            ['Cusdis with an unknown theme', { type: 'cusdis', app_id: 'fixture', theme: 'blue' }],
+            ['Beaudar without a repository', { type: 'beaudar', issue_term: 'pathname' }],
+            ['Beaudar without an issue term or number', { type: 'beaudar', repo: 'user/repo' }],
+            ['Beaudar with an issue number that is not an integer', { type: 'beaudar', repo: 'user/repo', issue_number: 'one' }],
+            ['an unknown comment type', { type: 'no-such-comment' }]
+        ]) {
+            it(`rejects ${description}`, () => {
+                assert.ok(!valid(comment), JSON.stringify(comment));
+            });
+        }
+
+        it('accepts a theme for dark pages for Giscus and Utterances', () => {
+            const giscus = { type: 'giscus', repo: 'user/repo', repoId: 'R', category: 'C', categoryId: 'C', mapping: 'pathname' };
+            assert.ok(valid({ ...giscus, theme: 'light', darkTheme: 'dark_dimmed' }));
+            assert.ok(!valid({ ...giscus, darkTheme: 42 }));
+            const utterances = { type: 'utterances', repo: 'user/repo', issue_term: 'pathname' };
+            assert.ok(valid({ ...utterances, theme: 'github-light', dark_theme: 'photon-dark' }));
+            assert.ok(!valid({ ...utterances, dark_theme: 'no-such-theme' }));
+        });
+
+        it('keeps Disqus as the comment plugin of the generated configuration', () => {
+            const defaults = yaml.parse(schema.getDefaultValue().toYaml());
+            assert.deepEqual(defaults.comment, { type: 'disqus', shortname: '' });
+        });
+    });
+
     it('accepts the test fixture theme configuration', () => {
         const cfg = yaml.parse(fs.readFileSync(path.join(FIXTURE_SITE, '_config.icarus.yml'), 'utf8'));
         assert.equal(loadSchema().validate(cfg), true);
