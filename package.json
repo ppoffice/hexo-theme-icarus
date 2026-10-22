@@ -20,6 +20,6 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-tag-embed": "^1.0.0",
-    "hexo-theme-icarus": "^6.3.0"
+    "hexo-theme-icarus": "^6.4.0"
   }
 }
