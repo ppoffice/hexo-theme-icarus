@@ -19,6 +19,78 @@ toc: true
 
 <!-- more -->
 
+### 从6.3升级至6.4
+
+1. 将Icarus升级到6.4.1。
+   如果你是通过NPM安装的主题，在站点根目录运行如下命令：
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-theme-icarus@^6.4.1
+   {% endcodeblock %}
+
+   如果你是从源码安装的主题，请用6.4.1的源码替换`themes/icarus`。
+   Icarus 6.4需要`hexo-component-inferno` 4.2.1或更新的版本。
+   从源码安装的用户在站点根目录中安装它之前，依赖检查会中止每一条`hexo`命令，并打印出需要运行的命令：
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-component-inferno@^4.2.1
+   {% endcodeblock %}
+
+2. 如果你使用Waline，请检查它的`image_uploader`、`highlighter`、`tex_renderer`和`search`选项。
+   它们现在的行为与配置说明一致：设为`true`表示禁用该功能。
+
+   | `_config.icarus.yml`中的值 | Icarus 6.3（hexo-component-inferno 4.1.0） | Icarus 6.4 |
+   |---|---|---|
+   | 未设置 | 禁用 | Waline的默认值（启用） |
+   | `false` | 禁用 | Waline的默认值（启用） |
+   | `true` | Waline的默认值（启用） | 禁用 |
+   | `null`（留空） | Waline的默认值（启用） | Waline的默认值（启用） |
+
+   例如，如果你从未设置过这些选项，评论框中现在会出现图片上传、代码高亮、TeX渲染和GIF搜索。
+   如要关闭某个功能，把对应的选项设为`true`。
+
+3. 如果`_config.yml`中没有设置`category_generator.per_page`，分类页面现在会像`hexo-generator-category`一样，按站点配置的`per_page`分页。
+   以前所有文章都显示在同一页上。
+   如要保持只有一页，请在`_config.yml`中设置`category_generator.per_page: 0`。
+
+4. 旧版本生成的配置文件在`head.open_graph`下有`type: blog`。
+   `blog`并不是Open Graph的类型，所以以前每个页面的`og:type`都是“blog”。
+   Icarus 6.4会忽略它：文章页使用`article`，其他页面使用`website`。
+   在你删除`type: blog`这一行之前，每次运行`hexo`命令时还会打印一条警告。
+
+5. 以下插件已弃用，使用了它们的页面会在生成站点时打印一条警告：
+
+   - Valine：Valine存储评论所用的LeanCloud将于2027年1月12日停止服务。
+     请换用Waline、Twikoo或其他评论插件，参见{% post_link zh-CN/Comment-Plugins %}。
+   - Gitment：已不再维护，它的GitHub登录代理也已失效。
+     请换用Giscus、utterances或Gitalk。
+   - AddThis：已于2023年5月31日停止服务。
+     请换用AddToAny或ShareThis，参见{% post_link zh-CN/Share-Buttons %}。
+   - Google FeedBurner `subscribe_email`挂件：FeedBurner已于2021年7月停止邮件订阅功能。
+     请换用follow.it挂件，参见<a href="{% post_path zh-CN/Widgets %}#follow-it">follow.it</a>。
+     新生成的配置文件中也不再包含它。
+
+6. Icarus 6.4同样不会升级你的主题配置文件：配置文件的版本号仍然是`5.1.0`。
+   请手动添加你需要的新配置项：
+
+   - <a href="{% post_path zh-CN/Widgets %}#文章归档">文章归档</a>挂件：`show_count`、`group_by`、`order`和`format`。
+   - <a href="{% post_path zh-CN/Widgets %}#文章分类">文章分类</a>挂件：`order_by`、`order`、`show_current`、`show_count`和`depth`。
+   - <a href="{% post_path zh-CN/Widgets %}#最新文章">最新文章</a>挂件：`limit`。
+   - <a href="{% post_path zh-CN/Comment-Plugins %}#Giscus">Giscus</a>：`term`，`specific`和`number`两种映射方式需要它。
+
+   归档和分类挂件以前读取的驼峰式名称（`showCount`、`orderBy`和`showCurrent`）仍然有效。
+   这些挂件留空的选项会使用默认值。
+
+7. 如果你修改过主题模板或脚本的副本，请把下面的变更合并进去：
+
+   - `layout/common/head.jsx`：风格的主题样式表和网页字体样式表带有`data-variant`属性。
+   - `source/js/pjax.js`：当页面在front-matter中设置了另一个`variant`时，PJAX会切换这些样式表。
+     它还会加载新页面有而当前页面没有的插件，例如在文章front-matter中开启的MathJax或KaTeX，并在每次切换后渲染KaTeX公式。
+
+8. 运行`hexo clean`并重新生成站点。
+
+9. 阅读[更新说明](https://github.com/ppoffice/hexo-theme-icarus/releases)来了解完整的变更与问题修复列表。
+
 ### 从6.2升级至6.3
 
 1. 将Icarus升级到6.3.0。
@@ -67,27 +139,10 @@ toc: true
 
 7. 阅读[更新说明](https://github.com/ppoffice/hexo-theme-icarus/releases)来了解完整的变更与问题修复列表。
 
-#### hexo-component-inferno 4.2.0带来的变化
+#### hexo-component-inferno 4.2带来的变化
 
-Icarus 6.3.0接受4.1.0及以后的任何`hexo-component-inferno` 4.x版本，所以现在安装或更新依赖的站点会得到hexo-component-inferno 4.2.0。
-它改变了一些行为，你可能在升级后马上就会注意到：
-
-- **Waline：**`image_uploader`、`highlighter`、`tex_renderer`和`search`现在的行为与配置说明一致：设为`true`表示禁用该功能。
-  如果你使用Waline，请检查这几个选项：
-
-  | `_config.icarus.yml`中的值 | hexo-component-inferno 4.1.0 | hexo-component-inferno 4.2.0 |
-  |---|---|---|
-  | 未设置 | 禁用 | Waline的默认值（启用） |
-  | `false` | 禁用 | Waline的默认值（启用） |
-  | `true` | Waline的默认值（启用） | 禁用 |
-  | `null`（留空） | Waline的默认值（启用） | Waline的默认值（启用） |
-
-  例如，如果你从未设置过这些选项，评论框中现在会出现图片上传、代码高亮、TeX渲染和GIF搜索。
-  如要关闭某个功能，把对应的选项设为`true`。
-- **分类页面**：如果`_config.yml`中没有设置`category_generator.per_page`，分类页面现在会像`hexo-generator-category`一样，按站点配置的`per_page`分页。
-  以前所有文章都显示在同一页上。
-  如要保持只有一页，请在`_config.yml`中设置`category_generator.per_page: 0`。
-- 使用了Valine、Gitment、AddThis或Google FeedBurner `subscribe_email`挂件的页面，会在生成站点时打印一条弃用警告。
+Icarus 6.3.0接受4.1.0及以后的任何`hexo-component-inferno` 4.x版本，所以安装或更新依赖的站点会得到hexo-component-inferno 4.2，它改变了Waline选项和分类页面的行为。
+这些变化在<a href="#从6-3升级至6-4">从6.3升级至6.4</a>的第2到第5步中有说明。
 
 ### 从6.x升级至6.2及Hexo 8
 
