@@ -160,6 +160,11 @@ module.exports = {
         }
     },
 
+    // Valine, which the theme and hexo-component-inferno warn about.
+    'comment-valine': {
+        theme: { comment: { type: 'valine', app_id: 'fixture', app_key: 'fixture' } }
+    },
+
     // Some packages from another CDN provider or URL than the rest.
     'cdn-overrides': {
         theme: {

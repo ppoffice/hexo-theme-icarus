@@ -368,6 +368,32 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('Valine comments', () => {
+        let site;
+        const lines = pattern => site.output.split('\n').filter(line => pattern.test(line));
+
+        before(() => { site = getSite('comment-valine'); });
+
+        it('render on posts', () => {
+            assert.equal(site.status, 0);
+            assert.doesNotMatch(site.output, /^ERROR/m, site.output);
+            assert.doesNotMatch(site.output, /failed one or more checks|Icarus cannot load/, site.output);
+            assert.equal(site.$('/2024/03/01/hello-world/')('#valine-thread').length, 1);
+        });
+
+        // The theme warns that Valine exposes the email addresses of the commenters, and
+        // hexo-component-inferno that it is deprecated, with the comment plugins to use instead.
+        it('warn once about privacy and once that Valine is deprecated, without repeating each other', () => {
+            const privacy = lines(/Valine exposes commenters' email addresses/);
+            const deprecated = lines(/comment\.valine is deprecated/);
+            assert.equal(privacy.length, 1, site.output);
+            assert.equal(deprecated.length, 1, site.output);
+            assert.match(privacy[0], /issues\/788/);
+            assert.doesNotMatch(privacy[0], /Waline|Twikoo|2027/);
+            assert.match(deprecated[0], /LeanCloud, where Valine stores the comments, shuts down on January 12, 2027\. Use Waline, Twikoo/);
+        });
+    });
+
     describe('providers.cdn_overrides', () => {
         it('loads the listed packages from their own provider or URL, and the others from the cdn provider', () => {
             const site = getSite('cdn-overrides');

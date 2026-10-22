@@ -96,8 +96,9 @@ function checkConfig(hexo) {
         if (cfg.comment && cfg.comment.type === 'valine') {
             // IP addresses are only stored when record_ip is on, which is off by default
             const leaked = cfg.comment.record_ip === true ? 'email and IP addresses' : 'email addresses';
-            logger.warn(`Valine exposes commenters' ${leaked} to anyone with the site's public LeanCloud keys.`);
-            logger.warn(`Consider another comment plugin, such as Waline, Twikoo or giscus. See ${yellow('https://github.com/ppoffice/hexo-theme-icarus/issues/788')}.`);
+            // hexo-component-inferno warns that Valine is deprecated when it renders the comments, with the
+            // shutdown date of LeanCloud and the comment plugins to use instead, so only add what it leaves out
+            logger.warn(`Valine exposes commenters' ${leaked} to anyone with the site's public LeanCloud keys. See ${yellow('https://github.com/ppoffice/hexo-theme-icarus/issues/788')}.`);
         }
 
         const walinePageview = cfg.plugins && typeof cfg.plugins === 'object' ? cfg.plugins.waline_pageview : null;
