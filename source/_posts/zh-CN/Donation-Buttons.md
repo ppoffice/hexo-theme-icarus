@@ -79,7 +79,7 @@ donates:
         -
             type: afdian
             # 个人赞助页面的地址
-            url: /path/to/afdian/personal/page
+            url: https://afdian.net/a/your-username
     {% endcodeblock %}
 
 
@@ -115,7 +115,7 @@ donates:
         -
             type: buymeacoffee
             # 个人赞助页面的地址
-            url: /path/to/buymeacoffee/personal/page
+            url: https://www.buymeacoffee.com/your-username
     {% endcodeblock %}
 
 ## Paypal
@@ -181,11 +181,11 @@ donates:
 2. 将如下配置添加到主题配置中：
 
     {% codeblock _config.icarus.yml lang:yaml %}
-    donate:
+    donates:
         -
             type: patreon
             # 个人赞助页面的地址
-            url: /path/to/patreon/personal/page
+            url: https://www.patreon.com/your-username
     {% endcodeblock %}
 
 ## 微信

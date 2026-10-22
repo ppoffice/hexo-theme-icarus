@@ -71,8 +71,8 @@ Please refer to it for a complete list of supported buttons and their configurat
     donates:
         -
             type: afdian
-            # Path to your afdian.net personal page
-            url: /path/to/afdian.net/personal/page
+            # URL to your afdian.net personal page
+            url: https://afdian.net/a/your-username
     {% endcodeblock %}
 
 
@@ -104,8 +104,8 @@ Please refer to it for a complete list of supported buttons and their configurat
     donates:
         -
             type: buymeacoffee
-            # Path to your Buy me a Coffee personal page
-            url: /path/to/buymeacoffee/personal/page
+            # URL to your Buy me a Coffee personal page
+            url: https://www.buymeacoffee.com/your-username
     {% endcodeblock %}
 
 ## Paypal
@@ -170,11 +170,11 @@ Please refer to it for a complete list of supported buttons and their configurat
 2. Add the following configuration to your theme configurations:
 
     {% codeblock _config.icarus.yml lang:yaml %}
-    donate:
+    donates:
         -
             type: patreon
-            # Path to your Patreon personal page
-            url: /path/to/patreon/personal/page
+            # URL to your Patreon personal page
+            url: https://www.patreon.com/your-username
     {% endcodeblock %}
 
 ## WeChat
