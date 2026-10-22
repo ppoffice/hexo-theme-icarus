@@ -601,7 +601,7 @@ Please use <a href="#Waline">Waline</a>, <a href="#Twikoo">Twikoo</a>, or anothe
     comment:
         type: waline
         server_url: https://your-domain.vercel.app
-        path: window.location.pathname                # Optional
+        path: window.location.pathname                # Optional. A path like /posts/hello/, or a JavaScript expression
         lang: en-US                                   # Optional
         locale:                                       # Optional
             placeholder: 'Comment here...'
@@ -613,14 +613,23 @@ Please use <a href="#Waline">Waline</a>, <a href="#Twikoo">Twikoo</a>, or anothe
         login: enable                                 # Optional
         word_limit: 0                                 # Optional
         page_size: 10                                 # Optional
-        image_uploader: false                         # Optional
-        highlighter: true                             # Optional
-        tex_renderer: false                           # Optional
-        search: false                                 # Optional
+        image_uploader: false                         # Optional. Set to true to disable image uploading
+        highlighter: false                            # Optional. Set to true to disable code highlighting
+        tex_renderer: false                           # Optional. Set to true to disable TeX rendering
+        search: false                                 # Optional. Set to true to disable image search
         pageview: false                               # Optional
         comment: false                                # Optional
         copyright: true                               # Optional
     {% endcodeblock %}
+
+   Since hexo-component-inferno 4.2.0, the `image_uploader`, `highlighter`, `tex_renderer`, and `search` settings
+   turn off Waline features:
+   setting one of them to `true` disables the feature (Icarus passes `false` for it to Waline), while leaving it
+   empty or setting it to `false` keeps Waline's default behavior for that feature.
+   Note that hexo-component-inferno 4.1.0 worked the other way round: `true` kept the feature, and `false` or
+   leaving the setting out disabled it.
+   Also since hexo-component-inferno 4.2.0, `path` can be a fixed path starting with `/`, such as `/posts/hello/`.
+   Any other value is used as a JavaScript expression, and it defaults to `window.location.pathname`.
 
 
 <article class="message message-immersive is-warning">

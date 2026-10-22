@@ -11,7 +11,6 @@ comment:
         placeholder: Comment here...
     emoji:
         - https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo
-    dark: auto
     meta:
         - nick
         - mail
@@ -20,8 +19,8 @@ comment:
     login: enable
     word_limit: 0
     page_size: 10
-    image_uploader: true
-    highlighter: true
+    image_uploader:
+    highlighter:
     tex_renderer:
     search:
     pageview:

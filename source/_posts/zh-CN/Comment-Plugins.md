@@ -592,7 +592,7 @@ Valine用来存储评论的LeanCloud将于2027年1月12日停止服务。
     comment:
         type: waline
         server_url: https://your-domain.vercel.app
-        path: window.location.pathname                # 可选填
+        path: window.location.pathname                # 可选填。类似/posts/hello/的路径，或者JavaScript表达式
         lang: zh-CN                                   # 可选填
         locale:                                       # 可选填
             placeholder: 'Comment here...'
@@ -604,14 +604,20 @@ Valine用来存储评论的LeanCloud将于2027年1月12日停止服务。
         login: enable                                 # 可选填
         word_limit: 0                                 # 可选填
         page_size: 10                                 # 可选填
-        image_uploader: false                         # 可选填
-        highlighter: true                             # 可选填
-        tex_renderer: false                           # 可选填
-        search: false                                 # 可选填
+        image_uploader: false                         # 可选填。设为true时关闭图片上传
+        highlighter: false                            # 可选填。设为true时关闭代码高亮
+        tex_renderer: false                           # 可选填。设为true时关闭TeX渲染
+        search: false                                 # 可选填。设为true时关闭图片搜索
         pageview: false                               # 可选填
         comment: false                                # 可选填
         copyright: true                               # 可选填
     {% endcodeblock %}
+
+   自hexo-component-inferno 4.2.0起，`image_uploader`、`highlighter`、`tex_renderer`和`search`这四个配置项用来关闭Waline的对应功能：
+   设为`true`时会关闭该功能（Icarus会把这个选项以`false`传给Waline），留空或设为`false`时则保持Waline对该功能的默认行为。
+   注意hexo-component-inferno 4.1.0中正好相反：设为`true`会保留该功能，设为`false`或不写这一项则会关闭它。
+   同样自hexo-component-inferno 4.2.0起，`path`可以是以`/`开头的固定路径，如`/posts/hello/`；
+   其他值都会被当作JavaScript表达式，默认为`window.location.pathname`。
 
 
 <article class="message message-immersive is-warning">
