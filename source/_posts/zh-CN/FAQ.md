@@ -155,10 +155,13 @@ CSS类名中的数字标志着一个挂件或主内容所占据的栏数量。
 </div>
 </article>
 
-请确保你使用了图片的绝对路径。
-例如，你的站点位于你域名的子目录下，如`https://ppoffice.github.io/hexo-theme-icarus`，
-并且你的图片`image.jpg`放在了`source/gallery/`目录下。
-那么你应该用`/hexo-theme-icarus/gallery/image.jpg`来引用你的图片。
+请确保你使用了图片的绝对路径（以`/`开头）。
+例如，你的站点位于你域名的子目录下，如`https://ppoffice.github.io/hexo-theme-icarus`（即站点配置文件`_config.yml`中
+`root: /hexo-theme-icarus/`），并且你的图片`image.jpg`放在了`source/gallery/`目录下。
+在Markdown中引用图片时，路径里不要写子目录，例如`![Image title](/gallery/image.jpg)`。
+Markdown渲染器（hexo-renderer-marked，默认开启`prependRoot: true`）会自动在图片路径前加上`root`，
+如果你自己再写上子目录，它就会出现两次。
+而HTML的`<img>`标签不会被处理，这时需要你自己写上子目录，例如`<img src="/hexo-theme-icarus/gallery/image.jpg">`。
 
 你也可以像下面这样使用<code>{% raw %}{% img %}{% endraw %}</code>这个Hexo标签来自动引用图片：
 
@@ -166,7 +169,7 @@ CSS类名中的数字标志着一个挂件或主内容所占据的栏数量。
 {% img /gallery/image.jpg "Image title" %}
 ```
 
-在这种情况下，你可以从图片路径中省略网站子目录。
+这种情况下，图片路径里同样可以省略网站子目录。
 你可以参考[Hexo文档](https://hexo.io/zh-cn/docs/index.html)来了解更多详情。
 
 <article class="message is-primary" style="font-size:1em">

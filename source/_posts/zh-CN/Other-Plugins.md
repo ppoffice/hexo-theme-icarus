@@ -64,12 +64,12 @@ plugins:
 {% codeblock "Justified-Gallery-Markdown.md" lang:markdown >folded %}
 <div class="justified-gallery">
 
-![Elephant](/hexo-theme-icarus/gallery/animals/elephant.jpeg)
-![Dog](/hexo-theme-icarus/gallery/animals/dog.jpeg)
-![Birds](/hexo-theme-icarus/gallery/animals/birds.jpeg)
-![Fox](/hexo-theme-icarus/gallery/animals/fox.jpeg)
-![Horse](/hexo-theme-icarus/gallery/animals/horse.jpeg)
-![Leopard](/hexo-theme-icarus/gallery/animals/leopard.jpeg)
+![Elephant](/gallery/animals/elephant.jpeg)
+![Dog](/gallery/animals/dog.jpeg)
+![Birds](/gallery/animals/birds.jpeg)
+![Fox](/gallery/animals/fox.jpeg)
+![Horse](/gallery/animals/horse.jpeg)
+![Leopard](/gallery/animals/leopard.jpeg)
 
 </div>
 {% endcodeblock %}
@@ -79,14 +79,19 @@ plugins:
 
 {% codeblock "Justified-Gallery-HTML.md" lang:html >folded %}
 <div class="justified-gallery">
-<img src="/hexo-theme-icarus/gallery/animals/elephant.jpeg" alt="Elephant" />
-<img src="/hexo-theme-icarus/gallery/animals/dog.jpeg" alt="Dog" />
-<img src="/hexo-theme-icarus/gallery/animals/birds.jpeg" alt="Birds" />
-<img src="/hexo-theme-icarus/gallery/animals/fox.jpeg" alt="Fox" />
-<img src="/hexo-theme-icarus/gallery/animals/horse.jpeg" alt="Horse" />
-<img src="/hexo-theme-icarus/gallery/animals/leopard.jpeg" alt="Leopard" />
+<img src="/gallery/animals/elephant.jpeg" alt="Elephant" />
+<img src="/gallery/animals/dog.jpeg" alt="Dog" />
+<img src="/gallery/animals/birds.jpeg" alt="Birds" />
+<img src="/gallery/animals/fox.jpeg" alt="Fox" />
+<img src="/gallery/animals/horse.jpeg" alt="Horse" />
+<img src="/gallery/animals/leopard.jpeg" alt="Leopard" />
 </div>
 {% endcodeblock %}
+
+注意，Markdown渲染器会自动在Markdown图片的路径前加上站点的`root`，但不会处理HTML的`<img>`标签。
+如果你的站点位于子目录下（`_config.yml`中的`root`不是`/`），HTML图片的`src`需要你自己写上子目录，Markdown图片的路径则不要写。
+例如本站的配置是`root: /hexo-theme-icarus/`，所以HTML写法要用`/hexo-theme-icarus/gallery/animals/elephant.jpeg`，
+而Markdown写法用的是`/gallery/animals/elephant.jpeg`。
 
 
 **效果预览**
@@ -102,12 +107,12 @@ plugins:
 
 <div class="justified-gallery">
 
-![Elephant](/hexo-theme-icarus/gallery/animals/elephant.jpeg)
-![Dog](/hexo-theme-icarus/gallery/animals/dog.jpeg)
-![Birds](/hexo-theme-icarus/gallery/animals/birds.jpeg)
-![Fox](/hexo-theme-icarus/gallery/animals/fox.jpeg)
-![Horse](/hexo-theme-icarus/gallery/animals/horse.jpeg)
-![Leopard](/hexo-theme-icarus/gallery/animals/leopard.jpeg)
+![Elephant](/gallery/animals/elephant.jpeg)
+![Dog](/gallery/animals/dog.jpeg)
+![Birds](/gallery/animals/birds.jpeg)
+![Fox](/gallery/animals/fox.jpeg)
+![Horse](/gallery/animals/horse.jpeg)
+![Leopard](/gallery/animals/leopard.jpeg)
 
 </div>
 

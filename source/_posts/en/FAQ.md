@@ -167,10 +167,15 @@ My images are not showing up. / My images only show in index pages but not in po
 </div>
 </article>
 
-Make sure you use the absolute paths to your images.
+Make sure you use the absolute paths (starting with `/`) to your images.
 For example, your site is in a subdirectory of your domain name like 
-`https://ppoffice.github.io/hexo-theme-icarus` and your image `image.jpg` under `source/gallery/`.
-You should include your image like this: `/hexo-theme-icarus/gallery/image.jpg`.
+`https://ppoffice.github.io/hexo-theme-icarus` (i.e., `root: /hexo-theme-icarus/` in your site configuration
+`_config.yml`) and your image `image.jpg` is under `source/gallery/`.
+In Markdown, include your image without the subdirectory, like this: `![Image title](/gallery/image.jpg)`.
+The Markdown renderer (hexo-renderer-marked, with its default `prependRoot: true`) adds the `root` to image
+paths for you, so writing the subdirectory yourself would make it appear twice.
+HTML `<img>` tags, on the other hand, are left as they are, so you need to include the subdirectory yourself:
+`<img src="/hexo-theme-icarus/gallery/image.jpg">`.
 
 You can also use Hexo's <code>{% raw %}{% img %}{% endraw %}</code> tag like the following to include an 
 image automatically:
@@ -179,7 +184,7 @@ image automatically:
 {% img /gallery/image.jpg "Image title" %}
 ```
 
-In this case, you may omit the subdirectory from your image path.
+In this case, you may omit the subdirectory from your image path as well.
 You can refer to [Hexo documentation](https://hexo.io/docs/tag-plugins#Image) for more details.
 
 <article class="message is-primary" style="font-size:inherit">

@@ -66,12 +66,12 @@ For example, the Markdown code of the gallery preview below is
 {% codeblock "Justified-Gallery-Markdown.md" lang:markdown >folded %}
 <div class="justified-gallery">
 
-![Elephant](/hexo-theme-icarus/gallery/animals/elephant.jpeg)
-![Dog](/hexo-theme-icarus/gallery/animals/dog.jpeg)
-![Birds](/hexo-theme-icarus/gallery/animals/birds.jpeg)
-![Fox](/hexo-theme-icarus/gallery/animals/fox.jpeg)
-![Horse](/hexo-theme-icarus/gallery/animals/horse.jpeg)
-![Leopard](/hexo-theme-icarus/gallery/animals/leopard.jpeg)
+![Elephant](/gallery/animals/elephant.jpeg)
+![Dog](/gallery/animals/dog.jpeg)
+![Birds](/gallery/animals/birds.jpeg)
+![Fox](/gallery/animals/fox.jpeg)
+![Horse](/gallery/animals/horse.jpeg)
+![Leopard](/gallery/animals/leopard.jpeg)
 
 </div>
 {% endcodeblock %}
@@ -81,14 +81,21 @@ In this case, we will not need the empty lines between HTML tags.
 
 {% codeblock "Justified-Gallery-HTML.md" lang:html >folded %}
 <div class="justified-gallery">
-<img src="/hexo-theme-icarus/gallery/animals/elephant.jpeg" alt="Elephant" />
-<img src="/hexo-theme-icarus/gallery/animals/dog.jpeg" alt="Dog" />
-<img src="/hexo-theme-icarus/gallery/animals/birds.jpeg" alt="Birds" />
-<img src="/hexo-theme-icarus/gallery/animals/fox.jpeg" alt="Fox" />
-<img src="/hexo-theme-icarus/gallery/animals/horse.jpeg" alt="Horse" />
-<img src="/hexo-theme-icarus/gallery/animals/leopard.jpeg" alt="Leopard" />
+<img src="/gallery/animals/elephant.jpeg" alt="Elephant" />
+<img src="/gallery/animals/dog.jpeg" alt="Dog" />
+<img src="/gallery/animals/birds.jpeg" alt="Birds" />
+<img src="/gallery/animals/fox.jpeg" alt="Fox" />
+<img src="/gallery/animals/horse.jpeg" alt="Horse" />
+<img src="/gallery/animals/leopard.jpeg" alt="Leopard" />
 </div>
 {% endcodeblock %}
+
+Note that the Markdown renderer adds your site's `root` to Markdown image paths automatically, but it leaves
+HTML `<img>` tags as they are.
+If your site is in a subdirectory (`root` in `_config.yml` is not `/`), write the subdirectory in the `src` of
+HTML images yourself, but not in the paths of Markdown images.
+For example, this site uses `root: /hexo-theme-icarus/`, so the HTML version would use
+`/hexo-theme-icarus/gallery/animals/elephant.jpeg` while the Markdown version uses `/gallery/animals/elephant.jpeg`.
 
 
 **Preview**
@@ -104,12 +111,12 @@ You can also view the full image using lightGallery by clicking on any image.
 
 <div class="justified-gallery">
 
-![Elephant](/hexo-theme-icarus/gallery/animals/elephant.jpeg)
-![Dog](/hexo-theme-icarus/gallery/animals/dog.jpeg)
-![Birds](/hexo-theme-icarus/gallery/animals/birds.jpeg)
-![Fox](/hexo-theme-icarus/gallery/animals/fox.jpeg)
-![Horse](/hexo-theme-icarus/gallery/animals/horse.jpeg)
-![Leopard](/hexo-theme-icarus/gallery/animals/leopard.jpeg)
+![Elephant](/gallery/animals/elephant.jpeg)
+![Dog](/gallery/animals/dog.jpeg)
+![Birds](/gallery/animals/birds.jpeg)
+![Fox](/gallery/animals/fox.jpeg)
+![Horse](/gallery/animals/horse.jpeg)
+![Leopard](/gallery/animals/leopard.jpeg)
 
 </div>
 
