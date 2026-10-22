@@ -1,12 +1,14 @@
 name: GitHub Pages
 
-on: push
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,16 +20,26 @@ jobs:
         env:
           HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
       - run: NODE_ENV=production npx hexo g
-      - name: Deploy to gh-pages
+      - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/site'
-        working-directory: public
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          touch .nojekyll
-          git init -b gh-pages
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git add -A
-          git commit -m "deploy: ${GITHUB_SHA}"
-          git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+        with:
+          path: public
+
+  # Only this job uses the github-pages environment: its protection rules only allow the site
+  # branch, so a job with the environment would fail on every other branch.
+  deploy:
+    if: github.ref == 'refs/heads/site'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
