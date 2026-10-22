@@ -27,6 +27,7 @@ widget:
     subscribe: 'Ýazyl'
     adsense: 'Mahabat'
     followit: 'follow.it'
+    more: 'Köpräk'
 article:
     created_at: 'Paýlaşyldy&nbsp;%s'
     updated_at: 'Üýtgedildi&nbsp;%s'

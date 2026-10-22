@@ -22,6 +22,13 @@ function commentPosts(posts) {
     }));
 }
 
+// The fixture has 2 top-level categories, 5 tags and 9 months of posts.
+const AMOUNT_WIDGETS = [
+    { position: 'left', type: 'categories', amount: 1 },
+    { position: 'left', type: 'tags', amount: 3 },
+    { position: 'right', type: 'archives', amount: 3 }
+];
+
 module.exports = {
     // The base fixture as-is.
     'default': {},
@@ -193,6 +200,16 @@ module.exports = {
                 { position: 'right', type: 'toc', index: true, collapsed: false, depth: 3 }
             ]
         }
+    },
+
+    // Widgets showing some of their entries, with a link to the page of all of them.
+    'widget-amount': {
+        theme: { widgets: AMOUNT_WIDGETS }
+    },
+
+    'widget-amount-zh-CN': {
+        site: { language: 'zh-CN' },
+        theme: { widgets: AMOUNT_WIDGETS }
     },
 
     'one-column': {

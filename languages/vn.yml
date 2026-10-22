@@ -27,6 +27,7 @@ widget:
     subscribe: 'Theo dõi'
     adsense: 'Quảng cáo'
     followit: 'follow.it'
+    more: 'Xem thêm'
 article:
     created_at: 'Đã đăng&nbsp;%s'
     updated_at: 'Đã cập nhật&nbsp;%s'

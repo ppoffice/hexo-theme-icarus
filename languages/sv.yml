@@ -27,6 +27,7 @@ widget:
     subscribe: 'Prenumerera'
     adsense: 'Marknadsföring'
     followit: 'follow.it'
+    more: 'Mer'
 article:
     created_at: 'Publicerad&nbsp;%s'
     updated_at: 'Uppdaterad&nbsp;%s'

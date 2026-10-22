@@ -27,6 +27,7 @@ widget:
     subscribe: '購読する'
     adsense: '広告'
     followit: 'follow.it'
+    more: 'もっと見る'
 article:
     created_at: '%sに投稿'
     updated_at: '%sに更新'

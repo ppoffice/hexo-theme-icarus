@@ -173,6 +173,43 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('widgets with an amount', () => {
+        // The last entry of each widget, which links to the page of all entries when some are not shown
+        const more = ($, type) => {
+            const $widget = $(`.widget[data-type="${type}"]`);
+            const $link = $widget.find(type === 'tags' ? '.control:last-child a' : '.menu-list > li:last-child > a');
+            return { href: $link.attr('href'), text: $link.text().trim(), icon: $link.find('i.fa-chevron-right').length };
+        };
+        const entries = ($, type) => $(`.widget[data-type="${type}"] ${type === 'tags' ? '.control' : '.menu-list > li'}`).length;
+
+        for (const [variant, lang] of [['widget-amount', 'en'], ['widget-amount-zh-CN', 'zh-CN']]) {
+            it(`show that many entries and a link to the others, in ${lang}`, () => {
+                const site = getSite(variant);
+                assert.doesNotMatch(site.output, /failed one or more checks/, site.output);
+                const text = strings(lang).widget.more;
+                assert.equal(text, { 'en': 'More', 'zh-CN': '更多' }[lang]);
+                for (const file of ['index.html', '2024/03/01/hello-world/index.html']) {
+                    const $ = site.$(file);
+                    assert.equal(entries($, 'archives'), 3 + 1, file);
+                    assert.deepEqual(more($, 'archives'), { href: '/archives/', text, icon: 1 }, file);
+                    assert.equal(entries($, 'categories'), 1 + 1, file);
+                    assert.deepEqual(more($, 'categories'), { href: '/categories/', text, icon: 1 }, file);
+                    assert.equal(entries($, 'tags'), 3 + 1, file);
+                    assert.deepEqual(more($, 'tags'), { href: '/tags/', text, icon: 1 }, file);
+                }
+            });
+        }
+
+        it('show every entry, without a link to the others, without an amount', () => {
+            const $ = getSite('default').$('/');
+            for (const type of ['archives', 'categories', 'tags']) {
+                assert.equal($(`.widget[data-type="${type}"] i.fa-chevron-right`).length, 0, type);
+            }
+            assert.equal(entries($, 'archives'), 9);
+            assert.equal(entries($, 'categories'), 2);
+        });
+    });
+
     describe('toc as the only right-column widget', () => {
         it('shows the toc in the right column on posts with a toc', () => {
             const $ = getSite('toc-only-right').$('/2024/03/01/hello-world/');

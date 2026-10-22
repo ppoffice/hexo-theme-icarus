@@ -27,6 +27,7 @@ widget:
     subscribe: 'Se inscrever'
     adsense: 'Anúncio'
     followit: 'follow.it'
+    more: 'Mais'
 article:
     created_at: 'Postado&nbsp;%s'
     updated_at: 'Atualizado&nbsp;%s'
