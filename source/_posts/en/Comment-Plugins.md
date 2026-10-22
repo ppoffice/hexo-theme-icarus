@@ -9,7 +9,7 @@ language: en
 toc: true
 ---
 
-This article covers comment plugins supported by Icarus 5.
+This article covers comment plugins supported by Icarus.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -27,6 +27,85 @@ This article covers comment plugins supported by Icarus 5.
 Please refer to it for a complete list of supported plugins and their configuration details.
 </div>
 </article>
+
+<article class="message message-immersive is-primary">
+<div class="message-body">
+<i class="fas fa-moon mr-2"></i><a href="#Artalk">Artalk</a>, <a href="#Beaudar">Beaudar</a>,
+<a href="#Cusdis">Cusdis</a>, <a href="#Giscus">Giscus</a>, <a href="#utterances">utterances</a>, and
+<a href="#Waline">Waline</a> follow the dark appearance of the page: when the comments load on a page that
+looks dark, that is, with <code>appearance: dark</code>, or with <code>appearance: auto</code> while the
+visitor's system uses a dark color scheme (see the <code>appearance</code> setting in
+<a href="{% post_path en/Configuring-Theme %}">Theme Configuration</a>), they use their dark theme.
+The settings that change this are described in their sections below.
+</div>
+</article>
+
+## Artalk
+
+Artalk is a self-hosted comment system.
+Like Isso and Twikoo, it requires you to run the Artalk server yourself before Icarus can use it.
+
+**Installation Guide**
+
+1. Follow the [Artalk documentation](https://artalk.js.org/) to deploy the Artalk server, and add your site to it.
+
+2. Fill in the URL of your Artalk server and the name of your site on the server in the theme configurations:
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: artalk
+        server: https://artalk.example.com  # Required. URL of your Artalk server
+        site: My Blog                       # Optional. Name of the site on the Artalk server
+        locale: en                          # Optional. Language of Artalk, e.g., en, zh-CN, or auto
+        # dark_mode: auto                   # Optional. true, false, or auto. Follows the appearance of the page if not set
+    {% endcodeblock %}
+
+3. Notes:
+   - Without `dark_mode`, Artalk follows the appearance of the page: it looks dark with `appearance: dark`,
+     and follows the color scheme of the visitor's system with `appearance: auto`.
+     Set `dark_mode` to `true`, `false`, or `auto` (follow the color scheme of the system) to override it.
+   - Artalk identifies the comments of a page by its path.
+     You can set `page_key` to another unique identifier of a page in its front-matter, for example to keep the
+     comments when you move the page.
+     Since the front-matter replaces the whole `comment` setting, copy the other comment settings there as well.
+   - Icarus loads version 2.9.1 of the Artalk client from the CDN, so use a version of the Artalk server that works
+     with it.
+   - See the [Artalk client configuration](https://artalk.js.org/guide/frontend/config.html) for more details on
+     these settings.
+
+
+## Beaudar
+
+Beaudar is a Chinese fork of utterances that keeps the comments in GitHub issues.
+Its setup is similar to that of [utterances](#utterances).
+
+**Installation Guide**
+
+1. Prepare a public GitHub repository, and install the Beaudar GitHub App on it by following the
+   [Beaudar documentation](https://github.com/beaudar/beaudar).
+
+2. Fill in the repository and other settings in the theme configurations:
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: beaudar
+        repo: Your-GitHub-Username/Your-Public-Repo-Name
+        issue_term: pathname        # Required if issue_number is not set
+        # issue_number: 100         # Required if issue_term is not set
+        branch: main                # Optional. Branch of the repository that has beaudar.json
+        label: some-issue-label     # Optional
+        theme: github-light         # Optional, default: github-light. Used when the page looks light
+        dark_theme: github-dark     # Optional, default: github-dark. Used when the page looks dark
+    {% endcodeblock %}
+
+3. Notes:
+   - Set exactly one of `issue_term` (e.g., `pathname`, `url`, or `title`) and `issue_number`.
+     Setting both fails the configuration check.
+   - `theme` is used when the page looks light, e.g., `github-light`, `github-dark`, or `preferred-color-scheme`.
+     `dark_theme` is used when the page looks dark, i.e., with `appearance: dark`, or with `appearance: auto`
+     while the visitor's system uses a dark color scheme.
+     Its values include `github-dark`, `github-dark-orange`, `classic-dark`, `dark-blue`, `icy-dark`, and `photon-dark`.
+
 
 ## Changyan
 
@@ -58,6 +137,50 @@ Please refer to it for a complete list of supported plugins and their configurat
         app_id: ????appid????
         conf: prod_xxxxxxxxxxxxxxxxxxxxxxx
     {% endcodeblock %}
+
+
+## Cusdis
+
+Cusdis is a lightweight comment system.
+You can use the service on [cusdis.com](https://cusdis.com/) or host the Cusdis server yourself.
+
+**Installation Guide**
+
+1. Sign up for [Cusdis](https://cusdis.com/), or deploy your own Cusdis server by following the
+   [Cusdis documentation](https://cusdis.com/doc).
+   Then, add your website on the dashboard.
+
+2. Copy the value of `data-app-id` in the embed code of your website on the dashboard to the corresponding
+   setting in the theme configurations.
+   For example, the following embed code:
+
+    {% codeblock "Cusdis Embed Code" lang:html >folded %}
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="xxxxxxxxxxxxxxxx"
+      data-page-id="..."
+      data-page-url="..."
+      data-page-title="..."
+    ></div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    {% endcodeblock %}
+
+    maps to the following theme configuration:
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    comment:
+        type: cusdis
+        app_id: xxxxxxxxxxxxxxxx    # Required
+        host: https://cusdis.com    # Optional, default: https://cusdis.com. The URL of your server if you host Cusdis yourself
+        lang: zh-cn                 # Optional. Language of Cusdis, e.g., zh-cn, zh-tw, es, or fi. Uses English if not set
+        # theme: auto               # Optional. light, dark, or auto. Follows the appearance of the page if not set
+    {% endcodeblock %}
+
+3. Notes:
+   - Icarus fills in the page ID, URL, and title of each page by itself.
+   - Without `theme`, Cusdis follows the appearance of the page.
+     Set `theme` to `light`, `dark`, or `auto` (follow the color scheme of the visitor's system) to override it.
+     Leave `theme` out instead of leaving it empty, since an empty value fails the configuration check.
 
 
 ## Disqus
@@ -115,7 +238,7 @@ Please refer to it for a complete list of supported plugins and their configurat
 9. (Optional) You can add `disqusId` in the front-matter of the post as the unique Disqus ID.
    Thereby, you can change the location of the post in the future without losing all your comments:
 
-    {% codeblock source/_post/some-post.md lang:markdown %}
+    {% codeblock source/_posts/some-post.md lang:markdown %}
     title: My first post
     date: 2015-01-01 00:00:01
     disqusId: some-disqus-id
@@ -177,7 +300,7 @@ for the detailed configuration process of DisqusJS.
 
 5. To learn more about DisqusJS and its configuration, visit 
    [SukkaW/DisqusJS documentation](https://github.com/SukkaW/DisqusJS) or 
-   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.1/src/schema/comment/disqusjs.json).
+   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/disqusjs.json).
 
 
 ##  Facebook
@@ -270,10 +393,21 @@ A comments system powered by [GitHub Discussions](https://docs.github.com/en/dis
         reactionsEnabled: false          # Optional
         emitMetadata: false              # Optional
         inputPosition: top               # Optional, default: top
-        theme: noborder_light            # Optional
+        theme: noborder_light            # Optional, default: noborder_light. Used when the page looks light
+        darkTheme: noborder_dark         # Optional, default: noborder_dark. Used when the page looks dark
         lang: en                         # Optional, default: en
         lazy: true                       # Optional, default: false
     {% endcodeblock %}
+
+7. Notes:
+   - `theme` is used when the page looks light, and `darkTheme` is used when the page looks dark, i.e., with
+     `appearance: dark`, or with `appearance: auto` while the visitor's system uses a dark color scheme.
+     If you copy `data-theme` from the giscus code, put a light theme in `theme` and a dark one in `darkTheme`.
+   - To use your own giscus theme, set `theme` to `custom` and `customThemeCss` to the URL of the theme's CSS file.
+     The custom theme is used whether the page looks light or dark, and `darkTheme` is ignored.
+   - If `mapping` is `specific` or `number`, also set `term` to the search term or the number of the discussion,
+     e.g., `mapping: number` with `term: 1`.
+     Otherwise, a notice asking you to set `term` is shown in place of the comments.
 
 
 ## Gitalk
@@ -305,7 +439,7 @@ A comments system powered by [GitHub Discussions](https://docs.github.com/en/dis
     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     {% endcodeblock %}
 
-   maps the following Gitalk configuration:
+   maps to the following Gitalk configuration:
 
     {% codeblock _config.icarus.yml lang:yaml %}
     comment:
@@ -328,7 +462,7 @@ A comments system powered by [GitHub Discussions](https://docs.github.com/en/dis
 
 3. You can review the description and possible values of the above configuration at 
    [Gitalk documentation](https://github.com/gitalk/gitalk) or 
-   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.1/src/schema/comment/disqusjs.json).
+   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitalk.json).
 
 
 ## Gitment
@@ -357,14 +491,15 @@ Please use <a href="#Giscus">Giscus</a>, <a href="#utterances">utterances</a>, o
         repo: Some-of-Your-GitHub-Repo
         client_id: xxxxxxxxxxxxxxxxxxxx
         client_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        theme: gitment.defaultTheme     # Optional
         per_page: 20                    # Optional
         max_comment_height: 250         # Optional
     {% endcodeblock %}
 
+   The configuration check also accepts a `theme` setting, but Icarus does not pass it to Gitment, so it has no effect.
+
 3. For more details on the above configuration, refer to 
    [Gitment documentation](https://github.com/imsun/gitment) or
-   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.1/src/schema/comment/gitment.json).
+   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitment.json).
 
 
 ## Isso
@@ -464,13 +599,15 @@ environment before being configured and used by Icarus.
    to a cloud service provider of your choice.
 
 2. Fill in the `env_id` of your deployment to the corresponding setting in the theme configurations.
+   It is the environment ID if you deploy Twikoo to Tencent CloudBase, or the URL of your deployment if you
+   deploy it to Vercel or host it yourself, e.g., `https://your-twikoo.vercel.app`.
 
     {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: twikoo
-        env_id: xxxxxxxx
-        region: ap-guangzhou     # Optional
-        lang: zh-CN              # Optional
+        env_id: xxxxxxxx         # Required. Environment ID, or the URL of your deployment
+        region: ap-guangzhou     # Optional. Region of Tencent CloudBase
+        lang: zh-CN              # Optional. Defaults to the language of the page or the site
     {% endcodeblock %}
 
 
@@ -526,10 +663,20 @@ environment before being configured and used by Icarus.
         type: utterances
         repo: Your-GitHub-Username/Your-Public-Repo-Name
         issue_term: pathname        # Required if issue_number is not set
-        issue_number: 100           # Required if issue_term is not set. Every post can be mapped to a separate, manually-created GitHub issue.
+        # issue_number: 100         # Required if issue_term is not set. Maps the page to a GitHub issue you create yourself
         label: some-issue-label     # Optional
-        theme: github-light         # Optional
+        theme: github-light         # Optional, default: github-light. Used when the page looks light
+        dark_theme: github-dark     # Optional, default: github-dark. Used when the page looks dark
     {% endcodeblock %}
+
+7. Notes:
+   - Set exactly one of `issue_term` and `issue_number`.
+     Setting both fails the configuration check.
+     To map each post to its own issue by number, set `issue_number` in the front-matter of the post, together
+     with the other comment settings, since the front-matter replaces the whole `comment` setting.
+   - `theme` is used when the page looks light, and `dark_theme` is used when the page looks dark, i.e., with
+     `appearance: dark`, or with `appearance: auto` while the visitor's system uses a dark color scheme.
+     Both can be `github-light`, `github-dark`, `github-dark-orange`, `icy-dark`, `dark-blue`, or `photon-dark`.
 
 
 ## Valine
@@ -590,6 +737,8 @@ Please use <a href="#Waline">Waline</a>, <a href="#Twikoo">Twikoo</a>, or anothe
 </div>
 
 1. Create a LeanCloud application and a Vercel project following the [Get Started](https://waline.js.org/en/guide/get-started.html) guide.
+   Note that LeanCloud shuts down on January 12, 2027 (see [Valine](#Valine)), so if you set up Waline now, store
+   the comments in another database supported by Waline.
 
 2. Copy the "Server URL" of your Vercel project to the corresponding setting in the theme configurations.
    It is usually something like `https://your-domain.vercel.app`.
@@ -607,7 +756,7 @@ Please use <a href="#Waline">Waline</a>, <a href="#Twikoo">Twikoo</a>, or anothe
             placeholder: 'Comment here...'
         emoji:                                        # Optional
             - '//unpkg.com/@waline/emojis@1.0.1/weibo'
-        dark: auto                                    # Optional
+        # dark: auto                                  # Optional. Follows the appearance of the page if not set
         meta: ["nick", "mail", "link"]                # Optional
         required_meta: []                             # Optional
         login: enable                                 # Optional
@@ -617,7 +766,7 @@ Please use <a href="#Waline">Waline</a>, <a href="#Twikoo">Twikoo</a>, or anothe
         highlighter: false                            # Optional. Set to true to disable code highlighting
         tex_renderer: false                           # Optional. Set to true to disable TeX rendering
         search: false                                 # Optional. Set to true to disable image search
-        pageview: false                               # Optional
+        pageview: false                               # Optional. Do not enable it with the waline_pageview plugin
         comment: false                                # Optional
         copyright: true                               # Optional
     {% endcodeblock %}
@@ -630,6 +779,17 @@ Please use <a href="#Waline">Waline</a>, <a href="#Twikoo">Twikoo</a>, or anothe
    leaving the setting out disabled it.
    Also since hexo-component-inferno 4.2.0, `path` can be a fixed path starting with `/`, such as `/posts/hello/`.
    Any other value is used as a JavaScript expression, and it defaults to `window.location.pathname`.
+
+   Without `dark`, Waline follows the appearance of the page: it looks dark with `appearance: dark`, and follows
+   the color scheme of the visitor's system with `appearance: auto`.
+   Set `dark` to `true`, `false`, `auto` (follow the color scheme of the system), or a CSS selector that turns on
+   the dark mode when it matches an ancestor of Waline to override it.
+
+   The `pageview` setting counts and shows the page views with the Waline comments.
+   Icarus also provides a `waline_pageview` plugin, which counts the page views with the Waline server and shows
+   them in the post header (see [Web Analytics Plugins]({% post_path en/Web-Analytics-Plugins %})).
+   Enable only one of them: with both, each view is counted twice, and a warning is printed when you generate
+   your site.
 
 
 <article class="message message-immersive is-warning">
