@@ -2,8 +2,9 @@
 Thumbs.db
 db.json
 *.log
-node_modules/
+node_modules
 public/
-.deploy*/
 .vscode/
 yarn.lock
+# Backups and the example written when Icarus upgrades its configuration file
+_config.icarus.yml.*
