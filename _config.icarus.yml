@@ -2,6 +2,9 @@
 version: 5.1.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
+# Color scheme of the default variant: "light", "dark", or "auto" to follow the setting of the
+# browser or system of each visitor. Can be set per page in the front-matter
+appearance: auto
 # Path or URL to the website's logo
 logo: /img/logo.svg
 # Page metadata configurations

@@ -14,7 +14,8 @@ This has long been requested by the community
 ([#1108](https://github.com/ppoffice/hexo-theme-icarus/issues/1108)).
 The dark colors live in the same stylesheet as the light ones and are picked by CSS alone, so there is no
 extra request, no JavaScript involved, and no flash of light colors when a page loads.
-This post itself is displayed with the dark appearance, while the rest of this site stays light.
+This post itself is always displayed with the dark appearance, while the rest of this site uses `appearance: auto`
+and follows the color scheme of your system.
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
