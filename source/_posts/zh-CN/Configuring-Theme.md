@@ -105,7 +105,7 @@ head:
         # 在不同上下文下用作应用图标的图片文件
         icons:
             -
-                # 图片文件的路径
+                # 图片文件的路径（相对于站点根目录）
                 src: icons/touch-icon-iphone.png
                 # 空格分割的表示图标尺寸的字符串
                 sizes: 144x144
@@ -132,7 +132,8 @@ head:
         # 页面标题 (og:title) (可选)
         title: 
         # 页面类型 (og:type) (可选)
-        type: blog
+        # 留空时，文章使用`article`，其他页面使用`website`
+        type: 
         # 页面URL地址 (og:url) (可选)
         url: 
         # 页面封面图 (og:image) (可选)
@@ -156,6 +157,9 @@ head:
         # Facebook App ID
         fb_app_id: 
 {% endcodeblock %}
+
+hexo-component-inferno 4.1.0及更早版本生成的配置文件会把`type`设为`blog`，但它并不是有效的Open Graph类型。
+如果你的配置文件里有`type: blog`，请把它留空。
 
 ### Google Structured Data
 

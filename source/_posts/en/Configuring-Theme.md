@@ -100,7 +100,7 @@ head:
         # Image files that can serve as application icons for different contexts
         icons:
             -
-                # The path to the image file
+                # The path to the image file, relative to the site root
                 src: icons/touch-icon-iphone.png
                 # A string containing space-separated image dimensions
                 sizes: 144x144
@@ -127,7 +127,8 @@ head:
         # Page title (og:title) (optional)
         title: 
         # Page type (og:type) (optional)
-        type: blog
+        # Leave it empty to use `article` for posts and `website` for other pages
+        type: 
         # Page URL (og:url) (optional)
         url: 
         # Page cover (og:image) (optional)
@@ -151,6 +152,10 @@ head:
         # Facebook App ID
         fb_app_id: 
 {% endcodeblock %}
+
+Configuration files generated with hexo-component-inferno 4.1.0 or earlier set `type` to `blog`, which is not
+a valid Open Graph type.
+If yours has `type: blog`, leave it empty instead.
 
 ### Google Structured Data
 
