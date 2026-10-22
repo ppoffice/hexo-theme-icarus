@@ -36,7 +36,7 @@ widgets:
     -
         position: left
         type: followit
-        description: Subscribe to get the lastest update!
+        description: Subscribe to get the latest updates!
         action_url: ''
         verification_code: ''
     -
@@ -60,7 +60,7 @@ widgets:
         index: false
 ---
 
-This article covers widgets supported by Icarus 5.
+This article covers widgets supported by Icarus 6.
 To display multiple widgets at once, simply add individual widget configuration
 to the `widgets` array.
 They will appear in the order of their definitions.
@@ -92,9 +92,26 @@ widgets:
 <div class="message-body">
 <i class="fas fa-info-circle mr-2"></i>The following widgets are provided by
 <a href="https://github.com/ppoffice/hexo-component-inferno">ppoffice/hexo-component-inferno</a>.
-Please refer to it for a complete list of supported plugins and their configuration details.
+Please refer to it for a complete list of supported widgets and their configuration details.
 </div>
 </article>
+
+
+## Sidebar Layout
+
+Widgets with `position: left` are placed in the left sidebar, and those with `position: right` in the right
+sidebar.
+A page has two columns when only one of the sidebars has widgets, and three columns when both of them do.
+In the three-column layout, the right sidebar is only shown on wide screens (1280px and wider).
+On smaller screens, its widgets are moved to the bottom of the left sidebar.
+
+To disable all widgets, set `widgets` to `null` in your theme configurations.
+Like other theme settings, `widgets` can also be set in the layout configuration files (`_config.post.yml` and
+`_config.page.yml`) or in the front-matter of a post or page, so you can turn off widgets only for some pages:
+
+{% codeblock _config.icarus.yml lang:yaml %}
+widgets: null
+{% endcodeblock %}
 
 
 ## Profile
@@ -113,11 +130,11 @@ widgets:
         author_title: A GitHub Octocat
         # Author location/organization
         location: GitHub Inc.
-        # URL of the avatar/profile picture
+        # URL or path of the avatar/profile picture
         avatar: https://octodex.github.com/images/hula_loop_octodex03.gif
         # Whether to show a round clip of the avatar
         avatar_rounded: false
-        # The email address of the Gravatar service(if the `avatar` is not set)
+        # Email address of your Gravatar account. Takes precedence over `avatar` when set
         gravatar:
         # The follow link URL
         follow_link: 'https://octodex.github.com/hulatocat'
@@ -131,10 +148,14 @@ widgets:
 
 Some notes on the configuration:
 
-- If you wish to use [Gravatar](https://en.gravatar.com/) instead of `avatar` as your profile picture,
-  fill in the Gravatar email address in the `gravatar` setting and leave `avatar` empty;
+- If `author` is not set, the `author` in the site configuration file `_config.yml` is shown instead.
 
-- There two acceptable formats for `social_links`:
+- If you wish to use [Gravatar](https://en.gravatar.com/) as your profile picture, fill in the Gravatar email
+  address in the `gravatar` setting.
+  When `gravatar` is set, it is used even if `avatar` is also set.
+  If neither of them is set, the default avatar of Icarus (`/img/avatar.png`) is shown.
+
+- There are two acceptable formats for `social_links`:
 
     **Icon**:
 
@@ -161,11 +182,12 @@ widgets:
     -
         type: toc
         position: left
-        # Whether to number each table of contents item
-        index: true
+        index: true         # Optional. Whether to number each table of contents item. Defaults to `true`.
+        collapsed: true     # Optional. Whether to hide the sub-headings of the sections that are not being read. Defaults to `true`.
+        depth: 3            # Optional. The number of heading levels to show. Defaults to `3`.
 {% endcodeblock %}
 
-Then, add `toc: true` to the front-matter of your post:
+Then, add `toc: true` to the front-matter of your post or page:
 
 {% codeblock Post.md lang:yaml %}
 title: A post with the table of contents
@@ -173,6 +195,17 @@ toc: true
 ---
 Post content...
 {% endcodeblock %}
+
+Some notes on the table of contents widget:
+
+- The widget is only shown on posts and pages that have `toc: true` in their front-matter.
+  On other pages, it takes no space, and its sidebar is removed if it has no other widgets.
+- `depth` counts the heading levels that the post actually uses, starting from the highest one.
+  For example, with `depth: 2`, a post whose headings start at `##` shows its `##` and `###` headings.
+- While your visitors read the post, the entry of the current section is highlighted and kept in view in the
+  table of contents.
+- On mobile phones, the widget is hidden from the page.
+  Instead, a button in the navigation bar opens the table of contents on top of the page.
 
 
 ## External Links
@@ -189,6 +222,21 @@ widgets:
         links:
             Hexo: 'https://hexo.io'
             Bulma: 'https://bulma.io'
+{% endcodeblock %}
+
+The hostname of each site is shown next to its name.
+To hide it for a site, write the site as an object with the `link` and `hide_hostname` settings:
+
+{% codeblock _config.icarus.yml lang:yaml %}
+widgets:
+    -
+        position: left
+        type: links
+        links:
+            Hexo: 'https://hexo.io'
+            Bulma:
+                link: 'https://bulma.io'
+                hide_hostname: true
 {% endcodeblock %}
 
 
@@ -257,91 +305,13 @@ widgets:
     -
         position: right
         type: tags
-        order_by: name      # Optional. Order by tag name or length. Prefix with `-` to sort in descending order.
+        order_by: name      # Optional. Order by tag name (`name`) or number of posts (`length`). Prefix with `-` to sort in descending order. Defaults to `name`.
         amount: 20          # Optional. The maximum number of tags to show. Leave empty to show all.
-        show_count: true    # Optional. Whether to show post count right to tag name.
+        show_count: true    # Optional. Whether to show the number of posts right to each tag name. Defaults to `true`.
 {% endcodeblock %}
 
-
-## Google Feedburner
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>The Google Feedburner widget (<code>subscribe_email</code>) is
-deprecated since hexo-component-inferno 4.2.0, and a warning is printed when you generate your site with it.
-<a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google stopped the email subscription feature of Feedburner in July 2021.</a>
-Please switch to <a href="#follow-it">the follow.it widget</a> or other email subscription services.
-</div>
-</article>
-
-To enable Google Feedburner email subscription widget, take the following steps:
-
-1. First, you need to generate the RSS feed of your Hexo site using a Hexo plugin like
-   [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed).
-
-2. Then, go to [Google Feedburner](https://feedburner.google.com), log into your Google account,
-   and add your RSS feed by typing in the RSS feed address to the input box and click "Next".
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-homepage.png 360 '"Homepage - Feedburner" "Homepage - Feedburner"' %}
-   <br>
-
-3. Next, fill in the "Feed Title" on the next page.
-   Click "Next" to continue customizing your feed or click "Skip directly to feed management" to
-   finish.
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-add-feed.png 360 '"Add Feed - Feedburner" "Add Feed - Feedburner"' %}
-   <br>
-
-4. When finished adding the feed, click the "My Feeds" link on the top of the page.
-   Click your newly added feed on the "My Feeds" page.
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-feed-list.png 360 '"Feed List - Feedburner" "Feed List - Feedburner"' %}
-   <br>
-
-5. Switch to the "Publicize" tab and click the "Email Subscription" link on the left side of the page.
-   Enable "Email Subscription" by clicking the "Activate" button.
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-activate-email.png 360 '"Activate Email Subscription - Feedburner" "Activate Email Subscription - Feedburner"' %}
-   <br>
-
-6. Find the following information in the HTML code on the "Email Subscription"
-   page:
-
-   {% codeblock Google Feedburner URL %}
-   https://feedburner.google.com/fb/a/mailverify?uri=******
-   {% endcodeblock %}
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-get-code.png 360 '"Get Code - Feedburner" "Get Code - Feedburner"' %}
-   <br>
-
-   Copy the ID after `uri=` (e.g., `feedforall/ABCD`) to the `feedburner_id` setting of the widget configuration:
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    widgets:
-        -
-            position: left
-            type: subscribe_email
-            # (Optional) One line of description text
-            description: Subscribe to get the lastest update!
-            feedburner_id: feedforall/ABCD
-    {% endcodeblock %}
-
-
-## Google AdSense
-
-Create a new AD on [Google AdSense](https://www.google.com/adsense).
-Then, copy the values of `data-ad-client` and `data-ad-slot` from the AD HTML code to
-the `client_id` and `slot_id` setting of the widget configuration, respectively.
-Here is an example:
-
-{% codeblock _config.icarus.yml lang:yaml %}
-widgets:
-    -
-        position: left
-        type: adsense
-        client_id: ca-pub-xxxxxxxx
-        slot_id: xxxxxxx
-{% endcodeblock %}
+If `amount` is set and there are more tags than that, a "More" link to the tags page is added to the end of the
+list.
 
 
 ## follow.it
@@ -394,6 +364,7 @@ To enable [follow.it](https://follow.it) email subscription widget, take the fol
    In that email, search for `<meta name="follow_it-verification-code" content="******"/>` and copy the `content` value
    between double quotes after `content=`.
    Paste the content value you copied to the `verification_code` setting of the widget configuration.
+   Icarus adds a verification meta tag with this code to the `<head>` of your pages.
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-copy-verification-code.png 360 '"Copy Verification Code - follow.it" "Copy Verification Code - follow.it"' %}
    <br>
@@ -414,8 +385,37 @@ To enable [follow.it](https://follow.it) email subscription widget, take the fol
 
 10. Go back to the first email you receive and click on the "Click here to claim it" link to claim your feed.
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-verify-claim.png 360 '"Verify Claim - follow.it" "Verify Claim - follow.it"' %}
-   <br>
+    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-verify-claim.png 360 '"Verify Claim - follow.it" "Verify Claim - follow.it"' %}
+    <br>
+
+
+## Google AdSense
+
+Create a new AD on [Google AdSense](https://www.google.com/adsense).
+Then, copy the values of `data-ad-client` and `data-ad-slot` from the AD HTML code to
+the `client_id` and `slot_id` setting of the widget configuration, respectively.
+Here is an example:
+
+{% codeblock _config.icarus.yml lang:yaml %}
+widgets:
+    -
+        position: left
+        type: adsense
+        client_id: ca-pub-xxxxxxxx
+        slot_id: xxxxxxx
+{% endcodeblock %}
+
+
+## Google Feedburner
+
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>The Google Feedburner widget (<code>subscribe_email</code>) is
+deprecated since hexo-component-inferno 4.2.0, and a warning is printed when you generate your site with it.
+<a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google stopped the email subscription feature of Feedburner in July 2021.</a>
+Please switch to <a href="#follow-it">the follow.it widget</a> or other email subscription services.
+</div>
+</article>
 
 <article class="message message-immersive is-warning">
 <div class="message-body">

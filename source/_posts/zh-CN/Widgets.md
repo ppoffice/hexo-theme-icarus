@@ -64,7 +64,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 5支持的页面挂件的安装配置。
+本文介绍Icarus 6支持的页面挂件的安装配置。
 若要同时展示多个挂件，只需在主题配置的`widgets`数组中添加多个挂件配置。
 它们会按照定义的顺序出现。
 每个挂件必须包含`type`(挂件类型)与`position`(挂件展示位置)设置项。
@@ -97,6 +97,22 @@ widgets:
 </article>
 
 
+## 侧边栏布局
+
+`position`为`left`的挂件显示在左侧边栏中，`position`为`right`的挂件显示在右侧边栏中。
+只有一侧边栏有挂件时，页面分为两栏；两侧边栏都有挂件时，页面分为三栏。
+在三栏布局中，右侧边栏只在宽屏(1280px及以上)上显示。
+在较窄的屏幕上，右侧边栏的挂件会移到左侧边栏的底部。
+
+若要关闭所有挂件，请将主题配置中的`widgets`设置为`null`。
+和其他主题配置一样，`widgets`也可以在布局配置文件(`_config.post.yml`和`_config.page.yml`)或文章、页面的front-matter中设置，
+因此你可以只在部分页面上关闭挂件：
+
+{% codeblock _config.icarus.yml lang:yaml %}
+widgets: null
+{% endcodeblock %}
+
+
 ## 作者资料卡
 
 你可以启用作者资料卡挂件来展示文章作者/网站站长的信息。
@@ -113,11 +129,11 @@ widgets:
         author_title: A GitHub Octocat
         # 作者所在地/公司
         location: GitHub Inc.
-        # 头像图片地址
+        # 头像图片的URL或路径
         avatar: https://octodex.github.com/images/hula_loop_octodex03.gif
         # 是否显示圆形头像
         avatar_rounded: false
-        # Gravatar邮箱(如不设置`avatar`项)
+        # Gravatar账户的邮箱地址。设置后优先于`avatar`使用
         gravatar:
         # 关注按钮链接地址
         follow_link: 'https://octodex.github.com/hulatocat'
@@ -131,8 +147,11 @@ widgets:
 
 需要注意的是：
 
-- 如果你希望使用[Gravatar](https://en.gravatar.com/)而不是`avatar`配置项作为头像图片，请在`gravatar`项填入
-  你的Gravatar邮箱地址并在`avatar`一项中留空；
+- 如果没有设置`author`，则显示站点配置文件`_config.yml`中的`author`。
+
+- 如果你希望使用[Gravatar](https://en.gravatar.com/)作为头像图片，请在`gravatar`项填入你的Gravatar邮箱地址。
+  设置了`gravatar`时，即使同时设置了`avatar`，也会使用Gravatar头像。
+  两者都没有设置时，显示Icarus的默认头像(`/img/avatar.png`)。
 
 - `social_links`可以采用如下两种格式：
 
@@ -140,7 +159,7 @@ widgets:
 
     {% codeblock social_links lang:yaml %}
     <链接名称>:
-        icon: <FontAwesome5_图标的_HTML_class名称>
+        icon: <FontAwesome图标的HTML_class名称>
         url: <链接的URL地址>
     {% endcodeblock %}
 
@@ -160,11 +179,12 @@ widgets:
     -
         type: toc
         position: left
-        # 是否显示目录项目的序号
-        index: true
+        index: true         # 可选项。是否显示目录项目的序号，默认为`true`。
+        collapsed: true     # 可选项。是否收起未在阅读的章节的子标题，默认为`true`。
+        depth: 3            # 可选项。显示的标题层级数，默认为`3`。
 {% endcodeblock %}
 
-然后，在需要开启目录的文章头部加入`toc: true`：
+然后，在需要开启目录的文章或页面的front-matter中加入`toc: true`：
 
 {% codeblock Post.md lang:yaml %}
 title: 一篇有目录的文章
@@ -172,6 +192,15 @@ toc: true
 ---
 文章内容...
 {% endcodeblock %}
+
+关于文章目录挂件需要注意的是：
+
+- 文章目录挂件只在front-matter中有`toc: true`的文章和页面上显示。
+  在其他页面上它不会占用空间，如果所在的侧边栏没有其他挂件，这一侧边栏也不会显示。
+- `depth`从文章实际使用的最高一级标题开始计算层级。
+  例如设置`depth: 2`时，标题从`##`开始的文章会显示`##`和`###`标题。
+- 访客阅读文章时，目录中当前章节的条目会高亮显示，并保持在可见区域内。
+- 在手机上，页面中不显示这个挂件，而是在导航栏中显示一个按钮，点击即可在页面上方打开文章目录。
 
 
 ## 友站链接
@@ -188,6 +217,21 @@ widgets:
         links:
             Hexo: 'https://hexo.io'
             Bulma: 'https://bulma.io'
+{% endcodeblock %}
+
+每个网站名称的旁边会显示其域名。
+若要隐藏某个网站的域名，请将其写成包含`link`和`hide_hostname`设置的对象：
+
+{% codeblock _config.icarus.yml lang:yaml %}
+widgets:
+    -
+        position: left
+        type: links
+        links:
+            Hexo: 'https://hexo.io'
+            Bulma:
+                link: 'https://bulma.io'
+                hide_hostname: true
 {% endcodeblock %}
 
 
@@ -254,93 +298,17 @@ widgets:
     -
         position: right
         type: tags
-        order_by: name      # 可选项。按名称(name)或长度(length)来排序。加上`-`前缀来倒序排列。
+        order_by: name      # 可选项。按标签名称(name)或文章数量(length)排序，加上`-`前缀来倒序排列，默认为`name`。
         amount: 20          # 可选项。最多显示的标签数量。留空以显示所有标签。
-        show_count: true    # 可选项。是否显示标签名称右侧的文章数量。
+        show_count: true    # 可选项。是否在标签名称右侧显示文章数量，默认为`true`。
 {% endcodeblock %}
 
-
-## Google Feedburner
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Google Feedburner挂件（<code>subscribe_email</code>）自hexo-component-inferno 4.2.0起已弃用，使用它生成网站时会输出警告。
-<a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google已于2021年7月停止了Feedburner的邮件订阅功能。</a>
-请换用<a href="#follow-it">follow.it挂件</a>或者其他邮件订阅服务。
-</div>
-</article>
-
-按照如下步骤即可启用Google Feedburner插件：
-
-1. 首先，使用诸如[hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)此类的Hexo插件生成
-   你的Hexo网站的RSS源。
-
-2. 然后登录[Google Feedburner](https://feedburner.google.com)，在输入框内输入你的RSS地址并点击“下一步”(Next)
-   来添加你的RSS源。
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-homepage.png 360 '"主页 - Feedburner" "主页 - Feedburner"' %}
-   <br>
-
-3. 然后，在下一页中填写“源标题”。
-   点击“下一步”(Next)来继续自定义你的源，或者点击“直接跳到源管理”(Skip directly to feed management)来完成配置。
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-add-feed.png 360 '"添加源 - Feedburner" "添加源 - Feedburner"' %}
-   <br>
-
-4. 完成添加源后，点击网页顶部的”我的源“(My Feeds)链接。
-   点击“我的源”(My Feeds)页面上新添加的源。
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-feed-list.png 360 '"源列表 - Feedburner" "源列表 - Feedburner"' %}
-   <br>
-
-5. 切换到”宣传“(Publicize)标签页并点击页面左侧的”邮件订阅“(Email Subscription)链接。
-   点击“激活”(Activate)按钮来开启“邮件订阅”(Email Subscription)功能。
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-activate-email.png 360 '"激活邮件订阅 - Feedburner" "激活邮件订阅 - Feedburner"' %}
-   <br>
-   
-6. 在”邮件订阅“(Email Subscription)页面上从HTML代码中找到如下信息：
-
-   {% codeblock Google Feedburner URL %}
-   https://feedburner.google.com/fb/a/mailverify?uri=******
-   {% endcodeblock %}
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/feedburner-get-code.png 360 '"获取代码 - Feedburner" "获取代码 - Feedburner"' %}
-   <br>
-
-   复制`uri=`后的ID(如`feedforall/ABCD`)到挂件配置的`feedburner_id`设置中：
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    widgets:
-        -
-            position: left
-            type: subscribe_email
-            # (可选) 描述文字
-            description: 邮件订阅，更新早知道
-            feedburner_id: feedforall/ABCD
-    {% endcodeblock %}
-
-
-## Google AdSense
-
-在[Google AdSense](https://www.google.com/adsense)上新建广告。
-然后，复制广告HTML代码中的`data-ad-client`和`data-ad-slot`值分别填入到挂件配置的`client_id`和`slot_id`项中。
-示例如下：
-
-{% codeblock _config.icarus.yml lang:yaml %}
-widgets:
-    -
-        position: left
-        type: adsense
-        client_id: ca-pub-xxxxxxxx
-        slot_id: xxxxxxx
-{% endcodeblock %}
+设置了`amount`并且标签数量超过它时，列表末尾会加上一个指向标签页面的“更多”链接。
 
 
 ## follow.it
 
-
-按照如下步骤即可启用[follow.it](https://follow.it)邮件订阅插件：
+按照如下步骤即可启用[follow.it](https://follow.it)邮件订阅挂件：
 
 1. 首先，使用诸如[hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)此类的Hexo插件生成
    你的Hexo网站的RSS源。
@@ -375,11 +343,11 @@ widgets:
    {% endcodeblock %}
 
 5. 点击“继续”(Continue)按钮或者“跳过此步”(Skip this)链接来跳过“选择你想要的关注按钮”(Pick the Follow icons you want)和
-   ”显示弹窗来最大化交流“(Show a pop-up for maximum conversion)页面。
+   “显示弹窗来最大化交流”(Show a pop-up for maximum conversion)页面。
 
-6. 在”连接你的源到follow.it账户“(Connect your feed to a follow.it account)页面上，在输入框中填入你将要用来注册follow.it账户
+6. 在“连接你的源到follow.it账户”(Connect your feed to a follow.it account)页面上，在输入框中填入你将要用来注册follow.it账户
    和管理订阅者的邮箱地址。
-   然后，点击”开始“(Start)。
+   然后，点击“开始”(Start)。
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-connect-account.png 360 '"连接账户 - follow.it" "连接账户 - follow.it"' %}
    <br>
@@ -387,6 +355,7 @@ widgets:
 7. 你会收到一封来自follow.it的邮件。
    在那封邮件中搜索`<meta name="follow_it-verification-code" content="******"/>`并复制`content=`后双引号中的`content`的值。
    将你复制的值粘贴到挂件设置中的`verification_code`设置项。
+   Icarus会用这个验证码在你的网页的`<head>`中加入验证用的meta标签。
 
    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-copy-verification-code.png 360 '"复制验证码 - follow.it" "复制验证码 - follow.it"' %}
    <br>
@@ -405,11 +374,37 @@ widgets:
 
 9. 回到follow.it并用你的邮箱地址注册一个账户。
 
-10. 回到你收到的第一封邮件并点击”点击这里来认领“(Click here to claim it)链接来认领你的订阅源。
+10. 回到你收到的第一封邮件并点击“点击这里来认领”(Click here to claim it)链接来认领你的订阅源。
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-verify-claim.png 360 '"验证认领 - follow.it" "验证认领 - follow.it"' %}
-   <br>
+    {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/follow-it-verify-claim.png 360 '"验证认领 - follow.it" "验证认领 - follow.it"' %}
+    <br>
 
+
+## Google AdSense
+
+在[Google AdSense](https://www.google.com/adsense)上新建广告。
+然后，复制广告HTML代码中的`data-ad-client`和`data-ad-slot`值分别填入到挂件配置的`client_id`和`slot_id`项中。
+示例如下：
+
+{% codeblock _config.icarus.yml lang:yaml %}
+widgets:
+    -
+        position: left
+        type: adsense
+        client_id: ca-pub-xxxxxxxx
+        slot_id: xxxxxxx
+{% endcodeblock %}
+
+
+## Google Feedburner
+
+<article class="message message-immersive is-danger">
+<div class="message-body">
+<i class="fas fa-exclamation-triangle mr-2"></i>Google Feedburner挂件（<code>subscribe_email</code>）自hexo-component-inferno 4.2.0起已弃用，使用它生成网站时会输出警告。
+<a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google已于2021年7月停止了Feedburner的邮件订阅功能。</a>
+请换用<a href="#follow-it">follow.it挂件</a>或者其他邮件订阅服务。
+</div>
+</article>
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
