@@ -361,7 +361,7 @@ To enable [follow.it](https://follow.it) email subscription widget, take the fol
    <br>
 
 7. You will then receive an email from follow.it.
-   In that email, search for `<meta name="follow_it-verification-code" content="******"/>` and copy the `content` value
+   In that email, search for `<meta name="follow.it-verification-code" content="******"/>` and copy the `content` value
    between double quotes after `content=`.
    Paste the content value you copied to the `verification_code` setting of the widget configuration.
    Icarus adds a verification meta tag with this code to the `<head>` of your pages.

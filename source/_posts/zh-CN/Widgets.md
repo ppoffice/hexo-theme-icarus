@@ -353,7 +353,7 @@ widgets:
    <br>
 
 7. 你会收到一封来自follow.it的邮件。
-   在那封邮件中搜索`<meta name="follow_it-verification-code" content="******"/>`并复制`content=`后双引号中的`content`的值。
+   在那封邮件中搜索`<meta name="follow.it-verification-code" content="******"/>`并复制`content=`后双引号中的`content`的值。
    将你复制的值粘贴到挂件设置中的`verification_code`设置项。
    Icarus会用这个验证码在你的网页的`<head>`中加入验证用的meta标签。
 
