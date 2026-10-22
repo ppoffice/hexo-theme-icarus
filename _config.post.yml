@@ -10,7 +10,7 @@ sidebar:
         # Whether the sidebar sticks to the top when page scrolls
         sticky: false
 # Sidebar widget configurations
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
     # Profile widget configurations
     -
@@ -47,7 +47,7 @@ widgets:
                 url: 'https://dribbble.com'
             RSS:
                 icon: fas fa-rss
-                url: /
+                url: /atom.xml
     # Table of contents widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar

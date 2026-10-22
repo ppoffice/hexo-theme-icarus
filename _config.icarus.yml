@@ -12,7 +12,7 @@ head:
     # https://developer.mozilla.org/en-US/docs/Web/Manifest
     manifest:
         # Name of the web application (default to the site title)
-        name: Icaurs - Hexo Theme
+        name: Icarus - Hexo Theme
         # The displayed name of the web application
         # when there is not enough space to display full name
         short_name: Icarus
@@ -35,7 +35,7 @@ head:
         title: 
         # Page type (og:type) (optional)
         # You should leave this blank for most of the time
-        type: blog
+        type: 
         # Page URL (og:url) (optional)
         # You should leave this blank for most of the time
         url: 
@@ -57,8 +57,6 @@ head:
         twitter_id: 
         # Twitter Site (twitter:site)
         twitter_site: 
-        # Google+ profile link (deprecated)
-        google_plus: 
         # Facebook admin ID
         fb_admins: 
         # Facebook App ID
@@ -89,9 +87,15 @@ head:
     rss: 
 # Page top navigation bar configurations
 navbar:
-    # Naviagtion menu items
+    # Navigation menu items
     menu:
         Home: /
+        Docs:
+            Getting Started: /uncategorized/getting-started-with-icarus/
+            Configuring the Theme: /Configuration/icarus-user-guide-configuring-the-theme/
+            Upgrade Guide: /uncategorized/upgrade-guide/
+            FAQ: /uncategorized/faq/
+            All Guides: /tags/Icarus-User-Guide/
         Archives: /archives
         Categories: /categories
         Tags: /tags
@@ -195,7 +199,7 @@ sidebar:
         # Whether the sidebar sticks to the top when page scrolls
         sticky: false
 # Sidebar widget configurations
-# http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
+# https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
     # Profile widget configurations
     -
@@ -232,7 +236,7 @@ widgets:
                 url: 'https://dribbble.com'
             RSS:
                 icon: fas fa-rss
-                url: /
+                url: /atom.xml
     # Table of contents widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
@@ -341,15 +345,15 @@ plugins:
     gallery: true
     # Google Analytics plugin settings
     # https://analytics.google.com
-    google_analytics:
-        # Google Analytics tracking ID
-        tracking_id: UA-72437521-5
+    # google_analytics:
+    #     # Google Analytics tracking ID
+    #     tracking_id: ''
     # Hotjar user feedback plugin
     # https://www.hotjar.com/
     hotjar:
         # Hotjar site id
         site_id: 
-    # Enable the KaTeX math typesetting supprot
+    # Enable the KaTeX math typesetting support
     # https://katex.org/
     katex: false
     # Enable the MathJax math typesetting support
@@ -357,7 +361,7 @@ plugins:
     mathjax: false
     # Enable the Outdated Browser plugin
     # http://outdatedbrowser.com/
-    outdated_browser: true
+    outdated_browser: false
     # Show a progress bar at top of the page on page loading
     progressbar: true
     # Statcounter statistics
@@ -373,7 +377,7 @@ plugins:
         # Twitter Pixel ID
         pixel_id: 
 # CDN provider settings
-# https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
+# https://ppoffice.github.io/hexo-theme-icarus/Configuration/icarus-user-guide-cdn-providers/
 providers:
     # Name or URL template of the JavaScript and/or stylesheet CDN provider
     cdn: jsdelivr
