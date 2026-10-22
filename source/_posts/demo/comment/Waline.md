@@ -15,16 +15,9 @@ comment:
         - nick
         - mail
         - link
-    required_meta:
     login: enable
     word_limit: 0
     page_size: 10
-    image_uploader:
-    highlighter:
-    tex_renderer:
-    search:
-    pageview:
-    comment:
     copyright: true
 ---
 
