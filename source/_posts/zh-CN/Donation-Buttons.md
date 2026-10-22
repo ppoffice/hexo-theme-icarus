@@ -33,7 +33,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 5支持的赞赏按钮的安装配置。
+本文介绍Icarus支持的赞赏按钮的安装配置。
 若需同时展示多个按钮，只需像如下这样在主题配置的`donates`数组中添加多个按钮配置：
 
 {% codeblock _config.icarus.yml lang:yaml %}
@@ -45,6 +45,9 @@ donates:
         type: ... # 按钮2
         ...
 {% endcodeblock %}
+
+每种按钮都有必填的配置项，如`url`、`qrcode`，或者`business`和`currency_code`。
+如果其中某项没有填写或为空，按钮的位置会显示一条红色提示，提醒你填写它。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -97,7 +100,7 @@ donates:
     donates:
         -
             type: alipay
-            # 支付宝二维码图片地址
+            # 支付宝二维码图片在站点中的路径，如source/images/alipay.png对应/images/alipay.png，也可以是完整的URL
             qrcode: /path/to/alipay/qrcode.png
     {% endcodeblock %}
 
@@ -202,7 +205,7 @@ donates:
     donates:
         -
             type: wechat
-            # 微信二维码图片地址
+            # 微信二维码图片在站点中的路径，如source/images/wechat.png对应/images/wechat.png，也可以是完整的URL
             qrcode: /path/to/wechat/qrcode.png
     {% endcodeblock %}
 

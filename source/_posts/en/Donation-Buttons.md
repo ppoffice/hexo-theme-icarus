@@ -29,7 +29,7 @@ donates:
         qrcode: /gallery/donate/wechat.jpg
 ---
 
-This article covers donation button configurations supported by Icarus 5.
+This article covers donation button configurations supported by Icarus.
 If you need to display multiple donation buttons at once, add individual button configuration
 to the `donates` array like the following:
 
@@ -42,6 +42,9 @@ donates:
         type: ... # Button 2
         ...
 {% endcodeblock %}
+
+Each button has required settings, such as `url`, `qrcode`, or `business` and `currency_code`.
+If one of them is missing or empty, a red notice asking you to set it is shown in place of the button.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -88,7 +91,7 @@ Please refer to it for a complete list of supported buttons and their configurat
     donates:
         -
             type: alipay
-            # Path to your QR code image
+            # Path to your QR code image in your site, such as /images/alipay.png for source/images/alipay.png, or its full URL
             qrcode: /path/to/alipay/qrcode.png
     {% endcodeblock %}
 
@@ -189,7 +192,7 @@ Please refer to it for a complete list of supported buttons and their configurat
     donates:
         -
             type: wechat
-            # Path to your QR code image
+            # Path to your QR code image in your site, such as /images/wechat.png for source/images/wechat.png, or its full URL
             qrcode: /path/to/wechat/qrcode.png
     {% endcodeblock %}
 
@@ -197,7 +200,7 @@ Please refer to it for a complete list of supported buttons and their configurat
 <article class="message message-immersive is-warning">
 <div class="message-body">
 <i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
-Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Donation-Button.md">here</a> 
+Click <a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/en/Donation-Buttons.md">here</a> 
 to submit your revision.
 </div>
 </article>
