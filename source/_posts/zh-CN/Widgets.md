@@ -200,6 +200,7 @@ widgets:
     -
         position: right
         type: recent_posts
+        limit: 5            # 可选项。显示的最新文章数量，默认为5。
 {% endcodeblock %}
 
 
@@ -212,7 +213,15 @@ widgets:
     -
         position: right
         type: archives
+        group_by: monthly   # 可选项。按月(monthly)或按年(yearly)归档，默认为`monthly`。
+        order: -1           # 可选项。`-1`表示最新的归档排在前面，`1`表示最早的归档排在前面，默认为`-1`。
+        format:             # 可选项。归档名称的Moment.js格式，默认为`MMMM YYYY`(按月)或`YYYY`(按年)。
+        amount: 10          # 可选项。最多显示的归档数量。留空以显示所有归档。
+        show_count: true    # 可选项。是否显示每个归档的文章数量，默认为`true`。
 {% endcodeblock %}
+
+设置了`amount`并且归档数量超过它时，列表末尾会加上一个指向归档页面的“更多”链接。
+`show_count`需要hexo-component-inferno 4.2.0及以上版本。
 
 
 ## 文章分类
@@ -224,7 +233,16 @@ widgets:
     -
         position: right
         type: categories
+        order_by: name      # 可选项。按分类名称(name)或文章数量(length)排序，默认为`name`。
+        order: 1            # 可选项。`1`为升序，`-1`为降序，默认为`1`。
+        depth: 0            # 可选项。显示的分类层级数，如`1`表示只显示顶级分类。设为`0`或留空时显示所有层级。
+        show_current: false # 可选项。是否高亮当前文章所属的分类，默认为`false`。
+        amount: 10          # 可选项。最多显示的顶级分类数量。留空以显示所有分类。
+        show_count: true    # 可选项。是否显示每个分类的文章数量，默认为`true`。
 {% endcodeblock %}
+
+设置了`amount`并且顶级分类数量超过它时，列表末尾会加上一个指向分类页面的“更多”链接。
+`order_by`、`depth`、`show_current`和`show_count`需要hexo-component-inferno 4.2.0及以上版本。
 
 
 ## 文章标签
@@ -246,7 +264,9 @@ widgets:
 
 <article class="message message-immersive is-danger">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i><a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google即将关闭Feedburner的邮件订阅功能。</a> 你可以切换到<a href="#follow-it">follow.it挂件</a>或者其他邮件订阅服务。
+<i class="fas fa-exclamation-triangle mr-2"></i>Google Feedburner挂件（<code>subscribe_email</code>）自hexo-component-inferno 4.2.0起已弃用，使用它生成网站时会输出警告。
+<a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google已于2021年7月停止了Feedburner的邮件订阅功能。</a>
+请换用<a href="#follow-it">follow.it挂件</a>或者其他邮件订阅服务。
 </div>
 </article>
 

@@ -201,6 +201,7 @@ widgets:
     -
         position: right
         type: recent_posts
+        limit: 5            # Optional. The number of recent posts to show. Defaults to 5.
 {% endcodeblock %}
 
 
@@ -213,7 +214,16 @@ widgets:
     -
         position: right
         type: archives
+        group_by: monthly   # Optional. Group the archives by month (`monthly`) or by year (`yearly`). Defaults to `monthly`.
+        order: -1           # Optional. `-1` to show the newest archives first, or `1` to show the oldest first. Defaults to `-1`.
+        format:             # Optional. Moment.js format of the archive names. Defaults to `MMMM YYYY` (monthly) or `YYYY` (yearly).
+        amount: 10          # Optional. The maximum number of archives to show. Leave empty to show all.
+        show_count: true    # Optional. Whether to show the number of posts of each archive. Defaults to `true`.
 {% endcodeblock %}
+
+If `amount` is set and there are more archives than that, a "More" link to the archive page is added to the
+end of the list.
+The `show_count` setting requires hexo-component-inferno 4.2.0 or later.
 
 
 ## Categories
@@ -225,7 +235,17 @@ widgets:
     -
         position: right
         type: categories
+        order_by: name      # Optional. Order by category name (`name`) or number of posts (`length`). Defaults to `name`.
+        order: 1            # Optional. `1` for ascending order, or `-1` for descending order. Defaults to `1`.
+        depth: 0            # Optional. Levels of categories to show, e.g., `1` for top-level categories only. `0` or empty shows all levels.
+        show_current: false # Optional. Whether to highlight the categories of the current post. Defaults to `false`.
+        amount: 10          # Optional. The maximum number of top-level categories to show. Leave empty to show all.
+        show_count: true    # Optional. Whether to show the number of posts of each category. Defaults to `true`.
 {% endcodeblock %}
+
+If `amount` is set and there are more top-level categories than that, a "More" link to the categories page is
+added to the end of the list.
+The `order_by`, `depth`, `show_current`, and `show_count` settings require hexo-component-inferno 4.2.0 or later.
 
 
 ## Tags
@@ -247,7 +267,10 @@ widgets:
 
 <article class="message message-immersive is-danger">
 <div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i><a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google is shutting down the email subscription feature of Feedburner.</a> You can switch to <a href="#follow-it">the follow.it widget</a> or other email subscription services.
+<i class="fas fa-exclamation-triangle mr-2"></i>The Google Feedburner widget (<code>subscribe_email</code>) is
+deprecated since hexo-component-inferno 4.2.0, and a warning is printed when you generate your site with it.
+<a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google stopped the email subscription feature of Feedburner in July 2021.</a>
+Please switch to <a href="#follow-it">the follow.it widget</a> or other email subscription services.
 </div>
 </article>
 
