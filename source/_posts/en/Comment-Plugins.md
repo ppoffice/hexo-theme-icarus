@@ -261,13 +261,6 @@ A comments system powered by [GitHub Discussions](https://docs.github.com/en/dis
     {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: giscus
-        repo: Your-GitHub-Username/Your-Public-Repo-Name
-        issue_term: pathname        # Required if issue_number is not set
-        issue_number: 100           # Required if issue_term is not set. Every post can be mapped to a separate, manually-created GitHub issue.
-        label: some-issue-label     # Optional
-        theme: github-light         # Optional
-    comment:
-        type: giscus
         repo: usr/repo                   # Required
         repoId: X_xxxxxxxxxx             # Required
         category: Announcements          # Optional, default: Announcements
