@@ -36,6 +36,11 @@ providers:
 }
 </style>
 
+这些标签插件的选项写作`<选项名>:<值>`，选项之间用空格分隔，顺序不限。
+如果选项的值含有空格，则需要用引号把选项名和值一起包裹住，例如`"title:消息标题"`。
+自hexo-component-inferno 4.2.0起，选项的值也可以含有冒号，例如`"title:第一步: 安装"`。
+在更早的版本中，选项中第二个冒号及其后面的内容会被丢弃。
+
 ## 消息
 
 五颜六色的消息块可以用来强调你文章中的部分文本。
@@ -54,31 +59,35 @@ providers:
 它可用的配置值与示例如下：
 
 {% message "title:default" %}
-    一个没有设置颜色的代码块。
+    一个没有设置颜色的消息块。
 {% endmessage %}
 
 {% message color:dark "title:dark" %}
-    一个深色(`dark`)的代码块。
+    一个深色(`dark`)的消息块。
 {% endmessage %}
 
 {% message color:primary "title:primary" %}
-    一个主题色(`primary`)的代码块。
+    一个主题色(`primary`)的消息块。
+{% endmessage %}
+
+{% message color:link "title:link" %}
+    一个链接色(`link`)的消息块。
 {% endmessage %}
 
 {% message color:info "title:info" %}
-    一个提示色(`info`)的代码块。
+    一个提示色(`info`)的消息块。
 {% endmessage %}
 
 {% message color:success "title:success" %}
-    一个成功色(`success`)的代码块。
+    一个成功色(`success`)的消息块。
 {% endmessage %}
 
 {% message color:warning "title:warning" %}
-    一个警示色(`warning`)的代码块。
+    一个警示色(`warning`)的消息块。
 {% endmessage %}
 
 {% message color:danger "title:danger" %}
-    一个危险色(`danger`)的代码块。
+    一个危险色(`danger`)的消息块。
 {% endmessage %}
 
 ### size
@@ -88,19 +97,19 @@ providers:
 它可用的配置值与示例如下：
 
 {% message size:small "title:small" %}
-    一个小(`small`)的代码块。
+    一个小(`small`)的消息块。
 {% endmessage %}
 
 {% message "title:default" %}
-    一个没有设置大小的代码块。
+    一个没有设置大小的消息块。
 {% endmessage %}
 
 {% message size:medium "title:medium" %}
-    一个中等大小(`small`)的代码块。
+    一个中等大小(`medium`)的消息块。
 {% endmessage %}
 
 {% message size:large "title:large" %}
-    一个大(`small`)的代码块。
+    一个大(`large`)的消息块。
 {% endmessage %}
 
 ### icon
@@ -127,9 +136,14 @@ providers:
 此选项定义消息块的标题。
 其为可选项。
 如果标题含有空格，则配置名与配置值需要用引号包裹住。
+标题会按Markdown渲染，因此你可以在标题中使用`**粗体**`等Markdown语法。
 
 {% message "title:有标题的消息块" %}
     有标题的消息块(`"title:有标题的消息块"`)。
+{% endmessage %}
+
+{% message color:info "title:标题中有**粗体**的消息块" %}
+    标题中含有Markdown的消息块(`"title:标题中有**粗体**的消息块"`)。
 {% endmessage %}
 
 {% message %}
@@ -216,7 +230,7 @@ providers:
 这是一个中等大小(`medium`)标签页容器的第一页。
 <!-- endtab -->
 <!-- tab id:tab_size_medium_2 "title:第二页" -->
-这是一个中等大小(`medium`)标签页容器的第一页。
+这是一个中等大小(`medium`)标签页容器的第二页。
 <!-- endtab -->
 {% endtabs %}
 </div>
@@ -236,7 +250,9 @@ providers:
 
 此选项定义标签页按钮的对齐方式。
 其为可选项。
-它可用的配置值与示例如下：
+可用的配置值有`left`、`centered`、`right`和`fullwidth`。
+`left`是默认的对齐方式，因此`align:left`与不指定`align`的效果相同。
+各种对齐方式的示例如下：
 
 <div class="example-tab-container">
 {% tabs %}
@@ -355,15 +371,20 @@ providers:
 {% endtabs %}
 </div>
 
-### Tab
+### 单个标签页
 
 一个标签页有如下选项：
 
 #### id
 
-此选项为标签页元素的独特标识符(ID)。
-此项为必填项。
-一个标签页ID应当在整个页面内为独一无二的，这样Icarus才能定位、显示、和隐藏正确的标签页内容。
+此选项为标签页元素的唯一标识符(ID)。
+此项为选填项。
+如果不设置，Icarus会为标签页生成一个ID，这个ID在每次生成网站时都会变化。
+一个标签页ID应当在整个页面内是唯一的，这样Icarus才能定位、显示和隐藏正确的标签页内容。
+
+指向`#<标签ID>`的链接会切换到对应的标签页，无论是在同一页面内点击，还是打开URL中带有这个ID的页面。
+例如，点击[这个链接](#tab_icon_2)会把下方[icon](#icon-1)一节的第一个示例切换到“Node.js”标签页。
+如果你想链接到某个标签页，请自行设置它的ID。
 
 #### active
 
@@ -405,6 +426,7 @@ providers:
 此选项定义标签按钮的标题。
 其为可选项。
 如果标题含有空格，则配置名与配置值需要用引号包裹住。
+和消息块的标题一样，标签页的标题也会按Markdown渲染。
 
 <div class="example-tab-container">
 {% tabs style:toggle %}

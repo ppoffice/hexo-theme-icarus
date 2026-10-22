@@ -34,6 +34,13 @@ Please refer to it for a complete list of supported helpers and their configurat
 }
 </style>
 
+The options of these tag helpers are written as `<name>:<value>`, separated by spaces, and can be given in any
+order.
+If the value of an option contains spaces, wrap the option and its value with quotes, such as
+`"title:Message title"`.
+Since hexo-component-inferno 4.2.0, the value can also contain colons, such as `"title:Step 1: Install"`.
+Earlier versions drop everything after the second colon of an option.
+
 ## Message
 
 Message blocks are a colorful way to emphasize part of text in your post.
@@ -63,8 +70,12 @@ Available values and their examples are:
     A `primary` message block.
 {% endmessage %}
 
+{% message color:link "title:link" %}
+    A `link` message block.
+{% endmessage %}
+
 {% message color:info "title:info" %}
-    A `info` message block.
+    An `info` message block.
 {% endmessage %}
 
 {% message color:success "title:success" %}
@@ -125,9 +136,14 @@ If the icon class name contains space(s), this option and its value should be wr
 Title of the message block.
 It is optional.
 If the title contains space(s), this option and its value should be wrapped with quotes.
+The title is rendered as Markdown, so you can use Markdown syntax such as `**bold**` in it.
 
 {% message "title:Message block with title" %}
     A message block with a title (`"title:Message block with title"`).
+{% endmessage %}
+
+{% message color:info "title:Message block with a **bold** title" %}
+    A message block with Markdown in its title (`"title:Message block with a **bold** title"`).
 {% endmessage %}
 
 {% message %}
@@ -234,7 +250,9 @@ This is tab 2 of a `large` tab container.
 
 Alignment of the tab buttons.
 It is optional.
-Available values and their examples are:
+Available values are `left`, `centered`, `right`, and `fullwidth`.
+`left` is the default alignment, so `align:left` looks the same as not specifying `align`.
+Examples of the alignments are:
 
 <div class="example-tab-container">
 {% tabs %}
@@ -360,9 +378,16 @@ A tab has the following options:
 #### id
 
 The unique identifier of the tab element.
-It is required.
-An ID of a tab should be unique across the entire page so that Icarus can location the right tab
+It is optional.
+If it is not set, an ID is generated for the tab, which changes every time you generate your site.
+An ID of a tab should be unique across the entire page so that Icarus can locate the right tab
 content to show or hide.
+
+A link to `#<tab_id>` switches to that tab, both on the same page and when the page is opened with this ID in its
+URL.
+For example, [this link](#tab_icon_2) switches the first example of the [icon](#icon-1) section below to its
+"Node.js" tab.
+Set the ID yourself if you want to link to a tab.
 
 #### active
 
@@ -402,8 +427,9 @@ This tab has an icon of `"icon:fa-brands fa-node-js"`.
 #### title
 
 Title of the tab button.
-It is required.
+It is optional.
 If the title contains space(s), this option and its value should be wrapped with quotes.
+Like the title of a message block, it is rendered as Markdown.
 
 <div class="example-tab-container">
 {% tabs style:toggle %}
