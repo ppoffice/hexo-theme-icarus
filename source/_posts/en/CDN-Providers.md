@@ -43,8 +43,8 @@ Currently, Icarus offers the following built-in CDN providers:
     - loli.net (`loli`)
     - font.im (`fontim`)
     - ustc.edu.cn (`ustc`)
-- **FontAwesome Font Icon CDNs**
-    - FontAwesome 5 (`fontawesome`)
+- **FontAwesome Font Icon CDNs** (both serve FontAwesome 6.0.0)
+    - FontAwesome (`fontawesome`)
     - loli.net (`loli`)
 
 The default CDN settings are:
@@ -82,23 +82,25 @@ https://unpkg.com/${package}@${version}/${filename}
 {% endcodeblock %}
 
 Some CDN providers may adopt different URL schemes.
-For example, the `moment.js` library has the URL like this on CDN.js:
+For example, the `clipboard` library, which Icarus uses for the "copy" button of code blocks, has the URL like
+this on CDN.js:
 
 {% codeblock "CDN.js CDN URL Example" %}
-https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js
+https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js
 {% endcodeblock %}
 
 while has the following URL on UNPKG:
 
 {% codeblock "UNPKG CDN URL Example" %}
-https://unpkg.com/moment@2.22.2/min/moment.min.js
+https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js
 {% endcodeblock %}
 
 Therefore, you should be aware of the URL format of your custom CDN provider.
 By default, Icarus will try to pass in the parameter using npm package name and relative file path 
-(e.g., `moment@2.22.2/min/moment.min.js`). 
+(e.g., `clipboard@2.0.11/dist/clipboard.min.js`). 
 This npm scheme is used by jsDelivr and UNPKG. 
-Otherwise, if you are using a CDN.js like provider, please prepend `[cdnjs]` to its URL template:
+Otherwise, if you are using a CDN.js like provider, please prepend `[cdnjs]` to its URL template, and Icarus will
+convert the package names and file paths to the ones used by CDN.js:
 
 {% codeblock "CDN.js-style URL Template" %}
 [cdnjs]https://some.cdn.domain.name/${package}/${version}/${filename}
@@ -107,18 +109,25 @@ Otherwise, if you are using a CDN.js like provider, please prepend `[cdnjs]` to 
 ### CDNs for Web Fonts
 
 You can pass in the URL of a Google Font mirror or compatible webfont CDN. 
-Icarus depends on the `Ubuntu`, `Oxanium`, and `Source Code Pro` fonts, so make sure your CDN provides those. 
-The URL template should have two placeholders for font `type` (`icon` or `font`) and `fontname`:
+Icarus depends on the `Ubuntu` and `Source Code Pro` fonts for the default variant, and on the `Oxanium` and
+`Roboto Mono` fonts for the Cyberpunk variant, so make sure your CDN provides those. 
+The URL template should have two placeholders, `type` and `fontname`:
 
 {% codeblock "Webfont CDN URL Template" %}
 https://some.google.font.mirror/${type}?family=${fontname}
 {% endcodeblock %}
 
+`${type}` is the path of the Google Fonts API, `css` or `css2`, and `${fontname}` is the list of fonts.
+Icarus requests the fonts with the newer `css2` API, for example,
+`https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&family=Source+Code+Pro`, so your mirror must
+support it.
+
 ### FontAwesome Font Icon CDNs
 
 You can pass in the URL to a custom FontAwesome CDN.
 No placeholders are required.
-The provided custom CDN should at lease have FontAwesome 5 icons as some of them are used in this theme.
+The provided custom CDN should at least have FontAwesome 6 icons as some of them are used in this theme.
+The built-in providers load FontAwesome 6.0.0.
 
 {% codeblock "Icon Font CDN URL Template" %}
 https://custom.fontawesome.mirror/some.stylesheet.css
@@ -133,11 +142,51 @@ providers:
     iconcdn: 'https://custom.fontawesome.mirror/some.stylesheet.css'
 {% endcodeblock %}
 
+## Per-package CDN providers
+
+Since Icarus 6.3.0, you can load some JavaScript libraries from a different CDN provider or URL than the one set
+in `cdn`, for example, when a library is not available on your CDN provider.
+Add the npm package names of these libraries to `cdn_overrides`, each with a built-in CDN provider name or a URL
+template in the same format as `cdn`:
+
+{% codeblock _config.icarus.yml lang:yaml %}
+providers:
+    cdn: jsdelivr
+    cdn_overrides:
+        jquery: unpkg
+        highlight.js: 'https://cdn.example.com/${package}@${version}/${filename}'
+        clipboard: 'https://example.com/js/clipboard.min.js'
+{% endcodeblock %}
+
+A URL without any of the `${package}`, `${version}`, and `${filename}` placeholders, such as the one for
+`clipboard` above, is used as is for every file of that package.
+Therefore, only use it for packages that load a single file.
+
+The following packages are loaded through these CDN settings:
+
+- **Icarus**
+    - `jquery`: used on every page
+    - `clipboard`: the "copy" button of code blocks
+    - `highlight.js`: the code highlight theme stylesheets (two files with `appearance: auto`)
+    - `pjax`: the PJAX plugin
+- **Plugins and widgets** (from hexo-component-inferno)
+    - `@waline/client`: the Waline comment plugin and the `waline_pageview` plugin (several files)
+    - `artalk`, `disqusjs`, and `gitalk` (two files each), `twikoo` and `valine`: comment plugins
+    - `algoliasearch` and `instantsearch.js`: the Algolia search plugin
+    - `social-share.js`: the Share.js share buttons (two files)
+    - `lightgallery` and `justifiedGallery`: the gallery plugin (two files each)
+    - `katex` (several files) and `mathjax`: the KaTeX and MathJax plugins
+    - `cookieconsent` and `outdatedbrowser`: the cookie consent and outdated browser plugins (two files each)
+    - `pace-js`: the progress bar plugin
+
+Other plugins load their scripts from your site or from the URLs of their own services, which the CDN settings
+do not change.
+
 ## CDN helper functions
 
 Three helper functions have been defined to help developers include third-party libraries easily with custom 
 CDN support.
-You can check them out at [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/0.2.3/src/hexo/helper/cdn.js).
+You can check them out at [ppoffice/hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/hexo/helper/cdn.js).
 
 
 <article class="message message-immersive is-warning">
