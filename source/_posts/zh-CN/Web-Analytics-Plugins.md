@@ -284,7 +284,7 @@ providers:
 
    例如，下面的Statcounter代码：
 
-    {% codeblock "Statcounter code" lang:html %}
+    {% codeblock "Statcounter代码" lang:html %}
     <script type="text/javascript">
     var sc_project=12345678; 
     var sc_invisible=1; 
