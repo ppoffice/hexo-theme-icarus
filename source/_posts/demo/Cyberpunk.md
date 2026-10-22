@@ -5,7 +5,7 @@ tags:
 variant: cyberpunk
 article:
     highlight:
-        theme: qtcreator_dark
+        theme: qtcreator-dark
 sidebar:
     left:
         sticky: false
