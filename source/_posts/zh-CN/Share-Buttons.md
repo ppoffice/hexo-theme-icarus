@@ -39,14 +39,6 @@ providers:
 </style>
 
 
-<article class="message message-immersive is-warning">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>AddThis已于2023年5月31日停止服务，自hexo-component-inferno 4.2.0起，它的分享按钮（<code>type: addthis</code>）已弃用，因此本文不再介绍。
-如果你仍在使用，请换用<a href="#AddToAny">AddToAny</a>或<a href="#ShareThis">ShareThis</a>。
-</div>
-</article>
-
-
 ## AddToAny
 
 <div>

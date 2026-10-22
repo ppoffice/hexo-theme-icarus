@@ -31,15 +31,6 @@ Please refer to it for a complete list of supported plugins and their configurat
 </div>
 </article>
 
-<article class="message message-immersive is-warning">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>AddThis shut down on May 31, 2023, and its share buttons
-(<code>type: addthis</code>) are deprecated since hexo-component-inferno 4.2.0, so this guide no longer covers them.
-If you still use them, please switch to <a href="#AddToAny">AddToAny</a> or <a href="#ShareThis">ShareThis</a>.
-</div>
-</article>
-
-
 ## AddToAny
 
 <div>
