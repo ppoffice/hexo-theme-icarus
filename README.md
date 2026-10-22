@@ -1,159 +1,120 @@
-<p align="center" class="mb-2">
-<img class="not-gallery-item" height="48" src="https://ppoffice.github.io/hexo-theme-icarus/img/logo.svg">
-<br> A simple, delicate, and modern theme for the static site generator Hexo.
-<br>
-<a href="https://ppoffice.github.io/hexo-theme-icarus/">Preview</a> |
-<a href="https://ppoffice.github.io/hexo-theme-icarus/categories/">Documentation</a> |
-<a href="https://github.com/ppoffice/hexo-theme-icarus/discussions">Discuss on GitHub</a>
-<br>
+<p align="center">
+<img height="48" src="https://ppoffice.github.io/hexo-theme-icarus/img/logo.svg" alt="Icarus">
 </p>
 
-![](https://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png?1 "Icarus Preview")
+<p align="center">
+<a href="https://www.npmjs.com/package/hexo-theme-icarus"><img src="https://img.shields.io/npm/v/hexo-theme-icarus" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/hexo-theme-icarus"><img src="https://img.shields.io/npm/dm/hexo-theme-icarus" alt="npm downloads"></a>
+<a href="https://github.com/ppoffice/hexo-theme-icarus/actions/workflows/test.yml"><img src="https://github.com/ppoffice/hexo-theme-icarus/actions/workflows/test.yml/badge.svg" alt="Test"></a>
+<a href="https://github.com/ppoffice/hexo-theme-icarus/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/hexo-theme-icarus" alt="License"></a>
+</p>
 
-## :cd: Installation
+<p align="center">
+A simple, delicate, and modern theme for the static site generator <a href="https://hexo.io/">Hexo</a>.
+<br>
+<a href="https://ppoffice.github.io/hexo-theme-icarus/">Preview</a> ·
+<a href="https://ppoffice.github.io/hexo-theme-icarus/tags/Icarus-User-Guide/">Documentation</a> ·
+<a href="https://github.com/ppoffice/hexo-theme-icarus/discussions">Discussions</a> ·
+<a href="https://github.com/ppoffice/hexo-theme-icarus/blob/master/README.zh-CN.md">简体中文</a>
+</p>
+
+![Icarus](https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/preview.png "Icarus Preview")
+
+## Quick Start
+
+In the root directory of your Hexo 7.1+ or Hexo 8 site:
 
 ```shell
-$ npm install hexo-theme-icarus
-$ hexo config theme icarus
+npm install hexo-theme-icarus hexo-renderer-inferno
+hexo config theme icarus
+hexo server
 ```
 
-Please refer to [Getting Started with Icarus](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/getting-started-with-icarus/) 
-for more details.
+Icarus creates `_config.icarus.yml`, with every option described, on the first run.
+See [Getting Started](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/getting-started-with-icarus/)
+for other ways to install it.
 
-## :gift: Features
-
-### Cyberpunk Theme Variant
-
-Tap into the future cyber world with the newly added Cyberpunk theme variant.
-Inspired by [Cyberpunk 2077](https://www.cyberpunk.net).
-
-![Icarus Cyberpunk](https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/cyberpunk.png "Icarus Cyberpunk")
-
-### Extensive Plugin Support
-
-Icarus includes plentiful search, comment, sharing and other plugins out of the box that makes your
-blog feature-rich and powerful.
-
-**[Comment](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/)**
-
-Artalk &middot; Beaudar &middot; Changyan &middot; Cusdis &middot; Disqus &middot; DisqusJS &middot; Facebook &middot;
-Giscus &middot; Gitalk &middot; Gitment &middot; Isso &middot; LiveRe &middot; Twikoo &middot; Utterances &middot; Valine &middot; Waline
-
-**[Donate Button](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/)**
-
-Afdian.net &middot; Alipay &middot; Buy me a coffee &middot; Patreon &middot; Paypal &middot; Wecat
-
-**[Search](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/)**
-
-Algolia &middot; Baidu &middot; Google CSE &middot; Insight
-
-**[Share](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/)**
-
-AddThis &middot; AddToAny &middot; Baidu Share &middot; Share.js &middot; ShareThis
-
-**[Widgets](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/)**
-
-Google Adsense &middot; Archives &middot; Categories &middot; External Site Links &middot; 
-Recent Posts &middot; Google Feedburner &middot; Tags &middot; Table of Contents
-
-**[Analytics](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/)**
-
-Baidu Statistics &middot; Bing Webmaster &middot; BuSuanZi Web Counter &middot; CNZZ Statistics &middot;
-Google Analytics &middot; Hotjar &middot; Matomo &middot; StatCounter &middot; Twitter Conversion Tracking &middot; Umami &middot;
-Waline Page View Counter
-
-**[Other Plugins](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/)**
-
-Cookie Consent &middot; LightGallery &middot; Justified Gallery &middot; KaTeX &middot; MathJax &middot;
-Oudated Browser &middot; Page Loading Animations
-
-### Colorful Code Highlight
-
-Icarus directly import stylesheets from the [highlight.js](https://highlightjs.org/) package and makes more than
-90 code highlight themes available to you.
+## Highlights
 
 <table>
-    <tr>
-        <th>Atom One Light</th>
-        <th>Monokai</th>
-        <th>Kimbie Dark</th>
-    </tr>
-    <tr>
-        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/atom-one-light.png?2"></td>
-        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/monokai.png?2"></td>
-        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/code-highlight/kimbie-dark.png?2"></td>
-    </tr>
+<tr>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/dark.png" alt="Dark appearance">
+<p><b>Light, dark, or both</b><br>
+Follow each visitor's system setting with <code>appearance: auto</code>, or go dark everywhere.</p>
+</td>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/cyberpunk.png" alt="Cyberpunk variant">
+<p><b>Cyberpunk variant</b><br>
+A second look inspired by <a href="https://www.cyberpunk.net">Cyberpunk 2077</a>, one line away.</p>
+</td>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="Responsive layout">
+<p><b>Responsive</b><br>
+One to three columns, navbar sub-menus that fold into a menu button, and a mobile table of contents.</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p><b>Configure per page</b><br>
+Set options site-wide, override them per layout in <code>_config.post.yml</code>, or per post in its front-matter.</p>
+</td>
+<td valign="top">
+<p><b>40+ plugins built in</b><br>
+Comments, search, sharing, donations, analytics and widgets, ready to switch on in the config.</p>
+</td>
+<td valign="top">
+<p><b>Fast and accessible</b><br>
+PJAX page loading, keyboard and screen reader support, and translations into 17 languages.</p>
+</td>
+</tr>
 </table>
 
-### Flexible Theme Configuration
+<details>
+<summary><b>Supported plugins</b></summary>
 
-Icarus allows you to configure your site on a per-page or per-layout basis.
+| Type | Plugins |
+|---|---|
+| [Comment](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk, Beaudar, Changyan, Cusdis, Disqus, DisqusJS, Facebook, Giscus, Gitalk, Gitment, Isso, LiveRe, Twikoo, Utterances, Valine, Waline |
+| [Search](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/) | Algolia, Baidu, Google CSE, Insight (built-in) |
+| [Share](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny, Baidu Share, Share.js, ShareThis |
+| [Donate](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/) | Afdian, Alipay, Buy Me a Coffee, Patreon, PayPal, WeChat Pay |
+| [Analytics](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | Baidu Statistics, Bing Webmaster, BuSuanZi, CNZZ, Google Analytics, Hotjar, Matomo, StatCounter, Twitter Conversion Tracking, Umami, Waline page views |
+| [Widgets](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | Profile, Table of Contents, Recent Posts, Archives, Categories, Tags, Links, Google AdSense, follow.it, Google FeedBurner |
+| [Others](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax, Outdated Browser, Page Loading Animations, Progress Bar |
 
-<div>
-<table>
-    <tr>
-        <th>_config.yml</th>
-        <th>post.md</th>
-        <th>_config.page.yml</th>
-    </tr>
-    <tr>
-        <td>
-<pre>widgets:
-  - type: profile
-    position: left
-  - type: recent_posts
-    position: right</pre>
-        </td>
-        <td>
-<pre>widgets:
-  - type: profile
-    position: left
-  - type: recent_posts
-    position: left</pre>
-        </td>
-        <td>
-<pre>widgets: null
- 
- 
- 
-</pre>
-        </td>
-    </tr>
-    <tr>
-        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/default-config.png"></td>
-        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/post-config.png"></td>
-        <td><img width="266" src="https://ppoffice.github.io/hexo-theme-icarus/gallery/screenshots/layout-config.png"></td>
-    </tr>
-</table>
-</div>
+Most plugins are provided by [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
+Code blocks can use any [highlight.js](https://highlightjs.org/) theme, with a separate one for dark pages.
 
-### Responsive Layout
+</details>
 
-Give your audiences best viewing experience with Icarus's mobile-friendly responsive layout.
+## Documentation
 
-![Responsive Layout](https://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.png)
+[Getting Started](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/getting-started-with-icarus/) ·
+[Configuring the Theme](https://ppoffice.github.io/hexo-theme-icarus/Configuration/icarus-user-guide-configuring-the-theme/) ·
+[Upgrade Guide](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/upgrade-guide/) ·
+[FAQ](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/faq/) ·
+[All Guides](https://ppoffice.github.io/hexo-theme-icarus/tags/Icarus-User-Guide/)
 
-## :hammer: Development
+## Contributing
 
-This project is built with
+Bug reports, feature ideas, [translations](https://github.com/ppoffice/hexo-theme-icarus/tree/master/languages)
+and [tutorials](https://github.com/ppoffice/hexo-theme-icarus/new/site/source/_posts) are all welcome.
+Open an [issue](https://github.com/ppoffice/hexo-theme-icarus/issues/new/choose) or a pull request.
 
-- [Hexo](https://hexo.io/)
-- [Inferno.js](https://infernojs.org/)
-- [Stylus](https://stylus-lang.com/)
-- [Bulma](https://bulma.io/)
+Icarus is built with [Hexo](https://hexo.io/), [Inferno](https://infernojs.org/),
+[Stylus](https://stylus-lang.com/) and [Bulma](https://bulma.io/). To work on it:
 
-Please refer to the [documentation](https://ppoffice.github.io/hexo-theme-icarus/categories/) and 
-[contributing guide](https://github.com/ppoffice/hexo-theme-icarus/blob/master/CONTRIBUTING.md) for implementation details.
+```shell
+npm ci
+npm run lint
+npm test            # unit and integration tests
+npm run test:e2e    # browser tests; run "npx playwright install chromium" once first
+```
 
-## :tada: Contribute
+The tests need Node.js 20.19 or later. See the
+[contributing guide](https://github.com/ppoffice/hexo-theme-icarus/blob/master/CONTRIBUTING.md) for code style and commit conventions.
 
-If you feel like to help us build a better Icarus, you can
+## License
 
-:black_nib: [Submit a tutorial](https://github.com/ppoffice/hexo-theme-icarus/new/site/source/_posts) |
-:earth_asia: [Add a translation](https://github.com/ppoffice/hexo-theme-icarus/tree/master/languages) |
-:triangular_flag_on_post: [Report a bug](https://github.com/ppoffice/hexo-theme-icarus/issues) |
-:electric_plug: [Suggest a new feature](https://github.com/ppoffice/hexo-theme-icarus/pulls)
-
-## :memo: License
-
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/ppoffice/hexo-theme-icarus/blob/master/LICENSE) file for details.
+[MIT](https://github.com/ppoffice/hexo-theme-icarus/blob/master/LICENSE)
