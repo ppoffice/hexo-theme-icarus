@@ -118,3 +118,47 @@ test.describe('PJAX navigation', () => {
         expect(await page.evaluate(() => window.__copies)).toBe(1);
     });
 });
+
+// Math plugins enabled in the front-matter of some posts are only on those pages, and KaTeX renders
+// on the load event of the window, which PJAX does not fire again.
+test.describe('PJAX navigation to pages with math plugins', () => {
+    const MATHJAX_POST = '/2024/04/06/mathjax/';
+    const KATEX_POST = '/2024/04/05/katex-1/';
+    const OTHER_KATEX_POST = '/2024/04/04/katex-2/';
+    const typeset = page => page.evaluate(() => ({
+        mathjax: document.querySelectorAll('.column-main mjx-container').length,
+        katex: document.querySelectorAll('.column-main .katex').length,
+        source: document.querySelector('.column-main .content').textContent.includes('$$')
+    }));
+
+    for (const [name, href, expected] of [
+        ['MathJax', MATHJAX_POST, { mathjax: 1, katex: 0, source: false }],
+        ['KaTeX', KATEX_POST, { mathjax: 0, katex: 1, source: false }]
+    ]) {
+        test(`typesets the formulas of a ${name} post, like a full page load`, async ({ page, visit, diagnostics }) => {
+            await visit(href, { variant: 'pjax-math' });
+            await expect.poll(() => typeset(page)).toEqual(expected);
+
+            await visit('/', { variant: 'pjax-math' });
+            await page.evaluate(() => { window.__noFullReload = true; });
+            await pjaxClick(page, page.locator(`.column-main a[href="${href}"]`).first());
+            await expect.poll(() => typeset(page)).toEqual(expected);
+            expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+            expect(diagnostics.pageErrors).toEqual([]);
+            expect(diagnostics.failedRequests).toEqual([]);
+        });
+    }
+
+    test('keeps typesetting on the next pages, without loading the plugins again', async ({ page, visit, diagnostics }) => {
+        await visit('/', { variant: 'pjax-math' });
+        await page.evaluate(() => { window.__noFullReload = true; });
+        await pjaxClick(page, page.locator(`.column-main a[href="${KATEX_POST}"]`).first());
+        await expect.poll(() => typeset(page)).toEqual({ mathjax: 0, katex: 1, source: false });
+
+        await pjaxClick(page, page.locator(`.content a[href="${OTHER_KATEX_POST}"]`));
+        await expect.poll(() => typeset(page)).toEqual({ mathjax: 0, katex: 1, source: false });
+        expect(await page.locator('body > script[src*="katex.min.js"]').count()).toBe(1);
+        expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+        expect(diagnostics.pageErrors).toEqual([]);
+    });
+});

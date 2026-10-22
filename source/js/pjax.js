@@ -48,16 +48,71 @@
     }
 
     /**
+     * Render the formulas of the page with KaTeX, if it is loaded. KaTeX renders on the load event
+     * of the window, which pages switched to by PJAX do not have. MathJax typesets the page by
+     * itself once it is loaded.
+     */
+    function renderKatex() {
+        if (typeof window.renderMathInElement === 'function') {
+            document.querySelectorAll('[role="article"] > .content').forEach(element => window.renderMathInElement(element));
+        }
+    }
+
+    /**
+     * Load the plugins of the new page that the current page does not have, such as a math plugin
+     * enabled in the front-matter of a post. Their scripts and stylesheets are children of <body>,
+     * which PJAX does not switch. Only the runs of missing elements that load a script or a
+     * stylesheet are added, so that the inline scripts of plugins that both pages have, but
+     * configure differently, do not run again.
+     */
+    function loadPlugins(oldBody, newBody) {
+        const isPluginElement = el => (el.tagName === 'SCRIPT' && !el.hasAttribute('data-pjax'))
+            || (el.tagName === 'LINK' && el.getAttribute('rel') === 'stylesheet');
+        const key = el => el.getAttribute('src') || el.getAttribute('href') || el.textContent;
+        const present = new Set(Array.from(oldBody.children).filter(isPluginElement).map(key));
+
+        const runs = [[]];
+        Array.from(newBody.children).forEach(el => {
+            if (isPluginElement(el) && !present.has(key(el))) {
+                runs[runs.length - 1].push(el);
+            } else if (runs[runs.length - 1].length) {
+                runs.push([]);
+            }
+        });
+
+        const loads = [];
+        runs.filter(run => run.some(el => el.hasAttribute('src') || el.tagName === 'LINK')).flat().forEach(el => {
+            // Scripts only run when they are created in this document
+            const copy = document.createElement(el.tagName.toLowerCase());
+            Array.from(el.attributes).forEach(attribute => copy.setAttribute(attribute.name, attribute.value));
+            copy.textContent = el.textContent;
+            if (copy.tagName === 'SCRIPT' && copy.src) {
+                // Run the scripts in order, as the page would
+                copy.async = false;
+                loads.push(new Promise(resolve => {
+                    copy.addEventListener('load', resolve);
+                    copy.addEventListener('error', resolve);
+                }));
+            }
+            oldBody.appendChild(copy);
+        });
+        if (loads.length) {
+            Promise.all(loads).then(renderKatex);
+        }
+    }
+
+    /**
      * Switch the title, the appearance and the variant (default or cyberpunk, which pages can also
-     * set in their front-matter, with its theme and font stylesheets) of the page. <head> itself is
-     * not one of the selectors because PJAX runs the scripts of the switched elements again: the
-     * analytics and other scripts of <head> would run again, counting page views twice and adding
-     * their listeners again.
+     * set in their front-matter, with its theme and font stylesheets) of the page, and load the
+     * plugins it adds. <head> itself is not one of the selectors because PJAX runs the scripts of
+     * the switched elements again: the analytics and other scripts of <head> would run again,
+     * counting page views twice and adding their listeners again.
      */
     function switchHead(oldTitle, newTitle, options) {
         oldTitle.textContent = newTitle.textContent;
         switchAppearance(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, options);
         switchStylesheets(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, 'link[data-variant]');
+        loadPlugins(oldTitle.ownerDocument.body, newTitle.ownerDocument.body);
         this.onSwitch();
     }
 
@@ -116,6 +171,8 @@
                 console.error('MathJax reload error:', e);
             }
         }
+        // Plugin [KaTeX]
+        renderKatex();
         // Plugin [Busuanzi] reload logic
         if (window.bszCaller && window.bszTag) {
             window.bszCaller.fetch('//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback', a => {

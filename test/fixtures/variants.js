@@ -106,6 +106,31 @@ module.exports = {
         }
     },
 
+    // A site without math plugins, navigated with PJAX, with a MathJax post and two KaTeX posts
+    // (front-matter, which replaces the plugins of the site).
+    'pjax-math': {
+        theme: { plugins: { pjax: true } },
+        files: Object.fromEntries([
+            ['mathjax', '2024-04-06', 'mathjax: true', '/2024/04/05/katex-1/'],
+            ['katex-1', '2024-04-05', 'katex: true', '/2024/04/04/katex-2/'],
+            ['katex-2', '2024-04-04', 'katex: true', '/2024/04/06/mathjax/']
+        ].map(([name, date, plugin, next]) => [`source/_posts/${name}.md`, [
+            '---',
+            `title: Math ${name}`,
+            `date: ${date} 10:00:00`,
+            // The plugins of the site, and the math plugin
+            'plugins:',
+            '    back_to_top: true',
+            '    pjax: true',
+            `    ${plugin}`,
+            '---',
+            `The ${name} formula: $$a^2 + b^2 = c^2$$`,
+            '',
+            `[Next](${next}) or [home](/).`,
+            ''
+        ].join('\n')]))
+    },
+
     // The "auto" appearance for posts only, from a layout configuration file.
     'appearance-posts-auto': {
         files: { '_config.post.yml': 'appearance: auto\n' }

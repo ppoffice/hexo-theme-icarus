@@ -9,19 +9,22 @@ const path = require('path');
 const { VENDORED } = require('../e2e/cdn');
 const { REPO_ROOT } = require('../support/paths');
 
-function layoutFiles(dir = path.join(REPO_ROOT, 'layout')) {
+function layoutFiles(dir = path.join(REPO_ROOT, 'layout'), extension = '.jsx') {
     return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
         const full = path.join(dir, entry.name);
         if (entry.isDirectory()) {
-            return layoutFiles(full);
+            return layoutFiles(full, extension);
         }
-        return entry.name.endsWith('.jsx') ? [full] : [];
+        return entry.name.endsWith(extension) ? [full] : [];
     });
 }
 
+// The plugin views of hexo-component-inferno, such as MathJax and KaTeX, which the layouts render
+const pluginViews = path.join(path.dirname(require.resolve('hexo-component-inferno/package.json')), 'lib/view/plugin');
+
 describe('vendored CDN libraries used by the browser tests', () => {
     const references = [];
-    for (const file of layoutFiles()) {
+    for (const file of layoutFiles().concat(layoutFiles(pluginViews, '.js'))) {
         const source = fs.readFileSync(file, 'utf8');
         for (const match of source.matchAll(/cdn\('([^']+)',\s*'([^']+)',\s*([^)]*)\)/g)) {
             // The file name is only known when it is a plain string literal.
