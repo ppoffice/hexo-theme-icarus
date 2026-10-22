@@ -17,8 +17,6 @@ plugins:
         position: bottom
         policyLink: 'https://www.cookiesandyou.com/'
     gallery: true
-    google_analytics:
-        tracking_id: UA-72437521-5
     mathjax: true
     outdated_browser: true
     progressbar: true
