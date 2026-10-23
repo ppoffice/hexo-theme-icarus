@@ -15,6 +15,54 @@ toc: true
 
 <!-- more -->
 
+### Upgrading from 6.4 to 6.5
+
+1. Upgrade Icarus to 6.5.0.
+   If you installed the theme via NPM, run the following command in your site root directory:
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-theme-icarus@^6.5.0
+   {% endcodeblock %}
+
+   If you installed the theme from source, replace `themes/icarus` with the 6.5.0 source code.
+   Icarus 6.5 has the same dependencies as 6.4.
+
+2. The Cyberpunk variant has a new look, no longer based on the video game Cyberpunk 2077: neon lights on a
+   dark background, panels framed like a heads-up display, and a dark navigation bar and footer
+   (see {% post_link demo/Cyberpunk %}).
+   If your site, or some of its pages, use `variant: cyberpunk`, check the following:
+
+   - Its navigation bar and footer are dark now, so it shows the dark logo: the image set in `logo_dark`, or
+     `/img/logo-dark.svg` when `logo` is the theme's own logo.
+     If you use your own logo image, set a version for dark backgrounds in `logo_dark`
+     (see {% post_link en/Configuring-Theme %}).
+   - Its code font is `JetBrains Mono` instead of `Roboto Mono`.
+     If you set your own web font CDN, make sure it provides this font
+     (see {% post_link en/CDN-Providers %}).
+   - Its code blocks are colored with its own palette, whatever the theme set in
+     `article.highlight.theme`.
+   - The images of its former navigation bar and footer, `/img/razor-top-black.svg` and
+     `/img/razor-bottom-black.svg`, are removed.
+     If you use them elsewhere, copy them from the 6.4.1 source code into the `source` directory of your site.
+   - `source/css/cyberpunk.styl` is rewritten.
+     If you customized it, apply your changes to the new file again.
+     Its colors are now variables at the top of the file.
+
+3. If you keep customized copies of the theme's files, apply the changes of 6.5 to them:
+
+   - `layout/common/navbar.jsx` and `layout/common/footer.jsx`: they show the logo for the appearance given by
+     the new `getLogoAppearance` function of `include/util/appearance.js`, which is `dark` for the Cyberpunk
+     variant.
+   - `layout/common/head.jsx`: the web fonts of the Cyberpunk variant are `Oxanium` and `JetBrains Mono`.
+
+4. Icarus 6.5 does not change the theme configuration file: its version is still `5.1.0`, and it has no new
+   options.
+
+5. Run `hexo clean` and generate your site again.
+
+6. Check out the [release notes](https://github.com/ppoffice/hexo-theme-icarus/releases) for the full list of
+   changes and bug fixes.
+
 ### Upgrading from 6.3 to 6.4
 
 1. Upgrade Icarus to 6.4.1.

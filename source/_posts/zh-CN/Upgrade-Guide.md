@@ -19,6 +19,43 @@ toc: true
 
 <!-- more -->
 
+### 从6.4升级至6.5
+
+1. 将Icarus升级到6.5.0。
+   如果你是通过NPM安装的主题，在站点根目录运行如下命令：
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-theme-icarus@^6.5.0
+   {% endcodeblock %}
+
+   如果你是从源码安装的主题，请用6.5.0的源码替换`themes/icarus`。
+   Icarus 6.5的依赖与6.4相同。
+
+2. Cyberpunk变体换了新的外观，不再以游戏《赛博朋克2077》为原型：深色背景上的霓虹灯光、像平视显示器（HUD）一样的面板边框，以及深色的导航栏和页脚（参见{% post_link demo/Cyberpunk %}）。
+   如果你的站点或其中的部分页面使用了`variant: cyberpunk`，请检查以下几点：
+
+   - 它的导航栏和页脚现在是深色的，所以会显示深色logo：`logo_dark`中设置的图片；`logo`为主题自带的logo时，则显示`/img/logo-dark.svg`。
+     如果你使用自己的logo图片，请在`logo_dark`中设置一张适合深色背景的版本（参见{% post_link zh-CN/Configuring-Theme %}）。
+   - 它的代码字体从`Roboto Mono`换成了`JetBrains Mono`。
+     如果你设置了自己的Web字体CDN，请确保它提供这个字体（参见{% post_link zh-CN/CDN-Providers %}）。
+   - 它的代码块使用自己的配色，不受`article.highlight.theme`中设置的主题影响。
+   - 原来导航栏和页脚使用的图片`/img/razor-top-black.svg`和`/img/razor-bottom-black.svg`已被删除。
+     如果你在别处用到了它们，请从6.4.1的源码中把它们复制到站点的`source`目录中。
+   - `source/css/cyberpunk.styl`被重写了。
+     如果你修改过它，请在新文件上重新应用你的修改。
+     它的颜色现在都是文件开头的变量。
+
+3. 如果你保留了主题文件的自定义副本，请将6.5的改动应用到这些副本上：
+
+   - `layout/common/navbar.jsx`和`layout/common/footer.jsx`：它们根据`include/util/appearance.js`中新增的`getLogoAppearance`函数给出的外观显示logo，Cyberpunk变体的外观为`dark`。
+   - `layout/common/head.jsx`：Cyberpunk变体的Web字体为`Oxanium`和`JetBrains Mono`。
+
+4. Icarus 6.5没有改动主题配置文件：它的版本仍然是`5.1.0`，也没有新增选项。
+
+5. 运行`hexo clean`并重新生成站点。
+
+6. 查看[发布说明](https://github.com/ppoffice/hexo-theme-icarus/releases)以了解完整的改动和问题修复列表。
+
 ### 从6.3升级至6.4
 
 1. 将Icarus升级到6.4.1。
