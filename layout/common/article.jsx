@@ -66,7 +66,7 @@ function getOutdatedNotice(article, page, index) {
 
 module.exports = class extends Component {
     render() {
-        const { config, helper, page, index } = this.props;
+        const { config, helper, page, index, lazyCover } = this.props;
         const { article, plugins } = config;
         const { url_for, date, date_xml, __, _p } = helper;
         // Full date and time in the site's format, language and time zone (helper.full_date cannot
@@ -78,6 +78,11 @@ module.exports = class extends Component {
         const indexLanguage = toMomentLocale(defaultLanguage || 'en');
         const language = toMomentLocale(page.lang || page.language || defaultLanguage || 'en');
         const cover = page.cover ? url_for(page.cover) : null;
+        // The first cover of a page is likely its largest image shown at first (LCP): load it before
+        // the other images. The covers below it are only loaded when they are about to be scrolled to.
+        const coverImage = cover ? <img class="fill" src={cover} alt={page.title || cover}
+            loading={lazyCover ? 'lazy' : null} decoding={lazyCover ? 'async' : null}
+            fetchPriority={lazyCover ? null : 'high'} /> : null;
         const updateTime = article && article.update_time !== undefined ? article.update_time : true;
         const isUpdated = page.updated && !moment(page.date).isSame(moment(page.updated));
         const shouldShowUpdated = page.updated && ((updateTime === 'auto' && isUpdated) || updateTime === true);
@@ -89,9 +94,9 @@ module.exports = class extends Component {
                 {/* Thumbnail */}
                 {cover ? <div class="card-image">
                     {index ? <a href={url_for(page.link || page.path)} class="image is-7by3">
-                        <img class="fill" src={cover} alt={page.title || cover} />
+                        {coverImage}
                     </a> : <span class="image is-7by3">
-                        <img class="fill" src={cover} alt={page.title || cover} />
+                        {coverImage}
                     </span>}
                 </div> : null}
                 <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">

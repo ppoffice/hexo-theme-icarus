@@ -47,6 +47,29 @@ describe('generated pages (default variant)', function() {
         });
     });
 
+    describe('images', () => {
+        it('loads the first cover of an index page first', () => {
+            // The pinned post, the only one with a cover, is on the second page
+            const $ = site.$('/page/2/');
+            const covers = $('.column-main .card-image img');
+            assert.equal(covers.first().attr('src'), '/img/og_image.png');
+            assert.equal(covers.first().attr('fetchpriority'), 'high');
+            assert.equal(covers.first().attr('loading'), undefined);
+            assert.equal(covers.filter('[fetchpriority]').length, 1);
+        });
+
+        // The thumbnails are rendered by the ArticleMedia of hexo-component-inferno
+        it('loads the thumbnails of the archives and the recent posts widget lazily', () => {
+            const archive = site.$('/archives/2023/')('.timeline .media-left img[src="/img/avatar.png"]');
+            assert.equal(archive.length, 1);
+            assert.equal(archive.attr('loading'), 'lazy');
+            assert.equal(archive.attr('decoding'), 'async');
+            const $ = site.$('/');
+            assert.equal($('.column-right [data-type="recent-posts"] .media').length, 5);
+            $('.media-left img').each((i, el) => assert.equal(el.attribs.loading, 'lazy', el.attribs.src));
+        });
+    });
+
     describe('post page', () => {
         const url = '/2024/03/01/hello-world/';
 

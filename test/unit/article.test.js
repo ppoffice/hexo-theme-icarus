@@ -13,8 +13,8 @@ function post(overrides = {}) {
     }, overrides));
 }
 
-const renderArticle = (page, { index = false, config } = {}) =>
-    render('common/article', { config: fixtureConfig(config), page: post(page), index });
+const renderArticle = (page, { index = false, lazyCover, config } = {}) =>
+    render('common/article', { config: fixtureConfig(config), page: post(page), index, lazyCover });
 
 async function wordCountText(content, page = {}) {
     const { $ } = await renderArticle(Object.assign({ content }, page));
@@ -239,6 +239,34 @@ describe('layout/common/article', () => {
         it('links to page.link instead of the path when set', async () => {
             const { $ } = await renderArticle({ link: 'https://example.com/elsewhere' }, { index: true });
             assert.equal($('p.title a').attr('href'), 'https://example.com/elsewhere');
+        });
+    });
+
+    describe('cover image', () => {
+        const coverImage = async (page, options) => (await renderArticle(Object.assign({ cover: '/img/cover.png' }, page), options)).$('.card-image img');
+
+        it('is loaded first on posts, where it is at the top of the page', async () => {
+            const img = await coverImage({});
+            assert.equal(img.attr('fetchpriority'), 'high');
+            assert.equal(img.attr('loading'), undefined);
+        });
+
+        it('is loaded when it is about to be scrolled to with lazyCover', async () => {
+            const img = await coverImage({}, { index: true, lazyCover: true });
+            assert.equal(img.attr('loading'), 'lazy');
+            assert.equal(img.attr('decoding'), 'async');
+            assert.equal(img.attr('fetchpriority'), undefined);
+        });
+
+        it('only loads the first cover of the index right away', async () => {
+            const posts = [{}, { cover: '/img/a.png' }, {}, { cover: '/img/b.png' }, { cover: '/img/c.png' }]
+                .map((overrides, i) => post(Object.assign({ path: `2024/01/0${i + 1}/article/` }, overrides)));
+            const { $ } = await render('index', { config: fixtureConfig(), page: makePage({ layout: 'index', posts, total: 1 }) });
+            assert.deepEqual($('.card-image img').map((i, el) => [[el.attribs.src, el.attribs.loading || null, el.attribs.fetchpriority || null]]).get(), [
+                ['/img/a.png', null, 'high'],
+                ['/img/b.png', 'lazy', null],
+                ['/img/c.png', 'lazy', null]
+            ]);
         });
     });
 

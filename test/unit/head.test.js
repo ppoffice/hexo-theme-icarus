@@ -108,6 +108,49 @@ describe('layout/common/head', () => {
             assert.ok(hrefs.some(h => h.includes('family=Oxanium')));
         });
 
+        it('shows the text in a fallback font until the web fonts are loaded', async () => {
+            for (const variant of ['default', 'cyberpunk']) {
+                const { $ } = await renderHead({}, { variant });
+                assert.match($('link[data-variant]').first().attr('href'), /^https:\/\/fonts\.googleapis\.com\/css2\?family=.+&display=swap$/, variant);
+            }
+        });
+
+        it('adds display=swap to the query of a custom web font provider', async () => {
+            const { $ } = await renderHead({}, { providers: { fontcdn: 'https://fonts.example.com/${type}?family=${fontname}' } });
+            assert.equal($('link[data-variant]').first().attr('href'), 'https://fonts.example.com/css2?family=Ubuntu:wght@400;600&family=Source+Code+Pro&display=swap');
+        });
+
+        describe('preconnect', () => {
+            const preconnects = async config => (await renderHead({}, config)).$('link[rel="preconnect"]')
+                .map((i, el) => [[el.attribs.href, el.attribs.crossorigin]]).get();
+
+            it('connects in advance to the origins of the icon and web font files', async () => {
+                assert.deepEqual(await preconnects({}), [
+                    ['https://use.fontawesome.com', 'anonymous'],
+                    ['https://fonts.gstatic.com', 'anonymous']
+                ]);
+                assert.deepEqual(await preconnects({ variant: 'cyberpunk' }), await preconnects({}));
+            });
+
+            it('precedes the stylesheets', async () => {
+                const { $ } = await renderHead({});
+                assert.ok($('link[rel="preconnect"]').last().nextAll('link[rel="stylesheet"]').length > 0);
+                assert.equal($('link[rel="preconnect"]').last().prevAll('link[rel="stylesheet"]').length, 0);
+            });
+
+            it('follows the icon and web font providers', async () => {
+                assert.deepEqual(await preconnects({ providers: { iconcdn: 'loli', fontcdn: 'loli' } }), [['https://cdnjs.loli.net', 'anonymous']]);
+                assert.deepEqual(await preconnects({ providers: { iconcdn: 'https://icons.example.com/css/all.css', fontcdn: 'https://fonts.example.com/${type}?family=${fontname}' } }),
+                    [['https://icons.example.com', 'anonymous']]);
+            });
+
+            it('skips the fonts hosted with the site', async () => {
+                assert.deepEqual(await preconnects({ providers: { iconcdn: '/css/all.css', fontcdn: '/css/fonts.css' } }), []);
+                assert.deepEqual(await preconnects({ url: 'https://icons.example.com', providers: { iconcdn: 'https://icons.example.com/css/all.css' } }),
+                    [['https://fonts.gstatic.com', 'anonymous']]);
+            });
+        });
+
         it('honours article.highlight.theme and highlight.enable: false', async () => {
             assert.ok((await stylesheets({}, { article: { highlight: { theme: 'monokai' } } })).some(h => h.endsWith('/styles/monokai.css')));
             assert.ok(!(await stylesheets({}, { highlight: { enable: false } })).some(h => h.includes('highlight.js')));

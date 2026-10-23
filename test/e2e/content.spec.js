@@ -49,3 +49,36 @@ test.describe('image alt text', () => {
         }
     });
 });
+
+test.describe('lazily loaded images', () => {
+    const loaded = locator => locator.evaluate(img => img.complete && img.naturalWidth > 0);
+
+    test('the archive thumbnails are loaded when they are scrolled to', async ({ page, visit, diagnostics }) => {
+        await page.setViewportSize({ width: 1280, height: 200 });
+        await visit('/archives/2023/');
+        const thumbnail = page.locator('.timeline .media-left img[src="/img/avatar.png"]');
+        await expect(thumbnail).toHaveAttribute('loading', 'lazy');
+        await thumbnail.scrollIntoViewIfNeeded();
+        await expect.poll(() => loaded(thumbnail)).toBe(true);
+        expect(diagnostics.failedRequests).toEqual([]);
+    });
+
+    test('the first cover of an index page is loaded right away', async ({ page, visit }) => {
+        await visit('/page/2/');
+        const cover = page.locator('.card-image img').first();
+        await expect(cover).toHaveAttribute('fetchpriority', 'high');
+        expect(await loaded(cover)).toBe(true);
+    });
+
+    test('the thumbnails of a page switched to by PJAX are loaded', async ({ page, visit }) => {
+        await visit('/', { variant: 'pjax' });
+        await page.evaluate(() => { window.__noFullReload = true; });
+        const done = page.evaluate(() => new Promise(resolve => document.addEventListener('pjax:complete', resolve, { once: true })));
+        await page.locator('.column-right a[href="/archives/2023/11/"]').first().click();
+        await done;
+        const thumbnail = page.locator('.timeline .media-left img[src="/img/avatar.png"]');
+        await thumbnail.scrollIntoViewIfNeeded();
+        await expect.poll(() => loaded(thumbnail)).toBe(true);
+        expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+    });
+});
