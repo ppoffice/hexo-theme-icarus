@@ -54,9 +54,10 @@ module.exports = class extends Component {
         const noIndex = helper.is_archive() || helper.is_category() || helper.is_tag();
 
         const language = page.lang || page.language || config.language;
+        // display=swap shows the text in a fallback font until the web fonts are loaded, instead of hiding it
         const fontCssUrl = {
-            default: fontcdn('Ubuntu:wght@400;600&family=Source+Code+Pro', 'css2'),
-            cyberpunk: fontcdn('Oxanium:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600', 'css2')
+            default: fontcdn('Ubuntu:wght@400;600&family=Source+Code+Pro&display=swap', 'css2'),
+            cyberpunk: fontcdn('Oxanium:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap', 'css2')
         };
 
         let hlTheme, images;

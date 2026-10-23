@@ -108,6 +108,18 @@ describe('layout/common/head', () => {
             assert.ok(hrefs.some(h => h.includes('family=Oxanium')));
         });
 
+        it('shows the text in a fallback font until the web fonts are loaded', async () => {
+            for (const variant of ['default', 'cyberpunk']) {
+                const { $ } = await renderHead({}, { variant });
+                assert.match($('link[data-variant]').first().attr('href'), /^https:\/\/fonts\.googleapis\.com\/css2\?family=.+&display=swap$/, variant);
+            }
+        });
+
+        it('adds display=swap to the query of a custom web font provider', async () => {
+            const { $ } = await renderHead({}, { providers: { fontcdn: 'https://fonts.example.com/${type}?family=${fontname}' } });
+            assert.equal($('link[data-variant]').first().attr('href'), 'https://fonts.example.com/css2?family=Ubuntu:wght@400;600&family=Source+Code+Pro&display=swap');
+        });
+
         it('honours article.highlight.theme and highlight.enable: false', async () => {
             assert.ok((await stylesheets({}, { article: { highlight: { theme: 'monokai' } } })).some(h => h.endsWith('/styles/monokai.css')));
             assert.ok(!(await stylesheets({}, { highlight: { enable: false } })).some(h => h.includes('highlight.js')));
