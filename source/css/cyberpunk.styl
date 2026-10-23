@@ -1,5 +1,6 @@
-// A neon-noir look: a city at night on a dark screen, lit by magenta and cyan neon signs,
-// with HUD frames, scanlines and a perspective grid running to the horizon.
+// A neon-noir look: a city at night on a dark screen, lit by neon signs in the yellow and cyan
+// of the first cyberpunk variant, with its chamfered panels, HUD marks, scanlines and a
+// perspective grid running to the horizon.
 $family-sans-serif ?= 'Oxanium', Ubuntu, Roboto, 'Open Sans', 'Microsoft YaHei', sans-serif
 $family-code ?= 'JetBrains Mono', monospace, 'Microsoft YaHei'
 // shadow and radius
@@ -8,12 +9,12 @@ $radius ?= 0
 $radius-small ?= 0
 // neon colors
 $neon-pink ?= #ff2e97
-$neon-cyan ?= #00f0ff
+$neon-cyan ?= #02d7f2
 $neon-purple ?= #b45cff
-$neon-green ?= #3dffa2
-$neon-yellow ?= #f8f36a
-$neon-orange ?= #ff9a3c
-$neon-red ?= #ff3b5c
+$neon-green ?= #00ff41
+$neon-yellow ?= #fcee09
+$neon-orange ?= #ff8e3c
+$neon-red ?= #ff003c
 // the night: the page, the panels on it, and their raised parts
 $night ?= #07060f
 $night-panel ?= #0d0c1d
@@ -35,7 +36,7 @@ $green ?= $neon-green
 $blue ?= $neon-cyan
 $purple ?= $neon-purple
 $red ?= $neon-red
-$primary ?= $neon-pink
+$primary ?= $neon-yellow
 $info ?= $neon-cyan
 $success ?= $neon-green
 $warning ?= $neon-orange
@@ -74,7 +75,7 @@ $pre ?= $night-text
 $pre-background ?= $night
 $link ?= $neon-cyan
 $link-invert ?= $night
-$link-hover ?= $neon-pink
+$link-hover ?= $neon-yellow
 $link-visited ?= $neon-purple
 $body-background-color ?= $night
 $input-color ?= $text
@@ -87,7 +88,7 @@ $footer-color ?= $text
 $footer-background-color ?= $chrome-background
 $navbar-background-color ?= $chrome-background
 $navbar-item-color ?= $night-text
-$navbar-item-active-color ?= $neon-pink
+$navbar-item-active-color ?= $neon-yellow
 $navbar-item-hover-color ?= $neon-cyan
 $navbar-item-hover-background-color ?= transparent
 $navbar-dropdown-background-color ?= $night-raised
@@ -97,14 +98,14 @@ $navbar-dropdown-padding-h ?= .5rem
 $navbar-dropdown-shadow ?= 0 12px 32px rgba(0, 0, 0, .6), 0 0 24px rgba($neon-cyan, .12)
 $navbar-dropdown-item-padding-h ?= .5rem
 $navbar-dropdown-item-muted-color ?= $night-text-muted
-$card-background-color ?= rgba($night-panel, .86)
+$card-background-color ?= transparent
 $card-shadow ?= none
 $menu-label-color ?= $neon-cyan
 $menu-item-color ?= $night-text
 $menu-item-hover-color ?= $neon-cyan
 $menu-item-hover-background-color ?= rgba($neon-cyan, .07)
 $menu-item-active-color ?= $night
-$menu-item-active-background-color ?= $neon-cyan
+$menu-item-active-background-color ?= $neon-yellow
 $menu-list-border-left ?= 1px solid $night-line
 $tag-color ?= $neon-cyan
 $tag-background-color ?= rgba($neon-cyan, .1)
@@ -113,14 +114,14 @@ $table-background-color ?= transparent
 $table-cell-border ?= 1px solid $night-line
 $content-heading-weight ?= 600
 $content-blockquote-background-color ?= rgba($neon-purple, .08)
-$content-blockquote-border-left ?= 3px solid $neon-pink
+$content-blockquote-border-left ?= 3px solid $neon-yellow
 $content-table-cell-border ?= 1px solid $night-line
 $timeline-fg-line ?= rgba($neon-cyan, .35)
 $timeline-bg-line ?= $night-panel
 $post-navigation-fg ?= $night-text-muted
 $pagination-color ?= $night-text
 $pagination-background-color ?= $night-panel
-$pagination-current-background-color ?= $neon-pink
+$pagination-current-background-color ?= $neon-yellow
 $pagination-box-shadow ?= none
 $codeblock-caption-bg ?= rgba($neon-cyan, .06)
 $searchbox-bg-overlay ?= rgba($night, .86)
@@ -132,7 +133,7 @@ $searchbox-bg-close-active ?= $searchbox-bg-close-hover
 $searchbox-fg-result-header ?= $neon-cyan
 $searchbox-fg-result-item-secondary ?= $night-text-muted
 $searchbox-bg-result-item-hover ?= $night-raised
-$searchbox-bg-result-item-highlight ?= rgba($neon-pink, .35)
+$searchbox-bg-result-item-highlight ?= rgba($neon-yellow, .35)
 $searchbox-bg-pagination-item-hover ?= $night-raised
 $searchbox-bg-pagination-item-disabled ?= $night-panel
 
@@ -149,22 +150,32 @@ clip-path(clip)
 cut-corner(size)
     clip-path(unquote('polygon(' + size + ' 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%, 0 ' + size + ')'))
 
+// Chamfered corners: top right and bottom left, or only one of them
+cut-corner-reverse(size)
+    clip-path(unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '), 0 0)'))
+
+cut-corner-top-right(size)
+    clip-path(unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, 0 100%)'))
+
+cut-corner-bottom-left(size)
+    clip-path(unquote('polygon(0 0, 100% 0, 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '))'))
+
 // A neon tube: the text glows in its own color
 neon-text(color, strength = 1)
     color: color
     text-shadow: 0 0 (4px * strength) rgba(color, .6), 0 0 (14px * strength) rgba(color, .35)
 
-// The four L-shaped corner marks of a HUD frame
+// The L-shaped marks of a HUD frame, on its top left and bottom right corners
 hud-corners(color, size = 14px, width = 2px)
     $line = linear-gradient(color, color)
-    background-image: $line, $line, $line, $line, $line, $line, $line, $line
+    background-image: $line, $line, $line, $line
     background-repeat: no-repeat
-    background-size: size width, width size, size width, width size, size width, width size, size width, width size
-    background-position: left top, left top, right top, right top, left bottom, left bottom, right bottom, right bottom
+    background-size: size width, width size, size width, width size
+    background-position: left top, left top, right bottom, right bottom
 
-// A neon gradient running from magenta to cyan
+// A neon gradient running from yellow to cyan, through magenta
 neon-gradient(direction = 90deg)
-    linear-gradient(direction, $neon-pink, $neon-purple 50%, $neon-cyan)
+    linear-gradient(direction, $neon-yellow, $neon-pink 50%, $neon-cyan)
 
 /* ---------------------------------
  *         The City at Night
@@ -207,7 +218,7 @@ body
 
 ::selection
     color: $night
-    background: $neon-pink
+    background: $neon-cyan
 
 +desktop()
     ::-webkit-scrollbar-track
@@ -220,13 +231,13 @@ body
         box-shadow: none
 
     ::-webkit-scrollbar-thumb:hover
-        background: $neon-pink
+        background: $neon-yellow
 
 a
     transition: color .15s ease, text-shadow .15s ease
 
     &:hover
-        text-shadow: 0 0 8px rgba($neon-pink, .55)
+        text-shadow: 0 0 8px rgba($neon-yellow, .5)
 
 strong
     color: $text-strong
@@ -239,47 +250,78 @@ hr
 /* ---------------------------------
  *            HUD Panels
  * --------------------------------- */
-.card:not(#back-to-top)
+// The panels of the first cyberpunk variant: a cyan frame chamfered at the top right and the
+// bottom left corners, numbered on its bottom edge, with yellow HUD marks on its other corners.
+// clip-path would cut off what overflows a panel (drop-downs, QR codes): the frame and the panel
+// are drawn by pseudo-elements behind it instead.
+undercover-before()
     position: relative
-    counter-increment: card
-    border: 1px solid $night-line
-    transition: border-color .25s ease, box-shadow .25s ease
 
-    // Corner marks
     &:before
         content: ''
         position: absolute
-        top: -1px
-        left: -1px
-        right: -1px
-        bottom: -1px
-        pointer-events: none
-        hud-corners($neon-cyan)
-        transition: filter .25s ease
+        z-index: -1
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
 
-    // The number of the panel, on its top edge
+.card:not(#back-to-top)
+    counter-increment: card
+
+    &, .card-content
+        undercover-before()
+
+    // The frame
+    &:before
+        top: -1.2px
+        left: -1.2px
+        right: -1.2px
+        bottom: -1.2px
+        background-color: rgba($neon-cyan, .45)
+        cut-corner-reverse(16px)
+        transition: background-color .25s ease
+
+    // The number of the panel, on its bottom edge
     &:after
-        content: '0x' counter(card, decimal-leading-zero)
+        content: 'R' counter(card)
         position: absolute
-        top: -.6rem
-        right: 1.5rem
-        padding: 0 .4rem
+        right: 2rem
+        bottom: -.6em
+        padding: 0 .3em
         font-family: $family-code
-        font-size: .65rem
-        line-height: 1.2rem
-        letter-spacing: .1em
-        color: $neon-pink
+        font-size: .7rem
+        letter-spacing: .05em
+        color: $neon-cyan
         background: $night
 
-    &:hover
-        border-color: rgba($neon-cyan, .4)
-        box-shadow: 0 0 0 1px rgba($neon-cyan, .08), 0 0 28px rgba($neon-cyan, .1)
-
-        &:before
-            filter: drop-shadow(0 0 4px $neon-cyan)
+    &:hover:before
+        background-color: $neon-cyan
 
     .card-image
-        border-bottom: 1px solid $night-line
+        cut-corner-top-right(16px)
+
+    // The panel
+    .card-content:before
+        background-color: $night-panel
+        cut-corner-reverse(16px)
+
+    .card-image + .card-content:before
+        cut-corner-bottom-left(16px)
+
+    // The HUD marks
+    .card-content:after
+        content: ''
+        position: absolute
+        top: -1.2px
+        left: -1.2px
+        right: -1.2px
+        bottom: -1.2px
+        pointer-events: none
+        hud-corners($neon-yellow, 12px)
+
+    .card-image + .card-content:after
+        background-size: 0 0, 0 0, 12px 2px, 2px 12px
 
 .menu-label, .card .heading
     font-family: $family-code
@@ -290,14 +332,14 @@ hr
 
     &:before
         content: '> '
-        color: $neon-pink
+        color: $neon-yellow
 
 .menu-list
     a
         cut-corner(6px)
 
         &.is-active
-            box-shadow: 0 0 16px rgba($neon-cyan, .4)
+            box-shadow: 0 0 16px rgba($neon-yellow, .4)
 
     li ul
         border-left-color: $night-line
@@ -315,7 +357,7 @@ hr
     // The profile widget
     .avatar
         border-radius: 50%
-        box-shadow: 0 0 0 2px $night, 0 0 0 3px $neon-pink, 0 0 24px rgba($neon-pink, .5)
+        box-shadow: 0 0 0 2px $night, 0 0 0 3px $neon-yellow, 0 0 24px rgba($neon-yellow, .45)
 
     .level .title
         neon-text($night-text-strong, .5)
@@ -382,11 +424,11 @@ article.article .article-more
     &.has-addons
         .tag:first-child
             color: $night !important
-            background: $neon-pink !important
+            background: $neon-yellow !important
 
         .tag:last-child
-            color: $neon-pink !important
-            background: rgba($neon-pink, .12) !important
+            color: $night !important
+            background: $neon-cyan !important
 
     a.has-addons:hover
         .tag:last-child
@@ -405,7 +447,7 @@ article.article .article-more
             color: $neon-cyan
 
     &.is-current
-        box-shadow: 0 0 16px rgba($neon-pink, .5)
+        box-shadow: 0 0 16px rgba($neon-yellow, .5)
 
         &, a
             color: $night
@@ -427,7 +469,7 @@ article.article .article-more
         bottom: -1px
         height: 2px
         background: neon-gradient()
-        box-shadow: 0 0 10px rgba($neon-pink, .5), 0 0 20px rgba($neon-cyan, .3)
+        box-shadow: 0 0 10px rgba($neon-yellow, .4), 0 0 20px rgba($neon-cyan, .3)
         pointer-events: none
 
     .navbar-logo
@@ -449,18 +491,18 @@ article.article .article-more
             neon-text($neon-cyan)
 
     a.navbar-item.is-active, .navbar-item.has-dropdown .navbar-link.is-active
-        neon-text($neon-pink)
+        neon-text($neon-yellow)
 
     // The current page in the menu bar: a neon bar under its name
     &:not(.is-collapsed) .navbar-start
         & > a.navbar-item.is-active, & > .navbar-item.has-dropdown > .navbar-link.is-active
-            box-shadow: inset 0 -3px 0 $neon-pink
+            box-shadow: inset 0 -3px 0 $neon-yellow
 
-    // Sub-menus: a raised panel with a magenta edge
+    // Sub-menus: a raised panel with a yellow edge
     &.is-scripted:not(.is-collapsed) .navbar-dropdown
         background-color: $navbar-dropdown-background-color
         border: 1px solid rgba($neon-cyan, .3)
-        border-top: 2px solid $neon-pink
+        border-top: 2px solid $neon-yellow
 
         a.navbar-item
             text-transform: none
@@ -471,8 +513,8 @@ article.article .article-more
                 background-color: $navbar-dropdown-item-hover-background-color
 
             &.is-active
-                color: $neon-pink
-                background-color: rgba($neon-pink, .08)
+                color: $neon-yellow
+                background-color: rgba($neon-yellow, .08)
 
 /* ---------------------------------
  *             Articles
@@ -504,22 +546,22 @@ article.article
     .article-meta .level-item:not(:last-child):after
         content: '//'
         margin-left: .75rem
-        color: $neon-pink
+        color: $neon-yellow
         opacity: .7
 
     .article-tags a:hover
         color: $neon-cyan !important
 
-// A short glitch: the colors split apart and the title jumps
+// A short glitch: the colors split into red and cyan and the title jumps
 @keyframes neon-glitch
     0%
-        text-shadow: -2px 0 $neon-pink, 2px 0 $neon-cyan
+        text-shadow: -2px 0 $neon-red, 2px 0 $neon-cyan
         transform: translate(0)
     25%
-        text-shadow: 2px 0 $neon-pink, -2px 0 $neon-cyan
+        text-shadow: 2px 0 $neon-red, -2px 0 $neon-cyan
         transform: translate(-1px, 1px)
     50%
-        text-shadow: -1px 0 $neon-pink, 1px 0 $neon-cyan
+        text-shadow: -1px 0 $neon-red, 1px 0 $neon-cyan
         transform: translate(1px, -1px)
     100%
         text-shadow: none
@@ -549,7 +591,7 @@ article.article .title, article.media .title
             font-size: .75em
             font-weight: 400
             vertical-align: .1em
-            neon-text($neon-pink, .4)
+            neon-text($neon-yellow, .4)
 
     a:not(.headerlink):not(.button)
         text-decoration: underline
@@ -557,14 +599,14 @@ article.article .title, article.media .title
         text-underline-offset: .2em
 
         &:hover
-            text-decoration-color: $neon-pink
+            text-decoration-color: $neon-yellow
 
     ul > li::marker
         color: $neon-cyan
 
     ol > li::marker
         font-family: $family-code
-        color: $neon-pink
+        color: $neon-yellow
 
     :not(pre) > code
         padding: .1em .35em
@@ -574,9 +616,9 @@ article.article .title, article.media .title
 
     blockquote
         position: relative
-        border: 1px solid rgba($neon-purple, .25)
-        border-left: 3px solid $neon-pink
-        box-shadow: inset 4px 0 16px -8px rgba($neon-pink, .5)
+        border: 1px solid rgba($neon-cyan, .3)
+        border-left: 3px solid $neon-yellow
+        box-shadow: inset 4px 0 16px -8px rgba($neon-yellow, .5)
 
     table
         thead th, thead td
@@ -635,8 +677,8 @@ article.article .title, article.media .title
         border-bottom-color: $night-line
 
     li.is-active a
-        neon-text($neon-pink, .6)
-        border-bottom-color: $neon-pink
+        neon-text($neon-yellow, .6)
+        border-bottom-color: $neon-yellow
 
 .article-licensing
     background: $night-raised
@@ -742,7 +784,7 @@ figure.highlight
         top: 0
         height: 2px
         background: neon-gradient(-90deg)
-        box-shadow: 0 0 10px rgba($neon-cyan, .4), 0 0 20px rgba($neon-pink, .3)
+        box-shadow: 0 0 10px rgba($neon-cyan, .4), 0 0 20px rgba($neon-yellow, .3)
 
     // The grid, in perspective
     &:after
@@ -754,7 +796,7 @@ figure.highlight
         top: 0
         bottom: -60%
         pointer-events: none
-        background-image: linear-gradient(rgba($neon-pink, .7) 1px, transparent 1px), linear-gradient(90deg, rgba($neon-pink, .7) 1px, transparent 1px)
+        background-image: linear-gradient(rgba($neon-yellow, .55) 1px, transparent 1px), linear-gradient(90deg, rgba($neon-yellow, .55) 1px, transparent 1px)
         background-size: 48px 48px
         transform: perspective(240px) rotateX(55deg)
         transform-origin: center top
@@ -791,7 +833,7 @@ figure.highlight
 
     .date
         font-family: $family-code
-        color: $neon-pink
+        color: $neon-yellow
 
 .searchbox
     .searchbox-container
@@ -799,7 +841,7 @@ figure.highlight
         box-shadow: 0 0 40px rgba($neon-cyan, .15)
 
     .searchbox-header
-        border-bottom: 2px solid $neon-pink
+        border-bottom: 2px solid $neon-yellow
 
     .searchbox-input
         font-family: $family-code
@@ -831,7 +873,7 @@ figure.highlight
     cut-corner(8px)
 
     &:hover
-        background: $neon-pink
+        background: $neon-yellow
 
 .donate .qrcode
     border: 1px solid $neon-cyan
@@ -855,4 +897,4 @@ figure.highlight
             background-color: $neon-cyan
 
             &:hover, &:focus
-                background-color: $neon-pink
+                background-color: $neon-yellow
