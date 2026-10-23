@@ -39,6 +39,8 @@ article:
     word_count:
         one: 'Około %d słowa'
         other: 'Około %d słów'
+    outdated_on: 'Ten wpis został ostatnio zaktualizowany %s. Część jego treści może być nieaktualna.'
+    outdated_ago: 'Ten wpis został ostatnio zaktualizowany %s. Część jego treści może być nieaktualna.'
     licensing:
         author: 'Author'
         created_at: 'Posted on'

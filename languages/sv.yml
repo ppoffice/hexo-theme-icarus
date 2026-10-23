@@ -39,6 +39,8 @@ article:
     word_count:
         one: 'Cirka %d ord'
         other: 'Cirka %d ord'
+    outdated_on: 'Det här inlägget uppdaterades senast %s. En del av innehållet kan vara inaktuellt.'
+    outdated_ago: 'Det här inlägget uppdaterades senast %s. En del av innehållet kan vara inaktuellt.'
     licensing:
         author: 'Författare'
         created_at: 'Publicerad'

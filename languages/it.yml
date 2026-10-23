@@ -39,6 +39,8 @@ article:
     word_count:
         one: 'Circa %d parola'
         other: 'Circa %d parole'
+    outdated_on: "Questo articolo è stato aggiornato l'ultima volta il %s. Alcuni contenuti potrebbero non essere più attuali."
+    outdated_ago: "Questo articolo è stato aggiornato l'ultima volta %s. Alcuni contenuti potrebbero non essere più attuali."
     licensing:
         author: 'Autore'
         created_at: 'Pubblicato il'
