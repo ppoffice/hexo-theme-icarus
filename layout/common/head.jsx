@@ -29,6 +29,32 @@ function getPageTitle(page, siteTitle, helper) {
     return [title, siteTitle].filter(str => typeof str !== 'undefined' && str.trim() !== '').join(' - ');
 }
 
+/** Origins of the font files of stylesheets hosted on another origin than the files */
+const FONT_FILE_ORIGINS = {
+    'https://fonts.googleapis.com': 'https://fonts.gstatic.com'
+};
+
+/** The origin of an absolute HTTP(S) URL, or null for relative URLs. */
+function getOrigin(url) {
+    try {
+        const { protocol, origin } = new URL(url);
+        return protocol === 'http:' || protocol === 'https:' ? origin : null;
+    } catch (e) {
+        return null;
+    }
+}
+
+/**
+ * Origins of the icon and web font files, which are only requested once their stylesheets are
+ * loaded and parsed: connecting to them in advance takes the connection off the critical path.
+ * The icon fonts are hosted next to their stylesheet, the web fonts on another origin.
+ */
+function getFontOrigins(iconCssUrl, fontCssUrl, siteUrl) {
+    const origins = [getOrigin(iconCssUrl), FONT_FILE_ORIGINS[getOrigin(fontCssUrl)]];
+    const siteOrigin = getOrigin(siteUrl);
+    return origins.filter((origin, i) => origin && origin !== siteOrigin && origins.indexOf(origin) === i);
+}
+
 module.exports = class extends Component {
     render() {
         const { site, config, helper, page } = this.props;
@@ -179,6 +205,8 @@ module.exports = class extends Component {
             {canonical_url ? <link rel="canonical" href={canonical_url} /> : null}
             {rss ? <link rel="alternate" href={url_for(rss)} title={config.title} type="application/atom+xml" /> : null}
             {favicon ? <link rel="icon" href={url_for(favicon)} /> : null}
+            {/* Fonts are requested with CORS, which does not reuse the connections of other requests */}
+            {getFontOrigins(iconcdn(), fontCssUrl[variant], url).map(origin => <link rel="preconnect" href={origin} crossorigin="anonymous" />)}
             <link rel="stylesheet" href={iconcdn()} />
             {hlThemes.map(([theme, media]) => <link data-pjax rel="stylesheet" href={cdn('highlight.js', '11.11.1', 'styles/' + theme + '.css')} media={media} />)}
             <link data-variant rel="stylesheet" href={fontCssUrl[variant]} />
