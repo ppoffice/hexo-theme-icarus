@@ -102,6 +102,17 @@ test.describe('PJAX navigation', () => {
         expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
     });
 
+    // The About page has Bulma columns in its content, like the one of the documentation site.
+    test('navigates to and from a page with columns in its content', async ({ page, diagnostics }) => {
+        await pjaxClick(page, page.locator('.navbar-start a', { hasText: 'About' }));
+        await expect(page).toHaveTitle('About - Icarus Fixture');
+        await expect(page.locator('.column-main .content .column')).toHaveCount(2);
+        await pjaxClick(page, page.locator('.navbar-start a', { hasText: 'Home' }));
+        await expect(page).toHaveTitle('Icarus Fixture');
+        expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+        expect(diagnostics.pageErrors).toEqual([]);
+    });
+
     test('copies code once per click after navigating', async ({ page, context }) => {
         await context.grantPermissions(['clipboard-read', 'clipboard-write']);
         for (let i = 0; i < 2; i++) {
@@ -116,6 +127,48 @@ test.describe('PJAX navigation', () => {
         await page.locator('figure.highlight .copy').first().click();
         expect(await page.evaluate(() => navigator.clipboard.readText())).toContain('const answer = 42;');
         expect(await page.evaluate(() => window.__copies)).toBe(1);
+    });
+});
+
+// With `relative_link: true`, the URLs of the pages are relative to each page, and differ between
+// pages at different depths: `../css/default.css` on /archives/, `../../../../css/default.css` on
+// the posts. PJAX switches the elements of the new page in before it updates the URL of the page.
+test.describe('PJAX navigation with relative links', () => {
+    const brokenImages = page => page.evaluate(() => Array.from(document.images)
+        .filter(img => !img.complete || !img.naturalWidth).map(img => img.src));
+
+    test('keeps the theme stylesheet and loads the resources of pages at other depths', async ({ page, visit, diagnostics }) => {
+        await visit('/archives/', { variant: 'pjax-relative-link' });
+        await page.evaluate(() => {
+            window.__noFullReload = true;
+            document.querySelector('link[data-variant][href$="css/default.css"]').__kept = true;
+        });
+        const steps = [
+            ['Hello World - Icarus Fixture', page.locator('.column-main a', { hasText: 'Hello World' }).first()],
+            ['Tags - Icarus Fixture', page.locator('.navbar-start a', { hasText: 'Tags' })],
+            ['Icarus Fixture', page.locator('.navbar-logo')],
+            ['Hello World - Icarus Fixture', page.locator('.column-main a', { hasText: 'Hello World' }).first()]
+        ];
+        for (const [title, link] of steps) {
+            await pjaxClick(page, link);
+            await expect(page).toHaveTitle(title);
+            await expect.poll(() => brokenImages(page), title).toEqual([]);
+            const stylesheets = await page.evaluate(() => Array.from(document.querySelectorAll('link[data-variant][href$="css/default.css"]'))
+                .map(link => ({ kept: link.__kept === true, loaded: !!link.sheet })));
+            expect(stylesheets, title).toEqual([{ kept: true, loaded: true }]);
+        }
+        await page.goBack();
+        await expect(page).toHaveTitle('Icarus Fixture');
+        await page.waitForLoadState('networkidle');
+        await expect.poll(() => brokenImages(page)).toEqual([]);
+        expect(await page.evaluate(() => document.querySelector('link[data-variant][href$="css/default.css"]').__kept)).toBe(true);
+
+        // The scripts of the new pages ran: the code blocks of a post have their copy buttons.
+        await pjaxClick(page, page.locator('.column-main a', { hasText: 'Code Blocks' }).first());
+        await expect(page.locator('figure.highlight .copy')).toHaveCount(3);
+        expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+        expect(diagnostics.pageErrors).toEqual([]);
+        expect(diagnostics.failedRequests).toEqual([]);
     });
 });
 

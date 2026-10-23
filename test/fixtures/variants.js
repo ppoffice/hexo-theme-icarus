@@ -145,6 +145,13 @@ module.exports = {
         theme: { plugins: { pjax: true } }
     },
 
+    // URLs relative to each page (`../../css/default.css`), which differ between pages at different
+    // depths, navigated with PJAX.
+    'pjax-relative-link': {
+        site: { relative_link: true },
+        theme: { plugins: { pjax: true } }
+    },
+
     // PJAX with a comment provider and analytics plugins, whose scripts the browser tests stub.
     'pjax-comment-analytics': {
         theme: {

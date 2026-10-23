@@ -1,16 +1,60 @@
 (function() {
-    // eslint-disable-next-line no-unused-vars
     let pjax;
 
     /**
-     * Replace the stylesheets of <head> matching the selector with those of the new page, only when
-     * they differ, so that the stylesheets that stay are not loaded and applied again.
+     * The URL of the page loaded without PJAX. The relative URLs of the elements of the current
+     * page are relative to it: those of the elements switched in by PJAX are made absolute.
      */
-    function switchStylesheets(oldHead, newHead, selector) {
-        const key = links => Array.from(links).map(link => link.getAttribute('href') + ' ' + link.getAttribute('media')).join();
+    const loadedUrl = document.baseURI;
+
+    /** Whether a URL is relative to the path of the page, unlike root-relative and absolute ones. */
+    function isPathRelative(url) {
+        return !/^([a-z][a-z\d+.-]*:|\/|#)/i.test(url.trim());
+    }
+
+    function resolveUrl(url, base) {
+        try {
+            return new URL(url, base).href;
+        } catch (e) {
+            return url;
+        }
+    }
+
+    /**
+     * Make the URLs relative to the path of the new page absolute in its document, before PJAX
+     * switches its elements in: PJAX only updates the URL of the page afterwards, and the scripts,
+     * stylesheets and other resources would be loaded from the URLs relative to the previous page
+     * (`relative_link: true` of Hexo). Root-relative and absolute URLs, and links, which are
+     * resolved when they are followed, are left as they are.
+     */
+    function resolveUrls(doc, pageUrl) {
+        const resolve = url => {
+            return url && isPathRelative(url) ? resolveUrl(url, pageUrl) : url;
+        };
+        doc.querySelectorAll('[src], [poster], link[href]').forEach(el => {
+            ['src', 'poster', 'href'].filter(name => el.hasAttribute(name)).forEach(name => {
+                el.setAttribute(name, resolve(el.getAttribute(name)));
+            });
+        });
+        doc.querySelectorAll('[srcset]').forEach(el => {
+            // The URL of each candidate, which can contain commas (data: URLs), is followed by
+            // its descriptors and a comma.
+            const srcset = el.getAttribute('srcset').replace(/(^|,)(\s*)(\S+?)(?=,*(\s|$))/g,
+                (match, comma, space, url) => comma + space + resolve(url));
+            el.setAttribute('srcset', srcset);
+        });
+    }
+
+    /**
+     * Replace the stylesheets of <head> matching the selector with those of the new page, only when
+     * they differ, so that the stylesheets that stay are not loaded and applied again. Their URLs
+     * are compared once resolved: with relative URLs, they differ between pages at different depths.
+     */
+    function switchStylesheets(oldHead, newHead, selector, pageUrl) {
+        const key = (links, base) => Array.from(links).map(link => resolveUrl(link.getAttribute('href'), base) + ' ' + link.getAttribute('media')).join();
         const oldLinks = oldHead.querySelectorAll(selector);
         const newLinks = newHead.querySelectorAll(selector);
-        if (key(oldLinks) !== key(newLinks)) {
+        if (key(oldLinks, loadedUrl) !== key(newLinks, pageUrl)) {
             const anchor = oldLinks.length ? oldLinks[0] : null;
             newLinks.forEach(link => oldHead.insertBefore(link.cloneNode(), anchor));
             oldLinks.forEach(link => link.remove());
@@ -23,7 +67,7 @@
      * PJAX does not copy, the color-scheme meta and the code highlight stylesheets, of which
      * there are one or two (light and dark).
      */
-    function switchAppearance(oldHead, newHead, options) {
+    function switchAppearance(oldHead, newHead, options, pageUrl) {
         const html = options.request && typeof options.request.responseText === 'string' ? options.request.responseText : '';
         const htmlTag = (html.match(/<html\b[^>]*>/i) || [''])[0];
         const appearance = (htmlTag.match(/\sdata-appearance="([^"]*)"/) || [])[1];
@@ -44,7 +88,7 @@
             oldHead.insertBefore(newMeta.cloneNode(), viewport ? viewport.nextSibling : oldHead.firstChild);
         }
 
-        switchStylesheets(oldHead, newHead, 'link[data-pjax]');
+        switchStylesheets(oldHead, newHead, 'link[data-pjax]', pageUrl);
     }
 
     /**
@@ -65,15 +109,18 @@
      * stylesheet are added, so that the inline scripts of plugins that both pages have, but
      * configure differently, do not run again.
      */
-    function loadPlugins(oldBody, newBody) {
+    function loadPlugins(oldBody, newBody, pageUrl) {
         const isPluginElement = el => (el.tagName === 'SCRIPT' && !el.hasAttribute('data-pjax'))
             || (el.tagName === 'LINK' && el.getAttribute('rel') === 'stylesheet');
-        const key = el => el.getAttribute('src') || el.getAttribute('href') || el.textContent;
-        const present = new Set(Array.from(oldBody.children).filter(isPluginElement).map(key));
+        const key = (el, base) => {
+            const url = el.getAttribute('src') || el.getAttribute('href');
+            return url ? resolveUrl(url, base) : el.textContent;
+        };
+        const present = new Set(Array.from(oldBody.children).filter(isPluginElement).map(el => key(el, loadedUrl)));
 
         const runs = [[]];
         Array.from(newBody.children).forEach(el => {
-            if (isPluginElement(el) && !present.has(key(el))) {
+            if (isPluginElement(el) && !present.has(key(el, pageUrl))) {
                 runs[runs.length - 1].push(el);
             } else if (runs[runs.length - 1].length) {
                 runs.push([]);
@@ -109,10 +156,11 @@
      * counting page views twice and adding their listeners again.
      */
     function switchHead(oldTitle, newTitle, options) {
+        const pageUrl = this.state.href;
         oldTitle.textContent = newTitle.textContent;
-        switchAppearance(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, options);
-        switchStylesheets(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, 'link[data-variant]');
-        loadPlugins(oldTitle.ownerDocument.body, newTitle.ownerDocument.body);
+        switchAppearance(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, options, pageUrl);
+        switchStylesheets(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, 'link[data-variant]', pageUrl);
+        loadPlugins(oldTitle.ownerDocument.body, newTitle.ownerDocument.body, pageUrl);
         this.onSwitch();
     }
 
@@ -133,7 +181,9 @@
                     '.footer-logo',
                     '.pjax-reload',
                     'head title',
-                    '.columns',
+                    // Not the columns of the content of the page (Bulma), which would make PJAX fail
+                    // and reload the page when their numbers differ.
+                    'body > .section > .container > .columns',
                     '.navbar-start',
                     '.navbar-end',
                     '.searchbox link',
@@ -150,6 +200,14 @@
                 },
                 cacheBust: false
             });
+            // Resolve the URLs of the document of the new page before its elements are switched in
+            const switchSelectors = pjax.switchSelectors;
+            if (switchSelectors) {
+                pjax.switchSelectors = function(selectors, fromEl, toEl, options) {
+                    resolveUrls(fromEl, this.state.href);
+                    return switchSelectors.call(this, selectors, fromEl, toEl, options);
+                };
+            }
         } catch (e) {
             console.warn('PJAX error: ' + e);
         }
