@@ -105,7 +105,7 @@ $menu-item-color ?= $night-text
 $menu-item-hover-color ?= $neon-cyan
 $menu-item-hover-background-color ?= rgba($neon-cyan, .07)
 $menu-item-active-color ?= $night
-$menu-item-active-background-color ?= $neon-yellow
+$menu-item-active-background-color ?= $neon-cyan
 $menu-list-border-left ?= 1px solid $night-line
 $tag-color ?= $neon-cyan
 $tag-background-color ?= rgba($neon-cyan, .1)
@@ -163,13 +163,45 @@ cut-corner-bottom-left(size)
 cut-corner-bottom-right(size)
     clip-path(unquote('polygon(0 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%)'))
 
-// The 1px border along the corner cut by cut-corner-bottom-right(size), clipped from an element
-// with a 1px border: drawn by the background of the element, or of its child in that corner.
-chamfer-edge(color, size)
-    background-image: linear-gradient(to top left, transparent 50%, color 50%, color calc(50% + 1px), transparent calc(50% + 1px))
-    background-size: (size - 2px) (size - 2px)
-    background-position: right bottom
-    background-repeat: no-repeat
+// An outlined box with a chamfered bottom right corner. A CSS border would be cut off along the
+// corner by clip-path: the box is drawn in the color of its outline (`line`), and filled 1px inside
+// (`edge` on the left) by its :before, cut 0.59px less, so that the outline is 1px wide along the
+// cut too (1px across the diagonal is √2 - 1 ≈ 0.41px more along each side, from a corner 1px in).
+// The fill must be opaque, or the outline would show through it.
+$chamfer-inset = .59px
+
+chamfer-box(size, line, fill, edge = 1px)
+    position: relative
+    isolation: isolate
+    border: none
+    background: line
+    cut-corner-bottom-right(size)
+
+    &:before
+        content: ''
+        position: absolute
+        z-index: -1
+        top: 1px
+        right: 1px
+        bottom: 1px
+        left: edge
+        background: fill
+        cut-corner-bottom-right(size - $chamfer-inset)
+
+// Scanlines, drawn into the backgrounds of the page, the panels, the navbar and the footer: not
+// over their content, such as images
+$scanlines = repeating-linear-gradient(to bottom, rgba(0, 0, 0, .1) 0, rgba(0, 0, 0, .1) 1px, transparent 1px, transparent 3px)
+
+// The small outlined boxes: tags, the numbers of the widgets, pagination. Numbers are cyan on
+// a lighter fill; names are on the darker one.
+$box-line ?= rgba($neon-cyan, .35)
+$box-line-hover ?= $neon-cyan
+$box-fill ?= blend(rgba($neon-cyan, .05), $night-panel)
+$box-fill-hover ?= blend(rgba($neon-cyan, .14), $night-panel)
+$box-fill-number ?= blend(rgba($neon-cyan, .12), $night-panel)
+$box-fill-number-hover ?= blend(rgba($neon-cyan, .24), $night-panel)
+$box-chamfer ?= 6px
+$box-chamfer-large ?= 8px
 
 // A neon tube: the text glows in its own color
 neon-text(color, strength = 1)
@@ -196,32 +228,15 @@ html
     background-color: $night
 
 body
-    // Positioned for the scanlines, and isolated so that the panels drawn behind the elements
-    // (z-index: -1) stay above its background
-    position: relative
+    // Isolated so that the panels drawn behind the elements (z-index: -1) stay above its background
     isolation: isolate
     counter-reset: card
     background-color: $night
-    // Neon glows at the top and the bottom of the page, over a faint grid. On <body>, which is as
-    // high as the page (<html> is as high as the screen), and not fixed to the screen: fixed
-    // layers are only drawn over the first screen in full-page captures and prints.
-    background-image: radial-gradient(ellipse 60% 900px at 0 0, rgba($neon-pink, .13), transparent), radial-gradient(ellipse 60% 900px at 100% 100%, rgba($neon-cyan, .1), transparent), linear-gradient(rgba($neon-cyan, .035) 1px, transparent 1px), linear-gradient(90deg, rgba($neon-cyan, .035) 1px, transparent 1px)
-    background-size: auto, auto, 48px 48px, 48px 48px
-
-    // Scanlines over the whole page, through which everything stays clickable
-    &:after
-        content: ''
-        position: absolute
-        top: 0
-        left: 0
-        right: 0
-        bottom: 0
-        z-index: 10000
-        pointer-events: none
-        background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .1) 0, rgba(0, 0, 0, .1) 1px, transparent 1px, transparent 3px)
-
-        @media print
-            display: none
+    // Scanlines and neon glows at the top and the bottom of the page, over a faint grid. On <body>,
+    // which is as high as the page (<html> is as high as the screen), and not fixed to the screen:
+    // fixed layers are only drawn over the first screen in full-page captures and prints.
+    background-image: $scanlines, radial-gradient(ellipse 60% 900px at 0 0, rgba($neon-pink, .13), transparent), radial-gradient(ellipse 60% 900px at 100% 100%, rgba($neon-cyan, .1), transparent), linear-gradient(rgba($neon-cyan, .035) 1px, transparent 1px), linear-gradient(90deg, rgba($neon-cyan, .035) 1px, transparent 1px)
+    background-size: auto, auto, auto, 48px 48px, 48px 48px
 
 ::selection
     color: $night
@@ -310,7 +325,7 @@ undercover-before()
 
     // The panel
     .card-content:before
-        background-color: $night-panel
+        background: $scanlines, $night-panel
         cut-corner-reverse(16px)
 
     .card-image + .card-content:before
@@ -346,20 +361,27 @@ undercover-before()
         cut-corner(6px)
 
         &.is-active
-            box-shadow: 0 0 16px rgba($neon-yellow, .4)
+            box-shadow: 0 0 16px rgba($neon-cyan, .4)
 
     li ul
         border-left-color: $night-line
 
 .widget
-    .menu-list .tag
+    // The numbers on the right of the widgets (more specific than include/style/widget.styl)
+    .menu-list .tag:not(body)
         color: $neon-cyan
-        background: rgba($neon-cyan, .1)
-        font-family: $family-code
+        chamfer-box($box-chamfer, $box-line, $box-fill-number)
+        transition: background .15s ease
 
-    .menu-list a.is-active .tag
+    .menu-list a:hover .tag:not(body)
+        background: $box-line-hover
+
+    .menu-list a.is-active .tag:not(body)
         color: $neon-cyan
         background: $night
+
+        &:before
+            background: $night
 
     // The profile widget
     .avatar
@@ -419,21 +441,40 @@ article.article .article-more
 
 .tag:not(body)
     font-family: $family-code
-    border: 1px solid rgba($neon-cyan, .25)
+    border-radius: 0
 
-// Tags, with the number of their posts: one outlined chip with a chamfered corner, lit up when
-// hovered. The number looks like the other numbers of the widgets.
-$tag-chamfer = 8px
+    &[class*="is-"]
+        cut-corner-bottom-right($box-chamfer)
+
+// Tags: a chamfered box with a yellow edge, the name after a yellow '#' and, in the tags widget,
+// the number of its posts like the other numbers
+tag-box()
+    chamfer-box($box-chamfer-large, linear-gradient(90deg, $neon-yellow 2px, $box-line 2px), $box-fill, 2px)
+    display: inline-flex
+    align-items: center
+    transition: background .15s ease
+
+    &:hover
+        text-shadow: none
+        background: linear-gradient(90deg, $neon-yellow 2px, $box-line-hover 2px)
+
+        &:before
+            background: $box-fill-hover
+
+tag-name()
+    color: $night-text
+    transition: color .15s ease, text-shadow .15s ease
+
+    &:before
+        content: '#'
+        margin-right: .2em
+        color: $neon-yellow
 
 a.tags.has-addons
-    display: inline-flex
+    tag-box()
     flex-wrap: nowrap
     margin-bottom: 0
-    border: 1px solid rgba($neon-cyan, .35)
-    border-left: 2px solid $neon-yellow
-    background: transparent
-    cut-corner-bottom-right($tag-chamfer)
-    transition: border-color .15s ease, background-color .15s ease
+    padding: 1px 1px 1px 2px
 
     // (more specific than the colors of the tags widget, include/style/widget.styl)
     .tag:not(body)
@@ -443,81 +484,95 @@ a.tags.has-addons
         font-size: .8rem
         border: none
         border-radius: 0
-        background: transparent
-        transition: color .15s ease
-
-        &:first-child, &:last-child
-            background: transparent
 
         &:first-child
-            color: $night-text
-            background-color: rgba($neon-cyan, .05)
-
-            &:before
-                content: '#'
-                margin-right: .2em
-                color: $neon-yellow
+            tag-name()
+            background: transparent
 
         &:last-child
             min-width: 1.9rem
             padding: 0 .55rem 0 .45rem
             color: $neon-cyan
-            background-color: rgba($neon-cyan, .1)
-            border-left: 1px solid rgba($neon-cyan, .25)
-            chamfer-edge(rgba($neon-cyan, .35), $tag-chamfer)
+            background: $box-fill-number
+            border-left: 1px solid $box-line
+            // Its fill ends at the inner edge of the outline, cut like the fill of the box
+            cut-corner-bottom-right($box-chamfer-large - $chamfer-inset)
+            transition: background .15s ease
 
-    &:hover
-        text-shadow: none
-        border-color: $neon-cyan
-        border-left-color: $neon-yellow
-
-        .tag:not(body):first-child
-            background-color: rgba($neon-cyan, .12)
+    &:hover .tag:not(body)
+        &:first-child
             neon-text($neon-cyan, .6)
 
-        .tag:not(body):last-child
-            background-color: rgba($neon-cyan, .2)
-            border-left-color: rgba($neon-cyan, .5)
-            chamfer-edge($neon-cyan, $tag-chamfer)
+        &:last-child
+            background: $box-fill-number-hover
 
 .field.is-grouped.is-grouped-multiline > .control:not(:last-child)
     margin-bottom: .5rem
 
-// The tags of a post, below it
+// The tags of a post, below it: the same boxes, without numbers
 article.article .article-tags
     align-items: center
+    gap: .5rem
 
+    // Each tag has its own '#'
     & > span:first-child
-        color: $neon-yellow
+        display: none
 
     a
-        margin-bottom: .25rem
-        padding: .1rem .6rem .1rem .5rem
-        border: 1px solid rgba($neon-cyan, .3)
+        tag-box()
+        height: 1.9rem
+        margin: 0 !important
+        padding: 0 .7rem 0 .65rem
+        font-size: .8rem
         color: $night-text !important
-        cut-corner-bottom-right(6px)
-        chamfer-edge(rgba($neon-cyan, .3), 6px)
-        transition: border-color .15s ease, color .15s ease
+
+        // The fill of the box is its :before: the '#' is its :after, moved before the name
+        &:after
+            content: '#'
+            order: -1
+            margin-right: .2em
+            color: $neon-yellow
 
         &:hover
-            border-color: $neon-cyan
-            background-color: rgba($neon-cyan, .1)
-            chamfer-edge($neon-cyan, 6px)
+            neon-text($neon-cyan, .6)
             color: $neon-cyan !important
 
-.pagination-previous, .pagination-next, .pagination-link
-    cut-corner(8px)
-    font-family: $family-code
-    border: 1px solid $night-line !important
+            &:after
+                text-shadow: none
 
-    &:hover
-        border-color: $neon-cyan !important
+// Pagination: the same boxes, its numbers like the other numbers, the current page in yellow
+.pagination
+    .pagination-link, .pagination-previous, .pagination-next
+        font-family: $family-code
+        box-shadow: none
+        chamfer-box($box-chamfer-large, $box-line, $box-fill-number)
+        transition: background .15s ease
 
         &, a
             color: $neon-cyan
 
-    &.is-current
-        box-shadow: 0 0 16px rgba($neon-yellow, .5)
+        &:hover
+            background: $box-line-hover
+
+            &:before
+                background: $box-fill-number-hover
+
+            &, a
+                color: $neon-cyan
+
+    .pagination-previous, .pagination-next
+        &:before
+            background: $box-fill
+
+        a
+            letter-spacing: .05em
+            text-transform: uppercase
+
+    .pagination-link.is-current
+        background: $neon-yellow
+
+        &:before
+            background: $neon-yellow
 
         &, a
             color: $night
@@ -527,6 +582,7 @@ article.article .article-tags
  * --------------------------------- */
 .navbar-main
     position: relative
+    background-image: $scanlines
     text-transform: uppercase
     letter-spacing: .08em
 
@@ -634,6 +690,17 @@ article.article
     100%
         text-shadow: none
         transform: translate(0)
+
+// The same glitch on the other links and buttons when hovered, but the logos and the back to top
+// button, which its own transform moves in and out. The names of the tags and the numbers of the
+// profile glow on their own: they glitch too.
+@media (prefers-reduced-motion: no-preference)
+    a:not(.navbar-logo):not(.footer-logo), button:not(#back-to-top), .button
+        &:hover
+            animation: neon-glitch .45s steps(2, end) 1
+
+    a.tags.has-addons:hover .tag:not(body), .widget .level a:hover .title
+        animation: neon-glitch .45s steps(2, end) 1
 
 article.article .title, article.media .title
     a
@@ -841,6 +908,7 @@ figure.highlight
 .footer
     position: relative
     overflow: hidden
+    background-image: $scanlines
 
     // A neon tube along its top edge
     &:before
@@ -933,15 +1001,26 @@ figure.highlight
         border-color: $neon-cyan
         box-shadow: 0 0 0 1px $neon-cyan, 0 0 12px rgba($neon-cyan, .35)
 
+// Chamfered like the other buttons, then a hexagon when it docks on the neon tube along the top
+// of the footer (source/js/back_to_top.js), instead of a circle. Both shapes have six points, so
+// that one turns into the other.
 #back-to-top
     color: $night
     background: $neon-cyan
-    margin-top: 45px
     box-shadow: none
     cut-corner(8px)
+    transition: .4s ease opacity, .4s ease width, .4s ease transform, .4s ease clip-path, .4s ease -webkit-clip-path, .15s ease background-color
+
+    &.is-rounded
+        border-radius: 0
+        clip-path(polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%))
 
     &:hover
         background: $neon-yellow
+
+@media (prefers-reduced-motion: reduce)
+    #back-to-top
+        transition: none
 
 .donate .qrcode
     border: 1px solid $neon-cyan
