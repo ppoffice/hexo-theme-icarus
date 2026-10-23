@@ -51,7 +51,7 @@ A second look of neon-lit nights, HUD frames and scanlines, one line away.</p>
 <td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="Responsive layout">
 <p><b>Responsive</b><br>
-One to three columns, navbar sub-menus that fold into a menu button, and a mobile table of contents.</p>
+One to three columns, navbar sub-menus that fold into a menu button, an optional sticky navbar (<code>navbar.sticky</code>), and a mobile table of contents.</p>
 </td>
 </tr>
 <tr>

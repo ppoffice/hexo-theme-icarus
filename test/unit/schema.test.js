@@ -95,6 +95,17 @@ describe('include/schema', () => {
             });
         }
 
+        it('accepts a sticky navbar at all widths or on mobile screens only, and leaves it off by default', () => {
+            const valid = sticky => navbar().validate({ sticky }) === true;
+            for (const sticky of [true, false, 'mobile']) {
+                assert.ok(valid(sticky), JSON.stringify(sticky));
+            }
+            for (const sticky of ['desktop', 'true', '', 1, null]) {
+                assert.ok(!valid(sticky), JSON.stringify(sticky));
+            }
+            assert.equal(yaml.parse(loadSchema().getDefaultValue().toYaml()).navbar.sticky, false);
+        });
+
         it('keeps the generated default menu as plain links', () => {
             const defaults = yaml.parse(loadSchema().getDefaultValue().toYaml());
             assert.deepEqual(defaults.navbar.menu, { Home: '/', Archives: '/archives', Categories: '/categories', Tags: '/tags', About: '/about' });

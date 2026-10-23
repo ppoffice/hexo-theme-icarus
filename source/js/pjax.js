@@ -149,6 +149,21 @@
     }
 
     /**
+     * Make the navbar, which stays, sticky or not as on the new page (navbar.sticky, which pages
+     * can also set in their front-matter).
+     */
+    function switchNavbar(oldDoc, newDoc) {
+        const oldNavbar = oldDoc.querySelector('.navbar-main');
+        const newNavbar = newDoc.querySelector('.navbar-main');
+        const sticky = newNavbar && newNavbar.getAttribute('data-sticky');
+        if (oldNavbar && sticky) {
+            oldNavbar.setAttribute('data-sticky', sticky);
+        } else if (oldNavbar) {
+            oldNavbar.removeAttribute('data-sticky');
+        }
+    }
+
+    /**
      * Switch the title, the appearance and the variant (default or cyberpunk, which pages can also
      * set in their front-matter, with its theme and font stylesheets) of the page, and load the
      * plugins it adds. <head> itself is not one of the selectors because PJAX runs the scripts of
@@ -160,6 +175,7 @@
         oldTitle.textContent = newTitle.textContent;
         switchAppearance(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, options, pageUrl);
         switchStylesheets(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, 'link[data-variant]', pageUrl);
+        switchNavbar(oldTitle.ownerDocument, newTitle.ownerDocument);
         loadPlugins(oldTitle.ownerDocument.body, newTitle.ownerDocument.body, pageUrl);
         this.onSwitch();
     }
@@ -310,6 +326,22 @@
         }
         // Plugin [KaTeX]
         renderKatex();
+        // PJAX scrolls the anchor of the new page to the top of the window, under a sticky navbar:
+        // scroll it again after PJAX, before the next paint, below the navbar (its scroll margin).
+        if (location.hash && document.querySelector('.navbar-main[data-sticky]')) {
+            requestAnimationFrame(() => {
+                let target = null;
+                try {
+                    const name = decodeURIComponent(location.hash.slice(1));
+                    target = document.getElementById(name) || document.getElementsByName(name)[0];
+                } catch (e) {
+                    // A malformed hash: leave the page where PJAX scrolled it
+                }
+                if (target) {
+                    target.scrollIntoView();
+                }
+            });
+        }
         // Plugin [Busuanzi] reload logic
         if (window.bszCaller && window.bszTag) {
             window.bszCaller.fetch('//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback', a => {

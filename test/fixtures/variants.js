@@ -140,6 +140,33 @@ module.exports = {
         }
     },
 
+    // A navbar staying at the top of the window at all widths (navbar.sticky), navigated with PJAX,
+    // with a dark post, a cyberpunk post and a post whose navbar scrolls away (front-matter, which
+    // replaces the navbar configuration).
+    'navbar-sticky': {
+        theme: { navbar: { sticky: true }, plugins: { pjax: true } },
+        files: Object.fromEntries([
+            ['sticky-dark', '2024-04-09', 'appearance: dark'],
+            ['sticky-cyberpunk', '2024-04-08', 'variant: cyberpunk'],
+            ['sticky-off', '2024-04-07', 'navbar: {"menu": {"Home": "/", "Archives": "/archives"}}']
+        ].map(([name, date, frontMatter]) => [`source/_posts/${name}.md`, [
+            '---',
+            `title: Navbar ${name}`,
+            `date: ${date} 10:00:00`,
+            frontMatter,
+            '---',
+            `A post with the ${name} navbar. Read [section 12 of the long post](/2023/08/01/long-toc/#Section-12),`,
+            'or [the posts with other navbars](/2024/04/09/sticky-dark/), [cyberpunk](/2024/04/08/sticky-cyberpunk/)',
+            'and [off](/2024/04/07/sticky-off/).',
+            ''
+        ].join('\n')]))
+    },
+
+    // A navbar staying at the top of the window on mobile screens only.
+    'navbar-sticky-mobile': {
+        theme: { navbar: { sticky: 'mobile' } }
+    },
+
     // A site without math plugins, navigated with PJAX, with a MathJax post and two KaTeX posts
     // (front-matter, which replaces the plugins of the site).
     'pjax-math': {

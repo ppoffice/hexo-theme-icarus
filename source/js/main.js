@@ -99,6 +99,7 @@
     function closeNavbarDropdowns() {
         $navbar.find('.navbar-link[aria-expanded="true"]').attr('aria-expanded', 'false');
         $navbar.removeClass('is-dropdown-open');
+        updateNavbarHeight();
     }
 
     // Keep a drop-down within the window: shift it to the left when it overflows on the right.
@@ -129,16 +130,40 @@
         alignNavbarDropdown($group);
         $link.attr('aria-expanded', 'true');
         $navbar.addClass('is-dropdown-open');
+        updateNavbarHeight();
     }
 
     function setNavbarMenuOpen(open) {
         $navbar.toggleClass('is-open', open);
         $navbarToggle.attr('aria-expanded', String(open));
+        updateNavbarHeight();
     }
 
     // Whether the navbar content is wider than the navbar (1px of tolerance for subpixel widths).
     function navbarOverflows() {
         return $navbar.find('.navbar-container, .navbar-menu').get().some(el => el.scrollWidth > el.clientWidth + 1);
+    }
+
+    // A sticky navbar (navbar.sticky, include/style/navbar.styl) opens its folded menu over the page,
+    // like the drop-downs, instead of pushing the content under it down: a negative margin keeps the
+    // space it takes in the page at its closed height. That height (--navbar-height) is the offset
+    // of the anchors of the page and of the sticky columns.
+    let navbarClosedHeight = null;
+    function updateNavbarHeight() {
+        const navbar = $navbar[0];
+        if (!navbar) {
+            return;
+        }
+        const height = navbar.getBoundingClientRect().height;
+        if (!$navbar.hasClass('is-open') || navbarClosedHeight === null) {
+            navbar.style.marginBottom = '';
+            navbarClosedHeight = height;
+            document.documentElement.style.setProperty('--navbar-height', height + 'px');
+        } else if (getComputedStyle(navbar).position === 'sticky') {
+            navbar.style.marginBottom = (navbarClosedHeight - height) + 'px';
+        } else {
+            navbar.style.marginBottom = '';
+        }
     }
 
     function fitNavbar() {
@@ -162,6 +187,7 @@
             closeNavbarDropdowns();
         }
         $navbar.find('.navbar-link[aria-expanded="true"]').each((i, link) => alignNavbarDropdown($(link).closest('.has-dropdown')));
+        updateNavbarHeight();
     }
 
     if ($navbar.length) {
@@ -212,6 +238,28 @@
                 && ($target.closest('.navbar-start a').length || !$target.closest('.navbar-start, .navbar-toggle').length)) {
                 setNavbarMenuOpen(false);
             }
+        }).on('focusin.icarus-navbar', event => {
+            // Scroll an element of the page focused with the keyboard out from under a sticky navbar,
+            // once the browser has scrolled it into the window.
+            const target = event.target;
+            const navbar = $navbar[0];
+            let keyboard = false;
+            try {
+                keyboard = target.matches(':focus-visible');
+            } catch (e) {
+                // :focus-visible is not supported
+            }
+            if (!keyboard || $.contains(navbar, target) || $(target).closest('#toc, .searchbox').length
+                || getComputedStyle(navbar).position !== 'sticky') {
+                return;
+            }
+            requestAnimationFrame(() => {
+                const bottom = navbar.getBoundingClientRect().bottom;
+                const top = target.getBoundingClientRect().top;
+                if (document.activeElement === target && top < bottom) {
+                    window.scrollBy(0, top - bottom - parseFloat(getComputedStyle(target).fontSize));
+                }
+            });
         }).on('keydown.icarus-navbar', event => {
             if (event.key !== 'Escape') {
                 return;
@@ -220,7 +268,8 @@
             // Give the focus back to the button, unless the reader has moved it elsewhere.
             const refocus = $button => {
                 if (!focused || focused === document.body || $.contains($navbar[0], focused)) {
-                    $button.trigger('focus');
+                    // A sticky navbar is in the window, which Chrome would still scroll to it.
+                    $button[0].focus({ preventScroll: getComputedStyle($navbar[0]).position === 'sticky' });
                 }
             };
             const $open = $navbar.find('.navbar-link[aria-expanded="true"]');

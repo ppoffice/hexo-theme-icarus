@@ -273,6 +273,68 @@ $navbar-dropdown-item-muted-color ?= darken($grey, 10%)
         .navbar-end
             margin-left: 0
 
+/* ---------------------------------
+ *           Sticky Navbar
+ * --------------------------------- */
+// The height of the navbar with its folded menu closed, until source/js/main.js measures it into
+// --navbar-height: the logo and the padding of the navbar items, and below the navbar breakpoint,
+// the row of the menu and the icons under the logo.
+$navbar-sticky-height ?= $logo-height + 2 * $navbar-item-padding-v
+$navbar-sticky-height-touch ?= $navbar-sticky-height + 1.5rem + 2 * $navbar-item-padding-v
+
+:root
+    --navbar-height: $navbar-sticky-height
+
++until($navbar-breakpoint)
+    :root
+        --navbar-height: $navbar-sticky-height-touch
+
+// navbar.sticky (layout/common/navbar.jsx): the navbar stays at the top of the window at all widths
+// (data-sticky="all") or on mobile screens only ("mobile"). It keeps its place in the page, so that
+// the content does not move when it sticks, and source/js/main.js opens its folded menu over the
+// page. Anchors and table of contents entries scroll below it.
+navbar-sticky($sticky)
+    .navbar-main[data-sticky={$sticky}]
+        position: -webkit-sticky
+        position: sticky
+        top: 0
+        // Above the content, under the table of contents, its mask (z-index: 99) and the search
+        // box (z-index: 100), which come later in the page.
+        z-index: 99
+
+        // An open folded menu taller than the window scrolls instead of going past its bottom.
+        &.is-open
+            max-height: 100vh
+            max-height: 100dvh
+            overflow-y: auto
+
+    // The anchors of the page scroll below it. Not a scroll padding of the page, which would also
+    // cover the navbar: Chrome would then scroll the page each time an element of the navbar gets
+    // the focus (source/js/main.js keeps the focused elements of the page out from under it).
+    // !important overrides the scroll margin that the table of contents (toc.js) sets on the
+    // headings, which it keeps.
+    .navbar-main[data-sticky={$sticky}] ~ * [id]
+        scroll-margin-top: unquote('calc(var(--navbar-height) + 1em) !important')
+
++mobile()
+    navbar-sticky('"mobile"')
+
+navbar-sticky('"all"')
+
++tablet()
+    // Above the sticky columns (z-index: 99) that scroll past it when taller than the window.
+    .navbar-main[data-sticky="all"]
+        z-index: 100
+
+    // The sticky columns stick below it (include/style/responsive.styl).
+    .navbar-main[data-sticky="all"] ~ .section
+        .is-sticky
+            top: calc(var(--navbar-height) + 1.5rem)
+
+        .column-main, .column-left, .column-right, .column-right-shadow
+            &.is-sticky
+                top: calc(var(--navbar-height) + .75rem)
+
 .navbar-logo
     img
         max-height: $logo-height

@@ -50,7 +50,7 @@ hexo server
 <td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="响应式布局">
 <p><b>响应式布局</b><br>
-一到三栏布局，导航栏支持子菜单，放不下时自动折叠成菜单按钮，手机端也能打开文章目录。</p>
+一到三栏布局，导航栏支持子菜单，放不下时自动折叠成菜单按钮，还可以固定在窗口顶部（<code>navbar.sticky</code>），手机端也能打开文章目录。</p>
 </td>
 </tr>
 <tr>
