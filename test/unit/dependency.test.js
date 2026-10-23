@@ -181,8 +181,8 @@ describe('include/dependency (package dependency check)', () => {
             return capture(() => checkDependencies({}));
         };
 
-        it('accepts 4.2.1 and later 4.x', () => {
-            for (const version of ['4.2.1', '4.3.1']) {
+        it('accepts 4.2.2 and later 4.x', () => {
+            for (const version of ['4.2.2', '4.3.1']) {
                 const { exitCode, output } = withComponent(version);
                 assert.equal(exitCode, null, output);
             }
@@ -192,20 +192,21 @@ describe('include/dependency (package dependency check)', () => {
         it('rejects 3.x with the version it requires and the command to install it', () => {
             const { exitCode, output } = withComponent('3.1.2');
             assert.equal(exitCode, -1);
-            assert.match(output, /hexo-component-inferno.*\(.*3\.1\.2.*\) does not satisfy the required version \(.*\^4\.2\.1.*\)/);
-            assert.match(output, /npm install --save hexo-component-inferno@\^4\.2\.1/);
-            assert.match(output, /yarn add hexo-component-inferno@\^4\.2\.1/);
+            assert.match(output, /hexo-component-inferno.*\(.*3\.1\.2.*\) does not satisfy the required version \(.*\^4\.2\.2.*\)/);
+            assert.match(output, /npm install --save hexo-component-inferno@\^4\.2\.2/);
+            assert.match(output, /yarn add hexo-component-inferno@\^4\.2\.2/);
         });
 
         // 4.0.0 has no Artalk, Beaudar or Cusdis comments, waline_pageview plugin or cdn_overrides,
-        // 4.1.0 still writes the invalid og:type "blog" into the generated configuration, and 4.2.0
-        // rejects the empty widget options of the generated configuration.
-        it('rejects 4.0.0, 4.1.0 and 4.2.0', () => {
-            for (const version of ['4.0.0', '4.1.0', '4.2.0']) {
+        // 4.1.0 still writes the invalid og:type "blog" into the generated configuration, 4.2.0
+        // rejects the empty widget options of the generated configuration, and 4.2.1 does not load
+        // the post thumbnails lazily.
+        it('rejects 4.0.0, 4.1.0, 4.2.0 and 4.2.1', () => {
+            for (const version of ['4.0.0', '4.1.0', '4.2.0', '4.2.1']) {
                 const { exitCode, output } = withComponent(version);
                 assert.equal(exitCode, -1);
                 const escaped = version.replace(/\./g, '\\.');
-                assert.match(output, new RegExp(`\\(.*${escaped}.*\\) does not satisfy the required version \\(.*\\^4\\.2\\.1.*\\)`));
+                assert.match(output, new RegExp(`\\(.*${escaped}.*\\) does not satisfy the required version \\(.*\\^4\\.2\\.2.*\\)`));
             }
         });
     });
