@@ -276,6 +276,16 @@ navbar:
 
 这种格式适用于`navbar.links`、`footer.links`、`article.licenses`以及个人信息挂件的`social_links`，但不适用于`navbar.menu`中的菜单项，菜单项始终显示为文字。
 
+导航栏默认会随页面一起滚走。
+如要让它固定在窗口顶部，请将`navbar`部分的`sticky`设置为`true`；设置为`mobile`则只在宽度小于769px的屏幕（如手机）上固定。
+固定后，指向标题的链接和目录中的条目会把标题滚动到导航栏的正下方。
+
+{% codeblock _config.icarus.yml lang:yaml %}
+navbar:
+    # 导航栏是否固定在窗口顶部：true、mobile或false
+    sticky: mobile
+{% endcodeblock %}
+
 ### 页脚
 
 `footer`部分定义了页脚右侧的链接。
@@ -315,6 +325,9 @@ footer:
 如要隐藏复制代码按钮，将`clipboard`设置为`false`。
 如果你希望折叠或展开所有代码块，将`fold`设置为`"folded"`或`"unfolded"`。
 你也可以将`fold`设置为空来禁止代码块折叠。
+折叠的代码块会隐藏全部代码。
+如要改为显示开头几行并逐渐淡出，请将`fold_preview`设置为要显示的行数。
+点击预览即可展开代码块；代码行数不超过预览行数的代码块会完整显示。
 
 {% codeblock _config.icarus.yml lang:yaml %}
 article:
@@ -328,6 +341,8 @@ article:
         clipboard: true
         # 代码块的默认折叠状态。可以是"", "folded", "unfolded"
         fold: unfolded
+        # 折叠的代码块仍作为预览显示的行数（0表示隐藏全部代码）
+        fold_preview: 0
 {% endcodeblock %}
 
 此外，你可以在Markdown文件中使用下面的语法来折叠单独的代码块：
@@ -400,6 +415,34 @@ article:
 {% codeblock _config.yml lang:yaml %}
 updated_option: empty
 {% endcodeblock %}
+
+### 过时文章提示
+
+Icarus可以在长时间没有更新的文章顶部显示一条提示，让读者知道其中的部分内容可能已经过时。
+如要显示该提示，请将`article`部分`outdated_notice`设置中的`enable`设置为`true`。
+`days`是文章最后一次更新后开始显示提示的天数（默认为365）。
+文章的最后一次更新时间是它的更新时间（参见[文章更新时间](#文章更新时间)），没有更新时间时则为发布时间。
+
+{% codeblock _config.icarus.yml lang:yaml %}
+article:
+    outdated_notice:
+        enable: true
+        days: 365
+{% endcodeblock %}
+
+文章距上次更新的天数由读者的浏览器计算，所以无需重新生成站点，提示也会按时显示。
+提示只显示在文章中，不会显示在页面或首页的文章摘要中。
+如要在某篇文章中关闭提示，请在它的front-matter中将`outdated_notice`设置为`false`：
+
+{% codeblock post.md lang:yaml %}
+title: Icarus快速上手
+outdated_notice: false
+---
+Post content...
+{% endcodeblock %}
+
+文章的更新时间默认是Markdown文件的修改时间，每次检出文件时都会改变（例如由CI服务生成站点时）。
+为了让提示反映文章真实的更新时间，请在文章的front-matter中设置`updated`，或者按上文所述在`_config.yml`中把`updated_option`设置为`empty`。
 
 ### 文章许可协议
 

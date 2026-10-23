@@ -20,6 +20,7 @@ plugins:
     mathjax: true
     outdated_browser: true
     pjax: true
+    prefetch: true
     progressbar: true
 providers:
     cdn: loli
@@ -436,6 +437,32 @@ plugins:
 - 页面切换后，网站统计插件的脚本不会重新运行，以免同一次访问被统计两次。
   <a href="{% post_path zh-CN/Web-Analytics-Plugins %}#Matomo">Matomo</a>、<a href="{% post_path zh-CN/Web-Analytics-Plugins %}#Umami">Umami</a>、不蒜子和<a href="{% post_path zh-CN/Web-Analytics-Plugins %}#Waline浏览量统计">Waline浏览量统计</a>会自行统计访客切换到的页面。
   其他统计服务如果不能自行跟踪页面的变化，可能只会统计访客打开的第一个页面。
+
+
+## 预取
+
+**安装指南**
+
+Icarus可以在访客的鼠标停留在站内链接上时，或在触摸屏上触碰链接时，预先获取链接指向的页面，让访客点击后页面打开得更快。
+若需启用，请在你的主题配置中将`plugins` > `prefetch`设置为`true`。
+`delay`是鼠标需要在链接上停留多少毫秒才预取页面（默认为65），这样鼠标划过一排链接时不会把它们全部预取。
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    prefetch: true
+    # 或者使用其他延迟：
+    # prefetch:
+    #     delay: 100
+{% endcodeblock %}
+
+关于预取需要注意的是：
+
+- 只会预取站内的页面，不会预取指向其他站点的链接、下载链接，以及图片、订阅源等文件。
+  如要排除某个链接，请给它加上`data-no-prefetch`属性。
+- 访客的浏览器开启了省流量模式或处于2G网络时，不会预取任何页面。
+- 开启PJAX时，切换到该页面会使用预取的页面。
+  未开启PJAX时，支持Speculation Rules的浏览器会在跳转时使用预取的页面；
+  其他浏览器则通过`<link rel="prefetch">`预取，只有在你的主机允许缓存该页面时才会使用它。
 
 
 <article class="message message-immersive is-warning">

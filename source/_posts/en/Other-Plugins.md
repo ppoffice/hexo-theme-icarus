@@ -20,6 +20,7 @@ plugins:
     mathjax: true
     outdated_browser: true
     pjax: true
+    prefetch: true
     progressbar: true
 ---
 
@@ -454,6 +455,36 @@ Some notes on PJAX:
   count the pages that visitors switch to by themselves.
   Other analytics services may only count the first page that a visitor opens, unless they track page changes on
   their own.
+
+
+## Prefetch
+
+**Installation Guide**
+
+Icarus can prefetch the page of a link to your site while the pointer of a visitor rests on it, or as soon as
+they touch it on a touch screen, so that the page opens faster when they click it.
+To enable it, set `plugins` > `prefetch` to `true` in your theme configurations.
+`delay` is how long, in milliseconds, the pointer has to rest on a link before its page is prefetched (65 by
+default), so that moving the pointer across links does not prefetch all of them.
+
+{% codeblock _config.icarus.yml lang:yaml %}
+plugins:
+    prefetch: true
+    # Or, with another delay:
+    # prefetch:
+    #     delay: 100
+{% endcodeblock %}
+
+Some notes on prefetching:
+
+- Only the pages of your site are prefetched: not links to other sites, downloads, or files such as images
+  and feeds.
+  To leave a link out, add the `data-no-prefetch` attribute to it.
+- Nothing is prefetched when the browser of the visitor asks to save data, or on a 2G connection.
+- With PJAX, the switch to the page uses the prefetched page.
+  Without PJAX, browsers that support speculation rules use it for the navigation.
+  Other browsers prefetch it with `<link rel="prefetch">`, which they only use if your host allows the page to be
+  cached.
 
 
 <article class="message message-immersive is-warning">
