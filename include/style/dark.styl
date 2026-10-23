@@ -289,6 +289,11 @@ dark-colors()
                 color: $dark-text
                 border-color: $color
 
+    // $dark is as dark as the background: stand out from it with a lighter border than the
+    // default message block, as $dark is darker than the default border in the light stylesheet
+    .message.is-dark .message-body
+        border-color: lighten($dark-border-strong, 15%)
+
     .tabs
         a
             color: $dark-text
