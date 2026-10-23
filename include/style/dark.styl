@@ -305,6 +305,25 @@ dark-colors()
             color: $dark-link
             border-bottom-color: $dark-link
 
+        // The active boxed tab takes the background of the content under it, as it does in the
+        // light stylesheet
+        &.is-boxed
+            a:hover
+                background-color: $dark-surface-raised
+                border-bottom-color: $dark-border
+
+            li.is-active a
+                background-color: transparent
+                border-color: $dark-border-strong
+
+        &.is-toggle
+            a
+                border-color: $dark-border-strong
+
+                &:hover
+                    background-color: $dark-surface-raised
+                    border-color: lighten($dark-border-strong, 15%)
+
     .breadcrumb
         a
             color: $dark-link
