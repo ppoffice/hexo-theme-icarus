@@ -87,6 +87,14 @@ PJAX 无刷新加载页面，支持键盘操作和屏幕阅读器，内置 17 �
 
 大部分插件由 [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno) 提供。
 代码块可以使用 [highlight.js](https://highlightjs.org/) 的任意主题，暗色页面还可以单独指定一个。
+代码块可以默认折叠，或在标题后加上 `>folded` 单独折叠；折叠后还可以保留前几行作为渐隐的预览，点击预览即可展开：
+
+```yaml
+article:
+    highlight:
+        fold: unfolded      # "folded"、"unfolded"，或 "" 关闭折叠
+        fold_preview: 5     # 预览的行数；0（默认）则完全隐藏折叠的代码块
+```
 
 </details>
 

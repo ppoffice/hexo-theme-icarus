@@ -141,10 +141,18 @@ describe('layout/layout (page skeleton)', () => {
         it('embeds the code block settings and translations for main.js', async () => {
             const { $ } = await renderLayout({ lang: 'zh-CN' }, { article: { highlight: { clipboard: false, fold: 'folded' } } });
             assert.deepEqual(embeddedSettings($), {
-                article: { highlight: { clipboard: false, fold: 'folded' } },
+                article: { highlight: { clipboard: false, fold: 'folded', fold_preview: 0 } },
                 i18n: { copy: '复制', copied: '已复制！' }
             });
             assert.equal($('script[src*="clipboard"]').length, 0, 'clipboard.js is not loaded when disabled');
+        });
+
+        it('embeds the number of lines of the folded code block previews, or 0 for none', async () => {
+            const preview = async fold_preview => embeddedSettings((await renderLayout({}, { article: { highlight: { fold_preview } } })).$).article.highlight.fold_preview;
+            assert.equal(await preview(5), 5);
+            for (const value of [undefined, null, 0, -3, 2.5, '5']) {
+                assert.equal(await preview(value), 0, JSON.stringify(value));
+            }
         });
 
         it('cannot break out of the settings <script> through configured values', async () => {

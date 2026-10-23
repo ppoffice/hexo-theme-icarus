@@ -22,6 +22,40 @@ function commentPosts(posts) {
     }));
 }
 
+/**
+ * A post with code blocks to fold with a preview of their first lines (article.highlight.fold_preview):
+ * a long block marked >folded, a long block, and a short block that fits in its preview.
+ */
+function foldPreviewPost() {
+    const lines = (name, count) => Array.from({ length: count }, (_, i) => `const ${name}${i + 1} = ${i + 1};`);
+    return {
+        'source/_posts/fold-preview.md': [
+            '---',
+            'title: Fold Preview',
+            'date: 2024-06-01 10:00:00',
+            '---',
+            'A long folded code block:',
+            '',
+            '```js Long folded >folded',
+            ...lines('folded', 8),
+            '```',
+            '',
+            'A long code block:',
+            '',
+            '```js Long unfolded',
+            ...lines('unfolded', 8),
+            '```',
+            '',
+            'A short code block:',
+            '',
+            '```js Short >folded',
+            ...lines('short', 2),
+            '```',
+            ''
+        ].join('\n')
+    };
+}
+
 // The fixture has 2 top-level categories, 5 tags and 9 months of posts.
 const AMOUNT_WIDGETS = [
     { position: 'left', type: 'categories', amount: 1 },
@@ -143,6 +177,23 @@ module.exports = {
 
     'pjax': {
         theme: { plugins: { pjax: true } }
+    },
+
+    // Folded code blocks with a preview of their first lines, navigated with PJAX, and in the dark
+    // appearance or the cyberpunk variant.
+    'fold-preview': {
+        theme: { article: { highlight: { fold_preview: 3 } }, plugins: { pjax: true } },
+        files: foldPreviewPost()
+    },
+
+    'fold-preview-dark': {
+        theme: { appearance: 'dark', article: { highlight: { fold_preview: 3 } } },
+        files: foldPreviewPost()
+    },
+
+    'fold-preview-cyberpunk': {
+        theme: { variant: 'cyberpunk', article: { highlight: { fold_preview: 3 } } },
+        files: foldPreviewPost()
     },
 
     // URLs relative to each page (`../../css/default.css`), which differ between pages at different

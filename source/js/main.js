@@ -315,25 +315,43 @@
         }
 
         if (fold) {
-            $('figure.highlight').each(function() {
-                $(this).addClass('foldable'); // add 'foldable' class as long as fold is enabled
+            // With a preview, a folded block keeps its first lines, fading out, instead of hiding all of them.
+            const preview = Math.max(0, parseInt(config.article.highlight.fold_preview, 10) || 0);
 
+            $('figure.highlight').each(function() {
+                let folded = fold === 'folded';
                 if ($(this).find('figcaption').find('span').length > 0) {
                     const span = $(this).find('figcaption').find('span');
                     if (span[0].innerText.indexOf('>folded') > -1) {
                         span[0].innerText = span[0].innerText.replace('>folded', '');
-                        $(this).find('figcaption div.level-left').prepend(createFoldButton('folded'));
-                        toggleFold(this, true);
-                        return;
+                        folded = true;
                     }
                 }
-                $(this).find('figcaption div.level-left').prepend(createFoldButton(fold));
-                toggleFold(this, fold === 'folded');
+
+                if (preview) {
+                    // A block that fits in its preview has nothing to fold.
+                    if ($(this).find('.code .line').length <= preview) {
+                        return;
+                    }
+                    $(this).addClass('fold-preview').css('--fold-preview-lines', preview);
+                }
+
+                $(this).addClass('foldable');
+                $(this).find('figcaption div.level-left').prepend(createFoldButton(folded ? 'folded' : 'unfolded'));
+                toggleFold(this, folded);
             });
 
-            $('figure.highlight figcaption .level-left').click(function() {
+            $('figure.highlight.foldable figcaption .level-left').click(function() {
                 const $code = $(this).closest('figure.highlight');
                 toggleFold($code.eq(0), !$code.hasClass('folded'));
+            });
+
+            // Clicking the faded preview unfolds the block.
+            $('figure.highlight.fold-preview .highlight-body').click(function() {
+                const $code = $(this).closest('figure.highlight');
+                if ($code.hasClass('folded')) {
+                    toggleFold($code.eq(0), false);
+                }
             });
         }
     }

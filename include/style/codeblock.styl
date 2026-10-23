@@ -14,6 +14,17 @@ figure.highlight
         .highlight-body
             height: 0
 
+    // A folded block with a preview (article.highlight.fold_preview) shows its first lines.
+    // They fade out into the background of the block, whatever its theme, through a mask.
+    &.folded.fold-preview
+        .highlight-body
+            height: auto
+            max-height: calc(var(--fold-preview-lines) * 1.5rem + .5em)
+            overflow: hidden
+            cursor: pointer
+            -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 3rem), transparent)
+            mask-image: linear-gradient(to bottom, #000 calc(100% - 3rem), transparent)
+
     .copy
         opacity: .7
         // the copy control is a <button>: reset the native button look

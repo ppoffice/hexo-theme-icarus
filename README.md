@@ -88,6 +88,15 @@ PJAX page loading, keyboard and screen reader support, and translations into 17 
 
 Most plugins are provided by [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
 Code blocks can use any [highlight.js](https://highlightjs.org/) theme, with a separate one for dark pages.
+They can be folded, by default or with a `>folded` marker after their caption, and a folded block can keep its first
+lines as a faded-out preview that unfolds it when clicked:
+
+```yaml
+article:
+    highlight:
+        fold: unfolded      # "folded", "unfolded", or "" to disable folding
+        fold_preview: 5     # number of lines of the preview; 0 (the default) hides folded blocks
+```
 
 </details>
 

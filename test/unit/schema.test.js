@@ -123,6 +123,16 @@ describe('include/schema', () => {
             assert.ok(!valid({ article: { highlight: { dark_theme: 42 } } }));
         });
 
+        it('accepts a number of lines for the folded code block previews, or none', () => {
+            for (const fold_preview of [0, 5, null]) {
+                assert.ok(valid({ article: { highlight: { fold_preview } } }), JSON.stringify(fold_preview));
+            }
+            for (const fold_preview of [-1, 2.5, '5', true]) {
+                assert.ok(!valid({ article: { highlight: { fold_preview } } }), JSON.stringify(fold_preview));
+            }
+            assert.equal(yaml.parse(loadSchema().getDefaultValue().toYaml()).article.highlight.fold_preview, 0, 'off by default');
+        });
+
         it('accepts a dark logo, or none', () => {
             assert.ok(valid({ logo_dark: '/img/logo-night.svg' }));
             assert.ok(valid({ logo_dark: null }));

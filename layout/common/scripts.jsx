@@ -8,6 +8,7 @@ module.exports = class extends Component {
         const { article } = config;
 
         let fold = 'unfolded';
+        let foldPreview = 0;
         let clipboard = true;
         if (article && article.highlight) {
             if (typeof article.highlight.clipboard !== 'undefined') {
@@ -16,13 +17,17 @@ module.exports = class extends Component {
             if (typeof article.highlight.fold === 'string') {
                 fold = article.highlight.fold;
             }
+            if (Number.isInteger(article.highlight.fold_preview) && article.highlight.fold_preview > 0) {
+                foldPreview = article.highlight.fold_preview;
+            }
         }
 
         const settings = {
             article: {
                 highlight: {
                     clipboard,
-                    fold
+                    fold,
+                    fold_preview: foldPreview
                 }
             },
             i18n: {

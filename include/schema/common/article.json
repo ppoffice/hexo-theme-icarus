@@ -36,6 +36,13 @@
                     ],
                     "default": "unfolded",
                     "nullable": true
+                },
+                "fold_preview": {
+                    "type": "integer",
+                    "description": "Number of lines that a folded code block still shows, fading out, as a preview that unfolds the block when clicked. 0 hides the code of folded blocks",
+                    "minimum": 0,
+                    "default": 0,
+                    "nullable": true
                 }
             },
             "nullable": true
