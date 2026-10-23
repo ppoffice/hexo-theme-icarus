@@ -28,7 +28,7 @@ open to a sea of improvement possibilities.
 
 Before you continue to the installation of Icarus, take some time to review the 
 [Hexo documentation](https://hexo.io).
-Icarus 6.4 requires Hexo 7.1.1 or a newer version (Hexo 7 or Hexo 8) and Node.js 14 or a newer version.
+Icarus 6.5 requires Hexo 7.1.1 or a newer version (Hexo 7 or Hexo 8) and Node.js 14 or a newer version.
 Note that Hexo 8 itself requires Node.js 20.19 or a newer version.
 To install Icarus, take one of the following approaches:
  
@@ -43,7 +43,7 @@ Alternatively, you can use Git to clone the Icarus repository to the `themes` di
 git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
 {% endcodeblock %}
 
-Replace `<version number>` with the version you want, such as `-b 6.4.1`.
+Replace `<version number>` with the version you want, such as `-b 6.5.0`.
 The version tags of Icarus do not have a `v` prefix.
 You can omit `-b <version number>` to get the latest development version of Icarus.
 Leave `--depth 1` out if you want to download full Git commit history of Icarus as well.
