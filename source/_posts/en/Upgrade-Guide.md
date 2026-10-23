@@ -15,6 +15,58 @@ toc: true
 
 <!-- more -->
 
+### Upgrading from 6.5 to 6.6
+
+1. Upgrade Icarus to 6.6.0.
+   If you installed the theme via NPM, run the following command in your site root directory:
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-theme-icarus@^6.6.0
+   {% endcodeblock %}
+
+   If you installed the theme from source, replace `themes/icarus` with the 6.6.0 source code.
+   Icarus 6.6 has the same dependencies as 6.5.
+
+2. `hexo-component-inferno` 4.2.2 loads the post thumbnails of the archive pages and the recent posts widget
+   only when they are about to be scrolled to.
+   Icarus 6.6 still works with 4.2.1, so update it to get this improvement.
+   If you installed the theme via NPM, run:
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm update hexo-component-inferno
+   {% endcodeblock %}
+
+   If you installed the theme from source, run:
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-component-inferno@^4.2.2
+   {% endcodeblock %}
+
+3. If you keep customized copies of the theme's files, apply the changes of 6.6 to them:
+
+   - `layout/common/navbar.jsx`: the `sticky` option of the navigation bar.
+   - `layout/common/article.jsx`: the outdated post notice, and the loading of the cover images.
+   - `layout/index.jsx`: only the first cover image of an index page is loaded right away.
+   - `layout/common/head.jsx`: the web fonts are requested with `display=swap`, and the page connects in advance
+     to the origins of the icon and web font files.
+   - `layout/common/scripts.jsx`: the preview of folded code blocks.
+   - `source/js/main.js` and `source/js/pjax.js`: the outdated post notice, the preview of folded code blocks, the
+     sticky navigation bar, and the prefetching of pages with PJAX.
+
+4. Icarus 6.6 does not change the version of the theme configuration file, which is still `5.1.0`.
+   Its new options are off by default (see {% post_link en/Configuring-Theme %} and
+   {% post_link en/Other-Plugins %}):
+
+   - `navbar.sticky` keeps the navigation bar at the top of the window.
+   - `article.outdated_notice` shows a notice on the posts that have not been updated for a long time.
+   - `article.highlight.fold_preview` shows the first lines of folded code blocks.
+   - `plugins.prefetch` prefetches the pages that visitors are about to open.
+
+5. Run `hexo clean` and generate your site again.
+
+6. Check out the [release notes](https://github.com/ppoffice/hexo-theme-icarus/releases) for the full list of
+   changes and bug fixes.
+
 ### Upgrading from 6.4 to 6.5
 
 1. Upgrade Icarus to 6.5.0.

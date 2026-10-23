@@ -19,6 +19,53 @@ toc: true
 
 <!-- more -->
 
+### 从6.5升级至6.6
+
+1. 将Icarus升级到6.6.0。
+   如果你是通过NPM安装的主题，在站点根目录运行如下命令：
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-theme-icarus@^6.6.0
+   {% endcodeblock %}
+
+   如果你是从源码安装的主题，请用6.6.0的源码替换`themes/icarus`。
+   Icarus 6.6的依赖与6.5相同。
+
+2. `hexo-component-inferno` 4.2.2会等归档页和最新文章挂件中的文章缩略图快要滚动到时才加载它们。
+   Icarus 6.6仍然支持4.2.1，所以请更新它以获得这项改进。
+   如果你是通过NPM安装的主题，运行：
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm update hexo-component-inferno
+   {% endcodeblock %}
+
+   如果你是从源码安装的主题，运行：
+
+   {% codeblock "Shell" lang:shell %}
+   $ npm install --save hexo-component-inferno@^4.2.2
+   {% endcodeblock %}
+
+3. 如果你保留了主题文件的自定义副本，请将6.6的改动应用到这些副本上：
+
+   - `layout/common/navbar.jsx`：导航栏的`sticky`选项。
+   - `layout/common/article.jsx`：过时文章提示，以及封面图片的加载方式。
+   - `layout/index.jsx`：首页等列表页只立即加载第一张封面图片。
+   - `layout/common/head.jsx`：Web字体以`display=swap`请求，页面会提前连接图标和Web字体文件所在的源。
+   - `layout/common/scripts.jsx`：折叠代码块的预览。
+   - `source/js/main.js`和`source/js/pjax.js`：过时文章提示、折叠代码块的预览、固定导航栏，以及开启PJAX时的页面预取。
+
+4. Icarus 6.6没有改动主题配置文件的版本，它仍然是`5.1.0`。
+   新增的选项默认都是关闭的（参见{% post_link zh-CN/Configuring-Theme %}和{% post_link zh-CN/Other-Plugins %}）：
+
+   - `navbar.sticky`：让导航栏固定在窗口顶部。
+   - `article.outdated_notice`：在长时间没有更新的文章上显示提示。
+   - `article.highlight.fold_preview`：显示折叠代码块的开头几行。
+   - `plugins.prefetch`：预取访客即将打开的页面。
+
+5. 运行`hexo clean`并重新生成站点。
+
+6. 查看[发布说明](https://github.com/ppoffice/hexo-theme-icarus/releases)以了解完整的改动和问题修复列表。
+
 ### 从6.4升级至6.5
 
 1. 将Icarus升级到6.5.0。
