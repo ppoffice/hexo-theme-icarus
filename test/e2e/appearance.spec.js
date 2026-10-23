@@ -70,6 +70,24 @@ function logos(page) {
 
 const codeBackground = page => page.locator('figure.highlight').first().evaluate(el => getComputedStyle(el).backgroundColor);
 
+/**
+ * The article licensing block (a .box) is flat in every appearance: no shadow, and set apart from
+ * the card it is in by a lighter background only.
+ */
+async function expectFlatLicensing(page, dark) {
+    const styles = await page.locator('.article-licensing').first().evaluate(el => {
+        const style = element => getComputedStyle(element);
+        return {
+            shadow: style(el).boxShadow,
+            background: style(el).backgroundColor,
+            card: style(el.closest('.card')).backgroundColor
+        };
+    });
+    expect(styles.shadow).toBe('none');
+    expect(styles.background).not.toBe(styles.card);
+    expect(isDark(await colorOf(page, '.article-licensing .licensing-title a'))).toBe(dark);
+}
+
 async function expectReadable(page, selectors) {
     for (const selector of selectors) {
         const elements = await colorsOf(page, selector);
@@ -93,6 +111,11 @@ test.describe('appearance: auto, with a dark system color scheme', () => {
         expect(diagnostics.pageErrors).toEqual([]);
         expect(diagnostics.consoleErrors).toEqual([]);
         expect(diagnostics.failedRequests).toEqual([]);
+    });
+
+    test('the article licensing block is flat, lighter than its card', async ({ page, visit }) => {
+        await visit(POST, { variant: 'appearance-auto' });
+        await expectFlatLicensing(page, true);
     });
 
     test('the navbar and footer show the dark logo, at the size of the logo', async ({ page, visit }) => {
@@ -190,6 +213,11 @@ test.describe('appearance: dark', () => {
                 expect(diagnostics.consoleErrors).toEqual([]);
                 expect(diagnostics.failedRequests).toEqual([]);
             });
+
+            test('the article licensing block is flat, lighter than its card', async ({ page, visit }) => {
+                await visit(POST, { variant: 'appearance-dark' });
+                await expectFlatLicensing(page, true);
+            });
         });
     }
 });
@@ -205,6 +233,11 @@ test.describe('appearance: light (the default)', () => {
         expect(await codeBackground(page)).toBe(ATOM_ONE_LIGHT);
         expect((await logos(page)).map(logo => logo.src)).toEqual(['/img/logo.svg', '/img/logo.svg']);
         expect(await page.evaluate(() => getComputedStyle(document.documentElement).colorScheme)).toBe('normal');
+    });
+
+    test('the article licensing block is flat, darker than its card', async ({ page, visit }) => {
+        await visit(POST);
+        await expectFlatLicensing(page, false);
     });
 });
 
