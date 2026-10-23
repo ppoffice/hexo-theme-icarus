@@ -691,17 +691,6 @@ article.article
         text-shadow: none
         transform: translate(0)
 
-// The same glitch on the other links and buttons when hovered, but the logos and the back to top
-// button, which its own transform moves in and out. The names of the tags and the numbers of the
-// profile glow on their own: they glitch too.
-@media (prefers-reduced-motion: no-preference)
-    a:not(.navbar-logo):not(.footer-logo), button:not(#back-to-top), .button
-        &:hover
-            animation: neon-glitch .45s steps(2, end) 1
-
-    a.tags.has-addons:hover .tag:not(body), .widget .level a:hover .title
-        animation: neon-glitch .45s steps(2, end) 1
-
 article.article .title, article.media .title
     a
         display: inline
@@ -1001,17 +990,24 @@ figure.highlight
         border-color: $neon-cyan
         box-shadow: 0 0 0 1px $neon-cyan, 0 0 12px rgba($neon-cyan, .35)
 
-// Chamfered like the other buttons, then a hexagon when it docks on the neon tube along the top
-// of the footer (source/js/back_to_top.js), instead of a circle. Both shapes have six points, so
-// that one turns into the other.
+// Chamfered like the other buttons, then a regular hexagon when it docks on the neon tube along
+// the top of the footer (source/js/back_to_top.js), instead of a circle. Both shapes have six
+// points, so that one turns into the other. Above the tube (z-index: 1), under the drop-downs
+// and the search box (z-index: 100).
+$back-to-top-height = 40px // its line height and padding, include/style/plugin.styl
+
 #back-to-top
+    z-index: 50
     color: $night
     background: $neon-cyan
     box-shadow: none
     cut-corner(8px)
     transition: .4s ease opacity, .4s ease width, .4s ease transform, .4s ease clip-path, .4s ease -webkit-clip-path, .15s ease background-color
 
+    // Its height stays, so that the script still centers it on the tube: the width (40px from the
+    // script) is 2/√3 of the height, the points of the hexagon on its sides
     &.is-rounded
+        width: round($back-to-top-height / 0.8660254, 2) !important
         border-radius: 0
         clip-path(polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%))
 
