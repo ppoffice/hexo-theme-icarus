@@ -289,10 +289,14 @@ dark-colors()
                 color: $dark-text
                 border-color: $color
 
-    // $dark is as dark as the background: stand out from it with a lighter border than the
-    // default message block, as $dark is darker than the default border in the light stylesheet
-    .message.is-dark .message-body
-        border-color: lighten($dark-border-strong, 15%)
+    // $dark is as dark as the background: stand out from it with a lighter grey than the default
+    // message block, as $dark is darker than the default grey in the light stylesheet
+    .message.is-dark
+        .message-header
+            background-color: lighten($dark-border-strong, 15%)
+
+        .message-body
+            border-color: lighten($dark-border-strong, 15%)
 
     .tabs
         a
@@ -310,15 +314,15 @@ dark-colors()
             color: $dark-link
             border-bottom-color: $dark-link
 
-        // The active boxed tab takes the background of the content under it, as it does in the
-        // light stylesheet
+        // The background of the active boxed tab hides the bottom border of the tabs under it, so
+        // it is opaque and as dark as the card, as it is as white as the card in the light stylesheet
         &.is-boxed
             a:hover
                 background-color: $dark-surface-raised
                 border-bottom-color: $dark-border
 
             li.is-active a
-                background-color: transparent
+                background-color: $dark-surface
                 border-color: $dark-border-strong
 
         &.is-toggle
