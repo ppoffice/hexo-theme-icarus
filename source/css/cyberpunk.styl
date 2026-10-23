@@ -627,11 +627,6 @@ article.article .article-tags
     a.navbar-item.is-active, .navbar-item.has-dropdown .navbar-link.is-active
         neon-text($neon-yellow)
 
-    // The current page in the menu bar: a neon bar under its name
-    &:not(.is-collapsed) .navbar-start
-        & > a.navbar-item.is-active, & > .navbar-item.has-dropdown > .navbar-link.is-active
-            box-shadow: inset 0 -3px 0 $neon-yellow
-
     // Sub-menus: a raised panel with a yellow edge
     &.is-scripted:not(.is-collapsed) .navbar-dropdown
         background-color: $navbar-dropdown-background-color
@@ -725,7 +720,7 @@ article.article .title, article.media .title
             vertical-align: .1em
             neon-text($neon-yellow, .4)
 
-    a:not(.headerlink):not(.button)
+    a:not(.headerlink):not(.button):not(.tabs a)
         text-decoration: underline
         text-decoration-color: rgba($neon-cyan, .4)
         text-underline-offset: .2em
@@ -767,34 +762,70 @@ article.article .title, article.media .title
             &:hover
                 background-color: rgba($neon-cyan, .04)
 
-// {% message %} tags: a dark panel lit in its color
-.message
-    background-color: $night-raised
+// {% message %} tags: a HUD readout, a dark panel with an edge and a title in its color instead of
+// a bright header, chamfered at the bottom right. The neutral colors (dark, light...) are greyish.
+message-colors(color)
+    background-color: rgba(color, .05)
 
     .message-header
-        font-family: $family-code
-        letter-spacing: .05em
-        text-transform: uppercase
+        color: color
+        background-color: rgba(color, .12)
+        border-left-color: color
+        border-bottom-color: rgba(color, .3)
 
     .message-body
         color: $text
-        border-color: $night-line
+        border-color: color
+
+.message
+    cut-corner-bottom-right(10px)
+    message-colors($grey-light)
+
+    .message-header
+        justify-content: flex-start
+        padding: .6em 1em
+        font-family: $family-code
+        font-size: .85em
+        font-weight: 600
+        letter-spacing: .1em
+        text-transform: uppercase
+        border-left: 3px solid
+        border-bottom: 1px solid
+        border-radius: 0
+
+        &:before
+            content: '//'
+            margin-right: .6em
+            opacity: .6
+
+    .message-header + .message-body
+        border-top-width: 0
+
+    .message-body
+        border-width: 0 0 0 3px
+        border-radius: 0
 
     for $name, $pair in $colors
         $color = $pair['1']
-        $color-invert = $pair['2']
 
         &.is-{$name}
-            background-color: rgba($color, .07)
-            box-shadow: 0 0 20px rgba($color, .08)
+            if $name in ('dark' 'black')
+                message-colors($night-text-muted)
+            else if $name in ('white' 'light' 'grey-lightest')
+                message-colors($grey-light)
+            else
+                message-colors($color)
 
-            .message-header
-                color: $color-invert
-                background-color: $color
+// Messages across the whole width of a post, such as the links to its translations: their edge
+// too (include/style/article.styl removes the border of their body)
+article.article .content .message.message-immersive
+    clip-path: none
+    -webkit-clip-path: none
 
-            .message-body
-                color: $text
-                border-color: $color
+    for $name, $pair in $colors
+        if not ($name in ('white' 'black' 'light' 'dark' 'grey-lightest'))
+            &.is-{$name} .message-body
+                border-left: 3px solid $pair['1']
 
 .tabs
     a
@@ -811,6 +842,30 @@ article.article .title, article.media .title
     li.is-active a
         neon-text($neon-yellow, .6)
         border-bottom-color: $neon-yellow
+
+    &.is-boxed
+        a:hover
+            background-color: rgba($neon-cyan, .06)
+
+        li.is-active a
+            background-color: $night-panel
+            border-color: rgba($neon-cyan, .4)
+            border-bottom-color: transparent !important
+
+    // The current tab of a toggle: cyan, its name dark, without the glow
+    &.is-toggle
+        a
+            border-color: $night-line
+
+            &:hover
+                background-color: rgba($neon-cyan, .08)
+                border-color: rgba($neon-cyan, .5)
+
+        li.is-active a
+            color: $night
+            text-shadow: none
+            background-color: $neon-cyan
+            border-color: $neon-cyan
 
 .article-licensing
     background: $night-raised
