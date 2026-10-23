@@ -39,6 +39,8 @@ article:
     word_count:
         one: 'Sekitar %d kata'
         other: 'Sekitar %d kata'
+    outdated_on: 'Artikel ini terakhir diperbarui pada %s. Sebagian isinya mungkin sudah usang.'
+    outdated_ago: 'Artikel ini terakhir diperbarui %s. Sebagian isinya mungkin sudah usang.'
     licensing:
         author: 'Author'
         created_at: 'Posted on'

@@ -49,6 +49,19 @@ describe('layout/common/navbar', () => {
         });
     });
 
+    describe('sticky', () => {
+        for (const [sticky, expected] of [[undefined, undefined], [false, undefined], [true, 'all'], ['mobile', 'mobile']]) {
+            it(`marks the navbar ${expected ? `data-sticky="${expected}"` : 'not sticky'} for ${JSON.stringify(sticky)}`, async () => {
+                const config = fixtureConfig();
+                if (typeof sticky !== 'undefined') {
+                    config.navbar.sticky = sticky;
+                }
+                const { $ } = await render('common/navbar', { config, page: makePage() });
+                assert.equal($('nav.navbar-main').attr('data-sticky'), expected);
+            });
+        }
+    });
+
     it('renders menu items in configuration order', async () => {
         const { $ } = await renderNavbar();
         const items = $('.navbar-start > a.navbar-item').map((i, el) => [[$(el).text(), $(el).attr('href')]]).get();

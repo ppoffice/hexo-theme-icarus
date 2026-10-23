@@ -39,6 +39,8 @@ article:
     word_count:
         one: 'Environ %d mot'
         other: 'Environ %d mots'
+    outdated_on: 'Cet article a été mis à jour pour la dernière fois le %s. Une partie de son contenu peut être obsolète.'
+    outdated_ago: 'Cet article a été mis à jour pour la dernière fois %s. Une partie de son contenu peut être obsolète.'
     licensing:
         author: 'Auteur'
         created_at: 'Posté le'

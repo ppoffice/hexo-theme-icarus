@@ -76,6 +76,28 @@ describe('source/css (code block copy button)', function() {
     });
 });
 
+describe('source/css (sticky navbar)', function() {
+    this.timeout(60000);
+
+    ['default', 'cyberpunk'].forEach(variant => {
+        it(`makes the ${variant} navbar sticky at all widths, or on mobile screens only`, async () => {
+            const css = await compile(path.join(REPO_ROOT, `source/css/${variant}.styl`), stylusFilter());
+            const sticky = selector => new RegExp(`\\.navbar-main\\[data-sticky="${selector}"\\] \\{\\s*position: -webkit-sticky;\\s*position: sticky;\\s*top: 0;`);
+            const mobile = css.match(/@media screen and \(max-width: 768px\) \{(?:[^{}]*\{[^{}]*\})*\s*\}/g) || [];
+            assert.ok(mobile.some(block => sticky('mobile').test(block)), 'the mobile-only navbar sticks inside the mobile media query');
+            assert.doesNotMatch(mobile.reduce((rest, block) => rest.replace(block, ''), css), sticky('mobile'),
+                'the mobile-only navbar does not stick on wider screens');
+            assert.match(mobile.reduce((rest, block) => rest.replace(block, ''), css), sticky('all'));
+            // The anchors scroll below it, until source/js/main.js measures it: one row, or two below the navbar breakpoint.
+            assert.match(css, /:root \{\s*--navbar-height: 4\.25rem;/);
+            assert.match(css, /@media screen and \(max-width: 1087px\) \{\s*:root \{\s*--navbar-height: 8\.25rem;/);
+            assert.match(css, /\.navbar-main\[data-sticky="all"\] ~ \* \[id\] \{\s*scroll-margin-top: calc\(var\(--navbar-height\) \+ 1em\) !important;/);
+            // Not a scroll padding of the page, which would scroll the page to the focused elements of the navbar.
+            assert.doesNotMatch(css, /scroll-padding/);
+        });
+    });
+});
+
 describe('source/css (appearance)', function() {
     this.timeout(120000);
     const defaultStyl = path.join(REPO_ROOT, 'source/css/default.styl');

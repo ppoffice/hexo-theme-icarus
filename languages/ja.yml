@@ -39,6 +39,8 @@ article:
     word_count:
         one: '約%d語'
         other: '約%d語'
+    outdated_on: 'この記事は%sに最終更新されました。内容が古くなっている可能性があります。'
+    outdated_ago: 'この記事は%sに最終更新されました。内容が古くなっている可能性があります。'
     licensing:
         author: 'Author'
         created_at: 'Posted on'

@@ -4,6 +4,12 @@
     "description": "Page top navigation bar configurations",
     "type": "object",
     "properties": {
+        "sticky": {
+            "type": ["boolean", "string"],
+            "description": "Whether the navigation bar stays at the top of the window when the page scrolls. true for all screen widths, \"mobile\" for screens narrower than 769px only, false to scroll it away with the page",
+            "enum": [false, true, "mobile"],
+            "default": false
+        },
         "menu": {
             "type": "object",
             "description": "Navigation menu items",

@@ -39,6 +39,8 @@ article:
     word_count:
         one: 'About %d word'
         other: 'About %d words'
+    outdated_on: 'This post was last updated on %s. Some of its content may be outdated.'
+    outdated_ago: 'This post was last updated %s. Some of its content may be outdated.'
     licensing:
         author: 'Author'
         created_at: 'Posted on'

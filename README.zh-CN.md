@@ -50,7 +50,7 @@ hexo server
 <td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="响应式布局">
 <p><b>响应式布局</b><br>
-一到三栏布局，导航栏支持子菜单，放不下时自动折叠成菜单按钮，手机端也能打开文章目录。</p>
+一到三栏布局，导航栏支持子菜单，放不下时自动折叠成菜单按钮，还可以固定在窗口顶部（<code>navbar.sticky</code>），手机端也能打开文章目录。</p>
 </td>
 </tr>
 <tr>
@@ -83,10 +83,18 @@ PJAX 无刷新加载页面，支持键盘操作和屏幕阅读器，内置 17 �
 | [打赏](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/) | 爱发电、支付宝、Buy Me a Coffee、Patreon、PayPal、微信 |
 | [统计](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | 百度统计、Bing 网站管理员工具、不蒜子、CNZZ、Google Analytics、Hotjar、Matomo、StatCounter、Twitter 转化跟踪、Umami、Waline 阅读量 |
 | [小组件](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | 个人信息、文章目录、最新文章、归档、分类、标签、链接、Google AdSense、follow.it、Google FeedBurner（已弃用） |
-| [其他](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | 回到顶部、Cookie 提示、图片画廊（lightGallery + Justified Gallery）、KaTeX、MathJax、旧浏览器提示、页面加载动画、进度条 |
+| [其他](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | 回到顶部、Cookie 提示、图片画廊（lightGallery + Justified Gallery）、KaTeX、MathJax、旧浏览器提示、页面加载动画、悬停预加载页面、进度条 |
 
 大部分插件由 [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno) 提供。
 代码块可以使用 [highlight.js](https://highlightjs.org/) 的任意主题，暗色页面还可以单独指定一个。
+代码块可以默认折叠，或在标题后加上 `>folded` 单独折叠；折叠后还可以保留前几行作为渐隐的预览，点击预览即可展开：
+
+```yaml
+article:
+    highlight:
+        fold: unfolded      # "folded"、"unfolded"，或 "" 关闭折叠
+        fold_preview: 5     # 预览的行数；0（默认）则完全隐藏折叠的代码块
+```
 
 </details>
 

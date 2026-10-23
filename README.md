@@ -51,7 +51,7 @@ A second look of neon-lit nights, HUD frames and scanlines, one line away.</p>
 <td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="Responsive layout">
 <p><b>Responsive</b><br>
-One to three columns, navbar sub-menus that fold into a menu button, and a mobile table of contents.</p>
+One to three columns, navbar sub-menus that fold into a menu button, an optional sticky navbar (<code>navbar.sticky</code>), and a mobile table of contents.</p>
 </td>
 </tr>
 <tr>
@@ -84,10 +84,19 @@ PJAX page loading, keyboard and screen reader support, and translations into 17 
 | [Donate](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/) | Afdian, Alipay, Buy Me a Coffee, Patreon, PayPal, WeChat Pay |
 | [Analytics](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | Baidu Statistics, Bing Webmaster, BuSuanZi, CNZZ, Google Analytics, Hotjar, Matomo, StatCounter, Twitter Conversion Tracking, Umami, Waline page views |
 | [Widgets](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | Profile, Table of Contents, Recent Posts, Archives, Categories, Tags, Links, Google AdSense, follow.it, Google FeedBurner (deprecated) |
-| [Others](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax, Outdated Browser, Page Loading Animations, Progress Bar |
+| [Others](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax, Outdated Browser, Page Loading Animations, Page Prefetching on Hover, Progress Bar |
 
 Most plugins are provided by [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
 Code blocks can use any [highlight.js](https://highlightjs.org/) theme, with a separate one for dark pages.
+They can be folded, by default or with a `>folded` marker after their caption, and a folded block can keep its first
+lines as a faded-out preview that unfolds it when clicked:
+
+```yaml
+article:
+    highlight:
+        fold: unfolded      # "folded", "unfolded", or "" to disable folding
+        fold_preview: 5     # number of lines of the preview; 0 (the default) hides folded blocks
+```
 
 </details>
 

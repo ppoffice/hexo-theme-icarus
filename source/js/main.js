@@ -57,6 +57,29 @@
         });
     }
 
+    // The notice of an outdated post: shown from the number of days since its last update in the
+    // browser of the reader, as the static page may be much older than its build says. The date
+    // becomes "N days ago" in the template of the notice ("%s").
+    $('.article-outdated').each(function() {
+        const $time = $(this).find('time');
+        const date = new Date($time.attr('datetime'));
+        const days = Number($(this).attr('data-outdated-days'));
+        if (isNaN(date.getTime()) || !(days > 0)) {
+            return;
+        }
+        const age = Math.floor((Date.now() - date.getTime()) / 86400000);
+        this.hidden = age < days;
+        const $text = $(this).find('.article-outdated-text');
+        const template = $text.attr('data-template');
+        if (!this.hidden && template && template.indexOf('%s') > -1
+            && typeof Intl !== 'undefined' && typeof Intl.RelativeTimeFormat === 'function') {
+            const parts = template.split('%s');
+            const format = new Intl.RelativeTimeFormat(getRelativeTimeLocale(), { numeric: 'always' });
+            $text.empty().append(document.createTextNode(parts[0]), $time.text(format.format(-age, 'day')),
+                document.createTextNode(parts.slice(1).join('%s')));
+        }
+    });
+
     $('.article > .content > table').each(function() {
         if ($(this).width() > $(this).parent().width()) {
             $(this).wrap('<div class="table-overflow"></div>');
@@ -76,6 +99,7 @@
     function closeNavbarDropdowns() {
         $navbar.find('.navbar-link[aria-expanded="true"]').attr('aria-expanded', 'false');
         $navbar.removeClass('is-dropdown-open');
+        updateNavbarHeight();
     }
 
     // Keep a drop-down within the window: shift it to the left when it overflows on the right.
@@ -106,16 +130,40 @@
         alignNavbarDropdown($group);
         $link.attr('aria-expanded', 'true');
         $navbar.addClass('is-dropdown-open');
+        updateNavbarHeight();
     }
 
     function setNavbarMenuOpen(open) {
         $navbar.toggleClass('is-open', open);
         $navbarToggle.attr('aria-expanded', String(open));
+        updateNavbarHeight();
     }
 
     // Whether the navbar content is wider than the navbar (1px of tolerance for subpixel widths).
     function navbarOverflows() {
         return $navbar.find('.navbar-container, .navbar-menu').get().some(el => el.scrollWidth > el.clientWidth + 1);
+    }
+
+    // A sticky navbar (navbar.sticky, include/style/navbar.styl) opens its folded menu over the page,
+    // like the drop-downs, instead of pushing the content under it down: a negative margin keeps the
+    // space it takes in the page at its closed height. That height (--navbar-height) is the offset
+    // of the anchors of the page and of the sticky columns.
+    let navbarClosedHeight = null;
+    function updateNavbarHeight() {
+        const navbar = $navbar[0];
+        if (!navbar) {
+            return;
+        }
+        const height = navbar.getBoundingClientRect().height;
+        if (!$navbar.hasClass('is-open') || navbarClosedHeight === null) {
+            navbar.style.marginBottom = '';
+            navbarClosedHeight = height;
+            document.documentElement.style.setProperty('--navbar-height', height + 'px');
+        } else if (getComputedStyle(navbar).position === 'sticky') {
+            navbar.style.marginBottom = (navbarClosedHeight - height) + 'px';
+        } else {
+            navbar.style.marginBottom = '';
+        }
     }
 
     function fitNavbar() {
@@ -139,6 +187,7 @@
             closeNavbarDropdowns();
         }
         $navbar.find('.navbar-link[aria-expanded="true"]').each((i, link) => alignNavbarDropdown($(link).closest('.has-dropdown')));
+        updateNavbarHeight();
     }
 
     if ($navbar.length) {
@@ -189,6 +238,28 @@
                 && ($target.closest('.navbar-start a').length || !$target.closest('.navbar-start, .navbar-toggle').length)) {
                 setNavbarMenuOpen(false);
             }
+        }).on('focusin.icarus-navbar', event => {
+            // Scroll an element of the page focused with the keyboard out from under a sticky navbar,
+            // once the browser has scrolled it into the window.
+            const target = event.target;
+            const navbar = $navbar[0];
+            let keyboard = false;
+            try {
+                keyboard = target.matches(':focus-visible');
+            } catch (e) {
+                // :focus-visible is not supported
+            }
+            if (!keyboard || $.contains(navbar, target) || $(target).closest('#toc, .searchbox').length
+                || getComputedStyle(navbar).position !== 'sticky') {
+                return;
+            }
+            requestAnimationFrame(() => {
+                const bottom = navbar.getBoundingClientRect().bottom;
+                const top = target.getBoundingClientRect().top;
+                if (document.activeElement === target && top < bottom) {
+                    window.scrollBy(0, top - bottom - parseFloat(getComputedStyle(target).fontSize));
+                }
+            });
         }).on('keydown.icarus-navbar', event => {
             if (event.key !== 'Escape') {
                 return;
@@ -197,7 +268,8 @@
             // Give the focus back to the button, unless the reader has moved it elsewhere.
             const refocus = $button => {
                 if (!focused || focused === document.body || $.contains($navbar[0], focused)) {
-                    $button.trigger('focus');
+                    // A sticky navbar is in the window, which Chrome would still scroll to it.
+                    $button[0].focus({ preventScroll: getComputedStyle($navbar[0]).position === 'sticky' });
                 }
             };
             const $open = $navbar.find('.navbar-link[aria-expanded="true"]');
@@ -315,25 +387,43 @@
         }
 
         if (fold) {
-            $('figure.highlight').each(function() {
-                $(this).addClass('foldable'); // add 'foldable' class as long as fold is enabled
+            // With a preview, a folded block keeps its first lines, fading out, instead of hiding all of them.
+            const preview = Math.max(0, parseInt(config.article.highlight.fold_preview, 10) || 0);
 
+            $('figure.highlight').each(function() {
+                let folded = fold === 'folded';
                 if ($(this).find('figcaption').find('span').length > 0) {
                     const span = $(this).find('figcaption').find('span');
                     if (span[0].innerText.indexOf('>folded') > -1) {
                         span[0].innerText = span[0].innerText.replace('>folded', '');
-                        $(this).find('figcaption div.level-left').prepend(createFoldButton('folded'));
-                        toggleFold(this, true);
-                        return;
+                        folded = true;
                     }
                 }
-                $(this).find('figcaption div.level-left').prepend(createFoldButton(fold));
-                toggleFold(this, fold === 'folded');
+
+                if (preview) {
+                    // A block that fits in its preview has nothing to fold.
+                    if ($(this).find('.code .line').length <= preview) {
+                        return;
+                    }
+                    $(this).addClass('fold-preview').css('--fold-preview-lines', preview);
+                }
+
+                $(this).addClass('foldable');
+                $(this).find('figcaption div.level-left').prepend(createFoldButton(folded ? 'folded' : 'unfolded'));
+                toggleFold(this, folded);
             });
 
-            $('figure.highlight figcaption .level-left').click(function() {
+            $('figure.highlight.foldable figcaption .level-left').click(function() {
                 const $code = $(this).closest('figure.highlight');
                 toggleFold($code.eq(0), !$code.hasClass('folded'));
+            });
+
+            // Clicking the faded preview unfolds the block.
+            $('figure.highlight.fold-preview .highlight-body').click(function() {
+                const $code = $(this).closest('figure.highlight');
+                if ($code.hasClass('folded')) {
+                    toggleFold($code.eq(0), false);
+                }
             });
         }
     }

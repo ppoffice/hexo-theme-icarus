@@ -40,6 +40,8 @@ article:
     word_count:
         one: 'Aproximadamente %d palabra'
         other: 'Aproximadamente %d palabras'
+    outdated_on: 'Este artículo se actualizó por última vez el %s. Parte de su contenido puede estar desactualizado.'
+    outdated_ago: 'Este artículo se actualizó por última vez %s. Parte de su contenido puede estar desactualizado.'
     licensing:
         author: 'Author'
         created_at: 'Posted on'

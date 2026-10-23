@@ -39,6 +39,8 @@ article:
     word_count:
         one: 'Khoảng %d từ'
         other: 'Khoảng %d từ'
+    outdated_on: 'Bài viết này được cập nhật lần cuối vào %s. Một số nội dung có thể đã lỗi thời.'
+    outdated_ago: 'Bài viết này được cập nhật lần cuối %s. Một số nội dung có thể đã lỗi thời.'
     licensing:
         author: 'Author'
         created_at: 'Posted on'
