@@ -2,7 +2,7 @@ const moment = require('moment');
 const { Component, Fragment } = require('inferno');
 const { toMomentLocale } = require('hexo/dist/plugins/helper/date');
 const Paginator = require('hexo-component-inferno/lib/view/misc/paginator');
-const ArticleMedia = require('hexo-component-inferno/lib/view/common/article_media');
+const ArticleMedia = require('./common/article_media');
 
 module.exports = class extends Component {
     render() {
