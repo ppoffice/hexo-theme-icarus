@@ -105,7 +105,7 @@ jsDelivr和UNPKG就采用这种npm形式。
 ### Web字体CDN
 
 你可以传入Google字体镜像站的URL或是与其兼容的网络字体CDN。
-默认变体依赖`Ubuntu`和`Source Code Pro`字体，Cyberpunk变体依赖`Oxanium`和`Roboto Mono`字体，所以确保你使用的CDN提供这些字体。
+默认变体依赖`Ubuntu`和`Source Code Pro`字体，Cyberpunk变体依赖`Oxanium`和`JetBrains Mono`字体，所以确保你使用的CDN提供这些字体。
 自定义的URL模板需包含`type`和`fontname`两个占位符：
 
 {% codeblock "Webfont CDN URL模板" %}

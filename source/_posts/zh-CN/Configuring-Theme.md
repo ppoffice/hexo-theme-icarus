@@ -85,7 +85,7 @@ logo:
     text: My Beautiful Site
 {% endcodeblock %}
 
-当默认变体显示为暗色时（参见[外观](#外观)），logo图片会换成`logo_dark`中设置的图片：
+当默认变体显示为暗色时（参见[外观](#外观)），以及使用Cyberpunk变体时，logo图片会换成`logo_dark`中设置的图片：
 
 {% codeblock _config.icarus.yml lang:yaml %}
 logo: /img/logo.svg

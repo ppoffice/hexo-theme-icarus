@@ -3,9 +3,6 @@ date: 2020-02-01
 tags:
 - Demo
 variant: cyberpunk
-article:
-    highlight:
-        theme: qtcreator-dark
 sidebar:
     left:
         sticky: false
@@ -53,16 +50,16 @@ widgets:
     -
         position: right
         type: tags
-cover: /gallery/covers/CP77-KV-en.jpg
-thumbnail: /gallery/covers/CP77-KV-en.jpg
+cover: /gallery/covers/neon-city.svg
+thumbnail: /gallery/covers/neon-city.svg
 ---
 
-Icarus includes a new variant called Cyberpunk starting from version 3.0.0.
-The theme is inspired by the video game [Cyberpunk 2077](https://www.cyberpunk.net/us/en/) 
-developed by CD PROJEKT RED.
-This variant aims at providing a different Icarus experience to those who like dark-themed
-blogs.
-It should be noted that it uses recent web styling features that are not working correctly  
+Icarus includes a second variant called Cyberpunk, for those who like dark-themed blogs.
+It takes the look of a city at night from cyberpunk fiction: a dark screen lit by neon signs in yellow, cyan,
+and magenta, panels framed like a heads-up display with chamfered corners, scanlines, and a neon grid running
+to the horizon at the bottom of the page.
+The titles of the posts glitch when you hover over them.
+It should be noted that it uses recent web styling features that are not working correctly
 in some legacy browsers, including Internet Explorer and legacy Microsoft Edge.
 
 <!-- more -->
@@ -74,25 +71,30 @@ To enable the Cyberpunk theme, open `_config.icarus.yml` and make the following 
 + variant: cyberpunk
 {% endcodeblock %}
 
-The Cyberpunk variant is always dark, so the `appearance`, `logo_dark`, and `article.highlight.dark_theme`
-settings of the {% post_link demo/Dark-Mode "dark appearance" %} do not apply to it.
+Like other theme settings, the variant can also be set for a single post or page in its front-matter, as this
+post does:
 
-You may also want to change the theme of highlighted code blocks.
-In that case, you can find some dark themes of highlight.js 11.11.1, the version that Icarus uses,
-[here](https://github.com/highlightjs/highlight.js/tree/11.11.1/src/styles).
-Copy the file name, excluding the `.css` extension, and put it in the `article.highlight.theme`
-option in `_config.icarus.yml`.
-For example, if you want to change the theme to `xt256`, make the following change:
-
-{% codeblock _config.icarus.yml lang:diff %}
-# Article related configurations
-article:
-    highlight:
--         theme: atom-one-light
-+         theme: xt256
+{% codeblock Cyberpunk.md lang:yaml %}
+title: Cyberpunk Theme Variant
+variant: cyberpunk
+---
 {% endcodeblock %}
 
-Apart from the color palette, Icarus also used two image resources that are placed on the top 
-navigation bar and bottom page footer from the official Cyberpunk 2077 website.
+The Cyberpunk variant is always dark, so the `appearance` and `article.highlight.dark_theme` settings of
+the {% post_link demo/Dark-Mode "dark appearance" %} do not apply to it.
+Its navigation bar and footer are dark as well, so it shows the dark version of your logo, set in `logo_dark`
+(the theme's own logo switches to `/img/logo-dark.svg` by itself).
+
+Code blocks look like terminal windows, and their code is colored with the neon palette of the variant,
+whatever the theme set in `article.highlight.theme`.
+
+The variant uses the `Oxanium` and `JetBrains Mono` fonts, which are loaded from the web font CDN
+(see {% post_link en/CDN-Providers "CDN Providers" %}).
+
+Its animations, such as the glitch of the titles and the moving grid of the footer, stop for visitors who
+prefer reduced motion in the settings of their system.
+
 If you wish to make further modifications to this theme variant, you can take a look at
 `<icarus_directory>/source/css/cyberpunk.styl`.
+Its colors are defined at the top of the file, such as `$neon-yellow`, `$neon-cyan`, and `$neon-pink` for the neon
+lights, and `$night` for the background.

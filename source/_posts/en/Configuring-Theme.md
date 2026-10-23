@@ -82,8 +82,8 @@ logo:
     text: My Beautiful Site
 {% endcodeblock %}
 
-When the default variant looks dark (see [Appearance](#Appearance)), the logo image is replaced with the image
-set in `logo_dark`:
+When the default variant looks dark (see [Appearance](#Appearance)), and always in the Cyberpunk variant, the
+logo image is replaced with the image set in `logo_dark`:
 
 {% codeblock _config.icarus.yml lang:yaml %}
 logo: /img/logo.svg

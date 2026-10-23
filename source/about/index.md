@@ -45,7 +45,7 @@ Follow each visitor's system setting with <code>appearance: auto</code>, or go d
 <div class="column is-half-tablet is-one-third-widescreen">
 <a class="gallery-item" href="/hexo-theme-icarus/gallery/readme/cyberpunk.png"><img src="/hexo-theme-icarus/gallery/readme/cyberpunk.png" alt="Cyberpunk variant"></a>
 <p><b>Cyberpunk variant</b><br>
-A second look inspired by <a href="https://www.cyberpunk.net">Cyberpunk 2077</a>, one line away.</p>
+A second look of neon-lit nights, HUD frames and scanlines, one line away.</p>
 </div>
 <div class="column is-half-tablet is-one-third-widescreen">
 <a class="gallery-item" href="/hexo-theme-icarus/gallery/readme/responsive.png"><img src="/hexo-theme-icarus/gallery/readme/responsive.png" alt="Responsive layout"></a>

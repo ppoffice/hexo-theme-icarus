@@ -51,8 +51,8 @@ To make your site dark for everyone, use `dark` instead:
 {% endcodeblock %}
 
 Form controls and scrollbars drawn by the browser follow the appearance as well.
-The Cyberpunk variant, which is already dark, ignores this setting, as well as the `dark_theme` and `logo_dark`
-settings described below.
+The Cyberpunk variant, which is already dark, ignores this setting, as well as the `dark_theme` setting
+described below, and always shows the dark logo set in `logo_dark`.
 
 ## Per-Layout and Per-Page Appearance
 

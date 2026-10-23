@@ -110,7 +110,7 @@ convert the package names and file paths to the ones used by CDN.js:
 
 You can pass in the URL of a Google Font mirror or compatible webfont CDN. 
 Icarus depends on the `Ubuntu` and `Source Code Pro` fonts for the default variant, and on the `Oxanium` and
-`Roboto Mono` fonts for the Cyberpunk variant, so make sure your CDN provides those. 
+`JetBrains Mono` fonts for the Cyberpunk variant, so make sure your CDN provides those. 
 The URL template should have two placeholders, `type` and `fontname`:
 
 {% codeblock "Webfont CDN URL Template" %}
