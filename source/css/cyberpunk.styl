@@ -185,26 +185,22 @@ html
     background-color: $night
 
 body
+    // Positioned for the scanlines, and isolated so that the panels drawn behind the elements
+    // (z-index: -1) stay above its background
+    position: relative
+    isolation: isolate
     counter-reset: card
-    background-color: transparent
+    background-color: $night
+    // Neon glows at the top and the bottom of the page, over a faint grid. On <body>, which is as
+    // high as the page (<html> is as high as the screen), and not fixed to the screen: fixed
+    // layers are only drawn over the first screen in full-page captures and prints.
+    background-image: radial-gradient(ellipse 60% 900px at 0 0, rgba($neon-pink, .13), transparent), radial-gradient(ellipse 60% 900px at 100% 100%, rgba($neon-cyan, .1), transparent), linear-gradient(rgba($neon-cyan, .035) 1px, transparent 1px), linear-gradient(90deg, rgba($neon-cyan, .035) 1px, transparent 1px)
+    background-size: auto, auto, 48px 48px, 48px 48px
 
-    // Neon glows on the horizon, over a faint grid, behind the page
-    &:before
-        content: ''
-        position: fixed
-        top: 0
-        left: 0
-        right: 0
-        bottom: 0
-        z-index: -1
-        pointer-events: none
-        background-image: radial-gradient(ellipse 60% 50% at 0 0, rgba($neon-pink, .13), transparent), radial-gradient(ellipse 60% 50% at 100% 100%, rgba($neon-cyan, .1), transparent), linear-gradient(rgba($neon-cyan, .035) 1px, transparent 1px), linear-gradient(90deg, rgba($neon-cyan, .035) 1px, transparent 1px)
-        background-size: auto, auto, 48px 48px, 48px 48px
-
-    // Scanlines over the whole screen, through which everything stays clickable
+    // Scanlines over the whole page, through which everything stays clickable
     &:after
         content: ''
-        position: fixed
+        position: absolute
         top: 0
         left: 0
         right: 0
@@ -412,28 +408,77 @@ article.article .article-more
 
 .tag:not(body)
     font-family: $family-code
-    cut-corner(4px)
+    border: 1px solid rgba($neon-cyan, .25)
 
-.tags
+// Tags, with the number of their posts: one outlined chip, lit up when hovered
+a.tags.has-addons
+    display: inline-flex
+    flex-wrap: nowrap
+    margin-bottom: 0
+    border: 1px solid rgba($neon-cyan, .35)
+    border-left: 2px solid $neon-yellow
+    background: rgba($neon-cyan, .05)
+    transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease
+
+    // (more specific than the colors of the tags widget, include/style/widget.styl)
     .tag:not(body)
-        transition: background-color .15s ease, color .15s ease
+        height: 1.9rem
+        margin: 0
+        padding: 0 .6rem
+        font-size: .8rem
+        border: none
+        border-radius: 0
+        background: transparent
+        transition: color .15s ease
 
-    a.tag:hover, a.tags:hover .tag
+        &:first-child, &:last-child
+            background: transparent
+
+        &:first-child
+            color: $night-text
+
+            &:before
+                content: '#'
+                margin-right: .2em
+                color: $neon-yellow
+
+        &:last-child
+            min-width: 1.9rem
+            padding: 0 .45rem
+            color: $neon-yellow
+            border-left: 1px solid rgba($neon-cyan, .25)
+
+    &:hover
         text-shadow: none
+        border-color: $neon-cyan
+        border-left-color: $neon-yellow
+        background: rgba($neon-cyan, .12)
+        box-shadow: 0 0 12px rgba($neon-cyan, .25)
 
-    &.has-addons
-        .tag:first-child
-            color: $night !important
-            background: $neon-yellow !important
+        .tag:not(body):first-child
+            neon-text($neon-cyan, .6)
 
-        .tag:last-child
-            color: $night !important
-            background: $neon-cyan !important
+.field.is-grouped.is-grouped-multiline > .control:not(:last-child)
+    margin-bottom: .5rem
 
-    a.has-addons:hover
-        .tag:last-child
-            color: $night !important
-            background: $neon-cyan !important
+// The tags of a post, below it
+article.article .article-tags
+    align-items: center
+
+    & > span:first-child
+        color: $neon-yellow
+
+    a
+        margin-bottom: .25rem
+        padding: .1rem .5rem
+        border: 1px solid rgba($neon-cyan, .3)
+        color: $night-text !important
+        transition: border-color .15s ease, color .15s ease, box-shadow .15s ease
+
+        &:hover
+            border-color: $neon-cyan
+            box-shadow: 0 0 10px rgba($neon-cyan, .25)
+            color: $neon-cyan !important
 
 .pagination-previous, .pagination-next, .pagination-link
     cut-corner(8px)
@@ -549,8 +594,6 @@ article.article
         color: $neon-yellow
         opacity: .7
 
-    .article-tags a:hover
-        color: $neon-cyan !important
 
 // A short glitch: the colors split into red and cyan and the title jumps
 @keyframes neon-glitch
