@@ -102,6 +102,17 @@ test.describe('PJAX navigation', () => {
         expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
     });
 
+    // The About page has Bulma columns in its content, like the one of the documentation site.
+    test('navigates to and from a page with columns in its content', async ({ page, diagnostics }) => {
+        await pjaxClick(page, page.locator('.navbar-start a', { hasText: 'About' }));
+        await expect(page).toHaveTitle('About - Icarus Fixture');
+        await expect(page.locator('.column-main .content .column')).toHaveCount(2);
+        await pjaxClick(page, page.locator('.navbar-start a', { hasText: 'Home' }));
+        await expect(page).toHaveTitle('Icarus Fixture');
+        expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+        expect(diagnostics.pageErrors).toEqual([]);
+    });
+
     test('copies code once per click after navigating', async ({ page, context }) => {
         await context.grantPermissions(['clipboard-read', 'clipboard-write']);
         for (let i = 0; i < 2; i++) {

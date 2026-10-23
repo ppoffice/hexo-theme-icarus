@@ -181,7 +181,9 @@
                     '.footer-logo',
                     '.pjax-reload',
                     'head title',
-                    '.columns',
+                    // Not the columns of the content of the page (Bulma), which would make PJAX fail
+                    // and reload the page when their numbers differ.
+                    'body > .section > .container > .columns',
                     '.navbar-start',
                     '.navbar-end',
                     '.searchbox link',
