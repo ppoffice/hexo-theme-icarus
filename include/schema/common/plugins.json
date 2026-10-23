@@ -49,6 +49,9 @@
         "pjax": {
             "$ref": "/plugin/pjax.json"
         },
+        "prefetch": {
+            "$ref": "/plugin/prefetch.json"
+        },
         "progressbar": {
             "$ref": "/plugin/progressbar.json"
         },

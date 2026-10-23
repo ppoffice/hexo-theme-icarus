@@ -196,6 +196,15 @@ module.exports = {
         files: foldPreviewPost()
     },
 
+    // Pages prefetched on hover, by the browser without PJAX, and by pjax.js with it.
+    'prefetch': {
+        theme: { plugins: { prefetch: { delay: 0 } } }
+    },
+
+    'pjax-prefetch': {
+        theme: { plugins: { pjax: true, prefetch: true } }
+    },
+
     // URLs relative to each page (`../../css/default.css`), which differ between pages at different
     // depths, navigated with PJAX.
     'pjax-relative-link': {

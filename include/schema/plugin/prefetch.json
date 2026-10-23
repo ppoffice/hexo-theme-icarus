@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/plugin/prefetch.json",
+    "description": "Prefetch the pages of the site that the visitor hovers over or touches the links to, so that they open faster. Not when the visitor has asked to save data",
+    "type": ["boolean", "object"],
+    "properties": {
+        "delay": {
+            "type": "integer",
+            "description": "Milliseconds the pointer has to rest on a link before its page is prefetched",
+            "minimum": 0,
+            "default": 65,
+            "nullable": true
+        }
+    },
+    "default": false
+}

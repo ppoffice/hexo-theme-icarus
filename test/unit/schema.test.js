@@ -240,6 +240,30 @@ describe('include/schema', () => {
         });
     });
 
+    describe('plugins.prefetch', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = prefetch => schema.validate({ version: '5.1.0', plugins: { prefetch } }) === true;
+
+        it('accepts true, false, or a delay', () => {
+            for (const value of [true, false, {}, { delay: 0 }, { delay: 100 }, { delay: null }]) {
+                assert.ok(valid(value), JSON.stringify(value));
+            }
+        });
+
+        for (const value of [1, 'hover', { delay: -1 }, { delay: 1.5 }, { delay: '65' }]) {
+            it(`rejects ${JSON.stringify(value)}`, () => {
+                assert.ok(!valid(value));
+            });
+        }
+
+        it('is disabled in the generated configuration', () => {
+            assert.equal(yaml.parse(schema.getDefaultValue().toYaml()).plugins.prefetch, false);
+        });
+    });
+
     describe('comment', () => {
         let schema;
 

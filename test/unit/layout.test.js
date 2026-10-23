@@ -170,6 +170,19 @@ describe('layout/layout (page skeleton)', () => {
             assert.equal($('script[src="/js/back_to_top.js"]').length, 1);
         });
 
+        it('loads the prefetch script, which PJAX does not run again, only when the plugin is enabled', async () => {
+            assert.equal((await renderLayout()).$('script[src="/js/prefetch.js"]').length, 0);
+            assert.equal((await renderLayout({}, { plugins: { prefetch: false } })).$('script[src="/js/prefetch.js"]').length, 0);
+            for (const [prefetch, delay] of [[true, '65'], [{}, '65'], [{ delay: null }, '65'], [{ delay: 0 }, '0'], [{ delay: 200 }, '200']]) {
+                const { $ } = await renderLayout({}, { plugins: { pjax: true, prefetch } });
+                const script = $('script[src="/js/prefetch.js"]');
+                assert.equal(script.length, 1, JSON.stringify(prefetch));
+                assert.equal(script.attr('data-delay'), delay, JSON.stringify(prefetch));
+                assert.equal(script.attr('data-pjax'), undefined);
+                assert.equal($('head script[src="/js/prefetch.js"]').length, 0);
+            }
+        });
+
         it('renders the search box markup when search is configured', async () => {
             assert.equal((await renderLayout()).$('.searchbox').length, 1);
             assert.equal((await renderLayout({}, { search: { type: null } })).$('.searchbox').length, 0);

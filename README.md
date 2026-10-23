@@ -84,7 +84,7 @@ PJAX page loading, keyboard and screen reader support, and translations into 17 
 | [Donate](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/) | Afdian, Alipay, Buy Me a Coffee, Patreon, PayPal, WeChat Pay |
 | [Analytics](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | Baidu Statistics, Bing Webmaster, BuSuanZi, CNZZ, Google Analytics, Hotjar, Matomo, StatCounter, Twitter Conversion Tracking, Umami, Waline page views |
 | [Widgets](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | Profile, Table of Contents, Recent Posts, Archives, Categories, Tags, Links, Google AdSense, follow.it, Google FeedBurner (deprecated) |
-| [Others](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax, Outdated Browser, Page Loading Animations, Progress Bar |
+| [Others](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax, Outdated Browser, Page Loading Animations, Page Prefetching on Hover, Progress Bar |
 
 Most plugins are provided by [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
 Code blocks can use any [highlight.js](https://highlightjs.org/) theme, with a separate one for dark pages.
