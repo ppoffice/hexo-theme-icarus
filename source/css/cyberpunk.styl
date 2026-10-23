@@ -426,6 +426,14 @@ undercover-before()
 .button.is-rounded
     border-radius: 0
 
+// Icons and links drawn as transparent buttons (the social links of the profile widget, the
+// links of the footer): cyan when hovered, as include/style/button.styl keeps their color
+.button.is-transparent
+    transition: color .15s ease, text-shadow .15s ease
+
+    &:hover, &:focus-visible
+        neon-text($neon-cyan, .6)
+
 article.article .article-more
     color: $neon-cyan
     background-color: rgba($neon-cyan, .12)
@@ -1024,20 +1032,24 @@ $back-to-top-height = 40px // its line height and padding, include/style/plugin.
 .cc-window, .cc-revoke
     border-radius: 0 !important
 
+// The cookie consent popup: a panel instead of the light colors its script sets (!important, as
+// those are in a stylesheet it adds after this one)
 .cc-window
     font-family: $family-sans-serif !important
+    color: $night-text !important
+    background-color: $night-panel !important
 
     &:not(.cc-banner)
         border: 1px solid $neon-cyan
 
-    &.cc-theme-classic, &.cc-theme-block
-        .cc-compliance > .cc-btn
-            border-radius: 0
+    .cc-link
+        color: $neon-cyan !important
 
-    &.cc-banner
-        .cc-compliance > .cc-btn
-            color: $night
-            background-color: $neon-cyan
+    .cc-btn
+        border-radius: 0 !important
+        color: $night !important
+        background-color: $neon-cyan !important
+        border-color: transparent !important
 
-            &:hover, &:focus
-                background-color: $neon-yellow
+        &:hover, &:focus
+            background-color: $neon-yellow !important
