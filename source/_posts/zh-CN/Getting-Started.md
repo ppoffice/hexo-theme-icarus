@@ -29,7 +29,7 @@ Icarus同时也提供了超多插件与挂件来满足你的多元的站点个�
 <!-- more -->
 
 在你继续安装Icarus之前，请先花些时间阅览[Hexo文档](https://hexo.io)。
-Icarus 6.5需要Hexo 7.1.1或更新的版本（Hexo 7或Hexo 8），以及Node.js 14或更新的版本。
+Icarus 6.6需要Hexo 7.1.1或更新的版本（Hexo 7或Hexo 8），以及Node.js 14或更新的版本。
 注意Hexo 8本身需要Node.js 20.19或更新的版本。
 如要安装Icarus，你可以选择如下两种方式中的任意一种：
 
@@ -43,7 +43,7 @@ Icarus 6.5需要Hexo 7.1.1或更新的版本（Hexo 7或Hexo 8），以及Node.j
 git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
 {% endcodeblock %}
 
-请将`<version number>`替换为你需要的版本，例如`-b 6.5.0`。
+请将`<version number>`替换为你需要的版本，例如`-b 6.6.0`。
 Icarus的版本标签没有`v`前缀。
 你可以省略`-b <version number>`来获取Icarus的最新开发版本。
 如果你想同时下载Git仓库的完整提交历史，请同时省略`--depth 1`。
