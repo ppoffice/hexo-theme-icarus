@@ -252,8 +252,8 @@ test.describe('sticky navbar on a narrow screen', () => {
         const button = page.locator('#back-to-top');
         await expect(button).toHaveClass(/rise-up/);
         await expect(button).toBeInViewport();
-        const { bottom } = await box(page, '#back-to-top');
-        expect(bottom).toBeLessThanOrEqual(NARROW.height);
+        // It rises into the window with a transition, from below its bottom.
+        await expect.poll(async () => (await box(page, '#back-to-top')).bottom).toBeLessThanOrEqual(NARROW.height);
         await button.click();
         await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
         expect((await box(page, '.navbar-main')).top).toBe(0);
