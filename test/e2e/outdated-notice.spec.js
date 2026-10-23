@@ -59,11 +59,37 @@ test.describe('outdated notice', () => {
             await expect(page.locator(NOTICE)).toBeVisible();
             const [text] = await colorsOf(page, `${NOTICE} .article-outdated-text`);
             const [content] = await colorsOf(page, '.article > .content p');
-            expect(text.contrast).toBeGreaterThan(4.5);
+            // The colors of the other warning messages (Bulma's light text only reaches about 4.2)
+            expect(text.contrast).toBeGreaterThan(4);
+            const textColor = selector => page.locator(selector).first().evaluate(el => getComputedStyle(el).color);
+            await page.locator('.article > .content').evaluate(el => el.insertAdjacentHTML('afterbegin',
+                '<div class="message is-warning" id="reference"><div class="message-body">Reference</div></div>'));
+            expect(await textColor(`${NOTICE} .message-body`)).toBe(await textColor('#reference .message-body'));
+            await page.locator('#reference').evaluate(el => el.remove());
             // A warning, on the background of the post: as dark (or light) as it.
             expect(Math.abs(text.background - content.background)).toBeLessThan(0.15);
-            const edge = await page.locator(`${NOTICE} .message-body`).evaluate(el => getComputedStyle(el).borderLeftColor);
-            expect(edge).not.toBe(await page.locator('.article > .content p').first().evaluate(el => getComputedStyle(el).color));
+            const background = selector => page.locator(selector).first().evaluate(el => getComputedStyle(el).backgroundColor);
+            expect(await background(NOTICE)).not.toBe(await background('.column-main .card'));
+            // Immersive: across the whole width of the card
+            const box = selector => page.locator(selector).first().boundingBox();
+            const [notice, card] = [await box(NOTICE), await box('.column-main .card')];
+            expect(Math.abs(notice.x - card.x)).toBeLessThan(1);
+            expect(Math.abs(notice.width - card.width)).toBeLessThan(1);
+            // The wrapped text lines up with its first line, after the icon
+            await page.setViewportSize({ width: 375, height: 800 });
+            const lines = await page.locator(`${NOTICE} .article-outdated-text`).evaluate(el => {
+                const range = document.createRange();
+                range.selectNodeContents(el);
+                // The start of each line: the leftmost of the boxes on it
+                const starts = {};
+                for (const rect of range.getClientRects()) {
+                    const top = Math.round(rect.top);
+                    starts[top] = Math.min(starts[top] === undefined ? Infinity : starts[top], Math.round(rect.left));
+                }
+                return Object.values(starts);
+            });
+            expect(lines.length).toBeGreaterThan(1);
+            expect(new Set(lines).size).toBe(1);
         });
     }
 

@@ -147,7 +147,7 @@ module.exports = class extends Component {
                     {page.title !== '' && !index ? <h1 class="title is-3 is-size-4-mobile">{page.title}</h1> : null}
                     {/* Outdated notice, shown from the build if the post is already outdated then, or once
                         it is in the browser of the reader. Without JavaScript, it gives the date. */}
-                    {outdatedNotice ? <div class="message is-warning article-outdated" role="note"
+                    {outdatedNotice ? <div class="message message-immersive is-warning article-outdated" role="note"
                         data-outdated-days={outdatedNotice.days} hidden={!outdatedNotice.outdated}>
                         <div class="message-body">
                             <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
