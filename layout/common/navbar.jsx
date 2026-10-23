@@ -1,6 +1,6 @@
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
-const { getAppearance, getDarkLogo } = require('../../include/util/appearance');
+const { getLogoAppearance, getDarkLogo } = require('../../include/util/appearance');
 const Logo = require('../misc/logo');
 const classname = require('hexo-component-inferno/lib/util/classname');
 
@@ -148,7 +148,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         logo,
         logoUrl: url_for(logo),
         darkLogoUrl: darkLogo ? url_for(darkLogo) : null,
-        appearance: getAppearance(config),
+        appearance: getLogoAppearance(config),
         siteUrl: url_for('/'),
         siteTitle: title,
         menu,

@@ -32,7 +32,8 @@ describe('layout/common/navbar', () => {
             ['switches to logo_dark for "auto"', { appearance: 'auto', logo: '/img/mine.svg', logo_dark: '/img/mine-dark.svg' }, picture('/img/mine-dark.svg', '/img/mine.svg')],
             ['uses logo_dark for "dark"', { appearance: 'dark', logo: '/img/mine.svg', logo_dark: 'https://example.com/dark.png' }, img('https://example.com/dark.png')],
             ['uses logo_dark with the theme logo too', { appearance: 'auto', logo_dark: '/img/night.svg' }, picture('/img/night.svg', '/img/logo.svg')],
-            ['keeps the logo of the cyberpunk variant', { variant: 'cyberpunk', appearance: 'dark', logo_dark: '/img/night.svg' }, img('/img/logo.svg')]
+            ['uses the dark logo for the cyberpunk variant, which is always dark', { variant: 'cyberpunk', appearance: 'light' }, img('/img/logo-dark.svg')],
+            ['uses logo_dark for the cyberpunk variant', { variant: 'cyberpunk', logo: '/img/mine.svg', logo_dark: '/img/night.svg' }, img('/img/night.svg')]
         ]) {
             it(description, async () => {
                 const { $ } = await renderNavbar({}, config);

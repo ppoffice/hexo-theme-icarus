@@ -56,7 +56,7 @@ module.exports = class extends Component {
         const language = page.lang || page.language || config.language;
         const fontCssUrl = {
             default: fontcdn('Ubuntu:wght@400;600&family=Source+Code+Pro', 'css2'),
-            cyberpunk: fontcdn('Oxanium:wght@300;400;600&family=Roboto+Mono', 'css2')
+            cyberpunk: fontcdn('Oxanium:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600', 'css2')
         };
 
         let hlTheme, images;

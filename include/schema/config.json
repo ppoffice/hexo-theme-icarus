@@ -47,7 +47,7 @@
         },
         "logo_dark": {
             "type": "string",
-            "description": "Path or URL to the logo shown instead of the logo image when the default variant looks dark (see appearance). Without it, the theme's own logo switches to /img/logo-dark.svg and other logos stay the same",
+            "description": "Path or URL to the logo shown instead of the logo image when the default variant looks dark (see appearance), and always by the cyberpunk variant. Without it, the theme's own logo switches to /img/logo-dark.svg and other logos stay the same",
             "nullable": true
         },
         "head": {

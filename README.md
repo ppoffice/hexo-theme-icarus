@@ -46,7 +46,7 @@ Follow each visitor's system setting with <code>appearance: auto</code>, or go d
 <td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/cyberpunk.png" alt="Cyberpunk variant">
 <p><b>Cyberpunk variant</b><br>
-A second look inspired by <a href="https://www.cyberpunk.net">Cyberpunk 2077</a>, one line away.</p>
+A second look of neon-lit nights, HUD frames and scanlines, one line away.</p>
 </td>
 <td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="Responsive layout">

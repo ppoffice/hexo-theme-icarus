@@ -32,9 +32,13 @@ describe('layout/common/footer', () => {
         const logo = async config => (await renderFooter(config)).$('.footer-logo').html();
         const img = src => `<img src="${src}" alt="Icarus Fixture" height="28">`;
 
-        it('is the logo image for the light appearance and the cyberpunk variant', async () => {
+        it('is the logo image for the light appearance', async () => {
             assert.equal(await logo(), img('/img/logo.svg'));
-            assert.equal(await logo({ variant: 'cyberpunk', appearance: 'auto' }), img('/img/logo.svg'));
+        });
+
+        it('is the dark logo for the cyberpunk variant, which is always dark', async () => {
+            assert.equal(await logo({ variant: 'cyberpunk', appearance: 'auto' }), img('/img/logo-dark.svg'));
+            assert.equal(await logo({ variant: 'cyberpunk', logo: '/img/mine.svg' }), img('/img/mine.svg'));
         });
 
         it('switches to the dark logo for the dark appearance', async () => {
