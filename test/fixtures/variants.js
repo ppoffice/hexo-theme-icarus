@@ -203,6 +203,41 @@ module.exports = {
         theme: { plugins: { pjax: true } }
     },
 
+    // The outdated notice, navigated with PJAX, with a dark post and a cyberpunk post (front-matter).
+    // The posts of the fixture date from 2024 and earlier: outdated after 365 days.
+    'outdated-notice': {
+        theme: { plugins: { pjax: true }, article: { outdated_notice: { enable: true, days: 365 } } },
+        files: {
+            'source/_posts/outdated-dark.md': [
+                '---',
+                'title: Outdated Dark',
+                'date: 2024-04-07 10:00:00',
+                'appearance: dark',
+                '---',
+                'An outdated post with a dark appearance. Next: [the cyberpunk post](/2024/04/08/outdated-cyberpunk/).',
+                ''
+            ].join('\n'),
+            'source/_posts/outdated-cyberpunk.md': [
+                '---',
+                'title: Outdated Cyberpunk',
+                'date: 2024-04-08 10:00:00',
+                'variant: cyberpunk',
+                '---',
+                'An outdated post in the cyberpunk variant. Back to [the dark post](/2024/04/07/outdated-dark/).',
+                ''
+            ].join('\n'),
+            'source/_posts/outdated-off.md': [
+                '---',
+                'title: Outdated Off',
+                'date: 2024-04-09 10:00:00',
+                'outdated_notice: false',
+                '---',
+                'An old post without the outdated notice.',
+                ''
+            ].join('\n')
+        }
+    },
+
     // PJAX with a comment provider and analytics plugins, whose scripts the browser tests stub.
     'pjax-comment-analytics': {
         theme: {

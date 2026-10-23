@@ -57,6 +57,29 @@
         });
     }
 
+    // The notice of an outdated post: shown from the number of days since its last update in the
+    // browser of the reader, as the static page may be much older than its build says. The date
+    // becomes "N days ago" in the template of the notice ("%s").
+    $('.article-outdated').each(function() {
+        const $time = $(this).find('time');
+        const date = new Date($time.attr('datetime'));
+        const days = Number($(this).attr('data-outdated-days'));
+        if (isNaN(date.getTime()) || !(days > 0)) {
+            return;
+        }
+        const age = Math.floor((Date.now() - date.getTime()) / 86400000);
+        this.hidden = age < days;
+        const $text = $(this).find('.article-outdated-text');
+        const template = $text.attr('data-template');
+        if (!this.hidden && template && template.indexOf('%s') > -1
+            && typeof Intl !== 'undefined' && typeof Intl.RelativeTimeFormat === 'function') {
+            const parts = template.split('%s');
+            const format = new Intl.RelativeTimeFormat(getRelativeTimeLocale(), { numeric: 'always' });
+            $text.empty().append(document.createTextNode(parts[0]), $time.text(format.format(-age, 'day')),
+                document.createTextNode(parts.slice(1).join('%s')));
+        }
+    });
+
     $('.article > .content > table').each(function() {
         if ($(this).width() > $(this).parent().width()) {
             $(this).wrap('<div class="table-overflow"></div>');

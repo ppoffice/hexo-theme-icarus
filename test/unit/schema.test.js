@@ -215,6 +215,31 @@ describe('include/schema', () => {
         });
     });
 
+    describe('article.outdated_notice', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = outdated_notice => schema.validate({ version: '5.1.0', article: { outdated_notice } }) === true;
+
+        it('accepts a switch and a number of days', () => {
+            for (const value of [null, {}, { enable: true }, { enable: false, days: 365 }, { enable: true, days: 1 }]) {
+                assert.ok(valid(value), JSON.stringify(value));
+            }
+        });
+
+        for (const value of [true, 365, { enable: 'yes' }, { enable: true, days: 0 }, { enable: true, days: 1.5 }, { enable: true, days: '30' }]) {
+            it(`rejects ${JSON.stringify(value)}`, () => {
+                assert.ok(!valid(value));
+            });
+        }
+
+        it('is disabled in the generated configuration', () => {
+            const notice = yaml.parse(schema.getDefaultValue().toYaml()).article.outdated_notice;
+            assert.deepEqual(notice, { enable: false, days: 365 });
+        });
+    });
+
     describe('comment', () => {
         let schema;
 

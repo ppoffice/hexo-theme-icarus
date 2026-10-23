@@ -1,4 +1,4 @@
-const { test, expect } = require('./fixtures');
+const { test, expect, colorsOf } = require('./fixtures');
 
 // The appearance setting: "appearance-auto" follows the system color scheme, "appearance-dark" is
 // always dark and "default" (light) never is.
@@ -6,49 +6,6 @@ const POST = '/2023/07/01/typography/';
 const NARROW = { width: 375, height: 800 };
 const ATOM_ONE_DARK = 'rgb(40, 44, 52)';
 const ATOM_ONE_LIGHT = 'rgb(250, 250, 250)';
-
-/**
- * Colors of the elements matching a selector, as seen on the page: the text color and the
- * background behind it (the backgrounds of the element and its ancestors, blended), with the
- * relative luminance of both and their WCAG contrast ratio.
- */
-function colorsOf(page, selector) {
-    return page.locator(selector).evaluateAll(elements => {
-        const parse = value => {
-            const [r, g, b, a = 1] = value.match(/[\d.]+/g).map(Number);
-            return { r, g, b, a };
-        };
-        const blend = (top, bottom) => ({
-            r: (top.r * top.a) + (bottom.r * (1 - top.a)),
-            g: (top.g * top.a) + (bottom.g * (1 - top.a)),
-            b: (top.b * top.a) + (bottom.b * (1 - top.a)),
-            a: 1
-        });
-        const luminance = ({ r, g, b }) => {
-            const channel = value => {
-                value /= 255;
-                return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
-            };
-            return (0.2126 * channel(r)) + (0.7152 * channel(g)) + (0.0722 * channel(b));
-        };
-        return elements.map(el => {
-            const layers = [];
-            for (let node = el; node; node = node.parentElement) {
-                layers.push(parse(getComputedStyle(node).backgroundColor));
-            }
-            // The canvas is white unless <html> has a background.
-            const background = layers.reverse().reduce((under, layer) => blend(layer, under), { r: 255, g: 255, b: 255, a: 1 });
-            const color = blend(parse(getComputedStyle(el).color), background);
-            const [light, dark] = [luminance(color), luminance(background)].sort((a, b) => b - a);
-            return {
-                text: el.textContent.trim().slice(0, 30),
-                color: luminance(color),
-                background: luminance(background),
-                contrast: (light + 0.05) / (dark + 0.05)
-            };
-        });
-    });
-}
 
 async function colorOf(page, selector) {
     const colors = await colorsOf(page, selector);

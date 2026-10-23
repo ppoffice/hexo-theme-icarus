@@ -50,6 +50,14 @@ article
         .article-more
             @extend .button.is-light
 
+        .article-outdated
+            .message-body > i
+                margin-inline-end: .5em
+
+            // Until the post is outdated (source/js/main.js)
+            &[hidden]
+                display: none
+
         .content
             word-wrap: break-word
             font-size: $article-font-size
@@ -98,6 +106,12 @@ article
         .article-tags
             display: flex
             flex-wrap: wrap
+
+// The text of the outdated notice, darker than the one of Bulma's warning messages, which does not
+// contrast enough with their light background. As specific as Bulma's rule, so that the dark
+// colors and variants, which come after it, still apply theirs.
+.article-outdated.is-warning .message-body
+    color: darken($warning, 70%)
 
 .rtl
     direction: rtl
