@@ -270,6 +270,68 @@ describe('layout/common/article', () => {
         });
     });
 
+    describe('outdated notice', () => {
+        const enabled = (notice = {}) => ({ config: { article: { outdated_notice: Object.assign({ enable: true }, notice) } } });
+        const daysAgo = days => moment().subtract(days, 'days');
+
+        it('is not rendered by default', async () => {
+            const { $ } = await renderArticle({});
+            assert.equal($('.article-outdated').length, 0);
+        });
+
+        it('is not rendered when disabled', async () => {
+            const { $ } = await renderArticle({}, { config: { article: { outdated_notice: { enable: false, days: 1 } } } });
+            assert.equal($('.article-outdated').length, 0);
+        });
+
+        it('is shown on an old post with its last update date and the age template', async () => {
+            const { $ } = await renderArticle({ date: moment.utc('2023-01-01T10:00:00Z') }, enabled());
+            const $notice = $('.article-outdated');
+            assert.equal($notice.length, 1);
+            assert.ok($notice.hasClass('message') && $notice.hasClass('is-warning'));
+            assert.equal($notice.attr('hidden'), undefined);
+            assert.equal($notice.attr('data-outdated-days'), '365');
+            assert.equal($notice.find('time').attr('datetime'), '2024-01-01T10:00:00.000Z');
+            assert.equal($notice.find('.article-outdated-text').text(),
+                'This post was last updated on 2024-01-01. Some of its content may be outdated.');
+            assert.equal($notice.find('.article-outdated-text').attr('data-template'),
+                'This post was last updated %s. Some of its content may be outdated.');
+        });
+
+        it('falls back to the creation date without an update date', async () => {
+            const { $ } = await renderArticle({ updated: undefined }, enabled());
+            assert.equal($('.article-outdated time').attr('datetime'), '2024-01-01T10:00:00.000Z');
+        });
+
+        it('is rendered hidden on a post not outdated at build time, for the browser to show later', async () => {
+            const { $ } = await renderArticle({ date: daysAgo(40), updated: daysAgo(10) }, enabled({ days: 30 }));
+            assert.equal($('.article-outdated').length, 1);
+            assert.notEqual($('.article-outdated').attr('hidden'), undefined);
+        });
+
+        it('uses the configured number of days', async () => {
+            const { $ } = await renderArticle({ date: daysAgo(40), updated: daysAgo(31) }, enabled({ days: 30 }));
+            assert.equal($('.article-outdated').attr('hidden'), undefined);
+            assert.equal($('.article-outdated').attr('data-outdated-days'), '30');
+        });
+
+        it('is translated', async () => {
+            const { $ } = await renderArticle({ lang: 'zh-CN' }, enabled());
+            assert.equal($('.article-outdated-text').attr('data-template'), '本文最后更新于%s，其中的部分内容可能已经过时。');
+        });
+
+        for (const [description, page, options] of [
+            ['index excerpts', {}, { index: true }],
+            ['pages', { layout: 'page' }, {}],
+            ['posts turning it off in their front-matter', { outdated_notice: false }, {}]
+        ]) {
+            it(`is not rendered on ${description}`, async () => {
+                const { $ } = await renderArticle(page, Object.assign(enabled(), options));
+                assert.equal($('.article-outdated').length, 0);
+            });
+        }
+    });
+
     it('renders the comment section on posts when configured', async () => {
         const { $ } = await renderArticle({}, { config: { comment: { type: 'disqus', shortname: 'fixture' } } });
         assert.equal($('#comments h3').text(), 'Comments');

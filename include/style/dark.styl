@@ -347,8 +347,10 @@ dark-colors()
     article.media a:hover
         color: $dark-link
 
+    // Flat like in the light appearance: no shadow of .card, .box above, a lighter background
     .article-licensing
         background: $dark-surface-raised
+        box-shadow: none
 
         &:after
             opacity: .05

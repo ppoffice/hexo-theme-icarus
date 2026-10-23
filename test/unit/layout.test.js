@@ -141,10 +141,18 @@ describe('layout/layout (page skeleton)', () => {
         it('embeds the code block settings and translations for main.js', async () => {
             const { $ } = await renderLayout({ lang: 'zh-CN' }, { article: { highlight: { clipboard: false, fold: 'folded' } } });
             assert.deepEqual(embeddedSettings($), {
-                article: { highlight: { clipboard: false, fold: 'folded' } },
+                article: { highlight: { clipboard: false, fold: 'folded', fold_preview: 0 } },
                 i18n: { copy: '复制', copied: '已复制！' }
             });
             assert.equal($('script[src*="clipboard"]').length, 0, 'clipboard.js is not loaded when disabled');
+        });
+
+        it('embeds the number of lines of the folded code block previews, or 0 for none', async () => {
+            const preview = async fold_preview => embeddedSettings((await renderLayout({}, { article: { highlight: { fold_preview } } })).$).article.highlight.fold_preview;
+            assert.equal(await preview(5), 5);
+            for (const value of [undefined, null, 0, -3, 2.5, '5']) {
+                assert.equal(await preview(value), 0, JSON.stringify(value));
+            }
         });
 
         it('cannot break out of the settings <script> through configured values', async () => {
@@ -160,6 +168,19 @@ describe('layout/layout (page skeleton)', () => {
             assert.equal($('#back-to-top').prop('tagName'), 'BUTTON');
             assert.equal($('#back-to-top').attr('aria-label'), 'Back to top');
             assert.equal($('script[src="/js/back_to_top.js"]').length, 1);
+        });
+
+        it('loads the prefetch script, which PJAX does not run again, only when the plugin is enabled', async () => {
+            assert.equal((await renderLayout()).$('script[src="/js/prefetch.js"]').length, 0);
+            assert.equal((await renderLayout({}, { plugins: { prefetch: false } })).$('script[src="/js/prefetch.js"]').length, 0);
+            for (const [prefetch, delay] of [[true, '65'], [{}, '65'], [{ delay: null }, '65'], [{ delay: 0 }, '0'], [{ delay: 200 }, '200']]) {
+                const { $ } = await renderLayout({}, { plugins: { pjax: true, prefetch } });
+                const script = $('script[src="/js/prefetch.js"]');
+                assert.equal(script.length, 1, JSON.stringify(prefetch));
+                assert.equal(script.attr('data-delay'), delay, JSON.stringify(prefetch));
+                assert.equal(script.attr('data-pjax'), undefined);
+                assert.equal($('head script[src="/js/prefetch.js"]').length, 0);
+            }
         });
 
         it('renders the search box markup when search is configured', async () => {

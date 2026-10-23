@@ -95,6 +95,17 @@ describe('include/schema', () => {
             });
         }
 
+        it('accepts a sticky navbar at all widths or on mobile screens only, and leaves it off by default', () => {
+            const valid = sticky => navbar().validate({ sticky }) === true;
+            for (const sticky of [true, false, 'mobile']) {
+                assert.ok(valid(sticky), JSON.stringify(sticky));
+            }
+            for (const sticky of ['desktop', 'true', '', 1, null]) {
+                assert.ok(!valid(sticky), JSON.stringify(sticky));
+            }
+            assert.equal(yaml.parse(loadSchema().getDefaultValue().toYaml()).navbar.sticky, false);
+        });
+
         it('keeps the generated default menu as plain links', () => {
             const defaults = yaml.parse(loadSchema().getDefaultValue().toYaml());
             assert.deepEqual(defaults.navbar.menu, { Home: '/', Archives: '/archives', Categories: '/categories', Tags: '/tags', About: '/about' });
@@ -121,6 +132,16 @@ describe('include/schema', () => {
             assert.ok(valid({ article: { highlight: { dark_theme: 'github-dark' } } }));
             assert.ok(valid({ article: { highlight: { dark_theme: null } } }));
             assert.ok(!valid({ article: { highlight: { dark_theme: 42 } } }));
+        });
+
+        it('accepts a number of lines for the folded code block previews, or none', () => {
+            for (const fold_preview of [0, 5, null]) {
+                assert.ok(valid({ article: { highlight: { fold_preview } } }), JSON.stringify(fold_preview));
+            }
+            for (const fold_preview of [-1, 2.5, '5', true]) {
+                assert.ok(!valid({ article: { highlight: { fold_preview } } }), JSON.stringify(fold_preview));
+            }
+            assert.equal(yaml.parse(loadSchema().getDefaultValue().toYaml()).article.highlight.fold_preview, 0, 'off by default');
         });
 
         it('accepts a dark logo, or none', () => {
@@ -202,6 +223,55 @@ describe('include/schema', () => {
             const yamlText = schema.getDefaultValue().toYaml();
             assert.equal(yaml.parse(yamlText).plugins.waline_pageview, false);
             assert.match(yamlText, /# Waline page view counter.*Do not also enable the pageview option of the Waline comments.*\n(\s*#.*\n)*\s*waline_pageview: false\n/);
+        });
+    });
+
+    describe('article.outdated_notice', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = outdated_notice => schema.validate({ version: '5.1.0', article: { outdated_notice } }) === true;
+
+        it('accepts a switch and a number of days', () => {
+            for (const value of [null, {}, { enable: true }, { enable: false, days: 365 }, { enable: true, days: 1 }]) {
+                assert.ok(valid(value), JSON.stringify(value));
+            }
+        });
+
+        for (const value of [true, 365, { enable: 'yes' }, { enable: true, days: 0 }, { enable: true, days: 1.5 }, { enable: true, days: '30' }]) {
+            it(`rejects ${JSON.stringify(value)}`, () => {
+                assert.ok(!valid(value));
+            });
+        }
+
+        it('is disabled in the generated configuration', () => {
+            const notice = yaml.parse(schema.getDefaultValue().toYaml()).article.outdated_notice;
+            assert.deepEqual(notice, { enable: false, days: 365 });
+        });
+    });
+
+    describe('plugins.prefetch', () => {
+        let schema;
+
+        before(() => { schema = loadSchema(); });
+
+        const valid = prefetch => schema.validate({ version: '5.1.0', plugins: { prefetch } }) === true;
+
+        it('accepts true, false, or a delay', () => {
+            for (const value of [true, false, {}, { delay: 0 }, { delay: 100 }, { delay: null }]) {
+                assert.ok(valid(value), JSON.stringify(value));
+            }
+        });
+
+        for (const value of [1, 'hover', { delay: -1 }, { delay: 1.5 }, { delay: '65' }]) {
+            it(`rejects ${JSON.stringify(value)}`, () => {
+                assert.ok(!valid(value));
+            });
+        }
+
+        it('is disabled in the generated configuration', () => {
+            assert.equal(yaml.parse(schema.getDefaultValue().toYaml()).plugins.prefetch, false);
         });
     });
 

@@ -50,6 +50,28 @@ article
         .article-more
             @extend .button.is-light
 
+        // Across the whole width of the post: in the content, or the outdated notice under the title
+        .message.message-immersive
+            border-radius: 0
+            margin: 0 0 - $card-content-padding $card-content-padding 0 - $card-content-padding
+
+            .message-body
+                border: none
+
+        .article-outdated
+            // The text next to the icon, also when it wraps
+            .message-body
+                display: flex
+                align-items: baseline
+
+                > i
+                    flex: none
+                    margin-inline-end: .5em
+
+            // Until the post is outdated (source/js/main.js)
+            &[hidden]
+                display: none
+
         .content
             word-wrap: break-word
             font-size: $article-font-size
@@ -87,13 +109,6 @@ article
                 footer
                     strong + cite
                         margin-left: .5em
-
-            .message.message-immersive
-                border-radius: 0
-                margin: 0 0 - $card-content-padding $card-content-padding 0 - $card-content-padding
-
-                .message-body
-                    border: none
         
         .article-tags
             display: flex

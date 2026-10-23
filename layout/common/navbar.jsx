@@ -30,7 +30,8 @@ class Navbar extends Component {
             tocTitle,
             showSearch,
             searchTitle,
-            menuTitle
+            menuTitle,
+            sticky
         } = this.props;
         // The toggle folds the menu links into a drop-down when they do not fit (source/js/main.js)
         const hasMenu = Object.keys(menu).length > 0;
@@ -46,7 +47,8 @@ class Navbar extends Component {
             navbarLogo = siteTitle;
         }
 
-        return <nav class="navbar navbar-main">
+        // Stays at the top of the window at all widths ("all") or below the tablet width ("mobile")
+        return <nav class="navbar navbar-main" data-sticky={sticky}>
             <div class="container navbar-container">
                 <div class="navbar-brand justify-content-center">
                     <a class="navbar-item navbar-logo" href={siteUrl}>
@@ -144,7 +146,15 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         });
     }
 
+    let sticky = null;
+    if (navbar && navbar.sticky === true) {
+        sticky = 'all';
+    } else if (navbar && navbar.sticky === 'mobile') {
+        sticky = 'mobile';
+    }
+
     return {
+        sticky,
         logo,
         logoUrl: url_for(logo),
         darkLogoUrl: darkLogo ? url_for(darkLogo) : null,

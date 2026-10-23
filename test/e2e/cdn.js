@@ -2,8 +2,8 @@
  * Offline stand-in for the CDNs the theme loads from.
  *
  * Libraries the theme's own scripts depend on are served from devDependencies pinned to the
- * exact versions referenced in the layouts (checked by test/unit/vendor.test.js). Every other
- * external request (web fonts, icon fonts, analytics, highlight.js themes, ...) is answered
+ * exact versions referenced in the layouts (checked by test/unit/vendor.test.js), and so are
+ * the Font Awesome icons. Every other external request (web fonts, analytics, ...) is answered
  * with an empty body so tests never depend on the network.
  */
 const fs = require('fs');
@@ -29,14 +29,26 @@ const CONTENT_TYPES = {
     '.svg': 'image/svg+xml',
     '.png': 'image/png',
     '.jpg': 'image/jpeg',
+    '.ttf': 'font/ttf',
     '.woff2': 'font/woff2'
 };
 
-// Icon fonts are not downloaded; give icons a size so icon-only buttons stay clickable.
-const ICON_FONT_STUB = '.fa,.fas,.far,.fab{display:inline-block;width:1em;height:1em}';
+// The node_modules directory of Font Awesome, loaded from use.fontawesome.com/releases/v<version>/
+// by the iconcdn() helper of hexo-component-inferno.
+const ICON_FONT = '@fortawesome/fontawesome-free';
 
 function contentType(file) {
     return CONTENT_TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream';
+}
+
+// Serve a file of a vendored package, which must be the requested version.
+function fulfillVendored(route, dir, name, version, filename) {
+    const vendoredVersion = require(path.join(dir, 'package.json')).version;
+    if (vendoredVersion !== version) {
+        throw new Error(`The page requested ${name}@${version} but ${path.relative(path.join(REPO_ROOT, 'node_modules'), dir)}@${vendoredVersion} is vendored. Update package.json.`);
+    }
+    const file = path.join(dir, filename);
+    return route.fulfill({ status: 200, contentType: contentType(file), body: fs.readFileSync(file) });
 }
 
 function isLocal(url) {
@@ -54,19 +66,16 @@ async function routeExternal(context) {
         const match = url.hostname === 'cdn.jsdelivr.net' && url.pathname.match(/^\/npm\/((?:@[^/]+\/)?[^@/]+)@([^/]+)\/(.+)$/);
         if (match && VENDORED[match[1]]) {
             const [, name, version, filename] = match;
-            const dir = path.join(REPO_ROOT, 'node_modules', VENDORED[name]);
-            const vendoredVersion = require(path.join(dir, 'package.json')).version;
-            if (vendoredVersion !== version) {
-                throw new Error(`The page requested ${name}@${version} but ${VENDORED[name]}@${vendoredVersion} is vendored. Update package.json.`);
-            }
-            const file = path.join(dir, filename);
-            return route.fulfill({ status: 200, contentType: contentType(file), body: fs.readFileSync(file) });
+            return fulfillVendored(route, path.join(REPO_ROOT, 'node_modules', VENDORED[name]), name, version, filename);
+        }
+        const icons = url.hostname === 'use.fontawesome.com' && url.pathname.match(/^\/releases\/v([^/]+)\/(.+)$/);
+        if (icons) {
+            return fulfillVendored(route, path.join(REPO_ROOT, 'node_modules', ICON_FONT), 'fontawesome', icons[1], icons[2]);
         }
         stats.external.push(url.href);
-        const body = url.hostname === 'use.fontawesome.com' ? ICON_FONT_STUB : '';
-        return route.fulfill({ status: 200, contentType: contentType(url.pathname), body });
+        return route.fulfill({ status: 200, contentType: contentType(url.pathname), body: '' });
     });
     return stats;
 }
 
-module.exports = { VENDORED, routeExternal, contentType };
+module.exports = { VENDORED, ICON_FONT, routeExternal, contentType };

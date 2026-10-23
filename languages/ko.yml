@@ -39,6 +39,8 @@ article:
     word_count:
         one: '약 %d 단어'
         other: '약 %d 단어'
+    outdated_on: '이 글은 %s에 마지막으로 수정되었습니다. 일부 내용이 오래되었을 수 있습니다.'
+    outdated_ago: '이 글은 %s에 마지막으로 수정되었습니다. 일부 내용이 오래되었을 수 있습니다.'
     licensing:
         author: 'Author'
         created_at: 'Posted on'

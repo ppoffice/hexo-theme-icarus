@@ -39,6 +39,8 @@ article:
     word_count:
         one: '大约%d个字'
         other: '大约%d个字'
+    outdated_on: '本文最后更新于%s，其中的部分内容可能已经过时。'
+    outdated_ago: '本文最后更新于%s，其中的部分内容可能已经过时。'
     licensing:
         author: '作者'
         created_at: '发布于'

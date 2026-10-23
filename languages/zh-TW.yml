@@ -39,6 +39,8 @@ article:
     word_count:
         one: '大約%d個字'
         other: '大約%d個字'
+    outdated_on: '本文最後更新於%s，其中的部分內容可能已經過時。'
+    outdated_ago: '本文最後更新於%s，其中的部分內容可能已經過時。'
     licensing:
         author: '作者'
         created_at: '發表於'

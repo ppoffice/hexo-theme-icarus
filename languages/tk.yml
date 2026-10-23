@@ -39,6 +39,8 @@ article:
     word_count:
         one: 'Ortaça %d söz'
         other: 'Ortaça %d söz'
+    outdated_on: 'Bu makala iň soňky gezek %s täzelendi. Mazmunynyň käbir bölegi köne bolup biler.'
+    outdated_ago: 'Bu makala iň soňky gezek %s täzelendi. Mazmunynyň käbir bölegi köne bolup biler.'
     licensing:
         author: 'Awtor'
         created_at: 'Paýlaşdy'

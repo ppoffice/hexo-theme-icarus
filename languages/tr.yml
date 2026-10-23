@@ -39,6 +39,8 @@ article:
     word_count:
         one: 'Yaklaşık %d kelime'
         other: 'Yaklaşık %d kelime'
+    outdated_on: 'Bu yazı en son %s tarihinde güncellendi. İçeriğinin bir kısmı güncelliğini yitirmiş olabilir.'
+    outdated_ago: 'Bu yazı en son %s güncellendi. İçeriğinin bir kısmı güncelliğini yitirmiş olabilir.'
     licensing:
         author: 'Author'
         created_at: 'Posted on'

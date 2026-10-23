@@ -149,6 +149,21 @@
     }
 
     /**
+     * Make the navbar, which stays, sticky or not as on the new page (navbar.sticky, which pages
+     * can also set in their front-matter).
+     */
+    function switchNavbar(oldDoc, newDoc) {
+        const oldNavbar = oldDoc.querySelector('.navbar-main');
+        const newNavbar = newDoc.querySelector('.navbar-main');
+        const sticky = newNavbar && newNavbar.getAttribute('data-sticky');
+        if (oldNavbar && sticky) {
+            oldNavbar.setAttribute('data-sticky', sticky);
+        } else if (oldNavbar) {
+            oldNavbar.removeAttribute('data-sticky');
+        }
+    }
+
+    /**
      * Switch the title, the appearance and the variant (default or cyberpunk, which pages can also
      * set in their front-matter, with its theme and font stylesheets) of the page, and load the
      * plugins it adds. <head> itself is not one of the selectors because PJAX runs the scripts of
@@ -160,6 +175,7 @@
         oldTitle.textContent = newTitle.textContent;
         switchAppearance(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, options, pageUrl);
         switchStylesheets(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, 'link[data-variant]', pageUrl);
+        switchNavbar(oldTitle.ownerDocument, newTitle.ownerDocument);
         loadPlugins(oldTitle.ownerDocument.body, newTitle.ownerDocument.body, pageUrl);
         this.onSwitch();
     }
@@ -168,6 +184,77 @@
     function switchContent(oldEl, newEl) {
         oldEl.innerHTML = newEl.innerHTML;
         this.onSwitch();
+    }
+
+    /** How long a prefetched page is kept for the navigation to it, as browsers keep prefetches. */
+    const PREFETCH_TTL = 5 * 60 * 1000;
+    const prefetches = new Map();
+
+    function withoutHash(url) {
+        return url.split('#')[0];
+    }
+
+    function isPlainGet(options) {
+        const request = options.requestOptions || {};
+        return (request.requestMethod || 'GET').toUpperCase() === 'GET' && !(request.requestParams && request.requestParams.length) && !request.formData;
+    }
+
+    /**
+     * Prefetch a page for the prefetch plugin, with the request PJAX makes, and keep the response
+     * for the navigation to it. A page prefetched by the browser is only reused by the request of
+     * PJAX when it is cacheable, which most hosts do not allow for pages (max-age=0 or no-cache).
+     */
+    function prefetch(sendRequest, url) {
+        const entry = prefetches.get(url);
+        if (entry && Date.now() - entry.time < PREFETCH_TTL) {
+            return;
+        }
+        const prefetched = { time: Date.now(), response: null, onResponse: null };
+        prefetched.request = sendRequest.call(pjax, url, pjax.options, (responseText, request) => {
+            prefetched.response = [responseText, request];
+            // A failed prefetch is tried again on the next hover
+            if (responseText === null && prefetches.get(url) === prefetched) {
+                prefetches.delete(url);
+            }
+            if (prefetched.onResponse) {
+                prefetched.onResponse(responseText, request);
+            }
+        });
+        prefetches.set(url, prefetched);
+    }
+
+    /**
+     * Send the request of a PJAX navigation, or use the prefetched response of the page, even when
+     * it is still loading. When the prefetch has failed, the page is requested again.
+     */
+    function sendRequestOrUsePrefetched(sendRequest) {
+        return function(href, options, callback) {
+            const url = withoutHash(href);
+            const prefetched = prefetches.get(url);
+            prefetches.delete(url);
+            if (!prefetched || Date.now() - prefetched.time >= PREFETCH_TTL || !isPlainGet(options) || options.cacheBust) {
+                return sendRequest.call(this, href, options, callback);
+            }
+            // Stands for the request until the response is passed on: PJAX aborts the request of a
+            // navigation when another one starts.
+            const request = { readyState: 1, aborted: false, abort() { this.aborted = true; } };
+            prefetched.onResponse = (responseText, xhr) => {
+                if (request.aborted) {
+                    return;
+                }
+                request.readyState = 4;
+                if (responseText === null) {
+                    this.request = sendRequest.call(this, href, options, callback);
+                } else {
+                    callback(responseText, xhr, href, options);
+                }
+            };
+            if (prefetched.response) {
+                // Asynchronously, as a request: PJAX keeps the returned request first
+                Promise.resolve().then(() => prefetched.onResponse(...prefetched.response));
+            }
+            return request;
+        };
     }
 
     function initPjax() {
@@ -208,6 +295,14 @@
                     return switchSelectors.call(this, selectors, fromEl, toEl, options);
                 };
             }
+            const sendRequest = pjax.doRequest;
+            if (sendRequest) {
+                pjax.doRequest = sendRequestOrUsePrefetched(sendRequest);
+                document.addEventListener('icarus:prefetch', event => {
+                    event.preventDefault();
+                    prefetch(sendRequest, withoutHash(event.detail.url));
+                });
+            }
         } catch (e) {
             console.warn('PJAX error: ' + e);
         }
@@ -231,6 +326,22 @@
         }
         // Plugin [KaTeX]
         renderKatex();
+        // PJAX scrolls the anchor of the new page to the top of the window, under a sticky navbar:
+        // scroll it again after PJAX, before the next paint, below the navbar (its scroll margin).
+        if (location.hash && document.querySelector('.navbar-main[data-sticky]')) {
+            requestAnimationFrame(() => {
+                let target = null;
+                try {
+                    const name = decodeURIComponent(location.hash.slice(1));
+                    target = document.getElementById(name) || document.getElementsByName(name)[0];
+                } catch (e) {
+                    // A malformed hash: leave the page where PJAX scrolled it
+                }
+                if (target) {
+                    target.scrollIntoView();
+                }
+            });
+        }
         // Plugin [Busuanzi] reload logic
         if (window.bszCaller && window.bszTag) {
             window.bszCaller.fetch('//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback', a => {

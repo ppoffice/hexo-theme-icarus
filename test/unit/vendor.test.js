@@ -6,7 +6,7 @@
 const assert = require('assert').strict;
 const fs = require('fs');
 const path = require('path');
-const { VENDORED } = require('../e2e/cdn');
+const { VENDORED, ICON_FONT } = require('../e2e/cdn');
 const { REPO_ROOT } = require('../support/paths');
 
 function layoutFiles(dir = path.join(REPO_ROOT, 'layout'), extension = '.jsx') {
@@ -43,6 +43,15 @@ describe('vendored CDN libraries used by the browser tests', () => {
             const theme = schema.properties.highlight.properties[key].default;
             assert.ok(fs.existsSync(path.join(REPO_ROOT, 'node_modules', VENDORED['highlight.js'], 'styles', theme + '.css')), theme);
         }
+    });
+
+    it('serves Font Awesome at the version of the default icon CDN', () => {
+        const helper = fs.readFileSync(require.resolve('hexo-component-inferno/lib/hexo/helper/cdn'), 'utf8');
+        const match = helper.match(/fontawesome: 'https:\/\/use\.fontawesome\.com\/releases\/v([^/]+)\/(css\/all\.css)'/);
+        assert.ok(match, 'the default icon CDN of hexo-component-inferno is no longer Font Awesome');
+        const dir = path.join(REPO_ROOT, 'node_modules', ICON_FONT);
+        assert.equal(require(path.join(dir, 'package.json')).version, match[1], `update the "${ICON_FONT}" devDependency`);
+        assert.ok(fs.existsSync(path.join(dir, match[2])));
     });
 
     for (const name of Object.keys(VENDORED)) {

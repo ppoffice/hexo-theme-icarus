@@ -22,6 +22,40 @@ function commentPosts(posts) {
     }));
 }
 
+/**
+ * A post with code blocks to fold with a preview of their first lines (article.highlight.fold_preview):
+ * a long block marked >folded, a long block, and a short block that fits in its preview.
+ */
+function foldPreviewPost() {
+    const lines = (name, count) => Array.from({ length: count }, (_, i) => `const ${name}${i + 1} = ${i + 1};`);
+    return {
+        'source/_posts/fold-preview.md': [
+            '---',
+            'title: Fold Preview',
+            'date: 2024-06-01 10:00:00',
+            '---',
+            'A long folded code block:',
+            '',
+            '```js Long folded >folded',
+            ...lines('folded', 8),
+            '```',
+            '',
+            'A long code block:',
+            '',
+            '```js Long unfolded',
+            ...lines('unfolded', 8),
+            '```',
+            '',
+            'A short code block:',
+            '',
+            '```js Short >folded',
+            ...lines('short', 2),
+            '```',
+            ''
+        ].join('\n')
+    };
+}
+
 // The fixture has 2 top-level categories, 5 tags and 9 months of posts.
 const AMOUNT_WIDGETS = [
     { position: 'left', type: 'categories', amount: 1 },
@@ -106,6 +140,33 @@ module.exports = {
         }
     },
 
+    // A navbar staying at the top of the window at all widths (navbar.sticky), navigated with PJAX,
+    // with a dark post, a cyberpunk post and a post whose navbar scrolls away (front-matter, which
+    // replaces the navbar configuration).
+    'navbar-sticky': {
+        theme: { navbar: { sticky: true }, plugins: { pjax: true } },
+        files: Object.fromEntries([
+            ['sticky-dark', '2024-04-09', 'appearance: dark'],
+            ['sticky-cyberpunk', '2024-04-08', 'variant: cyberpunk'],
+            ['sticky-off', '2024-04-07', 'navbar: {"menu": {"Home": "/", "Archives": "/archives"}}']
+        ].map(([name, date, frontMatter]) => [`source/_posts/${name}.md`, [
+            '---',
+            `title: Navbar ${name}`,
+            `date: ${date} 10:00:00`,
+            frontMatter,
+            '---',
+            `A post with the ${name} navbar. Read [section 12 of the long post](/2023/08/01/long-toc/#Section-12),`,
+            'or [the posts with other navbars](/2024/04/09/sticky-dark/), [cyberpunk](/2024/04/08/sticky-cyberpunk/)',
+            'and [off](/2024/04/07/sticky-off/).',
+            ''
+        ].join('\n')]))
+    },
+
+    // A navbar staying at the top of the window on mobile screens only.
+    'navbar-sticky-mobile': {
+        theme: { navbar: { sticky: 'mobile' } }
+    },
+
     // A site without math plugins, navigated with PJAX, with a MathJax post and two KaTeX posts
     // (front-matter, which replaces the plugins of the site).
     'pjax-math': {
@@ -145,11 +206,72 @@ module.exports = {
         theme: { plugins: { pjax: true } }
     },
 
+    // Folded code blocks with a preview of their first lines, navigated with PJAX, and in the dark
+    // appearance or the cyberpunk variant.
+    'fold-preview': {
+        theme: { article: { highlight: { fold_preview: 3 } }, plugins: { pjax: true } },
+        files: foldPreviewPost()
+    },
+
+    'fold-preview-dark': {
+        theme: { appearance: 'dark', article: { highlight: { fold_preview: 3 } } },
+        files: foldPreviewPost()
+    },
+
+    'fold-preview-cyberpunk': {
+        theme: { variant: 'cyberpunk', article: { highlight: { fold_preview: 3 } } },
+        files: foldPreviewPost()
+    },
+
+    // Pages prefetched on hover, by the browser without PJAX, and by pjax.js with it.
+    'prefetch': {
+        theme: { plugins: { prefetch: { delay: 0 } } }
+    },
+
+    'pjax-prefetch': {
+        theme: { plugins: { pjax: true, prefetch: true } }
+    },
+
     // URLs relative to each page (`../../css/default.css`), which differ between pages at different
     // depths, navigated with PJAX.
     'pjax-relative-link': {
         site: { relative_link: true },
         theme: { plugins: { pjax: true } }
+    },
+
+    // The outdated notice, navigated with PJAX, with a dark post and a cyberpunk post (front-matter).
+    // The posts of the fixture date from 2024 and earlier: outdated after 365 days.
+    'outdated-notice': {
+        theme: { plugins: { pjax: true }, article: { outdated_notice: { enable: true, days: 365 } } },
+        files: {
+            'source/_posts/outdated-dark.md': [
+                '---',
+                'title: Outdated Dark',
+                'date: 2024-04-07 10:00:00',
+                'appearance: dark',
+                '---',
+                'An outdated post with a dark appearance. Next: [the cyberpunk post](/2024/04/08/outdated-cyberpunk/).',
+                ''
+            ].join('\n'),
+            'source/_posts/outdated-cyberpunk.md': [
+                '---',
+                'title: Outdated Cyberpunk',
+                'date: 2024-04-08 10:00:00',
+                'variant: cyberpunk',
+                '---',
+                'An outdated post in the cyberpunk variant. Back to [the dark post](/2024/04/07/outdated-dark/).',
+                ''
+            ].join('\n'),
+            'source/_posts/outdated-off.md': [
+                '---',
+                'title: Outdated Off',
+                'date: 2024-04-09 10:00:00',
+                'outdated_notice: false',
+                '---',
+                'An old post without the outdated notice.',
+                ''
+            ].join('\n')
+        }
     },
 
     // PJAX with a comment provider and analytics plugins, whose scripts the browser tests stub.
