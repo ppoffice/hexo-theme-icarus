@@ -1,6 +1,6 @@
 const { Component } = require('inferno');
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
-const { getAppearance, getDarkLogo } = require('../../include/util/appearance');
+const { getLogoAppearance, getDarkLogo } = require('../../include/util/appearance');
 const Logo = require('../misc/logo');
 
 class Footer extends Component {
@@ -87,7 +87,7 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
         logo,
         logoUrl: url_for(logo),
         darkLogoUrl: darkLogo ? url_for(darkLogo) : null,
-        appearance: getAppearance(config),
+        appearance: getLogoAppearance(config),
         siteUrl: url_for('/'),
         siteTitle: title,
         siteYear: date(new Date(), 'YYYY'),

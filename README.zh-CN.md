@@ -45,7 +45,7 @@ hexo server
 <td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/cyberpunk.png" alt="Cyberpunk 风格">
 <p><b>Cyberpunk 风格</b><br>
-灵感来自<a href="https://www.cyberpunk.net">《赛博朋克 2077》</a>的另一套外观，改一行配置即可切换。</p>
+霓虹夜色、HUD 边框与扫描线的另一套外观，改一行配置即可切换。</p>
 </td>
 <td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="响应式布局">

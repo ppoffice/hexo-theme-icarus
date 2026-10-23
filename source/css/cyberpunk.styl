@@ -1,301 +1,808 @@
+// A neon-noir look: a city at night on a dark screen, lit by magenta and cyan neon signs,
+// with HUD frames, scanlines and a perspective grid running to the horizon.
 $family-sans-serif ?= 'Oxanium', Ubuntu, Roboto, 'Open Sans', 'Microsoft YaHei', sans-serif
-$family-code ?= 'Roboto Mono', monospace, 'Microsoft YaHei'
+$family-code ?= 'JetBrains Mono', monospace, 'Microsoft YaHei'
 // shadow and radius
 $shadow ?= none
 $radius ?= 0
 $radius-small ?= 0
+// neon colors
+$neon-pink ?= #ff2e97
+$neon-cyan ?= #00f0ff
+$neon-purple ?= #b45cff
+$neon-green ?= #3dffa2
+$neon-yellow ?= #f8f36a
+$neon-orange ?= #ff9a3c
+$neon-red ?= #ff3b5c
+// the night: the page, the panels on it, and their raised parts
+$night ?= #07060f
+$night-panel ?= #0d0c1d
+$night-raised ?= #161430
+$night-line ?= rgba($neon-cyan, .16)
+$night-text ?= #c3c8e6
+$night-text-strong ?= #f3f5ff
+$night-text-muted ?= #7f82ad
 // base colors
 $white ?= #fff
-$white-bis ?= #cdcdcd
-$grey ?= #848484
-$black ?= #000
-$black-bis ?= #050a0e
-$orange ?= #ff8e3c
-$yellow ?= #fcee09
-$green ?= #00ff41
-$blue ?= #02d7f2
-$purple ?= #9561d2
-$red ?= #ff003c
-$primary ?= $yellow
-$info ?= $blue
-$success ?= $green
-$warning ?= $orange
-$danger ?= $red
+$black ?= $night
+$grey ?= $night-text-muted
+$grey-light ?= #9a9cc2
+$grey-lighter ?= #2c2a4d
+$grey-lightest ?= $night-raised
+$orange ?= $neon-orange
+$yellow ?= $neon-yellow
+$green ?= $neon-green
+$blue ?= $neon-cyan
+$purple ?= $neon-purple
+$red ?= $neon-red
+$primary ?= $neon-pink
+$info ?= $neon-cyan
+$success ?= $neon-green
+$warning ?= $neon-orange
+$danger ?= $neon-red
+$light ?= $night-raised
+$dark ?= $night-text
 // invert colors
-$orange-invert ?= #121617
-$yellow-invert ?= #121617
-$green-invert ?= #121617
-$blue-invert ?= #121617
-$purple-invert ?= #121617
-$red-invert ?= #121617
-$primary-invert ?= #121617
-$info-invert ?= #121617
-$success-invert ?= #121617
-$warning-invert ?= #121617
-$danger-invert ?= #121617
+$orange-invert ?= $night
+$yellow-invert ?= $night
+$green-invert ?= $night
+$blue-invert ?= $night
+$purple-invert ?= $night
+$red-invert ?= $night
+$primary-invert ?= $night
+$info-invert ?= $night
+$success-invert ?= $night
+$warning-invert ?= $night
+$danger-invert ?= $night
+$light-invert ?= $night-text-strong
+$dark-invert ?= $night
 // derived colors
-$scheme-main ?= $black
-$link ?= $blue
-$link-hover ?= $primary
-$text ?= $white-bis
-$text-strong ?= $yellow
-$body-background-color ?= $scheme-main
+$scheme-main ?= $night-panel
+$scheme-main-bis ?= $night-raised
+$scheme-main-ter ?= $night-raised
+$scheme-invert ?= $white
+$background ?= $night-raised
+$border ?= $grey-lighter
+$border-hover ?= $neon-cyan
+$border-light ?= $grey-lighter
+$text ?= $night-text
+$text-light ?= $night-text-muted
+$text-strong ?= $night-text-strong
+$code ?= $neon-pink
+$code-background ?= rgba($neon-pink, .08)
+$pre ?= $night-text
+$pre-background ?= $night
+$link ?= $neon-cyan
+$link-invert ?= $night
+$link-hover ?= $neon-pink
+$link-visited ?= $neon-purple
+$body-background-color ?= $night
 $input-color ?= $text
-$input-placeholder-color ?= rgba($input-color, .8)
-$footer-color ?= $black
-$footer-background-color ?= $yellow
-$navbar-background-color ?= $yellow
-$navbar-item-color ?= $black
-$navbar-item-active-color ?= $black
-$navbar-item-hover-color ?= $black
+$input-background-color ?= $night
+$input-border-color ?= $night-line
+$input-placeholder-color ?= rgba($input-color, .6)
+// chrome: the navbar and the footer
+$chrome-background ?= #0a0918
+$footer-color ?= $text
+$footer-background-color ?= $chrome-background
+$navbar-background-color ?= $chrome-background
+$navbar-item-color ?= $night-text
+$navbar-item-active-color ?= $neon-pink
+$navbar-item-hover-color ?= $neon-cyan
 $navbar-item-hover-background-color ?= transparent
-$navbar-item-margin-v ?= 1.25rem
-$navbar-item-margin-h ?= .25rem
-$navbar-item-padding-v ?= 0
-$navbar-item-padding-h ?= .5rem
-$navbar-dropdown-gap ?= 0
+$navbar-dropdown-background-color ?= $night-raised
+$navbar-dropdown-item-hover-background-color ?= rgba($neon-cyan, .08)
+$navbar-dropdown-item-hover-color ?= $neon-cyan
 $navbar-dropdown-padding-h ?= .5rem
-$navbar-dropdown-shadow ?= none
+$navbar-dropdown-shadow ?= 0 12px 32px rgba(0, 0, 0, .6), 0 0 24px rgba($neon-cyan, .12)
 $navbar-dropdown-item-padding-h ?= .5rem
-$navbar-dropdown-item-muted-color ?= rgba($black, .7)
-$card-background-color ?= transparent
-$menu-label-color ?= $blue
-$menu-item-hover-color ?= $black
-$menu-item-hover-background-color ?= $yellow
-$menu-item-active-color ?= $black
-$menu-item-active-background-color ?= $yellow
-$menu-list-border-left ?= 1px solid $text
-$tag-color ?= $black
-$tag-background-color ?= $blue
-$timeline-fg-line ?= $blue
-$timeline-bg-line ?= $body-background-color
-$post-navigation-fg ?= $white-bis
-$searchbox-bg-container ?= $black-bis
-$searchbox-border ?= $blue
-$searchbox-bg-input ?= $black-bis
-$searchbox-bg-close-hover ?= $black
+$navbar-dropdown-item-muted-color ?= $night-text-muted
+$card-background-color ?= rgba($night-panel, .86)
+$card-shadow ?= none
+$menu-label-color ?= $neon-cyan
+$menu-item-color ?= $night-text
+$menu-item-hover-color ?= $neon-cyan
+$menu-item-hover-background-color ?= rgba($neon-cyan, .07)
+$menu-item-active-color ?= $night
+$menu-item-active-background-color ?= $neon-cyan
+$menu-list-border-left ?= 1px solid $night-line
+$tag-color ?= $neon-cyan
+$tag-background-color ?= rgba($neon-cyan, .1)
+$table-color ?= $text
+$table-background-color ?= transparent
+$table-cell-border ?= 1px solid $night-line
+$content-heading-weight ?= 600
+$content-blockquote-background-color ?= rgba($neon-purple, .08)
+$content-blockquote-border-left ?= 3px solid $neon-pink
+$content-table-cell-border ?= 1px solid $night-line
+$timeline-fg-line ?= rgba($neon-cyan, .35)
+$timeline-bg-line ?= $night-panel
+$post-navigation-fg ?= $night-text-muted
+$pagination-color ?= $night-text
+$pagination-background-color ?= $night-panel
+$pagination-current-background-color ?= $neon-pink
+$pagination-box-shadow ?= none
+$codeblock-caption-bg ?= rgba($neon-cyan, .06)
+$searchbox-bg-overlay ?= rgba($night, .86)
+$searchbox-bg-container ?= $night-panel
+$searchbox-border ?= $night-line
+$searchbox-bg-input ?= $night
+$searchbox-bg-close-hover ?= $night-raised
 $searchbox-bg-close-active ?= $searchbox-bg-close-hover
-$searchbox-bg-result-item-hover ?= $black
+$searchbox-fg-result-header ?= $neon-cyan
+$searchbox-fg-result-item-secondary ?= $night-text-muted
+$searchbox-bg-result-item-hover ?= $night-raised
+$searchbox-bg-result-item-highlight ?= rgba($neon-pink, .35)
+$searchbox-bg-pagination-item-hover ?= $night-raised
+$searchbox-bg-pagination-item-disabled ?= $night-panel
 
 @import '_style'
 
+/* ---------------------------------
+ *             Mixins
+ * --------------------------------- */
 clip-path(clip)
     clip-path: clip
     -webkit-clip-path: clip
 
+// Chamfered corners: top left and bottom right
 cut-corner(size)
     clip-path(unquote('polygon(' + size + ' 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%, 0 ' + size + ')'))
 
-cut-corner-reverse(size)
-    clip-path(unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '), 0 0)'))
+// A neon tube: the text glows in its own color
+neon-text(color, strength = 1)
+    color: color
+    text-shadow: 0 0 (4px * strength) rgba(color, .6), 0 0 (14px * strength) rgba(color, .35)
 
-cut-corner-top-right(size)
-    clip-path(unquote('polygon(0 0, calc(100% - ' + size + ') 0, 100% ' + size + ', 100% 100%, 0 100%)'))
+// The four L-shaped corner marks of a HUD frame
+hud-corners(color, size = 14px, width = 2px)
+    $line = linear-gradient(color, color)
+    background-image: $line, $line, $line, $line, $line, $line, $line, $line
+    background-repeat: no-repeat
+    background-size: size width, width size, size width, width size, size width, width size, size width, width size
+    background-position: left top, left top, right top, right top, left bottom, left bottom, right bottom, right bottom
 
-cut-corner-bottom-left(size)
-    clip-path(unquote('polygon(0 0, 100% 0, 100% 100%, ' + size + ' 100%, 0 calc(100% - ' + size + '))'))
+// A neon gradient running from magenta to cyan
+neon-gradient(direction = 90deg)
+    linear-gradient(direction, $neon-pink, $neon-purple 50%, $neon-cyan)
 
-cut-corner-bottom-right(size)
-    clip-path(unquote('polygon(0 0, 100% 0, 100% calc(100% - ' + size + '), calc(100% - ' + size + ') 100%, 0 100%)'))
+/* ---------------------------------
+ *         The City at Night
+ * --------------------------------- */
+html
+    color-scheme: dark
+    background-color: $night
 
-undercover-before()
-    position: relative
+body
+    counter-reset: card
+    background-color: transparent
 
+    // Neon glows on the horizon, over a faint grid, behind the page
     &:before
         content: ''
-        position: absolute
-        z-index: -1
+        position: fixed
         top: 0
         left: 0
         right: 0
         bottom: 0
+        z-index: -1
+        pointer-events: none
+        background-image: radial-gradient(ellipse 60% 50% at 0 0, rgba($neon-pink, .13), transparent), radial-gradient(ellipse 60% 50% at 100% 100%, rgba($neon-cyan, .1), transparent), linear-gradient(rgba($neon-cyan, .035) 1px, transparent 1px), linear-gradient(90deg, rgba($neon-cyan, .035) 1px, transparent 1px)
+        background-size: auto, auto, 48px 48px, 48px 48px
 
-body
-    counter-reset: card
+    // Scanlines over the whole screen, through which everything stays clickable
+    &:after
+        content: ''
+        position: fixed
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: 10000
+        pointer-events: none
+        background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .1) 0, rgba(0, 0, 0, .1) 1px, transparent 1px, transparent 3px)
+
+        @media print
+            display: none
 
 ::selection
-    color: $black
-    background: $blue
+    color: $night
+    background: $neon-pink
 
++desktop()
+    ::-webkit-scrollbar-track
+        background: $night
+        box-shadow: none
+
+    ::-webkit-scrollbar-thumb
+        border-radius: 0
+        background: rgba($neon-cyan, .3)
+        box-shadow: none
+
+    ::-webkit-scrollbar-thumb:hover
+        background: $neon-pink
+
+a
+    transition: color .15s ease, text-shadow .15s ease
+
+    &:hover
+        text-shadow: 0 0 8px rgba($neon-pink, .55)
+
+strong
+    color: $text-strong
+
+hr
+    height: 1px
+    background: neon-gradient()
+    opacity: .6
+
+/* ---------------------------------
+ *            HUD Panels
+ * --------------------------------- */
 .card:not(#back-to-top)
     position: relative
     counter-increment: card
+    border: 1px solid $night-line
+    transition: border-color .25s ease, box-shadow .25s ease
 
-    &, .card-content
-        undercover-before()
-
+    // Corner marks
     &:before
-        top: -1.2px
-        left: -1.2px
-        right: -1.2px
-        bottom: -1.2px
-        background-color: $blue
-        cut-corner-reverse(16px)
-
-    &:after
-        content: 'R' counter(card)
+        content: ''
         position: absolute
-        color: $blue
-        right: 2rem
-        bottom: -.6em
-        font-size: .75rem
-        padding: 0 .25em
-        background: $body-background-color
+        top: -1px
+        left: -1px
+        right: -1px
+        bottom: -1px
+        pointer-events: none
+        hud-corners($neon-cyan)
+        transition: filter .25s ease
+
+    // The number of the panel, on its top edge
+    &:after
+        content: '0x' counter(card, decimal-leading-zero)
+        position: absolute
+        top: -.6rem
+        right: 1.5rem
+        padding: 0 .4rem
+        font-family: $family-code
+        font-size: .65rem
+        line-height: 1.2rem
+        letter-spacing: .1em
+        color: $neon-pink
+        background: $night
+
+    &:hover
+        border-color: rgba($neon-cyan, .4)
+        box-shadow: 0 0 0 1px rgba($neon-cyan, .08), 0 0 28px rgba($neon-cyan, .1)
+
+        &:before
+            filter: drop-shadow(0 0 4px $neon-cyan)
 
     .card-image
-        cut-corner-top-right(16px)
+        border-bottom: 1px solid $night-line
 
-    .card-content:before
-        background-color: $body-background-color
-        cut-corner-reverse(16px)
+.menu-label, .card .heading
+    font-family: $family-code
+    letter-spacing: .15em
 
-    .card-image + .card-content:before
-        cut-corner-bottom-left(16px)
+.menu-label
+    neon-text($neon-cyan, .6)
 
-clip-button($color, $color-invert)
     &:before
-        background-color: $color
-        color: $color-invert
+        content: '> '
+        color: $neon-pink
 
-    &:hover:before, &.is-hovered:before
-        background-color: darken($color, 2.5%)
-        color: $color-invert
+.menu-list
+    a
+        cut-corner(6px)
 
-    &:focus:before, &.is-focused:before
-        color: $color-invert
+        &.is-active
+            box-shadow: 0 0 16px rgba($neon-cyan, .4)
 
-    &:active:before, &.is-active:before
-        background-color: darken($color, 5%)
-        color: $color-invert
+    li ul
+        border-left-color: $night-line
 
-    &[disabled]:before, fieldset[disabled] &:before
-        background-color: $color
+.widget
+    .menu-list .tag
+        color: $neon-cyan
+        background: rgba($neon-cyan, .1)
+        font-family: $family-code
 
-    &.is-inverted
-        &:before
-            background-color: $color-invert
-            color: $color
+    .menu-list a.is-active .tag
+        color: $neon-cyan
+        background: $night
 
-            &:hover:before, &.is-hovered:before
-                background-color: darken($color-invert, 5%)
+    // The profile widget
+    .avatar
+        border-radius: 50%
+        box-shadow: 0 0 0 2px $night, 0 0 0 3px $neon-pink, 0 0 24px rgba($neon-pink, .5)
 
-            &[disabled]:before, fieldset[disabled] &:before
-                background-color: $color-invert
-                border-color: transparent
-                box-shadow: none
-                color: $color
+    .level .title
+        neon-text($night-text-strong, .5)
 
-.button:not(input)
+    .level a:hover .title
+        neon-text($neon-cyan)
+
+/* ---------------------------------
+ *      Buttons, Tags, Pagination
+ * --------------------------------- */
+.button:not(.is-transparent):not(.donate)
+    cut-corner(8px)
     border: none
-    outline: none
-    background: transparent !important
-    undercover-before()
+    font-weight: 600
+    letter-spacing: .05em
+    text-transform: uppercase
+    transition: background-color .15s ease, color .15s ease, filter .15s ease
 
-    &:before
-        cut-corner(8px)
+    &:not([class*="is-"]), &.is-light, &.is-rounded:not([class*="is-primary"]):not([class*="is-info"])
+        color: $neon-cyan
+        background-color: rgba($neon-cyan, .12)
 
-    // clip-path will cut off overflown content inside a button
-    // thus we need to use :before pseudo-element to style the buttons
+        &:hover, &:focus
+            color: $night
+            background-color: $neon-cyan
+
+    for $name, $pair in $colors
+        $color = $pair['1']
+        $color-invert = $pair['2']
+
+        &.is-{$name}:not(.is-outlined):not(.is-inverted)
+            &:hover, &.is-hovered, &:focus, &.is-focused
+                color: $color-invert
+                background-color: $color
+                filter: brightness(1.15) drop-shadow(0 0 6px rgba($color, .6))
+
+.button.is-rounded
+    border-radius: 0
+
+article.article .article-more
+    color: $neon-cyan
+    background-color: rgba($neon-cyan, .12)
+
+    &:after
+        content: ' >>'
+        margin-left: .4em
+        white-space: pre
+
+    &:hover, &:focus
+        color: $night
+        background-color: $neon-cyan
+
+.tag:not(body)
+    font-family: $family-code
+    cut-corner(4px)
+
+.tags
+    .tag:not(body)
+        transition: background-color .15s ease, color .15s ease
+
+    a.tag:hover, a.tags:hover .tag
+        text-shadow: none
+
+    &.has-addons
+        .tag:first-child
+            color: $night !important
+            background: $neon-pink !important
+
+        .tag:last-child
+            color: $neon-pink !important
+            background: rgba($neon-pink, .12) !important
+
+    a.has-addons:hover
+        .tag:last-child
+            color: $night !important
+            background: $neon-cyan !important
+
+.pagination-previous, .pagination-next, .pagination-link
+    cut-corner(8px)
+    font-family: $family-code
+    border: 1px solid $night-line !important
+
+    &:hover
+        border-color: $neon-cyan !important
+
+        &, a
+            color: $neon-cyan
+
+    &.is-current
+        box-shadow: 0 0 16px rgba($neon-pink, .5)
+
+        &, a
+            color: $night
+
+/* ---------------------------------
+ *              Navbar
+ * --------------------------------- */
+.navbar-main
+    position: relative
+    text-transform: uppercase
+    letter-spacing: .08em
+
+    // A neon tube along its bottom edge
+    &:after
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        bottom: -1px
+        height: 2px
+        background: neon-gradient()
+        box-shadow: 0 0 10px rgba($neon-pink, .5), 0 0 20px rgba($neon-cyan, .3)
+        pointer-events: none
+
+    .navbar-logo
+        transition: filter .2s ease
+
+        &:hover
+            filter: drop-shadow(0 0 6px rgba($neon-cyan, .7))
+
+    .navbar-item, .navbar-link
+        transition: color .15s ease, text-shadow .15s ease
+
+    // Sub-menu buttons are <button>s, which do not inherit the letter case
+    .navbar-link
+        text-transform: inherit
+        letter-spacing: inherit
+
+    a.navbar-item, button.navbar-item, .navbar-item.has-dropdown .navbar-link
+        &:hover, &:focus-visible
+            neon-text($neon-cyan)
+
+    a.navbar-item.is-active, .navbar-item.has-dropdown .navbar-link.is-active
+        neon-text($neon-pink)
+
+    // The current page in the menu bar: a neon bar under its name
+    &:not(.is-collapsed) .navbar-start
+        & > a.navbar-item.is-active, & > .navbar-item.has-dropdown > .navbar-link.is-active
+            box-shadow: inset 0 -3px 0 $neon-pink
+
+    // Sub-menus: a raised panel with a magenta edge
+    &.is-scripted:not(.is-collapsed) .navbar-dropdown
+        background-color: $navbar-dropdown-background-color
+        border: 1px solid rgba($neon-cyan, .3)
+        border-top: 2px solid $neon-pink
+
+        a.navbar-item
+            text-transform: none
+            letter-spacing: .02em
+
+            &:hover
+                color: $navbar-dropdown-item-hover-color
+                background-color: $navbar-dropdown-item-hover-background-color
+
+            &.is-active
+                color: $neon-pink
+                background-color: rgba($neon-pink, .08)
+
+/* ---------------------------------
+ *             Articles
+ * --------------------------------- */
+.title
+    color: $text-strong
+
+article.article, article.media
+    .title a
+        background-image: neon-gradient()
+        background-repeat: no-repeat
+        background-position: left bottom
+        background-size: 0 2px
+        transition: background-size .25s ease-in-out, color .15s ease
+
+    .title:hover a
+        background-size: 100% 2px
+        animation: neon-glitch .45s steps(2, end) 1
+
+article.article
+    & > .title, .title a
+        color: $text-strong
+        text-shadow: 0 0 18px rgba($neon-cyan, .25)
+
+    .article-meta, .article-tags
+        font-family: $family-code
+        letter-spacing: .04em
+
+    .article-meta .level-item:not(:last-child):after
+        content: '//'
+        margin-left: .75rem
+        color: $neon-pink
+        opacity: .7
+
+    .article-tags a:hover
+        color: $neon-cyan !important
+
+// A short glitch: the colors split apart and the title jumps
+@keyframes neon-glitch
+    0%
+        text-shadow: -2px 0 $neon-pink, 2px 0 $neon-cyan
+        transform: translate(0)
+    25%
+        text-shadow: 2px 0 $neon-pink, -2px 0 $neon-cyan
+        transform: translate(-1px, 1px)
+    50%
+        text-shadow: -1px 0 $neon-pink, 1px 0 $neon-cyan
+        transform: translate(1px, -1px)
+    100%
+        text-shadow: none
+        transform: translate(0)
+
+article.article .title, article.media .title
+    a
+        display: inline
+
+@media (prefers-reduced-motion: reduce)
+    article.article, article.media
+        .title:hover a
+            animation: none
+
+    .card:not(#back-to-top), .card:not(#back-to-top):before, a, .navbar-main .navbar-item
+        transition: none
+
+.content
+    h1, h2, h3, h4, h5, h6
+        color: $text-strong
+
+    h2, h3
+        &:before
+            content: '//'
+            margin-right: .5em
+            font-family: $family-code
+            font-size: .75em
+            font-weight: 400
+            vertical-align: .1em
+            neon-text($neon-pink, .4)
+
+    a:not(.headerlink):not(.button)
+        text-decoration: underline
+        text-decoration-color: rgba($neon-cyan, .4)
+        text-underline-offset: .2em
+
+        &:hover
+            text-decoration-color: $neon-pink
+
+    ul > li::marker
+        color: $neon-cyan
+
+    ol > li::marker
+        font-family: $family-code
+        color: $neon-pink
+
+    :not(pre) > code
+        padding: .1em .35em
+        color: $neon-pink
+        background: rgba($neon-pink, .08)
+        border: 1px solid rgba($neon-pink, .22)
+
+    blockquote
+        position: relative
+        border: 1px solid rgba($neon-purple, .25)
+        border-left: 3px solid $neon-pink
+        box-shadow: inset 4px 0 16px -8px rgba($neon-pink, .5)
+
+    table
+        thead th, thead td
+            font-family: $family-code
+            font-size: .85em
+            letter-spacing: .1em
+            text-transform: uppercase
+            color: $neon-cyan
+            border-bottom: 1px solid rgba($neon-cyan, .5)
+
+        tbody tr
+            transition: background-color .15s ease
+
+            &:hover
+                background-color: rgba($neon-cyan, .04)
+
+// {% message %} tags: a dark panel lit in its color
+.message
+    background-color: $night-raised
+
+    .message-header
+        font-family: $family-code
+        letter-spacing: .05em
+        text-transform: uppercase
+
+    .message-body
+        color: $text
+        border-color: $night-line
+
     for $name, $pair in $colors
         $color = $pair['1']
         $color-invert = $pair['2']
 
         &.is-{$name}
-            clip-button($color, $color-invert)
+            background-color: rgba($color, .07)
+            box-shadow: 0 0 20px rgba($color, .08)
 
-.field.has-addons
-    .control:not(:first-child)
-        .button
-            cut-corner-bottom-right(8px)
+            .message-header
+                color: $color-invert
+                background-color: $color
 
-.menu-list a
-    cut-corner(8px)
+            .message-body
+                color: $text
+                border-color: $color
 
-.tags.has-addons
-    .tag:first-child
-        background: $yellow !important
+.tabs
+    a
+        color: $text
+        border-bottom-color: $night-line
 
-    .tag:last-child
-        background: $blue !important
+        &:hover
+            color: $neon-cyan
+            border-bottom-color: $neon-cyan
 
-.pagination-previous, .pagination-next, .pagination-link
-    cut-corner(8px)
+    ul
+        border-bottom-color: $night-line
 
-    &:hover
-        background-color: $blue
+    li.is-active a
+        neon-text($neon-pink, .6)
+        border-bottom-color: $neon-pink
 
-        &, a
-            color: $black
+.article-licensing
+    background: $night-raised
+    border: 1px solid $night-line
+    border-left: 3px solid $neon-cyan
 
-.navbar-main
-    padding-top: 10px
-    padding-bottom: 30px
+    &:after
+        color: $neon-cyan
+        opacity: .06
 
+    h6
+        font-family: $family-code
+        letter-spacing: .1em
+        text-transform: uppercase
+        color: $night-text-muted
+
+    .licensing-title p:first-child
+        color: $text-strong
+
+.post-navigation a:hover
+    neon-text($neon-cyan)
+
+/* ---------------------------------
+ *       Code Blocks: a Terminal
+ * --------------------------------- */
+figure.highlight
+    color: $night-text
+    background: $night
+    border: 1px solid rgba($neon-cyan, .22)
+    box-shadow: 0 0 24px rgba($neon-cyan, .06)
+
+    &.hljs
+        color: $night-text
+        background: $night
+
+    // The title bar of a terminal window, with its three lights
+    figcaption
+        padding-left: 4.25em
+        color: $neon-cyan
+        border-bottom: 1px solid $night-line
+        $light = 4px
+        background-image: radial-gradient(circle, $neon-pink $light, transparent ($light + .5px)), radial-gradient(circle, $neon-yellow $light, transparent ($light + .5px)), radial-gradient(circle, $neon-green $light, transparent ($light + .5px))
+        background-repeat: no-repeat
+        background-size: 12px 12px
+        background-position: .75em 50%, calc(.75em + 14px) 50%, calc(.75em + 28px) 50%
+
+    .gutter
+        color: rgba($neon-purple, .7)
+        background: rgba($neon-purple, .05)
+        border-right: 1px solid $night-line
+
+    .hljs-comment, .hljs-quote
+        color: #6c6f9c
+        font-style: italic
+
+    .hljs-keyword, .hljs-selector-tag, .hljs-section, .hljs-link, .hljs-doctag
+        color: $neon-pink
+
+    .hljs-string, .hljs-regexp, .hljs-addition, .hljs-meta .hljs-string
+        color: $neon-green
+
+    .hljs-number, .hljs-literal, .hljs-symbol, .hljs-bullet
+        color: $neon-yellow
+
+    .hljs-title, .hljs-name, .hljs-selector-id, .hljs-selector-class
+        color: $neon-cyan
+
+    .hljs-built_in, .hljs-type, .hljs-class .hljs-title, .hljs-title.class_
+        color: $neon-purple
+
+    .hljs-attr, .hljs-attribute, .hljs-variable, .hljs-template-variable, .hljs-params, .hljs-property
+        color: $neon-orange
+
+    .hljs-meta
+        color: $night-text-muted
+
+    .hljs-deletion
+        color: $neon-red
+
+    .hljs-subst
+        color: $night-text
+
+    .hljs-emphasis
+        font-style: italic
+
+    .hljs-strong
+        font-weight: bold
+
+/* ---------------------------------
+ *     Footer: the Grid to the Horizon
+ * --------------------------------- */
+.footer
+    position: relative
+    overflow: hidden
+
+    // A neon tube along its top edge
+    &:before
+        content: ''
+        position: absolute
+        z-index: 1
+        left: 0
+        right: 0
+        top: 0
+        height: 2px
+        background: neon-gradient(-90deg)
+        box-shadow: 0 0 10px rgba($neon-cyan, .4), 0 0 20px rgba($neon-pink, .3)
+
+    // The grid, in perspective
     &:after
         content: ''
         position: absolute
-        left: 0
-        right: 0
-        bottom: -2px
-        background: url('../img/razor-top-black.svg') repeat-x top
-        height: 40px
-
-    .navbar-menu
-        // Sub-menus: their buttons and links, not the groups holding them
-        .navbar-item:not(.has-dropdown), .navbar-link
-            &:hover, &.is-active
-                color: $navbar-background-color !important
-                background-color: $body-background-color !important
-
-    // A yellow tab hanging from the bar, its links below the bottom edge of the bar
-    &.is-scripted:not(.is-collapsed) .navbar-dropdown
-        padding-top: calc(30px + .5rem)
-        cut-corner-bottom-right(12px)
-
-article.article, article.media
-    .title a
-        background-image: linear-gradient(transparent calc(100% - 2px), $text-strong 2px)
-        background-repeat: no-repeat
-        background-size: 0 100%
-        transition: background-size .25s ease-in-out
-
-    .title:hover a
-        background-size: 100% 100%
-
-article.article
-    .article-more
-        clip-button($info, $info-invert)
-
-.article-licensing
-    background: $black-ter
-
-.content
-    blockquote
-        background: transparent
-        border: .5px solid $blue
-        border-left: 5px solid $blue
-
-.footer
-    position: relative
-
-    &:before
-        content: ''
-        position: absolute
-        left: 0
-        right: 0
-        top: -1px
-        height: 39px
-        background: url('../img/razor-bottom-black.svg') repeat-x top
+        z-index: 0
+        left: -50%
+        right: -50%
+        top: 0
+        bottom: -60%
+        pointer-events: none
+        background-image: linear-gradient(rgba($neon-pink, .7) 1px, transparent 1px), linear-gradient(90deg, rgba($neon-pink, .7) 1px, transparent 1px)
+        background-size: 48px 48px
+        transform: perspective(240px) rotateX(55deg)
+        transform-origin: center top
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 70%)
+        mask-image: linear-gradient(to bottom, transparent, black 70%)
+        opacity: .6
+        animation: neon-grid 3s linear infinite
 
     & > .container
-        padding-top: 40px
+        position: relative
+        z-index: 1
 
+    a:hover
+        neon-text($neon-cyan)
+
+@keyframes neon-grid
+    from
+        background-position: 0 0
+    to
+        background-position: 0 48px
+
+@media (prefers-reduced-motion: reduce)
+    .footer:after
+        animation: none
+
+/* ---------------------------------
+ *       Timeline, Search and More
+ * --------------------------------- */
 .timeline .media
     &:before
+        background: $neon-cyan
+        box-shadow: 0 0 8px $neon-cyan
         clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%)
 
-.searchbox .searchbox-container
-    border: 1px solid $blue
+    .date
+        font-family: $family-code
+        color: $neon-pink
+
+.searchbox
+    .searchbox-container
+        border: 1px solid rgba($neon-cyan, .4)
+        box-shadow: 0 0 40px rgba($neon-cyan, .15)
+
+    .searchbox-header
+        border-bottom: 2px solid $neon-pink
+
+    .searchbox-input
+        font-family: $family-code
 
     .searchbox-body
         border-bottom: 1px solid $searchbox-border
@@ -303,22 +810,40 @@ article.article
         li:last-child .searchbox-result-section
             border-bottom: none
 
+    .searchbox-result-section header
+        font-family: $family-code
+        letter-spacing: .1em
+
     .searchbox-result-item
         em
-            color: $black
+            color: $night-text-strong
+
+.input, .textarea, .select select
+    &:focus, &.is-focused, &:active, &.is-active
+        border-color: $neon-cyan
+        box-shadow: 0 0 0 1px $neon-cyan, 0 0 12px rgba($neon-cyan, .35)
 
 #back-to-top
-    color: $black
-    background: $blue
+    color: $night
+    background: $neon-cyan
     margin-top: 45px
+    box-shadow: none
     cut-corner(8px)
+
+    &:hover
+        background: $neon-pink
+
+.donate .qrcode
+    border: 1px solid $neon-cyan
 
 .cc-window, .cc-revoke
     border-radius: 0 !important
 
 .cc-window
+    font-family: $family-sans-serif !important
+
     &:not(.cc-banner)
-        border: 1px solid $blue
+        border: 1px solid $neon-cyan
 
     &.cc-theme-classic, &.cc-theme-block
         .cc-compliance > .cc-btn
@@ -326,7 +851,8 @@ article.article
 
     &.cc-banner
         .cc-compliance > .cc-btn
-            background-color: $blue
+            color: $night
+            background-color: $neon-cyan
 
             &:hover, &:focus
-                background-color: darken($blue, 2.5%)
+                background-color: $neon-pink

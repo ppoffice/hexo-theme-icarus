@@ -19,16 +19,29 @@ function getAppearance(config) {
 }
 
 /**
- * The logo image to show when the default variant looks dark: `logo_dark`, or the theme's dark
- * logo while `logo` is the theme's logo. Null when the logo does not change: light appearance,
- * cyberpunk variant, text logo, or a logo of the site without `logo_dark`.
+ * The appearance the logos of the navbar and the footer are shown for: that of the page, or
+ * "dark" for the cyberpunk variant, whose navbar and footer are always dark.
+ *
+ * @param {Object} config Configuration of the page
+ * @returns {string}
+ */
+function getLogoAppearance(config) {
+    const { variant = 'default' } = config || {};
+    return variant === 'cyberpunk' ? 'dark' : getAppearance(config);
+}
+
+/**
+ * The logo image to show when the page looks dark (the dark or "auto" appearance of the default
+ * variant, or the cyberpunk variant): `logo_dark`, or the theme's dark logo while `logo` is the
+ * theme's logo. Null when the logo does not change: light appearance, text logo, or a logo of
+ * the site without `logo_dark`.
  *
  * @param {Object} config Configuration of the page
  * @returns {string|null} Path or URL of the dark logo
  */
 function getDarkLogo(config) {
     const { logo, logo_dark: logoDark } = config || {};
-    if (getAppearance(config) === 'light' || typeof logo !== 'string' || !logo) {
+    if (getLogoAppearance(config) === 'light' || typeof logo !== 'string' || !logo) {
         return null;
     }
     if (typeof logoDark === 'string' && logoDark) {
@@ -37,4 +50,4 @@ function getDarkLogo(config) {
     return logo === DEFAULT_LOGO ? DEFAULT_DARK_LOGO : null;
 }
 
-module.exports = { getAppearance, getDarkLogo };
+module.exports = { getAppearance, getLogoAppearance, getDarkLogo };
