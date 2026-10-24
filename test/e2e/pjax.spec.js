@@ -193,18 +193,36 @@ test.describe('PJAX navigation to pages with math plugins', () => {
         source: document.querySelector('.column-main .content').textContent.includes('$$')
     }));
 
+    async function checkKatex(page) {
+        const content = page.locator('.column-main .content');
+        await expect(content.locator('.katex-display')).toHaveCount(2);
+        await expect(content.locator('.katex-error')).toHaveCount(0);
+        await expect(content.locator('.katex .mfrac')).toHaveCount(1);
+        await expect(content.locator('annotation')).toContainText([
+            'a^2 + b^2 = c^2', '\\frac{a}{b}', '\\ce{H2O}', '\\ce{2H2 + O2 -> 2H2O}',
+            '\\href{javascript:alert(1)}{unsafe}'
+        ]);
+        await expect(content.locator('a[href^="javascript:"]')).toHaveCount(0);
+        await expect(content.locator('code')).toHaveText('\\(not rendered\\)');
+        await expect(content).toContainText('$not math$');
+        expect(await page.evaluate(() => window.katex.version)).toBe('0.19.1');
+        expect(await content.locator('.katex-display').first().evaluate(el => getComputedStyle(el).display)).toBe('block');
+    }
+
     for (const [name, href, expected] of [
         ['MathJax', MATHJAX_POST, { mathjax: 1, katex: 0, source: false }],
-        ['KaTeX', KATEX_POST, { mathjax: 0, katex: 1, source: false }]
+        ['KaTeX', KATEX_POST, { mathjax: 0, katex: 5, source: false }]
     ]) {
         test(`typesets the formulas of a ${name} post, like a full page load`, async ({ page, visit, diagnostics }) => {
             await visit(href, { variant: 'pjax-math' });
             await expect.poll(() => typeset(page)).toEqual(expected);
+            if (name === 'KaTeX') await checkKatex(page);
 
             await visit('/', { variant: 'pjax-math' });
             await page.evaluate(() => { window.__noFullReload = true; });
             await pjaxClick(page, page.locator(`.column-main a[href="${href}"]`).first());
             await expect.poll(() => typeset(page)).toEqual(expected);
+            if (name === 'KaTeX') await checkKatex(page);
             expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
             expect(diagnostics.pageErrors).toEqual([]);
             expect(diagnostics.failedRequests).toEqual([]);
@@ -215,10 +233,12 @@ test.describe('PJAX navigation to pages with math plugins', () => {
         await visit('/', { variant: 'pjax-math' });
         await page.evaluate(() => { window.__noFullReload = true; });
         await pjaxClick(page, page.locator(`.column-main a[href="${KATEX_POST}"]`).first());
-        await expect.poll(() => typeset(page)).toEqual({ mathjax: 0, katex: 1, source: false });
+        await expect.poll(() => typeset(page)).toEqual({ mathjax: 0, katex: 5, source: false });
+        await checkKatex(page);
 
         await pjaxClick(page, page.locator(`.content a[href="${OTHER_KATEX_POST}"]`));
-        await expect.poll(() => typeset(page)).toEqual({ mathjax: 0, katex: 1, source: false });
+        await expect.poll(() => typeset(page)).toEqual({ mathjax: 0, katex: 5, source: false });
+        await checkKatex(page);
         expect(await page.locator('body > script[src*="katex.min.js"]').count()).toBe(1);
         expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
         expect(diagnostics.pageErrors).toEqual([]);

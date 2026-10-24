@@ -220,6 +220,16 @@ module.exports = {
             `    ${plugin}`,
             '---',
             `The ${name} formula: $$a^2 + b^2 = c^2$$`,
+            ...name.startsWith('katex') ? [
+                '',
+                'Inline: \\\\(\\frac{a}{b}\\\\) and \\\\(\\ce{H2O}\\\\).',
+                '',
+                '$$\\ce{2H2 + O2 -> 2H2O}$$',
+                '',
+                '`\\(not rendered\\)` and $not math$.',
+                '',
+                '\\\\(\\href{javascript:alert(1)}{unsafe}\\\\)'
+            ] : [],
             '',
             `[Next](${next}) or [home](/).`,
             ''
