@@ -30,8 +30,15 @@
             });
             const switchSelectors = pjax.switchSelectors;
             if (switchSelectors) {
+                const afterAllSwitches = pjax.afterAllSwitches;
+                pjax.afterAllSwitches = function() {
+                    // Restore the new navbar before PJAX requests main.js, which may be slow or fail.
+                    window.IcarusNavbar.init();
+                    return afterAllSwitches.call(this);
+                };
                 pjax.switchSelectors = function(selectors, fromEl, toEl, options) {
                     page.resolveUrls(fromEl, this.state.href);
+                    window.IcarusNavbar.destroy();
                     return switchSelectors.call(this, selectors, fromEl, toEl, options);
                 };
             }

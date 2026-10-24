@@ -120,9 +120,14 @@ describe('layout/layout (page skeleton)', () => {
     }
 
     describe('scripts', () => {
-        it('loads PJAX modules before the plugin and only when enabled', async () => {
+        it('loads the navbar once before the per-page main script', async () => {
             const { $ } = await renderLayout({}, { plugins: { pjax: true } });
             const sources = $('body > script[src]').map((i, el) => el.attribs.src).get();
+            const navbar = $('script[src="/js/navbar.js"]');
+            assert.equal(navbar.length, 1);
+            assert.equal(navbar.attr('data-pjax'), undefined);
+            assert.notEqual(navbar.attr('defer'), undefined);
+            assert.ok(sources.indexOf('/js/navbar.js') < sources.indexOf('/js/main.js'));
             for (const source of ['pjax-page', 'pjax-prefetch']) {
                 const script = $(`script[src="/js/${source}.js"]`);
                 assert.equal(script.length, 1);

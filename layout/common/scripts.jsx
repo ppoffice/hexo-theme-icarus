@@ -43,6 +43,7 @@ module.exports = class extends Component {
             {clipboard && <script src={cdn('clipboard', '2.0.11', 'dist/clipboard.min.js')} defer></script>}
             <script dangerouslySetInnerHTML={{ __html: embeddedConfig }}></script>
             <script data-pjax src={url_for('/js/column.js')}></script>
+            <script src={url_for('/js/navbar.js')} defer></script>
             {config.plugins && config.plugins.pjax && <Fragment>
                 <script src={url_for('/js/pjax-page.js')}></script>
                 <script src={url_for('/js/pjax-prefetch.js')}></script>

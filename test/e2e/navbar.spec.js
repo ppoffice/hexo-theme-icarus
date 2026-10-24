@@ -214,10 +214,166 @@ test.describe('navbar menu without JavaScript', () => {
 });
 
 test.describe('navbar menu with PJAX', () => {
+    for (const script of ['delayed', 'failed']) {
+        for (const viewport of [NARROW, WIDE]) {
+            test(`restores the new menu before main.js loads (${script}, ${viewport.width}px)`, async ({ page, visit, diagnostics }) => {
+                await page.setViewportSize(viewport);
+                await visit('/', { variant: 'pjax' });
+                const before = await jqueryHandlerCounts(page, 'document');
+                let intercept;
+                const requested = new Promise(resolve => { intercept = resolve; });
+                await page.route('**/js/main.js', route => intercept(route));
+                await page.evaluate(() => {
+                    window.__noFullReload = true;
+                    window.__navbarInits = 0;
+                    window.__mainLoaded = false;
+                    const init = window.IcarusNavbar.init;
+                    window.IcarusNavbar.init = () => { window.__navbarInits++; init(); };
+                    const oldMenu = document.querySelector('.navbar-start');
+                    const oldObserver = window.IcarusNavbarObserver;
+                    document.addEventListener('pjax:complete', () => {
+                        const navbar = document.querySelector('.navbar-main');
+                        const toggle = navbar.querySelector('.navbar-toggle');
+                        if (navbar.classList.contains('is-collapsed')) {
+                            toggle.click();
+                        }
+                        const submenu = navbar.querySelector('.navbar-link');
+                        submenu.click();
+                        window.__newMenuObserver = window.IcarusNavbarObserver;
+                        window.__newMenuInteraction = {
+                            replaced: navbar.querySelector('.navbar-start') !== oldMenu,
+                            observerReplaced: window.IcarusNavbarObserver !== oldObserver && !!window.IcarusNavbarObserver,
+                            toggle: toggle.getAttribute('aria-expanded'),
+                            submenu: submenu.getAttribute('aria-expanded')
+                        };
+                    }, { once: true });
+                });
+                // Do not use pjaxClick(): its networkidle wait hides a missing navbar lifecycle.
+                const complete = page.evaluate(() => new Promise(resolve => document.addEventListener('pjax:complete', resolve, { once: true })));
+                if (viewport.width === NARROW.width) {
+                    await page.locator('.navbar-toggle').click();
+                }
+                await page.locator('.navbar-start a', { hasText: 'Archives' }).click();
+                await complete;
+                const route = await requested;
+                try {
+                    if (script === 'failed') {
+                        await route.abort('failed');
+                    }
+                    expect(await page.evaluate(() => window.__newMenuInteraction)).toEqual({
+                        replaced: true, observerReplaced: true,
+                        toggle: viewport.width === NARROW.width ? 'true' : 'false', submenu: 'true'
+                    });
+                    expect(await page.evaluate(() => window.__navbarInits)).toBe(1);
+                    await expect(page.locator('.navbar-start a.is-active')).toHaveText('Archives');
+                    await page.locator('.navbar-link').click();
+                    await expect(page.locator('.navbar-link')).toHaveAttribute('aria-expanded', 'false');
+                    await page.locator('.navbar-link').click();
+                    await expect(page.locator('.navbar-link')).toHaveAttribute('aria-expanded', 'true');
+                } finally {
+                    if (script === 'delayed') {
+                        // Pjax removes its script node immediately, so observe execution rather
+                        // than a load event that cannot reach the document from a detached node.
+                        const response = await route.fetch();
+                        const source = await response.text();
+                        await route.fulfill({ response, body: source + '\nwindow.__mainLoaded = true;' });
+                    }
+                }
+                if (script === 'delayed') {
+                    // Loading the real main.js must keep the initialized menu and its open state.
+                    await expect.poll(() => page.evaluate(() => window.__mainLoaded)).toBe(true);
+                    expect(await page.evaluate(() => window.__navbarInits)).toBe(1);
+                    expect(await page.evaluate(() => window.__newMenuObserver === window.IcarusNavbarObserver)).toBe(true);
+                    await expect(page.locator('.navbar-link')).toHaveAttribute('aria-expanded', 'true');
+                    await page.locator('.navbar-link').click();
+                    await expect(page.locator('.navbar-link')).toHaveAttribute('aria-expanded', 'false');
+                }
+                expect(await jqueryHandlerCounts(page, 'document')).toEqual(before);
+                expect(await page.locator('.navbar-toggle').evaluate(el => window.jQuery._data(el, 'events').click.length)).toBe(1);
+                expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+                expect(diagnostics.pageErrors).toEqual([]);
+            });
+        }
+    }
+
+    test('disposes queued resize, focus and font work when the page is replaced', async ({ page, visit }) => {
+        await visit('/', { variant: 'navbar-sticky' });
+        const result = await page.evaluate(async () => {
+            const navbar = document.querySelector('.navbar-main');
+            const frames = new Map();
+            const cancelled = [];
+            const observers = [];
+            const fonts = [];
+            window.IcarusNavbar.destroy();
+            window.requestAnimationFrame = callback => { const id = frames.size + 1; frames.set(id, callback); return id; };
+            window.cancelAnimationFrame = id => cancelled.push(id);
+            window.ResizeObserver = class {
+                constructor(callback) { this.callback = callback; observers.push(this); }
+                observe() {}
+                disconnect() { this.disconnected = true; }
+            };
+            Object.defineProperty(document.fonts, 'ready', { configurable: true, value: { then: callback => fonts.push(callback) } });
+            let measurements = 0;
+            let scrolls = 0;
+            const measure = navbar.getBoundingClientRect.bind(navbar);
+            navbar.getBoundingClientRect = () => { measurements++; return measure(); };
+            window.scrollBy = () => { scrolls++; };
+            window.IcarusNavbar.init();
+            observers[0].callback();
+            observers[0].callback();
+            const target = document.querySelector('.navbar-logo').cloneNode(true);
+            document.body.appendChild(target);
+            target.matches = () => true;
+            target.focus();
+            const queued = frames.size;
+            window.IcarusNavbar.init();
+            const before = measurements;
+            // Simulate callbacks already dequeued by the browser despite cancellation/disconnect.
+            frames.forEach(callback => callback());
+            observers[0].callback();
+            fonts[0]();
+            const staleMeasurements = measurements - before;
+            const afterStale = frames.size;
+            fonts[1]();
+            const refreshed = measurements > before;
+            navbar.remove();
+            window.IcarusNavbar.init();
+            const handlers = element => Object.values(window.jQuery._data(element, 'events') || {})
+                .flat().filter(handler => handler.namespace === 'icarus-navbar').length;
+            return {
+                queued, cancelled: cancelled.length, disconnected: observers.every(observer => observer.disconnected),
+                staleMeasurements, afterStale, scrolls, refreshed,
+                handlers: handlers(document) + handlers(window), observer: window.IcarusNavbarObserver
+            };
+        });
+        expect(result).toEqual({
+            queued: 2, cancelled: 2, disconnected: true, staleMeasurements: 0, afterStale: 2,
+            scrolls: 0, refreshed: true, handlers: 0, observer: null
+        });
+    });
+
+    test('replaces the resize fallback without accumulating handlers', async ({ page, visit }) => {
+        await page.addInitScript(() => { window.ResizeObserver = undefined; });
+        await page.setViewportSize(NARROW);
+        await visit('/', { variant: 'pjax' });
+        const before = await jqueryHandlerCounts(page);
+        await page.locator('.navbar-toggle').click();
+        await pjaxClick(page, page.locator('#navbar-main-menu a', { hasText: 'Archives' }));
+        expect(await jqueryHandlerCounts(page)).toEqual(before);
+        await page.setViewportSize(WIDE);
+        await expect(page.locator('.navbar-main')).not.toHaveClass(/is-collapsed/);
+    });
+
     test('toggles once per click after navigating', async ({ page, visit }) => {
         await page.setViewportSize(NARROW);
         await visit('/', { variant: 'pjax' });
-        await page.evaluate(() => { window.__noFullReload = true; });
+        await page.evaluate(() => {
+            window.__noFullReload = true;
+            window.__navbarModule = window.IcarusNavbar;
+            const observer = window.IcarusNavbarObserver;
+            const disconnect = observer.disconnect.bind(observer);
+            observer.disconnect = () => { window.__navbarDisconnected = true; disconnect(); };
+        });
         const before = await jqueryHandlerCounts(page, 'document');
         const toggle = page.locator('.navbar-toggle');
         for (const name of ['Archives', 'Tags', 'Home']) {
@@ -228,6 +384,7 @@ test.describe('navbar menu with PJAX', () => {
             await expect(page.locator('.navbar-start')).toBeHidden();
         }
         expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+        expect(await page.evaluate(() => window.__navbarDisconnected && window.IcarusNavbar === window.__navbarModule)).toBe(true);
         expect(await jqueryHandlerCounts(page, 'document')).toEqual(before);
         expect(await toggle.evaluate(el => window.jQuery._data(el, 'events').click.length)).toBe(1);
 
