@@ -123,7 +123,7 @@ describe('layout/layout (page skeleton)', () => {
         it('loads PJAX modules before the plugin and only when enabled', async () => {
             const { $ } = await renderLayout({}, { plugins: { pjax: true } });
             const sources = $('body > script[src]').map((i, el) => el.attribs.src).get();
-            for (const source of ['pjax-page']) {
+            for (const source of ['pjax-page', 'pjax-prefetch']) {
                 const script = $(`script[src="/js/${source}.js"]`);
                 assert.equal(script.length, 1);
                 assert.equal(script.attr('data-pjax'), undefined);

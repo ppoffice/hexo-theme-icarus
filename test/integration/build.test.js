@@ -36,7 +36,7 @@ describe('fixture site build (default variant)', function() {
         for (const file of [
             'css/default.css', 'css/cyberpunk.css',
             'js/main.js', 'js/column.js', 'js/back_to_top.js', 'js/animation.js', 'js/pjax.js', 'js/toc.js', 'js/insight.js',
-            'js/pjax-page.js',
+            'js/pjax-page.js', 'js/pjax-prefetch.js',
             'img/logo.svg', 'img/favicon.svg', 'img/avatar.png', 'img/og_image.png',
             'manifest.json', 'content.json'
         ]) {

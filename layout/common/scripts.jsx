@@ -45,6 +45,7 @@ module.exports = class extends Component {
             <script data-pjax src={url_for('/js/column.js')}></script>
             {config.plugins && config.plugins.pjax && <Fragment>
                 <script src={url_for('/js/pjax-page.js')}></script>
+                <script src={url_for('/js/pjax-prefetch.js')}></script>
             </Fragment>}
             <Plugins site={site} config={config} page={page} helper={helper} head={false} />
             <script data-pjax src={url_for('/js/main.js')} defer></script>
