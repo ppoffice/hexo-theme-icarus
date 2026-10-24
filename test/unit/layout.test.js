@@ -120,6 +120,18 @@ describe('layout/layout (page skeleton)', () => {
     }
 
     describe('scripts', () => {
+        it('loads PJAX modules before the plugin and only when enabled', async () => {
+            const { $ } = await renderLayout({}, { plugins: { pjax: true } });
+            const sources = $('body > script[src]').map((i, el) => el.attribs.src).get();
+            for (const source of ['pjax-page']) {
+                const script = $(`script[src="/js/${source}.js"]`);
+                assert.equal(script.length, 1);
+                assert.equal(script.attr('data-pjax'), undefined);
+                assert.ok(sources.indexOf(`/js/${source}.js`) < sources.indexOf('/js/pjax.js'));
+                assert.equal((await renderLayout()).$(`script[src="/js/${source}.js"]`).length, 0);
+            }
+        });
+
         it('loads jQuery before main.js', async () => {
             const { $ } = await renderLayout({ lang: 'zh-CN' });
             const sources = $('script[src]').map((i, el) => el.attribs.src).get();
