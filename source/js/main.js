@@ -2,25 +2,8 @@
     if (window.HexoGithubCalendar) {
         window.HexoGithubCalendar.init();
     }
-    $('.article img:not(".not-gallery-item")').each(function() {
-        // wrap images with link and add caption if possible
-        if ($(this).parent('a').length === 0) {
-            $(this).wrap($('<a class="gallery-item"></a>').attr('href', $(this).attr('src')));
-            if (this.alt) {
-                $(this).after($('<p class="has-text-centered is-size-6 caption"></p>').text(this.alt));
-            }
-        }
-    });
-
-    if (typeof $.fn.lightGallery === 'function') {
-        $('.article').lightGallery({ selector: '.gallery-item' });
-    }
-    if (typeof $.fn.justifiedGallery === 'function') {
-        if ($('.justified-gallery > p > .gallery-item').length) {
-            $('.justified-gallery > p > .gallery-item').unwrap();
-        }
-        $('.justified-gallery').justifiedGallery();
-    }
+    const galleryEnabled = !!(config && config.gallery);
+    window.HexoGallery.init(document, { lightGallery: galleryEnabled, justifiedGallery: galleryEnabled });
 
     // Locale for relative dates: the page language when the browser supports it, else English.
     function getRelativeTimeLocale() {

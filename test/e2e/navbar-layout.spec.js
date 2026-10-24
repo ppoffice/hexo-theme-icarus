@@ -1,4 +1,5 @@
 const { test, expect } = require('./fixtures');
+const gallery = require('hexo-component-inferno/lib/util/gallery');
 
 // Chromium's headless default hides scrollbars. Exercise the classic, width-taking fallback.
 test.use({ launchOptions: { ignoreDefaultArgs: ['--hide-scrollbars'], args: ['--disable-features=OverlayScrollbar'] } });
@@ -23,6 +24,7 @@ function pageHtml(content) {
         <section class="section"><div class="container"><div class="columns">${content}</div></div></section>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
         <script>var IcarusThemeSettings = {article:{highlight:{clipboard:false,fold:'folded'}}};</script>
+        <script>${gallery}</script>
         <script src="/js/navbar.js" defer></script>
         <script src="/js/pjax-page.js"></script><script src="/js/pjax-prefetch.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script>

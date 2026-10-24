@@ -152,12 +152,13 @@ describe('layout/layout (page skeleton)', () => {
 
         const embeddedSettings = $ => {
             const script = $('script:not([src])').filter((i, el) => /IcarusThemeSettings/.test($(el).html())).html();
-            return JSON.parse(script.replace(/^var IcarusThemeSettings = /, '').replace(/;$/, ''));
+            return JSON.parse(script.split('\n')[0].replace(/^var IcarusThemeSettings = /, '').replace(/;$/, ''));
         };
 
         it('embeds the code block settings and translations for main.js', async () => {
             const { $ } = await renderLayout({ lang: 'zh-CN' }, { article: { highlight: { clipboard: false, fold: 'folded' } } });
             assert.deepEqual(embeddedSettings($), {
+                gallery: false,
                 article: { highlight: { clipboard: false, fold: 'folded', fold_preview: 0 } },
                 i18n: { copy: '复制', copied: '已复制！' }
             });

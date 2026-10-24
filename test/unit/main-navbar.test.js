@@ -19,6 +19,7 @@ describe('main.js navbar refresh', () => {
             jQuery,
             document: { documentElement: { lang: 'en' }, querySelectorAll: () => [] },
             window: {
+                HexoGallery: { init: () => calls.push('gallery') },
                 IcarusThemeSettings: { article: { highlight: { clipboard: false, fold: 'folded', fold_preview: 3 } } },
                 IcarusNavbar: {
                     init: () => assert.fail('main.js must not initialize the navbar again'),
@@ -28,6 +29,7 @@ describe('main.js navbar refresh', () => {
             }
         });
         assert.deepEqual(calls, [
+            'gallery',
             'wrap figure.highlight table',
             'bind figure.highlight.foldable figcaption .level-left',
             'bind figure.highlight.fold-preview .highlight-body',
