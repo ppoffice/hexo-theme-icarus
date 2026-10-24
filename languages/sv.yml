@@ -17,6 +17,7 @@ common:
     prev: 'Föregående'
     next: 'Nästa'
 navbar:
+    appearance: 'Växla mörkt läge'
     menu: 'Meny'
 widget:
     follow: 'Följ'

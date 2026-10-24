@@ -18,6 +18,7 @@ common:
     next: 'Next'
 navbar:
     menu: 'Menu'
+    appearance: 'Toggle dark mode'
 widget:
     follow: 'Follow'
     recents: 'Recents'

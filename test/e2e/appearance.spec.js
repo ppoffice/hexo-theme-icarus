@@ -27,6 +27,53 @@ function logos(page) {
 
 const codeBackground = page => page.locator('figure.highlight').first().evaluate(el => getComputedStyle(el).backgroundColor);
 
+test.describe('manual appearance toggle', () => {
+    for (const colorScheme of ['light', 'dark']) {
+        test(`overrides a ${colorScheme} system, including logos and code, and survives reload`, async ({ page, visit, diagnostics }) => {
+            await page.emulateMedia({ colorScheme });
+            await visit(POST, { variant: 'appearance-auto' });
+            const toggle = page.getByRole('button', { name: 'Toggle dark mode' });
+            await expect(toggle).toBeVisible();
+            await toggle.click();
+            const dark = colorScheme === 'light';
+            await expect(page.locator('html')).toHaveAttribute('data-appearance', dark ? 'dark' : 'light');
+            await expect(toggle).toHaveAttribute('aria-pressed', String(dark));
+            await expect.poll(() => codeBackground(page)).toBe(dark ? ATOM_ONE_DARK : ATOM_ONE_LIGHT);
+            expect((await logos(page)).map(logo => logo.src)).toEqual(Array(2).fill(dark ? '/img/logo-dark.svg' : '/img/logo.svg'));
+            expect(await page.evaluate(() => getComputedStyle(document.documentElement).colorScheme)).toBe(dark ? 'dark' : 'light');
+            await page.reload();
+            await expect(page.locator('html')).toHaveAttribute('data-appearance', dark ? 'dark' : 'light');
+            await expect.poll(() => codeBackground(page)).toBe(dark ? ATOM_ONE_DARK : ATOM_ONE_LIGHT);
+            expect(diagnostics.pageErrors).toEqual([]);
+        });
+    }
+
+    test('fixed pages have no toggle', async ({ page, visit }) => {
+        for (const variant of ['default', 'appearance-dark', 'cyberpunk']) {
+            await visit('/', { variant });
+            await expect(page.locator('.appearance-toggle')).toHaveCount(0);
+        }
+    });
+
+    test('tracks system changes until a manual choice, including on mobile', async ({ page, visit }) => {
+        await page.setViewportSize(NARROW);
+        await page.emulateMedia({ colorScheme: 'light' });
+        await visit(POST, { variant: 'appearance-auto' });
+        const toggle = page.getByRole('button', { name: 'Toggle dark mode' });
+        await expect(toggle).toBeVisible();
+        await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+        await page.emulateMedia({ colorScheme: 'dark' });
+        await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+        await toggle.focus();
+        await page.keyboard.press('Enter');
+        await expect(page.locator('html')).toHaveAttribute('data-appearance', 'light');
+        await page.emulateMedia({ colorScheme: 'light' });
+        await page.emulateMedia({ colorScheme: 'dark' });
+        await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+        expect(isLight(await colorOf(page, '.column-main .card'))).toBe(true);
+    });
+});
+
 /**
  * The article licensing block (a .box) is flat in every appearance: no shadow, and set apart from
  * the card it is in by a lighter background only.
@@ -215,6 +262,32 @@ test.describe('appearance per page (front-matter)', () => {
         await done;
         await page.waitForLoadState('networkidle');
     }
+
+    test('PJAX keeps a manual choice on auto pages without overriding fixed pages', async ({ page, visit, diagnostics }) => {
+        await page.emulateMedia({ colorScheme: 'light' });
+        await visit('/', { variant: 'appearance-per-page' });
+        await page.evaluate(() => { window.notReloaded = true; });
+        await pjaxClick(page, page.locator(`.column-main a[href="${AUTO_POST}"]`).first());
+        const toggle = page.getByRole('button', { name: 'Toggle dark mode' });
+        await toggle.click();
+        await expect(page.locator('html')).toHaveAttribute('data-appearance', 'dark');
+        await pjaxClick(page, page.locator(`.content a[href="${LIGHT_POST}"]`));
+        await expect(page.locator('.appearance-toggle')).toHaveCount(0);
+        expect(isLight(await colorOf(page, '.column-main .card'))).toBe(true);
+        await expect.poll(() => codeBackground(page)).toBe(ATOM_ONE_LIGHT);
+        await pjaxClick(page, page.locator('.navbar-logo'));
+        await pjaxClick(page, page.locator(`.column-main a[href="${AUTO_POST}"]`).first());
+        await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+        await expect(page.locator('html')).toHaveAttribute('data-appearance', 'dark');
+        expect((await logos(page)).map(logo => logo.src)).toEqual(Array(2).fill('/img/logo-dark.svg'));
+        await expect.poll(() => codeBackground(page)).toBe(ATOM_ONE_DARK);
+        // A repeated visit must not add another click handler.
+        await toggle.click();
+        await expect(page.locator('html')).toHaveAttribute('data-appearance', 'light');
+        expect(await page.evaluate(() => window.notReloaded)).toBe(true);
+        expect(diagnostics.pageErrors).toEqual([]);
+        expect(diagnostics.failedRequests).toEqual([]);
+    });
 
     test.describe('with a light system color scheme', () => {
         test.use({ colorScheme: 'light' });

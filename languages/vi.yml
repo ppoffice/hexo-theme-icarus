@@ -17,6 +17,7 @@ common:
     prev: 'Trước'
     next: 'Sau'
 navbar:
+    appearance: 'Chuyển chế độ tối'
     menu: 'Menu'
 widget:
     follow: 'Theo dõi'

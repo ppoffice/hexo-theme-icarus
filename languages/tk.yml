@@ -17,6 +17,7 @@ common:
     prev: 'Öňki'
     next: 'Indiki'
 navbar:
+    appearance: 'Garaňky tertibi üýtget'
     menu: 'Menýu'
 widget:
     follow: 'Abuna bol'

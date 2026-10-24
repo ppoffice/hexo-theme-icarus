@@ -18,6 +18,7 @@ common:
     next: '下一页'
 navbar:
     menu: '菜单'
+    appearance: '切换深色模式'
 widget:
     follow: '关注我'
     recents: '最新文章'

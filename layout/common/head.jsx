@@ -158,6 +158,8 @@ module.exports = class extends Component {
         return <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
+            {/* Restore the visitor's choice before styles and comment initializers run. */}
+            <script src={url_for('/js/appearance.js')}></script>
             {appearance !== 'light' ? <meta name="color-scheme" content={appearance === 'auto' ? 'light dark' : 'dark'} /> : null}
             {noIndex ? <meta name="robots" content="noindex" /> : null}
             {meta && meta.length ? <MetaTags meta={meta} /> : null}
@@ -209,6 +211,7 @@ module.exports = class extends Component {
             {getFontOrigins(iconcdn(), fontCssUrl[variant], url).map(origin => <link rel="preconnect" href={origin} crossorigin="anonymous" />)}
             <link rel="stylesheet" href={iconcdn()} />
             {hlThemes.map(([theme, media]) => <link data-pjax rel="stylesheet" href={cdn('highlight.js', '11.11.1', 'styles/' + theme + '.css')} media={media} />)}
+            <script dangerouslySetInnerHTML={{ __html: 'window.IcarusAppearance.sync();' }}></script>
             <link data-variant rel="stylesheet" href={fontCssUrl[variant]} />
             <link data-variant rel="stylesheet" href={url_for('/css/' + variant + '.css')} />
             <Plugins site={site} config={config} helper={helper} page={page} head={true} />

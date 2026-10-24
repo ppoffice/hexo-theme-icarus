@@ -17,6 +17,7 @@ common:
     prev: 'Önceki'
     next: 'Sonraki'
 navbar:
+    appearance: 'Karanlık modu değiştir'
     menu: 'Menü'
 widget:
     follow: 'TAKİP ET'

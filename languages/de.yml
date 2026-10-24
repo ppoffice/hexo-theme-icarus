@@ -17,6 +17,7 @@ common:
     prev: 'Zurück'
     next: 'Weiter'
 navbar:
+    appearance: 'Dunkelmodus umschalten'
     menu: 'Menü'
 widget:
     follow: 'Folgen'

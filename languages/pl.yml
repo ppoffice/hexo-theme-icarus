@@ -17,6 +17,7 @@ common:
     prev: 'Poprzedni'
     next: 'Następny'
 navbar:
+    appearance: 'Przełącz tryb ciemny'
     menu: 'Menu'
 widget:
     follow: 'SUBSKRYBUJ'

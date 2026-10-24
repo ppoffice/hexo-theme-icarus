@@ -17,6 +17,7 @@ common:
     prev: 'Назад'
     next: 'Далее'
 navbar:
+    appearance: 'Переключить тёмный режим'
     menu: 'Меню'
 widget:
     follow: 'Подписаться'

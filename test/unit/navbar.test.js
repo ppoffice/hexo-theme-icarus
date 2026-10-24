@@ -4,6 +4,20 @@ const { render, fixtureConfig, makePage } = require('../support/render');
 const renderNavbar = (page, config) => render('common/navbar', { config: fixtureConfig(config), page: makePage(page) });
 
 describe('layout/common/navbar', () => {
+    it('shows the appearance toggle only for an effective auto appearance', async () => {
+        for (const [config, count] of [[{ appearance: 'auto' }, 1], [{ appearance: 'light' }, 0],
+            [{ appearance: 'dark' }, 0], [{ appearance: 'invalid' }, 0],
+            [{ variant: 'cyberpunk', appearance: 'auto' }, 0]]) {
+            const { $ } = await renderNavbar({}, config);
+            const toggle = $('.navbar-end button.appearance-toggle');
+            assert.equal(toggle.length, count);
+            if (count) {
+                assert.equal(toggle.attr('type'), 'button');
+                assert.equal(toggle.attr('aria-label'), 'Toggle dark mode');
+            }
+        }
+    });
+
     it('renders the logo image linking to the site root', async () => {
         const { $ } = await renderNavbar();
         const logo = $('.navbar-logo');

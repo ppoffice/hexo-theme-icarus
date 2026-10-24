@@ -1,6 +1,6 @@
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
-const { getLogoAppearance, getDarkLogo } = require('../../include/util/appearance');
+const { getAppearance, getLogoAppearance, getDarkLogo } = require('../../include/util/appearance');
 const Logo = require('../misc/logo');
 const classname = require('hexo-component-inferno/lib/util/classname');
 
@@ -31,6 +31,8 @@ class Navbar extends Component {
             showSearch,
             searchTitle,
             menuTitle,
+            showAppearanceToggle,
+            appearanceTitle,
             sticky
         } = this.props;
         // The toggle folds the menu links into a drop-down when they do not fit (source/js/main.js)
@@ -91,6 +93,9 @@ class Navbar extends Component {
                         </Fragment> : null}
                         {showToc ? <button type="button" class="navbar-item is-hidden-tablet catalogue" title={tocTitle} aria-label={tocTitle}>
                             <i class="fas fa-list-ul" aria-hidden="true"></i>
+                        </button> : null}
+                        {showAppearanceToggle ? <button type="button" class="navbar-item appearance-toggle" title={appearanceTitle} aria-label={appearanceTitle} aria-pressed="false">
+                            <i class="fas fa-adjust" aria-hidden="true"></i>
                         </button> : null}
                         {showSearch ? <button type="button" class="navbar-item search" title={searchTitle} aria-label={searchTitle}>
                             <i class="fas fa-search" aria-hidden="true"></i>
@@ -159,6 +164,8 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         logoUrl: url_for(logo),
         darkLogoUrl: darkLogo ? url_for(darkLogo) : null,
         appearance: getLogoAppearance(config),
+        showAppearanceToggle: getAppearance(config) === 'auto',
+        appearanceTitle: __('navbar.appearance'),
         siteUrl: url_for('/'),
         siteTitle: title,
         menu,

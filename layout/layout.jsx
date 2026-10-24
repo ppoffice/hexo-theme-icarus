@@ -25,7 +25,7 @@ module.exports = class extends Component {
         // Selects the dark colors of css/default.css (include/style/dark.styl)
         const appearance = getAppearance(config);
 
-        return <html lang={getLanguageTag(language)} data-appearance={appearance === 'light' ? null : appearance}>
+        return <html lang={getLanguageTag(language)} data-appearance-mode={appearance} data-appearance={appearance === 'light' ? null : appearance}>
             <Head site={site} config={config} helper={helper} page={page} />
             <body class={`is-${columnCount}-column`}>
                 <Navbar config={config} helper={helper} page={page} />

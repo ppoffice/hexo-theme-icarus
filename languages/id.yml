@@ -17,6 +17,7 @@ common:
     prev: 'Sebelumnya'
     next: 'Berikutnya'
 navbar:
+    appearance: 'Ganti mode gelap'
     menu: 'Menu'
 widget:
     follow: 'IKUTI'

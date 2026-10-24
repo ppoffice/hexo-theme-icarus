@@ -17,6 +17,7 @@ common:
     prev: 'Precedente'
     next: 'Successivo'
 navbar:
+    appearance: 'Attiva/disattiva modalità scura'
     menu: 'Menu'
 widget:
     follow: 'Segui'

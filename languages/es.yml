@@ -18,6 +18,7 @@ common:
     prev: 'Anterior'
     next: 'Siguiente'
 navbar:
+    appearance: 'Alternar modo oscuro'
     menu: 'Menú'
 widget:
     follow: 'SEGUIR'

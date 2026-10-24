@@ -34,6 +34,9 @@
                 pjax.afterAllSwitches = function() {
                     // Restore the new navbar before PJAX requests main.js, which may be slow or fail.
                     window.IcarusNavbar.init();
+                    if (window.IcarusAppearance) {
+                        window.IcarusAppearance.sync();
+                    }
                     return afterAllSwitches.call(this);
                 };
                 pjax.switchSelectors = function(selectors, fromEl, toEl, options) {

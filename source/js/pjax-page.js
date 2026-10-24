@@ -50,7 +50,7 @@
      * are compared once resolved: with relative URLs, they differ between pages at different depths.
      */
     function switchStylesheets(oldHead, newHead, selector, pageUrl) {
-        const key = (links, base) => Array.from(links).map(link => resolveUrl(link.getAttribute('href'), base) + ' ' + link.getAttribute('media')).join();
+        const key = (links, base) => Array.from(links).map(link => resolveUrl(link.getAttribute('href'), base) + ' ' + (link.getAttribute('data-appearance-media') || link.getAttribute('media'))).join();
         const oldLinks = oldHead.querySelectorAll(selector);
         const newLinks = newHead.querySelectorAll(selector);
         if (key(oldLinks, loadedUrl) !== key(newLinks, pageUrl)) {
@@ -70,6 +70,8 @@
         const html = options.request && typeof options.request.responseText === 'string' ? options.request.responseText : '';
         const htmlTag = (html.match(/<html\b[^>]*>/i) || [''])[0];
         const appearance = (htmlTag.match(/\sdata-appearance="([^"]*)"/) || [])[1];
+        const mode = (htmlTag.match(/\sdata-appearance-mode="([^"]*)"/) || [])[1] || appearance || 'light';
+        document.documentElement.setAttribute('data-appearance-mode', mode);
         if (appearance) {
             document.documentElement.setAttribute('data-appearance', appearance);
         } else {
@@ -88,6 +90,9 @@
         }
 
         switchStylesheets(oldHead, newHead, 'link[data-pjax]', pageUrl);
+        if (window.IcarusAppearance) {
+            window.IcarusAppearance.apply();
+        }
     }
 
     /**

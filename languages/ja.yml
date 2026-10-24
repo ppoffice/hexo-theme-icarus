@@ -17,6 +17,7 @@ common:
     prev: '前'
     next: '次'
 navbar:
+    appearance: 'ダークモードを切り替え'
     menu: 'メニュー'
 widget:
     follow: 'フォローする'

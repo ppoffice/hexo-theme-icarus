@@ -17,6 +17,7 @@ common:
     prev: 'Préc'
     next: 'Suiv'
 navbar:
+    appearance: 'Basculer le mode sombre'
     menu: 'Menu'
 widget:
     follow: 'Suivre'
