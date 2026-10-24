@@ -29,10 +29,10 @@ describe('shared Gallery integration', () => {
             const settings = $('script').filter((i, el) => /^var IcarusThemeSettings = /.test($(el).html()));
             assert.notEqual(settings.attr('data-pjax'), undefined, 'current-page flags must run again after PJAX');
             assert.equal(JSON.parse(settings.html().split('\n')[0].replace(/^var IcarusThemeSettings = /, '').replace(/;$/, '')).gallery, !!gallery);
-            const lightGallery = $('script[src*="lightgallery"]');
+            const lightGallery = $('script[src*="lightgallery.min.js"]');
             assert.equal(lightGallery.length, gallery ? 1 : 0);
             if (gallery) {
-                assert.match(lightGallery.attr('src'), /lightgallery@1\.10\.0\/dist\/js\/lightgallery-all\.min\.js$/);
+                assert.match(lightGallery.attr('src'), /lightgallery@3\.0\.0\/lightgallery\.min\.js$/);
                 const justified = $('script[src*="justifiedGallery"]');
                 assert.match(justified.attr('src'), /justifiedGallery@3\.8\.1\/dist\/js\/jquery\.justifiedGallery\.min\.js$/);
                 for (const script of [lightGallery, justified]) {

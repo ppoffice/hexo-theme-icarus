@@ -120,7 +120,12 @@ test.describe('maintained local PJAX engine', () => {
             const article = document.querySelector('.article');
             window.__artalkInstance = { destroy() { window.__teardown.push(['artalk', article.isConnected]); } };
             window.__walineInstance = { destroy() { window.__teardown.push(['waline', article.isConnected]); } };
-            window.jQuery(article).data('lightGallery', { destroy(all) { window.__teardown.push(['gallery', article.isConnected, all]); } });
+            const destroy = window.HexoGallery.destroy;
+            window.HexoGallery.destroy = function(root) {
+                window.__teardown.push(['gallery', article.isConnected, root === document]);
+                destroy(root);
+                window.HexoGallery.destroy = destroy;
+            };
             const gallery = document.createElement('div');
             gallery.className = 'justified-gallery';
             article.appendChild(gallery);

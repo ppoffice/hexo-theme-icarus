@@ -70,7 +70,7 @@ describe('source/css (native m3e Stylus)', function() {
         const source = fs.readFileSync(path.join(REPO_ROOT, 'source/css/m3e.styl'), 'utf8');
         assert.match(source, /^@import 'default'/);
         const chapters = ['mixins', 'foundation', 'navigation', 'content', 'widgets', 'page-surfaces',
-            'expressive', 'messages', 'tabs', 'archives', 'motion'];
+            'expressive', 'messages', 'tabs', 'archives', 'motion', 'gallery'];
         assert.deepEqual(Array.from(source.matchAll(/^@import '([^']+)'$/gm), match => match[1]),
             ['default', ...chapters.map(chapter => '../../include/style/m3e/' + chapter)]);
         const directory = path.join(REPO_ROOT, 'include/style/m3e');
@@ -97,13 +97,25 @@ describe('source/css (native m3e Stylus)', function() {
             const source = fs.readFileSync(file, 'utf8').replace(/^@import 'default'\r?\n/, '');
             const css = await compile(file, null, source, compress);
             const rules = normalizeCss(css);
-            // This calendar adapter was added after the refactor. Check it exactly, then
+            // Calendar and gallery adapters were added after the refactor. Check them exactly, then
             // keep comparing every original rule against the historical fingerprint.
             const isCalendarAdapter = rule => rule.type === 'rule'
                 && JSON.stringify(rule.selectors) === JSON.stringify(['.github-calendar-chart']);
             assert.deepEqual(rules.filter(isCalendarAdapter), normalizeCss(
                 '.github-calendar-chart { --github-calendar-default-color: var(--m3-primary); }'));
-            assert.equal(createHash('sha256').update(JSON.stringify(rules.filter(rule => !isCalendarAdapter(rule)))).digest('hex'), expected);
+            const isGalleryAdapter = rule => rule.type === 'rule'
+                && rule.selectors.some(selector => selector.includes('.lg-container'));
+            assert.deepEqual(rules.filter(isGalleryAdapter), normalizeCss(`
+                html:root body .lg-container .lg-sub-html {
+                    color: var(--m3-on-surface);
+                    background: var(--m3-surface-container);
+                    border-radius: 0 0 var(--m3-card-r) var(--m3-card-r);
+                }
+                html:root body .lg-container .lg-icon:focus-visible {
+                    outline-color: var(--m3-primary);
+                }
+            `));
+            assert.equal(createHash('sha256').update(JSON.stringify(rules.filter(rule => !isCalendarAdapter(rule) && !isGalleryAdapter(rule)))).digest('hex'), expected);
         });
     }
 

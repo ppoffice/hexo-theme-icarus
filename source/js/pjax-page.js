@@ -253,14 +253,9 @@
                 window[name] = null;
             }
         });
+        if (window.HexoGallery) window.HexoGallery.destroy(document);
         const $ = window.jQuery;
         if ($) {
-            $('.article').each(function() {
-                const gallery = $(this).data('lightGallery');
-                if (gallery) {
-                    gallery.destroy(true);
-                }
-            });
             $('.justified-gallery').each(function() {
                 if ($(this).data('jg.controller')) {
                     $(this).justifiedGallery('destroy');

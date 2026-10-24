@@ -1,0 +1,18 @@
+// Vendor CSS loads after the theme; keep caption overrides specific to the dialog.
+body .lg-container
+    .lg-sub-html
+        color: $text
+        background: $scheme-main
+        font-family: $family-sans-serif
+        border-radius: 0 0 $card-radius $card-radius
+
+        overflow-wrap: anywhere
+
+    .lg-icon:focus-visible
+        outline: 3px solid $link
+        outline-offset: 3px
+
+@media (prefers-reduced-motion: reduce)
+    .lg-container .lg-item
+        animation-duration: .01ms !important
+        transition-duration: .01ms !important
