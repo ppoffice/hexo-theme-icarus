@@ -451,9 +451,9 @@ describe('fixture site variants', function() {
             const sources = $('script[src^="http"]').map((i, el) => el.attribs.src).get();
             assert.deepEqual(sources, [
                 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
-                'https://static.example.com/js/clipboard.min.js',
-                'https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js'
+                'https://static.example.com/js/clipboard.min.js'
             ]);
+            assert.equal($('script[src="/js/pjax-core.js"]').length, 1);
             assert.deepEqual($('link[href*="highlight.js"]').map((i, el) => el.attribs.href).get(), ['https://unpkg.com/highlight.js@11.11.1/styles/atom-one-light.css']);
         });
     });

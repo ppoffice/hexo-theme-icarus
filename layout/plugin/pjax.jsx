@@ -6,10 +6,10 @@ class Pjax extends Component {
             return null;
         }
         const { helper } = this.props;
-        const { url_for, cdn } = helper;
+        const { url_for } = helper;
 
         return <Fragment>
-            <script src={cdn('pjax', '0.2.8', 'pjax.min.js')}></script>
+            <script src={url_for('/js/pjax-core.js')}></script>
             <script src={url_for('/js/pjax.js')}></script>
         </Fragment>;
     }

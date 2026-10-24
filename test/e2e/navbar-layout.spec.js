@@ -27,7 +27,7 @@ function pageHtml(content) {
         <script>${gallery}</script>
         <script src="/js/navbar.js" defer></script>
         <script src="/js/pjax-page.js"></script><script src="/js/pjax-prefetch.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script>
+        <script src="/js/pjax-core.js"></script><script src="/js/pjax.js"></script>
         <script data-pjax src="/js/main.js" defer></script>
     </body></html>`;
 }

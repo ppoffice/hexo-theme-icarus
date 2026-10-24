@@ -45,7 +45,8 @@ describe('PJAX navbar lifecycle', () => {
                         assert.equal(href, pjax.state.href);
                         calls.push('resolve');
                     },
-                    complete: () => calls.push('complete')
+                    complete: () => calls.push('complete'),
+                    beforeReplace: () => calls.push('before replace')
                 },
                 IcarusNavbar: { destroy: () => calls.push('destroy'), init: () => calls.push('init') }
             }
@@ -54,7 +55,7 @@ describe('PJAX navbar lifecycle', () => {
         for (let i = 0; i < 2; i++) {
             assert.equal(pjax.switchSelectors(['.navbar-start', '.navbar-end'], from, to, options), result);
         }
-        const navigation = ['resolve', 'destroy', 'replace', 'init', 'request scripts', 'complete'];
+        const navigation = ['resolve', 'before replace', 'destroy', 'replace', 'init', 'request scripts', 'complete'];
         assert.deepEqual(calls, navigation.concat(navigation));
     });
 });

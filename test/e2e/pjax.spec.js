@@ -1,13 +1,14 @@
 const { test, expect, jqueryHandlerCounts } = require('./fixtures');
 
-/** Click a link and wait until PJAX has swapped the page in. */
-async function pjaxClick(page, locator) {
+/** Click a link and wait for the swapped page's scripts or a caller's semantic readiness check. */
+async function pjaxClick(page, locator, ready = () => page.waitForLoadState('networkidle')) {
     const done = page.evaluate(() => new Promise(resolve => document.addEventListener('pjax:complete', resolve, { once: true })));
     await locator.click();
     await done;
     // pjax:complete fires when the content is swapped; the data-pjax scripts (main.js, ...) are
-    // then downloaded and executed again. Wait for those requests to settle before interacting.
-    await page.waitForLoadState('networkidle');
+    // then downloaded and executed again. A plugin test can instead wait for its rendered output:
+    // MathJax speech-worker requests from an earlier document can keep networkidle pending.
+    await ready();
 }
 
 test.describe('PJAX navigation', () => {
@@ -68,11 +69,19 @@ test.describe('PJAX navigation', () => {
 
     test('the mobile toc still opens and closes after navigating', async ({ page }) => {
         await page.setViewportSize({ width: 375, height: 800 });
+        const tocReady = () => expect(page.locator('#toc-mask')).toHaveCount(1);
+        const homeReady = () => expect(page.locator('#toc-mask')).toHaveCount(0);
         for (let i = 0; i < 2; i++) {
-            await pjaxClick(page, page.locator('.column-main a[href="/2024/03/01/hello-world/"]').first());
-            await pjaxClick(page, page.locator('.navbar-logo'));
+            await pjaxClick(page, page.locator('.column-main a[href="/2024/03/01/hello-world/"]').first(), tocReady);
+            await pjaxClick(page, page.locator('.navbar-logo'), homeReady);
         }
-        await pjaxClick(page, page.locator('.column-main a[href="/2024/03/01/hello-world/"]').first());
+        // PJAX does not reset the document's load state. Delay the new page's main.js to
+        // catch a stale networkidle wait that lets the catalogue click precede its binding.
+        await page.route('**/js/main.js', async route => {
+            await new Promise(resolve => setTimeout(resolve, 250));
+            await route.continue();
+        });
+        await pjaxClick(page, page.locator('.column-main a[href="/2024/03/01/hello-world/"]').first(), tocReady);
         await page.locator('.navbar-main .catalogue').click();
         await expect(page.locator('#toc')).toHaveClass(/is-active/);
         await expect(page.locator('#toc-mask')).toHaveClass(/is-active/);

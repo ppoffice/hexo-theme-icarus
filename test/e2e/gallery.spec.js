@@ -1,5 +1,6 @@
 const { test, expect } = require('./fixtures');
-const { render, fixtureConfig, makePage } = require('../support/render');
+const path = require('path');
+const { spawnSync } = require('child_process');
 const installer = require('hexo-component-inferno/lib/util/gallery');
 
 // Deliberate SDK contract doubles, not empty CDN responses or claims of visual SDK coverage.
@@ -12,16 +13,21 @@ const lightSdk = `jQuery.fn.lightGallery = function(options) {
             instance = {
                 s: Object.assign({ dynamic: false }, options),
                 $items: $container.find(options.selector),
-                init() { window.__galleryCalls.light.push([container.id, this.s.selector]); }
+                init() { window.__galleryCalls.light.push([container.id, this.s.selector]); },
+                destroy() { $container.removeData('lightGallery'); }
             };
             $container.data('lightGallery', instance);
         }
         instance.init();
     });
 };`;
-const justifiedSdk = `jQuery.fn.justifiedGallery = function() {
+const justifiedSdk = `jQuery.fn.justifiedGallery = function(command) {
     return this.each(function() {
         const $gallery = jQuery(this);
+        if (command === 'destroy') {
+            $gallery.removeData('jg.controller');
+            return;
+        }
         let controller = $gallery.data('jg.controller');
         if (!controller) {
             controller = { getAllEntries() { return $gallery.children(); } };
@@ -33,25 +39,16 @@ const justifiedSdk = `jQuery.fn.justifiedGallery = function() {
 };`;
 const pages = {};
 
-test.beforeAll(async () => {
-    for (const [name, gallery] of [['gallery-on', true], ['gallery-off', false], ['gallery-next', true]]) {
-        const { html } = await render('layout', {
-            config: fixtureConfig({ widgets: [], search: { type: null }, plugins: { pjax: true, gallery, back_to_top: false } }),
-            page: makePage({ title: name, path: name + '/', permalink: 'http://localhost:4000/' + name + '/' }),
-            site: { posts: [], categories: [], tags: [] },
-            body: `<article class="article" id="gallery-article"><div class="content">
-                <img id="plain" src="/img/avatar.png" alt="&lt;img src=x onerror=window.__injected=1&gt;">
-                <img id="empty" src="/img/avatar.png" alt="">
-                <a id="existing" href="https://example.com/"><img id="linked" src="/img/avatar.png" alt="Linked"></a>
-                <img id="excluded" class="not-gallery-item" src="/img/avatar.png" alt="Excluded">
-                <div class="justified-gallery" id="justified"><p><img src="/img/avatar.png" alt="Grid"></p></div>
-                <a class="gallery-nav" href="/gallery-on/">On</a>
-                <a class="gallery-nav" href="/gallery-off/">Off</a>
-                <a class="gallery-nav" href="/gallery-next/">Next</a>
-            </div></article>`
-        });
-        pages[name] = html;
+test.beforeAll(() => {
+    // Keep Inferno's Babel JSX compiler outside Playwright's JSX transform hook.
+    const result = spawnSync(process.execPath, [path.join(__dirname, '../support/render-gallery.js')], {
+        encoding: 'utf8',
+        env: { ...process.env, NODE_ENV: 'production', BABEL_DISABLE_CACHE: '1' }
+    });
+    if (result.status !== 0) {
+        throw new Error(result.stderr || 'Could not render Gallery fixtures');
     }
+    Object.assign(pages, JSON.parse(result.stdout));
 });
 
 async function mount(page, visit, name = 'gallery-on', sdk = true) {

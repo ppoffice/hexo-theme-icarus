@@ -314,7 +314,7 @@ module.exports = {
             comment: {
                 type: 'gitalk',
                 client_id: 'fixture-client-id',
-                client_secret: 'fixture-client-secret',
+                proxy: 'https://gitalk.example.com',
                 repo: 'fixture-comments',
                 owner: 'fixture-owner',
                 admin: ['fixture-owner']

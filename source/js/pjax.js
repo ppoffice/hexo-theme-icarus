@@ -41,6 +41,7 @@
                 };
                 pjax.switchSelectors = function(selectors, fromEl, toEl, options) {
                     page.resolveUrls(fromEl, this.state.href);
+                    page.beforeReplace();
                     window.IcarusNavbar.destroy();
                     return switchSelectors.call(this, selectors, fromEl, toEl, options);
                 };

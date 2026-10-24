@@ -60,14 +60,14 @@ describe('layout/layout (page skeleton)', () => {
         const urls = async providers => {
             const { $ } = await renderLayout({}, { providers, plugins: { pjax: true } });
             const src = name => $(`script[src*="${name}"]`).attr('src');
-            return { jquery: src('jquery'), clipboard: src('clipboard'), pjax: src('pjax.min.js'), highlight: $('link[href*="highlight.js"]').attr('href') };
+            return { jquery: src('jquery'), clipboard: src('clipboard'), pjax: src('pjax-core.js'), highlight: $('link[href*="highlight.js"]').attr('href') };
         };
 
         it('loads the packages from the cdn provider', async () => {
             assert.deepEqual(await urls({ cdn: 'jsdelivr' }), {
                 jquery: 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js',
                 clipboard: 'https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js',
-                pjax: 'https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js',
+                pjax: '/js/pjax-core.js',
                 highlight: 'https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-light.css'
             });
         });
@@ -83,7 +83,7 @@ describe('layout/layout (page skeleton)', () => {
             }), {
                 jquery: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
                 clipboard: 'https://example.com/js/clipboard.min.js',
-                pjax: 'https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js',
+                pjax: '/js/pjax-core.js',
                 highlight: 'https://cdn.example.com/highlight.js/11.11.1/styles/atom-one-light.css'
             });
         });
@@ -91,10 +91,10 @@ describe('layout/layout (page skeleton)', () => {
         it('loads the other packages from the cdn provider, or jsdelivr without one', async () => {
             const unpkg = await urls({ cdn: 'unpkg', cdn_overrides: { jquery: 'jsdelivr' } });
             assert.equal(unpkg.jquery, 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js');
-            assert.equal(unpkg.pjax, 'https://unpkg.com/pjax@0.2.8/pjax.min.js');
+            assert.equal(unpkg.pjax, '/js/pjax-core.js');
             const noCdn = await urls({ cdn: null, cdn_overrides: { jquery: 'unpkg' } });
             assert.equal(noCdn.jquery, 'https://unpkg.com/jquery@3.7.1/dist/jquery.min.js');
-            assert.equal(noCdn.pjax, 'https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js');
+            assert.equal(noCdn.pjax, '/js/pjax-core.js');
             assert.deepEqual(await urls({ cdn: 'jsdelivr', cdn_overrides: null }), await urls({ cdn: 'jsdelivr' }));
         });
     });
@@ -181,7 +181,7 @@ describe('layout/layout (page skeleton)', () => {
 
         it('loads PJAX and back-to-top scripts when those plugins are enabled', async () => {
             const { $ } = await renderLayout({}, { plugins: { pjax: true, back_to_top: true } });
-            assert.equal($('script[src*="pjax.min.js"]').length, 1);
+            assert.equal($('script[src="/js/pjax-core.js"]').length, 1);
             assert.equal($('script[src="/js/pjax.js"]').length, 1);
             assert.equal($('#back-to-top').prop('tagName'), 'BUTTON');
             assert.equal($('#back-to-top').attr('aria-label'), 'Back to top');

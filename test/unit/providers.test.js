@@ -34,9 +34,13 @@ function minimalConfig(kind, type) {
     }
     // Leave out options limited to a list of values but without a default (e.g. the theme of
     // Cusdis): the generated null is not one of the values, and no placeholder would be either.
-    const { properties = {} } = loader.getSchema(`/${kind}/${type}.json`).def;
+    const { properties = {}, required = [] } = loader.getSchema(`/${kind}/${type}.json`).def;
     for (const key of Object.keys(defaults)) {
         if (defaults[key] === null && properties[key] && Array.isArray(properties[key].enum)) {
+            delete defaults[key];
+        }
+        // An optional thread number is not a URL placeholder.
+        if (defaults[key] === null && properties[key] && properties[key].type === 'integer' && !required.includes(key)) {
             delete defaults[key];
         }
     }

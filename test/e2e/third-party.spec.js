@@ -7,13 +7,14 @@
 const { test, expect } = require('./fixtures');
 
 const VARIANT = 'pjax-comment-analytics';
-const GITALK_JS = 'https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js';
-const GITALK_CSS = 'https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css';
+const GITALK_JS = 'https://cdn.jsdelivr.net/npm/@aifire/gitalk@2.0.0-beta.2/dist/gitalk.js';
+const GITALK_CSS = 'https://cdn.jsdelivr.net/npm/@aifire/gitalk@2.0.0-beta.2/dist/gitalk.css';
 
 // Counts how many times the library is loaded and comments are rendered, and marks the container.
 const GITALK_STUB = `
 window.__gitalkLoads = (window.__gitalkLoads || 0) + 1;
 window.Gitalk = function (options) { this.options = options; };
+window.Gitalk.prototype.destroy = function () { window.__gitalkDestroys = (window.__gitalkDestroys || 0) + 1; };
 window.Gitalk.prototype.render = function (id) {
     var el = document.getElementById(id);
     el.setAttribute('data-gitalk-id', this.options.id);

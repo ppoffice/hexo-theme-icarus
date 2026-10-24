@@ -6,7 +6,7 @@ const react = require('eslint-plugin-react');
 
 module.exports = [
     {
-        ignores: ['node_modules/', 'test/.tmp/', 'package-lock.json']
+        ignores: ['node_modules/', 'test/.tmp/', 'package-lock.json', 'source/js/pjax-core.js']
     },
     ...hexo.map(config => Object.assign({ files: ['**/*.js', '**/*.jsx'] }, config)),
     {

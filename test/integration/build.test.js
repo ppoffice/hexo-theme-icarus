@@ -40,7 +40,7 @@ describe('fixture site build (default variant)', function() {
         for (const file of [
             ...VARIANT_STYLESHEETS,
             'js/main.js', 'js/column.js', 'js/back_to_top.js', 'js/animation.js', 'js/pjax.js', 'js/toc.js', 'js/insight.js',
-            'js/navbar.js', 'js/pjax-page.js', 'js/pjax-prefetch.js', 'js/github-calendar.js', 'css/github-calendar.css',
+            'js/navbar.js', 'js/pjax-core.js', 'js/pjax.LICENSE.txt', 'js/pjax-page.js', 'js/pjax-prefetch.js', 'js/github-calendar.js', 'css/github-calendar.css',
             'img/logo.svg', 'img/favicon.svg', 'img/avatar.png', 'img/og_image.png',
             'manifest.json', 'content.json'
         ]) {

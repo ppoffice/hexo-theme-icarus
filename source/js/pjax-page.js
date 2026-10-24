@@ -174,9 +174,25 @@
      * the switched elements again: the analytics and other scripts of <head> would run again,
      * counting page views twice and adding their listeners again.
      */
+    function switchMetadata(oldDoc, newDoc) {
+        // Synchronize page data without rerunning head scripts (analytics, SDKs).
+        const selector = 'meta[name]:not([name="viewport"]):not([name="color-scheme"]), meta[property], '
+            + 'link[rel="canonical"], link[rel="alternate"][hreflang], script[type="application/ld+json"]';
+        oldDoc.head.querySelectorAll(selector).forEach(el => el.remove());
+        newDoc.head.querySelectorAll(selector).forEach(el => oldDoc.head.appendChild(el.cloneNode(true)));
+        ['lang', 'dir'].forEach(name => {
+            if (newDoc.documentElement.hasAttribute(name)) {
+                oldDoc.documentElement.setAttribute(name, newDoc.documentElement.getAttribute(name));
+            } else {
+                oldDoc.documentElement.removeAttribute(name);
+            }
+        });
+    }
+
     function switchHead(oldTitle, newTitle, options) {
         const pageUrl = this.state.href;
         oldTitle.textContent = newTitle.textContent;
+        switchMetadata(oldTitle.ownerDocument, newTitle.ownerDocument);
         switchAppearance(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, options, pageUrl);
         switchStylesheets(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, 'link[data-variant]', pageUrl);
         switchNavbar(oldTitle.ownerDocument, newTitle.ownerDocument);
@@ -190,7 +206,7 @@
         this.onSwitch();
     }
 
-    function complete() {
+    function complete(event) {
         // Plugin [MathJax] reload logic
         if (window.MathJax) {
             try {
@@ -203,7 +219,7 @@
         renderKatex();
         // PJAX scrolls the anchor of the new page to the top of the window, under a sticky navbar:
         // scroll it again after PJAX, before the next paint, below the navbar (its scroll margin).
-        if (location.hash && document.querySelector('.navbar-main[data-sticky]')) {
+        if ((!event || event.history !== false) && location.hash && document.querySelector('.navbar-main[data-sticky]')) {
             requestAnimationFrame(() => {
                 let target = null;
                 try {
@@ -226,5 +242,33 @@
         }
     }
 
-    window.IcarusPjaxPage = { resolveUrls, switchHead, switchContent, complete };
+    function beforeReplace() {
+        // Teardown while the old DOM is still attached, also when the next page
+        // has no corresponding component. Initializers already destroy before
+        // re-init; clearing the handles prevents a second destroy of that instance.
+        ['__artalkInstance', '__walineInstance', '__gitalkInstance'].forEach(name => {
+            const instance = window[name];
+            if (instance && typeof instance.destroy === 'function') {
+                instance.destroy();
+                window[name] = null;
+            }
+        });
+        const $ = window.jQuery;
+        if ($) {
+            $('.article').each(function() {
+                const gallery = $(this).data('lightGallery');
+                if (gallery) {
+                    gallery.destroy(true);
+                }
+            });
+            $('.justified-gallery').each(function() {
+                if ($(this).data('jg.controller')) {
+                    $(this).justifiedGallery('destroy');
+                }
+            });
+        }
+        document.dispatchEvent(new CustomEvent('icarus:page:before-replace'));
+    }
+
+    window.IcarusPjaxPage = { resolveUrls, switchHead, switchContent, complete, beforeReplace };
 }());
