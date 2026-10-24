@@ -29,6 +29,9 @@ widget:
     adsense: '広告'
     followit: 'follow.it'
     more: 'もっと見る'
+    github_calendar: 'GitHub コントリビューション'
+    github_calendar_loading: 'コントリビューションを読み込み中…'
+    github_calendar_error: '読み込めませんでした。GitHub で確認してください。'
 article:
     created_at: '%sに投稿'
     updated_at: '%sに更新'

@@ -29,6 +29,9 @@ widget:
     adsense: 'Reklama'
     followit: 'follow.it'
     more: 'Więcej'
+    github_calendar: 'Wkład w GitHub'
+    github_calendar_loading: 'Ładowanie aktywności…'
+    github_calendar_error: 'Nie udało się załadować aktywności. Zobacz na GitHub.'
 article:
     created_at: 'Opublikowano&nbsp;%s'
     updated_at: 'Zaktualizowano&nbsp;%s'

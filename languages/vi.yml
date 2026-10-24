@@ -29,6 +29,9 @@ widget:
     adsense: 'Quảng cáo'
     followit: 'follow.it'
     more: 'Xem thêm'
+    github_calendar: 'Đóng góp GitHub'
+    github_calendar_loading: 'Đang tải đóng góp…'
+    github_calendar_error: 'Không thể tải đóng góp. Xem trên GitHub.'
 article:
     created_at: 'Đã đăng&nbsp;%s'
     updated_at: 'Đã cập nhật&nbsp;%s'

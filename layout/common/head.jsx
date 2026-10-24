@@ -160,6 +160,7 @@ module.exports = class extends Component {
             {/* Fonts are requested with CORS, which does not reuse the connections of other requests */}
             {getFontOrigins(iconcdn(), fontCssUrl[variant], url).map(origin => <link rel="preconnect" href={origin} crossorigin="anonymous" />)}
             <link rel="stylesheet" href={iconcdn()} />
+            <link rel="stylesheet" href={url_for('/css/github-calendar.css')} />
             {hlThemes.map(([theme, media]) => <link data-pjax rel="stylesheet" href={cdn('highlight.js', '11.11.1', 'styles/' + theme + '.css')} media={media} />)}
             <script dangerouslySetInnerHTML={{ __html: 'window.IcarusAppearance.sync();' }}></script>
             <link data-variant rel="stylesheet" href={fontCssUrl[variant]} />

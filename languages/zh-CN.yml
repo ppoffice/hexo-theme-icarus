@@ -29,6 +29,9 @@ widget:
     adsense: '广告'
     followit: 'follow.it'
     more: '更多'
+    github_calendar: 'GitHub 贡献日历'
+    github_calendar_loading: '正在加载贡献记录…'
+    github_calendar_error: '贡献记录加载失败，可点击下方链接前往 GitHub 查看。'
 article:
     created_at: '%s发表'
     updated_at: '%s更新'

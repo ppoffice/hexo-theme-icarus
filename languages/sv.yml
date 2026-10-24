@@ -29,6 +29,9 @@ widget:
     adsense: 'Marknadsföring'
     followit: 'follow.it'
     more: 'Mer'
+    github_calendar: 'GitHub-bidrag'
+    github_calendar_loading: 'Laddar bidrag…'
+    github_calendar_error: 'Kunde inte ladda bidrag. Visa på GitHub.'
 article:
     created_at: 'Publicerad&nbsp;%s'
     updated_at: 'Uppdaterad&nbsp;%s'

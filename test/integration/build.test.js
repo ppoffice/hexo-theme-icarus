@@ -38,7 +38,7 @@ describe('fixture site build (default variant)', function() {
         for (const file of [
             ...VARIANT_STYLESHEETS,
             'js/main.js', 'js/column.js', 'js/back_to_top.js', 'js/animation.js', 'js/pjax.js', 'js/toc.js', 'js/insight.js',
-            'js/navbar.js', 'js/pjax-page.js', 'js/pjax-prefetch.js',
+            'js/navbar.js', 'js/pjax-page.js', 'js/pjax-prefetch.js', 'js/github-calendar.js', 'css/github-calendar.css',
             'img/logo.svg', 'img/favicon.svg', 'img/avatar.png', 'img/og_image.png',
             'manifest.json', 'content.json'
         ]) {
@@ -55,8 +55,14 @@ describe('fixture site build (default variant)', function() {
         }
     });
 
-    it('only emits the variant stylesheets (no css/style.css or partials)', () => {
-        assert.deepEqual(site.files('.css'), VARIANT_STYLESHEETS);
+    it('only emits variant and library widget stylesheets (no css/style.css or partials)', () => {
+        assert.deepEqual(site.files('.css'), [...VARIANT_STYLESHEETS, 'css/github-calendar.css'].sort());
+    });
+
+    it('exports the calendar assets from hexo-component-inferno', () => {
+        for (const file of ['js/github-calendar.js', 'css/github-calendar.css']) {
+            assert.equal(site.read(file), require('fs').readFileSync(require.resolve('hexo-component-inferno/asset/' + file), 'utf8'));
+        }
     });
 
     it('keeps a visible keyboard focus indicator on the back-to-top button', () => {

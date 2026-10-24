@@ -29,6 +29,9 @@ widget:
     adsense: 'Pubblicità'
     followit: 'follow.it'
     more: 'Altro'
+    github_calendar: 'Contributi GitHub'
+    github_calendar_loading: 'Caricamento dei contributi…'
+    github_calendar_error: 'Impossibile caricare i contributi. Visualizza su GitHub.'
 article:
     created_at: 'Pubblicato il&nbsp;%s'
     updated_at: 'Aggiornato il&nbsp;%s'

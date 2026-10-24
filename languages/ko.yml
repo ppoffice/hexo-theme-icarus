@@ -29,6 +29,9 @@ widget:
     adsense: '광고'
     followit: 'follow.it'
     more: '더 보기'
+    github_calendar: 'GitHub 기여'
+    github_calendar_loading: '기여 기록을 불러오는 중…'
+    github_calendar_error: '기여 기록을 불러올 수 없습니다. GitHub에서 확인하세요.'
 article:
     created_at: '%s&nbsp;게시 됨'
     updated_at: '%s&nbsp;업데이트 됨'

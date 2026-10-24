@@ -29,6 +29,9 @@ widget:
     adsense: '廣告'
     followit: 'follow.it'
     more: '更多'
+    github_calendar: 'GitHub 貢獻日曆'
+    github_calendar_loading: '正在載入貢獻記錄…'
+    github_calendar_error: '貢獻記錄載入失敗，可點擊下方連結前往 GitHub 查看。'
 article:
     created_at: '%s發表'
     updated_at: '%s更新'

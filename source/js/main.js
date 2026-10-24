@@ -1,4 +1,7 @@
 (function($, ClipboardJS, config) {
+    if (window.HexoGithubCalendar) {
+        window.HexoGithubCalendar.init();
+    }
     $('.article img:not(".not-gallery-item")').each(function() {
         // wrap images with link and add caption if possible
         if ($(this).parent('a').length === 0) {

@@ -29,6 +29,9 @@ widget:
     adsense: 'Advertisement'
     followit: 'follow.it'
     more: 'More'
+    github_calendar: 'GitHub Contributions'
+    github_calendar_loading: 'Loading contributions…'
+    github_calendar_error: 'Could not load contributions. Open GitHub to view them.'
 article:
     created_at: 'Posted&nbsp;%s'
     updated_at: 'Updated&nbsp;%s'

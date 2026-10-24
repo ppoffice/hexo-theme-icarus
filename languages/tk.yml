@@ -29,6 +29,9 @@ widget:
     adsense: 'Mahabat'
     followit: 'follow.it'
     more: 'Köpräk'
+    github_calendar: 'GitHub goşantlary'
+    github_calendar_loading: 'Goşantlar ýüklenýär…'
+    github_calendar_error: 'Goşantlary ýükläp bolmady. GitHub-da görüň.'
 article:
     created_at: 'Paýlaşyldy&nbsp;%s'
     updated_at: 'Üýtgedildi&nbsp;%s'

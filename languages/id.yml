@@ -29,6 +29,9 @@ widget:
     adsense: 'Iklan'
     followit: 'follow.it'
     more: 'Lainnya'
+    github_calendar: 'Kontribusi GitHub'
+    github_calendar_loading: 'Memuat kontribusi…'
+    github_calendar_error: 'Kontribusi tidak dapat dimuat. Lihat di GitHub.'
 article:
     created_at: 'Diposting&nbsp;%s'
     updated_at: 'Diperbarui&nbsp;%s'

@@ -29,6 +29,9 @@ widget:
     adsense: 'İlan'
     followit: 'follow.it'
     more: 'Daha fazla'
+    github_calendar: 'GitHub katkıları'
+    github_calendar_loading: 'Katkılar yükleniyor…'
+    github_calendar_error: 'Katkılar yüklenemedi. GitHub üzerinde görüntüleyin.'
 article:
     created_at: '%s&nbsp;yayınlandı'
     updated_at: '%s&nbsp;güncellendi'

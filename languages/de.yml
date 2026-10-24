@@ -29,6 +29,9 @@ widget:
     adsense: 'Werbung'
     followit: 'follow.it'
     more: 'Mehr'
+    github_calendar: 'GitHub-Beiträge'
+    github_calendar_loading: 'Beiträge werden geladen…'
+    github_calendar_error: 'Beiträge konnten nicht geladen werden. Auf GitHub ansehen.'
 article:
     created_at: 'Gepostet vor&nbsp;%s'
     updated_at: 'Aktualisiert vor&nbsp;%s'

@@ -29,6 +29,9 @@ widget:
     adsense: 'Рекламное объявление'
     followit: 'follow.it'
     more: 'Ещё'
+    github_calendar: 'Вклад в GitHub'
+    github_calendar_loading: 'Загрузка активности…'
+    github_calendar_error: 'Не удалось загрузить активность. Посмотрите на GitHub.'
 article:
     created_at: 'Опубликовано&nbsp;%s'
     updated_at: 'Обновлено&nbsp;%s'

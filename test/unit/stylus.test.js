@@ -96,7 +96,14 @@ describe('source/css (native m3e Stylus)', function() {
             const file = path.join(REPO_ROOT, 'source/css/m3e.styl');
             const source = fs.readFileSync(file, 'utf8').replace(/^@import 'default'\r?\n/, '');
             const css = await compile(file, null, source, compress);
-            assert.equal(createHash('sha256').update(JSON.stringify(normalizeCss(css))).digest('hex'), expected);
+            const rules = normalizeCss(css);
+            // This calendar adapter was added after the refactor. Check it exactly, then
+            // keep comparing every original rule against the historical fingerprint.
+            const isCalendarAdapter = rule => rule.type === 'rule'
+                && JSON.stringify(rule.selectors) === JSON.stringify(['.github-calendar-chart']);
+            assert.deepEqual(rules.filter(isCalendarAdapter), normalizeCss(
+                '.github-calendar-chart { --github-calendar-default-color: var(--m3-primary); }'));
+            assert.equal(createHash('sha256').update(JSON.stringify(rules.filter(rule => !isCalendarAdapter(rule)))).digest('hex'), expected);
         });
     }
 

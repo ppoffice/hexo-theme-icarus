@@ -36,6 +36,9 @@
                 "$ref": "/widget/tags.json"
             },
             {
+                "$ref": "/widget/github_calendar.json"
+            },
+            {
                 "$ref": "/widget/adsense.json"
             },
             {
