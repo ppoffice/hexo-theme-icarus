@@ -1,6 +1,6 @@
 const assert = require('assert').strict;
 const moment = require('moment');
-const { render, fixtureConfig, makePage } = require('../support/render');
+const { render, fixtureConfig, makePage, createHelper } = require('../support/render');
 
 function post(overrides = {}) {
     return makePage(Object.assign({
@@ -77,6 +77,44 @@ describe('layout/common/article', () => {
         it('is hidden when article.readtime is off', async () => {
             const { $ } = await renderArticle({}, { config: { article: { readtime: false } } });
             assert.doesNotMatch($('.article-meta').text(), /read/);
+        });
+
+        it('requires readtime to be exactly true and omits statistics on page layouts', async () => {
+            for (const readtime of [undefined, null, false, '', 'true', 1, {}]) {
+                const { $ } = await renderArticle({}, { config: { article: { readtime } } });
+                assert.doesNotMatch($('.article-meta').text(), /About \d+ words?/);
+            }
+            assert.equal((await renderArticle({ layout: 'page' })).$('.article-meta').length, 0);
+        });
+
+        it('retains truthy encryption selection without falling back when origin is missing', async () => {
+            for (const encrypt of [true, 1, 'yes']) {
+                assert.equal(await count('<p>one two three</p>', { encrypt, origin: '<p>原文</p>' }), 2);
+                assert.equal(await count('<p>one two three</p>', { encrypt, origin: undefined }), 0);
+            }
+            for (const encrypt of [false, null, 0, '']) {
+                assert.equal(await count('<p>one two three</p>', { encrypt, origin: '<p>原文</p>' }), 3);
+            }
+        });
+
+        it('uses the site locale on the index and the first page language on posts', async () => {
+            for (const index of [true, false]) {
+                const config = fixtureConfig({ language: ['en', 'ja'], article: { licenses: null, update_time: true }, donates: [], share: { type: null }, comment: { type: null } });
+                const page = post({ lang: 'zh_CN', language: 'ru', content: '<p>' + words(300) + '</p>' });
+                const real = await createHelper(config, page);
+                const calls = [];
+                const helper = Object.assign({}, real, { _p(key, value) { calls.push([key, value]); return real._p(key, value); } });
+                await render('common/article', { config, page, helper, index });
+                assert.deepEqual(calls.map(call => call[0]), ['article.created_at', 'article.updated_at', 'article.read_time', 'article.word_count']);
+                assert.deepEqual(calls.slice(-2), [
+                    ['article.read_time', moment.duration(120, 'seconds').locale(index ? 'en' : 'zh-cn').humanize()],
+                    ['article.word_count', 300]
+                ]);
+            }
+        });
+
+        it('preserves language errors before rendering even when statistics are disabled', async () => {
+            await assert.rejects(renderArticle({}, { config: { language: [], article: { readtime: false } } }), /toLowerCase/);
         });
     });
 

@@ -1,34 +1,11 @@
 const moment = require('moment');
-const { escapeHTML, unescapeHTML } = require('hexo-util');
+const { escapeHTML } = require('hexo-util');
 const { Component, Fragment } = require('inferno');
-const { toMomentLocale } = require('hexo/dist/plugins/helper/date');
+const { getArticleLanguages, getReadingStats } = require('../../include/util/article_stats');
 const Share = require('./share');
 const Donates = require('./donates');
 const Comment = require('./comment');
 const ArticleLicensing = require('hexo-component-inferno/lib/view/misc/article_licensing');
-
-// Scripts written without spaces between words: every character counts as a word.
-const CJK = '\\p{Script=Han}\\p{Script=Hiragana}\\p{Script=Katakana}';
-const WORD_PATTERN = new RegExp(`[${CJK}]|(?:(?![${CJK}])[\\p{L}\\p{M}\\p{N}])+(?:['\u2019](?:(?![${CJK}])[\\p{L}\\p{M}\\p{N}])+)*`, 'gu');
-const LETTER_PATTERN = /\p{L}/u;
-
-/**
- * Get the number of words in rendered HTML: CJK characters count one each, other words are
- * runs of letters, marks and digits that contain at least one letter. Markup, code line
- * numbers, scripts, styles, comments and punctuation are not counted.
- */
-function getWordCount(html) {
-    if (typeof html !== 'string' || !html) {
-        return 0;
-    }
-    const text = unescapeHTML(html
-        .replace(/<!--[\s\S]*?-->/g, ' ')
-        .replace(/<(script|style)\b[\s\S]*?<\/\1>/gi, ' ')
-        .replace(/<td class="gutter">[\s\S]*?<\/td>/gi, ' ')
-        .replace(/<[^>]+>/g, ' '))
-        .replace(/&[#\w]+;/g, ' ');
-    return (text.match(WORD_PATTERN) || []).filter(word => LETTER_PATTERN.test(word)).length;
-}
 
 /**
  * The server of the waline_pageview plugin, which only counts and shows the page views with one:
@@ -73,10 +50,7 @@ module.exports = class extends Component {
         // be used here: it calls this.date(), which is not available in the bound context).
         const fullDateFormat = `${config.date_format || 'YYYY-MM-DD'} ${config.time_format || 'HH:mm:ss'}`;
 
-        const defaultLanguage = Array.isArray(config.language) && config.language.length ? config.language[0] : config.language;
-
-        const indexLanguage = toMomentLocale(defaultLanguage || 'en');
-        const language = toMomentLocale(page.lang || page.language || defaultLanguage || 'en');
+        const { indexLanguage, language } = getArticleLanguages(config.language, page.lang || page.language);
         const cover = page.cover ? url_for(page.cover) : null;
         // The first cover of a page is likely its largest image shown at first (LCP): load it before
         // the other images. The covers below it are only loaded when they are about to be scrolled to.
@@ -131,9 +105,8 @@ module.exports = class extends Component {
                             {/* Read time */}
                             {article && article.readtime === true ? <span class="level-item">
                                 {(() => {
-                                    const words = getWordCount(page.encrypt ? page.origin : page.content);
-                                    const time = moment.duration((words / 150.0) * 60, 'seconds');
-                                    return `${_p('article.read_time', time.locale(index ? indexLanguage : language).humanize())} (${_p('article.word_count', words)})`;
+                                    const { words, readingTime } = getReadingStats(page.encrypt ? page.origin : page.content, index ? indexLanguage : language);
+                                    return `${_p('article.read_time', readingTime)} (${_p('article.word_count', words)})`;
                                 })()}
                             </span> : null}
                             {/* Visitor counter */}
