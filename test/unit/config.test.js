@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const yaml = require('hexo-component-inferno/lib/util/yaml');
 const { SchemaLoader } = require('hexo-component-inferno/lib/core/schema');
 const checkConfig = require('../../include/config');
+const { diagnoseThemeConfig, diagnoseSiteConfig } = require('../../include/config/diagnostics');
 const { capture, withArgv } = require('../support/capture');
 const { REPO_ROOT } = require('../support/paths');
 
@@ -50,6 +51,36 @@ describe('include/config (theme configuration check, generation and migration)',
     let env;
 
     afterEach(() => env && env.cleanup());
+
+    describe('diagnostics without side effects', () => {
+        it('returns repeatable warnings in validation, plugin and Open Graph order without changing input', () => {
+            const cfg = Object.freeze({
+                comment: Object.freeze({ type: 'valine', record_ip: true }),
+                plugins: Object.freeze({ waline_pageview: true }),
+                head: Object.freeze({ open_graph: Object.freeze({ type: 'blog' }) })
+            });
+            const schema = { validate: value => { assert.equal(value, cfg); return { version: 'required' }; } };
+            const { output, result } = capture(() => diagnoseThemeConfig(cfg, schema));
+            assert.equal(output, '');
+            const warnings = diagnoseThemeConfig(cfg, schema);
+            assert.deepEqual(result, warnings);
+            assert.equal(warnings.length, 8);
+            assert.match(warnings[0], /failed one or more checks/);
+            assert.equal(warnings[3], '{ version: \'required\' }');
+            assert.match(warnings[4], /email and IP addresses/);
+            assert.match(warnings[5], /has no Waline server/);
+            assert.match(warnings[7], /Open Graph type/);
+        });
+
+        it('returns site warnings separately so file reads and logging stay in the runner', () => {
+            assert.deepEqual(diagnoseThemeConfig({}, { validate: () => true }), []);
+            assert.deepEqual(diagnoseSiteConfig({}, '_config.yml'), []);
+            const warnings = diagnoseSiteConfig(Object.freeze({ theme_config: {} }), '_config.yml');
+            assert.equal(warnings.length, 2);
+            assert.match(warnings[0], /"theme_config" found in/);
+            assert.match(warnings[1], /Please remove theme configurations/);
+        });
+    });
 
     describe('generation', () => {
         it('generates _config.icarus.yml from the schema when no theme config exists', () => {

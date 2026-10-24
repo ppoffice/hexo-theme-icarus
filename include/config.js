@@ -1,7 +1,6 @@
 /* eslint n/no-process-exit: "off" */
 const fs = require('fs');
 const path = require('path');
-const util = require('util');
 const crypto = require('crypto');
 const createLogger = require('hexo-log');
 const { deepMerge } = require('hexo-util');
@@ -9,6 +8,7 @@ const yaml = require('hexo-component-inferno/lib/util/yaml');
 const { Migrator } = require('hexo-component-inferno/lib/core/migrate');
 const { SchemaLoader } = require('hexo-component-inferno/lib/core/schema');
 const { yellow } = require('./util/console');
+const { diagnoseThemeConfig, diagnoseSiteConfig } = require('./config/diagnostics');
 
 const logger = createLogger.default();
 
@@ -85,46 +85,10 @@ function checkConfig(hexo) {
             }
         }
 
-        const validation = schema.validate(cfg);
-        if (validation !== true) {
-            logger.warn('Theme configurations failed one or more checks.');
-            logger.warn('Icarus may still run, but you will encounter unexpected results.');
-            logger.warn('Here is some information for you to correct the configuration file.');
-            logger.warn(util.inspect(validation));
-        }
-
-        if (cfg.comment && cfg.comment.type === 'valine') {
-            // IP addresses are only stored when record_ip is on, which is off by default
-            const leaked = cfg.comment.record_ip === true ? 'email and IP addresses' : 'email addresses';
-            // hexo-component-inferno warns that Valine is deprecated when it renders the comments, with the
-            // shutdown date of LeanCloud and the comment plugins to use instead, so only add what it leaves out
-            logger.warn(`Valine exposes commenters' ${leaked} to anyone with the site's public LeanCloud keys. See ${yellow('https://github.com/ppoffice/hexo-theme-icarus/issues/788')}.`);
-        }
-
-        const walinePageview = cfg.plugins && typeof cfg.plugins === 'object' ? cfg.plugins.waline_pageview : null;
-        if (walinePageview) {
-            const waline = cfg.comment && cfg.comment.type === 'waline' ? cfg.comment : null;
-            if (waline && waline.pageview) {
-                logger.warn('Both the waline_pageview plugin and the pageview option of the Waline comments count page views, so each view is counted twice.');
-                logger.warn(`Please set ${yellow('comment.pageview')} to false, or disable ${yellow('plugins.waline_pageview')}.`);
-            }
-            if (!(typeof walinePageview === 'object' && walinePageview.server_url) && !(waline && waline.server_url)) {
-                logger.warn('The waline_pageview plugin is enabled, but has no Waline server to count the page views.');
-                logger.warn(`Please set ${yellow('plugins.waline_pageview.server_url')}, or the ${yellow('server_url')} of the Waline comments.`);
-            }
-        }
-
-        // Configurations generated before hexo-component-inferno 4.2.0 have type: blog, which the theme ignores
-        const openGraph = cfg.head && typeof cfg.head === 'object' ? cfg.head.open_graph : null;
-        if (openGraph && typeof openGraph === 'object' && openGraph.type === 'blog') {
-            logger.warn(`${yellow('head.open_graph.type')} is "blog", which is not an Open Graph type and is ignored. Please remove it.`);
-        }
+        diagnoseThemeConfig(cfg, schema).forEach(warning => logger.warn(warning));
 
         const rootCfg = yaml.parse(fs.readFileSync(siteCfgFile));
-        if (rootCfg.theme_config) {
-            logger.warn(`"theme_config" found in ${yellow(siteCfgFile)}.`);
-            logger.warn(`Please remove theme configurations from ${yellow(siteCfgFile)}.`);
-        }
+        diagnoseSiteConfig(rootCfg, siteCfgFile).forEach(warning => logger.warn(warning));
     }
 }
 
