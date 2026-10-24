@@ -71,7 +71,7 @@ describe('fixture site build (default variant)', function() {
         const installer = require('hexo-component-inferno/lib/util/gallery');
         const $ = site.$('/2024/02/10/images-and-tables/');
         assert.equal($('script').filter((i, el) => $(el).html() === installer).length, 1);
-        assert.equal($('script[src*="lightgallery"], script[src*="justifiedGallery"]').length, 0);
+        assert.equal($('script[src*="lightgallery"], script[type="module"]').length, 0);
         const main = fs.readFileSync(path.resolve(__dirname, '../../source/js/main.js'), 'utf8').replace(/\r\n/g, '\n');
         assert.equal(site.read('js/main.js'), main);
         assert.equal(site.exists('js/gallery.js'), false);

@@ -8,22 +8,16 @@ const lightSdk = `window.lightGallery = function(element, options) {
     window.__galleryCalls.light.push([element.id, '.gallery-item']);
     return { refresh() {}, updateSlides() {}, openGallery() {}, destroy() {} };
 };`;
-const justifiedSdk = `jQuery.fn.justifiedGallery = function(command) {
-    return this.each(function() {
-        const $gallery = jQuery(this);
-        if (command === 'destroy') {
-            $gallery.removeData('jg.controller');
-            return;
-        }
-        let controller = $gallery.data('jg.controller');
-        if (!controller) {
-            controller = { getAllEntries() { return $gallery.children(); } };
-            $gallery.data('jg.controller', controller);
-        }
-        controller.entries = controller.getAllEntries();
-        window.__galleryCalls.justified.push(this.id);
-    });
+const justifiedSdk = `window.JustifiedGallery = function(element) {
+    this.settings = { selector: 'a' };
+    this.init = function() { window.__galleryCalls.justified.push(element.id); };
+    this.widthWatcher = { stop() {} };
+    this.stopImgAnalyzerStarter = function() {};
+    this.stopLoadingSpinnerAnimation = function() {};
+    this.rewind = function() {};
+    this.destroy = function() {};
 };`;
+const justifiedModule = justifiedSdk + '\nexport const JustifiedGallery = window.JustifiedGallery;';
 const pages = {};
 
 async function loadLightGallery(page) {
@@ -130,7 +124,7 @@ async function mount(page, visit, name = 'gallery-on', sdk = true) {
         await page.route('**/' + path + '/', route => route.fulfill({ contentType: 'text/html', body: html }));
     }
     await page.route('**/lightgallery.min.js', route => route.fulfill({ contentType: 'application/javascript', body: sdk ? lightSdk : '' }));
-    await page.route('**/jquery.justifiedGallery.min.js', route => route.fulfill({ contentType: 'application/javascript', body: sdk ? justifiedSdk : '' }));
+    await page.route('**/justified-gallery.js', route => route.fulfill({ contentType: 'application/javascript', headers: { 'access-control-allow-origin': '*' }, body: sdk ? justifiedModule : 'export const JustifiedGallery = undefined;' }));
     await visit('/' + name + '/');
 }
 
@@ -168,13 +162,47 @@ test('loads the real lightGallery core and plugins on the first enabled PJAX pag
     expect(diagnostics.pageErrors).toEqual([]);
 });
 
+test('real Justified Gallery ESM lays out, refreshes and destroys across PJAX', async ({ page, visit, diagnostics }) => {
+    await mount(page, visit, 'gallery-off');
+    // Let the regular offline CDN fixture serve the released module and stylesheet.
+    await page.unroute('**/justified-gallery.js');
+    await page.locator('.gallery-nav[href="/gallery-on/"]').click();
+    await expect(page).toHaveTitle('gallery-on - Icarus Fixture');
+    await expect(page.locator('#justified > a')).toHaveClass(/jg-entry-visible/);
+    const first = await page.locator('#justified > a').boundingBox();
+    expect(first.width).toBeGreaterThan(0);
+    expect(first.height).toBeGreaterThan(0);
+    await page.locator('#justified > a').hover();
+    await expect(page.locator('#justified .caption')).toBeVisible();
+    await page.evaluate(() => {
+        const gallery = document.querySelector('#justified');
+        gallery.insertAdjacentHTML('beforeend', '<p><img src="/img/avatar.png" alt="Added"></p>');
+        window.HexoGallery.init(document, { lightGallery: true, justifiedGallery: true });
+    });
+    await expect(page.locator('#justified > a.jg-entry-visible')).toHaveCount(2);
+    await page.setViewportSize({ width: 800, height: 900 });
+    await expect.poll(async () => (await page.locator('#justified').boundingBox()).width).toBeLessThan(800);
+    await page.evaluate(() => {
+        const gallery = document.querySelector('#justified');
+        document.addEventListener('hexo:page:before-replace', () => {
+            window.__layoutDestroyed = gallery.isConnected && !gallery.classList.contains('justified-gallery') && !gallery.querySelector('.jg-spinner');
+        }, { once: true });
+    });
+    await page.locator('.gallery-nav[href="/gallery-off/"]').click();
+    await expect(page).toHaveTitle('gallery-off - Icarus Fixture');
+    expect(await page.evaluate(() => window.__layoutDestroyed)).toBe(true);
+    await page.locator('.gallery-nav[href="/gallery-next/"]').click();
+    await expect(page.locator('#justified > a')).toHaveClass(/jg-entry-visible/);
+    expect(diagnostics.pageErrors).toEqual([]);
+});
+
 test('enhances images without loading or invoking disabled Gallery SDKs', async ({ page, visit, diagnostics }) => {
     await mount(page, visit, 'gallery-off');
     await expectEnhancement(page);
     await page.addScriptTag({ content: lightSdk + justifiedSdk });
     await page.evaluate(() => window.HexoGallery.init());
     expect(await page.evaluate(() => window.__galleryCalls)).toEqual({ light: [], justified: [] });
-    expect(diagnostics.external.some(url => /lightgallery|justifiedGallery/.test(url))).toBe(false);
+    expect(diagnostics.external.some(url => /lightgallery|justified-gallery/.test(url))).toBe(false);
     expect(diagnostics.pageErrors).toEqual([]);
 });
 
@@ -232,11 +260,11 @@ test('disables pending SDK initialization before queued main scripts can run on 
     let release;
     const gate = new Promise(resolve => { release = resolve; });
     const requested = [];
-    for (const [file, source] of [['lightgallery.min.js', lightSdk], ['jquery.justifiedGallery.min.js', justifiedSdk]]) {
+    for (const [file, source] of [['lightgallery.min.js', lightSdk], ['justified-gallery.js', justifiedModule]]) {
         await page.route('**/' + file, async route => {
             requested.push(file);
             await gate;
-            await route.fulfill({ contentType: 'application/javascript', body: source });
+            await route.fulfill({ contentType: 'application/javascript', headers: { 'access-control-allow-origin': '*' }, body: source });
         });
     }
     try {
@@ -259,7 +287,7 @@ test('disables pending SDK initialization before queued main scripts can run on 
     expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
     expect(await page.evaluate(() => window.__galleryCalls)).toEqual({ light: [], justified: [] });
     await expect(page.locator('.lg-container')).toHaveCount(0);
-    expect(await page.evaluate(() => !!window.jQuery('#justified').data('jg.controller'))).toBe(false);
+    await expect(page.locator('#justified > p')).toHaveCount(1);
     await expectEnhancement(page);
 
     // The SDKs are now available: a subsequent enabled page may initialize once.

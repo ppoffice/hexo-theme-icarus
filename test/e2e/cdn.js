@@ -15,6 +15,7 @@ const VENDORED = {
     'highlight.js': 'highlight.js',
     jquery: 'jquery',
     clipboard: 'clipboard',
+    'justified-gallery': 'justified-gallery',
     lightgallery: 'lightgallery',
     // Loaded by the math plugins of hexo-component-inferno
     mathjax: 'mathjax',
@@ -48,7 +49,7 @@ function fulfillVendored(route, dir, name, version, filename) {
         throw new Error(`The page requested ${name}@${version} but ${path.relative(path.join(REPO_ROOT, 'node_modules'), dir)}@${vendoredVersion} is vendored. Update package.json.`);
     }
     const file = path.join(dir, filename);
-    return route.fulfill({ status: 200, contentType: contentType(file), body: fs.readFileSync(file) });
+    return route.fulfill({ status: 200, contentType: contentType(file), headers: { 'access-control-allow-origin': '*' }, body: fs.readFileSync(file) });
 }
 
 function isLocal(url) {

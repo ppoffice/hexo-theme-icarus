@@ -12,7 +12,7 @@ describe('shared Gallery integration', () => {
         const runtime = scripts.filter((i, el) => $(el).html() === installer);
         assert.equal(runtime.length, 1);
         assert.equal(runtime.attr('data-pjax'), undefined);
-        assert.equal($('script[src*="lightgallery"], script[src*="justifiedGallery"]').length, 0);
+        assert.equal($('script[src*="lightgallery"], script[type="module"]').length, 0);
         const index = selector => scripts.index($(selector));
         assert.ok(index('script[src*="jquery"]') < scripts.index(runtime));
         const settings = scripts.filter((i, el) => /^var IcarusThemeSettings = /.test($(el).html()));
@@ -33,9 +33,11 @@ describe('shared Gallery integration', () => {
             assert.equal(lightGallery.length, gallery ? 1 : 0);
             if (gallery) {
                 assert.match(lightGallery.attr('src'), /lightgallery@3\.0\.0\/lightgallery\.min\.js$/);
-                const justified = $('script[src*="justifiedGallery"]');
-                assert.match(justified.attr('src'), /justifiedGallery@3\.8\.1\/dist\/js\/jquery\.justifiedGallery\.min\.js$/);
-                for (const script of [lightGallery, justified]) {
+                const justified = $('script[type="module"]');
+                assert.match(justified.html(), /justified-gallery@4\.0\.2\/dist\/justified-gallery\.js/);
+                assert.match(justified.html(), /import \{ JustifiedGallery \}/);
+                assert.equal(justified.attr('data-pjax'), undefined);
+                for (const script of [lightGallery]) {
                     assert.notEqual(script.attr('defer'), undefined);
                     assert.equal(script.attr('data-pjax'), undefined);
                 }

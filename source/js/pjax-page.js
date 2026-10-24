@@ -254,15 +254,7 @@
             }
         });
         if (window.HexoGallery) window.HexoGallery.destroy(document);
-        const $ = window.jQuery;
-        if ($) {
-            $('.justified-gallery').each(function() {
-                if ($(this).data('jg.controller')) {
-                    $(this).justifiedGallery('destroy');
-                }
-            });
-        }
-        document.dispatchEvent(new CustomEvent('icarus:page:before-replace'));
+        document.dispatchEvent(new CustomEvent('hexo:page:before-replace'));
     }
 
     window.IcarusPjaxPage = { resolveUrls, switchHead, switchContent, complete, beforeReplace };

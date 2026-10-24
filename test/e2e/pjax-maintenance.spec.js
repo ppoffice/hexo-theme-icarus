@@ -129,9 +129,14 @@ test.describe('maintained local PJAX engine', () => {
             const gallery = document.createElement('div');
             gallery.className = 'justified-gallery';
             article.appendChild(gallery);
-            window.jQuery(gallery).data('jg.controller', {});
-            window.jQuery.fn.justifiedGallery = function(command) { window.__teardown.push(['justified', gallery.isConnected, command]); };
-            document.addEventListener('icarus:page:before-replace', () => window.__teardown.push(['event', article.isConnected]), { once: true });
+            window.JustifiedGallery = function() {
+                this.settings = { selector: 'a' };
+                this.init = function() {};
+                this.stopLoadingSpinnerAnimation = function() {};
+                this.destroy = function() { window.__teardown.push(['justified', gallery.isConnected, 'destroy']); };
+            };
+            window.HexoGallery.init(article, { justifiedGallery: true });
+            document.addEventListener('hexo:page:before-replace', () => window.__teardown.push(['event', article.isConnected]), { once: true });
         });
         await navigate(page, '/archives/');
         expect(await page.evaluate(() => window.__teardown)).toEqual([
