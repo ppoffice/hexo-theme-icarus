@@ -4,6 +4,8 @@
 const assert = require('assert').strict;
 const { getSite } = require('../support/site');
 
+const VARIANT_STYLESHEETS = ['css/cyberpunk.css', 'css/default.css', 'css/m3e.css'];
+
 describe('fixture site build (default variant)', function() {
     this.timeout(120000);
     let site;
@@ -34,7 +36,7 @@ describe('fixture site build (default variant)', function() {
 
     it('generates theme assets', () => {
         for (const file of [
-            'css/default.css', 'css/cyberpunk.css',
+            ...VARIANT_STYLESHEETS,
             'js/main.js', 'js/column.js', 'js/back_to_top.js', 'js/animation.js', 'js/pjax.js', 'js/toc.js', 'js/insight.js',
             'js/navbar.js', 'js/pjax-page.js', 'js/pjax-prefetch.js',
             'img/logo.svg', 'img/favicon.svg', 'img/avatar.png', 'img/og_image.png',
@@ -45,7 +47,7 @@ describe('fixture site build (default variant)', function() {
     });
 
     it('compiles the stylesheets', () => {
-        for (const file of ['css/default.css', 'css/cyberpunk.css']) {
+        for (const file of VARIANT_STYLESHEETS) {
             const css = site.read(file);
             assert.ok(css.length > 10000, `${file} looks empty`);
             assert.match(css, /\.navbar-main/);
@@ -54,11 +56,11 @@ describe('fixture site build (default variant)', function() {
     });
 
     it('only emits the variant stylesheets (no css/style.css or partials)', () => {
-        assert.deepEqual(site.files('.css'), ['css/cyberpunk.css', 'css/default.css']);
+        assert.deepEqual(site.files('.css'), VARIANT_STYLESHEETS);
     });
 
     it('keeps a visible keyboard focus indicator on the back-to-top button', () => {
-        for (const file of ['css/default.css', 'css/cyberpunk.css']) {
+        for (const file of VARIANT_STYLESHEETS) {
             const css = site.read(file);
             assert.match(css, /#back-to-top:focus-visible\s*\{[^}]*outline:\s*2px solid/, file);
             assert.doesNotMatch(css, /#back-to-top\s*\{[^}]*outline:\s*none/, file);
