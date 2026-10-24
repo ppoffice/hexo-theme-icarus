@@ -439,6 +439,30 @@ module.exports = {
         files: { '_config.post.yml': 'widgets: null\n' }
     },
 
+    'browser-notice': {
+        theme: { plugins: { outdated_browser: true, pjax: true } },
+        files: {
+            'source/_posts/browser-m3e.md': [
+                'title: Browser notice M3E',
+                'date: 2024-06-01 12:00:00',
+                'variant: m3e',
+                'appearance: dark',
+                '---',
+                '[Disable the notice](/2024/06/02/browser-off/) or [home](/).'
+            ].join('\n'),
+            'source/_posts/browser-off.md': [
+                'title: Browser notice disabled',
+                'date: 2024-06-02 12:00:00',
+                'plugins:',
+                '  back_to_top: true',
+                '  pjax: true',
+                '  outdated_browser: false',
+                '---',
+                '[M3E](/2024/06/01/browser-m3e/) or [home](/).'
+            ].join('\n')
+        }
+    },
+
     // Every plugin enabled, with placeholder IDs.
     'all-plugins': {
         theme: {

@@ -11,8 +11,8 @@ module.exports = class extends Component {
 
         return <Fragment>
             {Object.keys(plugins).map(name => {
-                // plugin is not enabled
-                if (!plugins[name]) {
+                // The browser notice is rendered before the navbar, not with footer plugins.
+                if (!plugins[name] || name === 'outdated_browser') {
                     return null;
                 }
                 try {

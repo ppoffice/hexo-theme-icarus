@@ -7,6 +7,7 @@ const Widgets = require('./common/widgets');
 const Footer = require('./common/footer');
 const Scripts = require('./common/scripts');
 const Search = require('./common/search');
+const OutdatedBrowser = require('./plugin/outdated_browser');
 
 /**
  * BCP 47 language tag for <html lang>, keeping the region (zh-CN, pt-BR).
@@ -28,6 +29,11 @@ module.exports = class extends Component {
         return <html lang={getLanguageTag(language)} data-appearance-mode={appearance} data-appearance={appearance === 'light' ? null : appearance}>
             <Head site={site} config={config} helper={helper} page={page} />
             <body class={`is-${columnCount}-column`}>
+                <div id="browser-notice" data-pjax>
+                    {config.plugins && config.plugins.outdated_browser
+                        ? <OutdatedBrowser site={site} config={config} page={page} helper={helper} plugin={config.plugins.outdated_browser} head={false} />
+                        : null}
+                </div>
                 <Navbar config={config} helper={helper} page={page} />
                 <section class="section">
                     <div class="container">
