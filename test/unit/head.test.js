@@ -91,6 +91,28 @@ describe('layout/common/head', () => {
         assert.equal(data.headline, 'Structured');
     });
 
+    it('ignores legacy Google+ configuration without changing Open Graph, Twitter or JSON-LD', async () => {
+        const open_graph = {
+            title: 'Social preview',
+            twitter_card: 'summary_large_image',
+            twitter_id: 'author',
+            twitter_site: '@site',
+            fb_admins: 'admin',
+            fb_app_id: 'app'
+        };
+        const structured_data = { publisher: 'Publisher', publisher_logo: '/logo.png' };
+        const baseline = await renderHead({}, { head: { open_graph, structured_data } });
+        const legacy = await renderHead({}, { head: {
+            open_graph: { ...open_graph, google_plus: 'https://plus.google.com/legacy' },
+            structured_data
+        } });
+        assert.equal(legacy.$('link[rel="publisher"]').length, 0);
+        assert.equal(legacy.$('meta[property="og:title"]').attr('content'), 'Social preview');
+        assert.equal(legacy.$('meta[property="twitter:card"]').attr('content'), 'summary_large_image');
+        assert.equal(JSON.parse(legacy.$('script[type="application/ld+json"]').html()).publisher.name, 'Publisher');
+        assert.equal(legacy.html, baseline.html);
+    });
+
     describe('metadata image overrides', () => {
         const images = async (page, config) => {
             const { $ } = await renderHead(page, config);

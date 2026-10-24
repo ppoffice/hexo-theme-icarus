@@ -139,6 +139,7 @@ module.exports = class extends Component {
                 twitterId={open_graph.twitter_id}
                 twitterCard={open_graph.twitter_card}
                 twitterSite={open_graph.twitter_site}
+                // Compatibility only: the component ignores Google+ and warns once for non-empty values.
                 googlePlus={open_graph.google_plus}
                 facebookAdmins={open_graph.fb_admins}
                 facebookAppId={open_graph.fb_app_id} /> : null}
