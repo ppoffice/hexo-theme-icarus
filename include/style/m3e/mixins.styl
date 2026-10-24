@@ -1,0 +1,12 @@
+// Private M3E declaration groups. Call sites retain their selector and cascade position.
+m3e-hover-surface()
+    background-color: unquote('color-mix(in oklab, var(--m3-on-surface) 8%, transparent)')
+    color: var(--m3-on-surface)
+
+m3e-secondary-surface()
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+
+m3e-mask(image)
+    -webkit-mask: image center / contain no-repeat
+    mask: image center / contain no-repeat

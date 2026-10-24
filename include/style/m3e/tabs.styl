@@ -6,116 +6,117 @@ html .content .example-tab-container
     border-radius: var(--m3-r-xl)
     padding: 8px 20px 20px
 
-html .content .example-tab-container .tab-content
-    padding: 4px 4px 0
+    .tab-content
+        padding: 4px 4px 0
 
-html .content .tabs ul
-    border-bottom: 1px solid var(--m3-outline-variant)
-    gap: 2px
+html .content .tabs
+    ul
+        border-bottom: 1px solid var(--m3-outline-variant)
+        gap: 2px
 
-html .content .tabs li
-    margin: 0
+    li
+        margin: 0
 
-html .content .tabs li + li
-    margin-top: 0
+    li + li
+        margin-top: 0
 
-html .content .tabs a
-    position: relative
-    border: none
-    margin-bottom: 0
-    padding: .7em 1.2em
-    color: var(--m3-on-surface-variant)
-    font-weight: 600
-    border-radius: var(--m3-r-m) var(--m3-r-m) 0 0
-    text-decoration: none
-    transition: var(--m3-state-transition)
+    a
+        position: relative
+        border: none
+        margin-bottom: 0
+        padding: .7em 1.2em
+        color: var(--m3-on-surface-variant)
+        font-weight: 600
+        border-radius: var(--m3-r-m) var(--m3-r-m) 0 0
+        text-decoration: none
+        transition: var(--m3-state-transition)
 
-html .content .tabs a p
-    margin: 0
+        p
+            margin: 0
 
-html .content .tabs a .icon
-    color: inherit
+        .icon
+            color: inherit
 
-html .content .tabs a:hover
-    border-radius: 20px 20px 0 0
-    background-color: unquote('color-mix(in oklab, var(--m3-on-surface) 8%, transparent)')
-    color: var(--m3-on-surface)
+        &:hover
+            border-radius: 20px 20px 0 0
+            m3e-hover-surface()
 
-html .content .tabs li.is-active a
-    color: var(--m3-primary)
-    border: none
+    li.is-active a
+        color: var(--m3-primary)
+        border: none
 
-html .content .tabs:not(.is-toggle):not(.is-boxed) a::after
-    content: ""
-    position: absolute
-    left: 14px
-    right: 14px
-    bottom: 0
-    height: 3px
-    border-radius: 3px 3px 0 0
-    background: var(--m3-primary)
-    transform: scaleX(0)
-    transition: transform var(--m3-spring-fast-ms) var(--m3-spring-fast)
+    &:not(.is-toggle):not(.is-boxed) a::after
+        content: ""
+        position: absolute
+        left: 14px
+        right: 14px
+        bottom: 0
+        height: 3px
+        border-radius: 3px 3px 0 0
+        background: var(--m3-primary)
+        transform: scaleX(0)
+        transition: transform var(--m3-spring-fast-ms) var(--m3-spring-fast)
 
-html .content .tabs:not(.is-toggle):not(.is-boxed) li.is-active a::after
-    transform: scaleX(1)
+    &:not(.is-toggle):not(.is-boxed) li.is-active a::after
+        transform: scaleX(1)
 
-html .content .tabs.is-boxed a
-    border: none
+    &.is-boxed a
+        border: none
 
-html .content .tabs.is-boxed li.is-active a
-    background-color: var(--m3-surface-container-lowest)
-    color: var(--m3-primary)
-    border-radius: var(--m3-r-l) var(--m3-r-l) 0 0
+    &.is-boxed li.is-active a
+        background-color: var(--m3-surface-container-lowest)
+        color: var(--m3-primary)
+        border-radius: var(--m3-r-l) var(--m3-r-l) 0 0
 
-html .content .tabs.is-boxed li.is-active a:hover
-    border-radius: 20px 20px 0 0
+        &:hover
+            border-radius: 20px 20px 0 0
 
 html .content .example-tab-container .tabs.is-boxed li.is-active a
     background-color: var(--m3-card)
 
-html .content .tabs.is-toggle ul
-    border-bottom: none
+html .content .tabs.is-toggle
+    ul
+        border-bottom: none
 
-html .content .tabs.is-toggle li a, html .content .tabs.is-toggle li:first-child a, html .content .tabs.is-toggle li:last-child a
-    border: none
-    background-color: var(--m3-surface-container-high)
-    color: var(--m3-on-surface-variant)
-    border-radius: var(--m3-r-s)
+    li a, li:first-child a, li:last-child a
+        border: none
+        background-color: var(--m3-surface-container-high)
+        color: var(--m3-on-surface-variant)
+        border-radius: var(--m3-r-s)
 
-html .content .tabs.is-toggle li:first-child a
-    border-radius: 20px var(--m3-r-s) var(--m3-r-s) 20px
+    li:first-child a
+        border-radius: 20px var(--m3-r-s) var(--m3-r-s) 20px
 
-html .content .tabs.is-toggle li:last-child a
-    border-radius: var(--m3-r-s) 20px 20px var(--m3-r-s)
+    li:last-child a
+        border-radius: var(--m3-r-s) 20px 20px var(--m3-r-s)
 
-html .content .tabs.is-toggle li a:hover
-    border-radius: var(--m3-r-l)
-    background-color: var(--m3-surface-container-highest)
+    li a:hover
+        border-radius: var(--m3-r-l)
+        background-color: var(--m3-surface-container-highest)
 
-html .content .tabs.is-toggle li:first-child a:hover
-    border-radius: 20px var(--m3-r-l) var(--m3-r-l) 20px
+    li:first-child a:hover
+        border-radius: 20px var(--m3-r-l) var(--m3-r-l) 20px
 
-html .content .tabs.is-toggle li:last-child a:hover
-    border-radius: var(--m3-r-l) 20px 20px var(--m3-r-l)
+    li:last-child a:hover
+        border-radius: var(--m3-r-l) 20px 20px var(--m3-r-l)
 
-html .content .tabs.is-toggle.is-toggle-rounded li a
-    border-radius: var(--m3-r-m)
+    &.is-toggle-rounded li a
+        border-radius: var(--m3-r-m)
 
-html .content .tabs.is-toggle.is-toggle-rounded li a:hover
-    border-radius: 20px
+        &:hover
+            border-radius: 20px
 
-html .content .tabs.is-toggle li.is-active a, html .content .tabs.is-toggle li.is-active a:hover
-    background-color: var(--m3-secondary)
-    color: var(--m3-on-secondary)
+    li.is-active a, li.is-active a:hover
+        background-color: var(--m3-secondary)
+        color: var(--m3-on-secondary)
 
-html .content .tabs.is-toggle.is-toggle-rounded li.is-active a
-    background-color: var(--m3-primary)
-    color: var(--m3-on-primary)
+    &.is-toggle-rounded li.is-active a
+        background-color: var(--m3-primary)
+        color: var(--m3-on-primary)
 
-html .content .tabs.is-toggle li.is-active a::before
-    content: "\f00c"
-    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free"
-    font-weight: 900
-    font-size: .8em
-    margin-right: .5em
+    li.is-active a::before
+        content: "\f00c"
+        font-family: "Font Awesome 6 Free", "Font Awesome 5 Free"
+        font-weight: 900
+        font-size: .8em
+        margin-right: .5em

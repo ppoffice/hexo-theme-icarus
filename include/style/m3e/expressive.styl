@@ -42,8 +42,7 @@ html body::before
     right: -20vmax
     top: -24vmax
     background: var(--m3-primary-container)
-    -webkit-mask: url('../img/m3e-cookie12.svg') center / contain no-repeat
-    mask: url('../img/m3e-cookie12.svg') center / contain no-repeat
+    m3e-mask(url('../img/m3e-cookie12.svg'))
     animation: m3-spin 160s linear infinite
 
 html::before
@@ -52,8 +51,7 @@ html::before
     left: -18vmax
     bottom: -20vmax
     background: var(--m3-tertiary-container)
-    -webkit-mask: url('../img/m3e-flower.svg') center / contain no-repeat
-    mask: url('../img/m3e-flower.svg') center / contain no-repeat
+    m3e-mask(url('../img/m3e-flower.svg'))
     animation: m3-spin 200s linear infinite reverse
 
 html .navbar-main, html .navbar-main[data-sticky]
@@ -62,16 +60,17 @@ html .navbar-main, html .navbar-main[data-sticky]
     backdrop-filter: none
     padding: 12px 12px 0
 
-html .navbar-main .navbar-container
-    background-color: var(--m3-navbar-bg)
-    box-shadow: none
-    -webkit-backdrop-filter: unquote('saturate(1.4) blur(16px)')
-    backdrop-filter: unquote('saturate(1.4) blur(16px)')
-    border-radius: var(--m3-r-full)
-    padding: 0 10px
+html .navbar-main
+    .navbar-container
+        background-color: var(--m3-navbar-bg)
+        box-shadow: none
+        -webkit-backdrop-filter: unquote('saturate(1.4) blur(16px)')
+        backdrop-filter: unquote('saturate(1.4) blur(16px)')
+        border-radius: var(--m3-r-full)
+        padding: 0 10px
 
-html .navbar-main.is-collapsed .navbar-container
-    border-radius: var(--m3-r-xl)
+    &.is-collapsed .navbar-container
+        border-radius: var(--m3-r-xl)
 
 // Below Bulma's desktop breakpoint the logo and links can occupy separate rows.
 
@@ -105,8 +104,8 @@ html .card-content.article .article-meta a.link-muted
 html .card-content.article .title.is-3 a
     transition: color 180ms ease
 
-html .card-content.article .title.is-3 a:hover
-    color: var(--acc, var(--m3-primary))
+    &:hover
+        color: var(--acc, var(--m3-primary))
 
 html .column-main article.article .article-more
     background-color: var(--acc-c)
@@ -114,9 +113,9 @@ html .column-main article.article .article-more
     height: 44px
     padding: 0 1.4rem
 
-html .column-main article.article .article-more:hover
-    background-color: var(--acc)
-    color: var(--acc-on)
+    &:hover
+        background-color: var(--acc)
+        color: var(--acc-on)
 
 html .column-main > .card:has(h1.title)
     --m3-card-r: 36px
@@ -175,51 +174,51 @@ html .card.widget[data-type="profile"]
 html .widget .menu-list
     display: block
 
-html .widget .menu-list a.level
-    margin: 0
-    background: var(--m3-surface-container)
+    a.level
+        margin: 0
+        background: var(--m3-surface-container)
 
-html .widget .menu-list li:first-child > a.level
-    border-radius: var(--m3-r-l) var(--m3-r-l) 4px 4px
+    li:first-child > a.level
+        border-radius: var(--m3-r-l) var(--m3-r-l) 4px 4px
 
-html .widget .menu-list li:last-child > a.level
-    border-radius: 4px 4px var(--m3-r-l) var(--m3-r-l)
+    li:last-child > a.level
+        border-radius: 4px 4px var(--m3-r-l) var(--m3-r-l)
 
-html .widget .menu-list li:only-child > a.level
-    border-radius: var(--m3-r-l)
+    li:only-child > a.level
+        border-radius: var(--m3-r-l)
 
-html .widget .menu-list li > a.level:hover
-    border-radius: var(--m3-r-l)
+    li > a.level:hover
+        border-radius: var(--m3-r-l)
 
-html .widget .menu-list a.level:hover, html .widget .menu-list a.level.is-active
-    background: var(--m3-secondary-container)
-    color: var(--m3-on-secondary-container)
+    a.level:hover, a.level.is-active
+        background: var(--m3-secondary-container)
+        color: var(--m3-on-secondary-container)
 
-html .widget .menu-list .level-start, html .widget .menu-list .level-end
-    margin: 0
+    .level-start, .level-end
+        margin: 0
 
-html .widget .menu-list .level-item
-    margin: 0
+    .level-item
+        margin: 0
 
-html .widget .menu-list .level-start .level-item, html .widget .menu-list .level-left .level-item
-    font: 600 .95rem/1.4 var(--m3-font)
-    color: inherit
+    .level-start .level-item, .level-left .level-item
+        font: 600 .95rem/1.4 var(--m3-font)
+        color: inherit
 
-html .widget .menu-list .level-left
-    gap: .5em
-    min-width: 0
+    .level-left
+        gap: .5em
+        min-width: 0
 
-html .widget .menu-list .level-item.tag
-    height: 22px
-    min-width: 28px
-    padding: 0 8px
-    background: var(--m3-primary-container)
-    color: var(--m3-on-primary-container)
-    font: 600 .72rem/1 var(--m3-font)
+    .level-item.tag
+        height: 22px
+        min-width: 28px
+        padding: 0 8px
+        background: var(--m3-primary-container)
+        color: var(--m3-on-primary-container)
+        font: 600 .72rem/1 var(--m3-font)
 
-html .widget .menu-list a.level:hover .level-item.tag, html .widget .menu-list a.level.is-active .level-item.tag
-    background: var(--m3-on-secondary-container)
-    color: var(--m3-secondary-container)
+    a.level:hover .level-item.tag, a.level.is-active .level-item.tag
+        background: var(--m3-on-secondary-container)
+        color: var(--m3-secondary-container)
 
 html .widget .field.is-grouped > .control
     --t-c: var(--m3-surface-container)
@@ -227,19 +226,19 @@ html .widget .field.is-grouped > .control
     --t: var(--m3-secondary-container)
     --t-on: var(--m3-on-secondary-container)
 
-html .widget .field.is-grouped > .control .tags.has-addons
-    background: var(--t-c)
-    box-shadow: none
+    .tags.has-addons
+        background: var(--t-c)
+        box-shadow: none
 
-html .widget .field.is-grouped > .control .tags.has-addons .tag
-    color: var(--t-on-c)
+        .tag
+            color: var(--t-on-c)
 
-html .widget .field.is-grouped > .control .tags.has-addons:hover
-    border-radius: 15px
-    background: var(--t)
+        &:hover
+            border-radius: 15px
+            background: var(--t)
 
-html .widget .field.is-grouped > .control .tags.has-addons:hover .tag
-    color: var(--t-on)
+        &:hover .tag
+            color: var(--t-on)
 
 html .footer
     background-color: var(--m3-footer)
@@ -249,18 +248,17 @@ html .footer
     isolation: isolate
     margin-top: 1rem
 
-html .footer::before
-    content: ""
-    position: absolute
-    right: -70px
-    top: -90px
-    width: 260px
-    height: 260px
-    z-index: -1
-    background: var(--m3-primary-container)
-    -webkit-mask: var(--m3-shape-sunny) center / contain no-repeat
-    mask: var(--m3-shape-sunny) center / contain no-repeat
-    animation: m3-spin 90s linear infinite
+    &::before
+        content: ""
+        position: absolute
+        right: -70px
+        top: -90px
+        width: 260px
+        height: 260px
+        z-index: -1
+        background: var(--m3-primary-container)
+        m3e-mask(var(--m3-shape-sunny))
+        animation: m3-spin 90s linear infinite
 
 // The floating capsule already has its own surface.
 

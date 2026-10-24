@@ -32,72 +32,72 @@ html .card-content
     --m3-cc-x: 1.75rem
     padding: 1.5rem var(--m3-cc-x)
 
-html .card-content.article .article-meta.is-uppercase
-    text-transform: none !important
+html .card-content.article
+    .article-meta.is-uppercase
+        text-transform: none !important
 
-html .card-content.article .article-meta
-    color: var(--m3-on-surface-variant)
-    gap: .4rem 0
+    .article-meta
+        color: var(--m3-on-surface-variant)
+        gap: .4rem 0
 
-html .card-content.article .article-meta .level-item
-    margin-right: 1rem
-    font-variant-numeric: tabular-nums
+        .level-item
+            margin-right: 1rem
+            font-variant-numeric: tabular-nums
 
-html .card-content.article .article-meta a.link-muted
-    display: inline-flex
-    align-items: center
-    height: 26px
-    padding: 0 10px
-    border-radius: var(--m3-r-s)
-    background: var(--m3-secondary-container)
-    color: var(--m3-on-secondary-container)
-    font-weight: 600
-    transition: var(--m3-state-transition)
+        a.link-muted
+            display: inline-flex
+            align-items: center
+            height: 26px
+            padding: 0 10px
+            border-radius: var(--m3-r-s)
+            background: var(--m3-secondary-container)
+            color: var(--m3-on-secondary-container)
+            font-weight: 600
+            transition: var(--m3-state-transition)
 
-html .card-content.article .article-meta a.link-muted + a.link-muted
-    margin-left: 4px
+        a.link-muted + a.link-muted
+            margin-left: 4px
 
-html .card-content.article .article-meta a.link-muted:hover
-    border-radius: 13px
-    background: var(--m3-secondary)
-    color: var(--m3-on-secondary) !important
+        a.link-muted:hover
+            border-radius: 13px
+            background: var(--m3-secondary)
+            color: var(--m3-on-secondary) !important
 
-html .card-content.article .title.is-3
-    font-family: var(--m3-font)
-    font-weight: 700
-    line-height: 1.28
-    letter-spacing: -.005em
-    font-variation-settings: "wdth" 108, "opsz" 144
-    color: var(--m3-on-surface)
-    text-wrap: balance
+    .title.is-3
+        font-family: var(--m3-font)
+        font-weight: 700
+        line-height: 1.28
+        letter-spacing: -.005em
+        font-variation-settings: "wdth" 108, "opsz" 144
+        color: var(--m3-on-surface)
+        text-wrap: balance
 
-html .card-content.article h1.title.is-3
-    font-size: 2.3rem
+    h1.title.is-3
+        font-size: 2.3rem
 
-html .card-content.article .title.is-3 a:hover
-    color: var(--m3-primary)
+    .title.is-3 a:hover
+        color: var(--m3-primary)
 
 html article.article .article-more
     height: 40px
     padding: 0 1.25rem
     border: none
     border-radius: var(--m3-r-m)
-    background-color: var(--m3-secondary-container)
-    color: var(--m3-on-secondary-container)
+    m3e-secondary-surface()
     font-weight: 600
     transition: var(--m3-state-transition)
 
-html article.article .article-more:hover
-    border-radius: 24px
-    background-color: var(--m3-primary)
-    color: var(--m3-on-primary)
+    &:hover
+        border-radius: 24px
+        background-color: var(--m3-primary)
+        color: var(--m3-on-primary)
 
-html article.article .article-more::after
-    content: "\f054"
-    margin-left: .65em
-    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free"
-    font-weight: 900
-    font-size: .75em
+    &::after
+        content: "\f054"
+        margin-left: .65em
+        font-family: "Font Awesome 6 Free", "Font Awesome 5 Free"
+        font-weight: 900
+        font-size: .75em
 
 // 5. Typography
 
@@ -152,21 +152,21 @@ html .content blockquote
     padding: 1.35em 1.5em 1.35em 3.5em
     font-weight: 500
 
-html .content blockquote::before
-    content: "\201C"
-    position: absolute
-    inset-inline-start: .3em
-    top: .12em
-    font: 850 3em/1 var(--m3-font)
-    color: var(--m3-tertiary)
+    &::before
+        content: "\201C"
+        position: absolute
+        inset-inline-start: .3em
+        top: .12em
+        font: 850 3em/1 var(--m3-font)
+        color: var(--m3-tertiary)
 
-html .content blockquote > :last-child
-    margin-bottom: 0
+    > :last-child
+        margin-bottom: 0
 
-html .content blockquote footer
-    margin-top: .75em
-    font-size: .85em
-    color: var(--m3-on-surface-variant)
+    footer
+        margin-top: .75em
+        font-size: .85em
+        color: var(--m3-on-surface-variant)
 
 html .content :not(pre) > code, html .content p code, html .content li code
     background-color: var(--m3-surface-container-high)
@@ -298,28 +298,28 @@ html .button, html .button.is-rounded
 html .button:is(:hover, :focus-visible)
     border-radius: 24px
 
-html .button.is-primary
-    background-color: var(--m3-primary)
-    color: var(--m3-on-primary)
-    border: none
+html .button
+    &.is-primary
+        background-color: var(--m3-primary)
+        color: var(--m3-on-primary)
+        border: none
 
-html .button.is-primary:hover, html .button.is-primary:focus
-    background-color: unquote('color-mix(in oklab, var(--m3-primary) 88%, var(--m3-on-primary))')
-    color: var(--m3-on-primary)
+        &:hover, &:focus
+            background-color: unquote('color-mix(in oklab, var(--m3-primary) 88%, var(--m3-on-primary))')
+            color: var(--m3-on-primary)
 
-html .button.is-transparent
-    background: transparent
-    border: none
-    color: var(--m3-on-surface-variant)
+    &.is-transparent
+        background: transparent
+        border: none
+        color: var(--m3-on-surface-variant)
 
-html .button.is-transparent:hover
-    background-color: unquote('color-mix(in oklab, var(--m3-on-surface) 8%, transparent)')
-    color: var(--m3-on-surface)
+        &:hover
+            m3e-hover-surface()
 
-html .button.is-white, html .button.is-light
-    background-color: var(--m3-surface-container-high)
-    color: var(--m3-on-surface)
-    border: none
+    &.is-white, &.is-light
+        background-color: var(--m3-surface-container-high)
+        color: var(--m3-on-surface)
+        border: none
 
 html .tag:not(body)
     background-color: var(--m3-surface-container)
@@ -375,8 +375,7 @@ html .pagination .pagination-previous, html .pagination .pagination-next
     border: none
     box-shadow: none
     border-radius: var(--m3-r-m)
-    background-color: var(--m3-secondary-container)
-    color: var(--m3-on-secondary-container)
+    m3e-secondary-surface()
     font-weight: 600
     transition: var(--m3-state-transition)
 

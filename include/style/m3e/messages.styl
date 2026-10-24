@@ -46,116 +46,115 @@ html .message
     background: none
     border-radius: 0
 
-html .message[class*="is-"]
-    background: none
+    &[class*="is-"]
+        background: none
 
-html .message.is-dark
-    --mh: var(--m3-inverse-surface)
-    --mh-on: var(--m3-inverse-on-surface)
-    --mb: var(--m3-surface-container-highest)
-    --mb-on: var(--m3-on-surface)
+    &.is-dark
+        --mh: var(--m3-inverse-surface)
+        --mh-on: var(--m3-inverse-on-surface)
+        --mb: var(--m3-surface-container-highest)
+        --mb-on: var(--m3-on-surface)
 
-html .message.is-primary
-    --mh: var(--m3-primary)
-    --mh-on: var(--m3-on-primary)
-    --mb: var(--m3-primary-container)
-    --mb-on: var(--m3-on-primary-container)
+    &.is-primary
+        --mh: var(--m3-primary)
+        --mh-on: var(--m3-on-primary)
+        --mb: var(--m3-primary-container)
+        --mb-on: var(--m3-on-primary-container)
 
-html .message.is-link
-    --mh: var(--m3-tertiary)
-    --mh-on: var(--m3-on-tertiary)
-    --mb: var(--m3-tertiary-container)
-    --mb-on: var(--m3-on-tertiary-container)
+    &.is-link
+        --mh: var(--m3-tertiary)
+        --mh-on: var(--m3-on-tertiary)
+        --mb: var(--m3-tertiary-container)
+        --mb-on: var(--m3-on-tertiary-container)
 
-html .message.is-info
-    --mh: var(--m3-info)
-    --mh-on: var(--m3-on-info)
-    --mb: var(--m3-info-container)
-    --mb-on: var(--m3-on-info-container)
+    &.is-info
+        --mh: var(--m3-info)
+        --mh-on: var(--m3-on-info)
+        --mb: var(--m3-info-container)
+        --mb-on: var(--m3-on-info-container)
 
-html .message.is-success
-    --mh: var(--m3-success)
-    --mh-on: var(--m3-on-success)
-    --mb: var(--m3-success-container)
-    --mb-on: var(--m3-on-success-container)
+    &.is-success
+        --mh: var(--m3-success)
+        --mh-on: var(--m3-on-success)
+        --mb: var(--m3-success-container)
+        --mb-on: var(--m3-on-success-container)
 
-html .message.is-warning
-    --mh: var(--m3-warning)
-    --mh-on: var(--m3-on-warning)
-    --mb: var(--m3-warning-container)
-    --mb-on: var(--m3-on-warning-container)
+    &.is-warning
+        --mh: var(--m3-warning)
+        --mh-on: var(--m3-on-warning)
+        --mb: var(--m3-warning-container)
+        --mb-on: var(--m3-on-warning-container)
 
-html .message.is-danger
-    --mh: var(--m3-error)
-    --mh-on: var(--m3-on-error)
-    --mb: var(--m3-error-container)
-    --mb-on: var(--m3-on-error-container)
+    &.is-danger
+        --mh: var(--m3-error)
+        --mh-on: var(--m3-on-error)
+        --mb: var(--m3-error-container)
+        --mb-on: var(--m3-on-error-container)
 
-html .message .message-body, html .message.is-primary .message-body, html .message.is-link .message-body, html .message.is-info .message-body, html .message.is-success .message-body, html .message.is-warning .message-body, html .message.is-danger .message-body, html .message.is-dark .message-body
-    background-color: var(--mb)
-    color: var(--mb-on)
-    border: none
-    border-radius: var(--m3-r-l-plus)
+    .message-body, &.is-primary .message-body, &.is-link .message-body, &.is-info .message-body, &.is-success .message-body, &.is-warning .message-body, &.is-danger .message-body, &.is-dark .message-body
+        background-color: var(--mb)
+        color: var(--mb-on)
+        border: none
+        border-radius: var(--m3-r-l-plus)
 
-html .message .message-header, html .message.is-primary .message-header, html .message.is-link .message-header, html .message.is-info .message-header, html .message.is-success .message-header, html .message.is-warning .message-header, html .message.is-danger .message-header, html .message.is-dark .message-header
-    background-color: var(--mh)
-    color: var(--mh-on)
-    border-radius: var(--m3-r-l-plus) var(--m3-r-l-plus) 6px 6px
-    padding: .8em 1.25em
-    font-weight: 700
-    letter-spacing: .01em
-    gap: .6em
+    .message-header, &.is-primary .message-header, &.is-link .message-header, &.is-info .message-header, &.is-success .message-header, &.is-warning .message-header, &.is-danger .message-header, &.is-dark .message-header
+        background-color: var(--mh)
+        color: var(--mh-on)
+        border-radius: var(--m3-r-l-plus) var(--m3-r-l-plus) 6px 6px
+        padding: .8em 1.25em
+        font-weight: 700
+        letter-spacing: .01em
+        gap: .6em
 
-html .message .message-header p
-    display: flex
-    align-items: center
-    gap: .5em
-    margin: 0
+    .message-header p
+        display: flex
+        align-items: center
+        gap: .5em
+        margin: 0
 
-html .message .message-header::after
-    content: ""
-    flex: none
-    width: 1.35em
-    height: 1.35em
-    margin-left: auto
-    background: currentColor
-    opacity: .3
-    -webkit-mask: var(--m3-shape-clover4) center / contain no-repeat
-    mask: var(--m3-shape-clover4) center / contain no-repeat
-    transition: transform var(--m3-spring-slow-ms) var(--m3-spring-slow), opacity var(--m3-spring-effects-ms) var(--m3-spring-effects)
+    .message-header::after
+        content: ""
+        flex: none
+        width: 1.35em
+        height: 1.35em
+        margin-left: auto
+        background: currentColor
+        opacity: .3
+        m3e-mask(var(--m3-shape-clover4))
+        transition: transform var(--m3-spring-slow-ms) var(--m3-spring-slow), opacity var(--m3-spring-effects-ms) var(--m3-spring-effects)
 
-html .message:has(.message-header) .message-body
-    border-radius: 6px 6px var(--m3-r-l-plus) var(--m3-r-l-plus)
+    &:has(.message-header) .message-body
+        border-radius: 6px 6px var(--m3-r-l-plus) var(--m3-r-l-plus)
 
-html .message .message-body code
-    background-color: unquote('color-mix(in oklab, var(--mb-on) 10%, transparent)')
-    color: inherit
+    .message-body code
+        background-color: unquote('color-mix(in oklab, var(--mb-on) 10%, transparent)')
+        color: inherit
 
-html .message .message-body strong
-    color: inherit
+    .message-body strong
+        color: inherit
 
-html .message.is-small .message-header, html .message.is-small .message-body
-    border-radius: var(--m3-r-m)
+    &.is-small .message-header, &.is-small .message-body
+        border-radius: var(--m3-r-m)
 
-html .message.is-small:has(.message-header) .message-header
-    border-radius: var(--m3-r-m) var(--m3-r-m) 4px 4px
+    &.is-small:has(.message-header) .message-header
+        border-radius: var(--m3-r-m) var(--m3-r-m) 4px 4px
 
-html .message.is-small:has(.message-header) .message-body
-    border-radius: 4px 4px var(--m3-r-m) var(--m3-r-m)
+    &.is-small:has(.message-header) .message-body
+        border-radius: 4px 4px var(--m3-r-m) var(--m3-r-m)
 
-html .message.is-large .message-header
-    border-radius: var(--m3-r-xl-plus) var(--m3-r-xl-plus) 8px 8px
+    &.is-large .message-header
+        border-radius: var(--m3-r-xl-plus) var(--m3-r-xl-plus) 8px 8px
 
-html .message.is-large:has(.message-header) .message-body
-    border-radius: 8px 8px var(--m3-r-xl-plus) var(--m3-r-xl-plus)
+    &.is-large:has(.message-header) .message-body
+        border-radius: 8px 8px var(--m3-r-xl-plus) var(--m3-r-xl-plus)
 
 html article.article .message.message-immersive
     margin: 0 calc(-1 * var(--m3-cc-x, 1.5rem)) 1.5rem
     gap: 0
     border-radius: 0
 
-html article.article .message.message-immersive .message-body, html article.article .message.message-immersive .message-header
-    border-radius: 0
+    .message-body, .message-header
+        border-radius: 0
 
 // Category and tag paths use chips; index links stay plain and current chips stay non-interactive.
 

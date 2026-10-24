@@ -5,6 +5,7 @@ const path = require('path');
 const { createHash } = require('crypto');
 const registerStylus = require('../../include/stylus');
 const { REPO_ROOT } = require('../support/paths');
+const normalizeCss = require('../support/css');
 
 // eslint-disable-next-line n/no-extraneous-require
 const stylus = require(require.resolve('stylus', { paths: [require.resolve('hexo-renderer-stylus')] }));
@@ -68,7 +69,7 @@ describe('source/css (native m3e Stylus)', function() {
     it('imports the native skin chapters in cascade order after the default theme', () => {
         const source = fs.readFileSync(path.join(REPO_ROOT, 'source/css/m3e.styl'), 'utf8');
         assert.match(source, /^@import 'default'/);
-        const chapters = ['foundation', 'navigation', 'content', 'widgets', 'page-surfaces',
+        const chapters = ['mixins', 'foundation', 'navigation', 'content', 'widgets', 'page-surfaces',
             'expressive', 'messages', 'tabs', 'archives', 'motion'];
         assert.deepEqual(Array.from(source.matchAll(/^@import '([^']+)'$/gm), match => match[1]),
             ['default', ...chapters.map(chapter => '../../include/style/m3e/' + chapter)]);
@@ -83,19 +84,47 @@ describe('source/css (native m3e Stylus)', function() {
         assert.equal(fs.existsSync(path.join(REPO_ROOT, 'include/style/m3e.styl')), false);
     });
 
-    // Fingerprints of the native skin compiled before the chapter split. Exclude
-    // the default import so unrelated changes to the base theme do not invalidate them.
+    // Ordered AST fingerprints captured from fab96ef BEFORE nesting/extracting
+    // declarations. Only adjacent identical-selector blocks may be joined; values,
+    // selector lists, declaration order and at-rule/keyframe contexts remain exact.
+    // Exclude the default import so unrelated base-theme changes do not invalidate them.
     for (const [compress, expected] of [
-        [false, '48144c53a9dedde7b665134688e58b24708a29bfc0053e77b419fa0b306e97a3'],
-        [true, '366e3cf16289959ec40317716432f463fe79d9570b1404d87cd2e69d202c09f8']
+        [false, '2bd3281576266ee3738f3ae5ce296ec698ff16c8d788433350906def4c28c985'],
+        [true, 'fbdca05d1bf544159863c842b5cf2f6749dd60fb31eb6b1d10cce980671b40d4']
     ]) {
-        it(`keeps the ${compress ? 'compressed' : 'expanded'} skin CSS byte-identical to the pre-split output`, async () => {
+        it(`preserves the pre-refactor ordered CSS AST when ${compress ? 'compressed' : 'expanded'}`, async () => {
             const file = path.join(REPO_ROOT, 'source/css/m3e.styl');
             const source = fs.readFileSync(file, 'utf8').replace(/^@import 'default'\r?\n/, '');
             const css = await compile(file, null, source, compress);
-            assert.equal(createHash('sha256').update(css).digest('hex'), expected);
+            assert.equal(createHash('sha256').update(JSON.stringify(normalizeCss(css))).digest('hex'), expected);
         });
     }
+
+    it('reuses private declaration groups without changing values or WebKit/standard mask order', async () => {
+        const directory = path.join(REPO_ROOT, 'include/style/m3e');
+        const callers = fs.readdirSync(directory).filter(file => file !== 'mixins.styl')
+            .map(file => fs.readFileSync(path.join(directory, file), 'utf8')).join('\n');
+        for (const mixin of ['m3e-hover-surface', 'm3e-secondary-surface', 'm3e-mask']) {
+            assert.ok(callers.match(new RegExp(mixin + '\\(', 'g')).length >= 2, mixin);
+        }
+        const file = path.join(REPO_ROOT, 'source/css/m3e.styl');
+        const css = await compile(file, null, '@import \'../../include/style/m3e/mixins\'\n'
+            + '.hover\n    m3e-hover-surface()\n.selected\n    m3e-secondary-surface()\n'
+            + '.mask\n    m3e-mask(var(--shape))\n.url-mask\n    m3e-mask(url(\'../img/m3e-flower.svg\'))\n');
+        assert.deepEqual(normalizeCss(css), normalizeCss(`
+            .hover { background-color: color-mix(in oklab, var(--m3-on-surface) 8%, transparent); color: var(--m3-on-surface); }
+            .selected { background-color: var(--m3-secondary-container); color: var(--m3-on-secondary-container); }
+            .mask { -webkit-mask: var(--shape) center/contain no-repeat; mask: var(--shape) center/contain no-repeat; }
+            .url-mask { -webkit-mask: url("../img/m3e-flower.svg") center/contain no-repeat; mask: url("../img/m3e-flower.svg") center/contain no-repeat; }
+        `));
+    });
+
+    it('detects comment-like text injected into a real compiled M3E SVG data URI', async () => {
+        const css = await compile(path.join(REPO_ROOT, 'source/css/m3e.styl'), stylusFilter());
+        const changed = css.replace('data:image/svg+xml,', 'data:image/svg+xml,/*not-svg*/');
+        assert.notEqual(changed, css, 'the counterexample must alter an actual data URI');
+        assert.notDeepEqual(normalizeCss(css), normalizeCss(changed));
+    });
 
     it('reuses each dark palette for explicit dark and system-dark auto without merging their cascade positions', async () => {
         for (const [chapter, mixin] of [

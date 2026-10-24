@@ -19,8 +19,7 @@ html .timeline .media::before
     border-radius: 0 !important
     width: 14px !important
     height: 14px !important
-    -webkit-mask: var(--m3-shape-cookie6) center / contain no-repeat
-    mask: var(--m3-shape-cookie6) center / contain no-repeat
+    m3e-mask(var(--m3-shape-cookie6))
     transition: transform var(--m3-spring-fast-ms) var(--m3-spring-fast)
 
 html .timeline .media:hover::before
@@ -44,45 +43,45 @@ html .article-licensing
     border-radius: var(--m3-r-l-plus)
     box-shadow: none
 
-html .article-licensing:after
-    color: var(--m3-primary)
-    opacity: .1
+    &:after
+        color: var(--m3-primary)
+        opacity: .1
 
-html .article-licensing .licensing-title a
-    color: var(--m3-on-surface-variant) !important
+    .licensing-title a
+        color: var(--m3-on-surface-variant) !important
 
-html .article-licensing .licensing-meta h6
-    color: var(--m3-on-surface-variant)
+    .licensing-meta h6
+        color: var(--m3-on-surface-variant)
 
 html .article-tags
     align-items: center
     gap: 8px
 
-html .article-tags > .mr-2
-    margin-right: 0 !important
+    > .mr-2
+        margin-right: 0 !important
 
-html .article-tags > span
-    display: inline-flex
-    align-items: center
-    height: 30px
-    color: var(--m3-on-surface-variant)
+    > span
+        display: inline-flex
+        align-items: center
+        height: 30px
+        color: var(--m3-on-surface-variant)
 
-html .article-tags .link-muted
-    display: inline-flex
-    align-items: center
-    height: 30px
-    padding: 0 10px
-    border-radius: var(--m3-r-s)
-    background: var(--m3-surface-container)
-    color: var(--m3-on-surface)
-    font-size: .8125rem
-    font-weight: 500
-    transition: var(--m3-state-transition)
+    .link-muted
+        display: inline-flex
+        align-items: center
+        height: 30px
+        padding: 0 10px
+        border-radius: var(--m3-r-s)
+        background: var(--m3-surface-container)
+        color: var(--m3-on-surface)
+        font-size: .8125rem
+        font-weight: 500
+        transition: var(--m3-state-transition)
 
-html .article-tags .link-muted:hover
-    border-radius: 15px
-    background: var(--m3-secondary-container)
-    color: var(--m3-on-secondary-container) !important
+        &:hover
+            border-radius: 15px
+            background: var(--m3-secondary-container)
+            color: var(--m3-on-secondary-container) !important
 
 html .post-navigation
     gap: 12px
@@ -169,24 +168,24 @@ html #back-to-top
     overflow: hidden
     transition: opacity .4s ease, transform .4s ease, var(--m3-state-transition)
 
-html #back-to-top.is-rounded
-    border-radius: var(--m3-r-l)
+    &.is-rounded
+        border-radius: var(--m3-r-l)
 
-html #back-to-top:hover
-    border-radius: 24px
-    background: var(--m3-tertiary)
-    color: var(--m3-on-tertiary)
+    &:hover
+        border-radius: 24px
+        background: var(--m3-tertiary)
+        color: var(--m3-on-tertiary)
 
 html .searchbox
     background-color: var(--m3-scrim)
 
-html .searchbox .searchbox-container
-    background-color: var(--m3-surface-container-high)
-    color: var(--m3-on-surface)
-    border: none
-    border-radius: var(--m3-r-xl)
-    box-shadow: var(--m3-elev-3)
-    overflow: hidden
+    .searchbox-container
+        background-color: var(--m3-surface-container-high)
+        color: var(--m3-on-surface)
+        border: none
+        border-radius: var(--m3-r-xl)
+        box-shadow: var(--m3-elev-3)
+        overflow: hidden
 
 // Match the base search layout's edge-to-edge mobile/short-screen mode.
 
@@ -195,150 +194,148 @@ html .searchbox .searchbox-container
         border-radius: 0
         box-shadow: none
 
-html .searchbox .searchbox-header, html .searchbox .searchbox-body
-    background: transparent
-    border-color: var(--m3-outline-variant)
+html .searchbox
+    .searchbox-header, .searchbox-body
+        background: transparent
+        border-color: var(--m3-outline-variant)
 
-html .searchbox .searchbox-header
-    align-items: center
-    padding: 8px
-    gap: 8px
-    transition: background-color 180ms ease
+    .searchbox-header
+        align-items: center
+        padding: 8px
+        gap: 8px
+        transition: background-color 180ms ease
 
-html .searchbox .searchbox-header:focus-within
-    background: var(--m3-primary-container)
-    color: var(--m3-on-primary-container)
+        &:focus-within
+            background: var(--m3-primary-container)
+            color: var(--m3-on-primary-container)
 
-html .searchbox .searchbox-input-container
-    min-width: 0
+    .searchbox-input-container
+        min-width: 0
 
-html .searchbox .searchbox-input
-    min-width: 0
-    width: 100%
-    height: 40px
-    padding: 0 .75em
+    .searchbox-input
+        min-width: 0
+        width: 100%
+        height: 40px
+        padding: 0 .75em
+        background: transparent
+        color: var(--m3-on-surface)
+        font-size: 1.05rem
 
-html .searchbox .searchbox-input
-    background: transparent
-    color: var(--m3-on-surface)
-    font-size: 1.05rem
+        &::placeholder
+            color: var(--m3-on-surface-variant)
 
-html .searchbox .searchbox-input::placeholder
-    color: var(--m3-on-surface-variant)
+    // An expanded M3 search surface highlights the header, not an outlined/underlined text field.
+    .searchbox-input
+        border: none
+        border-radius: var(--m3-r-m)
+        caret-color: var(--m3-primary)
 
-// An expanded M3 search surface highlights the header, not an outlined/underlined text field.
+        &:focus
+            outline: none
+            background: transparent
+            box-shadow: none
+            color: var(--m3-on-primary-container)
 
-html .searchbox .searchbox-input
-    border: none
-    border-radius: var(--m3-r-m)
-    caret-color: var(--m3-primary)
+    .searchbox-close
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        flex: 0 0 40px
+        width: 40px
+        height: 40px
+        padding: 0
+        line-height: 1
+        color: var(--m3-on-surface-variant)
+        border-radius: var(--m3-r-m)
+        transition: var(--m3-state-transition)
 
-html .searchbox .searchbox-input:focus
-    outline: none
-    background: transparent
-    box-shadow: none
-    color: var(--m3-on-primary-container)
+        &:hover
+            border-radius: 20px
+            background-color: unquote('color-mix(in oklab, var(--m3-on-surface) 8%, transparent)')
 
-html .searchbox .searchbox-close
-    display: inline-flex
-    align-items: center
-    justify-content: center
-    flex: 0 0 40px
-    width: 40px
-    height: 40px
-    padding: 0
-    line-height: 1
-    color: var(--m3-on-surface-variant)
-    border-radius: var(--m3-r-m)
-    transition: var(--m3-state-transition)
+    .searchbox-result-section header
+        color: var(--m3-on-surface-variant)
+        font-weight: 600
+        text-transform: none
+        border: none
 
-html .searchbox .searchbox-close:hover
-    border-radius: 20px
-    background-color: unquote('color-mix(in oklab, var(--m3-on-surface) 8%, transparent)')
+    .searchbox-result-section
+        border: none
 
-html .searchbox .searchbox-result-section header
-    color: var(--m3-on-surface-variant)
-    font-weight: 600
-    text-transform: none
-    border: none
+    .searchbox-result-item
+        margin: 2px .5rem
+        border: none
+        border-radius: var(--m3-r-s)
+        color: var(--m3-on-surface)
+        transition: var(--m3-state-transition)
 
-html .searchbox .searchbox-result-section
-    border: none
+    .searchbox-result-item:not(.disabled):not(.active):not(:active):hover, .searchbox-result-item:active, .searchbox-result-item.active
+        border-radius: var(--m3-r-l)
+        background-color: var(--m3-surface-container-highest)
+        color: var(--m3-on-surface)
 
-html .searchbox .searchbox-result-item
-    margin: 2px .5rem
-    border: none
-    border-radius: var(--m3-r-s)
-    color: var(--m3-on-surface)
-    transition: var(--m3-state-transition)
+    .searchbox-result-item em, .searchbox-result-item mark
+        background: var(--m3-tertiary-container)
+        color: var(--m3-on-tertiary-container)
+        font-style: normal
+        border-radius: 4px
+        padding: 0 2px
 
-html .searchbox .searchbox-result-item:not(.disabled):not(.active):not(:active):hover, html .searchbox .searchbox-result-item:active, html .searchbox .searchbox-result-item.active
-    border-radius: var(--m3-r-l)
-    background-color: var(--m3-surface-container-highest)
-    color: var(--m3-on-surface)
+    .searchbox-result-icon
+        color: var(--m3-primary)
 
-html .searchbox .searchbox-result-item em, html .searchbox .searchbox-result-item mark
-    background: var(--m3-tertiary-container)
-    color: var(--m3-on-tertiary-container)
-    font-style: normal
-    border-radius: 4px
-    padding: 0 2px
+    .searchbox-result-preview, .searchbox-result-item:not(:active):not(.active) .searchbox-result-preview
+        color: var(--m3-on-surface-variant)
 
-html .searchbox .searchbox-result-icon
-    color: var(--m3-primary)
+    .searchbox-pagination
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+        gap: 2px
 
-html .searchbox .searchbox-result-preview, html .searchbox .searchbox-result-item:not(:active):not(.active) .searchbox-result-preview
-    color: var(--m3-on-surface-variant)
+        .searchbox-pagination-item
+            margin: 0
 
-html .searchbox .searchbox-pagination
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    gap: 2px
+        .searchbox-pagination-link
+            display: inline-flex
+            align-items: center
+            justify-content: center
+            height: 40px
+            min-width: 40px
+            padding: 0 .8em
+            border-radius: var(--m3-r-s)
+            background: var(--m3-secondary-container)
+            color: var(--m3-on-secondary-container)
+            box-shadow: none
+            font-weight: 600
+            transition: var(--m3-state-transition)
 
-html .searchbox .searchbox-pagination .searchbox-pagination-item
-    margin: 0
+        .searchbox-pagination-item:first-child .searchbox-pagination-link
+            border-radius: 20px var(--m3-r-s) var(--m3-r-s) 20px
 
-html .searchbox .searchbox-pagination .searchbox-pagination-link
-    display: inline-flex
-    align-items: center
-    justify-content: center
-    height: 40px
-    min-width: 40px
-    padding: 0 .8em
-    border-radius: var(--m3-r-s)
-    background: var(--m3-secondary-container)
-    color: var(--m3-on-secondary-container)
-    box-shadow: none
-    font-weight: 600
-    transition: var(--m3-state-transition)
+        .searchbox-pagination-item:last-child .searchbox-pagination-link
+            border-radius: var(--m3-r-s) 20px 20px var(--m3-r-s)
 
-html .searchbox .searchbox-pagination .searchbox-pagination-item:first-child .searchbox-pagination-link
-    border-radius: 20px var(--m3-r-s) var(--m3-r-s) 20px
+        .searchbox-pagination-item:not(.active):not(.disabled) .searchbox-pagination-link:hover
+            border-radius: var(--m3-r-l)
+            background: var(--m3-secondary)
+            color: var(--m3-on-secondary)
 
-html .searchbox .searchbox-pagination .searchbox-pagination-item:last-child .searchbox-pagination-link
-    border-radius: var(--m3-r-s) 20px 20px var(--m3-r-s)
+        .searchbox-pagination-item:first-child:not(.active):not(.disabled) .searchbox-pagination-link:hover
+            border-radius: 20px var(--m3-r-l) var(--m3-r-l) 20px
 
-html .searchbox .searchbox-pagination .searchbox-pagination-item:not(.active):not(.disabled) .searchbox-pagination-link:hover
-    border-radius: var(--m3-r-l)
-    background: var(--m3-secondary)
-    color: var(--m3-on-secondary)
+        .searchbox-pagination-item:last-child:not(.active):not(.disabled) .searchbox-pagination-link:hover
+            border-radius: var(--m3-r-l) 20px 20px var(--m3-r-l)
 
-html .searchbox .searchbox-pagination .searchbox-pagination-item:first-child:not(.active):not(.disabled) .searchbox-pagination-link:hover
-    border-radius: 20px var(--m3-r-l) var(--m3-r-l) 20px
+        .searchbox-pagination-item.active .searchbox-pagination-link
+            border-radius: 20px
+            background: var(--m3-primary)
+            color: var(--m3-on-primary)
 
-html .searchbox .searchbox-pagination .searchbox-pagination-item:last-child:not(.active):not(.disabled) .searchbox-pagination-link:hover
-    border-radius: var(--m3-r-l) 20px 20px var(--m3-r-l)
-
-html .searchbox .searchbox-pagination .searchbox-pagination-item.active .searchbox-pagination-link
-    border-radius: 20px
-    background: var(--m3-primary)
-    color: var(--m3-on-primary)
-
-html .searchbox .searchbox-pagination .searchbox-pagination-item.disabled .searchbox-pagination-link
-    background: transparent
-    color: var(--m3-on-surface-variant)
-    opacity: .6
+        .searchbox-pagination-item.disabled .searchbox-pagination-link
+            background: transparent
+            color: var(--m3-on-surface-variant)
+            opacity: .6
 
 // The plugin uses inline colors and !important.
 
