@@ -4,6 +4,7 @@
 const assert = require('assert').strict;
 const fs = require('fs');
 const path = require('path');
+const { spawnSync } = require('child_process');
 const yaml = require('hexo-component-inferno/lib/util/yaml');
 const { getSite } = require('../support/site');
 const { REPO_ROOT } = require('../support/paths');
@@ -24,6 +25,18 @@ describe('fixture site variants', function() {
             assert.ok(fs.existsSync(path.join(site.dir, '_config.icarus.yml')));
             assert.ok(site.exists('index.html'));
             assert.doesNotMatch(site.output, /failed one or more checks/);
+        });
+
+        it('keeps the theme avatar after reloading the library-generated configuration', () => {
+            const config = yaml.parse(fs.readFileSync(path.join(site.dir, '_config.icarus.yml'), 'utf8'));
+            assert.equal(config.widgets.find(widget => widget.type === 'profile').avatar, null);
+            // Hexo loads configuration before the first-run file is generated.
+            const result = spawnSync(process.execPath, [path.resolve(__dirname, '../support/build-site.js'), site.dir], {
+                cwd: site.dir, encoding: 'utf8'
+            });
+            assert.equal(result.status, 0, result.stdout + result.stderr);
+            assert.equal(site.$('/')('.widget[data-type="profile"] img.avatar').attr('src'), '/img/avatar.png');
+            assert.ok(site.exists('img/avatar.png'));
         });
 
         it('lists the analytics plugins without enabling them', () => {

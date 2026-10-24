@@ -96,7 +96,8 @@ class Widgets extends Component {
                 try {
                     let Widget = view.require('widget/' + widget.type);
                     Widget = Widget.Cacheable ? Widget.Cacheable : Widget;
-                    return <Widget site={site} helper={helper} config={config} page={page} widget={widget} />;
+                    return <Widget site={site} helper={helper} config={config} page={page} widget={widget}
+                        defaultAvatar={widget.type === 'profile' ? '/img/avatar.png' : undefined} />;
                 } catch (e) {
                     logger.w(`Icarus cannot load widget "${widget.type}"`);
                 }
