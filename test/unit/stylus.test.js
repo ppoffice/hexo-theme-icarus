@@ -2,6 +2,7 @@ const assert = require('assert').strict;
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const { createHash } = require('crypto');
 const registerStylus = require('../../include/stylus');
 const { REPO_ROOT } = require('../support/paths');
 
@@ -24,9 +25,9 @@ function isolatedTheme() {
     return { root, theme };
 }
 
-function compile(file, filter, source = fs.readFileSync(file, 'utf8')) {
+function compile(file, filter, source = fs.readFileSync(file, 'utf8'), compress = false) {
     return new Promise((resolve, reject) => {
-        const style = stylus(source).set('filename', file);
+        const style = stylus(source).set('filename', file).set('compress', compress);
         if (filter) {
             style.use(filter);
         }
@@ -64,13 +65,68 @@ describe('include/stylus (locating bulma-stylus)', function() {
 describe('source/css (native m3e Stylus)', function() {
     this.timeout(60000);
 
-    it('keeps the skin in its entry stylesheet without raw CSS blocks or the old include', () => {
+    it('imports the native skin chapters in cascade order after the default theme', () => {
         const source = fs.readFileSync(path.join(REPO_ROOT, 'source/css/m3e.styl'), 'utf8');
         assert.match(source, /^@import 'default'/);
-        assert.match(source, /:root\n {4}--m3-h: 285/);
+        const chapters = ['foundation', 'navigation', 'content', 'widgets', 'page-surfaces',
+            'expressive', 'messages', 'tabs', 'archives', 'motion'];
+        assert.deepEqual(Array.from(source.matchAll(/^@import '([^']+)'$/gm), match => match[1]),
+            ['default', ...chapters.map(chapter => '../../include/style/m3e/' + chapter)]);
+        const directory = path.join(REPO_ROOT, 'include/style/m3e');
+        assert.deepEqual(fs.readdirSync(directory).sort(), chapters.map(chapter => chapter + '.styl').sort());
+        for (const chapter of chapters) {
+            const partial = fs.readFileSync(path.join(directory, chapter + '.styl'), 'utf8');
+            assert.doesNotMatch(partial, /^\s*@css\b/m, chapter);
+        }
+        assert.match(fs.readFileSync(path.join(directory, 'foundation.styl'), 'utf8'), /:root\n {4}--m3-h: 285/);
         assert.doesNotMatch(source, /^\s*@css\b/m);
-        assert.doesNotMatch(source, /include\/style\/m3e/);
         assert.equal(fs.existsSync(path.join(REPO_ROOT, 'include/style/m3e.styl')), false);
+    });
+
+    // Fingerprints of the native skin compiled before the chapter split. Exclude
+    // the default import so unrelated changes to the base theme do not invalidate them.
+    for (const [compress, expected] of [
+        [false, '48144c53a9dedde7b665134688e58b24708a29bfc0053e77b419fa0b306e97a3'],
+        [true, '366e3cf16289959ec40317716432f463fe79d9570b1404d87cd2e69d202c09f8']
+    ]) {
+        it(`keeps the ${compress ? 'compressed' : 'expanded'} skin CSS byte-identical to the pre-split output`, async () => {
+            const file = path.join(REPO_ROOT, 'source/css/m3e.styl');
+            const source = fs.readFileSync(file, 'utf8').replace(/^@import 'default'\r?\n/, '');
+            const css = await compile(file, null, source, compress);
+            assert.equal(createHash('sha256').update(css).digest('hex'), expected);
+        });
+    }
+
+    it('reuses each dark palette for explicit dark and system-dark auto without merging their cascade positions', async () => {
+        for (const [chapter, mixin] of [
+            ['foundation', 'm3e-dark-tokens'],
+            ['expressive', 'm3e-dark-surfaces'],
+            ['messages', 'm3e-dark-message-tokens']
+        ]) {
+            const source = fs.readFileSync(path.join(REPO_ROOT, `include/style/m3e/${chapter}.styl`), 'utf8');
+            assert.equal(source.match(new RegExp(mixin + '\\(\\)', 'g')).length, 3, 'one definition and two calls');
+            assert.match(source, new RegExp(`@media \\(prefers-color-scheme: dark\\)\\n {4}html\\[data-appearance="auto"\\]\\n {8}${mixin}\\(\\)`));
+            assert.match(source, new RegExp(`\\nhtml\\[data-appearance="dark"\\]\\n {4}${mixin}\\(\\)`));
+        }
+        const file = path.join(REPO_ROOT, 'source/css/m3e.styl');
+        const source = fs.readFileSync(file, 'utf8').replace(/^@import 'default'\r?\n/, '');
+        const css = await compile(file, null, source);
+        const auto = Array.from(css.matchAll(/@media \(prefers-color-scheme: dark\) \{\s*html\[data-appearance="auto"\] \{([^{}]*)\}\s*\}/g), match => match[1].trim());
+        const dark = Array.from(css.matchAll(/html\[data-appearance="dark"\] \{([^{}]*)\}/g), match => match[1].trim());
+        assert.equal(auto.length, 3);
+        assert.deepEqual(auto.map(body => body.replace(/\s+/g, ' ')), dark.map(body => body.replace(/\s+/g, ' ')));
+        assert.match(auto[0], /--m3-surface: oklch\(0\.16 0\.012 var\(--m3-h\)\)/);
+        assert.match(auto[1], /--m3-card: var\(--m3-surface-container-low\)/);
+        assert.match(auto[2], /--m3-info: oklch\(0\.8 0\.09 245\)/);
+    });
+
+    it('keeps reduced-motion overrides after every expressive section', async () => {
+        const css = await compile(path.join(REPO_ROOT, 'source/css/m3e.styl'), stylusFilter());
+        const motion = css.lastIndexOf('@media (prefers-reduced-motion: reduce)');
+        assert.ok(motion > css.lastIndexOf('html .timeline .media .categories a:hover'));
+        const keyframes = css.indexOf('@-moz-keyframes m3-spin');
+        assert.ok(keyframes > motion, 'root keyframes retain their original hoisted position');
+        assert.match(css.slice(motion, keyframes), /html \.column-main > \.card,\s*html \.card\.widget \{\s*transition-duration: 0\.01ms !important;/);
     });
 
     it('preserves modern CSS math, alpha colors, container queries and selector lists', async () => {

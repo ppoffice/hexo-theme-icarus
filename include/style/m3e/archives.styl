@@ -1,0 +1,145 @@
+// 15. Archive cards
+
+html .column-main > .card:has(.timeline)
+    position: relative
+    isolation: isolate
+    overflow: hidden
+
+html .column-main > .card:has(.timeline)::after
+    content: ""
+    position: absolute
+    right: -50px
+    top: -60px
+    width: 200px
+    height: 200px
+    z-index: -1
+    opacity: .7
+    background: var(--acc-c)
+    -webkit-mask: var(--m3-shape-cookie9) center / contain no-repeat
+    mask: var(--m3-shape-cookie9) center / contain no-repeat
+    transition: transform var(--m3-spring-slow-ms) var(--m3-spring-slow)
+
+html .column-main > .card:has(.timeline):hover::after
+    transform: rotate(40deg) scale(1.06)
+
+html .column-main > .card:has(.timeline) .card-content
+    padding: 1.75rem 2rem 1.5rem
+
+html .card .card-content > h3.tag.is-primary
+    display: block
+    height: auto
+    padding: 0
+    margin: 0 0 .5rem
+    background: none
+    border-radius: 0
+    color: var(--acc)
+    font: 900 4.5rem/1 var(--m3-font)
+    letter-spacing: -.02em
+    font-variant-numeric: tabular-nums
+
+html .timeline
+    position: relative
+    border-left: none
+    margin-left: .5rem
+    padding: .75rem 0 0 1.5rem
+
+html .timeline::before
+    content: ""
+    position: absolute
+    left: 0
+    top: 1.25rem
+    bottom: 0
+    width: 2px
+    border-radius: 1px
+    background: var(--acc-c, var(--m3-outline-variant))
+
+html .timeline .media
+    margin: 2px 0 0
+    padding: .65rem .85rem
+    align-items: center
+
+html .timeline .media + .media
+    border: none
+    margin-top: 2px
+    padding-top: .65rem
+
+html .timeline .media:hover
+    background-color: unquote('color-mix(in oklab, var(--acc-c, var(--m3-surface-container-high)) 55%, transparent)')
+
+html .timeline .media::before, html .timeline .media:first-child::before
+    z-index: 1
+    left: calc(1px - 1.5rem - 8px) !important
+    top: 50% !important
+    width: 16px !important
+    height: 16px !important
+    margin-top: -8px
+    background: var(--acc, var(--m3-primary)) !important
+
+html .timeline .media:hover::before
+    transform: rotate(60deg) scale(1.35)
+
+// The tail eraser must stay behind the flower, even when the flower scales on hover.
+
+html .timeline .media:last-child::after, html .timeline .media:first-child:last-child::after
+    z-index: 0
+    left: calc(1px - 1.5rem - 8px)
+    width: 16px
+    top: calc(50% + 8px)
+    bottom: 0
+    background: var(--m3-card)
+
+html .timeline .media .media-left
+    margin-right: 1rem
+
+html .timeline .media .media-left .image
+    width: 64px
+    height: 64px
+    border-radius: var(--m3-r-l)
+    overflow: hidden
+
+html .timeline .media .media-left .image img
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+html .timeline .media .date
+    color: var(--acc, var(--m3-primary))
+    font-family: var(--m3-font-mono)
+    font-weight: 500
+
+html .timeline .media .title
+    margin: .15rem 0 0
+
+html .timeline .media .title a
+    color: var(--m3-on-surface)
+    font-family: var(--m3-font)
+    font-weight: 650
+    font-size: 1.08rem
+    line-height: 1.45
+
+html .timeline .media .title a:hover
+    color: var(--acc, var(--m3-primary))
+
+html .timeline .media .categories
+    text-transform: none !important
+    margin-top: .35rem
+    display: flex
+    flex-wrap: wrap
+    gap: 4px
+    align-items: center
+
+html .timeline .media .categories a
+    display: inline-flex
+    align-items: center
+    height: 24px
+    padding: 0 10px
+    border-radius: var(--m3-r-s)
+    background: var(--acc-c, var(--m3-secondary-container))
+    color: var(--acc-on-c, var(--m3-on-secondary-container))
+    font-weight: 600
+
+html .timeline .media .categories a
+    transition: var(--m3-state-transition)
+
+html .timeline .media .categories a:hover
+    border-radius: 12px

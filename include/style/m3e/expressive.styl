@@ -1,0 +1,268 @@
+// 12. Expressive shapes, tonal surfaces and atmosphere
+
+:root
+    --m3-navbar: var(--m3-surface-container-lowest)
+    --m3-footer: var(--m3-surface-container-lowest)
+    --m3-navbar-bg: unquote('color-mix(in oklab, var(--m3-navbar) 90%, transparent)')
+    --m3-card: var(--m3-surface-container-lowest)
+    --m3-blob-opacity: .55
+    --m3-code-kw: unquote('color-mix(in oklab, var(--m3-primary) 82%, var(--m3-on-surface))')
+    --m3-code-str: unquote('color-mix(in oklab, var(--m3-tertiary) 72%, var(--m3-on-surface))')
+    --m3-code-num: unquote('color-mix(in oklab, oklch(0.56 0.15 calc(var(--m3-h) + 160)) 72%, var(--m3-on-surface))')
+    --m3-code-fn: unquote('color-mix(in oklab, var(--m3-secondary) 70%, var(--m3-on-surface))')
+
+m3e-dark-surfaces()
+    --m3-card: var(--m3-surface-container-low)
+    --m3-blob-opacity: .3
+    --m3-navbar: var(--m3-surface-container)
+    --m3-footer: var(--m3-surface-container)
+
+@media (prefers-color-scheme: dark)
+    html[data-appearance="auto"]
+        m3e-dark-surfaces()
+
+html[data-appearance="dark"]
+    m3e-dark-surfaces()
+
+html body
+    background-color: transparent
+
+html body::before, html::before
+    content: ""
+    position: fixed
+    z-index: -1
+    pointer-events: none
+    opacity: var(--m3-blob-opacity)
+
+// Large silhouettes need cubic curves: the small icon masks' line segments show facets here.
+
+html body::before
+    width: 64vmax
+    height: 64vmax
+    right: -20vmax
+    top: -24vmax
+    background: var(--m3-primary-container)
+    -webkit-mask: url('../img/m3e-cookie12.svg') center / contain no-repeat
+    mask: url('../img/m3e-cookie12.svg') center / contain no-repeat
+    animation: m3-spin 160s linear infinite
+
+html::before
+    width: 48vmax
+    height: 48vmax
+    left: -18vmax
+    bottom: -20vmax
+    background: var(--m3-tertiary-container)
+    -webkit-mask: url('../img/m3e-flower.svg') center / contain no-repeat
+    mask: url('../img/m3e-flower.svg') center / contain no-repeat
+    animation: m3-spin 200s linear infinite reverse
+
+html .navbar-main, html .navbar-main[data-sticky]
+    background-color: transparent
+    -webkit-backdrop-filter: none
+    backdrop-filter: none
+    padding: 12px 12px 0
+
+html .navbar-main .navbar-container
+    background-color: var(--m3-navbar-bg)
+    box-shadow: none
+    -webkit-backdrop-filter: unquote('saturate(1.4) blur(16px)')
+    backdrop-filter: unquote('saturate(1.4) blur(16px)')
+    border-radius: var(--m3-r-full)
+    padding: 0 10px
+
+html .navbar-main.is-collapsed .navbar-container
+    border-radius: var(--m3-r-xl)
+
+// Below Bulma's desktop breakpoint the logo and links can occupy separate rows.
+
+@media screen and (max-width: 1087px)
+    html .navbar-main .navbar-container
+        border-radius: var(--m3-r-xl)
+
+html .navbar-main .navbar-start .navbar-item, html .navbar-main .navbar-item.has-dropdown .navbar-link
+    margin-top: .5rem
+    margin-bottom: .5rem
+
+html .card:where(:not(#back-to-top))
+    background-color: var(--m3-card)
+    box-shadow: none
+
+html .column-main > .card + .card
+    margin-top: 1.5rem
+
+// Entry opacity/transform transitions belong to animation.js, including its zero-duration setup.
+
+html .column-main > .card
+    --acc: var(--m3-primary)
+    --acc-on: var(--m3-on-primary)
+    --acc-c: var(--m3-secondary-container)
+    --acc-on-c: var(--m3-on-secondary-container)
+
+html .card-content.article .article-meta a.link-muted
+    background: var(--acc-c, var(--m3-secondary-container))
+    color: var(--acc-on-c, var(--m3-on-secondary-container))
+
+html .card-content.article .title.is-3 a
+    transition: color 180ms ease
+
+html .card-content.article .title.is-3 a:hover
+    color: var(--acc, var(--m3-primary))
+
+html .column-main article.article .article-more
+    background-color: var(--acc-c)
+    color: var(--acc-on-c)
+    height: 44px
+    padding: 0 1.4rem
+
+html .column-main article.article .article-more:hover
+    background-color: var(--acc)
+    color: var(--acc-on)
+
+html .column-main > .card:has(h1.title)
+    --m3-card-r: 36px
+
+html .card-content.article h1.title.is-3
+    font-size: unquote('clamp(2.2rem, 1.5rem + 1.9vw, 3.1rem)')
+    line-height: 1.15
+    font-variation-settings: "wdth" 112, "opsz" 144
+
+html .content .hljs-keyword, html .content .hljs-selector-tag, html .content .hljs-built_in, html .content .hljs-type, html .content .hljs-attr, html .content .hljs-name, html .content .hljs-meta .hljs-keyword
+    color: var(--m3-code-kw)
+
+html .content .hljs-string, html .content .hljs-regexp, html .content .hljs-addition, html .content .hljs-template-variable, html .content .hljs-selector-attr
+    color: var(--m3-code-str)
+
+html .content .hljs-number, html .content .hljs-literal, html .content .hljs-symbol, html .content .hljs-bullet, html .content .hljs-variable
+    color: var(--m3-code-num)
+
+html .content .hljs-title, html .content .hljs-function, html .content .hljs-section, html .content .hljs-selector-class, html .content .hljs-attribute, html .content .hljs-property
+    color: var(--m3-code-fn)
+
+html .content .hljs-comment, html .content .hljs-quote, html .content .hljs-meta
+    color: var(--m3-on-surface-variant)
+    font-style: italic
+
+html .content .hljs-deletion
+    color: var(--m3-on-error-container)
+    background: var(--m3-error-container)
+
+html .post-navigation .article-nav-prev, html .post-navigation .article-nav-next
+    padding: 1rem 1.5rem
+    border-radius: var(--m3-r-l)
+
+html .widget .menu-label::before
+    background: var(--w-bg, var(--m3-secondary-container))
+
+html .widget .menu-label::after
+    color: var(--w-fg, var(--m3-on-secondary-container))
+
+html .widget[data-type="links"], html .widget[data-type="archives"], html .widget[data-type="toc"]
+    --w-bg: var(--m3-primary-container)
+    --w-fg: var(--m3-on-primary-container)
+
+html .widget[data-type="categories"], html .widget[data-type="tags"]
+    --w-bg: var(--m3-tertiary-container)
+    --w-fg: var(--m3-on-tertiary-container)
+
+html .card.widget[data-type="profile"]
+    border-radius: 40px
+
+// Connected rows in archives, categories, links and TOC, including nested groups.
+
+// Category children use plain <ul>; TOC children use <ul class="menu-list">.
+// Sibling margins work for both, including TOC's script-controlled display:block/none.
+
+html .widget .menu-list
+    display: block
+
+html .widget .menu-list a.level
+    margin: 0
+    background: var(--m3-surface-container)
+
+html .widget .menu-list li:first-child > a.level
+    border-radius: var(--m3-r-l) var(--m3-r-l) 4px 4px
+
+html .widget .menu-list li:last-child > a.level
+    border-radius: 4px 4px var(--m3-r-l) var(--m3-r-l)
+
+html .widget .menu-list li:only-child > a.level
+    border-radius: var(--m3-r-l)
+
+html .widget .menu-list li > a.level:hover
+    border-radius: var(--m3-r-l)
+
+html .widget .menu-list a.level:hover, html .widget .menu-list a.level.is-active
+    background: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+
+html .widget .menu-list .level-start, html .widget .menu-list .level-end
+    margin: 0
+
+html .widget .menu-list .level-item
+    margin: 0
+
+html .widget .menu-list .level-start .level-item, html .widget .menu-list .level-left .level-item
+    font: 600 .95rem/1.4 var(--m3-font)
+    color: inherit
+
+html .widget .menu-list .level-left
+    gap: .5em
+    min-width: 0
+
+html .widget .menu-list .level-item.tag
+    height: 22px
+    min-width: 28px
+    padding: 0 8px
+    background: var(--m3-primary-container)
+    color: var(--m3-on-primary-container)
+    font: 600 .72rem/1 var(--m3-font)
+
+html .widget .menu-list a.level:hover .level-item.tag, html .widget .menu-list a.level.is-active .level-item.tag
+    background: var(--m3-on-secondary-container)
+    color: var(--m3-secondary-container)
+
+html .widget .field.is-grouped > .control
+    --t-c: var(--m3-surface-container)
+    --t-on-c: var(--m3-on-surface)
+    --t: var(--m3-secondary-container)
+    --t-on: var(--m3-on-secondary-container)
+
+html .widget .field.is-grouped > .control .tags.has-addons
+    background: var(--t-c)
+    box-shadow: none
+
+html .widget .field.is-grouped > .control .tags.has-addons .tag
+    color: var(--t-on-c)
+
+html .widget .field.is-grouped > .control .tags.has-addons:hover
+    border-radius: 15px
+    background: var(--t)
+
+html .widget .field.is-grouped > .control .tags.has-addons:hover .tag
+    color: var(--t-on)
+
+html .footer
+    background-color: var(--m3-footer)
+    border-radius: 48px 48px 0 0
+    position: relative
+    overflow: hidden
+    isolation: isolate
+    margin-top: 1rem
+
+html .footer::before
+    content: ""
+    position: absolute
+    right: -70px
+    top: -90px
+    width: 260px
+    height: 260px
+    z-index: -1
+    background: var(--m3-primary-container)
+    -webkit-mask: var(--m3-shape-sunny) center / contain no-repeat
+    mask: var(--m3-shape-sunny) center / contain no-repeat
+    animation: m3-spin 90s linear infinite
+
+// The floating capsule already has its own surface.
+
+html .navbar-main[data-sticky]
+    animation: none

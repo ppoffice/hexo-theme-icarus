@@ -1,0 +1,20 @@
+// 11. Reduced motion (last so it also overrides the expressive sections).
+
+@media (prefers-reduced-motion: reduce)
+    html *, html *::before, html *::after
+        animation-duration: .01ms !important
+        animation-iteration-count: 1 !important
+        transition-duration: .01ms !important
+    html .column-main > .card, html .card.widget
+        transition-duration: .01ms !important
+
+// Stylus hoists root keyframes to the end of each import. Keep these here to
+// preserve their original compiled position, after the reduced-motion rules.
+@keyframes m3-spin
+    to
+        transform: rotate(360deg)
+
+@keyframes m3-menu
+    from
+        opacity: 0
+        transform: scale(.88)

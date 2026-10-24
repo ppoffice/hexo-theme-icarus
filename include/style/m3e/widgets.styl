@@ -1,0 +1,343 @@
+// 7. Widgets
+
+html .card.widget .card-content
+    padding: 1.25rem
+
+html .widget .menu-label
+    --w-icon: "\f111"
+    --w-shape: var(--m3-shape-cookie9)
+    position: relative
+    display: flex
+    align-items: center
+    min-height: 34px
+    padding-left: 46px
+    margin-bottom: .85rem
+    font-family: var(--m3-font)
+    font-size: 1rem
+    font-weight: 750
+    letter-spacing: 0
+    text-transform: none
+    color: var(--m3-on-surface)
+
+html .widget .menu-label::before
+    content: ""
+    position: absolute
+    left: 0
+    top: 0
+    width: 34px
+    height: 34px
+    background: var(--m3-secondary-container)
+    -webkit-mask: var(--w-shape) center / contain no-repeat
+    mask: var(--w-shape) center / contain no-repeat
+    transition: transform var(--m3-spring-slow-ms) var(--m3-spring-slow)
+
+html .widget .menu-label::after
+    content: var(--w-icon)
+    position: absolute
+    left: 0
+    top: 0
+    width: 34px
+    line-height: 34px
+    text-align: center
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free"
+    font-weight: 900
+    font-size: 13px
+    color: var(--m3-on-secondary-container)
+
+html .widget:hover .menu-label::before
+    transform: rotate(60deg)
+
+html .widget[data-type="links"] .menu-label
+    --w-icon: "\f0c1"
+    --w-shape: var(--m3-shape-cookie4)
+
+html .widget[data-type="categories"] .menu-label
+    --w-icon: "\f07b"
+    --w-shape: var(--m3-shape-clover4)
+
+html .widget[data-type="recent-posts"] .menu-label
+    --w-icon: "\f1da"
+    --w-shape: var(--m3-shape-cookie6)
+
+html .widget[data-type="archives"] .menu-label
+    --w-icon: "\f187"
+    --w-shape: var(--m3-shape-pentagon)
+
+html .widget[data-type="tags"] .menu-label
+    --w-icon: "\f02b"
+    --w-shape: var(--m3-shape-burst)
+
+html .widget[data-type="toc"] .menu-label
+    --w-icon: "\f03a"
+    --w-shape: var(--m3-shape-sunny)
+
+html .widget[data-type="subscribe-email"] .menu-label
+    --w-icon: "\f0e0"
+    --w-shape: var(--m3-shape-flower)
+
+html .widget .menu-list a
+    border-radius: 4px
+    padding: .7em .9em
+    color: var(--m3-on-surface)
+    transition: var(--m3-state-transition)
+
+html .widget .menu-list a:hover
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+
+html .widget .menu-list a.is-active
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+    font-weight: 600
+
+html .widget .menu-list li ul
+    border-inline-start: 2px solid var(--m3-outline-variant)
+    margin: 2px 0 2px .75rem
+    padding-inline-start: .5rem
+
+html .widget .menu-list li + li
+    margin-top: 2px
+
+html .widget .menu-list .level-item.tag
+    height: 22px
+    min-width: 28px
+    padding: 0 .55em
+    font-size: .75rem
+    font-weight: 600
+
+html .widget .menu-list a:hover .level-item.tag
+    background-color: var(--m3-surface-container-highest)
+
+html .widget .menu-list a.is-active .level-item.tag
+    background-color: var(--m3-on-secondary-container)
+    color: var(--m3-secondary-container)
+
+html .widget[data-type="profile"]
+    background-color: var(--m3-primary-container)
+    color: var(--m3-on-primary-container)
+    box-shadow: none
+
+html .widget[data-type="profile"] .title.is-size-4
+    color: var(--m3-on-primary-container)
+    font-family: var(--m3-font)
+    font-weight: 700
+
+html .widget[data-type="profile"] p.is-size-6
+    color: var(--m3-on-primary-container)
+    opacity: .88
+
+html .widget[data-type="profile"] nav.level.is-mobile
+    gap: 2px
+
+html .widget[data-type="profile"] nav.level.is-mobile > .level-item
+    position: relative
+    padding: .65rem .25rem
+    background: unquote('color-mix(in oklab, var(--m3-on-primary-container) 9%, transparent)')
+    border-radius: var(--m3-r-s)
+    transition: var(--m3-state-transition)
+
+html .widget[data-type="profile"] nav.level.is-mobile > .level-item:first-child
+    border-radius: var(--m3-r-l) var(--m3-r-s) var(--m3-r-s) var(--m3-r-l)
+
+html .widget[data-type="profile"] nav.level.is-mobile > .level-item:last-child
+    border-radius: var(--m3-r-s) var(--m3-r-l) var(--m3-r-l) var(--m3-r-s)
+
+html .widget[data-type="profile"] nav.level.is-mobile > .level-item:is(:hover, :focus-within)
+    border-radius: 24px
+    background: unquote('color-mix(in oklab, var(--m3-on-primary-container) 15%, transparent)')
+
+// Make the whole statistic tile a link without changing its markup or its accessible name.
+
+html .widget[data-type="profile"] nav.level.is-mobile > .level-item a::after
+    content: ""
+    position: absolute
+    inset: 0
+    border-radius: inherit
+
+html .widget[data-type="profile"] nav.level.is-mobile > .level-item:has(a:focus-visible)
+    outline: 2px solid var(--m3-primary)
+    outline-offset: 2px
+
+html .widget[data-type="profile"] nav.level.is-mobile a:focus-visible
+    outline: none
+
+html .widget[data-type="profile"] .heading
+    color: var(--m3-on-primary-container)
+    opacity: .8
+    letter-spacing: .04em
+
+html .widget[data-type="profile"] .level-item .title
+    color: var(--m3-on-primary-container)
+    font-family: var(--m3-font)
+    font-weight: 800
+    font-variant-numeric: tabular-nums
+
+html .widget[data-type="profile"] .level-item a
+    color: inherit
+
+html .widget[data-type="profile"] .button.is-primary
+    width: 100%
+    height: 48px
+    border-radius: var(--m3-r-m)
+    font-weight: 600
+
+html .widget[data-type="profile"] .button.is-primary:is(:hover, :focus-visible)
+    border-radius: 24px
+
+html .widget[data-type="profile"] .button.is-transparent
+    color: var(--m3-on-primary-container)
+    width: 40px
+    height: 40px
+    border-radius: var(--m3-r-m)
+
+html .widget[data-type="profile"] .button.is-transparent:is(:hover, :focus-visible)
+    border-radius: 20px
+    background-color: unquote('color-mix(in oklab, var(--m3-on-primary-container) 10%, transparent)')
+
+html .widget article.media
+    margin: 0 -.5rem
+    padding: .5rem
+    border: none
+    background: transparent
+
+html .widget article.media + article.media
+    margin-top: 2px
+    padding-top: .5rem
+    border: none
+
+html .widget article.media:last-child
+    margin-bottom: -.5rem
+
+html .widget article.media .media-left .image
+    border-radius: var(--m3-r-m)
+    overflow: hidden
+
+html .widget article.media .date
+    color: var(--m3-on-surface-variant)
+    font-family: var(--m3-font-mono)
+
+html .widget article.media .title a
+    color: var(--m3-on-surface)
+    font-weight: 600
+    line-height: 1.45
+
+html .widget article.media .title a:hover
+    color: var(--m3-primary)
+
+html .widget article.media .categories
+    text-transform: none !important
+
+html .widget article.media .categories a
+    color: var(--m3-primary)
+
+html .widget .tags.has-addons
+    margin: 0
+    border-radius: var(--m3-r-s)
+    box-shadow: none
+    overflow: hidden
+    transition: var(--m3-state-transition)
+
+html .widget .tags.has-addons .tag
+    margin: 0
+    height: 30px
+    border-radius: 0
+    background: transparent
+    color: var(--m3-on-surface-variant)
+    font-size: .8125rem
+    font-weight: 500
+
+html .widget .tags.has-addons .tag:first-child:not(:only-child)
+    padding-right: .35em
+
+html .widget .tags.has-addons .tag:last-child:not(:only-child)
+    padding-left: .35em
+    opacity: .7
+    font-variant-numeric: tabular-nums
+
+html .widget .tags.has-addons:hover
+    background-color: var(--m3-secondary-container)
+
+html .widget .tags.has-addons:hover .tag
+    color: var(--m3-on-secondary-container)
+
+html .widget .field.is-grouped.is-grouped-multiline
+    gap: 8px
+    margin-bottom: 0
+
+html .widget .field.is-grouped.is-grouped-multiline > .control
+    margin: 0
+
+html #toc .menu-list a .level-left .level-item:first-child:not(:only-child)
+    color: var(--m3-primary)
+    font-family: var(--m3-font-mono)
+    font-size: .8em
+    font-weight: 600
+
+html #toc .menu-list a.is-active .level-left .level-item:first-child:not(:only-child)
+    color: inherit
+
+html #toc-mask
+    background-color: var(--m3-scrim)
+
+html .widget[data-type="subscribe-email"]
+    background-color: var(--m3-tertiary-container)
+    color: var(--m3-on-tertiary-container)
+    box-shadow: none
+
+html .widget[data-type="subscribe-email"] .menu-label
+    color: inherit
+
+html .widget[data-type="subscribe-email"] .menu-label::before
+    background: var(--m3-tertiary)
+
+html .widget[data-type="subscribe-email"] .menu-label::after
+    color: var(--m3-on-tertiary)
+
+html .widget[data-type="subscribe-email"] form
+    container: m3e-subscribe / inline-size
+
+html .widget[data-type="subscribe-email"] .field.has-addons
+    display: grid
+    grid-template-columns: minmax(0, 1fr) auto
+    gap: 8px
+
+html .widget[data-type="subscribe-email"] .field.has-addons > .control
+    margin: 0
+    min-width: 0
+
+html .widget[data-type="subscribe-email"] .field.has-addons .control .input
+    width: 100%
+    min-width: 0
+    height: 48px
+    border: 2px solid var(--m3-on-tertiary-container)
+    border-radius: var(--m3-r-m)
+    background: transparent
+    color: inherit
+    box-shadow: none
+    padding-left: 2.5em
+    font-weight: 500
+
+html .widget[data-type="subscribe-email"] .control.has-icons-left .icon
+    height: 48px
+    width: 2.5em
+    color: var(--m3-on-tertiary-container)
+
+html .widget[data-type="subscribe-email"] .input::placeholder
+    color: var(--m3-on-tertiary-container)
+    opacity: .7
+
+html .widget[data-type="subscribe-email"] .field.has-addons .control .button
+    width: 100%
+    max-width: 100%
+    height: 48px
+    border-radius: var(--m3-r-m)
+    background-color: var(--m3-tertiary)
+    color: var(--m3-on-tertiary)
+    border: none
+
+html .widget[data-type="subscribe-email"] .field.has-addons .control .button:hover
+    border-radius: 20px
+
+@container m3e-subscribe (max-width: 240px)
+    html .widget[data-type="subscribe-email"] .field.has-addons
+        grid-template-columns: minmax(0, 1fr)

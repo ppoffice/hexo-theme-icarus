@@ -1,0 +1,457 @@
+// 4. Cards
+
+html .card:where(:not(#back-to-top))
+    background-color: var(--m3-surface-container-low)
+    color: var(--m3-on-surface)
+    border-radius: var(--m3-card-r)
+    box-shadow: 0 0 0 1px var(--m3-outline-variant)
+
+// Clip the media, not the whole card: donation QR popovers must be able to escape it.
+
+html .card > .card-image:first-child .image
+    border-radius: var(--m3-card-r) var(--m3-card-r) 0 0
+
+html .card + .card, html .card + .post-navigation
+    margin-top: 1.25rem
+
+html .card .card-image
+    padding: 0
+
+html .card .card-image .image
+    border-radius: var(--m3-card-r)
+    overflow: hidden
+    isolation: isolate
+
+html .card .card-image .image img
+    transition: transform var(--m3-spring-slow-ms) var(--m3-spring-slow)
+
+html .card:hover .card-image a.image img
+    transform: scale(1.04)
+
+html .card-content
+    --m3-cc-x: 1.75rem
+    padding: 1.5rem var(--m3-cc-x)
+
+html .card-content.article .article-meta.is-uppercase
+    text-transform: none !important
+
+html .card-content.article .article-meta
+    color: var(--m3-on-surface-variant)
+    gap: .4rem 0
+
+html .card-content.article .article-meta .level-item
+    margin-right: 1rem
+    font-variant-numeric: tabular-nums
+
+html .card-content.article .article-meta a.link-muted
+    display: inline-flex
+    align-items: center
+    height: 26px
+    padding: 0 10px
+    border-radius: var(--m3-r-s)
+    background: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+    font-weight: 600
+    transition: var(--m3-state-transition)
+
+html .card-content.article .article-meta a.link-muted + a.link-muted
+    margin-left: 4px
+
+html .card-content.article .article-meta a.link-muted:hover
+    border-radius: 13px
+    background: var(--m3-secondary)
+    color: var(--m3-on-secondary) !important
+
+html .card-content.article .title.is-3
+    font-family: var(--m3-font)
+    font-weight: 700
+    line-height: 1.28
+    letter-spacing: -.005em
+    font-variation-settings: "wdth" 108, "opsz" 144
+    color: var(--m3-on-surface)
+    text-wrap: balance
+
+html .card-content.article h1.title.is-3
+    font-size: 2.3rem
+
+html .card-content.article .title.is-3 a:hover
+    color: var(--m3-primary)
+
+html article.article .article-more
+    height: 40px
+    padding: 0 1.25rem
+    border: none
+    border-radius: var(--m3-r-m)
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+    font-weight: 600
+    transition: var(--m3-state-transition)
+
+html article.article .article-more:hover
+    border-radius: 24px
+    background-color: var(--m3-primary)
+    color: var(--m3-on-primary)
+
+html article.article .article-more::after
+    content: "\f054"
+    margin-left: .65em
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free"
+    font-weight: 900
+    font-size: .75em
+
+// 5. Typography
+
+html .content
+    color: var(--m3-on-surface)
+    font-size: 1.0625rem
+    line-height: 1.85
+
+html .content p:not(:last-child), html .content ul:not(:last-child), html .content ol:not(:last-child)
+    margin-bottom: 1.15em
+
+html .content h1, html .content h2, html .content h3, html .content h4, html .content h5, html .content h6
+    color: var(--m3-on-surface)
+    font-family: var(--m3-font)
+    font-weight: 700
+    line-height: 1.35
+    text-wrap: balance
+
+html .content h2
+    font-size: 1.55em
+    margin-top: 1.8em
+
+html .content h3
+    font-size: 1.25em
+    margin-top: 1.5em
+
+html .content a:not(:where(.headerlink, .tag, .button, .gallery-item, .gallery-item a, .tags, .justified-gallery > a))
+    color: var(--m3-primary)
+    text-decoration: underline
+    text-decoration-color: unquote('color-mix(in oklab, var(--m3-primary) 40%, transparent)')
+    text-underline-offset: 3px
+
+html .content a:not(:where(.headerlink, .tag, .button, .gallery-item, .gallery-item a, .tags, .justified-gallery > a)):hover
+    text-decoration-color: currentColor
+
+html .content .headerlink
+    color: var(--m3-outline)
+
+html .content strong
+    color: inherit
+
+html .content ul li::marker, html .content ol li::marker
+    color: var(--m3-primary)
+
+html .content blockquote
+    position: relative
+    isolation: isolate
+    background: var(--m3-tertiary-container)
+    color: var(--m3-on-tertiary-container)
+    border: none
+    border-radius: var(--m3-r-xl) var(--m3-r-xl) var(--m3-r-xl) var(--m3-r-s)
+    padding: 1.35em 1.5em 1.35em 3.5em
+    font-weight: 500
+
+html .content blockquote::before
+    content: "\201C"
+    position: absolute
+    inset-inline-start: .3em
+    top: .12em
+    font: 850 3em/1 var(--m3-font)
+    color: var(--m3-tertiary)
+
+html .content blockquote > :last-child
+    margin-bottom: 0
+
+html .content blockquote footer
+    margin-top: .75em
+    font-size: .85em
+    color: var(--m3-on-surface-variant)
+
+html .content :not(pre) > code, html .content p code, html .content li code
+    background-color: var(--m3-surface-container-high)
+    color: var(--m3-on-surface)
+    border-radius: 6px
+    padding: .12em .4em
+    font-family: var(--m3-font-mono)
+    font-size: .88em
+
+html .content img
+    border-radius: var(--m3-r-l)
+
+html .content .justified-gallery > a
+    border-radius: var(--m3-r-l)
+    overflow: hidden
+    text-decoration: none
+
+html .content .justified-gallery > a > .caption
+    border-radius: 0 0 var(--m3-r-l) var(--m3-r-l)
+    text-decoration: none
+
+html .content .gallery-item, html .content .gallery-item a
+    text-decoration: none
+
+html .content .gallery-item .caption
+    color: var(--m3-on-surface-variant)
+    text-decoration: none
+
+html .content table td, html .content table th
+    border-color: var(--m3-outline-variant)
+
+html .content table th, html .content table thead td, html .content table thead th
+    color: var(--m3-on-surface-variant)
+
+html .content figure.highlight, html .content pre, html .content .highlight pre, html .content .hljs
+    background-color: var(--m3-surface-container-highest)
+    color: var(--m3-on-surface)
+
+html .content figure.highlight
+    border-radius: var(--m3-r-l)
+    overflow: hidden
+    box-shadow: none
+
+html .content figure.highlight figcaption
+    background-color: var(--m3-surface-container-high)
+    color: var(--m3-on-surface-variant)
+    padding: .5em 1em
+    font-family: var(--m3-font)
+
+html .content figure.highlight figcaption .copy, html .content figure.highlight figcaption .fold
+    color: var(--m3-on-surface-variant)
+    border-radius: var(--m3-r-s)
+    transition: var(--m3-state-transition)
+
+html .content figure.highlight figcaption :is(.copy, .fold):is(:hover, :focus-visible)
+    border-radius: var(--m3-r-l)
+    background: var(--m3-surface-container-highest)
+
+html .content figure.highlight pre, html .content figure.highlight code
+    font-family: var(--m3-font-mono)
+
+html .content figure.highlight .gutter pre
+    color: var(--m3-outline)
+    background: transparent
+
+html .content figure.highlight .code pre
+    background: transparent
+
+html .content figure.highlight table, html .content figure.highlight td
+    border: none
+    background: transparent
+
+html .message
+    background: none
+    border-radius: var(--m3-r-l-plus)
+
+html .message .message-body
+    border: none
+    border-radius: var(--m3-r-l-plus)
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+
+html .message.is-primary .message-body, html .message.is-link .message-body
+    background-color: var(--m3-primary-container)
+    color: var(--m3-on-primary-container)
+
+html .message.is-warning .message-body
+    background-color: var(--m3-warning-container)
+    color: var(--m3-on-warning-container)
+
+html .message.is-danger .message-body
+    background-color: var(--m3-error-container)
+    color: var(--m3-on-error-container)
+
+html .message.is-success .message-body, html .message.is-info .message-body
+    background-color: var(--m3-tertiary-container)
+    color: var(--m3-on-tertiary-container)
+
+// Override Bulma's more specific message link color.
+
+html .message a:not(.button):not(.tag):not(.dropdown-item)
+    color: var(--m3-primary)
+    text-decoration: underline
+    text-decoration-color: unquote('color-mix(in oklab, var(--m3-primary) 40%, transparent)')
+    text-underline-offset: 3px
+
+html .message a:not(.button):not(.tag):not(.dropdown-item):hover
+    text-decoration-color: currentColor
+
+html .content .tabs.is-boxed a
+    border-radius: var(--m3-r-m) var(--m3-r-m) 0 0
+    color: var(--m3-on-surface-variant)
+
+html .content .tabs.is-boxed li.is-active a
+    background-color: var(--m3-surface-container-high)
+    color: var(--m3-primary)
+    border-color: var(--m3-outline-variant)
+
+html .content .tabs ul
+    border-bottom-color: var(--m3-outline-variant)
+
+// 6. Buttons, tags and connected pagination
+
+html .button, html .button.is-rounded
+    border-radius: var(--m3-r-m)
+    font-weight: 500
+    transition: var(--m3-state-transition)
+
+html .button:is(:hover, :focus-visible)
+    border-radius: 24px
+
+html .button.is-primary
+    background-color: var(--m3-primary)
+    color: var(--m3-on-primary)
+    border: none
+
+html .button.is-primary:hover, html .button.is-primary:focus
+    background-color: unquote('color-mix(in oklab, var(--m3-primary) 88%, var(--m3-on-primary))')
+    color: var(--m3-on-primary)
+
+html .button.is-transparent
+    background: transparent
+    border: none
+    color: var(--m3-on-surface-variant)
+
+html .button.is-transparent:hover
+    background-color: unquote('color-mix(in oklab, var(--m3-on-surface) 8%, transparent)')
+    color: var(--m3-on-surface)
+
+html .button.is-white, html .button.is-light
+    background-color: var(--m3-surface-container-high)
+    color: var(--m3-on-surface)
+    border: none
+
+html .tag:not(body)
+    background-color: var(--m3-surface-container)
+    color: var(--m3-on-surface)
+    border-radius: var(--m3-r-full)
+    font-variant-numeric: tabular-nums
+
+// Semantic tag colors apply to custom tag links as well as plain spans.
+
+html .tag:not(body).is-primary, html .tag:not(body).is-link
+    background: var(--m3-primary-container)
+    color: var(--m3-on-primary-container)
+
+html .tag:not(body).is-info
+    background: var(--m3-info-container)
+    color: var(--m3-on-info-container)
+
+html .tag:not(body).is-success
+    background: var(--m3-success-container)
+    color: var(--m3-on-success-container)
+
+html .tag:not(body).is-warning
+    background: var(--m3-warning-container)
+    color: var(--m3-on-warning-container)
+
+html .tag:not(body).is-danger
+    background: var(--m3-error-container)
+    color: var(--m3-on-error-container)
+
+html .tag:not(body).is-dark
+    background: var(--m3-inverse-surface)
+    color: var(--m3-inverse-on-surface)
+
+html .content a.tag
+    border-radius: var(--m3-r-s)
+    text-decoration: none
+    transition: var(--m3-state-transition)
+
+html .content a.tag:hover
+    border-radius: 15px
+    filter: brightness(.96)
+
+html .pagination
+    gap: 12px
+    align-items: center
+    margin: 1.5rem 0 0
+
+html .pagination .pagination-previous, html .pagination .pagination-next
+    height: 40px
+    min-width: 0
+    margin: 0
+    padding: 0
+    border: none
+    box-shadow: none
+    border-radius: var(--m3-r-m)
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+    font-weight: 600
+    transition: var(--m3-state-transition)
+
+html .pagination .pagination-previous a, html .pagination .pagination-next a
+    display: inline-flex
+    align-items: center
+    gap: .55em
+    height: 100%
+    padding: 0 1.2em
+    color: inherit
+    border-radius: inherit
+
+html .pagination .pagination-previous a::before, html .pagination .pagination-next a::after
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free"
+    font-weight: 900
+    font-size: .75em
+
+html .pagination .pagination-previous a::before
+    content: "\f053"
+
+html .pagination .pagination-next a::after
+    content: "\f054"
+
+html .pagination .pagination-previous:hover, html .pagination .pagination-next:hover
+    border-radius: 20px
+    background-color: unquote('color-mix(in oklab, var(--m3-secondary-container) 88%, var(--m3-on-secondary-container))')
+
+html .pagination .pagination-list
+    gap: 2px
+    flex-wrap: nowrap
+
+html .pagination .pagination-list li
+    margin: 0
+
+html .pagination .pagination-link, html .pagination .pagination-ellipsis
+    margin: 0
+    height: 40px
+    min-width: 44px
+    padding: 0 .8em
+    border: none
+    box-shadow: none
+    border-radius: var(--m3-r-s)
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+    font-weight: 600
+    font-variant-numeric: tabular-nums
+    transition: var(--m3-state-transition)
+
+html .pagination .pagination-ellipsis
+    background: transparent
+    color: var(--m3-on-surface-variant)
+    pointer-events: none
+
+// Half-height caps avoid CSS scaling down the inner corners with a 999px outer radius.
+
+html .pagination .pagination-list li:first-child > *
+    border-radius: 20px var(--m3-r-s) var(--m3-r-s) 20px
+
+html .pagination .pagination-list li:last-child > *
+    border-radius: var(--m3-r-s) 20px 20px var(--m3-r-s)
+
+html .pagination .pagination-list li:only-child > *
+    border-radius: 20px
+
+html .pagination .pagination-list li > .pagination-link:hover
+    border-radius: var(--m3-r-l)
+    background-color: unquote('color-mix(in oklab, var(--m3-secondary-container) 88%, var(--m3-on-secondary-container))')
+
+html .pagination .pagination-list li:first-child > .pagination-link:hover
+    border-radius: 20px var(--m3-r-l) var(--m3-r-l) 20px
+
+html .pagination .pagination-list li:last-child > .pagination-link:hover
+    border-radius: var(--m3-r-l) 20px 20px var(--m3-r-l)
+
+html .pagination .pagination-list li > .pagination-link.is-current, html .pagination .pagination-list li > .pagination-link.is-current:hover
+    background-color: var(--m3-primary)
+    color: var(--m3-on-primary)
+    border-radius: 20px

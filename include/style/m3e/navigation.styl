@@ -1,0 +1,121 @@
+// 3. Navigation
+
+html .navbar-main
+    background-color: var(--m3-surface)
+    box-shadow: none
+
+html .navbar-main .navbar-container, html .navbar-main .navbar-menu, html .navbar-main .navbar-brand
+    background-color: transparent
+    box-shadow: none
+
+html .navbar-main[data-sticky]
+    background-color: unquote('color-mix(in oklab, var(--m3-surface) 88%, transparent)')
+    -webkit-backdrop-filter: unquote('saturate(1.4) blur(14px)')
+    backdrop-filter: unquote('saturate(1.4) blur(14px)')
+
+html .navbar-main .navbar-start .navbar-item, html .navbar-main .navbar-item.has-dropdown .navbar-link
+    margin: .7rem 2px
+    padding: .55rem 1.05rem
+    border-radius: var(--m3-r-m)
+    color: var(--m3-on-surface-variant)
+    font-weight: 500
+    letter-spacing: .01em
+    transition: var(--m3-state-transition)
+
+html .navbar-main .navbar-start .navbar-item.has-dropdown
+    margin: 0
+    padding: 0
+    background: none
+
+html .navbar-main .navbar-start a.navbar-item:hover, html .navbar-main .navbar-start a.navbar-item:focus, html .navbar-main .navbar-item.has-dropdown .navbar-link:hover
+    background-color: unquote('color-mix(in oklab, var(--m3-on-surface) 8%, transparent)')
+    color: var(--m3-on-surface)
+
+html .navbar-main .navbar-start > a.navbar-item.is-active, html .navbar-main .navbar-start > a.navbar-item.is-active:not(:focus):not(:hover), html .navbar-main .navbar-item.has-dropdown .navbar-link.is-active
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+    font-weight: 700
+
+html .navbar-main .navbar-brand
+    margin-left: 0
+
+html .navbar-main .navbar-logo
+    padding-left: 1.6rem
+    padding-right: 1rem
+
+html .navbar-main .navbar-end .navbar-item, html .navbar-main button.navbar-item
+    color: var(--m3-on-surface-variant)
+    background: none
+
+html .navbar-main .navbar-end .navbar-item
+    width: 44px
+    height: 44px
+    margin: auto 2px
+    padding: 0
+    justify-content: center
+    border-radius: var(--m3-r-m)
+    transition: var(--m3-state-transition)
+
+html .navbar-main .navbar-end .navbar-item:hover, html .navbar-main button.navbar-item:hover, html .navbar-main button.navbar-item:focus
+    background-color: unquote('color-mix(in oklab, var(--m3-on-surface) 8%, transparent)')
+    color: var(--m3-on-surface)
+
+html .navbar-main .navbar-toggle
+    border-radius: var(--m3-r-m)
+    transition: var(--m3-state-transition)
+
+// Bounded radii and a non-overshooting easing keep press/release from snapping through zero.
+
+html .navbar-main .navbar-start > a.navbar-item:is(:hover, :focus-visible)
+    border-radius: 24px
+
+html .navbar-main .navbar-link:is(:hover, :focus-visible)
+    border-radius: 24px
+
+html .navbar-main .navbar-end .navbar-item:is(:hover, :focus-visible)
+    border-radius: 24px
+
+html .navbar-main .navbar-toggle:is(:hover, :focus-visible)
+    border-radius: 24px
+
+html .navbar-main .navbar-toggle[aria-expanded="true"]
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+
+html .navbar-main.is-collapsed .navbar-dropdown
+    background: var(--m3-navbar)
+    border-radius: var(--m3-r-l)
+
+html .navbar-main.is-scripted:not(.is-collapsed) .navbar-dropdown
+    background-color: var(--m3-navbar)
+    border: none
+    border-radius: var(--m3-r-l)
+    box-shadow: var(--m3-elev-3)
+    padding: .5rem
+    transform-origin: top left
+    animation: m3-menu var(--m3-spring-fast-ms) var(--m3-spring-fast)
+
+html .navbar-main .navbar-dropdown .navbar-item, html .navbar-main.is-scripted:not(.is-collapsed) .navbar-dropdown .navbar-item
+    margin: 1px 0
+    padding: .6rem 1rem
+    border-radius: var(--m3-r-m)
+    color: var(--m3-on-surface)
+    transition: var(--m3-state-transition)
+
+html .navbar-main.is-scripted:not(.is-collapsed) .navbar-dropdown a.navbar-item:hover
+    border-radius: 20px
+
+html .navbar-main.is-scripted:not(.is-collapsed) .navbar-dropdown a.navbar-item:hover
+    background-color: var(--m3-surface-container-highest)
+    color: var(--m3-on-surface)
+
+html .navbar-main .navbar-dropdown a.navbar-item.is-active, html .navbar-main.is-scripted:not(.is-collapsed) .navbar-dropdown a.navbar-item.is-active
+    background-color: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+    font-weight: 600
+
+html .navbar-main.is-collapsed .navbar-start .navbar-item
+    margin: 2px 0
+
+html .navbar-main.is-collapsed .navbar-start .navbar-link[aria-expanded="true"] + .navbar-dropdown a.navbar-item
+    color: var(--m3-on-surface-variant)

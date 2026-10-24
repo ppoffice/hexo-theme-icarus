@@ -1,0 +1,225 @@
+// 13. Connected message headers and bodies
+
+:root
+    --m3-info: oklch(0.52 0.13 245)
+    --m3-on-info: oklch(0.99 0.01 245)
+    --m3-info-container: oklch(0.92 0.05 245)
+    --m3-on-info-container: oklch(0.32 0.10 245)
+    --m3-success: oklch(0.52 0.13 150)
+    --m3-on-success: oklch(0.99 0.01 150)
+    --m3-success-container: oklch(0.92 0.07 150)
+    --m3-on-success-container: oklch(0.32 0.09 150)
+    --m3-warning: oklch(0.74 0.15 75)
+    --m3-on-warning: oklch(0.24 0.05 70)
+    --m3-error: oklch(0.54 0.19 25)
+    --m3-on-error: oklch(0.99 0.01 25)
+
+m3e-dark-message-tokens()
+    --m3-info: oklch(0.80 0.09 245)
+    --m3-on-info: oklch(0.28 0.08 245)
+    --m3-info-container: oklch(0.38 0.08 245)
+    --m3-on-info-container: oklch(0.92 0.04 245)
+    --m3-success: oklch(0.80 0.11 150)
+    --m3-on-success: oklch(0.28 0.07 150)
+    --m3-success-container: oklch(0.38 0.08 150)
+    --m3-on-success-container: oklch(0.92 0.05 150)
+    --m3-warning: oklch(0.84 0.12 80)
+    --m3-on-warning: oklch(0.28 0.06 75)
+    --m3-error: oklch(0.78 0.13 25)
+    --m3-on-error: oklch(0.30 0.10 25)
+
+@media (prefers-color-scheme: dark)
+    html[data-appearance="auto"]
+        m3e-dark-message-tokens()
+
+html[data-appearance="dark"]
+    m3e-dark-message-tokens()
+
+html .message
+    --mh: var(--m3-secondary)
+    --mh-on: var(--m3-on-secondary)
+    --mb: var(--m3-secondary-container)
+    --mb-on: var(--m3-on-secondary-container)
+    display: flex
+    flex-direction: column
+    gap: 3px
+    background: none
+    border-radius: 0
+
+html .message[class*="is-"]
+    background: none
+
+html .message.is-dark
+    --mh: var(--m3-inverse-surface)
+    --mh-on: var(--m3-inverse-on-surface)
+    --mb: var(--m3-surface-container-highest)
+    --mb-on: var(--m3-on-surface)
+
+html .message.is-primary
+    --mh: var(--m3-primary)
+    --mh-on: var(--m3-on-primary)
+    --mb: var(--m3-primary-container)
+    --mb-on: var(--m3-on-primary-container)
+
+html .message.is-link
+    --mh: var(--m3-tertiary)
+    --mh-on: var(--m3-on-tertiary)
+    --mb: var(--m3-tertiary-container)
+    --mb-on: var(--m3-on-tertiary-container)
+
+html .message.is-info
+    --mh: var(--m3-info)
+    --mh-on: var(--m3-on-info)
+    --mb: var(--m3-info-container)
+    --mb-on: var(--m3-on-info-container)
+
+html .message.is-success
+    --mh: var(--m3-success)
+    --mh-on: var(--m3-on-success)
+    --mb: var(--m3-success-container)
+    --mb-on: var(--m3-on-success-container)
+
+html .message.is-warning
+    --mh: var(--m3-warning)
+    --mh-on: var(--m3-on-warning)
+    --mb: var(--m3-warning-container)
+    --mb-on: var(--m3-on-warning-container)
+
+html .message.is-danger
+    --mh: var(--m3-error)
+    --mh-on: var(--m3-on-error)
+    --mb: var(--m3-error-container)
+    --mb-on: var(--m3-on-error-container)
+
+html .message .message-body, html .message.is-primary .message-body, html .message.is-link .message-body, html .message.is-info .message-body, html .message.is-success .message-body, html .message.is-warning .message-body, html .message.is-danger .message-body, html .message.is-dark .message-body
+    background-color: var(--mb)
+    color: var(--mb-on)
+    border: none
+    border-radius: var(--m3-r-l-plus)
+
+html .message .message-header, html .message.is-primary .message-header, html .message.is-link .message-header, html .message.is-info .message-header, html .message.is-success .message-header, html .message.is-warning .message-header, html .message.is-danger .message-header, html .message.is-dark .message-header
+    background-color: var(--mh)
+    color: var(--mh-on)
+    border-radius: var(--m3-r-l-plus) var(--m3-r-l-plus) 6px 6px
+    padding: .8em 1.25em
+    font-weight: 700
+    letter-spacing: .01em
+    gap: .6em
+
+html .message .message-header p
+    display: flex
+    align-items: center
+    gap: .5em
+    margin: 0
+
+html .message .message-header::after
+    content: ""
+    flex: none
+    width: 1.35em
+    height: 1.35em
+    margin-left: auto
+    background: currentColor
+    opacity: .3
+    -webkit-mask: var(--m3-shape-clover4) center / contain no-repeat
+    mask: var(--m3-shape-clover4) center / contain no-repeat
+    transition: transform var(--m3-spring-slow-ms) var(--m3-spring-slow), opacity var(--m3-spring-effects-ms) var(--m3-spring-effects)
+
+html .message:has(.message-header) .message-body
+    border-radius: 6px 6px var(--m3-r-l-plus) var(--m3-r-l-plus)
+
+html .message .message-body code
+    background-color: unquote('color-mix(in oklab, var(--mb-on) 10%, transparent)')
+    color: inherit
+
+html .message .message-body strong
+    color: inherit
+
+html .message.is-small .message-header, html .message.is-small .message-body
+    border-radius: var(--m3-r-m)
+
+html .message.is-small:has(.message-header) .message-header
+    border-radius: var(--m3-r-m) var(--m3-r-m) 4px 4px
+
+html .message.is-small:has(.message-header) .message-body
+    border-radius: 4px 4px var(--m3-r-m) var(--m3-r-m)
+
+html .message.is-large .message-header
+    border-radius: var(--m3-r-xl-plus) var(--m3-r-xl-plus) 8px 8px
+
+html .message.is-large:has(.message-header) .message-body
+    border-radius: 8px 8px var(--m3-r-xl-plus) var(--m3-r-xl-plus)
+
+html article.article .message.message-immersive
+    margin: 0 calc(-1 * var(--m3-cc-x, 1.5rem)) 1.5rem
+    gap: 0
+    border-radius: 0
+
+html article.article .message.message-immersive .message-body, html article.article .message.message-immersive .message-header
+    border-radius: 0
+
+// Category and tag paths use chips; index links stay plain and current chips stay non-interactive.
+
+html .breadcrumb
+    white-space: normal
+
+html .breadcrumb ul
+    gap: .5rem
+    align-items: center
+
+html .breadcrumb li
+    min-width: 0
+    max-width: 100%
+    align-items: center
+
+html .breadcrumb a
+    display: inline-flex
+    align-items: center
+    min-height: 32px
+    min-width: 0
+    padding: .4em .85em
+    border-radius: var(--m3-r-s)
+    background: var(--m3-surface-container)
+    color: var(--m3-on-surface)
+    font-size: .875rem
+    font-weight: 500
+    line-height: 1.4
+    overflow-wrap: anywhere
+    text-decoration: none
+    transition: var(--m3-state-transition)
+
+// The Categories/Tags index is a plain link, not a chip.
+
+html .breadcrumb li:first-child a
+    padding: 0
+    border-radius: 0
+    background: transparent
+    color: var(--m3-primary)
+
+html .breadcrumb li:first-child a:hover
+    text-decoration: underline
+    text-underline-offset: 3px
+
+html .breadcrumb li:not(:first-child):not(.is-active) a
+    padding-inline: .85em
+
+html .breadcrumb li:not(:first-child):not(.is-active) a:is(:hover, :focus-visible)
+    border-radius: var(--m3-r-l)
+    background: var(--m3-secondary-container)
+    color: var(--m3-on-secondary-container)
+    text-decoration: none
+
+html .breadcrumb li.is-active a
+    padding: .4em .85em
+    border-radius: var(--m3-r-s)
+    background: var(--m3-surface-container)
+    color: var(--m3-on-surface-variant)
+    font-weight: 500
+
+html .breadcrumb li + li::before
+    content: "\f054"
+    flex: none
+    margin-inline-end: .5rem
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free"
+    font-weight: 900
+    font-size: .65em
+    color: var(--m3-outline)
