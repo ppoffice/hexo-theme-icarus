@@ -4,6 +4,7 @@ const WebApp = require('hexo-component-inferno/lib/view/misc/web_app');
 const OpenGraph = require('hexo-component-inferno/lib/view/misc/open_graph');
 const StructuredData = require('hexo-component-inferno/lib/view/misc/structured_data');
 const { getAppearance } = require('../../include/util/appearance');
+const { getHighlightThemes, getHeadImages } = require('../../include/util/head');
 const Plugins = require('./plugins');
 
 function getPageTitle(page, siteTitle, helper) {
@@ -62,8 +63,6 @@ module.exports = class extends Component {
         const {
             url,
             head = {},
-            article,
-            highlight,
             variant = 'default'
         } = config;
         const appearance = getAppearance(config);
@@ -87,42 +86,8 @@ module.exports = class extends Component {
             m3e: fontcdn('Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&family=Roboto+Mono:wght@400;500&family=Noto+Sans+SC:wght@100..900&display=swap', 'css2')
         };
 
-        let hlTheme, images;
-        if (highlight && highlight.enable === false) {
-            hlTheme = null;
-        } else if (article && article.highlight && article.highlight.theme) {
-            hlTheme = article.highlight.theme;
-        } else {
-            hlTheme = 'atom-one-light';
-        }
-        // Code highlight themes to load, each with the media query it applies to (if any)
-        let hlThemes = [];
-        if (hlTheme && appearance === 'light') {
-            hlThemes = [[hlTheme]];
-        } else if (hlTheme) {
-            const hlDarkTheme = (article && article.highlight && article.highlight.dark_theme) || 'atom-one-dark';
-            hlThemes = appearance === 'dark' ? [[hlDarkTheme]]
-                : [[hlTheme, '(prefers-color-scheme: light)'], [hlDarkTheme, '(prefers-color-scheme: dark)']];
-        }
-
-        if (typeof page.og_image === 'string') {
-            images = [page.og_image];
-        } else if (typeof page.cover === 'string') {
-            images = [url_for(page.cover)];
-        } else if (typeof page.thumbnail === 'string') {
-            images = [url_for(page.thumbnail)];
-        } else if (article && typeof article.og_image === 'string') {
-            images = [article.og_image];
-        } else if (page.content && page.content.includes('<img')) {
-            let img;
-            images = [];
-            const imgPattern = /<img [^>]*src=['"]([^'"]+)([^>]*>)/gi;
-            while ((img = imgPattern.exec(page.content)) !== null) {
-                images.push(img[1]);
-            }
-        } else {
-            images = [url_for('/img/og_image.png')];
-        }
+        const hlThemes = getHighlightThemes(config, appearance);
+        const { openGraphImages, structuredImages } = getHeadImages(page, config, url_for);
 
         let adsenseClientId = null;
         if (Array.isArray(config.widgets)) {
@@ -130,22 +95,6 @@ module.exports = class extends Component {
             if (widget) {
                 adsenseClientId = widget.client_id;
             }
-        }
-
-        let openGraphImages = images;
-        if ((typeof open_graph === 'object' && open_graph !== null)
-            && ((Array.isArray(open_graph.image) && open_graph.image.length > 0) || typeof open_graph.image === 'string')) {
-            openGraphImages = open_graph.image;
-        } else if ((Array.isArray(page.photos) && page.photos.length > 0) || typeof page.photos === 'string') {
-            openGraphImages = page.photos;
-        }
-
-        let structuredImages = images;
-        if ((typeof structured_data === 'object' && structured_data !== null)
-            && ((Array.isArray(structured_data.image) && structured_data.image.length > 0) || typeof structured_data.image === 'string')) {
-            structuredImages = structured_data.image;
-        } else if ((Array.isArray(page.photos) && page.photos.length > 0) || typeof page.photos === 'string') {
-            structuredImages = page.photos;
         }
 
         let followItVerificationCode = null;

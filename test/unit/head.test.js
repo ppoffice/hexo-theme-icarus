@@ -91,6 +91,48 @@ describe('layout/common/head', () => {
         assert.equal(data.headline, 'Structured');
     });
 
+    describe('metadata image overrides', () => {
+        const images = async (page, config) => {
+            const { $ } = await renderHead(page, config);
+            const structured = $('script[type="application/ld+json"]');
+            return {
+                openGraph: $('meta[property="og:image"]').map((i, el) => el.attribs.content).get(),
+                structured: structured.length ? JSON.parse(structured.html()).image : null
+            };
+        };
+
+        it('keeps the two explicit overrides independent and ahead of page.photos', async () => {
+            assert.deepEqual(await images({ cover: '/cover.png', photos: ['/photo.png'] }, { head: {
+                open_graph: { image: ['/og.png', 'https://example.com/og.png'] },
+                structured_data: { image: '/structured.png' }
+            } }), {
+                openGraph: ['http://localhost:4000/og.png', 'https://example.com/og.png'],
+                structured: ['http://localhost:4000/structured.png']
+            });
+        });
+
+        it('uses photos for empty or null overrides and the base image for empty photos', async () => {
+            assert.deepEqual(await images({ cover: '/cover.png', photos: '/photo.png' }, { head: {
+                open_graph: { image: [] }, structured_data: { image: null }
+            } }), {
+                openGraph: ['http://localhost:4000/photo.png'],
+                structured: ['http://localhost:4000/photo.png']
+            });
+            assert.deepEqual(await images({ cover: '/cover.png', photos: [] }), {
+                openGraph: ['http://localhost:4000/cover.png'],
+                structured: ['http://localhost:4000/cover.png']
+            });
+        });
+
+        it('leaves disabled metadata sections disabled', async () => {
+            for (const disabled of [false, null]) {
+                assert.deepEqual(await images({ photos: ['/photo.png'] }, { head: {
+                    open_graph: disabled, structured_data: disabled
+                } }), { openGraph: [], structured: null });
+            }
+        });
+    });
+
     describe('stylesheets', () => {
         const stylesheets = async (page, config) => (await renderHead(page, config)).$('link[rel="stylesheet"]').map((i, el) => el.attribs.href).get();
 
@@ -222,6 +264,27 @@ describe('layout/common/head', () => {
                 const config = { variant: 'cyberpunk', appearance };
                 assert.equal(await colorScheme(config), null, appearance);
                 assert.deepEqual(await highlightThemes(config), [['atom-one-light', null, true]], appearance);
+            }
+        });
+
+        it('keeps appearance restoration, highlight, sync and variant resources in order', async () => {
+            for (const variant of ['default', 'cyberpunk', 'm3e']) {
+                for (const appearance of ['light', 'dark', 'auto']) {
+                    const { $ } = await renderHead({}, { variant, appearance });
+                    const resources = $('head > script, head > link[rel="stylesheet"]').map((i, el) =>
+                        el.attribs.src || el.attribs.href || $(el).text()).get();
+                    const restore = resources.indexOf('/js/appearance.js');
+                    const icon = resources.findIndex(resource => resource.includes('fontawesome'));
+                    const highlight = resources.map((resource, i) => {
+                        return resource.includes('highlight.js') ? i : -1;
+                    }).filter(i => i >= 0);
+                    const sync = resources.indexOf('window.IcarusAppearance.sync();');
+                    const font = resources.findIndex(resource => resource.includes('fonts.googleapis.com'));
+                    const css = resources.indexOf(`/css/${variant}.css`);
+                    assert.ok(restore >= 0 && restore < icon);
+                    assert.ok(highlight.length > 0 && highlight.every(i => icon < i && i < sync));
+                    assert.ok(sync < font && font < css);
+                }
             }
         });
 
