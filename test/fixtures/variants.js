@@ -76,6 +76,40 @@ module.exports = {
         theme: { variant: 'cyberpunk' }
     },
 
+    'm3e': {
+        theme: {
+            variant: 'm3e', appearance: 'auto',
+            donates: [{ type: 'alipay', qrcode: '/img/avatar.png' }]
+        },
+        files: {
+            'source/_posts/m3e-light.md': '---\ntitle: M3E Light\ndate: 2024-05-01 12:00:00\nthumbnail: /img/avatar.png\ncategories: [[Guides, CSS]]\nappearance: light\n---\nAlways light.',
+            'source/_posts/m3e-dark.md': '---\ntitle: M3E Dark\ndate: 2024-05-02 12:00:00\nappearance: dark\n---\nAlways dark.',
+            'source/_posts/m3e-components.md': [
+                '---', 'title: M3E Components', 'date: 2024-05-03 12:00:00', 'toc: true', 'tags: [code]',
+                'widgets:', '  - type: tags', '    position: left', '    show_count: false',
+                '  - type: toc', '    position: left', '    index: false', '    collapsed: false',
+                '  - type: categories', '    position: left',
+                '  - type: followit', '    position: left', '    action_url: https://example.com/subscribe',
+                '---', '## Components',
+                '<a class="tag is-success" href="/about/">Preview</a>',
+                '<a class="tag is-warning" href="/about/">Warning</a>',
+                '<a class="tag is-danger" href="/about/">Danger</a>',
+                '<div class="justified-gallery" style="position:relative;height:180px">',
+                '<a href="/img/avatar.png" style="position:absolute;width:240px;height:160px">',
+                '<img src="/img/avatar.png" alt="Gallery image" style="width:240px;height:160px">',
+                '<div class="caption" style="position:absolute;bottom:0;width:100%">Justified caption</div></a></div>',
+                '<div class="gallery-item"><a href="/img/avatar.png"><img src="/img/avatar.png" alt="Image"><p class="caption">Gallery caption</p></a></div>',
+                '', '> A quieter quotation with a [source](/about/).', '',
+                '## Another section', '', 'An unnumbered TOC heading.', '',
+                '### First child', '', 'A nested heading.', '', '### Second child', '', 'Another nested heading.'
+            ].join('\n')
+        }
+    },
+
+    'm3e-animation': {
+        theme: { variant: 'm3e', plugins: { animejs: true } }
+    },
+
     // Dark colors following the system color scheme, or always.
     'appearance-auto': {
         theme: { appearance: 'auto' }

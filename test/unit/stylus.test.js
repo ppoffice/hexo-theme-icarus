@@ -52,12 +52,37 @@ describe('include/stylus (locating bulma-stylus)', function() {
         await assert.rejects(compile(path.join(env.theme, 'source/css/default.styl')), /bulma-stylus/);
     });
 
-    ['default', 'cyberpunk'].forEach(variant => {
+    ['default', 'cyberpunk', 'm3e'].forEach(variant => {
         it(`compiles the ${variant} stylesheet wherever bulma-stylus is installed`, async () => {
             const css = await compile(path.join(env.theme, `source/css/${variant}.styl`), stylusFilter());
             assert.match(css, /\.navbar-main/);
             assert.match(css, /\.column-main/);
         });
+    });
+});
+
+describe('source/css (native m3e Stylus)', function() {
+    this.timeout(60000);
+
+    it('keeps the skin in its entry stylesheet without raw CSS blocks or the old include', () => {
+        const source = fs.readFileSync(path.join(REPO_ROOT, 'source/css/m3e.styl'), 'utf8');
+        assert.match(source, /^@import 'default'/);
+        assert.match(source, /:root\n {4}--m3-h: 285/);
+        assert.doesNotMatch(source, /^\s*@css\b/m);
+        assert.doesNotMatch(source, /include\/style\/m3e/);
+        assert.equal(fs.existsSync(path.join(REPO_ROOT, 'include/style/m3e.styl')), false);
+    });
+
+    it('preserves modern CSS math, alpha colors, container queries and selector lists', async () => {
+        const css = await compile(path.join(REPO_ROOT, 'source/css/m3e.styl'), stylusFilter());
+        assert.match(css, /max-width: min\(280px, 65vw\)/);
+        assert.match(css, /font-size: clamp\(2\.2rem, 1\.5rem \+ 1\.9vw, 3\.1rem\)/);
+        assert.match(css, /--m3-shadow: oklch\(0\.25 0\.03 var\(--m3-h\) \/ 0\.16\)/);
+        assert.match(css, /@container m3e-subscribe \(max-width: 240px\)/);
+        const normalized = css.replace(/\s+/g, ' ');
+        for (const selector of ['.navbar-start > a.navbar-item', '.navbar-link', '.navbar-end .navbar-item', '.navbar-toggle']) {
+            assert.ok(normalized.includes(`html .navbar-main ${selector}:is(:hover, :focus-visible)`), selector);
+        }
     });
 });
 

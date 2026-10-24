@@ -52,6 +52,12 @@ describe('layout/common/footer', () => {
             assert.equal(await logo({ appearance: 'dark', logo: '/img/mine.svg' }), img('/img/mine.svg'));
             assert.equal(await logo({ appearance: 'dark', logo: { text: 'Text Logo' } }), 'Text Logo');
         });
+
+        it('follows appearance for the m3e variant', async () => {
+            for (const appearance of ['light', 'auto', 'dark']) {
+                assert.equal(await logo({ variant: 'm3e', appearance }), await logo({ appearance }));
+            }
+        });
     });
 
     it('shows the busuanzi visitor counter only when enabled', async () => {

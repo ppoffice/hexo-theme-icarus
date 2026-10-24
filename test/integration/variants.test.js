@@ -46,6 +46,41 @@ describe('fixture site variants', function() {
         });
     });
 
+    describe('m3e variant', () => {
+        let site;
+
+        before(() => { site = getSite('m3e'); });
+
+        it('builds a standalone stylesheet with the base theme before the skin', () => {
+            assert.equal(site.status, 0, site.output);
+            assert.doesNotMatch(site.output, /failed one or more checks|^ERROR/m);
+            const $ = site.$('/');
+            assert.equal($('link[data-variant][href="/css/m3e.css"]').length, 1);
+            assert.equal($('link[href="/css/default.css"]').length, 0);
+            const css = site.read('css/m3e.css');
+            assert.ok(css.indexOf('.navbar') < css.indexOf('--m3-h: 285'));
+            assert.match(css, /--m3-primary: oklch\(0\.5 0\.17 var\(--m3-h\)\)/);
+            assert.match(css, /--m3-spring-fast: linear\(/);
+            assert.match(css, /@supports \(animation-timeline: scroll\(\)\)/);
+            assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+            assert.doesNotMatch(css, /@import|@css|html:not\(\[data-appearance\]\)/);
+            assert.doesNotMatch(getSite('default').read('css/default.css'), /--m3-/);
+            assert.doesNotMatch(getSite('cyberpunk').read('css/cyberpunk.css'), /--m3-/);
+        });
+
+        it('honours site and front-matter appearances and their logos', () => {
+            const $ = site.$('/');
+            assert.equal($('html').attr('data-appearance'), 'auto');
+            assert.equal($('.navbar-logo source').attr('media'), '(prefers-color-scheme: dark)');
+            for (const appearance of ['light', 'dark']) {
+                const post = site.$(`/2024/05/0${appearance === 'light' ? 1 : 2}/m3e-${appearance}/`);
+                assert.equal(post('html').attr('data-appearance') || 'light', appearance);
+                assert.equal(post('.navbar-logo img').attr('src'), `/img/logo${appearance === 'dark' ? '-dark' : ''}.svg`);
+                assert.equal(post('link[href="/css/m3e.css"]').length, 1);
+            }
+        });
+    });
+
     describe('appearance', () => {
         const highlightThemes = $ => $('link[href*="highlight.js"]').map((i, el) => [[el.attribs.href.match(/styles\/(.+)\.css$/)[1], el.attribs.media || null]]).get();
 

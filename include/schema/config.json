@@ -11,16 +11,17 @@
         },
         "variant": {
             "type": "string",
-            "description": "Icarus theme variant, can be \"default\" or \"cyberpunk\"",
+            "description": "Icarus theme variant, can be \"default\", \"cyberpunk\" or \"m3e\" (Material 3 Expressive)",
             "enum": [
                 "default",
-                "cyberpunk"
+                "cyberpunk",
+                "m3e"
             ],
             "default": "default"
         },
         "appearance": {
             "type": "string",
-            "description": "Color scheme of the default variant, can be \"light\", \"dark\" or \"auto\" (light or dark following the setting of the browser or system of each visitor). Can be set per page in the front-matter or in layout configuration files such as _config.post.yml. Ignored by the cyberpunk variant, which is always dark",
+            "description": "Color scheme of the default and m3e variants, can be \"light\", \"dark\" or \"auto\" (light or dark following the setting of the browser or system of each visitor). Can be set per page in the front-matter or in layout configuration files such as _config.post.yml. Ignored by the cyberpunk variant, which is always dark",
             "enum": [
                 "light",
                 "auto",
@@ -47,7 +48,7 @@
         },
         "logo_dark": {
             "type": "string",
-            "description": "Path or URL to the logo shown instead of the logo image when the default variant looks dark (see appearance), and always by the cyberpunk variant. Without it, the theme's own logo switches to /img/logo-dark.svg and other logos stay the same",
+            "description": "Path or URL to the logo shown instead of the logo image when the default or m3e variant looks dark (see appearance), and always by the cyberpunk variant. Without it, the theme's own logo switches to /img/logo-dark.svg and other logos stay the same",
             "nullable": true
         },
         "head": {

@@ -83,7 +83,8 @@ module.exports = class extends Component {
         // display=swap shows the text in a fallback font until the web fonts are loaded, instead of hiding it
         const fontCssUrl = {
             default: fontcdn('Ubuntu:wght@400;600&family=Source+Code+Pro&display=swap', 'css2'),
-            cyberpunk: fontcdn('Oxanium:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap', 'css2')
+            cyberpunk: fontcdn('Oxanium:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap', 'css2'),
+            m3e: fontcdn('Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&family=Roboto+Mono:wght@400;500&family=Noto+Sans+SC:wght@100..900&display=swap', 'css2')
         };
 
         let hlTheme, images;

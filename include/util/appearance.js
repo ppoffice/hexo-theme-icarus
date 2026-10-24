@@ -15,7 +15,7 @@ const DEFAULT_DARK_LOGO = '/img/logo-dark.svg';
  */
 function getAppearance(config) {
     const { variant = 'default', appearance } = config || {};
-    return variant === 'default' && APPEARANCES.includes(appearance) ? appearance : 'light';
+    return ['default', 'm3e'].includes(variant) && APPEARANCES.includes(appearance) ? appearance : 'light';
 }
 
 /**
@@ -31,7 +31,7 @@ function getLogoAppearance(config) {
 }
 
 /**
- * The logo image to show when the page looks dark (the dark or "auto" appearance of the default
+ * The logo image to show when the page looks dark (the dark or "auto" appearance of the default or m3e
  * variant, or the cyberpunk variant): `logo_dark`, or the theme's dark logo while `logo` is the
  * theme's logo. Null when the logo does not change: light appearance, text logo, or a logo of
  * the site without `logo_dark`.

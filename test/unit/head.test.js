@@ -109,7 +109,7 @@ describe('layout/common/head', () => {
         });
 
         it('shows the text in a fallback font until the web fonts are loaded', async () => {
-            for (const variant of ['default', 'cyberpunk']) {
+            for (const variant of ['default', 'cyberpunk', 'm3e']) {
                 const { $ } = await renderHead({}, { variant });
                 assert.match($('link[data-variant]').first().attr('href'), /^https:\/\/fonts\.googleapis\.com\/css2\?family=.+&display=swap$/, variant);
             }
@@ -163,7 +163,7 @@ describe('layout/common/head', () => {
 
         // PJAX replaces them only when the next page has another variant, set in its front-matter
         it('marks the theme and web font stylesheets of the variant', async () => {
-            for (const [variant, font] of [['default', 'Ubuntu'], ['cyberpunk', 'Oxanium']]) {
+            for (const [variant, font] of [['default', 'Ubuntu'], ['cyberpunk', 'Oxanium'], ['m3e', 'Roboto+Flex']]) {
                 const { $ } = await renderHead({}, { variant });
                 const hrefs = $('link[data-variant]').map((i, el) => el.attribs.href).get();
                 assert.equal(hrefs.length, 2, hrefs.join('\n'));
@@ -223,6 +223,20 @@ describe('layout/common/head', () => {
                 assert.equal(await colorScheme(config), null, appearance);
                 assert.deepEqual(await highlightThemes(config), [['atom-one-light', null, true]], appearance);
             }
+        });
+
+        it('supports light, dark and auto in the m3e variant', async () => {
+            for (const appearance of ['light', 'dark', 'auto']) {
+                const config = { variant: 'm3e', appearance };
+                assert.equal(await colorScheme(config), await colorScheme({ appearance }));
+                assert.deepEqual(await highlightThemes(config), await highlightThemes({ appearance }));
+            }
+            const { $ } = await renderHead({}, { variant: 'm3e', providers: { fontcdn: 'https://fonts.example.com/${type}?family=${fontname}' } });
+            const font = $('link[data-variant]').first().attr('href');
+            assert.ok(font.startsWith('https://fonts.example.com/css2?family=Roboto+Flex:'));
+            assert.ok(font.includes('opsz,wdth,wght@8..144,25..151,100..1000'));
+            assert.ok(font.includes('family=Roboto+Mono:'));
+            assert.ok(font.includes('family=Noto+Sans+SC:wght@100..900'));
         });
     });
 

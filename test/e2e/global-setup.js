@@ -8,7 +8,7 @@ const path = require('path');
 const { buildSite } = require('../support/site');
 const { contentType } = require('./cdn');
 
-const VARIANTS = ['default', 'pjax', 'pjax-comment-analytics', 'pjax-comments', 'animejs', 'zh-CN', 'cyberpunk', 'appearance-auto', 'appearance-dark', 'appearance-per-page', 'variant-per-page', 'pjax-math', 'pjax-relative-link', 'fold-preview', 'fold-preview-dark', 'fold-preview-cyberpunk', 'outdated-notice', 'prefetch', 'pjax-prefetch', 'navbar-sticky', 'navbar-sticky-mobile'];
+const VARIANTS = ['default', 'm3e', 'm3e-animation', 'pjax', 'pjax-comment-analytics', 'pjax-comments', 'animejs', 'zh-CN', 'cyberpunk', 'appearance-auto', 'appearance-dark', 'appearance-per-page', 'variant-per-page', 'pjax-math', 'pjax-relative-link', 'fold-preview', 'fold-preview-dark', 'fold-preview-cyberpunk', 'outdated-notice', 'prefetch', 'pjax-prefetch', 'navbar-sticky', 'navbar-sticky-mobile'];
 
 function serve(root) {
     const server = http.createServer((req, res) => {
