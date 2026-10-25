@@ -5,6 +5,7 @@
      * page are relative to it: those of the elements switched in by PJAX are made absolute.
      */
     const loadedUrl = document.baseURI;
+    let mathjaxEnabled = true;
 
     /** Whether a URL is relative to the path of the page, unlike root-relative and absolute ones. */
     function isPathRelative(url) {
@@ -101,7 +102,8 @@
      * itself once it is loaded.
      */
     function renderKatex() {
-        if (typeof window.renderMathInElement === 'function') {
+        // A renderer loaded on an earlier page must not compete with this page's MathJax.
+        if (!mathjaxEnabled && typeof window.renderMathInElement === 'function') {
             document.querySelectorAll('[role="article"] > .content').forEach(element => window.renderMathInElement(element));
         }
     }
@@ -191,6 +193,8 @@
 
     function switchHead(oldTitle, newTitle, options) {
         const pageUrl = this.state.href;
+        // The loader stays in the old body, so inspect the incoming page, not the live DOM.
+        mathjaxEnabled = !!newTitle.ownerDocument.querySelector('script#MathJax-script');
         oldTitle.textContent = newTitle.textContent;
         switchMetadata(oldTitle.ownerDocument, newTitle.ownerDocument);
         switchAppearance(oldTitle.ownerDocument.head, newTitle.ownerDocument.head, options, pageUrl);
@@ -208,9 +212,13 @@
 
     function complete(event) {
         // Plugin [MathJax] reload logic
-        if (window.MathJax) {
+        if (window.MathJax && mathjaxEnabled) {
             try {
-                window.MathJax.typesetPromise && window.MathJax.typesetPromise();
+                // v4 serializes asynchronous typesetting, including lazy font data loads.
+                if (window.MathJax.typesetPromise) {
+                    const elements = Array.from(document.querySelectorAll('[role="article"] > .content'));
+                    window.MathJax.typesetPromise(elements).catch(e => console.error('MathJax reload error:', e));
+                }
             } catch (e) {
                 console.error('MathJax reload error:', e);
             }
@@ -243,6 +251,17 @@
     }
 
     function beforeReplace() {
+        // Forget MathItems before their DOM is removed, including navigation to non-math pages.
+        if (window.MathJax && window.MathJax.typesetClear) {
+            const math = window.MathJax;
+            math.typesetClear();
+            // A font/extension request may still be finishing. Purge old MathItems once
+            // pending work settles, before v4's queued typesetting of the incoming page starts.
+            math.whenReady(() => {
+                math.typesetClear();
+                math.texReset();
+            }).catch(e => console.error('MathJax cleanup error:', e));
+        }
         // Teardown while the old DOM is still attached, also when the next page
         // has no corresponding component. Initializers already destroy before
         // re-init; clearing the handles prevents a second destroy of that instance.

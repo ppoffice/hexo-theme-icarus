@@ -19,6 +19,7 @@ const VENDORED = {
     lightgallery: 'lightgallery',
     // Loaded by the math plugins of hexo-component-inferno
     mathjax: 'mathjax',
+    '@mathjax/mathjax-newcm-font': '@mathjax/mathjax-newcm-font',
     katex: 'katex'
 };
 

@@ -229,7 +229,14 @@ module.exports = {
                 '`\\(not rendered\\)` and $not math$.',
                 '',
                 '\\\\(\\href{javascript:alert(1)}{unsafe}\\\\)'
-            ] : [],
+            ] : [
+                '',
+                'Inline: \\\\(\\frac{a}{b}\\\\).',
+                '',
+                '<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><mo>+</mo><mn>1</mn></math>',
+                '',
+                '$$\\require{cancel}\\cancel{x} + \\mathfrak{A}$$'
+            ],
             '',
             `[Next](${next}) or [home](/).`,
             ''

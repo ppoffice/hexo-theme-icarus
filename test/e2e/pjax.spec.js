@@ -210,7 +210,7 @@ test.describe('PJAX navigation to pages with math plugins', () => {
     }
 
     for (const [name, href, expected] of [
-        ['MathJax', MATHJAX_POST, { mathjax: 1, katex: 0, source: false }],
+        ['MathJax', MATHJAX_POST, { mathjax: 4, katex: 0, source: false }],
         ['KaTeX', KATEX_POST, { mathjax: 0, katex: 5, source: false }]
     ]) {
         test(`typesets the formulas of a ${name} post, like a full page load`, async ({ page, visit, diagnostics }) => {
@@ -220,14 +220,31 @@ test.describe('PJAX navigation to pages with math plugins', () => {
 
             await visit('/', { variant: 'pjax-math' });
             await page.evaluate(() => { window.__noFullReload = true; });
-            await pjaxClick(page, page.locator(`.column-main a[href="${href}"]`).first());
-            await expect.poll(() => typeset(page)).toEqual(expected);
+            await pjaxClick(page, page.locator(`.column-main a[href="${href}"]`).first(),
+                () => expect.poll(() => typeset(page)).toEqual(expected));
             if (name === 'KaTeX') await checkKatex(page);
             expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
             expect(diagnostics.pageErrors).toEqual([]);
             expect(diagnostics.failedRequests).toEqual([]);
         });
     }
+
+    test('typesets MathJax after PJAX without waiting for unrelated background requests', async ({ page, visit }) => {
+        await visit('/', { variant: 'pjax-math' });
+        // Keep a background request open deterministically. MathJax's speech worker from an
+        // earlier document can likewise outlive navigation in network-idle bookkeeping.
+        let background;
+        await page.route('**/__pjax_background', route => { background = route; });
+        await page.evaluate(() => { fetch('/__pjax_background'); });
+        await expect.poll(() => !!background).toBe(true);
+        try {
+            await pjaxClick(page, page.locator(`.column-main a[href="${MATHJAX_POST}"]`).first(),
+                () => expect.poll(() => typeset(page)).toEqual({ mathjax: 4, katex: 0, source: false }));
+            await expect(page.locator('mjx-merror')).toHaveCount(0);
+        } finally {
+            await background.fulfill({ status: 200, body: '' });
+        }
+    });
 
     test('keeps typesetting on the next pages, without loading the plugins again', async ({ page, visit, diagnostics }) => {
         await visit('/', { variant: 'pjax-math' });
@@ -242,5 +259,28 @@ test.describe('PJAX navigation to pages with math plugins', () => {
         expect(await page.locator('body > script[src*="katex.min.js"]').count()).toBe(1);
         expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
         expect(diagnostics.pageErrors).toEqual([]);
+    });
+
+    test('clears MathJax v4 MathItems and reuses the renderer across history navigation', async ({ page, visit, diagnostics }) => {
+        await visit(MATHJAX_POST, { variant: 'pjax-math' });
+        await expect.poll(() => typeset(page)).toEqual({ mathjax: 4, katex: 0, source: false });
+        expect(await page.evaluate(() => window.MathJax.version)).toBe('4.1.3');
+        await expect(page.locator('mjx-merror')).toHaveCount(0);
+        await page.evaluate(() => { window.__mathRenderer = window.MathJax; });
+        const mathItems = () => page.evaluate(() => Array.from(window.MathJax.startup.document.math).length);
+        expect(await mathItems()).toBe(4);
+        await pjaxClick(page, page.locator(`.content a[href="${KATEX_POST}"]`));
+        await expect.poll(mathItems).toBe(0);
+        await page.goBack();
+        await expect.poll(() => typeset(page)).toEqual({ mathjax: 4, katex: 0, source: false });
+        expect(await mathItems()).toBe(4);
+        await page.goForward();
+        await expect.poll(mathItems).toBe(0);
+        await expect.poll(() => typeset(page)).toEqual({ mathjax: 0, katex: 5, source: false });
+        expect(await page.evaluate(() => window.__mathRenderer === window.MathJax)).toBe(true);
+        await expect(page.locator('script#MathJax-script')).toHaveCount(1);
+        expect(diagnostics.pageErrors).toEqual([]);
+        expect(diagnostics.failedRequests).toEqual([]);
+        expect(diagnostics.consoleErrors).toEqual([]);
     });
 });
