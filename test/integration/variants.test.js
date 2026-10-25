@@ -474,9 +474,9 @@ describe('fixture site variants', function() {
         it('renders Artalk with its library and stylesheet, for the configured server and site', () => {
             const $comments = comments('artalk');
             assert.equal($comments.find('#artalk-thread').length, 1);
-            assert.equal($comments.find('link[rel="stylesheet"]').attr('href'), 'https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.css');
+            assert.equal($comments.find('link[rel="stylesheet"]').attr('href'), 'https://cdn.jsdelivr.net/npm/artalk@2.10.0/dist/Artalk.css');
             const code = script($comments);
-            assert.ok(code.includes('"https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.js"'), code);
+            assert.ok(code.includes('"https://cdn.jsdelivr.net/npm/artalk@2.10.0/dist/Artalk.js"'), code);
             assert.match(code, /Artalk\.init\(\{\s*el: '#artalk-thread',\s*server: "https:\/\/artalk\.example\.com",\s*site: "Icarus Fixture",/);
             // The previous instance is destroyed when PJAX runs the script again
             assert.ok(code.includes('window.__artalkInstance.destroy()'), code);

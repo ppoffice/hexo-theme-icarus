@@ -97,7 +97,12 @@ window.Artalk = {
         window.__artalk = window.__artalk || [];
         window.__artalk.push(record);
         document.querySelector(options.el).textContent = 'Artalk ' + pageKey;
-        return { destroy: function () { record.destroyed = true; } };
+        var handlers = {};
+        return {
+            on: function (name, handler) { handlers[name] = handler; },
+            update: function (conf) { record.darkMode = conf.darkMode; },
+            destroy: function () { record.destroyed = true; if (handlers.unmounted) handlers.unmounted(); }
+        };
     }
 };`;
 
@@ -118,7 +123,7 @@ async function stubComments(page) {
     }
     await page.route('https://cdn.jsdelivr.net/npm/@waline/client@3.3.0/dist/waline.js', route => route.fulfill(module_(WALINE_STUB)));
     await page.route(PAGEVIEW_JS, route => route.fulfill(module_(PAGEVIEW_STUB)));
-    await page.route('https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.js', route => route.fulfill(js(ARTALK_STUB)));
+    await page.route('https://cdn.jsdelivr.net/npm/artalk@2.10.0/dist/Artalk.js', route => route.fulfill(js(ARTALK_STUB)));
     await page.route('https://cusdis.com/js/widget/lang/zh-cn.js', route => route.fulfill(js('window.CUSDIS_LOCALE = "zh-cn";')));
     await page.route('https://cusdis.com/js/cusdis.es.js', route => route.fulfill(js(CUSDIS_STUB)));
 }
