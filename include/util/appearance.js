@@ -8,13 +8,14 @@ const DEFAULT_DARK_LOGO = '/img/logo-dark.svg';
  * The appearance of a page, from the `appearance` setting of its configuration (the theme
  * configuration, overridden by layout configuration files and the front-matter): "light" (the
  * default, also for values that are not valid), "auto" (follow the color scheme of the system)
- * or "dark". Always "light" for the cyberpunk variant, which has its own dark colors.
+ * or "dark". Always "dark" for the cyberpunk variant, which has its own dark colors.
  *
  * @param {Object} config Configuration of the page
  * @returns {string}
  */
 function getAppearance(config) {
     const { variant = 'default', appearance } = config || {};
+    if (variant === 'cyberpunk') return 'dark';
     return ['default', 'm3e'].includes(variant) && APPEARANCES.includes(appearance) ? appearance : 'light';
 }
 

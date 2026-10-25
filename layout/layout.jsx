@@ -23,7 +23,7 @@ module.exports = class extends Component {
 
         const language = page.lang || page.language || config.language;
         const columnCount = Widgets.getColumnCount(config.widgets, config, page);
-        // Selects the dark colors of css/default.css (include/style/dark.styl)
+        // Shared appearance for theme colors, browser controls and third-party plugins.
         const appearance = getAppearance(config);
 
         return <html lang={getLanguageTag(language)} data-appearance-mode={appearance} data-appearance={appearance === 'light' ? null : appearance}>

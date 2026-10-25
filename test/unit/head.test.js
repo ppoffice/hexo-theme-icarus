@@ -281,11 +281,11 @@ describe('layout/common/head', () => {
             }
         });
 
-        it('is ignored by the cyberpunk variant', async () => {
-            for (const appearance of ['auto', 'dark']) {
+        it('is always dark for the cyberpunk variant', async () => {
+            for (const appearance of ['light', 'auto', 'dark']) {
                 const config = { variant: 'cyberpunk', appearance };
-                assert.equal(await colorScheme(config), null, appearance);
-                assert.deepEqual(await highlightThemes(config), [['atom-one-light', null, true]], appearance);
+                assert.equal(await colorScheme(config), 'dark', appearance);
+                assert.deepEqual(await highlightThemes(config), [['atom-one-dark', null, true]], appearance);
             }
         });
 

@@ -10,7 +10,8 @@ module.exports = class extends Component {
             ['object-fit', 'cover'],
             ['color', 'var(--hexo-component-probe)']
         ];
-        if (getAppearance(config) !== 'light') {
+        // Cyberpunk is dark without importing the default palette's :where() selectors.
+        if (config.variant !== 'cyberpunk' && getAppearance(config) !== 'light') {
             requiredFeatures.push(['selector', ':where(*)']);
         }
         if (config.variant === 'm3e') {

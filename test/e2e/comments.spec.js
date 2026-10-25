@@ -10,7 +10,7 @@
 const { test, expect } = require('./fixtures');
 
 const VARIANT = 'pjax-comments';
-const POSTS = ['giscus', 'giscus-light', 'utterances', 'beaudar', 'waline', 'artalk', 'cusdis'];
+const POSTS = ['giscus', 'giscus-light', 'utterances', 'beaudar', 'waline', 'artalk', 'cusdis', 'giscus-cyberpunk'];
 const postUrl = name => `/2024/05/0${POSTS.indexOf(name) + 1}/comments-${name}/`;
 
 const js = body => ({ status: 200, contentType: 'application/javascript', body });
@@ -143,6 +143,27 @@ const loads = (page, name) => page.evaluate(name => (window.__loads || {})[name]
 
 test.beforeEach(async ({ page }) => {
     await stubComments(page);
+});
+
+test('Cyberpunk initializes dark comments on a light system and preserves appearance across PJAX', async ({ page, visit, diagnostics }) => {
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.addInitScript(() => localStorage.setItem('icarus:appearance', 'light'));
+    await visit(postUrl('giscus-cyberpunk'), { variant: VARIANT });
+    const assertDark = async () => {
+        await expect(page.locator('html')).toHaveAttribute('data-appearance', 'dark');
+        await expect(page.locator('html')).toHaveAttribute('data-appearance-mode', 'dark');
+        await expect(page.locator('#giscus-thread .stub-frame')).toHaveAttribute('data-theme', 'dark_dimmed');
+        expect(await page.locator('html').evaluate(el => getComputedStyle(el).colorScheme)).toBe('dark');
+        await expect(page.locator('.appearance-toggle')).toHaveCount(0);
+    };
+    await assertDark();
+    await page.evaluate(() => { window.__noFullReload = true; });
+    await goTo(page, 'giscus-light');
+    await expect(page.locator('#giscus-thread .stub-frame')).toHaveAttribute('data-theme', 'light');
+    await goTo(page, 'giscus-cyberpunk');
+    await assertDark();
+    expect(await page.evaluate(() => window.__noFullReload)).toBe(true);
+    expect(diagnostics.pageErrors).toEqual([]);
 });
 
 test.describe('Giscus, Utterances and Beaudar', () => {

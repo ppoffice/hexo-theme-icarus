@@ -2,7 +2,7 @@
 // of the first cyberpunk variant, with its chamfered panels, HUD marks, scanlines and a
 // perspective grid running to the horizon.
 $family-sans-serif ?= 'Oxanium', Ubuntu, Roboto, 'Open Sans', 'Microsoft YaHei', sans-serif
-$family-code ?= 'JetBrains Mono', monospace, 'Microsoft YaHei'
+$family-code ?= 'JetBrains Mono', Consolas, 'Microsoft YaHei', monospace
 // shadow and radius
 $shadow ?= none
 $radius ?= 0
@@ -92,7 +92,7 @@ $navbar-item-active-color ?= $neon-yellow
 $navbar-item-hover-color ?= $neon-cyan
 $navbar-item-hover-background-color ?= transparent
 $navbar-dropdown-background-color ?= $night-raised
-$navbar-dropdown-item-hover-background-color ?= rgba($neon-cyan, .08)
+$navbar-dropdown-item-hover-background-color ?= transparent
 $navbar-dropdown-item-hover-color ?= $neon-cyan
 $navbar-dropdown-padding-h ?= .5rem
 $navbar-dropdown-shadow ?= 0 12px 32px rgba(0, 0, 0, .6), 0 0 24px rgba($neon-cyan, .12)
@@ -454,6 +454,9 @@ article.article .article-more
     &[class*="is-"]
         cut-corner-bottom-right($box-chamfer)
 
+.content a.tag
+    font-family: $family-sans-serif
+
 // Tags: a chamfered box with a yellow edge, the name after a yellow '#' and, in the tags widget,
 // the number of its posts like the other numbers
 tag-box()
@@ -637,13 +640,13 @@ article.article .article-tags
             text-transform: none
             letter-spacing: .02em
 
-            &:hover
-                color: $navbar-dropdown-item-hover-color
+            &:hover, &:focus-visible
+                neon-text($navbar-dropdown-item-hover-color)
                 background-color: $navbar-dropdown-item-hover-background-color
 
             &.is-active
-                color: $neon-yellow
-                background-color: rgba($neon-yellow, .08)
+                neon-text($neon-yellow)
+                background-color: transparent
 
 /* ---------------------------------
  *             Articles
@@ -765,7 +768,10 @@ article.article .title, article.media .title
 // {% message %} tags: a HUD readout, a dark panel with an edge and a title in its color instead of
 // a bright header, chamfered at the bottom right. The neutral colors (dark, light...) are greyish.
 message-colors(color)
-    background-color: rgba(color, .05)
+    background-color: rgba(color, .12)
+
+    &.message-immersive
+        background-color: rgba(color, .14)
 
     .message-header
         color: color
@@ -903,6 +909,7 @@ figure.highlight
 
     // The title bar of a terminal window, with its three lights
     figcaption
+        font-family: $family-sans-serif
         padding-left: 4.25em
         color: $neon-cyan
         border-bottom: 1px solid $night-line
@@ -911,6 +918,9 @@ figure.highlight
         background-repeat: no-repeat
         background-size: 12px 12px
         background-position: .75em 50%, calc(.75em + 14px) 50%, calc(.75em + 28px) 50%
+
+        span
+            font-family: inherit
 
     .gutter
         color: rgba($neon-purple, .7)
@@ -1084,6 +1094,35 @@ $back-to-top-height = 40px // its line height and padding, include/style/plugin.
 .donate .qrcode
     border: 1px solid $neon-cyan
 
+// Override the progress plugin's blue fallback, which is inserted after this stylesheet.
+html .pace .pace-progress
+    background: $neon-yellow
+
+// Article reading progress is independent of Pace's page-loading indicator.
+@supports (animation-timeline: scroll())
+    body:has(.card-content.article h1.title)::after
+        content: ''
+        position: fixed
+        top: 0
+        left: 0
+        z-index: 200
+        width: 100%
+        height: 3px
+        background: $neon-yellow
+        transform-origin: 0 50%
+        animation: cyberpunk-reading-progress linear both
+        animation-timeline: scroll(root)
+
+    @keyframes cyberpunk-reading-progress
+        from
+            transform: scaleX(0)
+        to
+            transform: scaleX(1)
+
+// ShareThis assigns a generated ID and its own count color after the theme loads.
+.sharethis-inline-share-buttons .st-total
+    color: $text !important
+
 .cc-window, .cc-revoke
     border-radius: 0 !important
 
@@ -1092,10 +1131,43 @@ $back-to-top-height = 40px // its line height and padding, include/style/plugin.
 .cc-window
     font-family: $family-sans-serif !important
     color: $night-text !important
-    background-color: $night-panel !important
+    background-color: transparent !important
+    isolation: isolate
+    border: none
+    cut-corner-top-right(16px)
 
-    &:not(.cc-banner)
-        border: 1px solid $neon-cyan
+    &:before, &:after
+        content: ''
+        position: absolute
+        pointer-events: none
+
+    &:before
+        inset: 0
+        z-index: -2
+        background: $neon-cyan
+        cut-corner-top-right(16px)
+
+    &:after
+        inset: 1px
+        z-index: -1
+        background-color: $night-panel
+        cut-corner-top-right(16px - $chamfer-inset)
+
+    // Overlay the outer cyan frame with a yellow top-left corner mark.
+    .cc-compliance
+        position: static
+
+        &:before
+            content: ''
+            position: absolute
+            width: 14px
+            height: 14px
+            pointer-events: none
+            z-index: 1
+            top: 0
+            left: 0
+            border-top: 2px solid $neon-yellow
+            border-left: 2px solid $neon-yellow
 
     .cc-link
         color: $neon-cyan !important

@@ -42,9 +42,20 @@ describe('layout/layout (page skeleton)', () => {
             assert.equal(await attribute({ appearance: 'dark' }), 'dark');
         });
 
-        it('adds no attribute for the light appearance and the cyberpunk variant', async () => {
-            for (const config of [{}, { appearance: 'light' }, { appearance: 'night' }, { variant: 'cyberpunk', appearance: 'dark' }]) {
+        it('adds no attribute for the light appearance', async () => {
+            for (const config of [{}, { appearance: 'light' }, { appearance: 'night' }]) {
                 assert.equal(await attribute(config), undefined, JSON.stringify(config));
+            }
+        });
+
+        it('reports cyberpunk as fixed dark to plugins and browser controls', async () => {
+            for (const appearance of [undefined, null, 'light', 'auto', 'dark', 'invalid']) {
+                const { $ } = await renderLayout({}, { variant: 'cyberpunk', appearance });
+                assert.equal($('html').attr('data-appearance'), 'dark');
+                assert.equal($('html').attr('data-appearance-mode'), 'dark');
+                assert.equal($('meta[name="color-scheme"]').attr('content'), 'dark');
+                assert.equal($('.appearance-toggle').length, 0);
+                assert.deepEqual($('link[href*="highlight.js"]').map((i, el) => el.attribs.href.split('/').pop()).get(), ['atom-one-dark.css']);
             }
         });
 

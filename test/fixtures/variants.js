@@ -369,7 +369,8 @@ module.exports = {
             ['beaudar', { type: 'beaudar', repo: 'fixture-owner/fixture-comments', branch: 'main', issue_term: 'title', dark_theme: 'icy-dark' }],
             ['waline', { type: 'waline', server_url: 'https://waline.example.com' }],
             ['artalk', { type: 'artalk', server: 'https://artalk.example.com', site: 'Icarus Fixture' }],
-            ['cusdis', { type: 'cusdis', app_id: 'fixture-app-id', lang: 'zh-cn' }]
+            ['cusdis', { type: 'cusdis', app_id: 'fixture-app-id', lang: 'zh-cn' }],
+            ['giscus-cyberpunk', null, { variant: 'cyberpunk', appearance: 'light' }]
         ])
     },
 
