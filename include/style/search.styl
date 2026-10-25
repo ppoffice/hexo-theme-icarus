@@ -31,6 +31,12 @@ $searchbox-bg-pagination-item-active ?= $primary
 $searchbox-bg-pagination-item-disabled ?= $searchbox-bg-container
 
 .searchbox
+    --search-result-text: $text
+    --search-result-muted: $text-light
+    --search-result-link: $link
+    --search-result-border: $searchbox-border
+    --search-result-surface: $scheme-main
+    --search-result-hover: $searchbox-bg-result-item-hover
     display: none
     top: 0
     left: 0
@@ -88,15 +94,20 @@ $searchbox-bg-pagination-item-disabled ?= $searchbox-bg-container
     .searchbox-input-container
         display: flex
         flex-grow: 1
+        // InstantSearch nests flex containers; each must shrink below its intrinsic width.
+        min-width: 0
 
     .searchbox-input
         flex-grow: 1
+        min-width: 0
+        width: 100%
         color: inherit
         box-sizing: border-box
         padding: .75em 0 .75em 1.25em
         background: $searchbox-bg-input
 
     .searchbox-close
+        flex-shrink: 0
         display: inline-block
         font-size: 1.5em
         padding: .5em .75em
@@ -194,6 +205,213 @@ $searchbox-bg-pagination-item-disabled ?= $searchbox-bg-container
         .searchbox-pagination-item:not(.active):not(.disabled)
             .searchbox-pagination-link:hover
                 background-color: $searchbox-bg-pagination-item-hover
+
+// Google results use the theme's search shell, not a second embedded application.
+.searchbox-google
+    .searchbox-container
+        width: 640px
+        max-width: 100%
+
+    .searchbox-input-container
+        align-items: center
+        min-width: 0
+
+        > .icon
+            flex: none
+            margin-left: 1.25rem
+            color: var(--search-result-muted)
+
+    .searchbox-input
+        min-width: 0
+        padding-left: .65rem
+
+// Keep Google's attribution, ads and controls intact.
+.searchbox-google .searchbox-body
+    background: var(--search-result-surface)
+
+    .gsc-control-cse *
+        font-family: inherit
+
+    // Google engines may use Overlay layout; contain their results in our own modal.
+    .gsc-results-wrapper-overlay
+        // The SDK writes viewport geometry inline on every query.
+        position: static !important
+        width: 100% !important
+        height: auto !important
+        max-height: none
+        margin: 0
+        padding: 0
+        border: 0
+        box-shadow: none
+        background: transparent
+        overflow: visible
+
+    .gsc-modal-background-image, .gsc-results-close-btn
+        display: none
+
+    .gsc-control-cse, .gsc-webResult.gsc-result, .gsc-results .gsc-imageResult
+        background: transparent
+        border: 0
+
+    .gsc-control-cse
+        padding: .75rem 1rem
+        font-family: inherit
+        color: var(--search-result-text)
+
+    .gsc-control-cse, .gsc-control-cse .gsc-table-result
+        font-size: 1rem
+
+    .gsc-results
+        width: 100%
+
+    .gsc-wrapper, .gsc-resultsbox-visible, .gsc-resultsRoot
+        width: 100%
+
+    .gsc-wrapper, .gsc-above-wrapper-area
+        max-width: none
+
+    .gsc-webResult.gsc-result
+        margin: 0
+        padding: 1rem .5rem
+        border-bottom: 1px solid var(--search-result-border)
+
+        &:hover
+            background: var(--search-result-hover)
+
+    .gsc-thumbnail-inside, .gsc-url-top
+        padding: 0
+
+    .gsc-table-result
+        padding: 0
+        margin-top: .35rem
+
+    .gs-webResult.gs-result
+        display: flow-root
+
+        > .gsc-thumbnail
+            float: right
+            width: 64px
+            margin: 0 0 .5rem 1rem
+            padding: 0
+
+    .gs-web-image-box
+        width: 64px
+        margin: 0
+        padding: 0
+
+    .gs-web-image-box .gs-image
+        max-width: 64px
+        max-height: 64px
+        width: auto
+        height: auto
+        object-fit: contain
+        border-radius: $radius
+
+    .gsc-table-cell-snippet-close
+        padding: 0
+
+    .gsc-result .gs-title
+        height: auto
+        overflow: visible
+
+    .gsc-result .gs-title, .gsc-result .gs-title *, .gsc-result a.gs-title:link, .gsc-result a.gs-title:visited
+        color: var(--search-result-link)
+        font-family: inherit
+        font-size: 1.1rem
+        line-height: 1.5
+        text-decoration: none
+
+    .gsc-result a.gs-title:hover
+        text-decoration: underline
+        text-underline-offset: .2em
+
+    a:focus-visible, [tabindex]:focus-visible
+        outline: 2px solid var(--search-result-link)
+        outline-offset: 3px
+
+    .gsc-result .gs-snippet
+        color: var(--search-result-muted)
+        font-family: inherit
+        font-size: .9rem
+        line-height: 1.6
+        overflow-wrap: anywhere
+
+        b
+            color: var(--search-result-text)
+            font-weight: 500
+
+    .gsc-result-info, .gsc-orderby-label, .gs-webResult div.gs-visibleUrl
+        color: var(--search-result-muted)
+        font-family: inherit
+        font-size: .8rem
+
+    .gsc-above-wrapper-area
+        width: 100%
+        box-sizing: border-box
+        border: 0
+        padding: 0 .5rem .5rem
+
+    .gsc-above-wrapper-area-container
+        width: 100%
+        margin: 0
+        border-collapse: collapse
+        border-spacing: 0
+
+        td
+            padding: 0
+            border: 0
+
+    .gsc-orderby-container
+        width: 1%
+        white-space: nowrap
+
+    .gsc-orderby-container, .gsc-orderby
+        text-align: right
+
+    .gsc-option-menu-container
+        text-align: left
+
+    .gsc-result-info
+        padding: .5rem 0
+
+    .gsc-option-menu
+        right: 0
+        left: auto
+        color: var(--search-result-text)
+        background: var(--search-result-surface)
+        border: 1px solid var(--search-result-border)
+        border-radius: $radius
+
+    .gsc-option-menu-item:hover
+        background: var(--search-result-hover)
+
+    .gcsc-find-more-on-google
+        color: var(--search-result-link)
+
+    .gcsc-find-more-on-google-magnifier
+        fill: currentColor
+
+    .gsc-results .gsc-cursor-box
+        margin: 1rem 0
+        text-align: center
+
+    .gsc-results .gsc-cursor-box .gsc-cursor-page
+        display: inline-block
+        min-width: 2rem
+        margin: 0 .2rem
+        padding: .45rem .65rem
+        color: var(--search-result-link)
+        background: transparent
+        border-radius: $radius
+        text-decoration: none
+
+        &:not(.gsc-cursor-current-page):hover
+            background: var(--search-result-hover)
+
+    .gsc-results .gsc-cursor-box .gsc-cursor-current-page
+        font-weight: bold
+        color: var(--search-result-surface)
+        background: var(--search-result-link)
 
 @media screen and (max-width: $searchbox-breakpoint-width), screen and (max-height: $searchbox-breakpoint-height)
     .searchbox .searchbox-container
