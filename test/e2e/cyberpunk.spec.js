@@ -55,8 +55,11 @@ test.describe('cyberpunk variant', () => {
         await submenu.hover();
         await expect.poll(() => submenu.evaluate(glow)).toEqual(hovered);
         await expect(submenu).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
-        await submenu.focus();
         await page.mouse.move(0, 900);
+        await trigger.focus();
+        await page.keyboard.press('Tab');
+        await expect(submenu).toBeFocused();
+        expect(await submenu.evaluate(el => el.matches(':focus-visible'))).toBe(true);
         await expect.poll(() => submenu.evaluate(glow)).toEqual(hovered);
         await submenu.evaluate(el => el.classList.add('is-active'));
         const active = await activePrimary.evaluate(glow);

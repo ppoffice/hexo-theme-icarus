@@ -1,14 +1,23 @@
-const { render, fixtureConfig } = require('../support/render');
+const path = require('path');
+const { spawnSync } = require('child_process');
 const { test, expect } = require('./fixtures');
+
+const fixtures = {};
+
+test.beforeAll(() => {
+    const result = spawnSync(process.execPath, [path.join(__dirname, '../support/render-consent.js')], {
+        encoding: 'utf8',
+        env: { ...process.env, NODE_ENV: 'production', BABEL_DISABLE_CACHE: '1' }
+    });
+    if (result.status !== 0) {
+        throw new Error(result.stderr || 'Could not render consent fixtures');
+    }
+    Object.assign(fixtures, JSON.parse(result.stdout));
+});
 
 for (const type of ['opt-in', 'opt-out', 'info']) {
     test(`tracking consent ${type} survives PJAX and denial reloads without tracking`, async ({ page, visit, diagnostics }) => {
-        const config = { ...fixtureConfig(), plugins: {
-            cookie_consent: { type },
-            umami: { website_id: 'fixture-consent', script_url: 'https://analytics.example/consent.js' }
-        } };
-        const head = (await render('common/plugins', { config, head: true })).html;
-        const footer = (await render('common/plugins', { config, head: false })).html;
+        const { head, footer } = fixtures[type];
         let trackers = 0;
         await page.route('https://analytics.example/consent.js', route => {
             trackers++;
