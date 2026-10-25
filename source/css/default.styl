@@ -12,3 +12,24 @@
     dark-appearance('auto')
 
 dark-appearance('dark')
+
+// Reading progress is separate from Pace's loading indicator.
+@supports (animation-timeline: scroll())
+    body:has(.card-content.article h1.title)::after
+        content: ''
+        position: fixed
+        top: 0
+        left: 0
+        z-index: 200
+        width: 100%
+        height: 3px
+        background: $primary
+        transform-origin: 0 50%
+        animation: default-reading-progress linear both
+        animation-timeline: scroll(root)
+
+    @keyframes default-reading-progress
+        from
+            transform: scaleX(0)
+        to
+            transform: scaleX(1)

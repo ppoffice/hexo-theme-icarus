@@ -17,6 +17,7 @@ const VENDORED = {
     clipboard: 'clipboard',
     'justified-gallery': 'justified-gallery',
     lightgallery: 'lightgallery',
+    'pace-js': 'pace-js',
     // Loaded by the math plugins of hexo-component-inferno
     mathjax: 'mathjax',
     '@mathjax/mathjax-newcm-font': '@mathjax/mathjax-newcm-font',
