@@ -34,12 +34,11 @@ describe('shared profile widget integration', () => {
         assert.deepEqual(counters, ['3', '1', '2']);
     });
 
-    it('uses gravatar, then the avatar, then the default image', async () => {
+    it('uses gravatar, then the configured avatar, and otherwise omits the image', async () => {
         assert.match((await renderProfile({ gravatar: 'a@example.com', avatar: '/ignored.png' })).$('img.avatar').attr('src'), /gravatar\.com\/avatar\//);
         assert.equal((await renderProfile({ avatar: '/me.png', gravatar: '' })).$('img.avatar').attr('src'), '/me.png');
-        assert.equal((await renderProfile({})).$('img.avatar').attr('src'), '/img/avatar.png');
-        for (const avatar of ['', null]) {
-            assert.equal((await renderProfile({ avatar })).$('img.avatar').attr('src'), '/img/avatar.png');
+        for (const avatar of [undefined, '', null]) {
+            assert.equal((await renderProfile({ avatar })).$('figure, img.avatar').length, 0);
         }
     });
 
@@ -71,9 +70,9 @@ describe('shared profile widget integration', () => {
                 const calls = [];
                 const helper = Object.assign({}, real, { url_for(url) { calls.push(url); return real.url_for(url); } });
                 const { $ } = await renderProfile({ avatar }, { config, page, helper });
-                const chosen = avatar || '/img/avatar.png';
-                assert.deepEqual(calls, [chosen, '/archives/', '/categories/', '/tags/']);
-                assert.equal($('img.avatar').attr('src'), real.url_for(chosen));
+                const avatarCalls = avatar ? [avatar] : [];
+                assert.deepEqual(calls, avatarCalls.concat(['/archives/', '/categories/', '/tags/']));
+                assert.equal($('img.avatar').attr('src'), avatar ? real.url_for(avatar) : undefined);
             }
             const calls = [];
             const helper = Object.assign({}, real, { url_for(url) { calls.push(url); return real.url_for(url); } });
@@ -84,7 +83,7 @@ describe('shared profile widget integration', () => {
     });
 
     it('keeps translations, author fallback, rounded avatars and follow/social accessibility', async () => {
-        const { $ } = await renderProfile({ avatar_rounded: true, follow_link: '/follow/', social_links: {
+        const { $ } = await renderProfile({ avatar: '/author.png', avatar_rounded: true, follow_link: '/follow/', social_links: {
             Blog: '/about/', GitHub: { url: 'https://github.com/author', icon: 'fab fa-github' }
         } }, { config: fixtureConfig({ language: 'zh-CN', author: 'Site Author' }) });
         assert.equal($('img.avatar').attr('alt'), 'Site Author');
@@ -114,7 +113,7 @@ describe('shared profile widget integration', () => {
                 position, site, config: fixtureConfig({ widgets: [{ type: 'profile', position }] })
             });
             assert.equal($('.column-' + position + ' .widget[data-type="profile"]').length, 1);
-            assert.equal($('img.avatar').attr('src'), '/img/avatar.png');
+            assert.equal($('img.avatar').length, 0);
         }
     });
 

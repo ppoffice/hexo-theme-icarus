@@ -27,7 +27,7 @@ describe('fixture site variants', function() {
             assert.doesNotMatch(site.output, /failed one or more checks/);
         });
 
-        it('keeps the theme avatar after reloading the library-generated configuration', () => {
+        it('omits the profile avatar when the generated configuration has no avatar', () => {
             const config = yaml.parse(fs.readFileSync(path.join(site.dir, '_config.icarus.yml'), 'utf8'));
             assert.equal(config.widgets.find(widget => widget.type === 'profile').avatar, null);
             // Hexo loads configuration before the first-run file is generated.
@@ -35,7 +35,7 @@ describe('fixture site variants', function() {
                 cwd: site.dir, encoding: 'utf8'
             });
             assert.equal(result.status, 0, result.stdout + result.stderr);
-            assert.equal(site.$('/')('.widget[data-type="profile"] img.avatar').attr('src'), '/img/avatar.png');
+            assert.equal(site.$('/')('.widget[data-type="profile"] img.avatar').length, 0);
             assert.ok(site.exists('img/avatar.png'));
         });
 

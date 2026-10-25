@@ -13,11 +13,11 @@ test.beforeAll(() => {
     for (const variant of ['default', 'cyberpunk', 'm3e']) {
         const { html } = await render('layout', {
             config: fixtureConfig({ variant, author: 'Profile Author', search: { type: null }, widgets: [{
-                type: 'profile', position: 'left', author_title: 'Writer', location: 'London', avatar_rounded: true,
+                type: 'profile', position: 'left', avatar: '/img/avatar.png', author_title: 'Writer', location: 'London', avatar_rounded: true,
                 follow_link: '/about/', social_links: { Blog: '/about/', GitHub: { url: 'https://github.com/author', icon: 'fab fa-github' } }
             }] }),
             site: { posts: { length: 3 }, categories: [{ length: 2 }, { length: 0 }], tags: [{ length: 1 }] },
-            page: makePage({ path: 'profile-default-avatar/', permalink: 'http://localhost:4000/profile-default-avatar/' }),
+            page: makePage({ path: 'profile-configured-avatar/', permalink: 'http://localhost:4000/profile-configured-avatar/' }),
             body: '<article class="article"><div class="content">Shared profile</div></article>'
         });
         pages[variant] = html;
@@ -31,10 +31,10 @@ test.beforeAll(() => {
 });
 
 for (const variant of ['default', 'cyberpunk', 'm3e']) {
-    test(`renders the shared Profile with the real theme avatar and ${variant} stylesheet`, async ({ page, visit, diagnostics }) => {
+    test(`renders the shared Profile with an explicit avatar and ${variant} stylesheet`, async ({ page, visit, diagnostics }) => {
         await page.setViewportSize({ width: 1600, height: 1000 });
-        await page.route('**/profile-default-avatar/', route => route.fulfill({ contentType: 'text/html', body: pages[variant] }));
-        await visit('/profile-default-avatar/', { variant });
+        await page.route('**/profile-configured-avatar/', route => route.fulfill({ contentType: 'text/html', body: pages[variant] }));
+        await visit('/profile-configured-avatar/', { variant });
         const profile = page.locator('.widget[data-type="profile"]');
         await expect(profile).toBeVisible();
         const avatar = profile.getByRole('img', { name: 'Profile Author' });
