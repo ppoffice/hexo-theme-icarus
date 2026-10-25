@@ -379,7 +379,7 @@ describe('fixture site variants', function() {
 
     describe('Waline page view counter', () => {
         let site;
-        const PAGEVIEW_JS = 'https://cdn.jsdelivr.net/npm/@waline/client@3.3.0/dist/pageview.js';
+        const PAGEVIEW_JS = 'https://cdn.jsdelivr.net/npm/@waline/client@3.16.1/dist/pageview.js';
         const scripts = $ => $('script').filter((i, el) => $(el).html().includes(PAGEVIEW_JS)).map((i, el) => $(el).html()).get();
 
         before(() => { site = getSite('waline-pageview'); });
@@ -399,7 +399,8 @@ describe('fixture site variants', function() {
             const code = scripts($);
             assert.equal(code.length, 1);
             assert.ok(code[0].includes('serverURL: "https://waline.example.com",'), code[0]);
-            assert.ok(code[0].includes('path: window.location.pathname,'), code[0]);
+            assert.ok(code[0].includes('var path = window.location.pathname;'), code[0]);
+            assert.ok(code[0].includes('path: path,'), code[0]);
             // Counts the pages PJAX switches to too
             assert.ok(code[0].includes('document.addEventListener(\'pjax:complete\', count);'), code[0]);
         });
@@ -531,9 +532,10 @@ describe('fixture site variants', function() {
             const $script = $comments.find('script');
             assert.equal($script.attr('type'), undefined);
             const code = $script.html();
-            assert.match(code, /^import\("https:\/\/cdn\.jsdelivr\.net\/npm\/@waline\/client@3\.3\.0\/dist\/waline\.js"\)\.then\(/);
+            assert.match(code, /import\("https:\/\/cdn\.jsdelivr\.net\/npm\/@waline\/client@3\.16\.1\/dist\/waline\.js"\)\.then\(/);
             assert.ok(code.includes('window.__walineInstance.destroy()'), code);
-            assert.ok(code.includes('path: window.location.pathname,'), code);
+            assert.ok(code.includes('var path = window.location.pathname;'), code);
+            assert.ok(code.includes('path: path,'), code);
             assert.match(code, /dark: \(function \(appearance\) \{[^}]+\}\)\(document\.documentElement\.getAttribute\('data-appearance'\)\) === 'auto' \? 'auto' : 'html\[data-appearance="dark"\]',/);
         });
 

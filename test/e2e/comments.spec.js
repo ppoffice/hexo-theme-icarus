@@ -69,10 +69,10 @@ export function init(options) {
     window.__waline = window.__waline || [];
     window.__waline.push(record);
     document.querySelector(options.el).textContent = 'Waline ' + options.path;
-    return { destroy: function () { record.destroyed = true; } };
+    return { update: function (options) { record.dark = options.dark; }, destroy: function () { record.destroyed = true; } };
 }`;
 
-const PAGEVIEW_JS = 'https://cdn.jsdelivr.net/npm/@waline/client@3.3.0/dist/pageview.js';
+const PAGEVIEW_JS = 'https://cdn.jsdelivr.net/npm/@waline/client@3.16.1/dist/pageview.js';
 
 // Count a view of the path, and show the views of the path of each counter.
 const PAGEVIEW_STUB = `
@@ -121,7 +121,7 @@ async function stubComments(page) {
     for (const { url, stub } of Object.values(CLIENTS)) {
         await page.route(url, route => route.fulfill(js(stub)));
     }
-    await page.route('https://cdn.jsdelivr.net/npm/@waline/client@3.3.0/dist/waline.js', route => route.fulfill(module_(WALINE_STUB)));
+    await page.route('https://cdn.jsdelivr.net/npm/@waline/client@3.16.1/dist/waline.js', route => route.fulfill(module_(WALINE_STUB)));
     await page.route(PAGEVIEW_JS, route => route.fulfill(module_(PAGEVIEW_STUB)));
     await page.route('https://cdn.jsdelivr.net/npm/artalk@2.10.0/dist/Artalk.js', route => route.fulfill(js(ARTALK_STUB)));
     await page.route('https://cusdis.com/js/widget/lang/zh-cn.js', route => route.fulfill(js('window.CUSDIS_LOCALE = "zh-cn";')));
