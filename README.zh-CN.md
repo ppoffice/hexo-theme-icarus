@@ -33,59 +33,77 @@ hexo server
 第一次运行时，Icarus 会在站点根目录生成 `_config.icarus.yml`，每个配置项都附有说明。
 环境要求、源码安装及发布包与当前开发代码的区别，请看[Icarus快速上手](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/icarus快速上手/)。
 
+## 三种主题变体
+
+在 `_config.icarus.yml` 或单篇文章的 front-matter 里改一行，就能切换整体外观。
+
+<table>
+<tr>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/dark.png" alt="默认变体，一半亮色一半暗色">
+<p><b>默认</b> · <code>variant: default</code><br>
+经典的 Icarus 外观，可用亮色、暗色或 <code>appearance: auto</code>：跟随访客的系统设置，并在导航栏提供亮暗切换按钮。
+<a href="https://ppoffice.github.io/hexo-theme-icarus/uncategorized/dark-appearance/">演示</a></p>
+</td>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/cyberpunk.png" alt="Cyberpunk 变体">
+<p><b>Cyberpunk</b> · <code>variant: cyberpunk</code><br>
+始终是暗色：霓虹配色、切角 HUD 面板、扫描线，代码块也有自己的配色。
+<a href="https://ppoffice.github.io/hexo-theme-icarus/uncategorized/cyberpunk-theme-variant/">演示</a></p>
+</td>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/m3e.png" alt="Material 3 Expressive 变体，一半亮色一半暗色">
+<p><b>Material 3 Expressive</b> · <code>variant: m3e</code><br>
+柔和着色的表面、圆角卡片和胶囊形控件，悬停或键盘聚焦时会变换形状，支持亮色和暗色。
+<a href="https://ppoffice.github.io/hexo-theme-icarus/uncategorized/material-3-expressive主题变体介绍/">演示</a></p>
+</td>
+</tr>
+</table>
+
 ## 亮点
 
 <table>
 <tr>
 <td width="33%" valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/dark.png" alt="暗黑模式">
-<p><b>亮色、暗色或自动切换</b><br>
-用 <code>appearance: auto</code> 跟随访客的系统设置，也可以全站使用暗色。</p>
-</td>
-<td width="33%" valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/cyberpunk.png" alt="Cyberpunk 风格">
-<p><b>Cyberpunk 风格</b><br>
-霓虹夜色、HUD 边框与扫描线的另一套外观，改一行配置即可切换。</p>
-</td>
-<td width="33%" valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="响应式布局">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="桌面端和手机端的响应式布局">
 <p><b>响应式布局</b><br>
-一到三栏布局，导航栏支持子菜单，放不下时自动折叠成菜单按钮，还可以固定在窗口顶部（<code>navbar.sticky</code>），手机端也能打开文章目录。</p>
+一到三栏布局，导航栏子菜单放不下时折叠成菜单按钮，导航栏可固定在顶部，手机端也能打开文章目录。</p>
 </td>
-</tr>
-<tr>
-<td valign="top">
+<td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/config.png" alt="按页面配置">
 <p><b>按页面配置</b><br>
 全站统一配置，也可以用 <code>_config.post.yml</code> 等布局配置文件，或文章的 front-matter 单独覆盖。</p>
 </td>
-<td valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/plugins.png" alt="暗色下的 Waline 评论">
-<p><b>内置 40 多个插件</b><br>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/plugins.png" alt="Giscus 评论、Insight 搜索、图片画廊、分享、打赏按钮、MathJax 和小组件">
+<p><b>内置 50 多个插件</b><br>
 评论、搜索、分享、打赏、统计和侧边栏小组件，在配置文件里打开就能用。</p>
-</td>
-<td valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/accessible.png" alt="用键盘打开的导航栏子菜单">
-<p><b>快速且无障碍</b><br>
-PJAX 无刷新加载页面，支持键盘操作和屏幕阅读器，内置 17 种语言的翻译。</p>
 </td>
 </tr>
 </table>
 
+此外还内置了：
+
+- **快速浏览**：PJAX 无刷新加载，前进后退时恢复滚动位置；鼠标悬停时预加载页面。
+- **阅读体验**：阅读进度条、可预览的折叠代码块，以及长期未更新文章的提示。
+- **公式与图片**：KaTeX 或 MathJax 4，lightGallery 3 搭配 Justified Gallery。
+- **隐私**：Cookie 提示在 `opt-in` 模式下，访客同意后才加载内置统计；Web Share 分享无需第三方 SDK。
+- **无障碍**：支持键盘操作和屏幕阅读器，按 `/` 或 Ctrl+K 打开搜索，内置 17 种语言的翻译。
+
 <details>
-<summary><b>支持的插件</b></summary>
+<summary><b>支持的集成</b></summary>
 
-| 类型 | 插件 |
+| 类型 | 集成 |
 |---|---|
-| [评论](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk、Beaudar、畅言、Cusdis、Disqus、DisqusJS、Facebook、Giscus、Gitalk 2（预览版）、Gitment（已弃用）、Isso、来必力（LiveRe）、Twikoo、Utterances、Valine（已弃用）、Waline |
+| [评论](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk、Beaudar、畅言、Disqus、DisqusJS、Giscus、Gitalk 2（预览版）、Isso、来必力（LiveRe）、Twikoo、Utterances、Waline |
 | [搜索](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/) | Algolia、百度、Google 自定义搜索、Insight（内置） |
-| [分享](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny、百度分享（已弃用）、Web Share、ShareThis |
+| [分享](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny、ShareThis、Web Share |
 | [打赏](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/) | 爱发电、支付宝、Buy Me a Coffee、Patreon、PayPal、微信 |
-| [统计](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | 百度统计、Bing 网站管理员工具、不蒜子、CNZZ、Google Analytics、Hotjar、Matomo、StatCounter、Twitter 转化跟踪、Umami、Waline 阅读量 |
-| [小组件](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | 个人信息、文章目录、最新文章、归档、分类、标签、GitHub 贡献日历、链接、Google AdSense、follow.it、Google FeedBurner（已弃用） |
-| [其他](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | 回到顶部、Cookie 提示、图片画廊（lightGallery + Justified Gallery）、KaTeX、MathJax 4、浏览器能力提示、页面加载动画、悬停预加载页面、进度条 |
+| [统计](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | 百度统计、Bing 网站管理员工具、不蒜子、CNZZ（友盟+）、Google Analytics、Hotjar、Matomo、StatCounter、X（Twitter）转化跟踪、Umami、Waline 阅读量 |
+| [小组件](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | 个人信息、文章目录、最新文章、归档、分类、标签、GitHub 贡献日历、链接、Google AdSense、follow.it |
+| [其他](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | 回到顶部、Cookie 提示、图片画廊（lightGallery + Justified Gallery）、KaTeX、MathJax 4、浏览器能力提示、页面加载动画、PJAX、页面预加载、进度条 |
 
-大部分插件由 [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno) 提供。
+大部分集成由 [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno) 提供。
 
 </details>
 
@@ -95,6 +113,7 @@ PJAX 无刷新加载页面，支持键盘操作和屏幕阅读器，内置 17 �
 [主题配置](https://ppoffice.github.io/hexo-theme-icarus/Configuration/icarus用户指南-主题配置/) ·
 [升级指南](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/升级指南/) ·
 [常见问题](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/常见问题/) ·
+[功能演示](https://ppoffice.github.io/hexo-theme-icarus/tags/Demo/) ·
 [中文用户指南](https://ppoffice.github.io/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/) ·
 [全部文档](https://ppoffice.github.io/hexo-theme-icarus/categories/)
 

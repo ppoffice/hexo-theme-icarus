@@ -34,59 +34,77 @@ Icarus creates `_config.icarus.yml`, with every option described, on the first r
 See [Getting Started](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/getting-started-with-icarus/)
 for requirements, source installs, and the distinction between published packages and the current development checkout.
 
+## Three Variants
+
+One line in `_config.icarus.yml`, or in the front-matter of a single post, switches the whole look.
+
+<table>
+<tr>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/dark.png" alt="The default variant, half light and half dark">
+<p><b>Default</b> · <code>variant: default</code><br>
+The classic Icarus look in light, dark, or <code>appearance: auto</code>, which follows each visitor's system and adds a light/dark switch to the navbar.
+<a href="https://ppoffice.github.io/hexo-theme-icarus/uncategorized/dark-appearance/">Demo</a></p>
+</td>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/cyberpunk.png" alt="The Cyberpunk variant">
+<p><b>Cyberpunk</b> · <code>variant: cyberpunk</code><br>
+Always dark: neon colors, HUD panels with chamfered corners, scanlines, and its own code palette.
+<a href="https://ppoffice.github.io/hexo-theme-icarus/uncategorized/cyberpunk-theme-variant/">Demo</a></p>
+</td>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/m3e.png" alt="The Material 3 Expressive variant, half light and half dark">
+<p><b>Material 3 Expressive</b> · <code>variant: m3e</code><br>
+Tinted surfaces, rounded cards, and pill-shaped controls that change shape on hover and keyboard focus, with light and dark schemes.
+<a href="https://ppoffice.github.io/hexo-theme-icarus/uncategorized/material-3-expressive-theme-variant/">Demo</a></p>
+</td>
+</tr>
+</table>
+
 ## Highlights
 
 <table>
 <tr>
 <td width="33%" valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/dark.png" alt="Dark appearance">
-<p><b>Light, dark, or both</b><br>
-Follow each visitor's system setting with <code>appearance: auto</code>, or go dark everywhere.</p>
-</td>
-<td width="33%" valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/cyberpunk.png" alt="Cyberpunk variant">
-<p><b>Cyberpunk variant</b><br>
-A second look of neon-lit nights, HUD frames and scanlines, one line away.</p>
-</td>
-<td width="33%" valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="Responsive layout">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/responsive.png" alt="Responsive layout on a desktop and a phone">
 <p><b>Responsive</b><br>
-One to three columns, navbar sub-menus that fold into a menu button, an optional sticky navbar (<code>navbar.sticky</code>), and a mobile table of contents.</p>
+One to three columns, navbar sub-menus that fold into a menu button, an optional sticky navbar, and a mobile table of contents.</p>
 </td>
-</tr>
-<tr>
-<td valign="top">
+<td width="33%" valign="top">
 <img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/config.png" alt="Per-page configuration">
 <p><b>Configure per page</b><br>
 Set options site-wide, override them per layout in <code>_config.post.yml</code>, or per post in its front-matter.</p>
 </td>
-<td valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/plugins.png" alt="Waline comments in the dark appearance">
-<p><b>40+ plugins built in</b><br>
+<td width="33%" valign="top">
+<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/plugins.png" alt="Giscus comments, Insight search, gallery, sharing, donation buttons, MathJax and widgets">
+<p><b>50+ plugins built in</b><br>
 Comments, search, sharing, donations, analytics and widgets, ready to switch on in the config.</p>
-</td>
-<td valign="top">
-<img src="https://ppoffice.github.io/hexo-theme-icarus/gallery/readme/accessible.png" alt="Navbar sub-menu opened with the keyboard">
-<p><b>Fast and accessible</b><br>
-PJAX page loading, keyboard and screen reader support, and translations into 17 languages.</p>
 </td>
 </tr>
 </table>
 
+Also built in:
+
+- **Fast navigation**: PJAX page loading with scroll restoration on Back/Forward, and page prefetching on hover.
+- **Reading**: a reading progress bar, folded code blocks with a preview, and a notice on posts that have not been updated for a long time.
+- **Math and images**: KaTeX or MathJax 4, and lightGallery 3 with Justified Gallery.
+- **Privacy**: in `opt-in` mode, Cookie Consent loads the built-in analytics only after visitors allow them; Web Share shares without a third-party SDK.
+- **Accessible**: keyboard navigation, screen reader labels, `/` or Ctrl+K to search, and translations into 17 languages.
+
 <details>
-<summary><b>Supported plugins</b></summary>
+<summary><b>Supported integrations</b></summary>
 
-| Type | Plugins |
+| Type | Integrations |
 |---|---|
-| [Comment](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk, Beaudar, Changyan, Cusdis, Disqus, DisqusJS, Facebook, Giscus, Gitalk 2 (preview), Gitment (deprecated), Isso, LiveRe, Twikoo, Utterances, Valine (deprecated), Waline |
+| [Comment](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk, Beaudar, Changyan, Disqus, DisqusJS, Giscus, Gitalk 2 (preview), Isso, LiveRe, Twikoo, Utterances, Waline |
 | [Search](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/) | Algolia, Baidu, Google CSE, Insight (built-in) |
-| [Share](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny, Baidu Share (deprecated), Web Share, ShareThis |
+| [Share](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny, ShareThis, Web Share |
 | [Donate](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/) | Afdian, Alipay, Buy Me a Coffee, Patreon, PayPal, WeChat Pay |
-| [Analytics](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | Baidu Statistics, Bing Webmaster, BuSuanZi, CNZZ, Google Analytics, Hotjar, Matomo, StatCounter, Twitter Conversion Tracking, Umami, Waline page views |
-| [Widgets](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | Profile, Table of Contents, Recent Posts, Archives, Categories, Tags, GitHub Contributions, Links, Google AdSense, follow.it, Google FeedBurner (deprecated) |
-| [Others](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax 4, Browser Capability Notice, Page Loading Animations, Page Prefetching on Hover, Progress Bar |
+| [Analytics](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | Baidu Statistics, Bing Webmaster, BuSuanZi, CNZZ (Umeng+), Google Analytics, Hotjar, Matomo, StatCounter, X (Twitter) Conversion Tracking, Umami, Waline page views |
+| [Widgets](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | Profile, Table of Contents, Recent Posts, Archives, Categories, Tags, GitHub Contributions, Links, Google AdSense, follow.it |
+| [Others](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax 4, Browser Capability Notice, Page Loading Animations, PJAX, Page Prefetching, Progress Bar |
 
-Most plugins are provided by [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
+Most integrations are provided by [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
 
 </details>
 
@@ -96,6 +114,7 @@ Most plugins are provided by [hexo-component-inferno](https://github.com/ppoffic
 [Configuring the Theme](https://ppoffice.github.io/hexo-theme-icarus/Configuration/icarus-user-guide-configuring-the-theme/) ·
 [Upgrade Guide](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/upgrade-guide/) ·
 [FAQ](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/faq/) ·
+[Demos](https://ppoffice.github.io/hexo-theme-icarus/tags/Demo/) ·
 [All Guides](https://ppoffice.github.io/hexo-theme-icarus/tags/Icarus-User-Guide/)
 
 ## Contributing
