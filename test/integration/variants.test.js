@@ -439,7 +439,7 @@ describe('fixture site variants', function() {
             assert.equal(deprecated.length, 1, site.output);
             assert.match(privacy[0], /issues\/788/);
             assert.doesNotMatch(privacy[0], /Waline|Twikoo|2027/);
-            assert.match(deprecated[0], /LeanCloud, where Valine stores the comments, shuts down on January 12, 2027\. Use Waline, Twikoo/);
+            assert.match(deprecated[0], /LeanCloud closes on 2027-01-12\. Use Waline or Twikoo/);
         });
     });
 
