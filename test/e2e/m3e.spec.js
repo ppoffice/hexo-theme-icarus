@@ -368,7 +368,8 @@ test.describe('Material 3 Expressive', () => {
         for (const width of [713, 769, 900, 1087]) {
             await page.setViewportSize({ width, height: 900 });
             await expect(page.locator('.navbar-container')).toHaveCSS('border-top-left-radius', '28px');
-            expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+            // ResizeObserver/requestAnimationFrame refits the menu after resize.
+            await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
         }
     });
 

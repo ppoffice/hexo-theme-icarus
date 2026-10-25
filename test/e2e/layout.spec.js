@@ -166,7 +166,9 @@ test.describe('back to top button', () => {
         await visit('/');
         const button = page.locator('#back-to-top');
         await expect(button).not.toHaveClass(/fade-in/);
-        await page.mouse.wheel(0, 2500);
+        // The sidebar can grow as fixture widgets are added. Scroll past it rather
+        // than assuming a fixed page length makes the desktop button visible.
+        await page.mouse.wheel(0, await page.evaluate(() => document.documentElement.scrollHeight));
         await expect(button).toHaveClass(/fade-in/);
         await button.click();
         await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
@@ -175,7 +177,7 @@ test.describe('back to top button', () => {
     test('can be used from the keyboard', async ({ page, visit }) => {
         await page.setViewportSize({ width: 1440, height: 600 });
         await visit('/');
-        await page.mouse.wheel(0, 2500);
+        await page.mouse.wheel(0, await page.evaluate(() => document.documentElement.scrollHeight));
         const button = page.locator('#back-to-top');
         await expect(button).toHaveClass(/fade-in/);
         await button.focus();

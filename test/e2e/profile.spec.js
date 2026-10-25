@@ -1,9 +1,15 @@
 const { test, expect } = require('./fixtures');
-const { render, fixtureConfig, makePage } = require('../support/render');
+const { execFileSync } = require('child_process');
 
 const pages = {};
 
-test.beforeAll(async () => {
+test.beforeAll(() => {
+    // Render outside Playwright's require hook: its JSX transform creates test
+    // locator objects, whereas the real Hexo renderer must create Inferno VNodes.
+    Object.assign(pages, JSON.parse(execFileSync(process.execPath, ['-e', `
+    const { render, fixtureConfig, makePage } = require(process.argv[1]);
+    (async () => {
+    const pages = {};
     for (const variant of ['default', 'cyberpunk', 'm3e']) {
         const { html } = await render('layout', {
             config: fixtureConfig({ variant, author: 'Profile Author', search: { type: null }, widgets: [{
@@ -16,6 +22,12 @@ test.beforeAll(async () => {
         });
         pages[variant] = html;
     }
+    process.stdout.write(JSON.stringify(pages));
+    })().catch(error => { console.error(error); process.exitCode = 1; });
+    `, require.resolve('../support/render')], {
+        encoding: 'utf8',
+        env: { ...process.env, NODE_OPTIONS: '', NODE_ENV: 'production', BABEL_DISABLE_CACHE: '1' }
+    })));
 });
 
 for (const variant of ['default', 'cyberpunk', 'm3e']) {

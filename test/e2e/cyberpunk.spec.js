@@ -40,15 +40,15 @@ test.describe('cyberpunk variant', () => {
 
         await visit('/', { variant: 'variant-per-page' });
         await page.evaluate(() => { window.notReloaded = true; });
-        expect(await stylesheets()).toEqual(['Ubuntu', '/css/default.css']);
+        expect(await stylesheets()).toEqual(['/css/github-calendar.css', 'Ubuntu', '/css/default.css']);
         const defaultNavbar = await navbar();
 
         await pjaxClick(page.locator(`.column-main a[href="${CYBERPUNK_POST}"]`).first());
-        expect(await stylesheets()).toEqual(['Oxanium', '/css/cyberpunk.css']);
+        expect(await stylesheets()).toEqual(['/css/github-calendar.css', 'Oxanium', '/css/cyberpunk.css']);
         await expect.poll(navbar).not.toBe(defaultNavbar);
 
         await pjaxClick(page.locator(`.content a[href="${DEFAULT_POST}"]`));
-        expect(await stylesheets()).toEqual(['Ubuntu', '/css/default.css']);
+        expect(await stylesheets()).toEqual(['/css/github-calendar.css', 'Ubuntu', '/css/default.css']);
         await expect.poll(navbar).toBe(defaultNavbar);
 
         expect(await page.evaluate(() => window.notReloaded)).toBe(true);
@@ -61,6 +61,6 @@ test.describe('cyberpunk variant', () => {
         await context.grantPermissions(['clipboard-read', 'clipboard-write']);
         await visit('/2024/02/20/code-blocks/', { variant: 'cyberpunk' });
         await page.locator('figure.highlight button.copy').first().click();
-        expect((await page.evaluate(() => navigator.clipboard.readText())).trim()).toBe('const answer = 42;\nconsole.log(answer);');
+        expect((await page.evaluate(() => navigator.clipboard.readText())).replace(/\r\n/g, '\n').trim()).toBe('const answer = 42;\nconsole.log(answer);');
     });
 });

@@ -154,6 +154,9 @@ test.describe('sticky navbar on a narrow screen', () => {
         await expect(page.locator('#navbar-main-menu .navbar-dropdown a').first()).toBeVisible();
         const navbar = await box(page, '.navbar-main');
         expect(navbar.bottom).toBeLessThanOrEqual(300);
+        // Let the queued navbar fit finish measuring with its dropdowns closed
+        // before scrolling the expanded menu; measuring temporarily shrinks it.
+        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
         // The last link scrolls into the window with the menu, not with the page.
         const scrolls = await page.locator('.navbar-main').evaluate(el => {
             const overflows = el.scrollHeight > el.clientHeight;
@@ -162,6 +165,8 @@ test.describe('sticky navbar on a narrow screen', () => {
         });
         expect(scrolls).toBe(true);
         const last = page.locator('#navbar-main-menu > .navbar-item').last();
+        // Wait for the rendered scroll geometry before testing the link's hit region.
+        await expect.poll(() => last.evaluate(el => el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(300);
         const { top, bottom } = await last.evaluate(el => el.getBoundingClientRect().toJSON());
         expect(bottom).toBeLessThanOrEqual(300);
         expect(await regionAt(page, NARROW.width / 2, (top + bottom) / 2)).toBe('.navbar-main');

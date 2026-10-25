@@ -2,6 +2,10 @@
  * Global mocha setup (see .mocharc.yml).
  * Filters known, harmless third-party noise so test output stays readable.
  */
+// Browser runs can leave Playwright-transformed JSX in Babel's shared disk cache.
+// Compile fresh with the renderer's Inferno loader, including in spawned Node tests.
+process.env.BABEL_DISABLE_CACHE = '1';
+
 const NOISE = [
     // babel-plugin-inferno uses deprecated @babel/types builders; not actionable here.
     /has been deprecated, please migrate to/,

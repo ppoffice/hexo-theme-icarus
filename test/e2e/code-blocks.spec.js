@@ -28,7 +28,7 @@ test.describe('code blocks', () => {
         await expect(buttons).toHaveCount(3);
         await buttons.first().click();
         const copied = await page.evaluate(() => navigator.clipboard.readText());
-        expect(copied.trim()).toBe('const answer = 42;\nconsole.log(answer);');
+        expect(copied.replace(/\r\n/g, '\n').trim()).toBe('const answer = 42;\nconsole.log(answer);');
         expect(await page.evaluate(() => String(window.getSelection())), 'selection is cleared').toBe('');
     });
 
