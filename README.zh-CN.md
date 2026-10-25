@@ -22,7 +22,7 @@
 
 ## 快速开始
 
-在 Hexo 7.1 以上或 Hexo 8 站点的根目录下运行：
+安装发布版时，在兼容 `^7.1.1 || ^8.0.0` 的 Hexo 站点根目录运行：
 
 ```shell
 npm install hexo-theme-icarus hexo-renderer-inferno
@@ -31,7 +31,7 @@ hexo server
 ```
 
 第一次运行时，Icarus 会在站点根目录生成 `_config.icarus.yml`，每个配置项都附有说明。
-其他安装方式请看[用户指南](https://ppoffice.github.io/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/)里的「Icarus快速上手」。
+环境要求、源码安装及发布包与当前开发代码的区别，请看[Icarus快速上手](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/icarus快速上手/)。
 
 ## 亮点
 
@@ -77,29 +77,24 @@ PJAX 无刷新加载页面，支持键盘操作和屏幕阅读器，内置 17 �
 
 | 类型 | 插件 |
 |---|---|
-| [评论](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk、Beaudar、畅言、Cusdis、Disqus、DisqusJS、Facebook、Giscus、Gitalk、Gitment（已弃用）、Isso、来必力（LiveRe）、Twikoo、Utterances、Valine（已弃用）、Waline |
+| [评论](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk、Beaudar、畅言、Cusdis、Disqus、DisqusJS、Facebook、Giscus、Gitalk 2（预览版）、Gitment（已弃用）、Isso、来必力（LiveRe）、Twikoo、Utterances、Valine（已弃用）、Waline |
 | [搜索](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/) | Algolia、百度、Google 自定义搜索、Insight（内置） |
-| [分享](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny、百度分享、Share.js、ShareThis |
+| [分享](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny、百度分享（已弃用）、Web Share + AddToAny（Share.js兼容入口）、ShareThis |
 | [打赏](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/) | 爱发电、支付宝、Buy Me a Coffee、Patreon、PayPal、微信 |
 | [统计](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | 百度统计、Bing 网站管理员工具、不蒜子、CNZZ、Google Analytics、Hotjar、Matomo、StatCounter、Twitter 转化跟踪、Umami、Waline 阅读量 |
 | [小组件](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | 个人信息、文章目录、最新文章、归档、分类、标签、GitHub 贡献日历、链接、Google AdSense、follow.it、Google FeedBurner（已弃用） |
-| [其他](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | 回到顶部、Cookie 提示、图片画廊（lightGallery + Justified Gallery）、KaTeX、MathJax、旧浏览器提示、页面加载动画、悬停预加载页面、进度条 |
+| [其他](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | 回到顶部、Cookie 提示、图片画廊（lightGallery + Justified Gallery）、KaTeX、MathJax 4、浏览器能力提示、页面加载动画、悬停预加载页面、进度条 |
 
 大部分插件由 [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno) 提供。
-代码块可以使用 [highlight.js](https://highlightjs.org/) 的任意主题，暗色页面还可以单独指定一个。
-代码块可以默认折叠，或在标题后加上 `>folded` 单独折叠；折叠后还可以保留前几行作为渐隐的预览，点击预览即可展开：
-
-```yaml
-article:
-    highlight:
-        fold: unfolded      # "folded"、"unfolded"，或 "" 关闭折叠
-        fold_preview: 5     # 预览的行数；0（默认）则完全隐藏折叠的代码块
-```
 
 </details>
 
 ## 文档
 
+[快速上手](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/icarus快速上手/) ·
+[主题配置](https://ppoffice.github.io/hexo-theme-icarus/Configuration/icarus用户指南-主题配置/) ·
+[升级指南](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/升级指南/) ·
+[常见问题](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/常见问题/) ·
 [中文用户指南](https://ppoffice.github.io/hexo-theme-icarus/tags/Icarus%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/) ·
 [全部文档](https://ppoffice.github.io/hexo-theme-icarus/categories/)
 

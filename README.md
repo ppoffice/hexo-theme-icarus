@@ -22,7 +22,7 @@ A simple, delicate, and modern theme for the static site generator <a href="http
 
 ## Quick Start
 
-In the root directory of your Hexo 7.1+ or Hexo 8 site:
+For a published install, in the root directory of a Hexo site compatible with `^7.1.1 || ^8.0.0`:
 
 ```shell
 npm install hexo-theme-icarus hexo-renderer-inferno
@@ -32,7 +32,7 @@ hexo server
 
 Icarus creates `_config.icarus.yml`, with every option described, on the first run.
 See [Getting Started](https://ppoffice.github.io/hexo-theme-icarus/uncategorized/getting-started-with-icarus/)
-for other ways to install it.
+for requirements, source installs, and the distinction between published packages and the current development checkout.
 
 ## Highlights
 
@@ -78,25 +78,15 @@ PJAX page loading, keyboard and screen reader support, and translations into 17 
 
 | Type | Plugins |
 |---|---|
-| [Comment](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk, Beaudar, Changyan, Cusdis, Disqus, DisqusJS, Facebook, Giscus, Gitalk, Gitment (deprecated), Isso, LiveRe, Twikoo, Utterances, Valine (deprecated), Waline |
+| [Comment](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk, Beaudar, Changyan, Cusdis, Disqus, DisqusJS, Facebook, Giscus, Gitalk 2 (preview), Gitment (deprecated), Isso, LiveRe, Twikoo, Utterances, Valine (deprecated), Waline |
 | [Search](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/) | Algolia, Baidu, Google CSE, Insight (built-in) |
-| [Share](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny, Baidu Share, Share.js, ShareThis |
+| [Share](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny, Baidu Share (deprecated), Web Share + AddToAny (Share.js compatibility), ShareThis |
 | [Donate](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/) | Afdian, Alipay, Buy Me a Coffee, Patreon, PayPal, WeChat Pay |
 | [Analytics](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | Baidu Statistics, Bing Webmaster, BuSuanZi, CNZZ, Google Analytics, Hotjar, Matomo, StatCounter, Twitter Conversion Tracking, Umami, Waline page views |
 | [Widgets](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | Profile, Table of Contents, Recent Posts, Archives, Categories, Tags, GitHub Contributions, Links, Google AdSense, follow.it, Google FeedBurner (deprecated) |
-| [Others](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax, Outdated Browser, Page Loading Animations, Page Prefetching on Hover, Progress Bar |
+| [Others](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax 4, Browser Capability Notice, Page Loading Animations, Page Prefetching on Hover, Progress Bar |
 
 Most plugins are provided by [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).
-Code blocks can use any [highlight.js](https://highlightjs.org/) theme, with a separate one for dark pages.
-They can be folded, by default or with a `>folded` marker after their caption, and a folded block can keep its first
-lines as a faded-out preview that unfolds it when clicked:
-
-```yaml
-article:
-    highlight:
-        fold: unfolded      # "folded", "unfolded", or "" to disable folding
-        fold_preview: 5     # number of lines of the preview; 0 (the default) hides folded blocks
-```
 
 </details>
 
