@@ -79,7 +79,7 @@ PJAX 无刷新加载页面，支持键盘操作和屏幕阅读器，内置 17 �
 |---|---|
 | [评论](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk、Beaudar、畅言、Cusdis、Disqus、DisqusJS、Facebook、Giscus、Gitalk 2（预览版）、Gitment（已弃用）、Isso、来必力（LiveRe）、Twikoo、Utterances、Valine（已弃用）、Waline |
 | [搜索](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/) | Algolia、百度、Google 自定义搜索、Insight（内置） |
-| [分享](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny、百度分享（已弃用）、Web Share + AddToAny（Share.js兼容入口）、ShareThis |
+| [分享](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny、百度分享（已弃用）、Web Share、ShareThis |
 | [打赏](https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/) | 爱发电、支付宝、Buy Me a Coffee、Patreon、PayPal、微信 |
 | [统计](https://ppoffice.github.io/hexo-theme-icarus/Plugins/Analytics/icarus-user-guide-web-analytics-plugins/) | 百度统计、Bing 网站管理员工具、不蒜子、CNZZ、Google Analytics、Hotjar、Matomo、StatCounter、Twitter 转化跟踪、Umami、Waline 阅读量 |
 | [小组件](https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/) | 个人信息、文章目录、最新文章、归档、分类、标签、GitHub 贡献日历、链接、Google AdSense、follow.it、Google FeedBurner（已弃用） |

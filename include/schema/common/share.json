@@ -18,6 +18,9 @@
         },
         {
             "$ref": "/share/sharejs.json"
+        },
+        {
+            "$ref": "/share/web_share.json"
         }
     ]
 }

@@ -5,8 +5,8 @@
         try {
             const Pjax = window.Pjax || function() {};
             const pjax = new Pjax({
-                // Gallery links belong to the lightbox, not page navigation.
-                elements: 'a[href]:not(.gallery-item), form[action]',
+                // Lightboxes and share SDKs own their links, including SDK-generated local URLs.
+                elements: 'a[href]:not(.gallery-item):not(.a2a_kit a):not([data-share-provider] a):not(.sharethis-inline-share-buttons a), form[action]',
                 selectors: [
                     // Stylesheets are switched with appearance: their number varies.
                     '[data-pjax]:not(link)',
