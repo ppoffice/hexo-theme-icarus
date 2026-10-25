@@ -214,6 +214,26 @@ html .breadcrumb li.is-active a
     color: var(--m3-on-surface-variant)
     font-weight: 500
 
+// Path chips share article-category sizing; the current item keeps its non-interactive colors.
+html .breadcrumb li:not(:first-child):not(.is-active) > a[href],
+html .breadcrumb li.is-active > a[aria-current]
+    height: auto
+    min-height: 26px
+    padding: 0 10px
+    padding-inline: 10px
+    font-size: .85rem
+    font-weight: 600
+    line-height: 1.5
+
+html .breadcrumb li:not(:first-child):not(.is-active) > a[href]
+    background: var(--acc-c, var(--m3-secondary-container))
+    color: var(--acc-on-c, var(--m3-on-secondary-container))
+
+html .breadcrumb li:not(:first-child):not(.is-active) > a[href]:is(:hover, :focus-visible)
+    border-radius: 13px
+    background: var(--m3-secondary)
+    color: var(--m3-on-secondary)
+
 html .breadcrumb li + li::before
     content: "\f054"
     flex: none

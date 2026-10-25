@@ -370,6 +370,15 @@ html body .cc-window .cc-compliance > .cc-btn
 html body .cc-window .cc-compliance > .cc-btn:is(:hover, :focus-visible)
     border-radius: 24px
 
+// Edgeless removes the vendor's container padding; inset actions from the rounded shell.
+html body .cc-window.cc-floating.cc-theme-edgeless .cc-compliance
+    box-sizing: border-box
+    gap: 12px
+    padding: 8px 24px 24px
+
+html body .cc-window.cc-floating.cc-theme-edgeless .cc-compliance > .cc-btn
+    margin: 0
+
 @supports (animation-timeline: scroll())
     html .navbar-main[data-sticky]
         animation: m3-bar linear both

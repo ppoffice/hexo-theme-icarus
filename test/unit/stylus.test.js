@@ -59,6 +59,8 @@ describe('include/stylus (locating bulma-stylus)', function() {
             const css = await compile(path.join(env.theme, `source/css/${variant}.styl`), stylusFilter());
             assert.match(css, /\.navbar-main/);
             assert.match(css, /\.column-main/);
+            assert.match(css, /\.searchbox-google \.searchbox-body \.gs-webResult\.gs-result > \.gsc-thumbnail\s*\{[^}]*float: right;[^}]*width: 64px;/);
+            assert.match(css, /\.searchbox-google \.searchbox-body a:focus-visible/);
         });
     });
 });
@@ -97,6 +99,23 @@ describe('source/css (native m3e Stylus)', function() {
             const source = fs.readFileSync(file, 'utf8').replace(/^@import 'default'\r?\n/, '');
             const css = await compile(file, null, source, compress);
             const rules = normalizeCss(css);
+            const readingProgress = rules.flatMap(rule => rule.rules || []).find(rule => rule.type === 'rule'
+                && rule.selectors.includes('html body:has(.card-content.article h1.title)::after'));
+            const readingHeight = readingProgress.declarations.find(declaration => declaration.property === 'height');
+            assert.equal(readingHeight.value, '3px');
+            readingHeight.value = '4px'; // Preserve the historical AST fingerprint.
+            const galleryCaption = rules.find(rule => rule.type === 'rule'
+                && rule.selectors.includes('html .content .justified-gallery > a > .caption'));
+            assert.deepEqual(galleryCaption.declarations.shift(),
+                { type: 'declaration', property: 'color', value: '#fff' });
+            // Keep the original fingerprint while checking the intentional CJK fallback change.
+            const monoFont = rules.flatMap(rule => rule.declarations || [])
+                .find(declaration => declaration.property === '--m3-font-mono');
+            assert.equal(monoFont.value.replace(/,\s*/g, ', '),
+                '"Roboto Mono", "Source Code Pro", Consolas, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-monospace, monospace');
+            monoFont.value = compress
+                ? '"Roboto Mono","Source Code Pro",ui-monospace,Consolas,monospace'
+                : '"Roboto Mono", "Source Code Pro", ui-monospace, Consolas, monospace';
             // Calendar and gallery adapters were added after the refactor. Check them exactly, then
             // keep comparing every original rule against the historical fingerprint.
             const isCalendarAdapter = rule => rule.type === 'rule'
@@ -106,16 +125,54 @@ describe('source/css (native m3e Stylus)', function() {
             const isGalleryAdapter = rule => rule.type === 'rule'
                 && rule.selectors.some(selector => selector.includes('.lg-container'));
             assert.deepEqual(rules.filter(isGalleryAdapter), normalizeCss(`
-                html:root body .lg-container .lg-sub-html {
-                    color: var(--m3-on-surface);
-                    background: var(--m3-surface-container);
-                    border-radius: 0 0 var(--m3-card-r) var(--m3-card-r);
-                }
                 html:root body .lg-container .lg-icon:focus-visible {
                     outline-color: var(--m3-primary);
                 }
             `));
-            assert.equal(createHash('sha256').update(JSON.stringify(rules.filter(rule => !isCalendarAdapter(rule) && !isGalleryAdapter(rule)))).digest('hex'), expected);
+            const isGoogleAdapter = rule => rule.type === 'rule'
+                && JSON.stringify(rule.selectors) === JSON.stringify(['html .searchbox-google']);
+            assert.deepEqual(rules.filter(isGoogleAdapter), normalizeCss(`
+                html .searchbox-google {
+                    --search-result-text: var(--m3-on-surface);
+                    --search-result-muted: var(--m3-on-surface-variant);
+                    --search-result-link: var(--m3-primary);
+                    --search-result-border: var(--m3-outline-variant);
+                    --search-result-surface: var(--m3-surface-container);
+                    --search-result-hover: var(--m3-surface-container-high);
+                }
+            `));
+            const isCookieSpacing = rule => rule.type === 'rule'
+                && rule.selectors.some(selector => selector.includes('.cc-window.cc-floating.cc-theme-edgeless'));
+            assert.deepEqual(rules.filter(isCookieSpacing), normalizeCss(`
+                html body .cc-window.cc-floating.cc-theme-edgeless .cc-compliance {
+                    box-sizing: border-box;
+                    gap: 12px;
+                    padding: 8px 24px 24px;
+                }
+                html body .cc-window.cc-floating.cc-theme-edgeless .cc-compliance > .cc-btn { margin: 0; }
+            `));
+            const isCaptionFont = rule => rule.type === 'rule'
+                && JSON.stringify(rule.selectors) === JSON.stringify(['html .content figure.highlight figcaption span']);
+            assert.deepEqual(rules.filter(isCaptionFont), normalizeCss(
+                'html .content figure.highlight figcaption span { font-family: inherit; }'));
+            const isPathChip = rule => rule.type === 'rule'
+                && rule.selectors.some(selector => selector.includes('.breadcrumb li:not(:first-child):not(.is-active) > a[href]'));
+            assert.deepEqual(rules.filter(isPathChip).map(rule => ({ ...rule,
+                selectors: rule.selectors.map(selector => selector.replace(/\s+/g, ' ')) })), normalizeCss(`
+                html .breadcrumb li:not(:first-child):not(.is-active) > a[href],
+                html .breadcrumb li.is-active > a[aria-current] {
+                    height: auto; min-height: 26px; padding: 0 10px; padding-inline: 10px;
+                    font-size: ${compress ? '.85rem' : '0.85rem'}; font-weight: 600; line-height: 1.5;
+                }
+                html .breadcrumb li:not(:first-child):not(.is-active) > a[href] {
+                    background: var(--acc-c,${compress ? '' : ' '}var(--m3-secondary-container));
+                    color: var(--acc-on-c,${compress ? '' : ' '}var(--m3-on-secondary-container));
+                }
+                html .breadcrumb li:not(:first-child):not(.is-active) > a[href]:is(:hover,${compress ? '' : ' '}:focus-visible) {
+                    border-radius: 13px; background: var(--m3-secondary); color: var(--m3-on-secondary);
+                }
+            `));
+            assert.equal(createHash('sha256').update(JSON.stringify(rules.filter(rule => !isCalendarAdapter(rule) && !isGalleryAdapter(rule) && !isGoogleAdapter(rule) && !isCookieSpacing(rule) && !isCaptionFont(rule) && !isPathChip(rule)))).digest('hex'), expected);
         });
     }
 
@@ -280,7 +337,10 @@ describe('source/css (appearance)', function() {
     it('only applies the dark colors to pages with a dark appearance, or an "auto" one in a dark system color scheme', () => {
         const darkRules = rules(css.slice(light.trimEnd().length))
             // The layout of the logo that switches to the dark one (layout/misc/logo.jsx)
-            .filter(rule => rule.selectors.join() !== '.navbar-logo picture,.footer-logo picture');
+            .filter(rule => rule.selectors.join() !== '.navbar-logo picture,.footer-logo picture')
+            // Reading progress applies to both appearances, independently of the dark palette.
+            .filter(rule => !(rule.selectors[0] === '@supports (animation-timeline: scroll())'
+                && rule.body.includes('default-reading-progress')));
         assert.ok(darkRules.length > 100);
         for (const rule of darkRules) {
             const auto = rule.media.some(media => media.includes('(prefers-color-scheme: dark)'));

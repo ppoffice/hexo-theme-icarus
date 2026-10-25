@@ -23,6 +23,21 @@ async function expectStableShape(page, locator) {
 
 test.describe('Material 3 Expressive', () => {
     test.use({ viewport: { width: 1600, height: 1000 } });
+    test('uses the UI font for code captions without changing code or icon fonts', async ({ page, visit }) => {
+        await visit('/2024/02/20/code-blocks/', { variant: 'm3e' });
+        const fonts = await page.locator('figure.highlight').first().evaluate(figure => {
+            const caption = figure.querySelector('figcaption');
+            const title = [...caption.querySelectorAll('span')].find(span => span.textContent.trim() === 'Captioned example');
+            return { caption: getComputedStyle(caption).fontFamily, title: getComputedStyle(title).fontFamily,
+                code: getComputedStyle(figure.querySelector('pre')).fontFamily,
+                icons: [...caption.querySelectorAll('i')].map(icon => getComputedStyle(icon).fontFamily) };
+        });
+        expect(fonts.title).toBe(fonts.caption);
+        expect(fonts.title).toContain('Roboto Flex');
+        expect(fonts.code).toContain('Roboto Mono');
+        expect(fonts.icons.length).toBeGreaterThan(0);
+        expect(fonts.icons.every(font => font.includes('Font Awesome'))).toBe(true);
+    });
     test('follows the system only for auto and keeps forced appearances', async ({ page, visit, diagnostics }) => {
         await page.emulateMedia({ colorScheme: 'light' });
         await visit('/', { variant: 'm3e' });
@@ -146,6 +161,11 @@ test.describe('Material 3 Expressive', () => {
         await visit('/2024/05/03/m3e-components/', { variant: 'm3e' });
         for (const colorScheme of ['light', 'dark']) {
             await page.emulateMedia({ colorScheme });
+            await page.evaluate(value => document.documentElement.setAttribute('data-appearance', value), colorScheme);
+            const galleryCaption = page.locator('.justified-gallery > a > .caption');
+            await expect(galleryCaption).toHaveCSS('color', 'rgb(255, 255, 255)');
+            await page.locator('.justified-gallery > a').hover();
+            await expect(galleryCaption).toHaveCSS('color', 'rgb(255, 255, 255)');
             for (const [name, token] of [['success', 'success'], ['warning', 'warning'], ['danger', 'error']]) {
                 const tag = page.locator(`.content a.tag.is-${name}`);
                 const expected = await page.evaluate(token => {
@@ -481,6 +501,36 @@ test.describe('Material 3 Expressive', () => {
         await visit('/2023/07/01/typography/', { variant: 'm3e' });
         const codeFamily = await page.locator('figure.highlight pre').first().evaluate(el => getComputedStyle(el).fontFamily);
         expect(codeFamily).toContain('Roboto Mono');
+        const cjkFallbacks = '"Noto Sans SC", "PingFang SC", "Microsoft YaHei"';
+        expect(family).toContain(cjkFallbacks);
+        expect(codeFamily).toContain(cjkFallbacks);
+        expect(codeFamily.indexOf(cjkFallbacks)).toBeLessThan(codeFamily.indexOf('ui-monospace'));
+        expect(codeFamily).toMatch(/^"Roboto Mono", "Source Code Pro", Consolas,/);
+        await page.evaluate(() => {
+            for (const [id, parent] of [['body-cjk-probe', document.body],
+                ['code-cjk-probe', document.querySelector('figure.highlight pre')]]) {
+                const probe = document.createElement('span');
+                probe.id = id;
+                probe.textContent = '这是一个行内公式';
+                parent.appendChild(probe);
+            }
+        });
+        const session = await page.context().newCDPSession(page);
+        try {
+            await session.send('DOM.enable');
+            await session.send('CSS.enable');
+            const { root } = await session.send('DOM.getDocument');
+            const fonts = [];
+            for (const selector of ['#body-cjk-probe', '#code-cjk-probe']) {
+                const { nodeId } = await session.send('DOM.querySelector', { nodeId: root.nodeId, selector });
+                const result = await session.send('CSS.getPlatformFontsForNode', { nodeId });
+                fonts.push(result.fonts.filter(font => font.glyphCount > 0).map(font => font.familyName).sort());
+            }
+            expect(fonts[0].length).toBeGreaterThan(0);
+            expect(fonts[1]).toEqual(fonts[0]);
+        } finally {
+            await session.detach();
+        }
     });
 
     test('chips category names including the current category, keeping the index plain', async ({ page, visit }) => {
@@ -499,12 +549,32 @@ test.describe('Material 3 Expressive', () => {
         expect(padding.left).toBeGreaterThan(8);
         expect(padding.left).toBe(padding.right);
         const ancestor = links.nth(1);
-        await expect(ancestor).toHaveCSS('background-color', 'oklch(0.95 0.015 285)');
-        await expect(ancestor).toHaveCSS('border-radius', '8px');
-        await ancestor.hover();
-        await expect(ancestor).toHaveCSS('border-radius', '16px');
+        const articleChip = page.locator('.article-meta a.link-muted').first();
+        const chipStyle = element => {
+            const style = getComputedStyle(element);
+            return ['background-color', 'color', 'font-size', 'font-weight', 'height', 'padding-left', 'padding-right', 'border-radius', 'line-height']
+                .map(property => style.getPropertyValue(property));
+        };
+        for (const appearance of ['light', 'dark']) {
+            await page.mouse.move(0, 0);
+            await page.evaluate(value => document.documentElement.setAttribute('data-appearance', value), appearance);
+            await expect(ancestor).toHaveCSS('border-radius', '8px');
+            await expect.poll(async () => JSON.stringify(await ancestor.evaluate(chipStyle))
+                === JSON.stringify(await articleChip.evaluate(chipStyle))).toBe(true);
+            expect((await links.last().evaluate(chipStyle)).slice(2)).toEqual((await articleChip.evaluate(chipStyle)).slice(2));
+            await articleChip.hover();
+            await expect(articleChip).toHaveCSS('border-radius', '13px');
+            const hoveredChip = await articleChip.evaluate(chipStyle);
+            await ancestor.hover();
+            await expect(ancestor).toHaveCSS('border-radius', '13px');
+            await expect.poll(() => ancestor.evaluate(chipStyle)).toEqual(hoveredChip);
+        }
+        await page.evaluate(() => document.documentElement.setAttribute('data-appearance', 'light'));
         await expect(ancestor).toHaveCSS('text-decoration-line', 'none');
         await expect(links.last()).toHaveAttribute('aria-current', 'page');
+        await expect(links.last()).toHaveCSS('height', '26px');
+        await expect(links.last()).toHaveCSS('padding-left', '10px');
+        await expect(links.last()).toHaveCSS('font-weight', '600');
         await expect(links.last()).toHaveCSS('background-color', 'oklch(0.95 0.015 285)');
         await expect(links.last()).toHaveCSS('color', 'oklch(0.42 0.025 285)');
         await expect(links.last()).toHaveCSS('border-radius', '8px');
@@ -530,6 +600,9 @@ test.describe('Material 3 Expressive', () => {
         await expect(links.first()).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
         await expect(links.first()).toHaveCSS('border-radius', '0px');
         await expect(links.last()).toHaveAttribute('aria-current', 'page');
+        await expect(links.last()).toHaveCSS('height', '26px');
+        await expect(links.last()).toHaveCSS('padding-left', '10px');
+        await expect(links.last()).toHaveCSS('font-weight', '600');
         await expect(links.last()).toHaveCSS('background-color', 'oklch(0.95 0.015 285)');
         await expect(links.last()).toHaveCSS('color', 'oklch(0.42 0.025 285)');
         await expect(links.last()).toHaveCSS('border-radius', '8px');
