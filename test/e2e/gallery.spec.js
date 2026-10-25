@@ -57,21 +57,31 @@ for (const variant of ['default', 'appearance-dark', 'cyberpunk', 'm3e']) {
         expect(await page.locator('.lg-current .lg-object').getAttribute('onerror')).toBeNull();
         await expect(page.locator('.lg-show .lg-thumb-item')).toHaveCount(2);
         await expect(page.locator('.lg-show .lg-fullscreen')).toHaveCount(1);
+        // afterOpen initializes the zoom plugin's scale; wait before using its controls.
+        await expect.poll(() => page.evaluate(() => window.__realLightbox.lgOpened && !window.__realLightbox.lgBusy)).toBe(true);
         if (variant !== 'm3e') {
             await expect.poll(() => page.locator('.lg-current .lg-object').evaluate(image => image.naturalWidth)).toBe(1600);
             await page.locator('.lg-show .lg-zoom-in').click();
             await expect(page.locator('.lg-show .lg-outer')).toHaveClass(/lg-zoomed/);
+            // In v3 these classes also identify the actual-size toggle; its animation
+            // lock outlasts the class change, so a second click must wait for readiness.
+            await expect.poll(() => page.evaluate(() => {
+                const zoom = window.__realLightbox.plugins.find(plugin => 'zoomInProgress' in plugin);
+                return zoom && !zoom.zoomInProgress;
+            })).toBe(true);
             await page.locator('.lg-show .lg-zoom-out').click();
             await expect(page.locator('.lg-show .lg-outer')).not.toHaveClass(/lg-zoomed/);
         }
         const colors = await page.locator('.lg-show .lg-sub-html').evaluate(el => {
             const style = getComputedStyle(el);
-            return { color: style.color, background: style.backgroundColor, radius: style.borderBottomLeftRadius };
+            return { color: style.color, background: style.backgroundColor,
+                backdrop: getComputedStyle(document.querySelector('.lg-show .lg-backdrop')).backgroundColor,
+                shadow: style.textShadow };
         });
-        expect(colors.background).not.toBe('rgba(0, 0, 0, 0)');
-        expect(colors.color).not.toBe(colors.background);
-        if (variant === 'm3e') expect(colors.radius).toBe('28px');
-        await expect.poll(() => page.evaluate(() => window.__realLightbox.lgOpened && !window.__realLightbox.lgBusy)).toBe(true);
+        expect(colors.background).toBe('rgba(0, 0, 0, 0)');
+        expect(colors.color).toBe('rgb(255, 255, 255)');
+        expect(colors.backdrop).toBe('rgb(0, 0, 0)');
+        expect(colors.shadow).not.toBe('none');
         await page.keyboard.press('ArrowRight');
         await expect(page.locator('.lg-show .lg-sub-html')).toHaveText('Second');
         await page.keyboard.press('Escape');
@@ -159,6 +169,33 @@ test('loads the real lightGallery core and plugins on the first enabled PJAX pag
     await expect(page).toHaveTitle('gallery-off - Icarus Fixture');
     await expect(page.locator('.lg-container')).toHaveCount(0);
     expect(await page.evaluate(() => window.__nativeGalleryDocument)).toBe(true);
+    expect(diagnostics.pageErrors).toEqual([]);
+});
+
+test('keeps native gallery dialogs styled when PJAX switches to the loli provider', async ({ page, visit, diagnostics }) => {
+    const missingAssets = [];
+    await page.route('https://cdnjs.loli.net/ajax/libs/lightgallery/3.0.0/**', route => {
+        missingAssets.push(route.request().url());
+        return route.fulfill({ status: 404, contentType: 'text/html', body: 'Not found' });
+    });
+    await mount(page, visit, 'gallery-off');
+    await page.unroute('**/lightgallery.min.js');
+    await page.evaluate(() => { window.__galleryProviderDocument = true; });
+    for (const name of ['gallery-on', 'gallery-loli', 'gallery-next', 'gallery-loli']) {
+        await page.locator(`.gallery-nav[href="/${name}/"]`).click();
+        await expect(page).toHaveTitle(name + ' - Icarus Fixture');
+        await expect(page.locator('.lg-container')).toHaveCount(1);
+        // An unstyled closed dialog is the giant SVG panel that used to spill below the footer.
+        await expect(page.locator('.lg-container')).toHaveCSS('display', 'none');
+        await expect(page.locator('link[href*="lightgallery-bundle"]')).toHaveAttribute('href',
+            'https://cdn.jsdelivr.net/npm/lightgallery@3.0.0/css/lightgallery-bundle.min.css');
+        await page.locator('#plain').click();
+        await expect(page.locator('.lg-show .lg-outer')).toHaveCSS('position', 'fixed');
+        await page.keyboard.press('Escape');
+        await expect(page.locator('.lg-container.lg-show')).toHaveCount(0);
+    }
+    expect(missingAssets).toEqual([]);
+    expect(await page.evaluate(() => window.__galleryProviderDocument)).toBe(true);
     expect(diagnostics.pageErrors).toEqual([]);
 });
 

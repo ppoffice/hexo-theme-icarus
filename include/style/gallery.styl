@@ -6,10 +6,12 @@
 // Vendor CSS loads after the theme; keep caption overrides specific to the dialog.
 body .lg-container
     .lg-sub-html
-        color: $text
-        background: $scheme-main
+        // The lightbox stays dark regardless of the page's appearance or variant.
+        color: #fff
+        background: transparent
+        text-shadow: 0 1px 3px rgba(0, 0, 0, .8)
         font-family: $family-sans-serif
-        border-radius: 0 0 $card-radius $card-radius
+        border-radius: 0
 
         overflow-wrap: anywhere
 

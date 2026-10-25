@@ -3,9 +3,9 @@ const { render, fixtureConfig, makePage } = require('./render');
 
 (async () => {
     const pages = {};
-    for (const [name, gallery] of [['gallery-on', true], ['gallery-off', false], ['gallery-next', true]]) {
+    for (const [name, gallery] of [['gallery-on', true], ['gallery-off', false], ['gallery-next', true], ['gallery-loli', true]]) {
         const { html } = await render('layout', {
-            config: fixtureConfig({ widgets: [], search: { type: null }, plugins: { pjax: true, gallery, back_to_top: false } }),
+            config: fixtureConfig({ widgets: [], search: { type: null }, providers: { cdn: name === 'gallery-loli' ? 'loli' : 'jsdelivr' }, plugins: { pjax: true, gallery, back_to_top: false } }),
             page: makePage({ title: name, path: name + '/', permalink: 'http://localhost:4000/' + name + '/' }),
             site: { posts: [], categories: [], tags: [] },
             body: `<article class="article" id="gallery-article"><div class="content">
@@ -17,6 +17,7 @@ const { render, fixtureConfig, makePage } = require('./render');
                 <a class="gallery-nav" href="/gallery-on/">On</a>
                 <a class="gallery-nav" href="/gallery-off/">Off</a>
                 <a class="gallery-nav" href="/gallery-next/">Next</a>
+                <a class="gallery-nav" href="/gallery-loli/">Loli</a>
             </div></article>`
         });
         pages[name] = html;
