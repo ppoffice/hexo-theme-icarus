@@ -11,6 +11,40 @@ providers:
     cdn: loli
     fontcdn: loli
     iconcdn: loli
+navbar:
+    sticky: true
+    menu:
+        Home: /
+        Docs:
+            Getting Started: /uncategorized/getting-started-with-icarus/
+            Configuring the Theme: /Configuration/icarus-user-guide-configuring-the-theme/
+            Upgrade Guide: /uncategorized/upgrade-guide/
+            FAQ: /uncategorized/faq/
+            All Guides: /tags/Icarus-User-Guide/
+        Archives: /archives
+        Categories: /categories
+        Tags: /tags
+        About: /about
+    links:
+        Discuss on GitHub:
+            icon: fas fa-comments
+            url: 'https://github.com/ppoffice/hexo-theme-icarus/discussions'
+        Download on GitHub:
+            icon: fab fa-github
+            url: 'https://github.com/ppoffice/hexo-theme-icarus'
+article:
+    highlight:
+        theme: atom-one-light
+        clipboard: true
+        fold: unfolded
+        fold_preview: 3
+    readtime: true
+    update_time: false
+    licenses:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: 'https://creativecommons.org/'
+        'CC BY-NC-SA 4.0': 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
 ---
 
 Icarus的默认主题配置文件为`_config.icarus.yml`，它位于站点根目录中，与站点配置文件`_config.yml`放在一起。
@@ -41,7 +75,7 @@ Icarus使用此版本号来决定是否升级默认主题配置文件。
 请不要自己更改这个版本号。
 
 {% codeblock _config.icarus.yml lang:yaml %}
-version: 5.1.0
+version: 7.0.0
 {% endcodeblock %}
 
 ### 主题变体
@@ -63,6 +97,9 @@ Cyberpunk变体有自己的暗色配色，会忽略此设置。
 {% codeblock _config.icarus.yml lang:yaml %}
 appearance: auto
 {% endcodeblock %}
+
+使用`auto`时，访客还可以通过导航栏中的按钮在亮色与暗色之间切换。
+浏览器会记住访客的选择，下次访问时继续使用。
 
 和其他主题配置一样，`appearance`也可以在布局配置文件中为所有文章或页面设置，或在某个文章或页面的front-matter中单独设置（参见[配置文件与优先级](#配置文件与优先级)）。
 页面显示为暗色时，代码块会使用[代码高亮](#代码高亮)设置中的`dark_theme`，logo也会换成[`logo_dark`](#Logo)。
@@ -183,6 +220,19 @@ head:
 hexo-component-inferno 4.1.0及更早版本生成的配置文件会把`type`设为`blog`，但它并不是有效的Open Graph类型。
 如果你的配置文件里有`type: blog`，请把它留空。
 
+如果没有设置`image`，Icarus会依次使用文章front-matter中的`og_image`、`cover`或`thumbnail`，都没有时使用文章中的图片。
+如要在分享文章时使用封面以外的图片，请在文章的front-matter中设置`og_image`：
+
+{% codeblock post.md lang:yaml %}
+title: 分享图片
+cover: /gallery/covers/cover.jpg
+og_image: https://example.com/gallery/share.jpg
+---
+Post content...
+{% endcodeblock %}
+
+[Google Structured Data](#Google-Structured-Data)也使用同一张图片。
+
 ### Google Structured Data
 
 你可以在`head`配置中设置Google Structured Data。
@@ -225,6 +275,24 @@ head:
 
 自hexo-component-inferno 4.2.0起，每组中只有第一个`=`用来分隔属性名和属性值，所以属性值中可以包含`=`。
 如果属性值中需要使用`;`（或属性名中需要使用`=`），请用反斜杠转义，例如`'http-equiv=refresh;content=5\;url=https://example.com/'`。
+
+### Canonical URL与搜索索引
+
+Icarus会为每个页面添加指向其永久链接的canonical链接。
+如要让转载的文章指向原文URL，请在其front-matter的`head`部分设置`canonical_url`：
+
+{% codeblock source/_posts/republished-post.md lang:yaml %}
+title: 转载文章
+head:
+    canonical_url: https://example.com/original-post/
+---
+文章内容……
+{% endcodeblock %}
+
+front-matter中的`head`部分会替换这篇文章的整个`head`主题配置（参见[文章/页面的Front-matter](#文章-页面的Front-matter)）。
+请同时写上需要保留的`head`设置，例如`favicon`和`rss`。
+
+Icarus还会要求搜索引擎不要索引归档、分类和标签页面。
 
 ### RSS
 
@@ -283,6 +351,8 @@ navbar:
     # 导航栏是否固定在窗口顶部：true、mobile或false
     sticky: mobile
 {% endcodeblock %}
+
+本页在front-matter中将`sticky`设置为`true`，向下滚动即可看到效果。
 
 ### 页脚
 
@@ -353,6 +423,24 @@ article:
 {% endcodeblock %}
 ```
 
+本页在front-matter中将`fold_preview`设置为`3`，所以下面折叠的代码块会显示开头三行：
+
+{% codeblock "本页的front-matter" lang:yaml >folded %}
+article:
+    highlight:
+        theme: atom-one-light
+        clipboard: true
+        fold: unfolded
+        fold_preview: 3
+    readtime: true
+    update_time: false
+    licenses:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: 'https://creativecommons.org/'
+        'CC BY-NC-SA 4.0': 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
+{% endcodeblock %}
+
 ### 封面 & 缩略图
 
 若要为文章添加封面图，请在文章的front-matter中添加`cover`选项：
@@ -378,6 +466,24 @@ Post content...
 如果你在front-matter中使用的是图片的路径，你需要确保它是绝对或者相对于你的source目录的路径。
 例如，为使用`<your blog>/source/gallery/image.jpg`作为缩略图，你需要在front-matter中使用`/gallery/image.jpg`作为图片路径。
 
+### 文章语言
+
+站点的语言在站点配置文件中设置（参见{% post_link zh-CN/FAQ "常见问题" %}）。
+如要用其他语言撰写单篇文章或页面，请在其front-matter中设置`lang`或`language`：
+
+{% codeblock post.md lang:yaml %}
+title: Hello World
+lang: en
+---
+Post content...
+{% endcodeblock %}
+
+它的值为`<icarus_directory>/languages`中不带`.yml`后缀名的翻译文件名。
+它会设置页面的语言，以及页面上主题界面文字的语言，例如文章的标签和挂件的标题。
+它不会翻译你的文章内容。
+如果该语言没有对应的翻译，Icarus会先使用站点语言，再使用英文。
+评论插件有各自的语言设置，参见{% post_link zh-CN/Comment-Plugins "评论插件" %}。
+
 ### 文章阅读时间
 
 你可以将`article`部分的`readtime`设置为`true`来显示文章字数统计以及预计阅读时间。
@@ -386,6 +492,8 @@ Post content...
 article:
     readtime: true
 {% endcodeblock %}
+
+预计阅读时间按每分钟150字计算，每个汉字或日文假名计为一个字。
 
 ### 文章更新时间
 
@@ -432,6 +540,7 @@ article:
 
 文章距上次更新的天数由读者的浏览器计算，所以无需重新生成站点，提示也会按时显示。
 提示只显示在文章中，不会显示在页面或首页的文章摘要中。
+显示该提示的例子见{% post_link demo/search/Algolia "Algolia Search Plugin" %}。
 如要在某篇文章中关闭提示，请在它的front-matter中将`outdated_notice`设置为`false`：
 
 {% codeblock post.md lang:yaml %}
@@ -575,6 +684,37 @@ article:
 
 然而需要注意的是，一些Hexo定义的文章或页面属性不会覆盖掉其他配置源中的同名配置，如
 `title`、`date`、`updated`、`comments`（不是`comment`）、`layout`、`source`、`photos`和`excerpt`。
+
+如要为单篇文章关闭某个组件，请在front-matter中将它设置为`null`。
+例如，下面这篇文章不显示评论、分享按钮、打赏按钮和挂件：
+
+{% codeblock source/_posts/some-post.md lang:yaml %}
+title: 我的第一篇文章
+comment: null
+share: null
+donates: null
+widgets: null
+---
+# 文章标题
+{% endcodeblock %}
+
+注意这里是`comment`，而不是Hexo的`comments`：`comments: false`不会隐藏评论。
+
+#### 其他front-matter属性
+
+Icarus还会读取文章front-matter中的以下属性：
+
+| 属性 | 说明 |
+| --- | --- |
+| `author` | 在文章元信息中显示文章作者。 |
+| `top: true` | 在文章元信息中显示图钉图标，但不会改变文章的排列顺序。 |
+| `link` | 让首页中的标题、封面和“阅读更多”按钮，以及归档中的条目，链接到这个URL而不是文章本身。 |
+| `direction: rtl` | 让文章从右到左显示，适用于阿拉伯语、希伯来语等语言。 |
+| `lang`、`language` | 设置文章的语言，参见[文章语言](#文章语言)。 |
+| `cover`、`thumbnail` | 参见[封面 & 缩略图](#封面-缩略图)。 |
+| `og_image` | 参见[Open Graph](#Open-Graph)。 |
+| `updated` | 参见[文章更新时间](#文章更新时间)。 |
+| `outdated_notice: false` | 参见[过时文章提示](#过时文章提示)。 |
 
 ### 站点配置文件
 

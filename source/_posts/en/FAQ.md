@@ -32,7 +32,7 @@ I can't generate my site. / I met some errors when I generate my site.
 </div>
 </article>
 
-Icarus 6 runs on Node.js 14.0 or a newer version.
+Icarus 7 runs on Node.js 14.0 or a newer version.
 It also requires Hexo 7.1.1 or a newer version (Hexo 8 is supported since Icarus 6.2.0, and it
 requires Node.js 20.19.0 or a newer version).
 Apart from that, make sure you have all the Node.js dependencies installed.
@@ -63,6 +63,8 @@ Change the following setting:
 You can find all available translations under the `<icarus_directory>/languages` directory.
 The `<language_name>` is the translation file name without the `.yml` extension.
 If there is no translation for your language, Icarus falls back to English.
+To change the language of a single post, see
+<a href="{% post_path en/Configuring-Theme %}#Post-Language">Post Language</a>.
 
 
 ## Layout
@@ -273,6 +275,8 @@ For example, you can disable the comment plugins by commenting out the following
 + #     shortname: 
 {% endcodeblock %}
 
+To disable a plugin for a single post, see
+<a href="{% post_path en/Configuring-Theme %}#Post-Page-Front-matter">Post/Page Front-matter</a>.
 
 <article class="message message-immersive is-warning">
 <div class="message-body">

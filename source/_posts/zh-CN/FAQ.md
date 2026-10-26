@@ -34,7 +34,7 @@ providers:
 </div>
 </article>
 
-Icarus 6运行在Node.js 14.0或更新的版本上。
+Icarus 7运行在Node.js 14.0或更新的版本上。
 它同时依赖Hexo 7.1.1或更高版本(Icarus 6.2.0起支持Hexo 8，而Hexo 8需要Node.js 20.19.0或更新的版本)。
 除此之外，请确保所有的Node.js依赖已安装。
 你可以在[`<icarus_directory>/package.json`](https://github.com/ppoffice/hexo-theme-icarus/blob/master/package.json)
@@ -59,6 +59,7 @@ Icarus 6运行在Node.js 14.0或更新的版本上。
 你可以在`<icarus_directory>/languages`目录下找到所有可用的翻译。
 `<语言名>`为不带后缀名的翻译文件名。
 如果你的语言没有对应的翻译，Icarus会使用英文。
+如需修改单篇文章的语言，请参考<a href="{% post_path zh-CN/Configuring-Theme %}#文章语言">文章语言</a>。
 
 
 ## 布局
@@ -247,6 +248,7 @@ excerpt: 这是一篇关于...
 + #     shortname: 
 {% endcodeblock %}
 
+如要只为单篇文章关闭某个插件，请参考<a href="{% post_path zh-CN/Configuring-Theme %}#文章-页面的Front-matter">文章/页面的Front-matter</a>。
 
 <article class="message message-immersive is-warning">
 <div class="message-body">

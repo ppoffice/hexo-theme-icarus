@@ -28,7 +28,7 @@ open to a sea of improvement possibilities.
 
 Before you continue to the installation of Icarus, take some time to review the 
 [Hexo documentation](https://hexo.io).
-Icarus 6.6 requires Hexo 7.1.1 or a newer version (Hexo 7 or Hexo 8) and Node.js 14 or a newer version.
+Icarus 7.0 requires Hexo 7.1.1 or a newer version (Hexo 7 or Hexo 8) and Node.js 14 or a newer version.
 Note that Hexo 8 itself requires Node.js 20.19 or a newer version.
 To install Icarus, take one of the following approaches:
  
@@ -43,7 +43,7 @@ Alternatively, you can use Git to clone the Icarus repository to the `themes` di
 git clone https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus -b <version number> --depth 1
 {% endcodeblock %}
 
-Replace `<version number>` with the version you want, such as `-b 6.6.0`.
+Replace `<version number>` with the version you want, such as `-b 7.0.1`.
 The version tags of Icarus do not have a `v` prefix.
 You can omit `-b <version number>` to get the latest development version of Icarus.
 Leave `--depth 1` out if you want to download full Git commit history of Icarus as well.
@@ -66,9 +66,9 @@ ERROR Package hexo-component-inferno is not installed.
 ERROR Package hexo-renderer-inferno is not installed.
 ...
 ERROR Please install the missing dependencies in your Hexo site root directory:
-ERROR npm install --save bulma-stylus@0.8.0 hexo-component-inferno@^4.1.0 hexo-renderer-inferno@^1.0.2 ...
+ERROR npm install --save bulma-stylus@0.8.0 hexo-component-inferno@^5.0.0 hexo-renderer-inferno@^1.0.2 ...
 ERROR or:
-ERROR yarn add bulma-stylus@0.8.0 hexo-component-inferno@^4.1.0 hexo-renderer-inferno@^1.0.2 ...
+ERROR yarn add bulma-stylus@0.8.0 hexo-component-inferno@^5.0.0 hexo-renderer-inferno@^1.0.2 ...
 {% endcodeblock %}
 
 Run the printed `npm install` (or `yarn add`) command in the root directory of your site, not in

@@ -19,247 +19,43 @@ toc: true
 
 <!-- more -->
 
-### 从6.5升级至6.6
-
-1. 将Icarus升级到6.6.0。
-   如果你是通过NPM安装的主题，在站点根目录运行如下命令：
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm install --save hexo-theme-icarus@^6.6.0
-   {% endcodeblock %}
-
-   如果你是从源码安装的主题，请用6.6.0的源码替换`themes/icarus`。
-   Icarus 6.6的依赖与6.5相同。
-
-2. `hexo-component-inferno` 4.2.2会等归档页和最新文章挂件中的文章缩略图快要滚动到时才加载它们。
-   Icarus 6.6仍然支持4.2.1，所以请更新它以获得这项改进。
-   如果你是通过NPM安装的主题，运行：
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm update hexo-component-inferno
-   {% endcodeblock %}
-
-   如果你是从源码安装的主题，运行：
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm install --save hexo-component-inferno@^4.2.2
-   {% endcodeblock %}
-
-3. 如果你保留了主题文件的自定义副本，请将6.6的改动应用到这些副本上：
-
-   - `layout/common/navbar.jsx`：导航栏的`sticky`选项。
-   - `layout/common/article.jsx`：过时文章提示，以及封面图片的加载方式。
-   - `layout/index.jsx`：首页等列表页只立即加载第一张封面图片。
-   - `layout/common/head.jsx`：Web字体以`display=swap`请求，页面会提前连接图标和Web字体文件所在的源。
-   - `layout/common/scripts.jsx`：折叠代码块的预览。
-   - `source/js/main.js`和`source/js/pjax.js`：过时文章提示、折叠代码块的预览、固定导航栏，以及开启PJAX时的页面预取。
-
-4. Icarus 6.6没有改动主题配置文件的版本，它仍然是`5.1.0`。
-   新增的选项默认都是关闭的（参见{% post_link zh-CN/Configuring-Theme %}和{% post_link zh-CN/Other-Plugins %}）：
-
-   - `navbar.sticky`：让导航栏固定在窗口顶部。
-   - `article.outdated_notice`：在长时间没有更新的文章上显示提示。
-   - `article.highlight.fold_preview`：显示折叠代码块的开头几行。
-   - `plugins.prefetch`：预取访客即将打开的页面。
-
-5. 运行`hexo clean`并重新生成站点。
-
-6. 查看[发布说明](https://github.com/ppoffice/hexo-theme-icarus/releases)以了解完整的改动和问题修复列表。
-
-### 从6.4升级至6.5
-
-1. 将Icarus升级到6.5.0。
-   如果你是通过NPM安装的主题，在站点根目录运行如下命令：
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm install --save hexo-theme-icarus@^6.5.0
-   {% endcodeblock %}
-
-   如果你是从源码安装的主题，请用6.5.0的源码替换`themes/icarus`。
-   Icarus 6.5的依赖与6.4相同。
-
-2. Cyberpunk变体换了新的外观，不再以游戏《赛博朋克2077》为原型：深色背景上的霓虹灯光、像平视显示器（HUD）一样的面板边框，以及深色的导航栏和页脚（参见{% post_link demo/Cyberpunk %}）。
-   如果你的站点或其中的部分页面使用了`variant: cyberpunk`，请检查以下几点：
-
-   - 它的导航栏和页脚现在是深色的，所以会显示深色logo：`logo_dark`中设置的图片；`logo`为主题自带的logo时，则显示`/img/logo-dark.svg`。
-     如果你使用自己的logo图片，请在`logo_dark`中设置一张适合深色背景的版本（参见{% post_link zh-CN/Configuring-Theme %}）。
-   - 它的代码字体从`Roboto Mono`换成了`JetBrains Mono`。
-     如果你设置了自己的Web字体CDN，请确保它提供这个字体（参见{% post_link zh-CN/CDN-Providers %}）。
-   - 它的代码块使用自己的配色，不受`article.highlight.theme`中设置的主题影响。
-   - 原来导航栏和页脚使用的图片`/img/razor-top-black.svg`和`/img/razor-bottom-black.svg`已被删除。
-     如果你在别处用到了它们，请从6.4.1的源码中把它们复制到站点的`source`目录中。
-   - `source/css/cyberpunk.styl`被重写了。
-     如果你修改过它，请在新文件上重新应用你的修改。
-     它的颜色现在都是文件开头的变量。
-
-3. 如果你保留了主题文件的自定义副本，请将6.5的改动应用到这些副本上：
-
-   - `layout/common/navbar.jsx`和`layout/common/footer.jsx`：它们根据`include/util/appearance.js`中新增的`getLogoAppearance`函数给出的外观显示logo，Cyberpunk变体的外观为`dark`。
-   - `layout/common/head.jsx`：Cyberpunk变体的Web字体为`Oxanium`和`JetBrains Mono`。
-
-4. Icarus 6.5没有改动主题配置文件：它的版本仍然是`5.1.0`，也没有新增选项。
-
-5. 运行`hexo clean`并重新生成站点。
-
-6. 查看[发布说明](https://github.com/ppoffice/hexo-theme-icarus/releases)以了解完整的改动和问题修复列表。
-
-### 从6.3升级至6.4
-
-1. 将Icarus升级到6.4.1。
-   如果你是通过NPM安装的主题，在站点根目录运行如下命令：
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm install --save hexo-theme-icarus@^6.4.1
-   {% endcodeblock %}
-
-   如果你是从源码安装的主题，请用6.4.1的源码替换`themes/icarus`。
-   Icarus 6.4需要`hexo-component-inferno` 4.2.1或更新的版本。
-   从源码安装的用户在站点根目录中安装它之前，依赖检查会中止每一条`hexo`命令，并打印出需要运行的命令：
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm install --save hexo-component-inferno@^4.2.1
-   {% endcodeblock %}
-
-2. 如果你使用Waline，请检查它的`image_uploader`、`highlighter`、`tex_renderer`和`search`选项。
-   它们现在的行为与配置说明一致：设为`true`表示禁用该功能。
-
-   | `_config.icarus.yml`中的值 | Icarus 6.3（hexo-component-inferno 4.1.0） | Icarus 6.4 |
-   |---|---|---|
-   | 未设置 | 禁用 | Waline的默认值（启用） |
-   | `false` | 禁用 | Waline的默认值（启用） |
-   | `true` | Waline的默认值（启用） | 禁用 |
-   | `null`（留空） | Waline的默认值（启用） | Waline的默认值（启用） |
-
-   例如，如果你从未设置过这些选项，评论框中现在会出现图片上传、代码高亮、TeX渲染和GIF搜索。
-   如要关闭某个功能，把对应的选项设为`true`。
-
-3. 如果`_config.yml`中没有设置`category_generator.per_page`，分类页面现在会像`hexo-generator-category`一样，按站点配置的`per_page`分页。
-   以前所有文章都显示在同一页上。
-   如要保持只有一页，请在`_config.yml`中设置`category_generator.per_page: 0`。
-
-4. 旧版本生成的配置文件在`head.open_graph`下有`type: blog`。
-   `blog`并不是Open Graph的类型，所以以前每个页面的`og:type`都是“blog”。
-   Icarus 6.4会忽略它：文章页使用`article`，其他页面使用`website`。
-   在你删除`type: blog`这一行之前，每次运行`hexo`命令时还会打印一条警告。
-
-5. 以下插件已弃用，使用了它们的页面会在生成站点时打印一条警告：
-
-   - Valine：Valine存储评论所用的LeanCloud将于2027年1月12日停止服务。
-     请换用Waline、Twikoo或其他评论插件，参见{% post_link zh-CN/Comment-Plugins %}。
-   - Gitment：已不再维护，它的GitHub登录代理也已失效。
-     请换用Giscus、utterances或Gitalk。
-   - AddThis：已于2023年5月31日停止服务。
-     请换用AddToAny或ShareThis，参见{% post_link zh-CN/Share-Buttons %}。
-   - Google FeedBurner `subscribe_email`挂件：FeedBurner已于2021年7月停止邮件订阅功能。
-     请换用follow.it挂件，参见<a href="{% post_path zh-CN/Widgets %}#follow-it">follow.it</a>。
-     新生成的配置文件中也不再包含它。
-
-6. Icarus 6.4同样不会升级你的主题配置文件：配置文件的版本号仍然是`5.1.0`。
-   请手动添加你需要的新配置项：
-
-   - <a href="{% post_path zh-CN/Widgets %}#文章归档">文章归档</a>挂件：`show_count`、`group_by`、`order`和`format`。
-   - <a href="{% post_path zh-CN/Widgets %}#文章分类">文章分类</a>挂件：`order_by`、`order`、`show_current`、`show_count`和`depth`。
-   - <a href="{% post_path zh-CN/Widgets %}#最新文章">最新文章</a>挂件：`limit`。
-   - <a href="{% post_path zh-CN/Comment-Plugins %}#Giscus">Giscus</a>：`term`，`specific`和`number`两种映射方式需要它。
-
-   归档和分类挂件以前读取的驼峰式名称（`showCount`、`orderBy`和`showCurrent`）仍然有效。
-   这些挂件留空的选项会使用默认值。
-
-7. 如果你修改过主题模板或脚本的副本，请把下面的变更合并进去：
-
-   - `layout/common/head.jsx`：风格的主题样式表和网页字体样式表带有`data-variant`属性。
-   - `source/js/pjax.js`：当页面在front-matter中设置了另一个`variant`时，PJAX会切换这些样式表。
-     它还会加载新页面有而当前页面没有的插件，例如在文章front-matter中开启的MathJax或KaTeX，并在每次切换后渲染KaTeX公式。
-
-8. 运行`hexo clean`并重新生成站点。
-
-9. 阅读[更新说明](https://github.com/ppoffice/hexo-theme-icarus/releases)来了解完整的变更与问题修复列表。
-
-### 从6.2升级至6.3
-
-1. 将Icarus升级到6.3.0。
-   如果你是通过NPM安装的主题，在站点根目录运行如下命令：
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm install --save hexo-theme-icarus@^6.3.0
-   {% endcodeblock %}
-
-   如果你是从源码安装的主题，请用6.3.0的源码替换`themes/icarus`（例如按照{% post_link zh-CN/Getting-Started %}中的说明，使用`-b 6.3.0`克隆）。
-   Icarus 6.3需要`hexo-component-inferno` 4.1.0或更新的版本，从源码安装的用户需要自己在站点根目录中安装它。
-   在安装之前，依赖检查会中止每一条`hexo`命令，并打印出需要运行的命令，例如：
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm install --save hexo-component-inferno@^4.1.0
-   {% endcodeblock %}
-
-2. Icarus 6.3不会升级你的主题配置文件。
-   配置文件的版本号仍然是`5.1.0`，所以不会运行迁移脚本，新的配置项也不会被添加到你的`_config.icarus.yml`中。
-   请手动添加你需要的配置项：
-
-   - 暗色外观的`appearance`、`logo_dark`和`article.highlight.dark_theme`，参见<a href="{% post_path zh-CN/Configuring-Theme %}#外观">外观</a>和{% post_link demo/Dark-Mode "暗色外观演示" %}。
-   - `navbar.menu`中的子菜单，参见<a href="{% post_path zh-CN/Configuring-Theme %}#导航栏">导航栏</a>。
-   - `providers.cdn_overrides`，参见<a href="{% post_path zh-CN/CDN-Providers %}#为单个包指定CDN">为单个包指定CDN</a>。
-   - 归档和分类挂件的`amount`选项，参见{% post_link zh-CN/Widgets %}。
-   - Artalk、Beaudar和Cusdis评论插件，参见{% post_link zh-CN/Comment-Plugins %}。
-   - Umami、Matomo和`waline_pageview`插件，参见{% post_link zh-CN/Web-Analytics-Plugins %}。
-
-   如果想查看所有配置项及其说明，你可以让Icarus生成一份新的配置文件：暂时重命名你的`_config.icarus.yml`，运行`hexo clean`生成新文件，把需要的配置项复制到你自己的文件中，然后再把你的文件改回原名。
-
-3. 如果你使用Valine评论插件，Icarus现在会在每次运行`hexo`命令时打印一条警告，因为Valine会把评论者的邮箱地址（开启`record_ip`时还有IP地址）暴露给任何拿到你站点公开的LeanCloud密钥的人。
-   请考虑换用其他评论插件，例如Waline、Twikoo或Giscus（[#788](https://github.com/ppoffice/hexo-theme-icarus/issues/788)）。
-
-4. 下面的变更只影响自己修改过主题模板或脚本副本的用户：
-
-   - `layout/misc/paginator.jsx`已被删除。
-     `layout/index.jsx`和`layout/archive.jsx`重新使用`hexo-component-inferno`的分页组件（`hexo-component-inferno/lib/view/misc/paginator`），请修改引用了`./misc/paginator`的自定义副本。
-   - `source/js/pjax.js`中的PJAX选择器有所变化：`[data-pjax]`改为`[data-pjax]:not(link)`，新增了`.navbar-logo`和`.footer-logo`，并删除了`#comments link`和`#comments script`。
-     页面标题、外观和代码高亮样式表现在由`switches`选项中的函数切换。
-     如果你修改过`pjax.js`，请把这些变更合并进去。
-
-5. 搜索按钮获得焦点时不再自动打开搜索。
-   请点击它，或在它上面按Enter或空格键，也可以使用新增的`/`、Ctrl+K或Cmd+K快捷键。
-
-6. 运行`hexo clean`并重新生成站点。
-
-7. 阅读[更新说明](https://github.com/ppoffice/hexo-theme-icarus/releases)来了解完整的变更与问题修复列表。
-
-#### hexo-component-inferno 4.2带来的变化
-
-Icarus 6.3.0接受4.1.0及以后的任何`hexo-component-inferno` 4.x版本，所以安装或更新依赖的站点会得到hexo-component-inferno 4.2，它改变了Waline选项和分类页面的行为。
-这些变化在<a href="#从6-3升级至6-4">从6.3升级至6.4</a>的第2到第5步中有说明。
-
-### 从6.x升级至6.2及Hexo 8
-
-1. 将Icarus升级到6.2.0或更新的版本。
-   如果你是通过NPM安装的主题，在站点根目录运行如下命令：
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm install --save hexo-theme-icarus@^6.2.0
-   {% endcodeblock %}
-
-2. (可选)Icarus 6.2同时支持Hexo 7和Hexo 8。
-   如需升级到Hexo 8，请先将Node.js升级到20.19.0或者更新的版本，然后将Hexo及你的Hexo插件升级到最新版本。
-   请参阅[Hexo更新说明](https://github.com/hexojs/hexo/releases)了解不兼容的变更。
-
-   {% codeblock "Shell" lang:shell %}
-   $ npm install --save hexo@^8.0.0
-   {% endcodeblock %}
-
-3. 下面的变更只影响修改过主题文件或脚本的用户：
-
-   - `source/css/style.styl`已改名为`source/css/_style.styl`，因此构建时不再输出无用的`css/style.css`。
-     请把自定义样式表中的`@import 'style'`改为`@import '_style'`。
-   - 页面不再加载moment.js，所以你的脚本中不能再使用`window.moment`。
-     相对日期现在改用浏览器的`Intl.RelativeTimeFormat`来格式化。
-     如果你的脚本用到了moment.js，请自行加载它。
-   - 导航栏中的目录和搜索按钮、回到顶部按钮以及代码块的复制按钮现在都是`<button>`元素，而不再是`<a>`链接。
-     请修改把它们当作`a`元素来选择的自定义样式或脚本。
-
-4. Icarus 6.2新增了`--icarus-dont-check-deps`参数，用于跳过依赖检查，例如在尝试某个依赖的更新的主版本时。
-
-5. 运行`hexo clean`并重新生成站点。
-
-6. 阅读[更新说明](https://github.com/ppoffice/hexo-theme-icarus/releases)来了解完整的变更与问题修复列表。
+### 从6.x升级至7.0
+
+1. 第一次运行`hexo`时，Icarus会备份`_config.icarus.yml`并把它升级到`7.0.0`版本。
+   `_config.post.yml`等布局配置文件和front-matter不会被升级。
+   请在其中删除`head.open_graph.type: blog`、`head.open_graph.google_plus`和Gitalk的`client_secret`，并为没有头像的个人信息挂件设置`avatar: /img/avatar.png`。
+   另外请检查以下配置：
+
+   - Waline的`image_uploader`、`highlighter`、`tex_renderer`和`search`选项设为`true`时禁用对应功能，未设置或设为`false`时保留。
+   - 分类页面按`per_page`分页。
+     如要保持只有一页，请在`_config.yml`中设置`category_generator.per_page: 0`。
+
+2. 请检查你使用的插件：
+
+   - Facebook评论、Share.js、百度分享、AddThis和Google FeedBurner `subscribe_email`挂件已被移除，Valine、Gitment和Cusdis已弃用。
+     请换用其他插件。
+   - Gitalk 2需要一个GitHub App和你自己的代理（在`proxy`中设置）。
+     请重新生成client secret，因为旧的已经公开在你的页面中。
+   - 请将Twikoo后端升级到2.0.17，Artalk服务端升级到2.10。
+     如要让Artalk服务端的选项优先于配置文件中的选项，请设置`prefer_remote_conf: true`。
+   - 自定义的Waline阅读量计数需要在`data-path`属性中填写页面路径。
+   - 自定义的DisqusJS模板需要使用DisqusJS 3的API。
+   - 自定义的图库脚本需要使用lightGallery 3和justified-gallery 4的原生API。
+     lightGallery 3采用GPLv3或商业许可。
+
+3. Cyberpunk变体显示`logo_dark`中设置的logo，代码使用`JetBrains Mono`字体，代码块使用自己的配色。
+   `/img/razor-top-black.svg`和`/img/razor-bottom-black.svg`已被删除。
+
+4. 自己托管MathJax 4时需要完整的`mathjax`和`@mathjax/mathjax-newcm-font`两个包。
+
+5. 如果你保留了主题文件的自定义副本，请在7.0的文件上重新应用你的修改：
+
+   - `source/css/style.styl`已改名为`source/css/_style.styl`。
+   - `layout/misc/paginator.jsx`和`layout/widget/profile.jsx`已被删除。
+   - 导航栏和PJAX的代码移到了`source/js/navbar.js`、`source/js/appearance.js`和`source/js/pjax-*.js`。
+   - 目录、搜索、回到顶部和复制按钮都是`<button>`元素。
+   - 页面不再加载moment.js。
+   - 处理页面内容的自定义脚本需要同时在`pjax:complete`事件中运行。
 
 ### 从5.x升级至6.0
 

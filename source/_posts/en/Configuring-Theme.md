@@ -9,6 +9,40 @@ language: en
 toc: true
 cover: /gallery/covers/configuring-theme.webp
 thumbnail: /gallery/covers/configuring-theme.webp
+navbar:
+    sticky: true
+    menu:
+        Home: /
+        Docs:
+            Getting Started: /uncategorized/getting-started-with-icarus/
+            Configuring the Theme: /Configuration/icarus-user-guide-configuring-the-theme/
+            Upgrade Guide: /uncategorized/upgrade-guide/
+            FAQ: /uncategorized/faq/
+            All Guides: /tags/Icarus-User-Guide/
+        Archives: /archives
+        Categories: /categories
+        Tags: /tags
+        About: /about
+    links:
+        Discuss on GitHub:
+            icon: fas fa-comments
+            url: 'https://github.com/ppoffice/hexo-theme-icarus/discussions'
+        Download on GitHub:
+            icon: fab fa-github
+            url: 'https://github.com/ppoffice/hexo-theme-icarus'
+article:
+    highlight:
+        theme: atom-one-light
+        clipboard: true
+        fold: unfolded
+        fold_preview: 3
+    readtime: true
+    update_time: false
+    licenses:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: 'https://creativecommons.org/'
+        'CC BY-NC-SA 4.0': 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
 ---
 
 Icarus' default theme configuration file is `_config.icarus.yml`, in the root directory of your site, next to
@@ -35,7 +69,7 @@ Icarus uses it to determine whether to upgrade the default theme configuration f
 You should not change it by yourself.
 
 {% codeblock _config.icarus.yml lang:yaml %}
-version: 5.1.0
+version: 7.0.0
 {% endcodeblock %}
 
 ### Theme Variant
@@ -59,6 +93,9 @@ The Cyberpunk variant has its own dark colors and ignores this setting.
 {% codeblock _config.icarus.yml lang:yaml %}
 appearance: auto
 {% endcodeblock %}
+
+With `auto`, visitors can also switch between light and dark with a button in the navigation bar.
+Their browser remembers the choice for later visits.
 
 Like other theme settings, `appearance` can also be set for all posts or pages in the layout configuration files,
 or for a single post or page in its front-matter (see [Configuration Files and Priority](#Configuration-Files-and-Priority)).
@@ -186,6 +223,20 @@ Configuration files generated with hexo-component-inferno 4.1.0 or earlier set `
 a valid Open Graph type.
 If yours has `type: blog`, leave it empty instead.
 
+Without an `image` setting, Icarus uses the post's `og_image`, `cover`, or `thumbnail` from the front-matter,
+in that order, or else the images in the post.
+To share a post with an image other than its cover, set `og_image` in its front-matter:
+
+{% codeblock post.md lang:yaml %}
+title: Sharing images
+cover: /gallery/covers/cover.jpg
+og_image: https://example.com/gallery/share.jpg
+---
+Post content...
+{% endcodeblock %}
+
+The same image is used for [Google Structured Data](#Google-Structured-Data).
+
 ### Google Structured Data
 
 You can set up Google Structured Data in the `head` section.
@@ -232,6 +283,25 @@ Since hexo-component-inferno 4.2.0, only the first `=` of each pair separates th
 the value can contain `=`.
 To use `;` in a value (or `=` in a field name), escape it with a backslash, for example,
 `'http-equiv=refresh;content=5\;url=https://example.com/'`.
+
+### Canonical URL and Search Indexing
+
+Icarus adds a canonical link with the permalink of each page.
+To point a republished post to its original URL, set `canonical_url` in the `head` section of its front-matter:
+
+{% codeblock source/_posts/republished-post.md lang:yaml %}
+title: Republished post
+head:
+    canonical_url: https://example.com/original-post/
+---
+Post content...
+{% endcodeblock %}
+
+The `head` section in the front-matter replaces the whole `head` section of the theme configuration for that post
+(see [Post/Page Front-matter](#Post-Page-Front-matter)).
+Repeat the `head` settings you want to keep, such as `favicon` and `rss`.
+
+Icarus also asks search engines not to index the archive, category, and tag pages.
 
 ### RSS
 
@@ -294,6 +364,8 @@ navbar:
     # Whether the navigation bar stays at the top of the window: true, mobile or false
     sticky: mobile
 {% endcodeblock %}
+
+This page sets `sticky` to `true` in its front-matter; scroll down to see it.
 
 ### Footer
 
@@ -367,6 +439,25 @@ Additionally, you can fold an individual code block in the Markdown file using t
 {% endcodeblock %}
 ```
 
+This page sets `fold_preview` to `3` in its front-matter, so the following folded code block shows its first
+three lines:
+
+{% codeblock "Front-matter of this page" lang:yaml >folded %}
+article:
+    highlight:
+        theme: atom-one-light
+        clipboard: true
+        fold: unfolded
+        fold_preview: 3
+    readtime: true
+    update_time: false
+    licenses:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: 'https://creativecommons.org/'
+        'CC BY-NC-SA 4.0': 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
+{% endcodeblock %}
+
 ### Cover & Thumbnail
 
 You can add a cover image to your post by adding the `cover` property in post's front-matter:
@@ -394,6 +485,25 @@ or relative to the source directory of your site.
 For example, to use `<your blog>/source/gallery/image.jpg` as a thumbnail image, you need to put
 `thumbnail: /gallery/image.jpg` in the front-matter.
 
+### Post Language
+
+The language of your site is set in the site configuration file (see {% post_link en/FAQ "FAQ" %}).
+To write a single post or page in another language, set `lang` or `language` in its front-matter:
+
+{% codeblock post.md lang:yaml %}
+title: 你好，世界
+lang: zh-CN
+---
+Post content...
+{% endcodeblock %}
+
+The value is the name of a translation file in `<icarus_directory>/languages`, without the `.yml` extension.
+It sets the language of the page and of the theme's interface text on it, such as the labels of the article
+and the titles of the widgets.
+It does not translate your content.
+If there is no translation for the language, Icarus falls back to the site language, and then to English.
+Comment plugins have their own language settings; see {% post_link en/Comment-Plugins "Comment Plugins" %}.
+
 ### Read Time
 
 You can show a word counter and the estimated reading time of your article above the article title by 
@@ -403,6 +513,9 @@ setting `readtime` to `true` in the `article` section.
 article:
     readtime: true
 {% endcodeblock %}
+
+The reading time assumes 150 words per minute.
+Each Chinese or Japanese character counts as one word.
 
 ### Update Time
 
@@ -457,6 +570,7 @@ article:
 The age of a post is computed by the browser of the reader, so the notice shows on time without generating your
 site again.
 It is only shown on posts, not on pages or in the excerpts of the index pages.
+See {% post_link demo/search/Algolia "Algolia Search Plugin" %} for a post that shows the notice.
 To turn it off for a post, set `outdated_notice` to `false` in its front-matter:
 
 {% codeblock post.md lang:yaml %}
@@ -618,6 +732,37 @@ of your page viewers.
 However, it should be noted that post or page attributes defined by Hexo will not override the theme 
 configurations from the front-matter.
 Examples are `title`, `date`, `updated`, `comments`, `layout`, `source`, `photos`, and `excerpt`.
+
+To turn off a component for a single post, set it to `null` in the front-matter.
+For example, the following post has no comments, share buttons, donation buttons, or widgets:
+
+{% codeblock source/_posts/some-post.md lang:yaml %}
+title: My first post
+comment: null
+share: null
+donates: null
+widgets: null
+---
+# Some Post
+{% endcodeblock %}
+
+Note that it is `comment`, not Hexo's `comments`: `comments: false` does not hide the comments.
+
+#### Other Front-matter Attributes
+
+Icarus also reads the following attributes from the front-matter of a post:
+
+| Attribute | Description |
+| --- | --- |
+| `author` | Shows the author of the post in the article metadata. |
+| `top: true` | Shows a pin icon in the article metadata. It does not change the order of the posts. |
+| `link` | Links the title, the cover, and the "Read more" button on the index pages, as well as the archive entry, to this URL instead of the post. |
+| `direction: rtl` | Shows the post from right to left, for languages such as Arabic or Hebrew. |
+| `lang`, `language` | Sets the language of the post; see [Post Language](#Post-Language). |
+| `cover`, `thumbnail` | See [Cover & Thumbnail](#Cover-Thumbnail). |
+| `og_image` | See [Open Graph](#Open-Graph). |
+| `updated` | See [Update Time](#Update-Time). |
+| `outdated_notice: false` | See [Outdated Post Notice](#Outdated-Post-Notice). |
 
 ### Site Configuration File
 
