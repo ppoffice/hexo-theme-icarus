@@ -1,5 +1,5 @@
 # Version of the configuration file
-version: 5.1.0
+version: 7.0.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
 # Color scheme of the default variant: "light", "dark", or "auto" to follow the setting of the
