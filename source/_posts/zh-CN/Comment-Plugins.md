@@ -29,14 +29,6 @@ providers:
 </div>
 </article>
 
-<article class="message message-immersive is-primary">
-<div class="message-body">
-<i class="fas fa-moon mr-2"></i><a href="#Artalk">Artalk</a>、<a href="#Beaudar">Beaudar</a>、<a href="#Cusdis">Cusdis</a>、<a href="#Giscus">Giscus</a>、<a href="#utterances">utterances</a>和<a href="#Waline">Waline</a>会跟随页面的暗色外观：
-评论加载时，如果页面是暗色的，即设置了<code>appearance: dark</code>，或者设置了<code>appearance: auto</code>且访客的系统使用暗色配色，它们就会使用暗色主题（参见<a href="{% post_path zh-CN/Configuring-Theme %}">主题配置</a>中的<code>appearance</code>设置）。
-可以改变这一行为的配置项在下面各自的章节中介绍。
-</div>
-</article>
-
 <style>
 .content ol:not([type]) {
     list-style-type: simp-chinese-informal;
@@ -60,6 +52,7 @@ Artalk是一个自建的评论系统。
         server: https://artalk.example.com  # 必填项。Artalk服务端的地址
         site: My Blog                       # 可选填。站点在Artalk服务端上的名称
         locale: zh-CN                       # 可选填。Artalk的语言，如en、zh-CN或auto
+        prefer_remote_conf: false           # 可选填。为true时优先使用Artalk服务端上的配置
         # dark_mode: auto                   # 可选填。true、false或auto。不设置时跟随页面外观
     {% endcodeblock %}
 
@@ -69,7 +62,7 @@ Artalk是一个自建的评论系统。
    - Artalk通过页面的路径来区分各个页面的评论。
      你可以在页面的front-matter中把`page_key`设置为该页面的其他唯一标识，例如在移动页面后保留评论。
      由于front-matter会替换整个`comment`配置，请把其他评论配置项也一并复制过去。
-   - Icarus从CDN加载2.9.1版本的Artalk客户端，请使用与之兼容的Artalk服务端版本。
+   - 请使用与2.10.0版本客户端兼容的Artalk服务端。
    - 关于这些配置项的详细说明，请参考[Artalk客户端配置](https://artalk.js.org/guide/frontend/config.html)。
 
 
@@ -133,48 +126,6 @@ Beaudar是utterances的中文分支，它把评论保存在GitHub issue中。
         app_id: ????appid????
         conf: prod_xxxxxxxxxxxxxxxxxxxxxxx
     {% endcodeblock %}
-
-
-## Cusdis
-
-Cusdis是一个轻量的评论系统。
-你可以使用[cusdis.com](https://cusdis.com/)上的服务，也可以自己搭建Cusdis服务端。
-
-**安装指南**
-
-1. 注册[Cusdis](https://cusdis.com/)，或者按照[Cusdis文档](https://cusdis.com/doc)部署你自己的Cusdis服务端。
-   然后，在控制面板中添加你的网站。
-
-2. 将控制面板中网站嵌入代码里`data-app-id`的值复制到主题配置的对应配置项中。
-   例如，下面的嵌入代码：
-
-    {% codeblock "Cusdis嵌入代码" lang:html >folded %}
-    <div id="cusdis_thread"
-      data-host="https://cusdis.com"
-      data-app-id="xxxxxxxxxxxxxxxx"
-      data-page-id="..."
-      data-page-url="..."
-      data-page-title="..."
-    ></div>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-    {% endcodeblock %}
-
-    对应下面的主题配置：
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    comment:
-        type: cusdis
-        app_id: xxxxxxxxxxxxxxxx    # 必填项
-        host: https://cusdis.com    # 可选填，默认为https://cusdis.com。自己搭建Cusdis时填写你的服务端地址
-        lang: zh-cn                 # 可选填。Cusdis的语言，如zh-cn、zh-tw、es或fi。不设置时为英文
-        # theme: auto               # 可选填。light、dark或auto。不设置时跟随页面外观
-    {% endcodeblock %}
-
-3. 注意事项：
-   - Icarus会自动填写每个页面的ID、地址和标题。
-   - 不设置`theme`时，Cusdis会跟随页面的外观。
-     将`theme`设置为`light`、`dark`或`auto`（跟随访客系统的配色）可以覆盖这一行为。
-     不需要时请直接删掉`theme`这一项，不要留空，因为空值会导致配置检查失败。
 
 
 ## Disqus
@@ -381,55 +332,77 @@ Cusdis是一个轻量的评论系统。
 
 ## Gitalk
 
+Gitalk把评论保存在GitHub仓库的issue或discussion中。
+访客通过GitHub应用(GitHub App)和你自己部署的Gitalk代理登录。
+
 <div>
 <strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Gitalk %}">在线预览</a>
 </div>
 
-1. 登录GitHub并[点此注册](https://github.com/settings/applications/new)一个新的OAuth应用。
-   填写“应用名称”(Application name)，“应用主页”(Homepage URL)，“应用描述”(Application description)。
-   然后，在“认证回调地址”(Authorization callback URL)填写你的博客的根URL地址。
-   点击“注册应用”(Register application)按钮来跳转到应用详情界面。
+1. 登录GitHub并[点此创建](https://github.com/settings/apps/new)一个新的GitHub应用。
+   如果要在组织下创建应用，请改为进入组织设置中的“开发者设置”(Developer settings)。
+   填写“应用名称”(GitHub App name)和“应用主页”(Homepage URL)。
+   “回调地址”(Callback URL)暂时留空，并取消勾选“Webhook”下的“启用”(Active)。
+   在“仓库权限”(Repository permissions)中，如果把评论保存在issue中，将“Issues”设为“读写”(Read and write)；
+   如果保存在discussion中，将“Discussions”设为“读写”(Read and write)。
+   然后，点击“创建GitHub应用”(Create GitHub App)按钮。
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/gitalk-register-application.png 360 '"注册OAuth应用 - GitHub" "注册OAuth应用 - GitHub"' %}
-   <br>
+2. 在应用设置页面记下“App ID”和“Client ID”。
+   点击“生成新的client secret”(Generate a new client secret)和“生成私钥”(Generate a private key)来获取client secret和私钥。
 
-2. 复制“Client ID”与“Client Secret”的值并填入主题配置的相应配置项中。
+3. 按照[Gitalk代理部署指南](https://github.com/gitalk/gitalk/blob/main/packages/gitalk-deploy/README-CN.md)将Gitalk代理部署到Cloudflare Workers或腾讯云开发(CloudBase)上。
+   把上一步得到的App ID、Client ID、client secret和私钥填入它的`.env`文件中。
+   将`GITALK_ALLOWED_ORIGINS`设为你Hexo站点的源地址，例如`https://ppoffice.github.io`。
+   记下部署完成后输出的代理地址，例如`https://my-gitalk.octocat.workers.dev`。
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/gitalk-application-settings.png 360 '"OAuth应用设置 - GitHub" "OAuth应用设置 - GitHub"' %}
-   <br>
+4. 回到应用设置页面。
+   将“回调地址”(Callback URL)设为代理地址加上`/oauth/callback`，例如`https://my-gitalk.octocat.workers.dev/oauth/callback`，然后保存更改。
 
-   例如，对于下面的“Client ID”和“Client Secret”：
+5. 准备一个公开的GitHub仓库(Repository)用来保存评论。
+   如果把评论保存在discussion中，请在仓库设置中开启“Discussions”，并确保仓库至少有一个讨论分类。
 
-    {% codeblock GitHub OAuth应用 %}
+6. 打开`https://github.com/apps/<app-slug>/installations/new`，其中`<app-slug>`是应用公开地址的最后一段。
+   选择“仅选定的仓库”(Only select repositories)，选中上一步的仓库，然后点击“安装”(Install)按钮。
+
+7. 将Client ID和代理地址填入主题配置的相应配置项中。
+   例如，对于下面的Client ID和代理地址：
+
+    {% codeblock "GitHub应用和Gitalk代理" %}
     Client ID
-    xxxxxxxxxxxxxxxxxxxx
-    Client Secret
-    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    Iv23lixxxxxxxxxxxxxx
+    代理地址
+    https://my-gitalk.octocat.workers.dev
     {% endcodeblock %}
 
-   对应如下的Gitalk的配置：
+   对应如下的主题配置：
 
     {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: gitalk
-        client_id: xxxxxxxxxxxxxxxxxxxx
-        client_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        repo: Some-of-Your-GitHub-Repo
+        client_id: Iv23lixxxxxxxxxxxxxx
+        proxy: https://my-gitalk.octocat.workers.dev
+        repo: Some-of-Your-GitHub-Repo  # 仓库名称，不带所有者
         owner: you_github_name
         admin:
             - you_github_name
-        per_page: 20                    # 可选填
+        backend: issues                 # 可选填，默认为issues。设为discussions时把评论保存在discussion中
+        category: General               # 可选填。新建discussion时使用的讨论分类名称或slug
+        per_page: 10                    # 可选填，默认为10。最大为100
         distraction_free_mode: false    # 可选填
-        pager_direction: last           # 可选填
-        create_issue_manually: false    # 可选填
-        proxy:                          # 可选填
-        flip_move_options:              # 可选填
-        enable_hotkey: true             # 可选填
+        pager_direction: last           # 可选填，默认为last。可选last或first
+        create_issue_manually: true     # 可选填，默认为true
+        enable_hotkey: true             # 可选填，默认为true。按Cmd或Ctrl + Enter提交评论
         language: zh-CN                 # 可选填
     {% endcodeblock %}
 
-3. 关于上述配置的含义和可选值，请参考[Gitalk文档](https://github.com/gitalk/gitalk)或
-   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitalk.json)。
+8. 注意事项：
+   - Gitalk会跟随页面的外观：设置`appearance: dark`时为暗色，设置`appearance: auto`时跟随访客系统的配色。
+   - client secret和私钥只配置在代理上，不要填入主题配置。
+   - 设置`create_issue_manually: true`时，管理员需要在每个页面上登录，并点击Gitalk显示的按钮来创建该页面的issue或discussion。
+   - 如要让某个页面使用已有的issue或discussion，请在该页面的front-matter中把`number`设为它的编号。
+     由于front-matter会替换整个`comment`配置，请把其他评论配置项也一并复制过去。
+   - 关于上述配置的含义和可选值，请参考[Gitalk文档](https://github.com/gitalk/gitalk)或
+     [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitalk.json)。
 
 
 ## Isso
@@ -459,49 +432,21 @@ Cusdis是一个轻量的评论系统。
 </div>
 </article>
 
-**安装指南**
+<div>
+<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/LiveRe %}">在线预览</a>
+</div>
 
-1. 首先，登录[LiveRe](https://livere.com/)。
-   点击导航栏上的“安装”(Install)链接，进入安装界面。
+1. 登录[LiveRe管理后台](https://admin.livere.org/)并添加你的站点。
+   填写站点的名称和地址，并验证你的邮箱。
 
-2. 选择免费“City”选项下方的“现在安装”(Install Now)按钮。
+2. 在LiveRe管理后台中复制站点的安装代码。
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/livere-select-plan.png 360 '"选择付费方案 - LiveRe" "选择付费方案 - LiveRe"' %}
-   <br>
-
-3. 在“获取LiveRe City代码”(Get LiveRe City code)页面填写“站点地址”(Site URL)，“网站名称”(Name of website)，
-   和“网站类别”(Choose site category)。
-   勾选“同意广告协议”(I have check the advertising terms...)并点击“获取代码”(Get code)按钮来跳转到LiveRe HTML代码页面。
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/livere-configure-service.png 360 '"配置服务 - LiveRe" "配置服务 - LiveRe"' %}
-   <br>
-
-4. 复制`data-uid="..."`引号内的值到主题配置中的相应配置项中。
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/livere-get-code.png 360 '"获取代码 - LiveRe" "获取代码 - LiveRe"' %}
-   <br>
-
+3. 复制代码中`client-id`的值到主题配置中的相应配置项中。
    例如，下方的LiveRe代码：
 
-   {% codeblock "LiveRe安装代码" lang:html >folded %}
-   <!-- LiveRe City install code -->
-   <div id="lv-container" data-id="city" data-uid="ABCD1234O0OxxxxXXXX000==">
-      <script type="text/javascript">
-      (function(d, s) {
-         var j, e = d.getElementsByTagName(s)[0];
-
-         if (typeof LivereTower === 'function') { return; }
-
-         j = d.createElement(s);
-         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-         j.async = true;
-
-         e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-      </script>
-   <noscript> Please activate JavaScript for write a comment in LiveRe</noscript>
-   </div>
-   <!-- completed City install code -->
+   {% codeblock "LiveRe安装代码" lang:html %}
+   <livere-comment client-id="AbCdEfGhIjKlMnOpQrSt"></livere-comment>
+   <script type="module" src="https://www.livere.org/livere-widget.js"></script>
    {% endcodeblock %}
 
    对应的主题配置为：
@@ -509,8 +454,10 @@ Cusdis是一个轻量的评论系统。
     {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: livere
-        uid: ABCD1234O0OxxxxXXXX000==
+        client_id: AbCdEfGhIjKlMnOpQrSt
     {% endcodeblock %}
+
+   如果你使用的是旧版LiveRe City代码，请改为把`uid`设置为其中`data-uid`的值。
 
 
 ## Twikoo
@@ -523,6 +470,7 @@ Twikoo是一个基于云函数的自建评论系统。
 </div>
 
 1. 按照[Twikoo文档](https://twikoo.js.org/)，将Twikoo云函数部署到你选择的云服务商上。
+   Icarus加载2.0.17版本的Twikoo客户端，请部署相同版本的Twikoo后端。
 
 2. 将你部署的`env_id`填入主题配置的对应配置项中。
    如果将Twikoo部署到腾讯云开发(CloudBase)，它是环境ID；如果部署到Vercel或自己搭建，它是你的部署地址，例如`https://your-twikoo.vercel.app`。
@@ -653,12 +601,12 @@ Valine用来存储评论的LeanCloud将于2027年1月12日停止服务。
 <strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Waline %}">在线预览</a>
 </div>
 
-1. 按照[快速上手](https://waline.js.org/guide/get-started.html)创建LeanCloud应用和Vercel项目。
+1. 按照[快速上手](https://waline.js.org/guide/get-started/)将Waline服务端部署到Vercel。
    注意LeanCloud将于2027年1月12日停止服务（参见[Valine](#Valine)），所以如果你现在开始使用Waline，请把评论存储在Waline支持的其他数据库中。
 
 2. 将你Vercel项目的“服务器地址”(Server URL)复制到主题配置的对应配置项中。
    通常它类似于`https://your-domain.vercel.app`。
-   此外，你可以参考[前端配置](https://waline.js.org/reference/client.html)来了解可选配置项的详情和可能的配置值。
+   此外，你可以参考[前端配置](https://waline.js.org/reference/client/props.html)来了解可选配置项的详情和可能的配置值。
    下面是示例配置：
 
     {% codeblock _config.icarus.yml lang:yaml %}
@@ -669,7 +617,7 @@ Valine用来存储评论的LeanCloud将于2027年1月12日停止服务。
         lang: zh-CN                                   # 可选填
         locale:                                       # 可选填
             placeholder: 'Comment here...'
-        emoji:                                        # 可选填
+        emoji:                                        # 可选填。设为false时关闭表情
             - '//unpkg.com/@waline/emojis@1.0.1/weibo'
         # dark: auto                                  # 可选填。不设置时跟随页面外观
         meta: ["nick", "mail", "link"]                # 可选填
@@ -686,11 +634,9 @@ Valine用来存储评论的LeanCloud将于2027年1月12日停止服务。
         copyright: true                               # 可选填
     {% endcodeblock %}
 
-   自hexo-component-inferno 4.2.0起，`image_uploader`、`highlighter`、`tex_renderer`和`search`这四个配置项用来关闭Waline的对应功能：
+   `image_uploader`、`highlighter`、`tex_renderer`和`search`这四个配置项用来关闭Waline的对应功能：
    设为`true`时会关闭该功能（Icarus会把这个选项以`false`传给Waline），留空或设为`false`时则保持Waline对该功能的默认行为。
-   注意hexo-component-inferno 4.1.0中正好相反：设为`true`会保留该功能，设为`false`或不写这一项则会关闭它。
-   同样自hexo-component-inferno 4.2.0起，`path`可以是以`/`开头的固定路径，如`/posts/hello/`；
-   其他值都会被当作JavaScript表达式，默认为`window.location.pathname`。
+   `path`可以是以`/`开头的固定路径，如`/posts/hello/`；其他值都会被当作JavaScript表达式，默认为`window.location.pathname`。
 
    不设置`dark`时，Waline会跟随页面的外观：设置`appearance: dark`时为暗色，设置`appearance: auto`时跟随访客系统的配色。
    将`dark`设置为`true`、`false`、`auto`（跟随系统配色），或者一个CSS选择器（匹配到Waline的某个祖先元素时开启暗色模式），可以覆盖这一行为。

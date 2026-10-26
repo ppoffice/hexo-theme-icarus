@@ -28,18 +28,6 @@ Please refer to it for a complete list of supported plugins and their configurat
 </div>
 </article>
 
-<article class="message message-immersive is-primary">
-<div class="message-body">
-<i class="fas fa-moon mr-2"></i><a href="#Artalk">Artalk</a>, <a href="#Beaudar">Beaudar</a>,
-<a href="#Cusdis">Cusdis</a>, <a href="#Giscus">Giscus</a>, <a href="#utterances">utterances</a>, and
-<a href="#Waline">Waline</a> follow the dark appearance of the page: when the comments load on a page that
-looks dark, that is, with <code>appearance: dark</code>, or with <code>appearance: auto</code> while the
-visitor's system uses a dark color scheme (see the <code>appearance</code> setting in
-<a href="{% post_path en/Configuring-Theme %}">Theme Configuration</a>), they use their dark theme.
-The settings that change this are described in their sections below.
-</div>
-</article>
-
 ## Artalk
 
 Artalk is a self-hosted comment system.
@@ -57,6 +45,7 @@ Like Isso and Twikoo, it requires you to run the Artalk server yourself before I
         server: https://artalk.example.com  # Required. URL of your Artalk server
         site: My Blog                       # Optional. Name of the site on the Artalk server
         locale: en                          # Optional. Language of Artalk, e.g., en, zh-CN, or auto
+        prefer_remote_conf: false           # Optional. Prefer the settings on the Artalk server when true
         # dark_mode: auto                   # Optional. true, false, or auto. Follows the appearance of the page if not set
     {% endcodeblock %}
 
@@ -68,8 +57,7 @@ Like Isso and Twikoo, it requires you to run the Artalk server yourself before I
      You can set `page_key` to another unique identifier of a page in its front-matter, for example to keep the
      comments when you move the page.
      Since the front-matter replaces the whole `comment` setting, copy the other comment settings there as well.
-   - Icarus loads version 2.9.1 of the Artalk client from the CDN, so use a version of the Artalk server that works
-     with it.
+   - Use an Artalk server compatible with client 2.10.0.
    - See the [Artalk client configuration](https://artalk.js.org/guide/frontend/config.html) for more details on
      these settings.
 
@@ -137,50 +125,6 @@ Its setup is similar to that of [utterances](#utterances).
         app_id: ????appid????
         conf: prod_xxxxxxxxxxxxxxxxxxxxxxx
     {% endcodeblock %}
-
-
-## Cusdis
-
-Cusdis is a lightweight comment system.
-You can use the service on [cusdis.com](https://cusdis.com/) or host the Cusdis server yourself.
-
-**Installation Guide**
-
-1. Sign up for [Cusdis](https://cusdis.com/), or deploy your own Cusdis server by following the
-   [Cusdis documentation](https://cusdis.com/doc).
-   Then, add your website on the dashboard.
-
-2. Copy the value of `data-app-id` in the embed code of your website on the dashboard to the corresponding
-   setting in the theme configurations.
-   For example, the following embed code:
-
-    {% codeblock "Cusdis Embed Code" lang:html >folded %}
-    <div id="cusdis_thread"
-      data-host="https://cusdis.com"
-      data-app-id="xxxxxxxxxxxxxxxx"
-      data-page-id="..."
-      data-page-url="..."
-      data-page-title="..."
-    ></div>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-    {% endcodeblock %}
-
-    maps to the following theme configuration:
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    comment:
-        type: cusdis
-        app_id: xxxxxxxxxxxxxxxx    # Required
-        host: https://cusdis.com    # Optional, default: https://cusdis.com. The URL of your server if you host Cusdis yourself
-        lang: zh-cn                 # Optional. Language of Cusdis, e.g., zh-cn, zh-tw, es, or fi. Uses English if not set
-        # theme: auto               # Optional. light, dark, or auto. Follows the appearance of the page if not set
-    {% endcodeblock %}
-
-3. Notes:
-   - Icarus fills in the page ID, URL, and title of each page by itself.
-   - Without `theme`, Cusdis follows the appearance of the page.
-     Set `theme` to `light`, `dark`, or `auto` (follow the color scheme of the visitor's system) to override it.
-     Leave `theme` out instead of leaving it empty, since an empty value fails the configuration check.
 
 
 ## Disqus
@@ -392,57 +336,86 @@ A comments system powered by [GitHub Discussions](https://docs.github.com/en/dis
 
 ## Gitalk
 
+Gitalk keeps the comments in the issues or discussions of a GitHub repository.
+Visitors sign in through a GitHub App and a Gitalk proxy that you deploy yourself.
+
 <div>
 <strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Gitalk %}">Preview</a>
 </div>
 
-1. Log into GitHub and [click here](https://github.com/settings/applications/new) to register a new OAuth
-   application.
-   Fill in the "Application name", "Homepage URL", and "Application description".
-   Then, type in the root URL of your Hexo site in the "Authorization callback URL" field.
-   Click the "Register application" button to go to the application details page.
+1. Log into GitHub and [click here](https://github.com/settings/apps/new) to create a new GitHub App.
+   To create the App under an organization, go to "Developer settings" in the settings of the organization instead.
+   Fill in the "GitHub App name" and "Homepage URL".
+   Leave the "Callback URL" empty for now, and uncheck "Active" under "Webhook".
+   Under "Repository permissions", set "Issues" to "Read and write" if you keep the comments in issues,
+   or "Discussions" to "Read and write" if you keep them in discussions.
+   Then, click the "Create GitHub App" button.
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/gitalk-register-application.png 360 '"Register OAuth Application - GitHub" "Register OAuth Application - GitHub"' %}
-   <br>
+2. On the App settings page, write down the "App ID" and "Client ID".
+   Click "Generate a new client secret" and "Generate a private key" to get the client secret and the private key.
 
-2. Copy the values of "Client ID" and "Client Secret" to the corresponding settings in the theme configurations.
+3. Deploy the Gitalk proxy to Cloudflare Workers or Tencent CloudBase by following the
+   [Gitalk proxy guide](https://github.com/gitalk/gitalk/blob/main/packages/gitalk-deploy/README.md).
+   Fill in the App ID, Client ID, client secret, and private key from the last step in its `.env` file.
+   Set `GITALK_ALLOWED_ORIGINS` to the origin of your Hexo site, e.g., `https://ppoffice.github.io`.
+   Write down the proxy URL printed after the deployment, e.g., `https://my-gitalk.octocat.workers.dev`.
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/gitalk-application-settings.png 360 '"OAuth Application Settings - GitHub" "OAuth Application Settings - GitHub"' %}
-   <br>
+4. Go back to the App settings page.
+   Set the "Callback URL" to the proxy URL followed by `/oauth/callback`, e.g.,
+   `https://my-gitalk.octocat.workers.dev/oauth/callback`, and save the changes.
 
-   For example, the following "Client ID" and "Client Secret":
+5. Prepare a public GitHub repository for the comments.
+   If you keep the comments in discussions, turn on "Discussions" in the settings of the repository and make sure
+   it has at least one discussion category.
 
-    {% codeblock GitHub OAuth Application %}
+6. Open `https://github.com/apps/<app-slug>/installations/new`, where `<app-slug>` is the last part of the public
+   URL of your App.
+   Choose "Only select repositories", select the repository from the last step, and click the "Install" button.
+
+7. Copy the Client ID and the proxy URL to the corresponding settings in the theme configurations.
+   For example, the following Client ID and proxy URL:
+
+    {% codeblock "GitHub App and Gitalk Proxy" %}
     Client ID
-    xxxxxxxxxxxxxxxxxxxx
-    Client Secret
-    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    Iv23lixxxxxxxxxxxxxx
+    Proxy URL
+    https://my-gitalk.octocat.workers.dev
     {% endcodeblock %}
 
-   maps to the following Gitalk configuration:
+   maps to the following theme configuration:
 
     {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: gitalk
-        client_id: xxxxxxxxxxxxxxxxxxxx
-        client_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        repo: Some-of-Your-GitHub-Repo
+        client_id: Iv23lixxxxxxxxxxxxxx
+        proxy: https://my-gitalk.octocat.workers.dev
+        repo: Some-of-Your-GitHub-Repo  # Name of the repository, without the owner
         owner: you_github_name
         admin:
             - you_github_name
-        per_page: 20                    # Optional
+        backend: issues                 # Optional, default: issues. Set to discussions to keep the comments in discussions
+        category: General               # Optional. Name or slug of the discussion category for new discussions
+        per_page: 10                    # Optional, default: 10. At most 100
         distraction_free_mode: false    # Optional
-        pager_direction: last           # Optional
-        create_issue_manually: false    # Optional
-        proxy:                          # Optional
-        flip_move_options:              # Optional
-        enable_hotkey: true             # Optional
+        pager_direction: last           # Optional, default: last. last or first
+        create_issue_manually: true     # Optional, default: true
+        enable_hotkey: true             # Optional, default: true. Submit a comment with Cmd or Ctrl + Enter
         language: zh-CN                 # Optional
     {% endcodeblock %}
 
-3. You can review the description and possible values of the above configuration at 
-   [Gitalk documentation](https://github.com/gitalk/gitalk) or 
-   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitalk.json).
+8. Notes:
+   - Gitalk follows the appearance of the page: it looks dark with `appearance: dark`, and follows the color
+     scheme of the visitor's system with `appearance: auto`.
+   - The client secret and the private key belong to the proxy.
+     Do not put them in the theme configurations.
+   - With `create_issue_manually: true`, an admin creates the issue or discussion of each page by signing in on
+     that page and clicking the button that Gitalk shows.
+   - To use an existing issue or discussion for the comments of a page, set `number` to its number in the
+     front-matter of the page.
+     Since the front-matter replaces the whole `comment` setting, copy the other comment settings there as well.
+   - You can review the description and possible values of the above configuration at
+     [Gitalk documentation](https://github.com/gitalk/gitalk) or
+     [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitalk.json).
 
 
 ## Isso
@@ -474,49 +447,21 @@ However, unlike the other services, Isso requires a web host for running the Iss
 </div>
 </article>
 
-**Installation Guide**
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/LiveRe %}">Preview</a>
+</div>
 
-1. First, log into [LiveRe](https://livere.com/).
-   Click "Install" on the navigation bar to go to the installation page.
+1. Sign in to [LiveRe Admin](https://admin.livere.org/) and add your site.
+   Fill in the name and the URL of your site, and verify your email address.
 
-2. Select the free "City" tier on the installation page and click the "Install Now" button.
+2. Copy the installation code of your site from LiveRe Admin.
 
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/livere-select-plan.png 360 '"Select Plan - LiveRe" "Select Plan - LiveRe"' %}
-   <br>
-
-3. Fill in the "Site URL", "Name of website", and "Choose site category" on the "Get LiveRe City code"
-   page. Check "I have check the advertising terms..." and click the "Get code" button to be redirected to
-   the LiveRe HTML code page.
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/livere-configure-service.png 360 '"Configure Service - LiveRe" "Configure Service - LiveRe"' %}
-   <br>
-
-4. Copy the value inside the quotes of `data-uid="..."` to the corresponding setting in the theme configurations.
-
-   {% img "box px-0 py-0 ml-auto mr-auto" /gallery/screenshots/livere-get-code.png 360 '"Get Code - LiveRe" "Get Code - LiveRe"' %}
-   <br>
-
+3. Copy the value of `client-id` in the code to the corresponding setting in the theme configurations.
    For example, the LiveRe code below:
 
-   {% codeblock "LiveRe Installation Code" lang:html >folded %}
-   <!-- LiveRe City install code -->
-   <div id="lv-container" data-id="city" data-uid="ABCD1234O0OxxxxXXXX000==">
-      <script type="text/javascript">
-      (function(d, s) {
-         var j, e = d.getElementsByTagName(s)[0];
-
-         if (typeof LivereTower === 'function') { return; }
-
-         j = d.createElement(s);
-         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-         j.async = true;
-
-         e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-      </script>
-   <noscript> Please activate JavaScript for write a comment in LiveRe</noscript>
-   </div>
-   <!-- completed City install code -->
+   {% codeblock "LiveRe Installation Code" lang:html %}
+   <livere-comment client-id="AbCdEfGhIjKlMnOpQrSt"></livere-comment>
+   <script type="module" src="https://www.livere.org/livere-widget.js"></script>
    {% endcodeblock %}
 
    maps to the following theme configuration:
@@ -524,8 +469,10 @@ However, unlike the other services, Isso requires a web host for running the Iss
     {% codeblock _config.icarus.yml lang:yaml %}
     comment:
         type: livere
-        uid: ABCD1234O0OxxxxXXXX000==
+        client_id: AbCdEfGhIjKlMnOpQrSt
     {% endcodeblock %}
+
+   If you use the legacy LiveRe City code, set `uid` to the value of its `data-uid` attribute instead.
 
 
 ## Twikoo
@@ -540,6 +487,7 @@ environment before being configured and used by Icarus.
 
 1. Follow the [Twikoo documentation](https://twikoo.js.org/en/) to deploy the Twikoo cloud function
    to a cloud service provider of your choice.
+   Icarus loads version 2.0.17 of the Twikoo client, so deploy a Twikoo backend of the same version.
 
 2. Fill in the `env_id` of your deployment to the corresponding setting in the theme configurations.
    It is the environment ID if you deploy Twikoo to Tencent CloudBase, or the URL of your deployment if you
@@ -679,13 +627,13 @@ Please use <a href="#Waline">Waline</a>, <a href="#Twikoo">Twikoo</a>, or anothe
 <strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Waline %}">Preview</a>
 </div>
 
-1. Create a LeanCloud application and a Vercel project following the [Get Started](https://waline.js.org/en/guide/get-started.html) guide.
+1. Deploy the Waline server to Vercel following the [Get Started](https://waline.js.org/en/guide/get-started/) guide.
    Note that LeanCloud shuts down on January 12, 2027 (see [Valine](#Valine)), so if you set up Waline now, store
    the comments in another database supported by Waline.
 
 2. Copy the "Server URL" of your Vercel project to the corresponding setting in the theme configurations.
    It is usually something like `https://your-domain.vercel.app`.
-   In addition, you can refer to the [Client Configuration](https://waline.js.org/en/reference/client.html) to find out more
+   In addition, you can refer to the [Client Configuration](https://waline.js.org/en/reference/client/props.html) to find out more
    details and possible values of the optional settings.
    Here is an example configuration:
 
@@ -697,7 +645,7 @@ Please use <a href="#Waline">Waline</a>, <a href="#Twikoo">Twikoo</a>, or anothe
         lang: en-US                                   # Optional
         locale:                                       # Optional
             placeholder: 'Comment here...'
-        emoji:                                        # Optional
+        emoji:                                        # Optional. Set to false to disable emoji
             - '//unpkg.com/@waline/emojis@1.0.1/weibo'
         # dark: auto                                  # Optional. Follows the appearance of the page if not set
         meta: ["nick", "mail", "link"]                # Optional
@@ -714,13 +662,10 @@ Please use <a href="#Waline">Waline</a>, <a href="#Twikoo">Twikoo</a>, or anothe
         copyright: true                               # Optional
     {% endcodeblock %}
 
-   Since hexo-component-inferno 4.2.0, the `image_uploader`, `highlighter`, `tex_renderer`, and `search` settings
-   turn off Waline features:
+   The `image_uploader`, `highlighter`, `tex_renderer`, and `search` settings turn off Waline features:
    setting one of them to `true` disables the feature (Icarus passes `false` for it to Waline), while leaving it
    empty or setting it to `false` keeps Waline's default behavior for that feature.
-   Note that hexo-component-inferno 4.1.0 worked the other way round: `true` kept the feature, and `false` or
-   leaving the setting out disabled it.
-   Also since hexo-component-inferno 4.2.0, `path` can be a fixed path starting with `/`, such as `/posts/hello/`.
+   `path` can be a fixed path starting with `/`, such as `/posts/hello/`.
    Any other value is used as a JavaScript expression, and it defaults to `window.location.pathname`.
 
    Without `dark`, Waline follows the appearance of the page: it looks dark with `appearance: dark`, and follows

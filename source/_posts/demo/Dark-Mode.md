@@ -32,6 +32,7 @@ The appearance is controlled by the new `appearance` setting, which accepts thre
 - `light` (the default): the light look Icarus has always had.
 - `auto`: light or dark, following the color scheme setting of each visitor's browser or operating system
   (the `prefers-color-scheme` media query).
+  Visitors can also pick light or dark with the sun and moon button in the navigation bar, and their browser remembers the choice.
 - `dark`: always dark.
 
 To follow the setting of your visitors, open `_config.icarus.yml` and add the following line
@@ -50,6 +51,7 @@ To make your site dark for everyone, use `dark` instead:
 {% endcodeblock %}
 
 Form controls and scrollbars drawn by the browser follow the appearance as well.
+Pages set to `light` or `dark` have no sun and moon button.
 The Cyberpunk variant, which is already dark, ignores this setting, as well as the `dark_theme` setting
 described below, and always shows the dark logo set in `logo_dark`.
 
@@ -78,7 +80,7 @@ This is exactly how this post is made dark.
 
 When a page is dark, code blocks use the `dark_theme` setting in the `article` > `highlight` section,
 which defaults to `atom-one-dark`.
-With `auto`, both themes are loaded and the browser picks the one matching the color scheme of the visitor.
+With `auto`, code blocks switch along with the rest of the page.
 You can find other dark themes of highlight.js 11.11.1, the version that Icarus uses,
 [here](https://github.com/highlightjs/highlight.js/tree/11.11.1/src/styles).
 Copy the file name, excluding the `.css` extension, and put it in the `dark_theme` setting.
@@ -124,6 +126,7 @@ They are declared with `?=`, so you can either change them there or define your 
 
 Pages with the `auto` or `dark` appearance also have a `data-appearance="auto"` or `data-appearance="dark"`
 attribute on the `<html>` element (light pages have none), which your own styles can target.
+When a visitor picks light or dark with the button, the attribute of an `auto` page changes to `light` or `dark`.
 Remember that `auto` pages are only dark inside the `prefers-color-scheme: dark` media query:
 
 {% codeblock lang:css %}
@@ -140,10 +143,9 @@ html[data-appearance="dark"] .content img {
 
 ## Limitations
 
-- The Giscus, utterances, Beaudar, Waline, Artalk, and Cusdis comment plugins follow the appearance of the page,
-  unless you set their own theme or dark mode settings.
-  Giscus, utterances, and Beaudar pick their colors when the comments are loaded, so on `auto` pages they do not
-  switch until the page is reloaded if the color scheme of the visitor changes meanwhile.
+- The Giscus, utterances, Beaudar, Gitalk, Waline, and Artalk comment plugins follow the appearance of the
+  page, unless you set their own theme or dark mode settings.
+  Some of them pick their colors when the comments are loaded, so reload the page if the appearance changes afterwards.
 - Other comment plugins, and other content from third-party services, such as the Google Custom Search, Baidu,
   and Algolia search widgets, and share buttons, keep their own (usually light) look.
 - Images are not inverted or dimmed.
