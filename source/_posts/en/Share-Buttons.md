@@ -119,55 +119,6 @@ Take the following steps if you want to customize the share buttons:
     {% endcodeblock %}
 
 
-## Baidu Share
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>The Baidu share button service is discontinued and not recommended.
-Its script is loaded from an <code>http://</code> address, which browsers block on pages served over HTTPS,
-so the buttons do not show up on most sites.
-Some ad blockers may also block it.
-Please use <a href="#AddToAny">AddToAny</a> or <a href="#ShareThis">ShareThis</a> instead.
-</div>
-</article>
-
-**Installation Guide**
-
-1. Baidu Share does not need user registration.
-   It is enabled with the following theme configuration:
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    share:
-        type: bdshare
-    {% endcodeblock %}
-
-
-## Share.js
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>The Share.js button service is no longer maintained.
-Use other services as alternatives.
-</div>
-</article>
-
-<div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/share/Sharejs %}">Preview</a>
-</div>
-
-1. You can activate Share.js without user registration.
-   Just put the following code to your theme configurations:
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    share:
-        type: sharejs
-    {% endcodeblock %}
-
-2. (Optional) Please refer to the customization steps in the [AddToAny](#AddToAny) section and the 
-   [share.js homepage](https://github.com/overtrue/share.js) for information about customizing the share
-   buttons.
-
-
 ## ShareThis
 
 <div>

@@ -295,26 +295,6 @@ Cusdis是一个轻量的评论系统。
    [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/disqusjs.json)。
 
 
-##  Facebook
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>此评论插件可能会被部分广告拦截扩展拦截，请酌情使用。
-</div>
-</article>
-
-<div>
-<strong>安装指南</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Facebook %}">在线预览</a>
-</div>
-
-1. 如要开启Facebook评论服务，将`comment`的`type`设置为`facebook`即可。
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    comment:
-        type: facebook
-    {% endcodeblock %}
-
-
 ## Giscus
 
 利用 [GitHub Discussions](https://docs.github.com/en/discussions) 实现的评论系统。
@@ -450,41 +430,6 @@ Cusdis是一个轻量的评论系统。
 
 3. 关于上述配置的含义和可选值，请参考[Gitalk文档](https://github.com/gitalk/gitalk)或
    [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitalk.json)。
-
-
-## Gitment
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>自hexo-component-inferno 4.2.0起，Gitment已弃用，使用它生成网站时会输出警告。
-Gitment已停止维护，它使用的GitHub登录代理也已失效。
-请换用<a href="#Giscus">Giscus</a>、<a href="#utterances">utterances</a>或<a href="#Gitalk">Gitalk</a>。
-</div>
-</article>
-
-**安装指南**
-
-1. 参照Gitalk中的步骤注册GitHub OAuth应用。
-
-2. 复制“Client ID”与“Client Secret”的值到主题配置的相应配置项中。
-
-   下面是Gitment的示例配置：
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    comment:
-        type: gitment
-        owner: you_github_name
-        repo: Some-of-Your-GitHub-Repo
-        client_id: xxxxxxxxxxxxxxxxxxxx
-        client_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        per_page: 20                    # 可选填
-        max_comment_height: 250         # 可选填
-    {% endcodeblock %}
-
-   配置检查也接受`theme`配置项，但Icarus不会把它传给Gitment，所以设置它不起作用。
-
-3. 关于上述配置的含义，请参考[Gitment文档](https://github.com/imsun/gitment)或
-   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitment.json)。
 
 
 ## Isso

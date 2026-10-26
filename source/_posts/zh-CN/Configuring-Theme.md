@@ -174,8 +174,6 @@ head:
         twitter_id: 
         # Twitter站点 (twitter:site)
         twitter_site: 
-        # Google+个人主页链接 (已弃用)
-        google_plus: 
         # Facebook admin ID
         fb_admins: 
         # Facebook App ID

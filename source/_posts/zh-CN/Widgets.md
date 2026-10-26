@@ -396,16 +396,6 @@ widgets:
 {% endcodeblock %}
 
 
-## Google Feedburner
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Google Feedburner挂件（<code>subscribe_email</code>）自hexo-component-inferno 4.2.0起已弃用，使用它生成网站时会输出警告。
-<a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google已于2021年7月停止了Feedburner的邮件订阅功能。</a>
-请换用<a href="#follow-it">follow.it挂件</a>或者其他邮件订阅服务。
-</div>
-</article>
-
 <article class="message message-immersive is-warning">
 <div class="message-body">
 <i class="fas fa-question-circle mr-2"></i>文章内容有误？请点击<a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Widgets.md">此处</a>提交修改。

@@ -124,53 +124,6 @@ providers:
     {% endcodeblock %}
 
 
-## 百度分享
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>百度分享按钮服务已停用，不推荐使用。
-它的脚本从<code>http://</code>地址加载，在通过HTTPS访问的页面上会被浏览器拦截，因此在大多数网站上按钮都不会显示。
-此外，它也可能被部分广告拦截扩展拦截。
-请换用<a href="#AddToAny">AddToAny</a>或<a href="#ShareThis">ShareThis</a>。
-</div>
-</article>
-
-**安装指南**
-
-1. 百度分享按钮无需注册用户。
-   通过下面的主题配置即可启用：
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    share:
-        type: bdshare
-    {% endcodeblock %}
-
-
-## Share.js
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Share.js服务已停止维护，建议使用其他分享按钮服务作为替代。
-</div>
-</article>
-
-<div>
-<strong>安装指南</strong>
-<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/share/Sharejs %}">在线预览</a>
-</div>
-
-1. 你可以启用Share.js分享按钮而无需用户注册。
-   直接将下面代码添加到主题配置中：
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    share:
-        type: sharejs
-    {% endcodeblock %}
-
-2. (可选)请参照[AddToAny](#AddToAny)部分的个性化步骤与[share.js主页](https://github.com/overtrue/share.js)
-   来了解更多关于自定义分享按钮的信息。
-
-
 ## ShareThis
 
 <div>

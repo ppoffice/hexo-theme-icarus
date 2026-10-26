@@ -163,7 +163,6 @@ providers:
     - `@waline/client`：Waline评论插件和`waline_pageview`插件（多个文件）
     - `artalk`、`disqusjs`和`gitalk`（各两个文件），`twikoo`和`valine`：评论插件
     - `algoliasearch`和`instantsearch.js`：Algolia搜索插件
-    - `social-share.js`：Share.js分享按钮（两个文件）
     - `lightgallery`和`justifiedGallery`：图片画廊插件（各两个文件）
     - `katex`（多个文件）和`mathjax`：KaTeX和MathJax插件
     - `cookieconsent`和`outdatedbrowser`：Cookie同意提示和过期浏览器提示插件（各两个文件）

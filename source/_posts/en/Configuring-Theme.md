@@ -175,8 +175,6 @@ head:
         twitter_id: 
         # Twitter Site (twitter:site)
         twitter_site: 
-        # Google+ profile link (deprecated)
-        google_plus: 
         # Facebook admin ID
         fb_admins: 
         # Facebook App ID

@@ -173,7 +173,6 @@ The following packages are loaded through these CDN settings:
     - `@waline/client`: the Waline comment plugin and the `waline_pageview` plugin (several files)
     - `artalk`, `disqusjs`, and `gitalk` (two files each), `twikoo` and `valine`: comment plugins
     - `algoliasearch` and `instantsearch.js`: the Algolia search plugin
-    - `social-share.js`: the Share.js share buttons (two files)
     - `lightgallery` and `justifiedGallery`: the gallery plugin (two files each)
     - `katex` (several files) and `mathjax`: the KaTeX and MathJax plugins
     - `cookieconsent` and `outdatedbrowser`: the cookie consent and outdated browser plugins (two files each)

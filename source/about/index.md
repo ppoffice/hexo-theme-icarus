@@ -74,12 +74,12 @@ PJAX page loading, keyboard and screen reader support, and translations into 17 
 
 | Type | Plugins |
 |---|---|
-| [Comment](/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk, Beaudar, Changyan, Cusdis, Disqus, DisqusJS, Facebook, Giscus, Gitalk, Gitment (deprecated), Isso, LiveRe, Twikoo, Utterances, Valine (deprecated), Waline |
+| [Comment](/hexo-theme-icarus/categories/Plugins/Comment/) | Artalk, Beaudar, Changyan, Cusdis, Disqus, DisqusJS, Giscus, Gitalk, Isso, LiveRe, Twikoo, Utterances, Valine (deprecated), Waline |
 | [Search](/hexo-theme-icarus/categories/Plugins/Search/) | Algolia, Baidu, Google CSE, Insight (built-in) |
-| [Share](/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny, Baidu Share, Share.js, ShareThis |
+| [Share](/hexo-theme-icarus/categories/Plugins/Share/) | AddToAny, ShareThis |
 | [Donate](/hexo-theme-icarus/categories/Plugins/Donation/) | Afdian, Alipay, Buy Me a Coffee, Patreon, PayPal, WeChat Pay |
 | {% post_link en/Web-Analytics-Plugins 'Analytics' %} | Baidu Statistics, Bing Webmaster, BuSuanZi, CNZZ, Google Analytics, Hotjar, Matomo, StatCounter, Twitter Conversion Tracking, Umami, Waline page views |
-| [Widgets](/hexo-theme-icarus/categories/Widgets/) | Profile, Table of Contents, Recent Posts, Archives, Categories, Tags, Links, Google AdSense, follow.it, Google FeedBurner (deprecated) |
+| [Widgets](/hexo-theme-icarus/categories/Widgets/) | Profile, Table of Contents, Recent Posts, Archives, Categories, Tags, Links, Google AdSense, follow.it |
 | [Others](/hexo-theme-icarus/categories/Plugins/) | Back to Top, Cookie Consent, Gallery (lightGallery + Justified Gallery), KaTeX, MathJax, Outdated Browser, Page Loading Animations, Progress Bar |
 
 Most plugins are provided by [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno).

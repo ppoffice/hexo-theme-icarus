@@ -303,26 +303,6 @@ for the detailed configuration process of DisqusJS.
    [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/disqusjs.json).
 
 
-##  Facebook
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Some ad blockers may block this comment plugin. Use it with caution.
-</div>
-</article>
-
-<div>
-<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/comment/Facebook %}">Preview</a>
-</div>
-
-1. To enable Facebook comment, set the `type` of `comment` to `facebook`:
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    comment:
-        type: facebook
-    {% endcodeblock %}
-
-
 ## Giscus
 
 A comments system powered by [GitHub Discussions](https://docs.github.com/en/discussions).
@@ -463,43 +443,6 @@ A comments system powered by [GitHub Discussions](https://docs.github.com/en/dis
 3. You can review the description and possible values of the above configuration at 
    [Gitalk documentation](https://github.com/gitalk/gitalk) or 
    [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitalk.json).
-
-
-## Gitment
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>Gitment is deprecated since hexo-component-inferno 4.2.0,
-and a warning is printed when you generate your site with it.
-Gitment is no longer maintained, and the GitHub sign-in proxy it uses no longer works.
-Please use <a href="#Giscus">Giscus</a>, <a href="#utterances">utterances</a>, or <a href="#Gitalk">Gitalk</a> instead.
-</div>
-</article>
-
-**Installation Guide**
-
-1. Follow the steps in the Gitalk section to register a GitHub OAuth application.
-
-2. Copy the values of "Client ID" and "Client Secret" to the corresponding settings in the theme configurations.
-
-   Here is an example of the Gitment configuration:
-
-    {% codeblock _config.icarus.yml lang:yaml %}
-    comment:
-        type: gitment
-        owner: you_github_name
-        repo: Some-of-Your-GitHub-Repo
-        client_id: xxxxxxxxxxxxxxxxxxxx
-        client_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        per_page: 20                    # Optional
-        max_comment_height: 250         # Optional
-    {% endcodeblock %}
-
-   The configuration check also accepts a `theme` setting, but Icarus does not pass it to Gitment, so it has no effect.
-
-3. For more details on the above configuration, refer to 
-   [Gitment documentation](https://github.com/imsun/gitment) or
-   [hexo-component-inferno](https://github.com/ppoffice/hexo-component-inferno/blob/HEAD/src/schema/comment/gitment.json).
 
 
 ## Isso

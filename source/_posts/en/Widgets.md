@@ -406,17 +406,6 @@ widgets:
 {% endcodeblock %}
 
 
-## Google Feedburner
-
-<article class="message message-immersive is-danger">
-<div class="message-body">
-<i class="fas fa-exclamation-triangle mr-2"></i>The Google Feedburner widget (<code>subscribe_email</code>) is
-deprecated since hexo-component-inferno 4.2.0, and a warning is printed when you generate your site with it.
-<a href="https://support.google.com/feedburner/answer/10483501" target="_blank">Google stopped the email subscription feature of Feedburner in July 2021.</a>
-Please switch to <a href="#follow-it">the follow.it widget</a> or other email subscription services.
-</div>
-</article>
-
 <article class="message message-immersive is-warning">
 <div class="message-body">
 <i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
