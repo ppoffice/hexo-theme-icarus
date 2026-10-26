@@ -162,6 +162,25 @@ Take the following steps if you want to customize the share buttons:
     {% endcodeblock %}
 
 
+## Web Share
+
+Web Share shows direct links to X, Facebook, Weibo, Telegram, and LinkedIn, plus a **More** button that opens the system share dialog, without loading a third-party SDK.
+
+<div>
+<strong>Installation Guide</strong><a class="tag is-success ml-2" href="{% post_path demo/share/Web-Share %}">Preview</a>
+</div>
+
+1. You can activate Web Share without user registration.
+   Just put the following code to your theme configurations:
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    share:
+        type: web_share
+    {% endcodeblock %}
+
+The **More** button is disabled in browsers that do not support Web Share.
+
+
 <article class="message message-immersive is-warning">
 <div class="message-body">
 <i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 

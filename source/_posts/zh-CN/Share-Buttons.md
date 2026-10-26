@@ -168,6 +168,26 @@ providers:
     {% endcodeblock %}
 
 
+## Web Share
+
+Web Share提供X、Facebook、微博、Telegram和LinkedIn的直接分享链接，以及一个打开系统分享对话框的“更多”按钮，不加载第三方SDK。
+
+<div>
+<strong>安装指南</strong>
+<a class="tag is-success" style="margin-left:.8em" href="{% post_path demo/share/Web-Share %}">在线预览</a>
+</div>
+
+1. 你可以启用Web Share而无需注册用户。
+   仅需将下面的代码放到你的主题配置中：
+
+    {% codeblock _config.icarus.yml lang:yaml %}
+    share:
+        type: web_share
+    {% endcodeblock %}
+
+在不支持Web Share的浏览器中，“更多”按钮会被禁用。
+
+
 <article class="message message-immersive is-warning">
 <div class="message-body">
 <i class="fas fa-question-circle mr-2"></i>文章内容有误？请点击<a href="https://github.com/ppoffice/hexo-theme-icarus/edit/site/source/_posts/zh-CN/Share-Buttons.md">此处</a>提交修改。
