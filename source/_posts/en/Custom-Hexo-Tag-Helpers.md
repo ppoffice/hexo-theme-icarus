@@ -8,13 +8,6 @@ toc: true
 Apart from the tag helpers supported by Hexo natively, as described in {% post_link demo/Hexo-Built-In-Tag-Helpers %},
 Icarus also offers several other useful tag helpers to customize the display of your content.
 
-<article class="message message-immersive is-primary">
-<div class="message-body">
-<i class="fas fa-globe-asia mr-2"></i>This article is also available in 
-<a href="{% post_path zh-CN/Custom-Hexo-Tag-Helpers %}">简体中文</a>.
-</div>
-</article>
-
 <!-- more -->
 
 <article class="message message-immersive is-primary">
