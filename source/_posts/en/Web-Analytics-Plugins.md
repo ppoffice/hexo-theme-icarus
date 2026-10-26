@@ -9,7 +9,7 @@ language: en
 toc: true
 ---
 
-This article covers web analytics plugins supported by Icarus 6.
+This article covers web analytics plugins supported by Icarus.
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -400,6 +400,7 @@ The following link and code were made for Twitter and may have changed since the
 
 Waline can [count the views of each page](https://waline.js.org/en/guide/features/pageview.html) as well as
 host comments.
+The counter uses the same Waline client as the comments.
 To count page views with Waline and display the number of views on the header of each post, set
 `plugins` > `waline_pageview` to `true` in the theme configurations.
 The counter then uses the `server_url` of the

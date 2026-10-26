@@ -13,7 +13,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 6支持的网站统计与分析插件的安装配置。
+本文介绍Icarus支持的网站统计与分析插件的安装配置。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -384,6 +384,7 @@ providers:
 **安装指南**
 
 Waline除了提供评论功能，也可以[统计每个页面的浏览量](https://waline.js.org/guide/features/pageview.html)。
+浏览量统计与评论使用同一个Waline客户端。
 若要使用Waline统计浏览量并在每篇文章的头部显示浏览次数，请将主题配置中`plugins` > `waline_pageview`的值设置为`true`。
 此时浏览量统计会使用<a href="{% post_path zh-CN/Comment-Plugins %}#Waline">Waline评论插件</a>的`server_url`，
 这要求`comment` > `type`为`waline`：

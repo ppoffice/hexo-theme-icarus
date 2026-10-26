@@ -168,14 +168,13 @@ The following packages are loaded through these CDN settings:
     - `jquery`: used on every page
     - `clipboard`: the "copy" button of code blocks
     - `highlight.js`: the code highlight theme stylesheets (two files with `appearance: auto`)
-    - `pjax`: the PJAX plugin
 - **Plugins and widgets** (from hexo-component-inferno)
     - `@waline/client`: the Waline comment plugin and the `waline_pageview` plugin (several files)
-    - `artalk`, `disqusjs`, and `gitalk` (two files each), `twikoo` and `valine`: comment plugins
+    - `artalk`, `disqusjs`, and `@aifire/gitalk` (two files each), `twikoo` and `valine`: comment plugins
     - `algoliasearch` and `instantsearch.js`: the Algolia search plugin
-    - `lightgallery` and `justifiedGallery`: the gallery plugin (two files each)
-    - `katex` (several files) and `mathjax`: the KaTeX and MathJax plugins
-    - `cookieconsent` and `outdatedbrowser`: the cookie consent and outdated browser plugins (two files each)
+    - `lightgallery` and `justified-gallery`: the gallery plugin (several files)
+    - `katex` (several files), `mathjax`, and `@mathjax/mathjax-newcm-font`: the KaTeX and MathJax plugins
+    - `cookieconsent`: the cookie consent plugin (two files)
     - `pace-js`: the progress bar plugin
 
 Other plugins load their scripts from your site or from the URLs of their own services, which the CDN settings

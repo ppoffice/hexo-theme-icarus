@@ -158,14 +158,13 @@ providers:
     - `jquery`：每个页面都会使用
     - `clipboard`：代码块的复制按钮
     - `highlight.js`：代码高亮主题的样式表（`appearance: auto`时有两个文件）
-    - `pjax`：PJAX插件
 - **插件和挂件**（来自hexo-component-inferno）
     - `@waline/client`：Waline评论插件和`waline_pageview`插件（多个文件）
-    - `artalk`、`disqusjs`和`gitalk`（各两个文件），`twikoo`和`valine`：评论插件
+    - `artalk`、`disqusjs`和`@aifire/gitalk`（各两个文件），`twikoo`和`valine`：评论插件
     - `algoliasearch`和`instantsearch.js`：Algolia搜索插件
-    - `lightgallery`和`justifiedGallery`：图片画廊插件（各两个文件）
-    - `katex`（多个文件）和`mathjax`：KaTeX和MathJax插件
-    - `cookieconsent`和`outdatedbrowser`：Cookie同意提示和过期浏览器提示插件（各两个文件）
+    - `lightgallery`和`justified-gallery`：图片画廊插件（多个文件）
+    - `katex`（多个文件）、`mathjax`和`@mathjax/mathjax-newcm-font`：KaTeX和MathJax插件
+    - `cookieconsent`：Cookie同意提示插件（两个文件）
     - `pace-js`：页面加载进度条插件
 
 其他插件的脚本从你的站点或者它们各自服务的URL加载，不受CDN设置的影响。

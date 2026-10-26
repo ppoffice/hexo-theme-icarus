@@ -11,7 +11,7 @@ plugins:
     animejs: true
     back_to_top: true
     cookie_consent:
-        type: info
+        type: opt-in
         theme: classic
         static: false
         position: bottom
@@ -24,11 +24,14 @@ plugins:
     progressbar: true
 providers:
     cdn: loli
+    cdn_overrides:
+        lightgallery: jsdelivr
+        justified-gallery: jsdelivr
     fontcdn: loli
     iconcdn: loli
 ---
 
-本文介绍Icarus 6支持的其他插件的安装配置。
+本文介绍Icarus支持的其他插件的安装配置。
 
 <article class="message message-immersive is-primary">
 <div class="message-body">
@@ -48,7 +51,7 @@ providers:
 
 **安装指南**
 
-Icarus的画廊插件同时包含了[lightGallery](https://sachinchoolur.github.io/lightGallery/)与
+Icarus的画廊插件同时包含了[lightGallery](https://www.lightgalleryjs.com/)与
 [Justified Gallery](https://miromannino.github.io/Justified-Gallery/)两种插件。
 画廊插件默认开启：Icarus生成的配置文件中`plugins` > `gallery`的值为`true`。
 如果你的配置文件中没有这一项，请添加它来启用插件。
@@ -145,6 +148,8 @@ $$\displaystyle \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} 
 这是另一个块状公式：
 \\[f(x) = \int_{-\infty}^\infty\hat f(\xi)e^{2 \pi i \xi x}d\xi\\]
 {% endcodeblock %}
+
+你还可以用`\ce`命令书写化学方程式，例如`\\(\ce{H2O}\\)`。
 
 有时你的\\(\TeX\\)语法会被错认为Markdown语法而导致公式渲染异常。
 例如，下面的公式不会渲染成功，因为其中包含多个`_`(下划线)而被Markdown渲染器错误地当成Markdown的斜体语法：
@@ -351,10 +356,19 @@ A =
 请参考[下载Cookie Consent](https://www.osano.com/cookieconsent/download/)和[Cookie Consent插件文档](https://www.osano.com/cookieconsent/documentation/about-cookie-consent/)来了解每个配置项的细节。
 你也可以通过注释掉配置的方式来禁用Cookie同意对话框。
 
+`type`决定对话框的作用：
+
+- `info`只告知访客网站使用了Cookie。这是默认值。
+- `opt-in`在访客允许使用Cookie之后才加载下列网站统计插件。
+- `opt-out`默认加载下列网站统计插件，除非访客拒绝使用Cookie。
+
+`opt-in`和`opt-out`作用于以下插件：`baidu_analytics`、`busuanzi`、`cnzz`、`google_analytics`、`hotjar`、`matomo`、`statcounter`、`twitter_conversion_tracking`、`umami`和`waline_pageview`。
+在这两种模式下，访客之后可以通过“Cookie政策”按钮更改自己的选择。
+
 {% codeblock _config.icarus.yml lang:yaml %}
 plugins:
     cookie_consent:
-        # 同意对话框类型。可以为"info"，"opt-in"，或"opt-out"
+        # info：仅提示；opt-in：同意后加载；opt-out：拒绝前一直加载
         type: info
         # 弹出框主题。可以为"block"，"edgeless"，或"classic"
         theme: edgeless
@@ -372,8 +386,8 @@ plugins:
 **安装指南**
 
 你可以使用浏览器升级提醒(Outdated Browser)插件来检测你的网站访客使用的老旧浏览器，并提醒他们升级浏览器。
+如果访客的浏览器不支持主题的布局和配色所需的CSS特性，插件会在导航栏上方显示提醒。
 若要启用此插件，请将主题配置中`plugins` > `outdated_browser`的值设置为`true`。
-点击[此处](https://bestvpn.org/outdatedbrowser/en)即可预览插件开启效果。
 
 {% codeblock _config.icarus.yml lang:yaml %}
 plugins:
@@ -432,6 +446,8 @@ plugins:
 
 关于PJAX需要注意的是：
 
+- 如果你添加了自己的脚本来处理页面内容，请在`pjax:complete`事件中再次运行它们，而不是只在`DOMContentLoaded`时运行。
+  若要在内容被替换之前做清理，请监听`hexo:page:before-replace`事件。
 - 评论区会和正文一起被替换，评论插件的脚本也会重新运行，因此每个新页面都会加载自己的评论。
 - MathJax会重新渲染新页面中的数学公式。
 - 页面切换后，网站统计插件的脚本不会重新运行，以免同一次访问被统计两次。
