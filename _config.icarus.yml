@@ -276,6 +276,11 @@ widgets:
         # Where should the widget be placed, left sidebar or right sidebar
         position: right
         type: tags
+    # GitHub contribution calendar widget configurations
+    -
+        position: right
+        type: github_calendar
+        username: ppoffice
     # Google FeedBurner email subscription widget configurations
     # -
     #     # Where should the widget be placed, left sidebar or right sidebar

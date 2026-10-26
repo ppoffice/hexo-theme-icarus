@@ -35,6 +35,10 @@ widgets:
         show_count: false
     -
         position: left
+        type: github_calendar
+        username: ppoffice
+    -
+        position: left
         type: followit
         description: 邮件订阅，更新早知道
         action_url: ''
@@ -232,6 +236,26 @@ widgets:
             Bulma:
                 link: 'https://bulma.io'
                 hide_hostname: true
+{% endcodeblock %}
+
+
+## GitHub贡献日历
+
+GitHub贡献日历挂件可以展示一位GitHub用户近期的贡献记录。
+它从第三方服务[GitHub Contributions API](https://github.com/grubersjoe/github-contributions-api)获取数据，因此不需要GitHub Token。
+挂件配置如下：
+
+{% codeblock _config.icarus.yml lang:yaml %}
+widgets:
+    -
+        position: left
+        type: github_calendar
+        # GitHub用户名。留空则隐藏此挂件
+        username: ppoffice
+        # 挂件标题。留空则使用对应语言的默认标题
+        title:
+        # 可选的六位十六进制颜色，例如'#40c463'。留空则使用主题的日历配色
+        color:
 {% endcodeblock %}
 
 

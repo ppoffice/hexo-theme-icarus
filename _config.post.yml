@@ -65,3 +65,8 @@ widgets:
         # Where should the widget be placed, left sidebar or right sidebar
         position: left
         type: tags
+    # GitHub contribution calendar widget configurations
+    -
+        position: left
+        type: github_calendar
+        username: ppoffice

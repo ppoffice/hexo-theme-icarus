@@ -35,6 +35,10 @@ widgets:
         show_count: false
     -
         position: left
+        type: github_calendar
+        username: ppoffice
+    -
+        position: left
         type: followit
         description: Subscribe to get the latest updates!
         action_url: ''
@@ -237,6 +241,27 @@ widgets:
             Bulma:
                 link: 'https://bulma.io'
                 hide_hostname: true
+{% endcodeblock %}
+
+
+## GitHub Contribution Calendar
+
+The GitHub contribution calendar widget shows the recent contributions of a GitHub user.
+It loads the data from the third-party [GitHub Contributions API](https://github.com/grubersjoe/github-contributions-api)
+service, so no GitHub token is needed.
+Its configuration is listed below:
+
+{% codeblock _config.icarus.yml lang:yaml %}
+widgets:
+    -
+        position: left
+        type: github_calendar
+        # GitHub username. Leave empty to hide this widget
+        username: ppoffice
+        # Widget title. Leave empty to use the translated default
+        title:
+        # Optional six-digit hex color, for example '#40c463'. Leave empty to use the theme's calendar palette
+        color:
 {% endcodeblock %}
 
 

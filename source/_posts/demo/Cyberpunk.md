@@ -50,6 +50,10 @@ widgets:
     -
         position: right
         type: tags
+    -
+        position: right
+        type: github_calendar
+        username: ppoffice
 cover: /gallery/covers/neon-city.svg
 thumbnail: /gallery/covers/neon-city.svg
 ---
