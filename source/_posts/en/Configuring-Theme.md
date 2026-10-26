@@ -41,8 +41,9 @@ version: 5.1.0
 ### Theme Variant
 
 Choose a skin for Icarus.
-`"default"` and `"cyberpunk"` are supported values currently.
-You can take a look at the Cyberpunk variant {% post_link demo/Cyberpunk "here" %}.
+`"default"`, `"cyberpunk"`, and `"m3e"` (Material 3 Expressive) are supported values currently.
+You can take a look at the Cyberpunk variant {% post_link demo/Cyberpunk "here" %} and the Material 3 Expressive
+variant {% post_link demo/Material-3-Expressive "here" %}.
 
 {% codeblock _config.icarus.yml lang:yaml %}
 variant: default
@@ -50,7 +51,7 @@ variant: default
 
 ### Appearance
 
-The default variant can be light or dark.
+The default and Material 3 Expressive variants can be light or dark.
 Set `appearance` to `light` (the default), `auto` to follow the light or dark color scheme setting of each
 visitor's browser or operating system, or `dark` to always use the dark colors.
 The Cyberpunk variant has its own dark colors and ignores this setting.
@@ -82,7 +83,7 @@ logo:
     text: My Beautiful Site
 {% endcodeblock %}
 
-When the default variant looks dark (see [Appearance](#Appearance)), and always in the Cyberpunk variant, the
+When the `default` or `m3e` variant looks dark (see [Appearance](#Appearance)), and always in the Cyberpunk variant, the
 logo image is replaced with the image set in `logo_dark`:
 
 {% codeblock _config.icarus.yml lang:yaml %}
@@ -330,6 +331,8 @@ Then, copy the file name (without the `.css` extension) to the `theme` setting.
 Themes in the `base16` directory, such as `solarized-light`, keep the directory in their names, e.g.,
 `base16/solarized-light`.
 The `dark_theme` setting is the theme used instead when the page is dark (see [Appearance](#Appearance)).
+
+The Material 3 Expressive variant uses its own colors for the background and main syntax colors of code blocks.
 
 On devices with a mouse, the "copy" button of a code block only shows while the code block is hovered or
 focused; on touch screens it is always visible.

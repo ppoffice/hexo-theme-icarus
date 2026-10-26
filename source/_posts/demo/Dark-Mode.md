@@ -8,12 +8,11 @@ cover: /gallery/covers/dark-mode.png
 thumbnail: /gallery/covers/dark-mode.png
 ---
 
-The default variant of Icarus can now be dark, either all the time or only when the browser or operating
+The default and Material 3 Expressive variants of Icarus can be dark, either all the time or only when the browser or operating
 system of your visitors asks for a dark color scheme.
 This has long been requested by the community
 ([#1108](https://github.com/ppoffice/hexo-theme-icarus/issues/1108)).
-The dark colors live in the same stylesheet as the light ones and are picked by CSS alone, so there is no
-extra request, no JavaScript involved, and no flash of light colors when a page loads.
+The dark colors live in the same stylesheet as the light ones, so there is no extra request.
 This post itself is always displayed with the dark appearance, while the rest of this site uses `appearance: auto`
 and follows the color scheme of your system.
 
@@ -107,6 +106,9 @@ Text logos need nothing.
 {% endcodeblock %}
 
 ## Customizing the Colors
+
+This section applies to the default variant.
+For the Material 3 Expressive variant, see {% post_link demo/Material-3-Expressive "Material 3 Expressive Theme Variant" %}.
 
 The dark colors are Stylus variables, such as `$dark-background`, `$dark-surface`, `$dark-text`, and
 `$dark-link`, listed at the top of `<icarus_directory>/include/style/dark.styl`.

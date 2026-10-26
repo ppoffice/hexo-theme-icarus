@@ -47,8 +47,8 @@ version: 5.1.0
 ### 主题变体
 
 通过此设置为Icarus更换“皮肤”。
-此设置目前支持`default`和`cyberpunk`两种值。
-你可以在{% post_link demo/Cyberpunk "此处" %}查看Cyberpunk变体的效果。
+此设置目前支持`default`、`cyberpunk`和`m3e`（Material 3 Expressive）三种值。
+你可以在{% post_link demo/Cyberpunk "此处" %}查看Cyberpunk变体的效果，在{% post_link demo/Material-3-Expressive "此处" %}查看Material 3 Expressive变体的效果（英文）。
 
 {% codeblock _config.icarus.yml lang:yaml %}
 variant: default
@@ -56,7 +56,7 @@ variant: default
 
 ### 外观
 
-默认变体可以是亮色或暗色的。
+默认变体和Material 3 Expressive变体可以是亮色或暗色的。
 将`appearance`设置为`light`（默认值）、`auto`（跟随每位访客的浏览器或操作系统的亮色/暗色设置）或`dark`（始终使用暗色）。
 Cyberpunk变体有自己的暗色配色，会忽略此设置。
 
@@ -85,7 +85,7 @@ logo:
     text: My Beautiful Site
 {% endcodeblock %}
 
-当默认变体显示为暗色时（参见[外观](#外观)），以及使用Cyberpunk变体时，logo图片会换成`logo_dark`中设置的图片：
+当默认变体或Material 3 Expressive变体显示为暗色时（参见[外观](#外观)），以及使用Cyberpunk变体时，logo图片会换成`logo_dark`中设置的图片：
 
 {% codeblock _config.icarus.yml lang:yaml %}
 logo: /img/logo.svg
@@ -318,6 +318,8 @@ footer:
 然后，复制文件名(不带`.css`后缀)到`theme`设置项中。
 `base16`目录中的主题（如`solarized-light`）需要在名称中保留目录名，例如`base16/solarized-light`。
 `dark_theme`设置项是页面显示为暗色时改用的主题（参见[外观](#外观)）。
+
+Material 3 Expressive变体的代码块背景和主要语法颜色使用其自身的配色。
 
 在使用鼠标的设备上，代码块的复制按钮只在鼠标悬停于代码块上或代码块获得焦点时显示；在触摸屏上则始终显示。
 如要隐藏复制代码按钮，将`clipboard`设置为`false`。
