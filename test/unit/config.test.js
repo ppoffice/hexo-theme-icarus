@@ -90,7 +90,7 @@ describe('include/config (theme configuration check, generation and migration)',
             const generated = env.sitePath('_config.icarus.yml');
             assert.ok(fs.existsSync(generated), 'config file should be generated');
             const cfg = env.readYaml(generated);
-            assert.equal(cfg.version, '5.1.0');
+            assert.equal(cfg.version, '7.0.0');
             assert.equal(loadSchema().validate(cfg), true, 'generated config must pass schema validation');
             assert.doesNotMatch(output, /failed one or more checks/);
         });
@@ -112,7 +112,7 @@ describe('include/config (theme configuration check, generation and migration)',
 
     describe('validation', () => {
         it('accepts a valid, up-to-date configuration silently', () => {
-            env = createEnv({ themeSiteConfig: { version: '5.1.0', variant: 'default' } });
+            env = createEnv({ themeSiteConfig: { version: '7.0.0', variant: 'default' } });
             const before = fs.readFileSync(env.sitePath('_config.icarus.yml'), 'utf8');
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null);
@@ -121,7 +121,7 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('warns (without exiting) when the configuration violates the schema', () => {
-            env = createEnv({ themeSiteConfig: { version: '5.1.0', variant: 'no-such-variant' } });
+            env = createEnv({ themeSiteConfig: { version: '7.0.0', variant: 'no-such-variant' } });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null);
             assert.match(output, /failed one or more checks/);
@@ -129,7 +129,7 @@ describe('include/config (theme configuration check, generation and migration)',
 
         it('validates the theme-directory and site configurations deep-merged, like Hexo', () => {
             env = createEnv({
-                themeDirConfig: { version: '5.1.0', comment: { type: 'disqus', shortname: 'fixture' } },
+                themeDirConfig: { version: '7.0.0', comment: { type: 'disqus', shortname: 'fixture' } },
                 themeSiteConfig: { comment: { type: 'disqus' } }
             });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
@@ -140,7 +140,7 @@ describe('include/config (theme configuration check, generation and migration)',
         it('also merges theme_config from the site _config.yml', () => {
             env = createEnv({
                 siteConfig: { title: 'Test', theme_config: { comment: { shortname: 'fixture' } } },
-                themeSiteConfig: { version: '5.1.0', comment: { type: 'disqus' } }
+                themeSiteConfig: { version: '7.0.0', comment: { type: 'disqus' } }
             });
             env.hexo.config.theme_config = { comment: { shortname: 'fixture' } };
             const { output } = capture(() => checkConfig(env.hexo));
@@ -149,7 +149,7 @@ describe('include/config (theme configuration check, generation and migration)',
 
         it('accepts widgets: null overriding the widgets of the theme-directory configuration', () => {
             env = createEnv({
-                themeDirConfig: { version: '5.1.0', widgets: [{ position: 'left', type: 'profile' }] },
+                themeDirConfig: { version: '7.0.0', widgets: [{ position: 'left', type: 'profile' }] },
                 themeSiteConfig: { widgets: null }
             });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
@@ -160,7 +160,7 @@ describe('include/config (theme configuration check, generation and migration)',
         it('accepts navbar sub-menus next to plain links without rewriting the configuration', () => {
             env = createEnv({
                 themeSiteConfig: {
-                    version: '5.1.0',
+                    version: '7.0.0',
                     navbar: { menu: { Home: '/', About: { Trademark: '/about/trademark/', Enterprise: '/about/enterprise/' } } }
                 }
             });
@@ -173,7 +173,7 @@ describe('include/config (theme configuration check, generation and migration)',
 
         it('warns about a navbar sub-menu nested in a sub-menu', () => {
             env = createEnv({
-                themeSiteConfig: { version: '5.1.0', navbar: { menu: { About: { Company: { Trademark: '/about/trademark/' } } } } }
+                themeSiteConfig: { version: '7.0.0', navbar: { menu: { About: { Company: { Trademark: '/about/trademark/' } } } } }
             });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null);
@@ -181,14 +181,14 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('accepts an empty theme configuration file', () => {
-            env = createEnv({ themeDirConfig: { version: '5.1.0' }, themeSiteConfig: '' });
+            env = createEnv({ themeDirConfig: { version: '7.0.0' }, themeSiteConfig: '' });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null, output);
             assert.doesNotMatch(output, /failed one or more checks/, output);
         });
 
         it('warns when theme settings are placed in the site _config.yml as theme_config', () => {
-            env = createEnv({ siteConfig: { title: 'Test', theme_config: { variant: 'cyberpunk' } }, themeSiteConfig: { version: '5.1.0' } });
+            env = createEnv({ siteConfig: { title: 'Test', theme_config: { variant: 'cyberpunk' } }, themeSiteConfig: { version: '7.0.0' } });
             const { output } = capture(() => checkConfig(env.hexo));
             assert.match(output, /"theme_config" found in/);
         });
@@ -198,7 +198,7 @@ describe('include/config (theme configuration check, generation and migration)',
             const warning = /Valine exposes commenters' email addresses to anyone with the site's public LeanCloud keys\. See .*issues\/788/;
 
             it('warns when Valine is the configured comment plugin', () => {
-                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
+                env = createEnv({ themeSiteConfig: { version: '7.0.0', comment: valine } });
                 const { exitCode, output } = capture(() => checkConfig(env.hexo));
                 assert.equal(exitCode, null, output);
                 assert.match(output, warning);
@@ -207,31 +207,31 @@ describe('include/config (theme configuration check, generation and migration)',
 
             // hexo-component-inferno's deprecation warning names them, with the shutdown date of LeanCloud
             it('leaves the comment plugins to use instead to the deprecation warning of hexo-component-inferno', () => {
-                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
+                env = createEnv({ themeSiteConfig: { version: '7.0.0', comment: valine } });
                 const { output } = capture(() => checkConfig(env.hexo));
                 assert.doesNotMatch(output, /Waline|Twikoo|giscus|deprecated/i, output);
             });
 
             it('only mentions IP addresses when record_ip is on', () => {
-                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: { ...valine, record_ip: true } } });
+                env = createEnv({ themeSiteConfig: { version: '7.0.0', comment: { ...valine, record_ip: true } } });
                 const { output } = capture(() => checkConfig(env.hexo));
                 assert.match(output, /Valine exposes commenters' email and IP addresses to anyone with the site's public LeanCloud keys\. See .*issues\/788/);
             });
 
             it('does not warn for another comment plugin', () => {
-                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: { type: 'disqus', shortname: 'fixture' } } });
+                env = createEnv({ themeSiteConfig: { version: '7.0.0', comment: { type: 'disqus', shortname: 'fixture' } } });
                 const { output } = capture(() => checkConfig(env.hexo));
                 assert.doesNotMatch(output, /Valine/);
             });
 
             it('does not warn when no comment plugin is configured', () => {
-                env = createEnv({ themeSiteConfig: { version: '5.1.0' } });
+                env = createEnv({ themeSiteConfig: { version: '7.0.0' } });
                 const { output } = capture(() => checkConfig(env.hexo));
                 assert.doesNotMatch(output, /Valine/);
             });
 
             it('does not warn with --icarus-dont-check-config', () => {
-                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment: valine } });
+                env = createEnv({ themeSiteConfig: { version: '7.0.0', comment: valine } });
                 const { output } = withArgv(['--icarus-dont-check-config'], () => capture(() => checkConfig(env.hexo)));
                 assert.doesNotMatch(output, /Valine/);
             });
@@ -246,7 +246,7 @@ describe('include/config (theme configuration check, generation and migration)',
                 if (env) {
                     env.cleanup();
                 }
-                env = createEnv({ themeSiteConfig: { version: '5.1.0', comment, plugins } });
+                env = createEnv({ themeSiteConfig: { version: '7.0.0', comment, plugins } });
                 return capture(() => checkConfig(env.hexo));
             };
 
@@ -296,7 +296,7 @@ describe('include/config (theme configuration check, generation and migration)',
         describe('og:type warning', () => {
             const warning = /head\.open_graph\.type.* is "blog", which is not an Open Graph type and is ignored\. Please remove it\./;
             const check = head => {
-                env = createEnv({ themeSiteConfig: { version: '5.1.0', head } });
+                env = createEnv({ themeSiteConfig: { version: '7.0.0', head } });
                 return capture(() => checkConfig(env.hexo));
             };
 
@@ -316,7 +316,7 @@ describe('include/config (theme configuration check, generation and migration)',
         });
 
         it('exits with an error when the theme config is not valid YAML', () => {
-            env = createEnv({ themeSiteConfig: 'version: 5.1.0\nvariant: [unclosed\n' });
+            env = createEnv({ themeSiteConfig: 'version: 7.0.0\nvariant: [unclosed\n' });
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, -1);
             assert.match(output, /Theme configuration checking failed/);
@@ -342,7 +342,7 @@ describe('include/config (theme configuration check, generation and migration)',
             assert.equal(fs.readFileSync(backup, 'utf8'), originalContent);
 
             const migrated = env.readYaml(original);
-            assert.equal(migrated.version, '5.1.0');
+            assert.equal(migrated.version, '7.0.0');
             assert.equal(migrated.comment.pageview, true);
             assert.equal(migrated.comment.tex_renderer, 'mathjax');
             assert.equal('visitor' in migrated.comment, false);
@@ -354,7 +354,7 @@ describe('include/config (theme configuration check, generation and migration)',
             const { exitCode, output } = capture(() => checkConfig(env.hexo));
             assert.equal(exitCode, null, output);
             const migrated = env.readYaml(env.sitePath('_config.icarus.yml'));
-            assert.equal(migrated.version, '5.1.0');
+            assert.equal(migrated.version, '7.0.0');
             assert.deepEqual(migrated.article, { readtime: true });
         });
 

@@ -5,6 +5,7 @@ const V2toV3 = require('../../include/migration/v2_v3');
 const V3toV4 = require('../../include/migration/v3_v4');
 const V4toV5 = require('../../include/migration/v4_v5');
 const V5toV51 = require('../../include/migration/v5_v5.1');
+const V51toV7 = require('../../include/migration/v5.1_v7');
 const schemaConfig = require('../../include/schema/config.json');
 const { capture } = require('../support/capture');
 
@@ -18,15 +19,17 @@ describe('include/migration', () => {
         const migrator = new Migrator(head);
         assert.ok(migrator.isOudated('5.0.0'));
         assert.ok(migrator.isOudated('4.4.0'));
-        assert.ok(!migrator.isOudated('5.1.0'));
+        assert.ok(migrator.isOudated('5.1.0'));
+        assert.ok(!migrator.isOudated('7.0.0'));
     });
 
     it('chains every migration so old configurations are fully upgraded', () => {
         const migrator = new Migrator(head);
-        assert.deepEqual(migrator.versions, ['3.0.0', '4.0.0', '5.0.0', '5.1.0']);
+        assert.deepEqual(migrator.versions, ['3.0.0', '4.0.0', '5.0.0', '5.1.0', '7.0.0']);
     });
 
     it('links each migration to its predecessor', () => {
+        assert.equal(new V51toV7().head, V5toV51);
         assert.equal(new V5toV51().head, V4toV5);
         assert.equal(new V4toV5().head, V3toV4);
         assert.equal(new V3toV4().head, V2toV3);
@@ -34,11 +37,12 @@ describe('include/migration', () => {
     });
 
     for (const [from, expected] of [
-        ['2.0.0', ['3.0.0', '4.0.0', '5.0.0', '5.1.0']],
-        ['3.0.0', ['4.0.0', '5.0.0', '5.1.0']],
-        ['4.4.0', ['5.0.0', '5.1.0']],
-        ['5.0.0', ['5.1.0']],
-        ['5.1.0', []]
+        ['2.0.0', ['3.0.0', '4.0.0', '5.0.0', '5.1.0', '7.0.0']],
+        ['3.0.0', ['4.0.0', '5.0.0', '5.1.0', '7.0.0']],
+        ['4.4.0', ['5.0.0', '5.1.0', '7.0.0']],
+        ['5.0.0', ['5.1.0', '7.0.0']],
+        ['5.1.0', ['7.0.0']],
+        ['7.0.0', []]
     ]) {
         it(`runs exactly the migrations newer than ${from}`, () => {
             const ran = [];
@@ -49,7 +53,7 @@ describe('include/migration', () => {
 
     it('upgrading a 3.x configuration applies the 3.x -> 4.0 migration', () => {
         const migrated = new Migrator(head).migrate({ version: '3.0.0', article: { thumbnail: true, readtime: true } });
-        assert.equal(migrated.version, '5.1.0');
+        assert.equal(migrated.version, '7.0.0');
         assert.equal('thumbnail' in migrated.article, false);
     });
 
@@ -62,13 +66,72 @@ describe('include/migration', () => {
             comment: { type: 'waline', visitor: true },
             widgets: [{ position: 'left', type: 'archive' }]
         })).result;
-        assert.equal(migrated.version, '5.1.0');
+        assert.equal(migrated.version, '7.0.0');
         assert.equal(migrated.head.favicon, '/img/favicon.svg');
         assert.equal(migrated.head.rss, '/atom.xml');
         assert.equal('favicon' in migrated, false);
         assert.equal('thumbnail' in migrated.article, false);
         assert.equal(migrated.comment.pageview, true);
         assert.equal(migrated.widgets[0].type, 'archives');
+    });
+
+    describe('v5.1 -> v7 (options that hexo-component-inferno 5 renames or ignores)', () => {
+        const migrate = config => new V51toV7().migrate(config);
+
+        it('removes the ignored Open Graph type "blog" and the Google+ link', () => {
+            const result = migrate({ version: '5.1.0', head: { open_graph: { type: 'blog', google_plus: 'x', twitter_id: 'me' } } });
+            assert.equal(result.version, '7.0.0');
+            assert.deepEqual(result.head.open_graph, { twitter_id: 'me' });
+        });
+
+        it('keeps a valid Open Graph type', () => {
+            assert.equal(migrate({ version: '5.1.0', head: { open_graph: { type: 'website' } } }).head.open_graph.type, 'website');
+        });
+
+        it('renames and removes CDN overrides', () => {
+            const result = migrate({
+                version: '5.1.0',
+                providers: { cdn_overrides: { justifiedGallery: 'jsdelivr', gitalk: 'unpkg', pjax: 'cdnjs', outdatedbrowser: 'cdnjs', katex: 'loli' } }
+            });
+            assert.deepEqual(result.providers.cdn_overrides, { 'justified-gallery': 'jsdelivr', '@aifire/gitalk': 'unpkg', katex: 'loli' });
+        });
+
+        it('does not overwrite CDN overrides that already use the new name', () => {
+            const result = migrate({ version: '5.1.0', providers: { cdn_overrides: { justifiedGallery: 'cdnjs', 'justified-gallery': 'jsdelivr' } } });
+            assert.deepEqual(result.providers.cdn_overrides, { 'justified-gallery': 'jsdelivr' });
+        });
+
+        it('removes the Gitalk options that Gitalk 2 ignores', () => {
+            const result = migrate({ version: '5.1.0', comment: { type: 'gitalk', client_id: 'id', client_secret: 'secret', flip_move_options: {}, repo: 'repo' } });
+            assert.deepEqual(result.comment, { type: 'gitalk', client_id: 'id', repo: 'repo' });
+        });
+
+        it('leaves the options of other comment plugins untouched', () => {
+            const comment = { type: 'disqus', shortname: 'name', client_secret: 'kept' };
+            assert.deepEqual(migrate({ version: '5.1.0', comment: { ...comment } }).comment, comment);
+        });
+
+        it('keeps the theme avatar of profile widgets without an avatar or a Gravatar', () => {
+            const result = migrate({
+                version: '5.1.0',
+                widgets: [
+                    { type: 'profile', position: 'left', avatar: null },
+                    { type: 'profile', position: 'left', avatar: '/me.png' },
+                    { type: 'profile', position: 'left', gravatar: 'me@example.com' },
+                    { type: 'toc', position: 'right' }
+                ]
+            });
+            assert.deepEqual(result.widgets, [
+                { type: 'profile', position: 'left', avatar: '/img/avatar.png' },
+                { type: 'profile', position: 'left', avatar: '/me.png' },
+                { type: 'profile', position: 'left', gravatar: 'me@example.com' },
+                { type: 'toc', position: 'right' }
+            ]);
+        });
+
+        it('handles a configuration without these settings', () => {
+            assert.deepEqual(migrate({ version: '5.1.0', variant: 'default' }), { version: '7.0.0', variant: 'default' });
+        });
     });
 
     describe('v5 -> v5.1 (Waline v2 option names)', () => {

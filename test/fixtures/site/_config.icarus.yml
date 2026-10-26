@@ -1,5 +1,5 @@
 # Theme configuration for the test fixture. Variants in ../variants.js are merged on top.
-version: 5.1.0
+version: 7.0.0
 variant: default
 logo: /img/logo.svg
 head:

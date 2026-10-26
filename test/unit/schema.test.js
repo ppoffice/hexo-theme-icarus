@@ -113,7 +113,7 @@ describe('include/schema', () => {
     });
 
     describe('appearance', () => {
-        const valid = config => loadSchema().validate(Object.assign({ version: '5.1.0' }, config)) === true;
+        const valid = config => loadSchema().validate(Object.assign({ version: '7.0.0' }, config)) === true;
 
         it('accepts "light", "auto" and "dark", and can be left out', () => {
             for (const appearance of ['light', 'auto', 'dark']) {
@@ -171,13 +171,13 @@ describe('include/schema', () => {
 
         before(() => { schema = loadSchema(); });
 
-        const valid = cdn_overrides => schema.validate({ version: '5.1.0', providers: { cdn: 'jsdelivr', cdn_overrides } }) === true;
+        const valid = cdn_overrides => schema.validate({ version: '7.0.0', providers: { cdn: 'jsdelivr', cdn_overrides } }) === true;
 
         it('accepts CDN provider names and URL templates by package name, or nothing', () => {
             assert.ok(valid({ 'jquery': 'unpkg', 'highlight.js': '[cdnjs]https://cdn.example.com/${package}/${version}/${filename}', '@waline/client': 'https://example.com/waline.js' }));
             assert.ok(valid({}));
             assert.ok(valid(null));
-            assert.ok(schema.validate({ version: '5.1.0', providers: { cdn: 'jsdelivr' } }) === true);
+            assert.ok(schema.validate({ version: '7.0.0', providers: { cdn: 'jsdelivr' } }) === true);
         });
 
         for (const [description, value] of [
@@ -205,7 +205,7 @@ describe('include/schema', () => {
 
         before(() => { schema = loadSchema(); });
 
-        const valid = waline_pageview => schema.validate({ version: '5.1.0', plugins: { waline_pageview } }) === true;
+        const valid = waline_pageview => schema.validate({ version: '7.0.0', plugins: { waline_pageview } }) === true;
 
         it('accepts true, false, or the URL of a server', () => {
             for (const value of [true, false, {}, { server_url: 'https://waline.example.com' }, { server_url: null }]) {
@@ -231,7 +231,7 @@ describe('include/schema', () => {
 
         before(() => { schema = loadSchema(); });
 
-        const valid = outdated_notice => schema.validate({ version: '5.1.0', article: { outdated_notice } }) === true;
+        const valid = outdated_notice => schema.validate({ version: '7.0.0', article: { outdated_notice } }) === true;
 
         it('accepts a switch and a number of days', () => {
             for (const value of [null, {}, { enable: true }, { enable: false, days: 365 }, { enable: true, days: 1 }]) {
@@ -256,7 +256,7 @@ describe('include/schema', () => {
 
         before(() => { schema = loadSchema(); });
 
-        const valid = prefetch => schema.validate({ version: '5.1.0', plugins: { prefetch } }) === true;
+        const valid = prefetch => schema.validate({ version: '7.0.0', plugins: { prefetch } }) === true;
 
         it('accepts true, false, or a delay', () => {
             for (const value of [true, false, {}, { delay: 0 }, { delay: 100 }, { delay: null }]) {
@@ -280,7 +280,7 @@ describe('include/schema', () => {
 
         before(() => { schema = loadSchema(); });
 
-        const valid = comment => schema.validate({ version: '5.1.0', comment }) === true;
+        const valid = comment => schema.validate({ version: '7.0.0', comment }) === true;
 
         it('accepts Artalk, Cusdis and Beaudar with their required options', () => {
             assert.ok(valid({ type: 'artalk', server: 'https://artalk.example.com' }));
@@ -334,7 +334,7 @@ describe('include/schema', () => {
 
         before(() => { schema = loadSchema(); });
 
-        const valid = widget => schema.validate({ version: '5.1.0', widgets: [{ position: 'left', ...widget }] }) === true;
+        const valid = widget => schema.validate({ version: '7.0.0', widgets: [{ position: 'left', ...widget }] }) === true;
 
         it('accepts the options of hexo-component-inferno 4.2.0, or none of them, as in the generated configuration', () => {
             for (const widget of [

@@ -19,7 +19,7 @@ describe('Profile schema resolution', () => {
 
     it('validates existing options through the full theme configuration schema', () => {
         const schema = SchemaLoader.load(rootSchema, schemaDir).getSchema('/config.json');
-        const valid = widget => schema.validate({ version: '5.1.0', widgets: [Object.assign({ type: 'profile', position: 'left' }, widget)] }) === true;
+        const valid = widget => schema.validate({ version: '7.0.0', widgets: [Object.assign({ type: 'profile', position: 'left' }, widget)] }) === true;
         for (const widget of [{}, { avatar: null }, { avatar: '/me.png', gravatar: 'a@example.com', avatar_rounded: true },
             { author: null, author_title: 'Writer', location: 'London', follow_link: '/follow/', social_links: {
                 Blog: '/blog/', GitHub: { icon: 'fab fa-github', url: 'https://github.com/author' }
@@ -43,8 +43,8 @@ describe('Profile schema resolution', () => {
             const loader = SchemaLoader.load(rootSchema, [directory, schemaDir]);
             assert.deepEqual(loader.getSchema('/widget/profile.json').def, override);
             const schema = loader.getSchema('/config.json');
-            assert.equal(schema.validate({ version: '5.1.0', widgets: [{ type: 'profile', position: 'left', local_only: 'theme' }] }), true);
-            assert.notEqual(schema.validate({ version: '5.1.0', widgets: [{ type: 'profile', position: 'left' }] }), true);
+            assert.equal(schema.validate({ version: '7.0.0', widgets: [{ type: 'profile', position: 'left', local_only: 'theme' }] }), true);
+            assert.notEqual(schema.validate({ version: '7.0.0', widgets: [{ type: 'profile', position: 'left' }] }), true);
             assert.equal(SchemaLoader.load(rootSchema, schemaDir).getSchema('/widget/profile.json').def, profileSchema);
         } finally {
             fs.rmSync(directory, { recursive: true, force: true });

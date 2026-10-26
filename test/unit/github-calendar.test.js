@@ -78,7 +78,7 @@ describe('layout/widget/github_calendar', () => {
     it('validates configuration and rejects malformed usernames and colors', () => {
         const schemaDir = path.resolve(__dirname, '../../include/schema');
         const schema = SchemaLoader.load(require('../../include/schema/config.json'), schemaDir).getSchema('/config.json');
-        const valid = widget => schema.validate({ version: '5.1.0', widgets: [{ type: 'github_calendar', position: 'left', ...widget }] }) === true;
+        const valid = widget => schema.validate({ version: '7.0.0', widgets: [{ type: 'github_calendar', position: 'left', ...widget }] }) === true;
         for (const widget of [{}, { username: null }, { username: '' }, { username: 'octocat' }, { username: 'user-name', title: 'Activity', color: '#40c463' }]) {
             assert.ok(valid(widget), JSON.stringify(widget));
         }
