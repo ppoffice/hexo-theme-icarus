@@ -49,7 +49,7 @@ widgets:
         author: hulatocat
         author_title: A GitHub Octocat
         location: GitHub Inc.
-        avatar: https://octodex.github.com/images/hula_loop_octodex03.gif
+        avatar: /img/avatar.png
         avatar_rounded: false
         gravatar:
         follow_link: 'https://octodex.github.com/hulatocat'
@@ -68,7 +68,7 @@ providers:
     iconcdn: loli
 ---
 
-本文介绍Icarus 6支持的页面挂件的安装配置。
+本文介绍Icarus支持的页面挂件的安装配置。
 若要同时展示多个挂件，只需在主题配置的`widgets`数组中添加多个挂件配置。
 它们会按照定义的顺序出现。
 每个挂件必须包含`type`(挂件类型)与`position`(挂件展示位置)设置项。
@@ -134,7 +134,7 @@ widgets:
         # 作者所在地/公司
         location: GitHub Inc.
         # 头像图片的URL或路径
-        avatar: https://octodex.github.com/images/hula_loop_octodex03.gif
+        avatar: /img/avatar.png
         # 是否显示圆形头像
         avatar_rounded: false
         # Gravatar账户的邮箱地址。设置后优先于`avatar`使用
@@ -155,7 +155,7 @@ widgets:
 
 - 如果你希望使用[Gravatar](https://en.gravatar.com/)作为头像图片，请在`gravatar`项填入你的Gravatar邮箱地址。
   设置了`gravatar`时，即使同时设置了`avatar`，也会使用Gravatar头像。
-  两者都没有设置时，显示Icarus的默认头像(`/img/avatar.png`)。
+  两者都没有设置时，不显示头像。
 
 - `social_links`可以采用如下两种格式：
 

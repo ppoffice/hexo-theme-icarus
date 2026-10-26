@@ -27,6 +27,10 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
+# Do not scan test fixtures when the local theme is linked into this site.
+ignore:
+  - '**/test/**'
+
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post

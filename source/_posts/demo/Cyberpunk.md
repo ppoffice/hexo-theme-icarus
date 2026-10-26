@@ -12,6 +12,7 @@ widgets:
     -
         position: left
         type: profile
+        avatar: /img/avatar.png
         author: PPOffice
         author_title: Web Developer
         location: Earth, Solar System

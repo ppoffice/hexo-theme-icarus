@@ -24,7 +24,7 @@ widgets:
         # Author's current location
         location: Earth, Solar System
         # URL or path to the avatar image
-        avatar: 
+        avatar: /img/avatar.png
         # Whether show the rounded avatar image
         avatar_rounded: false
         # Email address for the Gravatar

@@ -4,7 +4,7 @@ tags:
 - Demo
 search:
     type: google_cse
-    cx: 006888261376761189075:qxqdcvqzio0
+    cx: 61140462d75264ad1
 ---
 
 <article class="message message-immersive is-warning">

@@ -6,10 +6,13 @@ comment:
     type: gitalk
     owner: ppoffice
     repo: hexo-theme-icarus
-    client_id: 4828a94319a33c305063
-    client_secret: 5ea20158d656eaf0141dbb4eb38dd91737e3ca7d
     admin:
         - ppoffice
+    client_id: Iv23livaEX0U7rr1iYlG
+    proxy: https://icarus-gitalk-proxy.rzhang.workers.dev
+    backend: issues
+    number: 766
+    create_issue_manually: true
 ---
 
 <article class="message message-immersive is-warning">

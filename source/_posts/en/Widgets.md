@@ -49,7 +49,7 @@ widgets:
         author: hulatocat
         author_title: A GitHub Octocat
         location: GitHub Inc.
-        avatar: https://octodex.github.com/images/hula_loop_octodex03.gif
+        avatar: /img/avatar.png
         avatar_rounded: false
         gravatar:
         follow_link: 'https://octodex.github.com/hulatocat'
@@ -64,7 +64,7 @@ widgets:
         index: false
 ---
 
-This article covers widgets supported by Icarus 6.
+This article covers widgets supported by Icarus.
 To display multiple widgets at once, simply add individual widget configuration
 to the `widgets` array.
 They will appear in the order of their definitions.
@@ -135,7 +135,7 @@ widgets:
         # Author location/organization
         location: GitHub Inc.
         # URL or path of the avatar/profile picture
-        avatar: https://octodex.github.com/images/hula_loop_octodex03.gif
+        avatar: /img/avatar.png
         # Whether to show a round clip of the avatar
         avatar_rounded: false
         # Email address of your Gravatar account. Takes precedence over `avatar` when set
@@ -157,7 +157,7 @@ Some notes on the configuration:
 - If you wish to use [Gravatar](https://en.gravatar.com/) as your profile picture, fill in the Gravatar email
   address in the `gravatar` setting.
   When `gravatar` is set, it is used even if `avatar` is also set.
-  If neither of them is set, the default avatar of Icarus (`/img/avatar.png`) is shown.
+  If neither of them is set, no picture is shown.
 
 - There are two acceptable formats for `social_links`:
 
