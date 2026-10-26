@@ -1,5 +1,5 @@
 title: Icarus User Guide - Share Buttons
-date: 2017-01-31
+date: 2025-09-21
 categories:
 - Plugins
 - Share

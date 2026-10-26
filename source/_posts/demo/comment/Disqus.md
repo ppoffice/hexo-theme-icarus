@@ -1,5 +1,5 @@
 title: Disqus Comment Plugin
-date: 2015-01-01
+date: 2023-10-23
 tags:
 - Demo
 comment:

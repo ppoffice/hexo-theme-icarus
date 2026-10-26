@@ -1,5 +1,5 @@
 title: Icarus快速上手
-date: 2016-01-05
+date: 2025-02-24
 tags:
 - Getting Started
 - Icarus用户指南

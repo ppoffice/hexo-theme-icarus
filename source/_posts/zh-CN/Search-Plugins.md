@@ -1,5 +1,5 @@
 title: Icarus用户指南 - 站内搜索插件
-date: 2016-01-01
+date: 2024-06-22
 categories:
 - Plugins
 - Search

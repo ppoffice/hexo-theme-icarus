@@ -1,5 +1,5 @@
 title: Google CSE Search Plugin
-date: 2013-01-01
+date: 2022-05-21
 tags:
 - Demo
 search:

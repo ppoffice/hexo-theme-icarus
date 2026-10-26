@@ -1,5 +1,5 @@
 title: Icarus User Guide - CDN Providers
-date: 2017-01-31
+date: 2026-03-20
 categories:
 - Configuration
 tags:

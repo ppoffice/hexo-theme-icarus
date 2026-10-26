@@ -1,5 +1,5 @@
 title: Algolia Search Plugin
-date: 2013-01-01
+date: 2022-05-20
 tags:
 - Demo
 search:

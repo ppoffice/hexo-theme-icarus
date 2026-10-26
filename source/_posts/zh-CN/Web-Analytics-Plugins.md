@@ -1,5 +1,5 @@
 title: Icarus用户指南 - 网站分析插件
-date: 2016-01-01
+date: 2023-10-24
 categories:
 - Plugins
 - Analytics

@@ -1,5 +1,5 @@
 title: Cyberpunk Theme Variant
-date: 2020-02-01
+date: 2026-10-21
 tags:
 - Demo
 variant: cyberpunk

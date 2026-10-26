@@ -1,5 +1,5 @@
 title: Dark Appearance
-date: 2020-02-01 12:00:00
+date: 2026-10-19
 tags:
 - Demo
 toc: true

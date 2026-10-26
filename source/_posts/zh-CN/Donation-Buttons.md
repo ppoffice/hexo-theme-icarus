@@ -1,5 +1,5 @@
 title: Icarus用户指南 - 赞赏按钮
-date: 2016-01-01
+date: 2024-06-24
 categories:
 - Plugins
 - Donation

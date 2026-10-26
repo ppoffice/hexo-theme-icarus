@@ -1,5 +1,5 @@
 title: Icarus User Guide - Web Analytics Plugins
-date: 2017-01-31
+date: 2025-09-20
 categories:
 - Plugins
 - Analytics

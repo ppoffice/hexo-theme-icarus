@@ -1,5 +1,5 @@
 title: Icarus User Guide - Donation Buttons
-date: 2017-01-31
+date: 2026-03-19
 categories:
 - Plugins
 - Donation

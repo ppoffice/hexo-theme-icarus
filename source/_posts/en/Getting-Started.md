@@ -1,5 +1,5 @@
 title: Getting Started with Icarus
-date: 2020-04-01
+date: 2026-10-24
 tags:
 - Getting Started
 - Icarus User Guide

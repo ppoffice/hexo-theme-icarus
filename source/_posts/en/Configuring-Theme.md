@@ -1,5 +1,5 @@
 title: Icarus User Guide - Configuring the Theme
-date: 2020-03-01
+date: 2026-10-23
 categories:
 - Configuration
 tags:

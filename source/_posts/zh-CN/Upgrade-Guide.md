@@ -1,5 +1,5 @@
 title: 升级指南
-date: 2016-01-02
+date: 2025-02-21
 tags:
 - Icarus用户指南
 language: zh-CN

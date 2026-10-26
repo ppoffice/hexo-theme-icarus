@@ -1,5 +1,5 @@
 title: Icarus User Guide - Search Plugin
-date: 2017-01-31
+date: 2025-09-22
 categories:
 - Plugins
 - Search
